@@ -1,6 +1,7 @@
 {
-  "name": "dhicn-domian-paas-client-ts-sdk",
-  "private": true,
+  "name": "@dhicn/domain-paas-sdk-ts",
+  "llicense":"MIT",
+  "private": false,
   "version": "0.0.1",
   "scripts": {
     "dev": "vite",

@@ -17,10 +17,26 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-      - name: Use Node.js ${{ matrix.node-version }}
+      - name: Use Node.js ${{ matrix.node-version }} install pnpm
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
+<<<<<<< HEAD
       - run: npm ci
       - run: npm run build --if-present
       # - run: npm test
+=======
+      - run: npm install -g pnpm
+      - name: use pnpm install packages
+        run: pnpm install
+      
+      - name: use pnpm build
+        run: pnpm build
+
+      - name: Use JS-DevTools pubilsh to npm
+        uses: JS-DevTools/npm-publish@v2
+        with:
+          token: ${{ secrets.NPM_TOKEN }}
+          access: public
+#       - run: npm test
+>>>>>>> 419bfea8d400595eaaa31645b727139c17c877a4
