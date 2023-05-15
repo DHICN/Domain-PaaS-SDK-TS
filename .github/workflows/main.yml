@@ -2,13 +2,12 @@ name: Publish NPM
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     strategy:
@@ -24,7 +23,7 @@ jobs:
       - run: npm install -g pnpm
       - name: use pnpm install packages
         run: pnpm install
-      
+
       - name: use pnpm build
         run: pnpm build
 

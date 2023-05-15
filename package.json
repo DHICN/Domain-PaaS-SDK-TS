@@ -1,8 +1,8 @@
 {
   "name": "@dhicn/domain-paas-sdk-ts",
-  "llicense":"MIT",
+  "llicense": "MIT",
   "private": false,
-  "version": "0.0.1",
+  "version": "0.0.2",
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",
@@ -39,7 +39,6 @@
     "dist",
     "src"
   ],
-  "main": "./dist/dhicn-domian-paas-client-ts-sdk.umd.js",
   "module": "./dist/dhicn-domian-paas-client-ts-sdk.es.js",
   "types": "./dist/main.d.ts",
   "exports": {

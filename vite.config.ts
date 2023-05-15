@@ -9,9 +9,22 @@ module.exports = defineConfig({
     lib: {
       entry: path.resolve(__dirname, 'src/main.ts'),
       name: 'dhicn-domian-paas-client-ts-sdk',
+      formats: ['es'],
       fileName: (format) => `dhicn-domian-paas-client-ts-sdk.${format}.js`,
     },
     sourcemap: true,
+    rollupOptions: {
+      output: {
+        inlineDynamicImports: false,
+        manualChunks(id: string) {
+          if (id.includes('scenario-service')) {
+            return 'scenario-service'
+          } else if (id.includes('identity-service')) {
+            return 'identity-service'
+          }
+        },
+      },
+    },
   },
   plugins: [
     dts(),

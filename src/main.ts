@@ -5,6 +5,7 @@ export type AxiosErrorType = AxiosError
 export type AxiosResponseType = AxiosResponse
 
 export * as IdentityServiceApi from './identity-service/index'
+export * as ScenarioServiceApi from './scenario-service/index'
 
 export const initialAxios = (baseURL = '', timeout = 500000) => {
   const axiosInstance = axios.create({
