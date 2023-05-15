@@ -21,11 +21,6 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
-<<<<<<< HEAD
-      - run: npm ci
-      - run: npm run build --if-present
-      # - run: npm test
-=======
       - run: npm install -g pnpm
       - name: use pnpm install packages
         run: pnpm install
@@ -39,4 +34,3 @@ jobs:
           token: ${{ secrets.NPM_TOKEN }}
           access: public
 #       - run: npm test
->>>>>>> 419bfea8d400595eaaa31645b727139c17c877a4
