@@ -1,5 +1,5 @@
 {
-  "name": "dhicn-domian-paas-client-ts-sdk",
+  "name": "@dhicn/domain-paas-sdk-ts",
   "private": true,
   "version": "0.0.1",
   "scripts": {
