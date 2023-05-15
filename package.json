@@ -1,5 +1,5 @@
 {
-  "name": "@dhicn/domain-paas-sdk-ts,
+  "name": "@dhicn/domain-paas-sdk-ts",
   "llicense":"MIT",
   "version": "0.0.1",
   "scripts": {
