@@ -48,7 +48,7 @@ export interface PermissionTree {
    */
   regular?: string | null
   /**
-   * 0-menu(menu)  1-button(button)
+   * 0-menu(menu) 1-button(button)
    * @type {number}
    * @memberof PermissionTree
    */

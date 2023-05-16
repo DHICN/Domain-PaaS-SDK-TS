@@ -10,7 +10,10 @@ module.exports = defineConfig({
       entry: path.resolve(__dirname, 'src/main.ts'),
       name: 'dhicn-domian-paas-client-ts-sdk',
       formats: ['es'],
-      fileName: (format) => `dhicn-domian-paas-client-ts-sdk.${format}.js`,
+      fileName: (format, entryName) => {
+        // console.log('vite build lib :>> ', format, entryName)
+        return `dhicn-domian-paas-client-ts-sdk.${format}.js`
+      },
     },
     sourcemap: true,
     rollupOptions: {
@@ -22,6 +25,10 @@ module.exports = defineConfig({
           } else if (id.includes('identity-service')) {
             return 'identity-service'
           }
+        },
+        chunkFileNames: (chunkInfo) => {
+          // console.log('chunkInfo :>> ', chunkInfo)
+          return `${chunkInfo.name}.es.js`
         },
       },
     },

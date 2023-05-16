@@ -11,6 +11,20 @@
  * Do not edit the class manually.
  */
 
-export * from './apis/library-api'
-export * from './apis/scenario-group-api'
-export * from './apis/scenario-manager-api'
+// May contain unused imports in some cases
+// @ts-ignore
+import { Scenario } from './scenario'
+
+/**
+ *
+ * @export
+ * @interface UpdateScenarioPara
+ */
+export interface UpdateScenarioPara {
+  /**
+   * 待更新的方案列表 scenarios to be updated
+   * @type {Array<Scenario>}
+   * @memberof UpdateScenarioPara
+   */
+  scenarios?: Array<Scenario> | null
+}

@@ -43,6 +43,8 @@ import { ButtonPerUnderMenuOutput } from '../models'
 // @ts-ignore
 import { ButtonPerUnderRoleInput } from '../models'
 // @ts-ignore
+import { CopyMenuInput } from '../models'
+// @ts-ignore
 import { GrantPerInput } from '../models'
 // @ts-ignore
 import { MenuPerTree } from '../models'
@@ -225,6 +227,49 @@ export const MenuPerApiAxiosParamCreator = function (configuration?: Configurati
       }
       localVarRequestOptions.data = serializeDataIfNeeded(
         buttonPerUnderMenuInput,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary /api/app/menuPer/copyMenuPer
+     * @param {CopyMenuInput} [copyMenuInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiAppMenuPerCopyMenuPerPost: async (
+      copyMenuInput?: CopyMenuInput,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/app/menuPer/copyMenuPer`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        copyMenuInput,
         localVarRequestOptions,
         configuration,
       )
@@ -652,6 +697,23 @@ export const MenuPerApiFp = function (configuration?: Configuration) {
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**
+     *
+     * @summary /api/app/menuPer/copyMenuPer
+     * @param {CopyMenuInput} [copyMenuInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiAppMenuPerCopyMenuPerPost(
+      copyMenuInput?: CopyMenuInput,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiAppMenuPerCopyMenuPerPost(
+        copyMenuInput,
+        options,
+      )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
      * 整体权限赋值,旧的会被新的全覆盖 old permission of the role will be overall overrided
      * @summary 赋予角色权限 Grant role permissions
      * @param {GrantPerInput} [grantPerInput]
@@ -858,6 +920,21 @@ export const MenuPerApiFactory = function (
         .then((request) => request(axios, basePath))
     },
     /**
+     *
+     * @summary /api/app/menuPer/copyMenuPer
+     * @param {CopyMenuInput} [copyMenuInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiAppMenuPerCopyMenuPerPost(
+      copyMenuInput?: CopyMenuInput,
+      options?: any,
+    ): AxiosPromise<object> {
+      return localVarFp
+        .apiAppMenuPerCopyMenuPerPost(copyMenuInput, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
      * 整体权限赋值,旧的会被新的全覆盖 old permission of the role will be overall overrided
      * @summary 赋予角色权限 Grant role permissions
      * @param {GrantPerInput} [grantPerInput]
@@ -1040,6 +1117,20 @@ export class MenuPerApi extends BaseAPI {
   ) {
     return MenuPerApiFp(this.configuration)
       .apiAppMenuPerButtonPersUnderMenuPost(buttonPerUnderMenuInput, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary /api/app/menuPer/copyMenuPer
+   * @param {CopyMenuInput} [copyMenuInput]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof MenuPerApi
+   */
+  public apiAppMenuPerCopyMenuPerPost(copyMenuInput?: CopyMenuInput, options?: AxiosRequestConfig) {
+    return MenuPerApiFp(this.configuration)
+      .apiAppMenuPerCopyMenuPerPost(copyMenuInput, options)
       .then((request) => request(this.axios, this.basePath))
   }
 

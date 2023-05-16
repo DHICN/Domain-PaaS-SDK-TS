@@ -11,6 +11,22 @@
  * Do not edit the class manually.
  */
 
-export * from './apis/library-api'
-export * from './apis/scenario-group-api'
-export * from './apis/scenario-manager-api'
+/**
+ *
+ * @export
+ * @interface RenameScenarioPara
+ */
+export interface RenameScenarioPara {
+  /**
+   * 方案代码 the scenaio\'s code
+   * @type {string}
+   * @memberof RenameScenarioPara
+   */
+  oldScenarioCode?: string | null
+  /**
+   * 新的方案名称 new scenario name
+   * @type {string}
+   * @memberof RenameScenarioPara
+   */
+  newName?: string | null
+}

@@ -11,6 +11,16 @@
  * Do not edit the class manually.
  */
 
-export * from './apis/library-api'
-export * from './apis/scenario-group-api'
-export * from './apis/scenario-manager-api'
+/**
+ *
+ * @export
+ * @enum {string}
+ */
+
+export const BusinessTypeEnum = {
+  0: 0 as number,
+  1: 1 as number,
+  2: 2 as number,
+} as const
+
+export type BusinessTypeEnum = (typeof BusinessTypeEnum)[keyof typeof BusinessTypeEnum]

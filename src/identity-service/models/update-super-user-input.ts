@@ -36,7 +36,7 @@ export interface UpdateSuperUserInput {
    */
   tenantIds: Array<string>
   /**
-   * 0-Normal(normal user)  1-Frozen(frozen user)  2-Cancelled(cancelled user)
+   * 0-Normal(normal user) 1-Frozen(frozen user) 2-Cancelled(cancelled user)
    * @type {number}
    * @memberof UpdateSuperUserInput
    */

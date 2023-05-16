@@ -11,6 +11,16 @@
  * Do not edit the class manually.
  */
 
-export * from './apis/library-api'
-export * from './apis/scenario-group-api'
-export * from './apis/scenario-manager-api'
+/**
+ *
+ * @export
+ * @interface ModelFileResult
+ */
+export interface ModelFileResult {
+  /**
+   * 模型文件或方案文件夹的绝对路径 Absolute model file path or folder path
+   * @type {string}
+   * @memberof ModelFileResult
+   */
+  modelFile?: string | null
+}

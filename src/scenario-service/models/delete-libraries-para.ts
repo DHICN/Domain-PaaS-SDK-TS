@@ -11,6 +11,16 @@
  * Do not edit the class manually.
  */
 
-export * from './apis/library-api'
-export * from './apis/scenario-group-api'
-export * from './apis/scenario-manager-api'
+/**
+ *
+ * @export
+ * @interface DeleteLibrariesPara
+ */
+export interface DeleteLibrariesPara {
+  /**
+   * 库的ID列表 library\'s Ids
+   * @type {Array<string>}
+   * @memberof DeleteLibrariesPara
+   */
+  ids?: Array<string> | null
+}

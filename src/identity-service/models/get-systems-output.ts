@@ -30,7 +30,7 @@ export interface GetSystemsOutput {
    */
   name?: string | null
   /**
-   * 0-Undefined(Undefined)  1-WaterEnvironment(Water environment)  2-UrbanFlooding(Urban flooding)  3-UrbanWD(Water distribution)  4-RiverFlood(River flood)  5-WWTP(Waste water treatment plant)
+   * 0-Undefined(Undefined) 1-WaterEnvironment(Water environment) 2-UrbanFlooding(Urban flooding) 3-UrbanWD(Water distribution) 4-RiverFlood(River flood) 5-WWTP(Waste water treatment plant)
    * @type {number}
    * @memberof GetSystemsOutput
    */

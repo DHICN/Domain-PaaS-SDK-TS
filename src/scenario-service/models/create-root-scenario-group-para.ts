@@ -11,6 +11,16 @@
  * Do not edit the class manually.
  */
 
-export * from './apis/library-api'
-export * from './apis/scenario-group-api'
-export * from './apis/scenario-manager-api'
+/**
+ *
+ * @export
+ * @interface CreateRootScenarioGroupPara
+ */
+export interface CreateRootScenarioGroupPara {
+  /**
+   * 根方案组名称 root scenario group name
+   * @type {string}
+   * @memberof CreateRootScenarioGroupPara
+   */
+  groupName?: string | null
+}

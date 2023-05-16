@@ -11,6 +11,22 @@
  * Do not edit the class manually.
  */
 
-export * from './apis/library-api'
-export * from './apis/scenario-group-api'
-export * from './apis/scenario-manager-api'
+/**
+ *
+ * @export
+ * @interface TurnOnTemplatePara
+ */
+export interface TurnOnTemplatePara {
+  /**
+   * 库的ID Library\'s Id
+   * @type {string}
+   * @memberof TurnOnTemplatePara
+   */
+  libraryId?: string
+  /**
+   * 需要启用的模板方案的ID Template scenario\'s Id to be turned on
+   * @type {string}
+   * @memberof TurnOnTemplatePara
+   */
+  templateId?: string
+}

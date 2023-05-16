@@ -11,6 +11,16 @@
  * Do not edit the class manually.
  */
 
-export * from './apis/library-api'
-export * from './apis/scenario-group-api'
-export * from './apis/scenario-manager-api'
+/**
+ *
+ * @export
+ * @interface DeleteScenarioPara
+ */
+export interface DeleteScenarioPara {
+  /**
+   * 方案ID scenario\'s Id
+   * @type {string}
+   * @memberof DeleteScenarioPara
+   */
+  scenarioId?: string | null
+}

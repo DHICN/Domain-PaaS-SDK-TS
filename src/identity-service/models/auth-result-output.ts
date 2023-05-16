@@ -40,7 +40,7 @@ export interface AuthResultOutput {
    */
   userId?: string | null
   /**
-   * 0-Ready  1-Authorizing  2-Success  3-Error
+   * 0-Ready 1-Authorizing 2-Success 3-Error
    * @type {number}
    * @memberof AuthResultOutput
    */
