@@ -13,7 +13,7 @@
 
 import globalAxios, { AxiosPromise, AxiosInstance, AxiosRequestConfig } from 'axios'
 import { Configuration } from '../configuration'
-import { URL } from '../../helper'
+import { URL } from '../../sdk-helper'
 // Some imports not used depending on template conditions
 // @ts-ignore
 import {

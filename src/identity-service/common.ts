@@ -4,7 +4,7 @@ import { Configuration } from './configuration'
 import { RequiredError, RequestArgs } from './base'
 import { AxiosInstance, AxiosResponse } from 'axios'
 import qs from 'qs'
-import { URL } from '../helper'
+import { URL } from '../sdk-helper'
 /**
  *
  * @export

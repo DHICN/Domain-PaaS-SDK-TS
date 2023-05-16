@@ -48,11 +48,15 @@
     },
     "./identity-service": {
       "import": "./dist/identity-service.es.js",
-      "types": "./identity-service/index.d.ts"
+      "types": "./dist/identity-service/index.d.ts"
     },
     "./scenario-service": {
       "import": "./dist/scenario-service.es.js",
-      "types": "./scenario-service/index.d.ts"
+      "types": "./dist/scenario-service/index.d.ts"
+    },
+    "./sdk-helper": {
+      "import": "./dist/sdk-helper.es.js",
+      "types": "./dist/sdk-helper.d.ts"
     },
     "./*": "./*"
   }

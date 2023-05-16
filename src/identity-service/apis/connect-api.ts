@@ -13,7 +13,7 @@
 
 import globalAxios, { AxiosPromise, AxiosInstance, AxiosRequestConfig } from 'axios'
 import { Configuration } from '../configuration'
-import { URL } from '../../helper'
+import { URL } from '../../sdk-helper'
 // Some imports not used depending on template conditions
 // @ts-ignore
 import {
@@ -34,6 +34,8 @@ import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } fr
 import { AuthByQrCodeInput } from '../models'
 // @ts-ignore
 import { AuthResultOutput } from '../models'
+// @ts-ignore
+import { InlineResponse200 } from '../models'
 // @ts-ignore
 import { RemoteServiceErrorResponse } from '../models'
 /**
@@ -157,6 +159,80 @@ export const ConnectApiAxiosParamCreator = function (configuration?: Configurati
         options: localVarRequestOptions,
       }
     },
+    /**
+     *
+     * @summary 授权-网页
+     * @param {string} [tenantId]
+     * @param {string} [clientId]
+     * @param {string} [grantType]
+     * @param {string} [clientSecret]
+     * @param {string} [username]
+     * @param {string} [password]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    connectTokenPost: async (
+      tenantId?: string,
+      clientId?: string,
+      grantType?: string,
+      clientSecret?: string,
+      username?: string,
+      password?: string,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/connect/token`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+      const localVarFormParams = new ((configuration && configuration.formDataCtor) || FormData)()
+
+      if (tenantId != null) {
+        localVarHeaderParameter['TenantId'] = String(tenantId)
+      }
+
+      if (clientId !== undefined) {
+        localVarFormParams.append('client_id', clientId as any)
+      }
+
+      if (grantType !== undefined) {
+        localVarFormParams.append('grant_type', grantType as any)
+      }
+
+      if (clientSecret !== undefined) {
+        localVarFormParams.append('client_secret', clientSecret as any)
+      }
+
+      if (username !== undefined) {
+        localVarFormParams.append('username', username as any)
+      }
+
+      if (password !== undefined) {
+        localVarFormParams.append('password', password as any)
+      }
+
+      localVarHeaderParameter['Content-Type'] = 'multipart/form-data'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = localVarFormParams
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
   }
 }
 
@@ -213,6 +289,38 @@ export const ConnectApiFp = function (configuration?: Configuration) {
       const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1ConnectQrcodeGet(options)
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
+    /**
+     *
+     * @summary 授权-网页
+     * @param {string} [tenantId]
+     * @param {string} [clientId]
+     * @param {string} [grantType]
+     * @param {string} [clientSecret]
+     * @param {string} [username]
+     * @param {string} [password]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async connectTokenPost(
+      tenantId?: string,
+      clientId?: string,
+      grantType?: string,
+      clientSecret?: string,
+      username?: string,
+      password?: string,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse200>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.connectTokenPost(
+        tenantId,
+        clientId,
+        grantType,
+        clientSecret,
+        username,
+        password,
+        options,
+      )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
   }
 }
 
@@ -262,6 +370,31 @@ export const ConnectApiFactory = function (
      */
     apiV1ConnectQrcodeGet(options?: any): AxiosPromise<void> {
       return localVarFp.apiV1ConnectQrcodeGet(options).then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @summary 授权-网页
+     * @param {string} [tenantId]
+     * @param {string} [clientId]
+     * @param {string} [grantType]
+     * @param {string} [clientSecret]
+     * @param {string} [username]
+     * @param {string} [password]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    connectTokenPost(
+      tenantId?: string,
+      clientId?: string,
+      grantType?: string,
+      clientSecret?: string,
+      username?: string,
+      password?: string,
+      options?: any,
+    ): AxiosPromise<InlineResponse200> {
+      return localVarFp
+        .connectTokenPost(tenantId, clientId, grantType, clientSecret, username, password, options)
+        .then((request) => request(axios, basePath))
     },
   }
 }
@@ -314,6 +447,33 @@ export class ConnectApi extends BaseAPI {
   public apiV1ConnectQrcodeGet(options?: AxiosRequestConfig) {
     return ConnectApiFp(this.configuration)
       .apiV1ConnectQrcodeGet(options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary 授权-网页
+   * @param {string} [tenantId]
+   * @param {string} [clientId]
+   * @param {string} [grantType]
+   * @param {string} [clientSecret]
+   * @param {string} [username]
+   * @param {string} [password]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof ConnectApi
+   */
+  public connectTokenPost(
+    tenantId?: string,
+    clientId?: string,
+    grantType?: string,
+    clientSecret?: string,
+    username?: string,
+    password?: string,
+    options?: AxiosRequestConfig,
+  ) {
+    return ConnectApiFp(this.configuration)
+      .connectTokenPost(tenantId, clientId, grantType, clientSecret, username, password, options)
       .then((request) => request(this.axios, this.basePath))
   }
 }
