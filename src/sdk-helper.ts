@@ -1,8 +1,7 @@
 import qs from 'qs'
 import axios from 'axios'
-import { IdentityServiceApi } from './main'
 import type { AxiosInstance } from 'axios'
-import type { ConnectApi } from './identity-service'
+import { ConnectApi } from './identity-service'
 
 export class URL {
   public hash: string
@@ -68,14 +67,36 @@ export class FormData {
   }
 }
 
-export const initialAxios = (baseURL = '', timeout = 500000) => {
-  const axiosInstance = axios.create({
-    baseURL,
-    timeout,
-  })
-  return axiosInstance
+/**
+ * 微服务路由字段Map
+ */
+export const DomainServiceUrlMap = {
+  identity: 'identity-service',
+  scenario: 'global-scenario-manager-service',
+  message: 'global-message-service',
+  document: 'global-file-service',
+  scenarioCompute: 'global-scenario-compute-service',
+  modelDriver: 'global-model-driver-service',
+  resultAnalysis: 'global-result-service',
+  modelInformation: 'global-model-information-service',
+  modelConfiguration: 'global-model-configuration-service',
+  textSearch: 'global-full-text-search-service',
+  deviceManagement: 'global-accident-manager-service',
+  accident: 'accident-management-service',
+  digitalTwin: 'digital-twin-service',
+  iot: 'iot-service',
+  wwtp: {
+    mainBus: 'wwtp-paas-main-bus-multi-lang-service',
+    infrastructure: 'wwtp-paas-multi-lang-service',
+  },
+  wd: {
+    domain: 'wd-domain-service',
+  },
 }
 
+/**
+ * Api Request Helper
+ */
 export class ApiHelper {
   protected axiosInstance: AxiosInstance
   connectApi: ConnectApi
@@ -84,9 +105,12 @@ export class ApiHelper {
       baseURL,
       timeout,
     })
-    this.connectApi = new IdentityServiceApi.ConnectApi('identity-service', this.axiosInstance)
+    this.connectApi = new ConnectApi(DomainServiceUrlMap.identity, this.axiosInstance)
   }
 
+  /**
+   * 登录,需要认证信息
+   */
   async logIn(
     tenantId: string,
     clientId?: string,
@@ -111,10 +135,18 @@ export class ApiHelper {
     }
   }
 
+  /**
+   * 更改租户Id
+   * @param tenantId 租户Id
+   */
   changeTenantId(tenantId: string) {
     this.axiosInstance.defaults.headers.common.tenantId = tenantId
   }
 
+  /**
+   * 设置请求Token
+   * @param token 认证信息
+   */
   setAuth(token: { token_type: string; access_token: string }) {
     const headers: any = this.axiosInstance.defaults.headers
     headers.Authorization = `${token.token_type} ${token.access_token}`
