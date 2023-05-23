@@ -12,15 +12,32 @@
  */
 
 /**
- *
+ * 0-Undefined(Undefined) 1-AutoForecast(Auto forecast library) 2-ManualForecast(Manual forecast library) 3-Forecast(Forecast library) 4-Schedule(Schedule library) 5-Experience(Experience library) 6-ScenarioSimulation(Scenario simulation library) 7-WQAccident(Water quality accident library) 8-OnlineHD(WD Hydrodynamic library) 9-WaterHammer(WD water hammer library) 10-Filling(WD pipe filling library) 11-PipeBurst(WD pipe burst library) 12-WQResponse(Water quality accident response library) 13-Planning(WD planning library) 14-Flushing(WD flushing library) 15-OnlineWQAccident(Online Water quality accident library) 16-CloseValve(WD close valve library) 17-WWTP(WWTP auto run library) 18-WWTPOptim(WWTP optimization library) 19-WWTPMLab(WWTP simulation lab library)
  * @export
  * @enum {string}
  */
 
 export const LibraryTypeEnum = {
-  0: 0 as number,
-  1: 1 as number,
-  2: 2 as number,
+  NUMBER_0: 0,
+  NUMBER_1: 1,
+  NUMBER_2: 2,
+  NUMBER_3: 3,
+  NUMBER_4: 4,
+  NUMBER_5: 5,
+  NUMBER_6: 6,
+  NUMBER_7: 7,
+  NUMBER_8: 8,
+  NUMBER_9: 9,
+  NUMBER_10: 10,
+  NUMBER_11: 11,
+  NUMBER_12: 12,
+  NUMBER_13: 13,
+  NUMBER_14: 14,
+  NUMBER_15: 15,
+  NUMBER_16: 16,
+  NUMBER_17: 17,
+  NUMBER_18: 18,
+  NUMBER_19: 19,
 } as const
 
 export type LibraryTypeEnum = (typeof LibraryTypeEnum)[keyof typeof LibraryTypeEnum]

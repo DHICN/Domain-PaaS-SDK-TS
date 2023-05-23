@@ -12,15 +12,18 @@
  */
 
 /**
- *
+ * 0-Undefined(Undefined) 1-WaterEnvironment(Water environment) 2-UrbanFlooding(Urban flooding) 3-UrbanWD(Water distribution) 4-RiverFlood(River flood) 5-WWTP(Waste water treatment plant)
  * @export
  * @enum {string}
  */
 
 export const BusinessTypeEnum = {
-  0: 0 as number,
-  1: 1 as number,
-  2: 2 as number,
+  NUMBER_0: 0,
+  NUMBER_1: 1,
+  NUMBER_2: 2,
+  NUMBER_3: 3,
+  NUMBER_4: 4,
+  NUMBER_5: 5,
 } as const
 
 export type BusinessTypeEnum = (typeof BusinessTypeEnum)[keyof typeof BusinessTypeEnum]

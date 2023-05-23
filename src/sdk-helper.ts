@@ -86,8 +86,8 @@ export const DomainServiceUrlMap = {
   digitalTwin: 'digital-twin-service',
   iot: 'iot-service',
   wwtp: {
-    mainBus: 'wwtp-paas-main-bus-multi-lang-service',
-    infrastructure: 'wwtp-paas-multi-lang-service',
+    mainBus: 'wwtp-paas-main-bus-service',
+    infrastructure: 'wwtp-paas-main-bus-service',
   },
   wd: {
     domain: 'wd-domain-service',
