@@ -3,7 +3,7 @@
 
 [![Version](https://badgen.net/npm/v/@dhicn/domain-paas-sdk-ts)](https://npmjs.com/@dhicn/domain-paas-sdk-ts) [![License](https://badgen.net/github/license/DHICN/Domian-PaaS-SDK-TS)](https://github.com/DHICN/Domian-PaaS-SDK-TS/blob/main/LICENSE)
 
-这是一个[DHI 中国 业务中台](https://online-products.dhichina.cn/) 的 Typescript Client SDK 开发辅助包，帮您快速通过我们的业务中台沟通应用。
+这是一个[DHI 中国 业务中台](https://online-products.dhichina.cn/) 的 Client SDK 开发辅助包，帮您快速通过我们的业务中台构建应用。
 
 </div>
 

@@ -2,7 +2,7 @@
   "name": "@dhicn/domain-paas-sdk-ts",
   "llicense": "MIT",
   "private": false,
-  "version": "0.0.5",
+  "version": "0.0.6",
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",
@@ -52,6 +52,22 @@
     "./scenario-service": {
       "import": "./dist/scenario-service.es.js",
       "types": "./dist/scenario-service/index.d.ts"
+    },
+    "./model-configuration": {
+      "import": "./dist/model-configuration.es.js",
+      "types": "./dist/model-configuration/index.d.ts"
+    },
+    "./result-service": {
+      "import": "./dist/result-service.es.js",
+      "types": "./dist/result-service/index.d.ts"
+    },
+    "./iot-service": {
+      "import": "./dist/iot-service.es.js",
+      "types": "./dist/iot-service/index.d.ts"
+    },
+    "./wd-domain": {
+      "import": "./dist/wd-domain.es.js",
+      "types": "./dist/wd-domain/index.d.ts"
     },
     "./sdk-helper": {
       "import": "./dist/sdk-helper.es.js",
