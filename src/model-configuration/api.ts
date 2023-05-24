@@ -12,5 +12,6 @@
  */
 
 export * from './apis/init-project-api'
+export * from './apis/legend-api'
 export * from './apis/model-template-api'
 export * from './apis/scenario-api'
