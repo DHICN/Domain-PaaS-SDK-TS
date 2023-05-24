@@ -67,7 +67,7 @@
     },
     "./wd-domain": {
       "import": "./dist/wd-domain.es.js",
-      "types": "./dist/wd-domain/index.d.ts"
+      "types": "./dist/wd-domain-service/index.d.ts"
     },
     "./sdk-helper": {
       "import": "./dist/sdk-helper.es.js",
