@@ -21,7 +21,7 @@
 - [ ] text-search-service 全文搜索服务
 - [ ] device-management-service 资产设备服务
 - [ ] accident-management-service 事故管理服务
-- [ ] digital-twin-service 模型映射服务
+- [x] digital-twin-service 模型映射服务
 - [x] iot-service IoT 服务
 - [x] wwtp-domain-main-bus-service 污水业务中台基础服务
 - [x] wwtp-domain-infrastructure-service 污水业务中台邻域服务

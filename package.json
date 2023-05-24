@@ -2,7 +2,7 @@
   "name": "@dhicn/domain-paas-sdk-ts",
   "llicense": "MIT",
   "private": false,
-  "version": "0.0.8",
+  "version": "0.0.9",
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",
@@ -84,6 +84,10 @@
     "./model-driver-service": {
       "import": "./dist/model-driver-service.es.js",
       "types": "./dist/model-driver-service/index.d.ts"
+    },
+    "./digital-twin-service": {
+      "import": "./distdigital-twin-service.es.js",
+      "types": "./distdigital-twin-service/index.d.ts"
     },
     "./sdk-helper": {
       "import": "./dist/sdk-helper.es.js",

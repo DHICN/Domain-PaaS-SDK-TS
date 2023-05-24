@@ -22,6 +22,7 @@ module.exports = defineConfig({
           'src/wwtp-domain-infrastructure-service/index.ts',
         ),
         'model-driver-service': path.resolve(__dirname, 'src/model-driver-service/index.ts'),
+        'digital-twin-service': path.resolve(__dirname, 'src/digital-twin-service/index.ts'),
       },
       name: 'dhicn-domian-paas-client-ts-sdk',
       formats: ['es'],
