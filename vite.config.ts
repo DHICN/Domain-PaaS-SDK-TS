@@ -16,6 +16,11 @@ module.exports = defineConfig({
         'result-service': path.resolve(__dirname, 'src/result-service/index.ts'),
         'iot-service': path.resolve(__dirname, 'src/iot-service/index.ts'),
         'wd-domain': path.resolve(__dirname, 'src/wd-domain-service/index.ts'),
+        'wwtp-domain': path.resolve(__dirname, 'src/wwtp-domain-main-bus-service/index.ts'),
+        'wwtp-infrastructure': path.resolve(
+          __dirname,
+          'src/wwtp-domain-infrastructure-service/index.ts',
+        ),
       },
       name: 'dhicn-domian-paas-client-ts-sdk',
       formats: ['es'],

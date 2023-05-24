@@ -2,7 +2,7 @@
   "name": "@dhicn/domain-paas-sdk-ts",
   "llicense": "MIT",
   "private": false,
-  "version": "0.0.6",
+  "version": "0.0.7",
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",
@@ -68,6 +68,14 @@
     "./wd-domain": {
       "import": "./dist/wd-domain.es.js",
       "types": "./dist/wd-domain-service/index.d.ts"
+    },
+    "./wwtp-domain": {
+      "import": "./dist/wwtp-domain.es.js",
+      "types": "./dist/wwtp-domain-main-bus-service/index.d.ts"
+    },
+    "./wwtp-infrastructure": {
+      "import": "./dist/wwtp-infrastructure.es.js",
+      "types": "./dist/wwtp-domain-infrastructure-service/index.d.ts"
     },
     "./sdk-helper": {
       "import": "./dist/sdk-helper.es.js",
