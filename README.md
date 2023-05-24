@@ -14,7 +14,7 @@
 - [ ] message-service 消息服务
 - [ ] document-service 文档服务
 - [ ] scenario-compute-service 方案计算服务
-- [ ] model-driver-service 模型计算服务
+- [x] model-driver-service 模型计算服务
 - [x] result-analysis-service 结果分析服务
 - [ ] model-information-service 模型分析服务
 - [x] model-configuration-service 模型计算服务
