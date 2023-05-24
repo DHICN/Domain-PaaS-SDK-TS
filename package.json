@@ -10,6 +10,10 @@
     "lint": "eslint --ext .ts,.vue --ignore-path .eslintignore --fix src",
     "format": "prettier .  --write"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/DHICN/Domian-PaaS-SDK-TS.git"
+  },
   "dependencies": {
     "axios": "^1.4.0",
     "qs": "^6.11.1"
