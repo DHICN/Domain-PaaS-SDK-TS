@@ -2,7 +2,7 @@
   "name": "@dhicn/domain-paas-sdk-ts",
   "llicense": "MIT",
   "private": false,
-  "version": "0.0.11",
+  "version": "0.0.12",
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",
@@ -88,6 +88,10 @@
     "./digital-twin-service": {
       "import": "./dist/digital-twin-service.es.js",
       "types": "./dist/digital-twin-service/index.d.ts"
+    },
+    "./accident-service": {
+      "import": "./dist/accident-service.es.js",
+      "types": "./dist/accident-service/index.d.ts"
     },
     "./sdk-helper": {
       "import": "./dist/sdk-helper.es.js",

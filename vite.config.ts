@@ -23,6 +23,7 @@ module.exports = defineConfig({
         ),
         'model-driver-service': path.resolve(__dirname, 'src/model-driver-service/index.ts'),
         'digital-twin-service': path.resolve(__dirname, 'src/digital-twin-service/index.ts'),
+        'accident-service': path.resolve(__dirname, 'src/accident-service/index.ts'),
       },
       name: 'dhicn-domian-paas-client-ts-sdk',
       formats: ['es'],
