@@ -160,7 +160,7 @@ export const toPathString = function (url: URL) {
  */
 export const createRequestFunction = function (
   axiosArgs: RequestArgs,
-  globalAxios: AxiosInstance,
+  globalAxios: any,
   BASE_PATH: string,
   configuration?: Configuration,
 ) {
