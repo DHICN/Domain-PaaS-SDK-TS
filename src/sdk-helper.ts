@@ -10,7 +10,7 @@ import { ConnectApi } from './identity-service'
 export type AxiosPromise<T> = iAxiosPromise<T>
 export type AxiosInstance = iAxiosInstance
 export type AxiosRequestConfig = iAxiosRequestConfig
-export const globalAxios = axios
+export const globalAxios: AxiosInstance = axios
 export * from './scenario-service/base'
 export * from './scenario-service/configuration'
 export * from './scenario-service/common'
