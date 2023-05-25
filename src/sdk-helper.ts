@@ -7,9 +7,9 @@ import type {
 } from 'axios'
 import { ConnectApi } from './identity-service'
 
-export type AxiosPromise = iAxiosPromise
+export type AxiosPromise<T> = iAxiosPromise<T>
 export type AxiosInstance = iAxiosInstance
-export type AxiosRequestConfig = iAxiosRequestConfig
+export type AxiosRequestConfig<D> = iAxiosRequestConfig<D>
 export const globalAxios = axios
 
 export class URL {
