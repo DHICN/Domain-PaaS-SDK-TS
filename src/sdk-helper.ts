@@ -1,7 +1,16 @@
 import qs from 'qs'
 import axios from 'axios'
-import type { AxiosInstance } from 'axios'
+import type {
+  AxiosPromise as iAxiosPromise,
+  AxiosInstance as iAxiosInstance,
+  AxiosRequestConfig as iAxiosRequestConfig,
+} from 'axios'
 import { ConnectApi } from './identity-service'
+
+export type AxiosPromise = iAxiosPromise
+export type AxiosInstance = iAxiosInstance
+export type AxiosRequestConfig = iAxiosRequestConfig
+export const globalAxios = axios
 
 export class URL {
   public hash: string
