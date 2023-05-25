@@ -11,6 +11,9 @@ export type AxiosPromise<T> = iAxiosPromise<T>
 export type AxiosInstance = iAxiosInstance
 export type AxiosRequestConfig<D> = iAxiosRequestConfig<D>
 export const globalAxios = axios
+export * from './scenario-service/base'
+export * from './scenario-service/configuration'
+export * from './scenario-service/common'
 
 export class URL {
   public hash: string
