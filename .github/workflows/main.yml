@@ -47,3 +47,4 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
         with:
           tag: v${{ steps.extract_version.outputs.version }}
+          token: ${{ secrets.RELEASE_TOKEN }}
