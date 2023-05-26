@@ -10,6 +10,9 @@
     "lint": "eslint --ext .ts,.vue --ignore-path .eslintignore --fix src",
     "format": "prettier .  --write"
   },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/DHICN/Domian-PaaS-SDK-TS.git"
