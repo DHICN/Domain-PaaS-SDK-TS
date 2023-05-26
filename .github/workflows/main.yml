@@ -34,9 +34,16 @@ jobs:
           access: public
 #      - run: npm test
 
+      - name: Extract version
+        id: extract_version
+        uses: Saionaro/extract-package-version@v1.2.1
+      # From now you can access the version
+      - name: Print version
+        run: echo ${{ steps.extract_version.outputs.version }}
+
       - name: Create a Release
         uses: elgohr/Github-Release-Action@v4
         env:
           GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
         with:
-          title: Release
+          title: Release v${{ steps.extract_version.outputs.version }}
