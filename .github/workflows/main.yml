@@ -35,7 +35,6 @@ jobs:
 #      - run: npm test
 
       - name: publish # 向npm publish 代码 请遵循npm规范.
-        working-directory: 'dist'
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}} # 该token是 npm的token 获取npm token请查看 步骤2 的创建 npm token 和 将npm token 放入github的 secrets下
         run: npm publish
