@@ -34,7 +34,6 @@ jobs:
 #           access: public
 #      - run: npm test
 
-      - name: Use JS-DevTools pubilsh to npm
       - name: publish # 向npm publish 代码 请遵循npm规范.
         working-directory: 'dist'
         env:
