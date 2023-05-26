@@ -111,6 +111,7 @@ export const DomainServiceUrlMap = {
  */
 export class ApiHelper {
   protected axiosInstance: AxiosInstance
+  protected token: { token_type: string; access_token: string }
   connectApi: ConnectApi
   constructor(baseURL = '', timeout = 500000) {
     this.axiosInstance = axios.create({
@@ -118,6 +119,14 @@ export class ApiHelper {
       timeout,
     })
     this.connectApi = new ConnectApi(DomainServiceUrlMap.identity, this.axiosInstance)
+    this.token = {
+      token_type: '',
+      access_token: '',
+    }
+  }
+
+  get apiToken() {
+    return this.token
   }
 
   /**
@@ -141,6 +150,7 @@ export class ApiHelper {
         password,
       )
       this.changeTenantId(tenantId)
+      this.token = rep.data
       this.setAuth(rep.data)
     } catch (error) {
       console.error('logIn :>> ', error)
