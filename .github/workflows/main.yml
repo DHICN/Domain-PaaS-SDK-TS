@@ -40,8 +40,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }} # 这块需要用到 github的token，因为需要对分之进行代码推送
         with:
-          tag_name: v${{ env.ReleaseVersion }}
-          release_name: Release v${{ env.ReleaseVersion }}
-          prerelease: false # 是否为预发布版本
-          body: |
-            请点击查看 [更新日志]
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          body: --
+          draft: false
+          prerelease: false
