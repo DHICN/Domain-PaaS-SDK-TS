@@ -13,7 +13,7 @@ module.exports = defineConfig({
         'identity-service': path.resolve(__dirname, 'src/identity-service/index.ts'),
         'scenario-service': path.resolve(__dirname, 'src/scenario-service/index.ts'),
         'model-configuration': path.resolve(__dirname, 'src/model-configuration/index.ts'),
-        'model-information': path.resolve(__dirname, 'src/model-infomation/index.ts'),
+        'model-information': path.resolve(__dirname, 'src/model-information/index.ts'),
         'result-service': path.resolve(__dirname, 'src/result-service/index.ts'),
         'iot-service': path.resolve(__dirname, 'src/iot-service/index.ts'),
         'wd-domain': path.resolve(__dirname, 'src/wd-domain-service/index.ts'),
