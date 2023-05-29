@@ -30,7 +30,7 @@ jobs:
         with:
           token: ${{ secrets.NPM_TOKEN }}
           access: public
-#      - run: npm test
+      #      - run: npm test
 
       - name: Extract version
         id: extract_version

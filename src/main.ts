@@ -16,4 +16,5 @@ export * as WWTPInfrastructureApi from './wwtp-domain-infrastructure-service/ind
 export * as DigitalTwinApi from './digital-twin-service/index'
 export * as AccidentApi from './accident-service/index'
 export * as ComputeApi from './compute-service/index'
+export * as ModelInformationApi from './model-configuration/index'
 export * as Helper from './sdk-helper'
