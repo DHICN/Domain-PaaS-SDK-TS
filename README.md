@@ -16,7 +16,7 @@
 - [x] scenario-compute-service 方案计算服务
 - [x] model-driver-service 模型计算服务
 - [x] result-analysis-service 结果分析服务
-- [ ] model-information-service 模型分析服务
+- [x] model-information-service 模型分析服务
 - [x] model-configuration-service 模型计算服务
 - [ ] text-search-service 全文搜索服务
 - [ ] device-management-service 资产设备服务

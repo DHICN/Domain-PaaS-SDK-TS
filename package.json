@@ -2,7 +2,7 @@
   "name": "@dhicn/domain-paas-sdk-ts",
   "llicense": "MIT",
   "private": false,
-  "version": "1.0.1",
+  "version": "1.0.2",
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",
@@ -60,6 +60,10 @@
     "./model-configuration": {
       "import": "./dist/model-configuration.es.js",
       "types": "./dist/model-configuration/index.d.ts"
+    },
+    "./model-information": {
+      "import": "./dist/model-information.es.js",
+      "types": "./dist/model-information/index.d.ts"
     },
     "./result-service": {
       "import": "./dist/result-service.es.js",
