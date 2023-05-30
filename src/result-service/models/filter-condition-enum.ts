@@ -12,33 +12,17 @@
  */
 
 /**
- *
+ * 0-GreaterThan 1-GreaterThanOrqualTo 2-LessThan 3-LessThanOrEqualTo 4-Between
  * @export
- * @interface UserInfo
+ * @enum {string}
  */
-export interface UserInfo {
-  /**
-   * 模型id
-   * @type {string}
-   * @memberof UserInfo
-   */
-  modelId?: string | null
-  /**
-   * 点位名称
-   * @type {string}
-   * @memberof UserInfo
-   */
-  note?: string | null
-  /**
-   *
-   * @type {number}
-   * @memberof UserInfo
-   */
-  x?: number
-  /**
-   *
-   * @type {number}
-   * @memberof UserInfo
-   */
-  y?: number
-}
+
+export const FilterConditionEnum = {
+  NUMBER_0: 0,
+  NUMBER_1: 1,
+  NUMBER_2: 2,
+  NUMBER_3: 3,
+  NUMBER_4: 4,
+} as const
+
+export type FilterConditionEnum = (typeof FilterConditionEnum)[keyof typeof FilterConditionEnum]
