@@ -14,31 +14,37 @@
 /**
  *
  * @export
- * @interface UserInfo
+ * @interface FilterModelResultDto
  */
-export interface UserInfo {
+export interface FilterModelResultDto {
   /**
-   * 模型id
+   *
    * @type {string}
-   * @memberof UserInfo
+   * @memberof FilterModelResultDto
    */
   modelId?: string | null
   /**
-   * 点位名称
-   * @type {string}
-   * @memberof UserInfo
+   *
+   * @type {number}
+   * @memberof FilterModelResultDto
    */
-  note?: string | null
+  value?: number
+  /**
+   *
+   * @type {string}
+   * @memberof FilterModelResultDto
+   */
+  name?: string | null
   /**
    *
    * @type {number}
-   * @memberof UserInfo
+   * @memberof FilterModelResultDto
    */
   x?: number
   /**
    *
    * @type {number}
-   * @memberof UserInfo
+   * @memberof FilterModelResultDto
    */
   y?: number
 }
