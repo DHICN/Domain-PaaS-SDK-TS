@@ -41,10 +41,4 @@ export interface BurstPipeValvesItem {
    * @memberof BurstPipeValvesItem
    */
   y?: number
-  /**
-   * 未使用的阀门
-   * @type {Array<string>}
-   * @memberof BurstPipeValvesItem
-   */
-  unuseValves?: Array<string> | null
 }

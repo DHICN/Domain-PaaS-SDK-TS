@@ -366,12 +366,10 @@ export const OnlineApiAxiosParamCreator = function (configuration?: Configuratio
     /**
      *
      * @summary 获取水池可调蓄量
-     * @param {string} [bForceRefreshCache]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiV1DomainWdOnlineGetTankStoragePost: async (
-      bForceRefreshCache?: string,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
       const localVarPath = `/api/v1/domain-wd/online/get-tank-storage`
@@ -385,10 +383,6 @@ export const OnlineApiAxiosParamCreator = function (configuration?: Configuratio
       const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
-
-      if (bForceRefreshCache !== undefined) {
-        localVarQueryParameter['bForceRefreshCache'] = bForceRefreshCache
-      }
 
       setSearchParams(localVarUrlObj, localVarQueryParameter)
       let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
@@ -637,19 +631,14 @@ export const OnlineApiFp = function (configuration?: Configuration) {
     /**
      *
      * @summary 获取水池可调蓄量
-     * @param {string} [bForceRefreshCache]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async apiV1DomainWdOnlineGetTankStoragePost(
-      bForceRefreshCache?: string,
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<TankStorageData>>> {
       const localVarAxiosArgs =
-        await localVarAxiosParamCreator.apiV1DomainWdOnlineGetTankStoragePost(
-          bForceRefreshCache,
-          options,
-        )
+        await localVarAxiosParamCreator.apiV1DomainWdOnlineGetTankStoragePost(options)
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**
@@ -816,16 +805,12 @@ export const OnlineApiFactory = function (
     /**
      *
      * @summary 获取水池可调蓄量
-     * @param {string} [bForceRefreshCache]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    apiV1DomainWdOnlineGetTankStoragePost(
-      bForceRefreshCache?: string,
-      options?: any,
-    ): AxiosPromise<Array<TankStorageData>> {
+    apiV1DomainWdOnlineGetTankStoragePost(options?: any): AxiosPromise<Array<TankStorageData>> {
       return localVarFp
-        .apiV1DomainWdOnlineGetTankStoragePost(bForceRefreshCache, options)
+        .apiV1DomainWdOnlineGetTankStoragePost(options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -989,17 +974,13 @@ export class OnlineApi extends BaseAPI {
   /**
    *
    * @summary 获取水池可调蓄量
-   * @param {string} [bForceRefreshCache]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof OnlineApi
    */
-  public apiV1DomainWdOnlineGetTankStoragePost(
-    bForceRefreshCache?: string,
-    options?: AxiosRequestConfig,
-  ) {
+  public apiV1DomainWdOnlineGetTankStoragePost(options?: AxiosRequestConfig) {
     return OnlineApiFp(this.configuration)
-      .apiV1DomainWdOnlineGetTankStoragePost(bForceRefreshCache, options)
+      .apiV1DomainWdOnlineGetTankStoragePost(options)
       .then((request) => request(this.axios, this.basePath))
   }
 

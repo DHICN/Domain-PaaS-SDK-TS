@@ -44,22 +44,22 @@ export interface StatisticQueryInput {
 }
 
 export const StatisticQueryInputStatisticTypesEnum = {
-  0: 0 as number,
-  1: 1 as number,
-  2: 2 as number,
-  3: 3 as number,
-  4: 4 as number,
-  5: 5 as number,
-  6: 6 as number,
-  7: 7 as number,
+  '0': 0 as number,
+  '1': 1 as number,
+  '2': 2 as number,
+  '3': 3 as number,
+  '4': 4 as number,
+  '5': 5 as number,
+  '6': 6 as number,
+  '7': 7 as number,
 } as const
 
 export type StatisticQueryInputStatisticTypesEnum =
   (typeof StatisticQueryInputStatisticTypesEnum)[keyof typeof StatisticQueryInputStatisticTypesEnum]
 export const StatisticQueryInputPeriodEnum = {
-  0: 0 as number,
-  1: 1 as number,
-  2: 2 as number,
+  '0': 0 as number,
+  '1': 1 as number,
+  '2': 2 as number,
 } as const
 
 export type StatisticQueryInputPeriodEnum =

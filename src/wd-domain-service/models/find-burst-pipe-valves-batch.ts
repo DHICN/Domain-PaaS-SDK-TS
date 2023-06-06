@@ -28,6 +28,12 @@ export interface FindBurstPipeValvesBatch {
    */
   scenarioId?: string
   /**
+   * 未使用的阀门
+   * @type {Array<string>}
+   * @memberof FindBurstPipeValvesBatch
+   */
+  unuseValves?: Array<string> | null
+  /**
    * 爆管项
    * @type {Array<BurstPipeValvesItem>}
    * @memberof FindBurstPipeValvesBatch
