@@ -476,6 +476,46 @@ export const AccidentApiAxiosParamCreator = function (configuration?: Configurat
     },
     /**
      *
+     * @summary 删除事故方案，包括事故基本信息和关联的阀门信息
+     * @param {string} [scenarioId]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1DomainWdAccidentScenarioDeleteGet: async (
+      scenarioId?: string,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/domain-wd/accident/scenario/delete`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      if (scenarioId !== undefined) {
+        localVarQueryParameter['scenarioId'] = scenarioId
+      }
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
      * @summary 保存水质事故信息
      * @param {SaveWqAccidentInfoInput} [saveWqAccidentInfoInput]
      * @param {*} [options] Override http request option.
@@ -704,6 +744,21 @@ export const AccidentApiFp = function (configuration?: Configuration) {
     },
     /**
      *
+     * @summary 删除事故方案，包括事故基本信息和关联的阀门信息
+     * @param {string} [scenarioId]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1DomainWdAccidentScenarioDeleteGet(
+      scenarioId?: string,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiV1DomainWdAccidentScenarioDeleteGet(scenarioId, options)
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
      * @summary 保存水质事故信息
      * @param {SaveWqAccidentInfoInput} [saveWqAccidentInfoInput]
      * @param {*} [options] Override http request option.
@@ -882,6 +937,21 @@ export const AccidentApiFactory = function (
     ): AxiosPromise<Array<GisValveInfo>> {
       return localVarFp
         .apiV1DomainWdAccidentPipeValvesListPost(getValvesByPipeIdsInput, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @summary 删除事故方案，包括事故基本信息和关联的阀门信息
+     * @param {string} [scenarioId]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1DomainWdAccidentScenarioDeleteGet(
+      scenarioId?: string,
+      options?: any,
+    ): AxiosPromise<object> {
+      return localVarFp
+        .apiV1DomainWdAccidentScenarioDeleteGet(scenarioId, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -1067,6 +1137,20 @@ export class AccidentApi extends BaseAPI {
   ) {
     return AccidentApiFp(this.configuration)
       .apiV1DomainWdAccidentPipeValvesListPost(getValvesByPipeIdsInput, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary 删除事故方案，包括事故基本信息和关联的阀门信息
+   * @param {string} [scenarioId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof AccidentApi
+   */
+  public apiV1DomainWdAccidentScenarioDeleteGet(scenarioId?: string, options?: AxiosRequestConfig) {
+    return AccidentApiFp(this.configuration)
+      .apiV1DomainWdAccidentScenarioDeleteGet(scenarioId, options)
       .then((request) => request(this.axios, this.basePath))
   }
 

@@ -99,8 +99,8 @@ export interface EventDetailInfo {
 }
 
 export const EventDetailInfoDischargeTypeEnum = {
-  0: 0 as number,
-  1: 1 as number,
+  '0': 0 as number,
+  '1': 1 as number,
 } as const
 
 export type EventDetailInfoDischargeTypeEnum =

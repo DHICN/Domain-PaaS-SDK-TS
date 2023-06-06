@@ -38,16 +38,16 @@ export interface GetAccuracyPara {
 }
 
 export const GetAccuracyParaDataTypesEnum = {
-  0: 0 as number,
-  1: 1 as number,
-  2: 2 as number,
-  3: 3 as number,
-  4: 4 as number,
-  5: 5 as number,
-  6: 6 as number,
-  7: 7 as number,
-  8: 8 as number,
-  9: 9 as number,
+  '0': 0 as number,
+  '1': 1 as number,
+  '2': 2 as number,
+  '3': 3 as number,
+  '4': 4 as number,
+  '5': 5 as number,
+  '6': 6 as number,
+  '7': 7 as number,
+  '8': 8 as number,
+  '9': 9 as number,
 } as const
 
 export type GetAccuracyParaDataTypesEnum =

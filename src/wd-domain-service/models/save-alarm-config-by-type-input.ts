@@ -50,12 +50,12 @@ export interface SaveAlarmConfigByTypeInput {
 }
 
 export const SaveAlarmConfigByTypeInputAlarmDataTypeEnum = {
-  0: 0 as number,
-  1: 1 as number,
-  2: 2 as number,
-  3: 3 as number,
-  4: 4 as number,
-  5: 5 as number,
+  '0': 0 as number,
+  '1': 1 as number,
+  '2': 2 as number,
+  '3': 3 as number,
+  '4': 4 as number,
+  '5': 5 as number,
 } as const
 
 export type SaveAlarmConfigByTypeInputAlarmDataTypeEnum =
