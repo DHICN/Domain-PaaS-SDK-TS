@@ -24,6 +24,12 @@ export interface GisValveInfo {
    */
   id?: string
   /**
+   * 方案id
+   * @type {string}
+   * @memberof GisValveInfo
+   */
+  scenarioId?: string
+  /**
    * Gis Id
    * @type {string}
    * @memberof GisValveInfo
