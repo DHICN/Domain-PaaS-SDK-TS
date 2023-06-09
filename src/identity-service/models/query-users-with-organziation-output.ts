@@ -111,9 +111,9 @@ export interface QueryUsersWithOrganziationOutput {
 }
 
 export const QueryUsersWithOrganziationOutputStatusEnum = {
-  0: 0 as number,
-  1: 1 as number,
-  2: 2 as number,
+  '0': 0 as number,
+  '1': 1 as number,
+  '2': 2 as number,
 } as const
 
 export type QueryUsersWithOrganziationOutputStatusEnum =

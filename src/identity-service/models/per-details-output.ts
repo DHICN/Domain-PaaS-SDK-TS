@@ -62,8 +62,8 @@ export interface PerDetailsOutput {
 }
 
 export const PerDetailsOutputMenuTypeEnum = {
-  0: 0 as number,
-  1: 1 as number,
+  '0': 0 as number,
+  '1': 1 as number,
 } as const
 
 export type PerDetailsOutputMenuTypeEnum =

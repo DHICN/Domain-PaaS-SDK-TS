@@ -14,55 +14,61 @@
 /**
  *
  * @export
- * @interface TokenModel
+ * @interface TokenModelWithTenant
  */
-export interface TokenModel {
+export interface TokenModelWithTenant {
   /**
    *
    * @type {string}
-   * @memberof TokenModel
+   * @memberof TokenModelWithTenant
    */
   id_token?: string | null
   /**
    *
    * @type {string}
-   * @memberof TokenModel
+   * @memberof TokenModelWithTenant
    */
   access_token?: string | null
   /**
    *
    * @type {number}
-   * @memberof TokenModel
+   * @memberof TokenModelWithTenant
    */
   expires_in?: number
   /**
    *
    * @type {string}
-   * @memberof TokenModel
+   * @memberof TokenModelWithTenant
    */
   refresh_token?: string | null
   /**
    *
    * @type {string}
-   * @memberof TokenModel
+   * @memberof TokenModelWithTenant
    */
   scope?: string | null
   /**
    *
    * @type {string}
-   * @memberof TokenModel
+   * @memberof TokenModelWithTenant
    */
   error?: string | null
   /**
    *
    * @type {string}
-   * @memberof TokenModel
+   * @memberof TokenModelWithTenant
    */
   error_description?: string | null
   /**
    *
    * @type {string}
-   * @memberof TokenModel
+   * @memberof TokenModelWithTenant
    */
   token_type?: string | null
+  /**
+   *
+   * @type {string}
+   * @memberof TokenModelWithTenant
+   */
+  tenantId?: string | null
 }

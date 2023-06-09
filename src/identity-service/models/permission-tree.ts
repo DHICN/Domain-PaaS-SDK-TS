@@ -62,8 +62,8 @@ export interface PermissionTree {
 }
 
 export const PermissionTreeMenuTypeEnum = {
-  0: 0 as number,
-  1: 1 as number,
+  '0': 0 as number,
+  '1': 1 as number,
 } as const
 
 export type PermissionTreeMenuTypeEnum =
