@@ -68,8 +68,8 @@ export interface GetTenantPerInfoForUpdateOutput {
 }
 
 export const GetTenantPerInfoForUpdateOutputCoverTypeEnum = {
-  0: 0 as number,
-  1: 1 as number,
+  '0': 0 as number,
+  '1': 1 as number,
 } as const
 
 export type GetTenantPerInfoForUpdateOutputCoverTypeEnum =

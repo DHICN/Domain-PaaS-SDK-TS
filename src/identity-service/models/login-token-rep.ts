@@ -12,31 +12,39 @@
  */
 
 /**
- *
+ * LoginTokenRep
  * @export
- * @interface SvrPointInfo
+ * @interface LoginTokenRep
  */
-export interface SvrPointInfo {
-  /**
-   *
-   * @type {number}
-   * @memberof SvrPointInfo
-   */
-  dataSource?: SvrPointInfoDataSourceEnum
+export interface LoginTokenRep {
   /**
    *
    * @type {string}
-   * @memberof SvrPointInfo
+   * @memberof LoginTokenRep
    */
-  pointCode?: string | null
+  access_token: string
+  /**
+   *
+   * @type {number}
+   * @memberof LoginTokenRep
+   */
+  expires_in: number
+  /**
+   *
+   * @type {string}
+   * @memberof LoginTokenRep
+   */
+  token_type: string
+  /**
+   *
+   * @type {string}
+   * @memberof LoginTokenRep
+   */
+  refresh_token: string
+  /**
+   *
+   * @type {string}
+   * @memberof LoginTokenRep
+   */
+  scope: string
 }
-
-export const SvrPointInfoDataSourceEnum = {
-  '0': 0 as number,
-  '1': 1 as number,
-  '2': 2 as number,
-  '3': 3 as number,
-} as const
-
-export type SvrPointInfoDataSourceEnum =
-  (typeof SvrPointInfoDataSourceEnum)[keyof typeof SvrPointInfoDataSourceEnum]

@@ -13,6 +13,7 @@
 
 export * from './apis/connect-api'
 export * from './apis/files-api'
+export * from './apis/login-api'
 export * from './apis/menu-per-api'
 export * from './apis/micro-services-manager-api'
 export * from './apis/organization-mananger-api'
