@@ -35,10 +35,10 @@ import { GisValveInfo } from '../models'
 // @ts-ignore
 import { RemoteServiceErrorResponse } from '../models'
 /**
- * DefaultApi - axios parameter creator
+ * ValveConfigApi - axios parameter creator
  * @export
  */
-export const DefaultApiAxiosParamCreator = function (configuration?: Configuration) {
+export const ValveConfigApiAxiosParamCreator = function (configuration?: Configuration) {
   return {
     /**
      *
@@ -121,11 +121,11 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
 }
 
 /**
- * DefaultApi - functional programming interface
+ * ValveConfigApi - functional programming interface
  * @export
  */
-export const DefaultApiFp = function (configuration?: Configuration) {
-  const localVarAxiosParamCreator = DefaultApiAxiosParamCreator(configuration)
+export const ValveConfigApiFp = function (configuration?: Configuration) {
+  const localVarAxiosParamCreator = ValveConfigApiAxiosParamCreator(configuration)
   return {
     /**
      *
@@ -162,15 +162,15 @@ export const DefaultApiFp = function (configuration?: Configuration) {
 }
 
 /**
- * DefaultApi - factory interface
+ * ValveConfigApi - factory interface
  * @export
  */
-export const DefaultApiFactory = function (
+export const ValveConfigApiFactory = function (
   configuration?: Configuration,
   basePath?: string,
   axios?: AxiosInstance,
 ) {
-  const localVarFp = DefaultApiFp(configuration)
+  const localVarFp = ValveConfigApiFp(configuration)
   return {
     /**
      *
@@ -202,21 +202,21 @@ export const DefaultApiFactory = function (
 }
 
 /**
- * DefaultApi - object-oriented interface
+ * ValveConfigApi - object-oriented interface
  * @export
- * @class DefaultApi
+ * @class ValveConfigApi
  * @extends {BaseAPI}
  */
-export class DefaultApi extends BaseAPI {
+export class ValveConfigApi extends BaseAPI {
   /**
    *
    * @summary 获取所有阀门配置
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
-   * @memberof DefaultApi
+   * @memberof ValveConfigApi
    */
   public apiV1DomainWdConfigValveAllGet(options?: AxiosRequestConfig) {
-    return DefaultApiFp(this.configuration)
+    return ValveConfigApiFp(this.configuration)
       .apiV1DomainWdConfigValveAllGet(options)
       .then((request) => request(this.axios, this.basePath))
   }
@@ -227,13 +227,13 @@ export class DefaultApi extends BaseAPI {
    * @param {Array<GisValveInfo>} [gisValveInfo]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
-   * @memberof DefaultApi
+   * @memberof ValveConfigApi
    */
   public apiV1DomainWdConfigValveUpdatePost(
     gisValveInfo?: Array<GisValveInfo>,
     options?: AxiosRequestConfig,
   ) {
-    return DefaultApiFp(this.configuration)
+    return ValveConfigApiFp(this.configuration)
       .apiV1DomainWdConfigValveUpdatePost(gisValveInfo, options)
       .then((request) => request(this.axios, this.basePath))
   }

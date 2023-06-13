@@ -57,6 +57,8 @@ import { StatisticsTimeResultDto } from '../models'
 // @ts-ignore
 import { TraceWqClosePipeResult } from '../models'
 // @ts-ignore
+import { WdBatchStructureTimeseriesInput } from '../models'
+// @ts-ignore
 import { WdBatchTimeseriesInput } from '../models'
 // @ts-ignore
 import { WdHistoryModelInput } from '../models'
@@ -384,6 +386,49 @@ export const UrbanWdResultAnalysisApiAxiosParamCreator = function (configuration
         ...headersFromBaseOptions,
         ...options.headers,
       }
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 根据方案id批量获取单个结构物模拟结果
+     * @param {WdBatchStructureTimeseriesInput} [wdBatchStructureTimeseriesInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1ResultAnalysisUrbanWdBatchStructureTimeseriesPost: async (
+      wdBatchStructureTimeseriesInput?: WdBatchStructureTimeseriesInput,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/result-analysis/urban-wd/batch-structure-timeseries`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        wdBatchStructureTimeseriesInput,
+        localVarRequestOptions,
+        configuration,
+      )
 
       return {
         url: toPathString(localVarUrlObj),
@@ -2318,6 +2363,26 @@ export const UrbanWdResultAnalysisApiFp = function (configuration?: Configuratio
     },
     /**
      *
+     * @summary 根据方案id批量获取单个结构物模拟结果
+     * @param {WdBatchStructureTimeseriesInput} [wdBatchStructureTimeseriesInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1ResultAnalysisUrbanWdBatchStructureTimeseriesPost(
+      wdBatchStructureTimeseriesInput?: WdBatchStructureTimeseriesInput,
+      options?: AxiosRequestConfig,
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<BaseTimeseriesBatchOutput>>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiV1ResultAnalysisUrbanWdBatchStructureTimeseriesPost(
+          wdBatchStructureTimeseriesInput,
+          options,
+        )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
      * @summary 根据方案id批量获取管网模拟结果（查询数量限制在100个以内）
      * @param {WdBatchTimeseriesInput} [wdBatchTimeseriesInput]
      * @param {*} [options] Override http request option.
@@ -3262,6 +3327,24 @@ export const UrbanWdResultAnalysisApiFactory = function (
     },
     /**
      *
+     * @summary 根据方案id批量获取单个结构物模拟结果
+     * @param {WdBatchStructureTimeseriesInput} [wdBatchStructureTimeseriesInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1ResultAnalysisUrbanWdBatchStructureTimeseriesPost(
+      wdBatchStructureTimeseriesInput?: WdBatchStructureTimeseriesInput,
+      options?: any,
+    ): AxiosPromise<Array<BaseTimeseriesBatchOutput>> {
+      return localVarFp
+        .apiV1ResultAnalysisUrbanWdBatchStructureTimeseriesPost(
+          wdBatchStructureTimeseriesInput,
+          options,
+        )
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
      * @summary 根据方案id批量获取管网模拟结果（查询数量限制在100个以内）
      * @param {WdBatchTimeseriesInput} [wdBatchTimeseriesInput]
      * @param {*} [options] Override http request option.
@@ -4151,6 +4234,26 @@ export class UrbanWdResultAnalysisApi extends BaseAPI {
         frequency,
         startTime,
         endTime,
+        options,
+      )
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary 根据方案id批量获取单个结构物模拟结果
+   * @param {WdBatchStructureTimeseriesInput} [wdBatchStructureTimeseriesInput]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof UrbanWdResultAnalysisApi
+   */
+  public apiV1ResultAnalysisUrbanWdBatchStructureTimeseriesPost(
+    wdBatchStructureTimeseriesInput?: WdBatchStructureTimeseriesInput,
+    options?: AxiosRequestConfig,
+  ) {
+    return UrbanWdResultAnalysisApiFp(this.configuration)
+      .apiV1ResultAnalysisUrbanWdBatchStructureTimeseriesPost(
+        wdBatchStructureTimeseriesInput,
         options,
       )
       .then((request) => request(this.axios, this.basePath))
