@@ -47,6 +47,8 @@ import { PipeRiskParamOutput } from '../models'
 // @ts-ignore
 import { PipeRiskPropertyOutput } from '../models'
 // @ts-ignore
+import { PipeRiskResult } from '../models'
+// @ts-ignore
 import { PipeRiskWeightOutput } from '../models'
 // @ts-ignore
 import { RemoteServiceErrorResponse } from '../models'
@@ -760,6 +762,744 @@ export const PipeRiskApiAxiosParamCreator = function (configuration?: Configurat
         options: localVarRequestOptions,
       }
     },
+    /**
+     *
+     * @summary 爆管风险计算
+     * @param {string} [scenarioId]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1DomainWdPipeRiskCalculateGet: async (
+      scenarioId?: string,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/domain-wd/pipe-risk/calculate`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      if (scenarioId !== undefined) {
+        localVarQueryParameter['scenarioId'] = scenarioId
+      }
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 批量新增爆管风险参数信息
+     * @param {Array<AddBrokenPipeRiskParaCfgInput>} [addBrokenPipeRiskParaCfgInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1DomainWdPipeRiskParaAddPost: async (
+      addBrokenPipeRiskParaCfgInput?: Array<AddBrokenPipeRiskParaCfgInput>,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/domain-wd/pipe-risk/para/add`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        addBrokenPipeRiskParaCfgInput,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 删除参数配置信息
+     * @param {Array<string>} [requestBody]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1DomainWdPipeRiskParaDeletePost: async (
+      requestBody?: Array<string>,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/domain-wd/pipe-risk/para/delete`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        requestBody,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 根据权重Id获取爆管风险参数信息
+     * @param {string} [riskWeightId]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1DomainWdPipeRiskParaGetByWeightIdGet: async (
+      riskWeightId?: string,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/domain-wd/pipe-risk/para/get-by-weight-id`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      if (riskWeightId !== undefined) {
+        localVarQueryParameter['riskWeightId'] = riskWeightId
+      }
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 更新爆管风险参数信息
+     * @param {Array<UpdatePipeRiskParamInput>} [updatePipeRiskParamInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1DomainWdPipeRiskParaUpdatePost: async (
+      updatePipeRiskParamInput?: Array<UpdatePipeRiskParamInput>,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/domain-wd/pipe-risk/para/update`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        updatePipeRiskParamInput,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 获取全管网管道风险结果
+     * @param {string} [scenarioId]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1DomainWdPipeRiskResultGetAllPipeRiskGet: async (
+      scenarioId?: string,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/domain-wd/pipe-risk/result/get-all-pipe-risk`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      if (scenarioId !== undefined) {
+        localVarQueryParameter['scenarioId'] = scenarioId
+      }
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 获取各个等级的风险管道信息
+     * @param {string} [scenarioId]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1DomainWdPipeRiskResultGetClassifyPipesGet: async (
+      scenarioId?: string,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/domain-wd/pipe-risk/result/get-classify-pipes`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      if (scenarioId !== undefined) {
+        localVarQueryParameter['scenarioId'] = scenarioId
+      }
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 获取高爆管风险管道信息
+     * @param {string} [scenarioId]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1DomainWdPipeRiskResultGetHighriskPipesGet: async (
+      scenarioId?: string,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/domain-wd/pipe-risk/result/get-highrisk-pipes`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      if (scenarioId !== undefined) {
+        localVarQueryParameter['scenarioId'] = scenarioId
+      }
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 获取各风险等级管道长度所占全管道长度比例
+     * @param {string} [scenarioId]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1DomainWdPipeRiskResultGetLengthPercentGet: async (
+      scenarioId?: string,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/domain-wd/pipe-risk/result/get-length-percent`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      if (scenarioId !== undefined) {
+        localVarQueryParameter['scenarioId'] = scenarioId
+      }
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 新增管道风险相关属性信息
+     * @param {Array<AddPipeRiskPropertyInput>} [addPipeRiskPropertyInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1DomainWdPipeRiskRiskPropertyAddPost: async (
+      addPipeRiskPropertyInput?: Array<AddPipeRiskPropertyInput>,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/domain-wd/pipe-risk/risk-property/add`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        addPipeRiskPropertyInput,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 获取所有爆管相关属性
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1DomainWdPipeRiskRiskPropertyAllGet: async (
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/domain-wd/pipe-risk/risk-property/all`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 删除管道风险相关属性
+     * @param {Array<string>} [requestBody]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1DomainWdPipeRiskRiskPropertyDeletePost: async (
+      requestBody?: Array<string>,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/domain-wd/pipe-risk/risk-property/delete`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        requestBody,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 重新保存所有爆管相关属性
+     * @param {Array<AddPipeRiskPropertyInput>} [addPipeRiskPropertyInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1DomainWdPipeRiskRiskPropertyResavePost: async (
+      addPipeRiskPropertyInput?: Array<AddPipeRiskPropertyInput>,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/domain-wd/pipe-risk/risk-property/resave`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        addPipeRiskPropertyInput,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 更新管道风险相关属性
+     * @param {Array<UpdatePipeRiskPropertyInput>} [updatePipeRiskPropertyInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1DomainWdPipeRiskRiskPropertyUpdatePost: async (
+      updatePipeRiskPropertyInput?: Array<UpdatePipeRiskPropertyInput>,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/domain-wd/pipe-risk/risk-property/update`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        updatePipeRiskPropertyInput,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 批量新增爆管风险权重
+     * @param {Array<AddPipeRiskWeightInput>} [addPipeRiskWeightInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1DomainWdPipeRiskWeightAddPost: async (
+      addPipeRiskWeightInput?: Array<AddPipeRiskWeightInput>,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/domain-wd/pipe-risk/weight/add`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        addPipeRiskWeightInput,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 获取所有爆管风险权重信息
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1DomainWdPipeRiskWeightAllGet: async (
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/domain-wd/pipe-risk/weight/all`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 删除权重信息
+     * @param {Array<string>} [requestBody]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1DomainWdPipeRiskWeightDeletePost: async (
+      requestBody?: Array<string>,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/domain-wd/pipe-risk/weight/delete`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        requestBody,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 更新爆管风险权重
+     * @param {Array<UpdatePipeRiskWeightInput>} [updatePipeRiskWeightInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1DomainWdPipeRiskWeightUpdatePost: async (
+      updatePipeRiskWeightInput?: Array<UpdatePipeRiskWeightInput>,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/domain-wd/pipe-risk/weight/update`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        updatePipeRiskWeightInput,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
   }
 }
 
@@ -1076,6 +1816,326 @@ export const PipeRiskApiFp = function (configuration?: Configuration) {
         )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
+    /**
+     *
+     * @summary 爆管风险计算
+     * @param {string} [scenarioId]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1DomainWdPipeRiskCalculateGet(
+      scenarioId?: string,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<boolean>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1DomainWdPipeRiskCalculateGet(
+        scenarioId,
+        options,
+      )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
+     * @summary 批量新增爆管风险参数信息
+     * @param {Array<AddBrokenPipeRiskParaCfgInput>} [addBrokenPipeRiskParaCfgInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1DomainWdPipeRiskParaAddPost(
+      addBrokenPipeRiskParaCfgInput?: Array<AddBrokenPipeRiskParaCfgInput>,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<boolean>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1DomainWdPipeRiskParaAddPost(
+        addBrokenPipeRiskParaCfgInput,
+        options,
+      )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
+     * @summary 删除参数配置信息
+     * @param {Array<string>} [requestBody]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1DomainWdPipeRiskParaDeletePost(
+      requestBody?: Array<string>,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<boolean>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1DomainWdPipeRiskParaDeletePost(
+        requestBody,
+        options,
+      )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
+     * @summary 根据权重Id获取爆管风险参数信息
+     * @param {string} [riskWeightId]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1DomainWdPipeRiskParaGetByWeightIdGet(
+      riskWeightId?: string,
+      options?: AxiosRequestConfig,
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<PipeRiskParamOutput>>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiV1DomainWdPipeRiskParaGetByWeightIdGet(
+          riskWeightId,
+          options,
+        )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
+     * @summary 更新爆管风险参数信息
+     * @param {Array<UpdatePipeRiskParamInput>} [updatePipeRiskParamInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1DomainWdPipeRiskParaUpdatePost(
+      updatePipeRiskParamInput?: Array<UpdatePipeRiskParamInput>,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<boolean>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1DomainWdPipeRiskParaUpdatePost(
+        updatePipeRiskParamInput,
+        options,
+      )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
+     * @summary 获取全管网管道风险结果
+     * @param {string} [scenarioId]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1DomainWdPipeRiskResultGetAllPipeRiskGet(
+      scenarioId?: string,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PipeRiskResult>> {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiV1DomainWdPipeRiskResultGetAllPipeRiskGet(
+          scenarioId,
+          options,
+        )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
+     * @summary 获取各个等级的风险管道信息
+     * @param {string} [scenarioId]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1DomainWdPipeRiskResultGetClassifyPipesGet(
+      scenarioId?: string,
+      options?: AxiosRequestConfig,
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string,
+      ) => AxiosPromise<Array<Int32ModelPipeInfoListKeyValue>>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiV1DomainWdPipeRiskResultGetClassifyPipesGet(
+          scenarioId,
+          options,
+        )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
+     * @summary 获取高爆管风险管道信息
+     * @param {string} [scenarioId]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1DomainWdPipeRiskResultGetHighriskPipesGet(
+      scenarioId?: string,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<ModelPipeInfo>>> {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiV1DomainWdPipeRiskResultGetHighriskPipesGet(
+          scenarioId,
+          options,
+        )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
+     * @summary 获取各风险等级管道长度所占全管道长度比例
+     * @param {string} [scenarioId]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1DomainWdPipeRiskResultGetLengthPercentGet(
+      scenarioId?: string,
+      options?: AxiosRequestConfig,
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<Int32DoubleKeyValue>>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiV1DomainWdPipeRiskResultGetLengthPercentGet(
+          scenarioId,
+          options,
+        )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
+     * @summary 新增管道风险相关属性信息
+     * @param {Array<AddPipeRiskPropertyInput>} [addPipeRiskPropertyInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1DomainWdPipeRiskRiskPropertyAddPost(
+      addPipeRiskPropertyInput?: Array<AddPipeRiskPropertyInput>,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<boolean>> {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiV1DomainWdPipeRiskRiskPropertyAddPost(
+          addPipeRiskPropertyInput,
+          options,
+        )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
+     * @summary 获取所有爆管相关属性
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1DomainWdPipeRiskRiskPropertyAllGet(
+      options?: AxiosRequestConfig,
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<PipeRiskPropertyOutput>>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiV1DomainWdPipeRiskRiskPropertyAllGet(options)
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
+     * @summary 删除管道风险相关属性
+     * @param {Array<string>} [requestBody]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1DomainWdPipeRiskRiskPropertyDeletePost(
+      requestBody?: Array<string>,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<boolean>> {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiV1DomainWdPipeRiskRiskPropertyDeletePost(
+          requestBody,
+          options,
+        )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
+     * @summary 重新保存所有爆管相关属性
+     * @param {Array<AddPipeRiskPropertyInput>} [addPipeRiskPropertyInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1DomainWdPipeRiskRiskPropertyResavePost(
+      addPipeRiskPropertyInput?: Array<AddPipeRiskPropertyInput>,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<boolean>> {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiV1DomainWdPipeRiskRiskPropertyResavePost(
+          addPipeRiskPropertyInput,
+          options,
+        )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
+     * @summary 更新管道风险相关属性
+     * @param {Array<UpdatePipeRiskPropertyInput>} [updatePipeRiskPropertyInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1DomainWdPipeRiskRiskPropertyUpdatePost(
+      updatePipeRiskPropertyInput?: Array<UpdatePipeRiskPropertyInput>,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<boolean>> {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiV1DomainWdPipeRiskRiskPropertyUpdatePost(
+          updatePipeRiskPropertyInput,
+          options,
+        )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
+     * @summary 批量新增爆管风险权重
+     * @param {Array<AddPipeRiskWeightInput>} [addPipeRiskWeightInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1DomainWdPipeRiskWeightAddPost(
+      addPipeRiskWeightInput?: Array<AddPipeRiskWeightInput>,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<boolean>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1DomainWdPipeRiskWeightAddPost(
+        addPipeRiskWeightInput,
+        options,
+      )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
+     * @summary 获取所有爆管风险权重信息
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1DomainWdPipeRiskWeightAllGet(
+      options?: AxiosRequestConfig,
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<PipeRiskWeightOutput>>
+    > {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1DomainWdPipeRiskWeightAllGet(
+        options,
+      )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
+     * @summary 删除权重信息
+     * @param {Array<string>} [requestBody]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1DomainWdPipeRiskWeightDeletePost(
+      requestBody?: Array<string>,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<boolean>> {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiV1DomainWdPipeRiskWeightDeletePost(requestBody, options)
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
+     * @summary 更新爆管风险权重
+     * @param {Array<UpdatePipeRiskWeightInput>} [updatePipeRiskWeightInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1DomainWdPipeRiskWeightUpdatePost(
+      updatePipeRiskWeightInput?: Array<UpdatePipeRiskWeightInput>,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<boolean>> {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiV1DomainWdPipeRiskWeightUpdatePost(
+          updatePipeRiskWeightInput,
+          options,
+        )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
   }
 }
 
@@ -1339,6 +2399,267 @@ export const PipeRiskApiFactory = function (
     ): AxiosPromise<boolean> {
       return localVarFp
         .apiV1DomainWdConfigPipeRiskWeightUpdatePost(updatePipeRiskWeightInput, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @summary 爆管风险计算
+     * @param {string} [scenarioId]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1DomainWdPipeRiskCalculateGet(scenarioId?: string, options?: any): AxiosPromise<boolean> {
+      return localVarFp
+        .apiV1DomainWdPipeRiskCalculateGet(scenarioId, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @summary 批量新增爆管风险参数信息
+     * @param {Array<AddBrokenPipeRiskParaCfgInput>} [addBrokenPipeRiskParaCfgInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1DomainWdPipeRiskParaAddPost(
+      addBrokenPipeRiskParaCfgInput?: Array<AddBrokenPipeRiskParaCfgInput>,
+      options?: any,
+    ): AxiosPromise<boolean> {
+      return localVarFp
+        .apiV1DomainWdPipeRiskParaAddPost(addBrokenPipeRiskParaCfgInput, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @summary 删除参数配置信息
+     * @param {Array<string>} [requestBody]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1DomainWdPipeRiskParaDeletePost(
+      requestBody?: Array<string>,
+      options?: any,
+    ): AxiosPromise<boolean> {
+      return localVarFp
+        .apiV1DomainWdPipeRiskParaDeletePost(requestBody, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @summary 根据权重Id获取爆管风险参数信息
+     * @param {string} [riskWeightId]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1DomainWdPipeRiskParaGetByWeightIdGet(
+      riskWeightId?: string,
+      options?: any,
+    ): AxiosPromise<Array<PipeRiskParamOutput>> {
+      return localVarFp
+        .apiV1DomainWdPipeRiskParaGetByWeightIdGet(riskWeightId, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @summary 更新爆管风险参数信息
+     * @param {Array<UpdatePipeRiskParamInput>} [updatePipeRiskParamInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1DomainWdPipeRiskParaUpdatePost(
+      updatePipeRiskParamInput?: Array<UpdatePipeRiskParamInput>,
+      options?: any,
+    ): AxiosPromise<boolean> {
+      return localVarFp
+        .apiV1DomainWdPipeRiskParaUpdatePost(updatePipeRiskParamInput, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @summary 获取全管网管道风险结果
+     * @param {string} [scenarioId]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1DomainWdPipeRiskResultGetAllPipeRiskGet(
+      scenarioId?: string,
+      options?: any,
+    ): AxiosPromise<PipeRiskResult> {
+      return localVarFp
+        .apiV1DomainWdPipeRiskResultGetAllPipeRiskGet(scenarioId, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @summary 获取各个等级的风险管道信息
+     * @param {string} [scenarioId]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1DomainWdPipeRiskResultGetClassifyPipesGet(
+      scenarioId?: string,
+      options?: any,
+    ): AxiosPromise<Array<Int32ModelPipeInfoListKeyValue>> {
+      return localVarFp
+        .apiV1DomainWdPipeRiskResultGetClassifyPipesGet(scenarioId, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @summary 获取高爆管风险管道信息
+     * @param {string} [scenarioId]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1DomainWdPipeRiskResultGetHighriskPipesGet(
+      scenarioId?: string,
+      options?: any,
+    ): AxiosPromise<Array<ModelPipeInfo>> {
+      return localVarFp
+        .apiV1DomainWdPipeRiskResultGetHighriskPipesGet(scenarioId, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @summary 获取各风险等级管道长度所占全管道长度比例
+     * @param {string} [scenarioId]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1DomainWdPipeRiskResultGetLengthPercentGet(
+      scenarioId?: string,
+      options?: any,
+    ): AxiosPromise<Array<Int32DoubleKeyValue>> {
+      return localVarFp
+        .apiV1DomainWdPipeRiskResultGetLengthPercentGet(scenarioId, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @summary 新增管道风险相关属性信息
+     * @param {Array<AddPipeRiskPropertyInput>} [addPipeRiskPropertyInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1DomainWdPipeRiskRiskPropertyAddPost(
+      addPipeRiskPropertyInput?: Array<AddPipeRiskPropertyInput>,
+      options?: any,
+    ): AxiosPromise<boolean> {
+      return localVarFp
+        .apiV1DomainWdPipeRiskRiskPropertyAddPost(addPipeRiskPropertyInput, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @summary 获取所有爆管相关属性
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1DomainWdPipeRiskRiskPropertyAllGet(
+      options?: any,
+    ): AxiosPromise<Array<PipeRiskPropertyOutput>> {
+      return localVarFp
+        .apiV1DomainWdPipeRiskRiskPropertyAllGet(options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @summary 删除管道风险相关属性
+     * @param {Array<string>} [requestBody]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1DomainWdPipeRiskRiskPropertyDeletePost(
+      requestBody?: Array<string>,
+      options?: any,
+    ): AxiosPromise<boolean> {
+      return localVarFp
+        .apiV1DomainWdPipeRiskRiskPropertyDeletePost(requestBody, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @summary 重新保存所有爆管相关属性
+     * @param {Array<AddPipeRiskPropertyInput>} [addPipeRiskPropertyInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1DomainWdPipeRiskRiskPropertyResavePost(
+      addPipeRiskPropertyInput?: Array<AddPipeRiskPropertyInput>,
+      options?: any,
+    ): AxiosPromise<boolean> {
+      return localVarFp
+        .apiV1DomainWdPipeRiskRiskPropertyResavePost(addPipeRiskPropertyInput, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @summary 更新管道风险相关属性
+     * @param {Array<UpdatePipeRiskPropertyInput>} [updatePipeRiskPropertyInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1DomainWdPipeRiskRiskPropertyUpdatePost(
+      updatePipeRiskPropertyInput?: Array<UpdatePipeRiskPropertyInput>,
+      options?: any,
+    ): AxiosPromise<boolean> {
+      return localVarFp
+        .apiV1DomainWdPipeRiskRiskPropertyUpdatePost(updatePipeRiskPropertyInput, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @summary 批量新增爆管风险权重
+     * @param {Array<AddPipeRiskWeightInput>} [addPipeRiskWeightInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1DomainWdPipeRiskWeightAddPost(
+      addPipeRiskWeightInput?: Array<AddPipeRiskWeightInput>,
+      options?: any,
+    ): AxiosPromise<boolean> {
+      return localVarFp
+        .apiV1DomainWdPipeRiskWeightAddPost(addPipeRiskWeightInput, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @summary 获取所有爆管风险权重信息
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1DomainWdPipeRiskWeightAllGet(options?: any): AxiosPromise<Array<PipeRiskWeightOutput>> {
+      return localVarFp
+        .apiV1DomainWdPipeRiskWeightAllGet(options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @summary 删除权重信息
+     * @param {Array<string>} [requestBody]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1DomainWdPipeRiskWeightDeletePost(
+      requestBody?: Array<string>,
+      options?: any,
+    ): AxiosPromise<boolean> {
+      return localVarFp
+        .apiV1DomainWdPipeRiskWeightDeletePost(requestBody, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @summary 更新爆管风险权重
+     * @param {Array<UpdatePipeRiskWeightInput>} [updatePipeRiskWeightInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1DomainWdPipeRiskWeightUpdatePost(
+      updatePipeRiskWeightInput?: Array<UpdatePipeRiskWeightInput>,
+      options?: any,
+    ): AxiosPromise<boolean> {
+      return localVarFp
+        .apiV1DomainWdPipeRiskWeightUpdatePost(updatePipeRiskWeightInput, options)
         .then((request) => request(axios, basePath))
     },
   }
@@ -1629,6 +2950,301 @@ export class PipeRiskApi extends BaseAPI {
   ) {
     return PipeRiskApiFp(this.configuration)
       .apiV1DomainWdConfigPipeRiskWeightUpdatePost(updatePipeRiskWeightInput, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary 爆管风险计算
+   * @param {string} [scenarioId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof PipeRiskApi
+   */
+  public apiV1DomainWdPipeRiskCalculateGet(scenarioId?: string, options?: AxiosRequestConfig) {
+    return PipeRiskApiFp(this.configuration)
+      .apiV1DomainWdPipeRiskCalculateGet(scenarioId, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary 批量新增爆管风险参数信息
+   * @param {Array<AddBrokenPipeRiskParaCfgInput>} [addBrokenPipeRiskParaCfgInput]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof PipeRiskApi
+   */
+  public apiV1DomainWdPipeRiskParaAddPost(
+    addBrokenPipeRiskParaCfgInput?: Array<AddBrokenPipeRiskParaCfgInput>,
+    options?: AxiosRequestConfig,
+  ) {
+    return PipeRiskApiFp(this.configuration)
+      .apiV1DomainWdPipeRiskParaAddPost(addBrokenPipeRiskParaCfgInput, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary 删除参数配置信息
+   * @param {Array<string>} [requestBody]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof PipeRiskApi
+   */
+  public apiV1DomainWdPipeRiskParaDeletePost(
+    requestBody?: Array<string>,
+    options?: AxiosRequestConfig,
+  ) {
+    return PipeRiskApiFp(this.configuration)
+      .apiV1DomainWdPipeRiskParaDeletePost(requestBody, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary 根据权重Id获取爆管风险参数信息
+   * @param {string} [riskWeightId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof PipeRiskApi
+   */
+  public apiV1DomainWdPipeRiskParaGetByWeightIdGet(
+    riskWeightId?: string,
+    options?: AxiosRequestConfig,
+  ) {
+    return PipeRiskApiFp(this.configuration)
+      .apiV1DomainWdPipeRiskParaGetByWeightIdGet(riskWeightId, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary 更新爆管风险参数信息
+   * @param {Array<UpdatePipeRiskParamInput>} [updatePipeRiskParamInput]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof PipeRiskApi
+   */
+  public apiV1DomainWdPipeRiskParaUpdatePost(
+    updatePipeRiskParamInput?: Array<UpdatePipeRiskParamInput>,
+    options?: AxiosRequestConfig,
+  ) {
+    return PipeRiskApiFp(this.configuration)
+      .apiV1DomainWdPipeRiskParaUpdatePost(updatePipeRiskParamInput, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary 获取全管网管道风险结果
+   * @param {string} [scenarioId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof PipeRiskApi
+   */
+  public apiV1DomainWdPipeRiskResultGetAllPipeRiskGet(
+    scenarioId?: string,
+    options?: AxiosRequestConfig,
+  ) {
+    return PipeRiskApiFp(this.configuration)
+      .apiV1DomainWdPipeRiskResultGetAllPipeRiskGet(scenarioId, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary 获取各个等级的风险管道信息
+   * @param {string} [scenarioId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof PipeRiskApi
+   */
+  public apiV1DomainWdPipeRiskResultGetClassifyPipesGet(
+    scenarioId?: string,
+    options?: AxiosRequestConfig,
+  ) {
+    return PipeRiskApiFp(this.configuration)
+      .apiV1DomainWdPipeRiskResultGetClassifyPipesGet(scenarioId, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary 获取高爆管风险管道信息
+   * @param {string} [scenarioId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof PipeRiskApi
+   */
+  public apiV1DomainWdPipeRiskResultGetHighriskPipesGet(
+    scenarioId?: string,
+    options?: AxiosRequestConfig,
+  ) {
+    return PipeRiskApiFp(this.configuration)
+      .apiV1DomainWdPipeRiskResultGetHighriskPipesGet(scenarioId, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary 获取各风险等级管道长度所占全管道长度比例
+   * @param {string} [scenarioId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof PipeRiskApi
+   */
+  public apiV1DomainWdPipeRiskResultGetLengthPercentGet(
+    scenarioId?: string,
+    options?: AxiosRequestConfig,
+  ) {
+    return PipeRiskApiFp(this.configuration)
+      .apiV1DomainWdPipeRiskResultGetLengthPercentGet(scenarioId, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary 新增管道风险相关属性信息
+   * @param {Array<AddPipeRiskPropertyInput>} [addPipeRiskPropertyInput]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof PipeRiskApi
+   */
+  public apiV1DomainWdPipeRiskRiskPropertyAddPost(
+    addPipeRiskPropertyInput?: Array<AddPipeRiskPropertyInput>,
+    options?: AxiosRequestConfig,
+  ) {
+    return PipeRiskApiFp(this.configuration)
+      .apiV1DomainWdPipeRiskRiskPropertyAddPost(addPipeRiskPropertyInput, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary 获取所有爆管相关属性
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof PipeRiskApi
+   */
+  public apiV1DomainWdPipeRiskRiskPropertyAllGet(options?: AxiosRequestConfig) {
+    return PipeRiskApiFp(this.configuration)
+      .apiV1DomainWdPipeRiskRiskPropertyAllGet(options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary 删除管道风险相关属性
+   * @param {Array<string>} [requestBody]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof PipeRiskApi
+   */
+  public apiV1DomainWdPipeRiskRiskPropertyDeletePost(
+    requestBody?: Array<string>,
+    options?: AxiosRequestConfig,
+  ) {
+    return PipeRiskApiFp(this.configuration)
+      .apiV1DomainWdPipeRiskRiskPropertyDeletePost(requestBody, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary 重新保存所有爆管相关属性
+   * @param {Array<AddPipeRiskPropertyInput>} [addPipeRiskPropertyInput]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof PipeRiskApi
+   */
+  public apiV1DomainWdPipeRiskRiskPropertyResavePost(
+    addPipeRiskPropertyInput?: Array<AddPipeRiskPropertyInput>,
+    options?: AxiosRequestConfig,
+  ) {
+    return PipeRiskApiFp(this.configuration)
+      .apiV1DomainWdPipeRiskRiskPropertyResavePost(addPipeRiskPropertyInput, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary 更新管道风险相关属性
+   * @param {Array<UpdatePipeRiskPropertyInput>} [updatePipeRiskPropertyInput]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof PipeRiskApi
+   */
+  public apiV1DomainWdPipeRiskRiskPropertyUpdatePost(
+    updatePipeRiskPropertyInput?: Array<UpdatePipeRiskPropertyInput>,
+    options?: AxiosRequestConfig,
+  ) {
+    return PipeRiskApiFp(this.configuration)
+      .apiV1DomainWdPipeRiskRiskPropertyUpdatePost(updatePipeRiskPropertyInput, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary 批量新增爆管风险权重
+   * @param {Array<AddPipeRiskWeightInput>} [addPipeRiskWeightInput]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof PipeRiskApi
+   */
+  public apiV1DomainWdPipeRiskWeightAddPost(
+    addPipeRiskWeightInput?: Array<AddPipeRiskWeightInput>,
+    options?: AxiosRequestConfig,
+  ) {
+    return PipeRiskApiFp(this.configuration)
+      .apiV1DomainWdPipeRiskWeightAddPost(addPipeRiskWeightInput, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary 获取所有爆管风险权重信息
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof PipeRiskApi
+   */
+  public apiV1DomainWdPipeRiskWeightAllGet(options?: AxiosRequestConfig) {
+    return PipeRiskApiFp(this.configuration)
+      .apiV1DomainWdPipeRiskWeightAllGet(options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary 删除权重信息
+   * @param {Array<string>} [requestBody]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof PipeRiskApi
+   */
+  public apiV1DomainWdPipeRiskWeightDeletePost(
+    requestBody?: Array<string>,
+    options?: AxiosRequestConfig,
+  ) {
+    return PipeRiskApiFp(this.configuration)
+      .apiV1DomainWdPipeRiskWeightDeletePost(requestBody, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary 更新爆管风险权重
+   * @param {Array<UpdatePipeRiskWeightInput>} [updatePipeRiskWeightInput]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof PipeRiskApi
+   */
+  public apiV1DomainWdPipeRiskWeightUpdatePost(
+    updatePipeRiskWeightInput?: Array<UpdatePipeRiskWeightInput>,
+    options?: AxiosRequestConfig,
+  ) {
+    return PipeRiskApiFp(this.configuration)
+      .apiV1DomainWdPipeRiskWeightUpdatePost(updatePipeRiskWeightInput, options)
       .then((request) => request(this.axios, this.basePath))
   }
 }
