@@ -25,10 +25,10 @@ export interface RepairEventFilterSearchInput {
   streetName?: string | null
   /**
    *
-   * @type {number}
+   * @type {string}
    * @memberof RepairEventFilterSearchInput
    */
-  diameter?: number | null
+  diameter?: string | null
   /**
    *
    * @type {string}
