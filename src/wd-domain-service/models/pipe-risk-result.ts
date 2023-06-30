@@ -25,6 +25,12 @@ import { Int32ModelPipeInfoListKeyValue } from './int32-model-pipe-info-list-key
  */
 export interface PipeRiskResult {
   /**
+   * 计算时间
+   * @type {string}
+   * @memberof PipeRiskResult
+   */
+  calculateTime?: string
+  /**
    * 全管网模型ID列表
    * @type {Array<string>}
    * @memberof PipeRiskResult
