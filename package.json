@@ -101,6 +101,10 @@
       "import": "./dist/compute-service.es.js",
       "types": "./dist/compute-service/index.d.ts"
     },
+    "./log-service": {
+      "import": "./dist/log-service.es.js",
+      "types": "./dist/log-service/index.d.ts"
+    },
     "./sdk-helper": {
       "import": "./dist/sdk-helper.es.js",
       "types": "./dist/sdk-helper.d.ts"

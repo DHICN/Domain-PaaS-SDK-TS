@@ -26,6 +26,7 @@ module.exports = defineConfig({
         'digital-twin-service': path.resolve(__dirname, 'src/digital-twin-service/index.ts'),
         'accident-service': path.resolve(__dirname, 'src/accident-service/index.ts'),
         'compute-service': path.resolve(__dirname, 'src/compute-service/index.ts'),
+        'log-service': path.resolve(__dirname, 'src/log-service/index.ts'),
       },
       name: 'dhicn-domian-paas-client-ts-sdk',
       formats: ['es'],
