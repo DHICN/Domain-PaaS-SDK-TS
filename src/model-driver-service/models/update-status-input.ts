@@ -13,24 +13,27 @@
  */
 
 
+// May contain unused imports in some cases
+// @ts-ignore
+import { EnumStatus } from './enum-status';
 
 /**
- * 
+ * 更新计算状态
  * @export
- * @interface ModelTypePara
+ * @interface UpdateStatusInput
  */
-export interface ModelTypePara {
+export interface UpdateStatusInput {
     /**
-     * 项目名称 project name
-     * @type {string}
-     * @memberof ModelTypePara
+     * 方案ID列表
+     * @type {Array<string>}
+     * @memberof UpdateStatusInput
      */
-    'projectName'?: string | null;
+    'scenarioIds'?: Array<string> | null;
     /**
-     * 模型类型，不同类型对应不同的计算服务 model type, different type corresond to different compute service
-     * @type {string}
-     * @memberof ModelTypePara
+     * 
+     * @type {EnumStatus}
+     * @memberof UpdateStatusInput
      */
-    'modelType'?: string | null;
+    'status'?: EnumStatus;
 }
 
