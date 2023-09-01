@@ -31,6 +31,8 @@ import {
 // @ts-ignore
 import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } from '../base'
 // @ts-ignore
+import { PointMapAssemblyInfo } from '../models'
+// @ts-ignore
 import { StringListResult } from '../models'
 /**
  * IntegrationApi - axios parameter creator
@@ -40,8 +42,55 @@ export const IntegrationApiAxiosParamCreator = function (configuration?: Configu
   return {
     /**
      *
+     * @summary 获取输入输出点位映射信息
+     * @param {string} [templateId]
+     * @param {string} [tenantId]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1IotIntegrationGetInoutPointMapInfoGet: async (
+      templateId?: string,
+      tenantId?: string,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/iot/integration/get-inout-point-map-info`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      if (templateId !== undefined) {
+        localVarQueryParameter['templateId'] = templateId
+      }
+
+      if (tenantId != null) {
+        localVarHeaderParameter['tenantId'] = String(tenantId)
+      }
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
      * @summary 批量导入边界映射excel
      * @param {string} [templateId]
+     * @param {string} [tenantId]
      * @param {any} [excelFile]
      * @param {*} [options] Override http request option.
      * @deprecated
@@ -49,6 +98,7 @@ export const IntegrationApiAxiosParamCreator = function (configuration?: Configu
      */
     apiV1IotIntegrationImportBoundarymapConfigExcelPost: async (
       templateId?: string,
+      tenantId?: string,
       excelFile?: any,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
@@ -67,6 +117,10 @@ export const IntegrationApiAxiosParamCreator = function (configuration?: Configu
 
       if (templateId !== undefined) {
         localVarQueryParameter['templateId'] = templateId
+      }
+
+      if (tenantId != null) {
+        localVarHeaderParameter['tenantId'] = String(tenantId)
       }
 
       if (excelFile !== undefined) {
@@ -93,12 +147,14 @@ export const IntegrationApiAxiosParamCreator = function (configuration?: Configu
      *
      * @summary 批量导入资产设备指标excel
      * @param {string} [templateId]
+     * @param {string} [tenantId]
      * @param {any} [excelFile]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiV1IotIntegrationImportIotConfigExcelPost: async (
       templateId?: string,
+      tenantId?: string,
       excelFile?: any,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
@@ -117,6 +173,10 @@ export const IntegrationApiAxiosParamCreator = function (configuration?: Configu
 
       if (templateId !== undefined) {
         localVarQueryParameter['templateId'] = templateId
+      }
+
+      if (tenantId != null) {
+        localVarHeaderParameter['tenantId'] = String(tenantId)
       }
 
       if (excelFile !== undefined) {
@@ -143,6 +203,7 @@ export const IntegrationApiAxiosParamCreator = function (configuration?: Configu
      *
      * @summary 批量导入点位映射excel
      * @param {string} [templateId]
+     * @param {string} [tenantId]
      * @param {any} [excelFile]
      * @param {*} [options] Override http request option.
      * @deprecated
@@ -150,6 +211,7 @@ export const IntegrationApiAxiosParamCreator = function (configuration?: Configu
      */
     apiV1IotIntegrationImportPointmapConfigExcelPost: async (
       templateId?: string,
+      tenantId?: string,
       excelFile?: any,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
@@ -168,6 +230,10 @@ export const IntegrationApiAxiosParamCreator = function (configuration?: Configu
 
       if (templateId !== undefined) {
         localVarQueryParameter['templateId'] = templateId
+      }
+
+      if (tenantId != null) {
+        localVarHeaderParameter['tenantId'] = String(tenantId)
       }
 
       if (excelFile !== undefined) {
@@ -202,8 +268,30 @@ export const IntegrationApiFp = function (configuration?: Configuration) {
   return {
     /**
      *
+     * @summary 获取输入输出点位映射信息
+     * @param {string} [templateId]
+     * @param {string} [tenantId]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1IotIntegrationGetInoutPointMapInfoGet(
+      templateId?: string,
+      tenantId?: string,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PointMapAssemblyInfo>> {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiV1IotIntegrationGetInoutPointMapInfoGet(
+          templateId,
+          tenantId,
+          options,
+        )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
      * @summary 批量导入边界映射excel
      * @param {string} [templateId]
+     * @param {string} [tenantId]
      * @param {any} [excelFile]
      * @param {*} [options] Override http request option.
      * @deprecated
@@ -211,12 +299,14 @@ export const IntegrationApiFp = function (configuration?: Configuration) {
      */
     async apiV1IotIntegrationImportBoundarymapConfigExcelPost(
       templateId?: string,
+      tenantId?: string,
       excelFile?: any,
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<StringListResult>> {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.apiV1IotIntegrationImportBoundarymapConfigExcelPost(
           templateId,
+          tenantId,
           excelFile,
           options,
         )
@@ -226,18 +316,21 @@ export const IntegrationApiFp = function (configuration?: Configuration) {
      *
      * @summary 批量导入资产设备指标excel
      * @param {string} [templateId]
+     * @param {string} [tenantId]
      * @param {any} [excelFile]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async apiV1IotIntegrationImportIotConfigExcelPost(
       templateId?: string,
+      tenantId?: string,
       excelFile?: any,
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<StringListResult>> {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.apiV1IotIntegrationImportIotConfigExcelPost(
           templateId,
+          tenantId,
           excelFile,
           options,
         )
@@ -247,6 +340,7 @@ export const IntegrationApiFp = function (configuration?: Configuration) {
      *
      * @summary 批量导入点位映射excel
      * @param {string} [templateId]
+     * @param {string} [tenantId]
      * @param {any} [excelFile]
      * @param {*} [options] Override http request option.
      * @deprecated
@@ -254,12 +348,14 @@ export const IntegrationApiFp = function (configuration?: Configuration) {
      */
     async apiV1IotIntegrationImportPointmapConfigExcelPost(
       templateId?: string,
+      tenantId?: string,
       excelFile?: any,
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<StringListResult>> {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.apiV1IotIntegrationImportPointmapConfigExcelPost(
           templateId,
+          tenantId,
           excelFile,
           options,
         )
@@ -281,8 +377,26 @@ export const IntegrationApiFactory = function (
   return {
     /**
      *
+     * @summary 获取输入输出点位映射信息
+     * @param {string} [templateId]
+     * @param {string} [tenantId]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1IotIntegrationGetInoutPointMapInfoGet(
+      templateId?: string,
+      tenantId?: string,
+      options?: any,
+    ): AxiosPromise<PointMapAssemblyInfo> {
+      return localVarFp
+        .apiV1IotIntegrationGetInoutPointMapInfoGet(templateId, tenantId, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
      * @summary 批量导入边界映射excel
      * @param {string} [templateId]
+     * @param {string} [tenantId]
      * @param {any} [excelFile]
      * @param {*} [options] Override http request option.
      * @deprecated
@@ -290,34 +404,43 @@ export const IntegrationApiFactory = function (
      */
     apiV1IotIntegrationImportBoundarymapConfigExcelPost(
       templateId?: string,
+      tenantId?: string,
       excelFile?: any,
       options?: any,
     ): AxiosPromise<StringListResult> {
       return localVarFp
-        .apiV1IotIntegrationImportBoundarymapConfigExcelPost(templateId, excelFile, options)
+        .apiV1IotIntegrationImportBoundarymapConfigExcelPost(
+          templateId,
+          tenantId,
+          excelFile,
+          options,
+        )
         .then((request) => request(axios, basePath))
     },
     /**
      *
      * @summary 批量导入资产设备指标excel
      * @param {string} [templateId]
+     * @param {string} [tenantId]
      * @param {any} [excelFile]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiV1IotIntegrationImportIotConfigExcelPost(
       templateId?: string,
+      tenantId?: string,
       excelFile?: any,
       options?: any,
     ): AxiosPromise<StringListResult> {
       return localVarFp
-        .apiV1IotIntegrationImportIotConfigExcelPost(templateId, excelFile, options)
+        .apiV1IotIntegrationImportIotConfigExcelPost(templateId, tenantId, excelFile, options)
         .then((request) => request(axios, basePath))
     },
     /**
      *
      * @summary 批量导入点位映射excel
      * @param {string} [templateId]
+     * @param {string} [tenantId]
      * @param {any} [excelFile]
      * @param {*} [options] Override http request option.
      * @deprecated
@@ -325,11 +448,12 @@ export const IntegrationApiFactory = function (
      */
     apiV1IotIntegrationImportPointmapConfigExcelPost(
       templateId?: string,
+      tenantId?: string,
       excelFile?: any,
       options?: any,
     ): AxiosPromise<StringListResult> {
       return localVarFp
-        .apiV1IotIntegrationImportPointmapConfigExcelPost(templateId, excelFile, options)
+        .apiV1IotIntegrationImportPointmapConfigExcelPost(templateId, tenantId, excelFile, options)
         .then((request) => request(axios, basePath))
     },
   }
@@ -344,8 +468,28 @@ export const IntegrationApiFactory = function (
 export class IntegrationApi extends BaseAPI {
   /**
    *
+   * @summary 获取输入输出点位映射信息
+   * @param {string} [templateId]
+   * @param {string} [tenantId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof IntegrationApi
+   */
+  public apiV1IotIntegrationGetInoutPointMapInfoGet(
+    templateId?: string,
+    tenantId?: string,
+    options?: AxiosRequestConfig,
+  ) {
+    return IntegrationApiFp(this.configuration)
+      .apiV1IotIntegrationGetInoutPointMapInfoGet(templateId, tenantId, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
    * @summary 批量导入边界映射excel
    * @param {string} [templateId]
+   * @param {string} [tenantId]
    * @param {any} [excelFile]
    * @param {*} [options] Override http request option.
    * @deprecated
@@ -354,11 +498,12 @@ export class IntegrationApi extends BaseAPI {
    */
   public apiV1IotIntegrationImportBoundarymapConfigExcelPost(
     templateId?: string,
+    tenantId?: string,
     excelFile?: any,
     options?: AxiosRequestConfig,
   ) {
     return IntegrationApiFp(this.configuration)
-      .apiV1IotIntegrationImportBoundarymapConfigExcelPost(templateId, excelFile, options)
+      .apiV1IotIntegrationImportBoundarymapConfigExcelPost(templateId, tenantId, excelFile, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -366,6 +511,7 @@ export class IntegrationApi extends BaseAPI {
    *
    * @summary 批量导入资产设备指标excel
    * @param {string} [templateId]
+   * @param {string} [tenantId]
    * @param {any} [excelFile]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
@@ -373,11 +519,12 @@ export class IntegrationApi extends BaseAPI {
    */
   public apiV1IotIntegrationImportIotConfigExcelPost(
     templateId?: string,
+    tenantId?: string,
     excelFile?: any,
     options?: AxiosRequestConfig,
   ) {
     return IntegrationApiFp(this.configuration)
-      .apiV1IotIntegrationImportIotConfigExcelPost(templateId, excelFile, options)
+      .apiV1IotIntegrationImportIotConfigExcelPost(templateId, tenantId, excelFile, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -385,6 +532,7 @@ export class IntegrationApi extends BaseAPI {
    *
    * @summary 批量导入点位映射excel
    * @param {string} [templateId]
+   * @param {string} [tenantId]
    * @param {any} [excelFile]
    * @param {*} [options] Override http request option.
    * @deprecated
@@ -393,11 +541,12 @@ export class IntegrationApi extends BaseAPI {
    */
   public apiV1IotIntegrationImportPointmapConfigExcelPost(
     templateId?: string,
+    tenantId?: string,
     excelFile?: any,
     options?: AxiosRequestConfig,
   ) {
     return IntegrationApiFp(this.configuration)
-      .apiV1IotIntegrationImportPointmapConfigExcelPost(templateId, excelFile, options)
+      .apiV1IotIntegrationImportPointmapConfigExcelPost(templateId, tenantId, excelFile, options)
       .then((request) => request(this.axios, this.basePath))
   }
 }
