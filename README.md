@@ -26,6 +26,7 @@
 - [x] wwtp-domain-main-bus-service 污水业务中台基础服务
 - [x] wwtp-domain-infrastructure-service 污水业务中台邻域服务
 - [x] wd-domain-service 供水业务中台邻域服务
+- [x] log-service 日志服务
 
 ## 🌏 第三方依赖
 
