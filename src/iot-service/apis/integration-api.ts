@@ -31,7 +31,11 @@ import {
 // @ts-ignore
 import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } from '../base'
 // @ts-ignore
+import { InPointMap } from '../models'
+// @ts-ignore
 import { PointMapAssemblyInfo } from '../models'
+// @ts-ignore
+import { SaveOutPointMapInput } from '../models'
 // @ts-ignore
 import { StringListResult } from '../models'
 /**
@@ -40,6 +44,58 @@ import { StringListResult } from '../models'
  */
 export const IntegrationApiAxiosParamCreator = function (configuration?: Configuration) {
   return {
+    /**
+     *
+     * @summary 删除输入点位映射关系
+     * @param {string} [templateId]
+     * @param {string} [inPointMapId]
+     * @param {string} [tenantId]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1IotIntegrationDeleteInPointMapGet: async (
+      templateId?: string,
+      inPointMapId?: string,
+      tenantId?: string,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/iot/integration/delete-in-point-map`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      if (templateId !== undefined) {
+        localVarQueryParameter['templateId'] = templateId
+      }
+
+      if (inPointMapId !== undefined) {
+        localVarQueryParameter['InPointMapId'] = inPointMapId
+      }
+
+      if (tenantId != null) {
+        localVarHeaderParameter['tenantId'] = String(tenantId)
+      }
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
     /**
      *
      * @summary 获取输入输出点位映射信息
@@ -256,6 +312,104 @@ export const IntegrationApiAxiosParamCreator = function (configuration?: Configu
         options: localVarRequestOptions,
       }
     },
+    /**
+     *
+     * @summary 保存模型输入点位映射关系
+     * @param {string} [tenantId]
+     * @param {InPointMap} [inPointMap]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1IotIntegrationSaveInPointMapPost: async (
+      tenantId?: string,
+      inPointMap?: InPointMap,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/iot/integration/save-in-point-map`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      if (tenantId != null) {
+        localVarHeaderParameter['tenantId'] = String(tenantId)
+      }
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        inPointMap,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 保存模型输出点位映射关系
+     * @param {string} [tenantId]
+     * @param {SaveOutPointMapInput} [saveOutPointMapInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1IotIntegrationSaveOutPointMapPost: async (
+      tenantId?: string,
+      saveOutPointMapInput?: SaveOutPointMapInput,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/iot/integration/save-out-point-map`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      if (tenantId != null) {
+        localVarHeaderParameter['tenantId'] = String(tenantId)
+      }
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        saveOutPointMapInput,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
   }
 }
 
@@ -266,6 +420,30 @@ export const IntegrationApiAxiosParamCreator = function (configuration?: Configu
 export const IntegrationApiFp = function (configuration?: Configuration) {
   const localVarAxiosParamCreator = IntegrationApiAxiosParamCreator(configuration)
   return {
+    /**
+     *
+     * @summary 删除输入点位映射关系
+     * @param {string} [templateId]
+     * @param {string} [inPointMapId]
+     * @param {string} [tenantId]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1IotIntegrationDeleteInPointMapGet(
+      templateId?: string,
+      inPointMapId?: string,
+      tenantId?: string,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiV1IotIntegrationDeleteInPointMapGet(
+          templateId,
+          inPointMapId,
+          tenantId,
+          options,
+        )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
     /**
      *
      * @summary 获取输入输出点位映射信息
@@ -361,6 +539,48 @@ export const IntegrationApiFp = function (configuration?: Configuration) {
         )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
+    /**
+     *
+     * @summary 保存模型输入点位映射关系
+     * @param {string} [tenantId]
+     * @param {InPointMap} [inPointMap]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1IotIntegrationSaveInPointMapPost(
+      tenantId?: string,
+      inPointMap?: InPointMap,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiV1IotIntegrationSaveInPointMapPost(
+          tenantId,
+          inPointMap,
+          options,
+        )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
+     * @summary 保存模型输出点位映射关系
+     * @param {string} [tenantId]
+     * @param {SaveOutPointMapInput} [saveOutPointMapInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1IotIntegrationSaveOutPointMapPost(
+      tenantId?: string,
+      saveOutPointMapInput?: SaveOutPointMapInput,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiV1IotIntegrationSaveOutPointMapPost(
+          tenantId,
+          saveOutPointMapInput,
+          options,
+        )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
   }
 }
 
@@ -375,6 +595,25 @@ export const IntegrationApiFactory = function (
 ) {
   const localVarFp = IntegrationApiFp(configuration)
   return {
+    /**
+     *
+     * @summary 删除输入点位映射关系
+     * @param {string} [templateId]
+     * @param {string} [inPointMapId]
+     * @param {string} [tenantId]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1IotIntegrationDeleteInPointMapGet(
+      templateId?: string,
+      inPointMapId?: string,
+      tenantId?: string,
+      options?: any,
+    ): AxiosPromise<object> {
+      return localVarFp
+        .apiV1IotIntegrationDeleteInPointMapGet(templateId, inPointMapId, tenantId, options)
+        .then((request) => request(axios, basePath))
+    },
     /**
      *
      * @summary 获取输入输出点位映射信息
@@ -456,6 +695,40 @@ export const IntegrationApiFactory = function (
         .apiV1IotIntegrationImportPointmapConfigExcelPost(templateId, tenantId, excelFile, options)
         .then((request) => request(axios, basePath))
     },
+    /**
+     *
+     * @summary 保存模型输入点位映射关系
+     * @param {string} [tenantId]
+     * @param {InPointMap} [inPointMap]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1IotIntegrationSaveInPointMapPost(
+      tenantId?: string,
+      inPointMap?: InPointMap,
+      options?: any,
+    ): AxiosPromise<object> {
+      return localVarFp
+        .apiV1IotIntegrationSaveInPointMapPost(tenantId, inPointMap, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @summary 保存模型输出点位映射关系
+     * @param {string} [tenantId]
+     * @param {SaveOutPointMapInput} [saveOutPointMapInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1IotIntegrationSaveOutPointMapPost(
+      tenantId?: string,
+      saveOutPointMapInput?: SaveOutPointMapInput,
+      options?: any,
+    ): AxiosPromise<object> {
+      return localVarFp
+        .apiV1IotIntegrationSaveOutPointMapPost(tenantId, saveOutPointMapInput, options)
+        .then((request) => request(axios, basePath))
+    },
   }
 }
 
@@ -466,6 +739,27 @@ export const IntegrationApiFactory = function (
  * @extends {BaseAPI}
  */
 export class IntegrationApi extends BaseAPI {
+  /**
+   *
+   * @summary 删除输入点位映射关系
+   * @param {string} [templateId]
+   * @param {string} [inPointMapId]
+   * @param {string} [tenantId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof IntegrationApi
+   */
+  public apiV1IotIntegrationDeleteInPointMapGet(
+    templateId?: string,
+    inPointMapId?: string,
+    tenantId?: string,
+    options?: AxiosRequestConfig,
+  ) {
+    return IntegrationApiFp(this.configuration)
+      .apiV1IotIntegrationDeleteInPointMapGet(templateId, inPointMapId, tenantId, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
   /**
    *
    * @summary 获取输入输出点位映射信息
@@ -547,6 +841,44 @@ export class IntegrationApi extends BaseAPI {
   ) {
     return IntegrationApiFp(this.configuration)
       .apiV1IotIntegrationImportPointmapConfigExcelPost(templateId, tenantId, excelFile, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary 保存模型输入点位映射关系
+   * @param {string} [tenantId]
+   * @param {InPointMap} [inPointMap]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof IntegrationApi
+   */
+  public apiV1IotIntegrationSaveInPointMapPost(
+    tenantId?: string,
+    inPointMap?: InPointMap,
+    options?: AxiosRequestConfig,
+  ) {
+    return IntegrationApiFp(this.configuration)
+      .apiV1IotIntegrationSaveInPointMapPost(tenantId, inPointMap, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary 保存模型输出点位映射关系
+   * @param {string} [tenantId]
+   * @param {SaveOutPointMapInput} [saveOutPointMapInput]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof IntegrationApi
+   */
+  public apiV1IotIntegrationSaveOutPointMapPost(
+    tenantId?: string,
+    saveOutPointMapInput?: SaveOutPointMapInput,
+    options?: AxiosRequestConfig,
+  ) {
+    return IntegrationApiFp(this.configuration)
+      .apiV1IotIntegrationSaveOutPointMapPost(tenantId, saveOutPointMapInput, options)
       .then((request) => request(this.axios, this.basePath))
   }
 }
