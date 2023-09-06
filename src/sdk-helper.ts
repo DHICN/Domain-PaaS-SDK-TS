@@ -104,6 +104,7 @@ export const DomainServiceUrlMap = {
   wd: {
     domain: 'wd-domain-service',
   },
+  dataCenter:"data-center-service"
 }
 
 /**
