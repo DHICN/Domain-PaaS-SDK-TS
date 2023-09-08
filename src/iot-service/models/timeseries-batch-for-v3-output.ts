@@ -11,26 +11,28 @@
  * Do not edit the class manually.
  */
 
-// May contain unused imports in some cases
-// @ts-ignore
-import { MockDeviceInfoInput } from './mock-device-info-input'
-
 /**
  *
  * @export
- * @interface MockDeviceDataInput
+ * @interface TimeseriesBatchForV3Output
  */
-export interface MockDeviceDataInput {
+export interface TimeseriesBatchForV3Output {
   /**
-   * 租户Id
+   *
+   * @type {Array<string>}
+   * @memberof TimeseriesBatchForV3Output
+   */
+  t?: Array<string> | null
+  /**
+   *
+   * @type {Array<number>}
+   * @memberof TimeseriesBatchForV3Output
+   */
+  v?: Array<number> | null
+  /**
+   * 指标
    * @type {string}
-   * @memberof MockDeviceDataInput
+   * @memberof TimeseriesBatchForV3Output
    */
-  tenantId: string
-  /**
-   * 设备信息
-   * @type {Array<MockDeviceInfoInput>}
-   * @memberof MockDeviceDataInput
-   */
-  devices: Array<MockDeviceInfoInput>
+  indicator?: string | null
 }

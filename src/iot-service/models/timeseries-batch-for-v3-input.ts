@@ -14,49 +14,31 @@
 /**
  *
  * @export
- * @interface TimeseriesInput
+ * @interface TimeseriesBatchForV3Input
  */
-export interface TimeseriesInput {
+export interface TimeseriesBatchForV3Input {
   /**
-   * 设备ID device id
+   * 指标 indicator
    * @type {string}
-   * @memberof TimeseriesInput
+   * @memberof TimeseriesBatchForV3Input
    */
-  deviceId: string
-  /**
-   * 指标列表 indicators
-   * @type {Array<string>}
-   * @memberof TimeseriesInput
-   */
-  keys: Array<string>
+  indicator: string
   /**
    * 查询开始时间 start time
    * @type {string}
-   * @memberof TimeseriesInput
+   * @memberof TimeseriesBatchForV3Input
    */
   startTs: string
   /**
    * 查询结束时间 end time
    * @type {string}
-   * @memberof TimeseriesInput
+   * @memberof TimeseriesBatchForV3Input
    */
   endTs: string
   /**
    * 排序方式，ASC (升序)，DESC (降序) sort order, ASC (ASCENDING) or DESC (DESCENDING);默认是降序DESC
    * @type {string}
-   * @memberof TimeseriesInput
+   * @memberof TimeseriesBatchForV3Input
    */
   orderBy?: string | null
-  /**
-   *
-   * @type {number}
-   * @memberof TimeseriesInput
-   */
-  interval?: number
-  /**
-   *
-   * @type {string}
-   * @memberof TimeseriesInput
-   */
-  agg?: string | null
 }
