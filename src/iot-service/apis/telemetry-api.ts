@@ -55,13 +55,11 @@ export const TelemetryApiAxiosParamCreator = function (configuration?: Configura
     /**
      *
      * @summary 根据指标获取最新实测数据，要求指标编码再系统中是唯一的
-     * @param {string} [tenantId]
      * @param {LatestTimeSeriesInput} [latestTimeSeriesInput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiV1IotLatestTimeseriesPost: async (
-      tenantId?: string,
       latestTimeSeriesInput?: LatestTimeSeriesInput,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
@@ -73,13 +71,13 @@ export const TelemetryApiAxiosParamCreator = function (configuration?: Configura
         baseOptions = configuration.baseOptions
       }
 
-      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarRequestOptions = {
+        method: 'POST',
+        ...baseOptions,
+        ...options,
+      }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
-
-      if (tenantId != null) {
-        localVarHeaderParameter['tenantId'] = String(tenantId)
-      }
 
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
@@ -104,13 +102,11 @@ export const TelemetryApiAxiosParamCreator = function (configuration?: Configura
     /**
      *
      * @summary Mock Device Data
-     * @param {string} [tenantId]
      * @param {MockDeviceDataInput} [mockDeviceDataInput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiV1IotMockDeviceDataPost: async (
-      tenantId?: string,
       mockDeviceDataInput?: MockDeviceDataInput,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
@@ -122,13 +118,13 @@ export const TelemetryApiAxiosParamCreator = function (configuration?: Configura
         baseOptions = configuration.baseOptions
       }
 
-      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarRequestOptions = {
+        method: 'POST',
+        ...baseOptions,
+        ...options,
+      }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
-
-      if (tenantId != null) {
-        localVarHeaderParameter['tenantId'] = String(tenantId)
-      }
 
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
@@ -160,7 +156,6 @@ export const TelemetryApiAxiosParamCreator = function (configuration?: Configura
      * @param {string} [orderBy] 排序方式，ASC (升序)，DESC (降序) sort order, ASC (ASCENDING) or DESC (DESCENDING);默认是降序DESC
      * @param {number} [interval]
      * @param {string} [agg]
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -172,7 +167,6 @@ export const TelemetryApiAxiosParamCreator = function (configuration?: Configura
       orderBy?: string,
       interval?: number,
       agg?: string,
-      tenantId?: string,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
       // verify required parameter 'deviceId' is not null or undefined
@@ -191,7 +185,11 @@ export const TelemetryApiAxiosParamCreator = function (configuration?: Configura
         baseOptions = configuration.baseOptions
       }
 
-      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
+      const localVarRequestOptions = {
+        method: 'GET',
+        ...baseOptions,
+        ...options,
+      }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
 
@@ -223,10 +221,6 @@ export const TelemetryApiAxiosParamCreator = function (configuration?: Configura
         localVarQueryParameter['Agg'] = agg
       }
 
-      if (tenantId != null) {
-        localVarHeaderParameter['tenantId'] = String(tenantId)
-      }
-
       setSearchParams(localVarUrlObj, localVarQueryParameter)
       let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
       localVarRequestOptions.headers = {
@@ -243,13 +237,11 @@ export const TelemetryApiAxiosParamCreator = function (configuration?: Configura
     /**
      * 批量保存或更新设备指标的时间序列数据，时间序列数据以json格式传递 Batch save or update device indicator time-series data, data is transferred in the format of json.
      * @summary 批量保存或更新时间序列数据 Batch save or update time-series data
-     * @param {string} [tenantId]
      * @param {Array<SaveTelemetryDataInput>} [saveTelemetryDataInput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiV1IotSaveTelemetryDataBatchPost: async (
-      tenantId?: string,
       saveTelemetryDataInput?: Array<SaveTelemetryDataInput>,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
@@ -261,13 +253,13 @@ export const TelemetryApiAxiosParamCreator = function (configuration?: Configura
         baseOptions = configuration.baseOptions
       }
 
-      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarRequestOptions = {
+        method: 'POST',
+        ...baseOptions,
+        ...options,
+      }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
-
-      if (tenantId != null) {
-        localVarHeaderParameter['tenantId'] = String(tenantId)
-      }
 
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
@@ -292,13 +284,11 @@ export const TelemetryApiAxiosParamCreator = function (configuration?: Configura
     /**
      * 保存或更新设备指标的时间序列数据，时间序列数据以json格式传递 Save or update device indicator time-series data, data is transferred in the format of json.
      * @summary 保存或更新时间序列数据 Save or update time-series data
-     * @param {string} [tenantId]
      * @param {SaveTelemetryDataInput} [saveTelemetryDataInput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiV1IotSaveTelemetryDataPost: async (
-      tenantId?: string,
       saveTelemetryDataInput?: SaveTelemetryDataInput,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
@@ -310,13 +300,13 @@ export const TelemetryApiAxiosParamCreator = function (configuration?: Configura
         baseOptions = configuration.baseOptions
       }
 
-      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarRequestOptions = {
+        method: 'POST',
+        ...baseOptions,
+        ...options,
+      }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
-
-      if (tenantId != null) {
-        localVarHeaderParameter['tenantId'] = String(tenantId)
-      }
 
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
@@ -341,13 +331,11 @@ export const TelemetryApiAxiosParamCreator = function (configuration?: Configura
     /**
      * 批量查询设备多个指标在某个时间段内的时间序列数据，可按时间排序 Batch query time-series data of multiple indicators of a device by time and order by time.
      * @summary 批量查询设备指标的时间序列数据，按时间排序 Batch query time-series data of device indicators order by time
-     * @param {string} [tenantId]
      * @param {Array<TimeseriesInput>} [timeseriesInput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiV1IotTimeseriesBatchPost: async (
-      tenantId?: string,
       timeseriesInput?: Array<TimeseriesInput>,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
@@ -359,13 +347,13 @@ export const TelemetryApiAxiosParamCreator = function (configuration?: Configura
         baseOptions = configuration.baseOptions
       }
 
-      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarRequestOptions = {
+        method: 'POST',
+        ...baseOptions,
+        ...options,
+      }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
-
-      if (tenantId != null) {
-        localVarHeaderParameter['tenantId'] = String(tenantId)
-      }
 
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
@@ -397,7 +385,6 @@ export const TelemetryApiAxiosParamCreator = function (configuration?: Configura
      * @param {string} [orderBy] 排序方式，ASC (升序)，DESC (降序) sort order, ASC (ASCENDING) or DESC (DESCENDING);默认是降序DESC
      * @param {number} [interval]
      * @param {string} [agg]
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -409,7 +396,6 @@ export const TelemetryApiAxiosParamCreator = function (configuration?: Configura
       orderBy?: string,
       interval?: number,
       agg?: string,
-      tenantId?: string,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
       // verify required parameter 'deviceId' is not null or undefined
@@ -428,7 +414,11 @@ export const TelemetryApiAxiosParamCreator = function (configuration?: Configura
         baseOptions = configuration.baseOptions
       }
 
-      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
+      const localVarRequestOptions = {
+        method: 'GET',
+        ...baseOptions,
+        ...options,
+      }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
 
@@ -460,10 +450,6 @@ export const TelemetryApiAxiosParamCreator = function (configuration?: Configura
         localVarQueryParameter['Agg'] = agg
       }
 
-      if (tenantId != null) {
-        localVarHeaderParameter['tenantId'] = String(tenantId)
-      }
-
       setSearchParams(localVarUrlObj, localVarQueryParameter)
       let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
       localVarRequestOptions.headers = {
@@ -480,13 +466,11 @@ export const TelemetryApiAxiosParamCreator = function (configuration?: Configura
     /**
      * 批量查询多个设备指标在某个时间段内的时间序列数据，可按时间排序 Batch query time-series data of multiple device indicators by time and order by time.
      * @summary 批量查询多个设备指标的时间序列数据，按时间排序 Batch query time-series data of device indicators order by time
-     * @param {string} [tenantId]
      * @param {Array<TimeseriesInput>} [timeseriesInput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiV2IotTimeseriesBatchPost: async (
-      tenantId?: string,
       timeseriesInput?: Array<TimeseriesInput>,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
@@ -498,13 +482,13 @@ export const TelemetryApiAxiosParamCreator = function (configuration?: Configura
         baseOptions = configuration.baseOptions
       }
 
-      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarRequestOptions = {
+        method: 'POST',
+        ...baseOptions,
+        ...options,
+      }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
-
-      if (tenantId != null) {
-        localVarHeaderParameter['tenantId'] = String(tenantId)
-      }
 
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
@@ -529,13 +513,11 @@ export const TelemetryApiAxiosParamCreator = function (configuration?: Configura
     /**
      *
      * @summary 根据指标获取实测时序数据，要求指标编码在系统中是唯一的
-     * @param {string} [tenantId]
      * @param {Array<TimeseriesBatchForV3Input>} [timeseriesBatchForV3Input]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiV3IotTimeseriesBatchPost: async (
-      tenantId?: string,
       timeseriesBatchForV3Input?: Array<TimeseriesBatchForV3Input>,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
@@ -547,13 +529,13 @@ export const TelemetryApiAxiosParamCreator = function (configuration?: Configura
         baseOptions = configuration.baseOptions
       }
 
-      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarRequestOptions = {
+        method: 'POST',
+        ...baseOptions,
+        ...options,
+      }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
-
-      if (tenantId != null) {
-        localVarHeaderParameter['tenantId'] = String(tenantId)
-      }
 
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
@@ -588,20 +570,17 @@ export const TelemetryApiFp = function (configuration?: Configuration) {
     /**
      *
      * @summary 根据指标获取最新实测数据，要求指标编码再系统中是唯一的
-     * @param {string} [tenantId]
      * @param {LatestTimeSeriesInput} [latestTimeSeriesInput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async apiV1IotLatestTimeseriesPost(
-      tenantId?: string,
       latestTimeSeriesInput?: LatestTimeSeriesInput,
       options?: AxiosRequestConfig,
     ): Promise<
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<LatestTimeSeriesOutput>>
     > {
       const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1IotLatestTimeseriesPost(
-        tenantId,
         latestTimeSeriesInput,
         options,
       )
@@ -610,18 +589,15 @@ export const TelemetryApiFp = function (configuration?: Configuration) {
     /**
      *
      * @summary Mock Device Data
-     * @param {string} [tenantId]
      * @param {MockDeviceDataInput} [mockDeviceDataInput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async apiV1IotMockDeviceDataPost(
-      tenantId?: string,
       mockDeviceDataInput?: MockDeviceDataInput,
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
       const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1IotMockDeviceDataPost(
-        tenantId,
         mockDeviceDataInput,
         options,
       )
@@ -637,7 +613,6 @@ export const TelemetryApiFp = function (configuration?: Configuration) {
      * @param {string} [orderBy] 排序方式，ASC (升序)，DESC (降序) sort order, ASC (ASCENDING) or DESC (DESCENDING);默认是降序DESC
      * @param {number} [interval]
      * @param {string} [agg]
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -649,7 +624,6 @@ export const TelemetryApiFp = function (configuration?: Configuration) {
       orderBy?: string,
       interval?: number,
       agg?: string,
-      tenantId?: string,
       options?: AxiosRequestConfig,
     ): Promise<
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<{ [key: string]: Array<object> }>
@@ -663,7 +637,6 @@ export const TelemetryApiFp = function (configuration?: Configuration) {
           orderBy,
           interval,
           agg,
-          tenantId,
           options,
         )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
@@ -671,18 +644,15 @@ export const TelemetryApiFp = function (configuration?: Configuration) {
     /**
      * 批量保存或更新设备指标的时间序列数据，时间序列数据以json格式传递 Batch save or update device indicator time-series data, data is transferred in the format of json.
      * @summary 批量保存或更新时间序列数据 Batch save or update time-series data
-     * @param {string} [tenantId]
      * @param {Array<SaveTelemetryDataInput>} [saveTelemetryDataInput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async apiV1IotSaveTelemetryDataBatchPost(
-      tenantId?: string,
       saveTelemetryDataInput?: Array<SaveTelemetryDataInput>,
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
       const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1IotSaveTelemetryDataBatchPost(
-        tenantId,
         saveTelemetryDataInput,
         options,
       )
@@ -691,18 +661,15 @@ export const TelemetryApiFp = function (configuration?: Configuration) {
     /**
      * 保存或更新设备指标的时间序列数据，时间序列数据以json格式传递 Save or update device indicator time-series data, data is transferred in the format of json.
      * @summary 保存或更新时间序列数据 Save or update time-series data
-     * @param {string} [tenantId]
      * @param {SaveTelemetryDataInput} [saveTelemetryDataInput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async apiV1IotSaveTelemetryDataPost(
-      tenantId?: string,
       saveTelemetryDataInput?: SaveTelemetryDataInput,
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
       const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1IotSaveTelemetryDataPost(
-        tenantId,
         saveTelemetryDataInput,
         options,
       )
@@ -711,13 +678,11 @@ export const TelemetryApiFp = function (configuration?: Configuration) {
     /**
      * 批量查询设备多个指标在某个时间段内的时间序列数据，可按时间排序 Batch query time-series data of multiple indicators of a device by time and order by time.
      * @summary 批量查询设备指标的时间序列数据，按时间排序 Batch query time-series data of device indicators order by time
-     * @param {string} [tenantId]
      * @param {Array<TimeseriesInput>} [timeseriesInput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async apiV1IotTimeseriesBatchPost(
-      tenantId?: string,
       timeseriesInput?: Array<TimeseriesInput>,
       options?: AxiosRequestConfig,
     ): Promise<
@@ -727,7 +692,6 @@ export const TelemetryApiFp = function (configuration?: Configuration) {
       ) => AxiosPromise<Array<{ [key: string]: Array<object> }>>
     > {
       const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1IotTimeseriesBatchPost(
-        tenantId,
         timeseriesInput,
         options,
       )
@@ -743,7 +707,6 @@ export const TelemetryApiFp = function (configuration?: Configuration) {
      * @param {string} [orderBy] 排序方式，ASC (升序)，DESC (降序) sort order, ASC (ASCENDING) or DESC (DESCENDING);默认是降序DESC
      * @param {number} [interval]
      * @param {string} [agg]
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -755,7 +718,6 @@ export const TelemetryApiFp = function (configuration?: Configuration) {
       orderBy?: string,
       interval?: number,
       agg?: string,
-      tenantId?: string,
       options?: AxiosRequestConfig,
     ): Promise<
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<{ [key: string]: Array<object> }>
@@ -768,7 +730,6 @@ export const TelemetryApiFp = function (configuration?: Configuration) {
         orderBy,
         interval,
         agg,
-        tenantId,
         options,
       )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
@@ -776,20 +737,17 @@ export const TelemetryApiFp = function (configuration?: Configuration) {
     /**
      * 批量查询多个设备指标在某个时间段内的时间序列数据，可按时间排序 Batch query time-series data of multiple device indicators by time and order by time.
      * @summary 批量查询多个设备指标的时间序列数据，按时间排序 Batch query time-series data of device indicators order by time
-     * @param {string} [tenantId]
      * @param {Array<TimeseriesInput>} [timeseriesInput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async apiV2IotTimeseriesBatchPost(
-      tenantId?: string,
       timeseriesInput?: Array<TimeseriesInput>,
       options?: AxiosRequestConfig,
     ): Promise<
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<TimeseriesBatchOutput>>
     > {
       const localVarAxiosArgs = await localVarAxiosParamCreator.apiV2IotTimeseriesBatchPost(
-        tenantId,
         timeseriesInput,
         options,
       )
@@ -798,20 +756,17 @@ export const TelemetryApiFp = function (configuration?: Configuration) {
     /**
      *
      * @summary 根据指标获取实测时序数据，要求指标编码在系统中是唯一的
-     * @param {string} [tenantId]
      * @param {Array<TimeseriesBatchForV3Input>} [timeseriesBatchForV3Input]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async apiV3IotTimeseriesBatchPost(
-      tenantId?: string,
       timeseriesBatchForV3Input?: Array<TimeseriesBatchForV3Input>,
       options?: AxiosRequestConfig,
     ): Promise<
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<TimeseriesBatchForV3Output>>
     > {
       const localVarAxiosArgs = await localVarAxiosParamCreator.apiV3IotTimeseriesBatchPost(
-        tenantId,
         timeseriesBatchForV3Input,
         options,
       )
@@ -834,35 +789,31 @@ export const TelemetryApiFactory = function (
     /**
      *
      * @summary 根据指标获取最新实测数据，要求指标编码再系统中是唯一的
-     * @param {string} [tenantId]
      * @param {LatestTimeSeriesInput} [latestTimeSeriesInput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiV1IotLatestTimeseriesPost(
-      tenantId?: string,
       latestTimeSeriesInput?: LatestTimeSeriesInput,
       options?: any,
     ): AxiosPromise<Array<LatestTimeSeriesOutput>> {
       return localVarFp
-        .apiV1IotLatestTimeseriesPost(tenantId, latestTimeSeriesInput, options)
+        .apiV1IotLatestTimeseriesPost(latestTimeSeriesInput, options)
         .then((request) => request(axios, basePath))
     },
     /**
      *
      * @summary Mock Device Data
-     * @param {string} [tenantId]
      * @param {MockDeviceDataInput} [mockDeviceDataInput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiV1IotMockDeviceDataPost(
-      tenantId?: string,
       mockDeviceDataInput?: MockDeviceDataInput,
       options?: any,
     ): AxiosPromise<object> {
       return localVarFp
-        .apiV1IotMockDeviceDataPost(tenantId, mockDeviceDataInput, options)
+        .apiV1IotMockDeviceDataPost(mockDeviceDataInput, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -875,7 +826,6 @@ export const TelemetryApiFactory = function (
      * @param {string} [orderBy] 排序方式，ASC (升序)，DESC (降序) sort order, ASC (ASCENDING) or DESC (DESCENDING);默认是降序DESC
      * @param {number} [interval]
      * @param {string} [agg]
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -887,7 +837,6 @@ export const TelemetryApiFactory = function (
       orderBy?: string,
       interval?: number,
       agg?: string,
-      tenantId?: string,
       options?: any,
     ): AxiosPromise<{ [key: string]: Array<object> }> {
       return localVarFp
@@ -899,7 +848,6 @@ export const TelemetryApiFactory = function (
           orderBy,
           interval,
           agg,
-          tenantId,
           options,
         )
         .then((request) => request(axios, basePath))
@@ -907,52 +855,46 @@ export const TelemetryApiFactory = function (
     /**
      * 批量保存或更新设备指标的时间序列数据，时间序列数据以json格式传递 Batch save or update device indicator time-series data, data is transferred in the format of json.
      * @summary 批量保存或更新时间序列数据 Batch save or update time-series data
-     * @param {string} [tenantId]
      * @param {Array<SaveTelemetryDataInput>} [saveTelemetryDataInput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiV1IotSaveTelemetryDataBatchPost(
-      tenantId?: string,
       saveTelemetryDataInput?: Array<SaveTelemetryDataInput>,
       options?: any,
     ): AxiosPromise<object> {
       return localVarFp
-        .apiV1IotSaveTelemetryDataBatchPost(tenantId, saveTelemetryDataInput, options)
+        .apiV1IotSaveTelemetryDataBatchPost(saveTelemetryDataInput, options)
         .then((request) => request(axios, basePath))
     },
     /**
      * 保存或更新设备指标的时间序列数据，时间序列数据以json格式传递 Save or update device indicator time-series data, data is transferred in the format of json.
      * @summary 保存或更新时间序列数据 Save or update time-series data
-     * @param {string} [tenantId]
      * @param {SaveTelemetryDataInput} [saveTelemetryDataInput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiV1IotSaveTelemetryDataPost(
-      tenantId?: string,
       saveTelemetryDataInput?: SaveTelemetryDataInput,
       options?: any,
     ): AxiosPromise<object> {
       return localVarFp
-        .apiV1IotSaveTelemetryDataPost(tenantId, saveTelemetryDataInput, options)
+        .apiV1IotSaveTelemetryDataPost(saveTelemetryDataInput, options)
         .then((request) => request(axios, basePath))
     },
     /**
      * 批量查询设备多个指标在某个时间段内的时间序列数据，可按时间排序 Batch query time-series data of multiple indicators of a device by time and order by time.
      * @summary 批量查询设备指标的时间序列数据，按时间排序 Batch query time-series data of device indicators order by time
-     * @param {string} [tenantId]
      * @param {Array<TimeseriesInput>} [timeseriesInput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiV1IotTimeseriesBatchPost(
-      tenantId?: string,
       timeseriesInput?: Array<TimeseriesInput>,
       options?: any,
     ): AxiosPromise<Array<{ [key: string]: Array<object> }>> {
       return localVarFp
-        .apiV1IotTimeseriesBatchPost(tenantId, timeseriesInput, options)
+        .apiV1IotTimeseriesBatchPost(timeseriesInput, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -965,7 +907,6 @@ export const TelemetryApiFactory = function (
      * @param {string} [orderBy] 排序方式，ASC (升序)，DESC (降序) sort order, ASC (ASCENDING) or DESC (DESCENDING);默认是降序DESC
      * @param {number} [interval]
      * @param {string} [agg]
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -977,55 +918,40 @@ export const TelemetryApiFactory = function (
       orderBy?: string,
       interval?: number,
       agg?: string,
-      tenantId?: string,
       options?: any,
     ): AxiosPromise<{ [key: string]: Array<object> }> {
       return localVarFp
-        .apiV1IotTimeseriesGet(
-          deviceId,
-          keys,
-          startTs,
-          endTs,
-          orderBy,
-          interval,
-          agg,
-          tenantId,
-          options,
-        )
+        .apiV1IotTimeseriesGet(deviceId, keys, startTs, endTs, orderBy, interval, agg, options)
         .then((request) => request(axios, basePath))
     },
     /**
      * 批量查询多个设备指标在某个时间段内的时间序列数据，可按时间排序 Batch query time-series data of multiple device indicators by time and order by time.
      * @summary 批量查询多个设备指标的时间序列数据，按时间排序 Batch query time-series data of device indicators order by time
-     * @param {string} [tenantId]
      * @param {Array<TimeseriesInput>} [timeseriesInput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiV2IotTimeseriesBatchPost(
-      tenantId?: string,
       timeseriesInput?: Array<TimeseriesInput>,
       options?: any,
     ): AxiosPromise<Array<TimeseriesBatchOutput>> {
       return localVarFp
-        .apiV2IotTimeseriesBatchPost(tenantId, timeseriesInput, options)
+        .apiV2IotTimeseriesBatchPost(timeseriesInput, options)
         .then((request) => request(axios, basePath))
     },
     /**
      *
      * @summary 根据指标获取实测时序数据，要求指标编码在系统中是唯一的
-     * @param {string} [tenantId]
      * @param {Array<TimeseriesBatchForV3Input>} [timeseriesBatchForV3Input]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiV3IotTimeseriesBatchPost(
-      tenantId?: string,
       timeseriesBatchForV3Input?: Array<TimeseriesBatchForV3Input>,
       options?: any,
     ): AxiosPromise<Array<TimeseriesBatchForV3Output>> {
       return localVarFp
-        .apiV3IotTimeseriesBatchPost(tenantId, timeseriesBatchForV3Input, options)
+        .apiV3IotTimeseriesBatchPost(timeseriesBatchForV3Input, options)
         .then((request) => request(axios, basePath))
     },
   }
@@ -1041,38 +967,34 @@ export class TelemetryApi extends BaseAPI {
   /**
    *
    * @summary 根据指标获取最新实测数据，要求指标编码再系统中是唯一的
-   * @param {string} [tenantId]
    * @param {LatestTimeSeriesInput} [latestTimeSeriesInput]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof TelemetryApi
    */
   public apiV1IotLatestTimeseriesPost(
-    tenantId?: string,
     latestTimeSeriesInput?: LatestTimeSeriesInput,
     options?: AxiosRequestConfig,
   ) {
     return TelemetryApiFp(this.configuration)
-      .apiV1IotLatestTimeseriesPost(tenantId, latestTimeSeriesInput, options)
+      .apiV1IotLatestTimeseriesPost(latestTimeSeriesInput, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
   /**
    *
    * @summary Mock Device Data
-   * @param {string} [tenantId]
    * @param {MockDeviceDataInput} [mockDeviceDataInput]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof TelemetryApi
    */
   public apiV1IotMockDeviceDataPost(
-    tenantId?: string,
     mockDeviceDataInput?: MockDeviceDataInput,
     options?: AxiosRequestConfig,
   ) {
     return TelemetryApiFp(this.configuration)
-      .apiV1IotMockDeviceDataPost(tenantId, mockDeviceDataInput, options)
+      .apiV1IotMockDeviceDataPost(mockDeviceDataInput, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -1086,7 +1008,6 @@ export class TelemetryApi extends BaseAPI {
    * @param {string} [orderBy] 排序方式，ASC (升序)，DESC (降序) sort order, ASC (ASCENDING) or DESC (DESCENDING);默认是降序DESC
    * @param {number} [interval]
    * @param {string} [agg]
-   * @param {string} [tenantId]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof TelemetryApi
@@ -1099,7 +1020,6 @@ export class TelemetryApi extends BaseAPI {
     orderBy?: string,
     interval?: number,
     agg?: string,
-    tenantId?: string,
     options?: AxiosRequestConfig,
   ) {
     return TelemetryApiFp(this.configuration)
@@ -1111,7 +1031,6 @@ export class TelemetryApi extends BaseAPI {
         orderBy,
         interval,
         agg,
-        tenantId,
         options,
       )
       .then((request) => request(this.axios, this.basePath))
@@ -1120,57 +1039,51 @@ export class TelemetryApi extends BaseAPI {
   /**
    * 批量保存或更新设备指标的时间序列数据，时间序列数据以json格式传递 Batch save or update device indicator time-series data, data is transferred in the format of json.
    * @summary 批量保存或更新时间序列数据 Batch save or update time-series data
-   * @param {string} [tenantId]
    * @param {Array<SaveTelemetryDataInput>} [saveTelemetryDataInput]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof TelemetryApi
    */
   public apiV1IotSaveTelemetryDataBatchPost(
-    tenantId?: string,
     saveTelemetryDataInput?: Array<SaveTelemetryDataInput>,
     options?: AxiosRequestConfig,
   ) {
     return TelemetryApiFp(this.configuration)
-      .apiV1IotSaveTelemetryDataBatchPost(tenantId, saveTelemetryDataInput, options)
+      .apiV1IotSaveTelemetryDataBatchPost(saveTelemetryDataInput, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
   /**
    * 保存或更新设备指标的时间序列数据，时间序列数据以json格式传递 Save or update device indicator time-series data, data is transferred in the format of json.
    * @summary 保存或更新时间序列数据 Save or update time-series data
-   * @param {string} [tenantId]
    * @param {SaveTelemetryDataInput} [saveTelemetryDataInput]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof TelemetryApi
    */
   public apiV1IotSaveTelemetryDataPost(
-    tenantId?: string,
     saveTelemetryDataInput?: SaveTelemetryDataInput,
     options?: AxiosRequestConfig,
   ) {
     return TelemetryApiFp(this.configuration)
-      .apiV1IotSaveTelemetryDataPost(tenantId, saveTelemetryDataInput, options)
+      .apiV1IotSaveTelemetryDataPost(saveTelemetryDataInput, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
   /**
    * 批量查询设备多个指标在某个时间段内的时间序列数据，可按时间排序 Batch query time-series data of multiple indicators of a device by time and order by time.
    * @summary 批量查询设备指标的时间序列数据，按时间排序 Batch query time-series data of device indicators order by time
-   * @param {string} [tenantId]
    * @param {Array<TimeseriesInput>} [timeseriesInput]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof TelemetryApi
    */
   public apiV1IotTimeseriesBatchPost(
-    tenantId?: string,
     timeseriesInput?: Array<TimeseriesInput>,
     options?: AxiosRequestConfig,
   ) {
     return TelemetryApiFp(this.configuration)
-      .apiV1IotTimeseriesBatchPost(tenantId, timeseriesInput, options)
+      .apiV1IotTimeseriesBatchPost(timeseriesInput, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -1184,7 +1097,6 @@ export class TelemetryApi extends BaseAPI {
    * @param {string} [orderBy] 排序方式，ASC (升序)，DESC (降序) sort order, ASC (ASCENDING) or DESC (DESCENDING);默认是降序DESC
    * @param {number} [interval]
    * @param {string} [agg]
-   * @param {string} [tenantId]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof TelemetryApi
@@ -1197,59 +1109,44 @@ export class TelemetryApi extends BaseAPI {
     orderBy?: string,
     interval?: number,
     agg?: string,
-    tenantId?: string,
     options?: AxiosRequestConfig,
   ) {
     return TelemetryApiFp(this.configuration)
-      .apiV1IotTimeseriesGet(
-        deviceId,
-        keys,
-        startTs,
-        endTs,
-        orderBy,
-        interval,
-        agg,
-        tenantId,
-        options,
-      )
+      .apiV1IotTimeseriesGet(deviceId, keys, startTs, endTs, orderBy, interval, agg, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
   /**
    * 批量查询多个设备指标在某个时间段内的时间序列数据，可按时间排序 Batch query time-series data of multiple device indicators by time and order by time.
    * @summary 批量查询多个设备指标的时间序列数据，按时间排序 Batch query time-series data of device indicators order by time
-   * @param {string} [tenantId]
    * @param {Array<TimeseriesInput>} [timeseriesInput]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof TelemetryApi
    */
   public apiV2IotTimeseriesBatchPost(
-    tenantId?: string,
     timeseriesInput?: Array<TimeseriesInput>,
     options?: AxiosRequestConfig,
   ) {
     return TelemetryApiFp(this.configuration)
-      .apiV2IotTimeseriesBatchPost(tenantId, timeseriesInput, options)
+      .apiV2IotTimeseriesBatchPost(timeseriesInput, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
   /**
    *
    * @summary 根据指标获取实测时序数据，要求指标编码在系统中是唯一的
-   * @param {string} [tenantId]
    * @param {Array<TimeseriesBatchForV3Input>} [timeseriesBatchForV3Input]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof TelemetryApi
    */
   public apiV3IotTimeseriesBatchPost(
-    tenantId?: string,
     timeseriesBatchForV3Input?: Array<TimeseriesBatchForV3Input>,
     options?: AxiosRequestConfig,
   ) {
     return TelemetryApiFp(this.configuration)
-      .apiV3IotTimeseriesBatchPost(tenantId, timeseriesBatchForV3Input, options)
+      .apiV3IotTimeseriesBatchPost(timeseriesBatchForV3Input, options)
       .then((request) => request(this.axios, this.basePath))
   }
 }
