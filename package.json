@@ -108,13 +108,13 @@
       "import": "./dist/log-service.es.js",
       "types": "./dist/log-service/index.d.ts"
     },
+    "./data-center-service": {
+      "import": "./dist/data-center-service.es.js",
+      "types": "./dist/data-center-service/index.d.ts"
+    },
     "./sdk-helper": {
       "import": "./dist/sdk-helper.es.js",
       "types": "./dist/sdk-helper.d.ts"
-    },
-    "./data-center-service": {
-      "import": "./dist/data-center-service.es.js",
-      "types": "./dist/data-center-service.d.ts"
     },
     "./*": "./*"
   }
