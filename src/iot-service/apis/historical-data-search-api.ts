@@ -48,6 +48,49 @@ export const HistoricalDataSearchApiAxiosParamCreator = function (configuration?
   return {
     /**
      *
+     * @summary 历史数据excel下载
+     * @param {Array<HisDataSearchInput>} [hisDataSearchInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1HistoricalDataDownloadPost: async (
+      hisDataSearchInput?: Array<HisDataSearchInput>,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/historical-data/download`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        hisDataSearchInput,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
      * @summary 历史数据搜索条件
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -114,6 +157,49 @@ export const HistoricalDataSearchApiAxiosParamCreator = function (configuration?
       }
       localVarRequestOptions.data = serializeDataIfNeeded(
         hisDataSearchInput,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 删除历史数据搜索记录
+     * @param {Array<string>} [requestBody]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1HistoricalDataSearchRecordsDeletePost: async (
+      requestBody?: Array<string>,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/historical-data/search/records/delete`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        requestBody,
         localVarRequestOptions,
         configuration,
       )
@@ -255,6 +341,23 @@ export const HistoricalDataSearchApiFp = function (configuration?: Configuration
   return {
     /**
      *
+     * @summary 历史数据excel下载
+     * @param {Array<HisDataSearchInput>} [hisDataSearchInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1HistoricalDataDownloadPost(
+      hisDataSearchInput?: Array<HisDataSearchInput>,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1HistoricalDataDownloadPost(
+        hisDataSearchInput,
+        options,
+      )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
      * @summary 历史数据搜索条件
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -283,6 +386,24 @@ export const HistoricalDataSearchApiFp = function (configuration?: Configuration
         hisDataSearchInput,
         options,
       )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
+     * @summary 删除历史数据搜索记录
+     * @param {Array<string>} [requestBody]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1HistoricalDataSearchRecordsDeletePost(
+      requestBody?: Array<string>,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiV1HistoricalDataSearchRecordsDeletePost(
+          requestBody,
+          options,
+        )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**
@@ -353,6 +474,21 @@ export const HistoricalDataSearchApiFactory = function (
   return {
     /**
      *
+     * @summary 历史数据excel下载
+     * @param {Array<HisDataSearchInput>} [hisDataSearchInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1HistoricalDataDownloadPost(
+      hisDataSearchInput?: Array<HisDataSearchInput>,
+      options?: any,
+    ): AxiosPromise<object> {
+      return localVarFp
+        .apiV1HistoricalDataDownloadPost(hisDataSearchInput, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
      * @summary 历史数据搜索条件
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -377,6 +513,21 @@ export const HistoricalDataSearchApiFactory = function (
     ): AxiosPromise<SearchOutput> {
       return localVarFp
         .apiV1HistoricalDataSearchPost(hisDataSearchInput, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @summary 删除历史数据搜索记录
+     * @param {Array<string>} [requestBody]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1HistoricalDataSearchRecordsDeletePost(
+      requestBody?: Array<string>,
+      options?: any,
+    ): AxiosPromise<object> {
+      return localVarFp
+        .apiV1HistoricalDataSearchRecordsDeletePost(requestBody, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -434,6 +585,23 @@ export const HistoricalDataSearchApiFactory = function (
 export class HistoricalDataSearchApi extends BaseAPI {
   /**
    *
+   * @summary 历史数据excel下载
+   * @param {Array<HisDataSearchInput>} [hisDataSearchInput]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof HistoricalDataSearchApi
+   */
+  public apiV1HistoricalDataDownloadPost(
+    hisDataSearchInput?: Array<HisDataSearchInput>,
+    options?: AxiosRequestConfig,
+  ) {
+    return HistoricalDataSearchApiFp(this.configuration)
+      .apiV1HistoricalDataDownloadPost(hisDataSearchInput, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
    * @summary 历史数据搜索条件
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
@@ -459,6 +627,23 @@ export class HistoricalDataSearchApi extends BaseAPI {
   ) {
     return HistoricalDataSearchApiFp(this.configuration)
       .apiV1HistoricalDataSearchPost(hisDataSearchInput, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary 删除历史数据搜索记录
+   * @param {Array<string>} [requestBody]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof HistoricalDataSearchApi
+   */
+  public apiV1HistoricalDataSearchRecordsDeletePost(
+    requestBody?: Array<string>,
+    options?: AxiosRequestConfig,
+  ) {
+    return HistoricalDataSearchApiFp(this.configuration)
+      .apiV1HistoricalDataSearchRecordsDeletePost(requestBody, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
