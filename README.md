@@ -28,7 +28,7 @@
 - [x] wd-domain-service 供水业务中台邻域服务
 - [x] log-service 日志服务
 - [x] data-center-service 数据中台服务
-- [x] plugin-service 数据中台服务
+- [x] plugin-service 插件服务
 
 ## 🌏 第三方依赖
 
