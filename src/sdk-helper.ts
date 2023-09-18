@@ -105,6 +105,7 @@ export const DomainServiceUrlMap = {
     domain: 'wd-domain-service',
   },
   dataCenter: 'global-data-center-service',
+  plugin: 'global-plugin-service',
 }
 
 /**
