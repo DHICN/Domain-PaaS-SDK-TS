@@ -11,7 +11,22 @@
  * Do not edit the class manually.
  */
 
-export * from './apis/data-index-api'
-export * from './apis/script-api'
-export * from './apis/service-data-cache-api'
-export * from './apis/test-api'
+/**
+ *
+ * @export
+ * @interface StringStringKeyValue
+ */
+export interface StringStringKeyValue {
+  /**
+   *
+   * @type {string}
+   * @memberof StringStringKeyValue
+   */
+  key?: string | null
+  /**
+   *
+   * @type {string}
+   * @memberof StringStringKeyValue
+   */
+  value?: string | null
+}

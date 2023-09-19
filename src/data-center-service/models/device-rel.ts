@@ -11,7 +11,22 @@
  * Do not edit the class manually.
  */
 
-export * from './apis/data-index-api'
-export * from './apis/script-api'
-export * from './apis/service-data-cache-api'
-export * from './apis/test-api'
+/**
+ *
+ * @export
+ * @interface DeviceRel
+ */
+export interface DeviceRel {
+  /**
+   * 设备ID device id
+   * @type {string}
+   * @memberof DeviceRel
+   */
+  deviceId?: string
+  /**
+   * 设备名称 device name
+   * @type {string}
+   * @memberof DeviceRel
+   */
+  deviceName?: string | null
+}

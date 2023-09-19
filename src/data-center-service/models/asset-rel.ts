@@ -11,7 +11,22 @@
  * Do not edit the class manually.
  */
 
-export * from './apis/data-index-api'
-export * from './apis/script-api'
-export * from './apis/service-data-cache-api'
-export * from './apis/test-api'
+/**
+ *
+ * @export
+ * @interface AssetRel
+ */
+export interface AssetRel {
+  /**
+   * 资产ID asset id
+   * @type {string}
+   * @memberof AssetRel
+   */
+  assetId?: string
+  /**
+   * 资产名称 asset name
+   * @type {string}
+   * @memberof AssetRel
+   */
+  assetName?: string | null
+}
