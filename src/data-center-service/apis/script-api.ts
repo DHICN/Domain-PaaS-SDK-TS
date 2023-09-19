@@ -95,6 +95,138 @@ export const ScriptApiAxiosParamCreator = function (configuration?: Configuratio
     },
     /**
      *
+     * @summary 停用脚本
+     * @param {string} [algorithmCode]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1DisableAlgorithmGet: async (
+      algorithmCode?: string,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/disable/algorithm`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      if (algorithmCode !== undefined) {
+        localVarQueryParameter['algorithmCode'] = algorithmCode
+      }
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 启用脚本
+     * @param {string} [algorithmCode]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1EnableAlgorithmGet: async (
+      algorithmCode?: string,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/enable/algorithm`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      if (algorithmCode !== undefined) {
+        localVarQueryParameter['algorithmCode'] = algorithmCode
+      }
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 获取脚本运行日志
+     * @param {string} [algorithmCode]
+     * @param {string} [startTime]
+     * @param {string} [endTime]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1GetAlgorithmLogGet: async (
+      algorithmCode?: string,
+      startTime?: string,
+      endTime?: string,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/get/algorithm/log`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      if (algorithmCode !== undefined) {
+        localVarQueryParameter['algorithmCode'] = algorithmCode
+      }
+
+      if (startTime !== undefined) {
+        localVarQueryParameter['startTime'] = startTime
+      }
+
+      if (endTime !== undefined) {
+        localVarQueryParameter['endTime'] = endTime
+      }
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
      * @summary 获取算法目标部署机器
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -103,6 +235,40 @@ export const ScriptApiAxiosParamCreator = function (configuration?: Configuratio
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
       const localVarPath = `/api/v1/get/algorithm/target/deploy/machine`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 获取脚本模板
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1GetAlgorithmTemplateGet: async (
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/get/algorithm/template`
       // use dummy base URL string because the URL constructor only accepts absolute URLs.
       const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
       let baseOptions
@@ -324,6 +490,63 @@ export const ScriptApiFp = function (configuration?: Configuration) {
     },
     /**
      *
+     * @summary 停用脚本
+     * @param {string} [algorithmCode]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1DisableAlgorithmGet(
+      algorithmCode?: string,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1DisableAlgorithmGet(
+        algorithmCode,
+        options,
+      )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
+     * @summary 启用脚本
+     * @param {string} [algorithmCode]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1EnableAlgorithmGet(
+      algorithmCode?: string,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1EnableAlgorithmGet(
+        algorithmCode,
+        options,
+      )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
+     * @summary 获取脚本运行日志
+     * @param {string} [algorithmCode]
+     * @param {string} [startTime]
+     * @param {string} [endTime]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1GetAlgorithmLogGet(
+      algorithmCode?: string,
+      startTime?: string,
+      endTime?: string,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1GetAlgorithmLogGet(
+        algorithmCode,
+        startTime,
+        endTime,
+        options,
+      )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
      * @summary 获取算法目标部署机器
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -333,6 +556,20 @@ export const ScriptApiFp = function (configuration?: Configuration) {
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DeployMachineOutput>> {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.apiV1GetAlgorithmTargetDeployMachineGet(options)
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
+     * @summary 获取脚本模板
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1GetAlgorithmTemplateGet(
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1GetAlgorithmTemplateGet(
+        options,
+      )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**
@@ -438,6 +675,49 @@ export const ScriptApiFactory = function (
     },
     /**
      *
+     * @summary 停用脚本
+     * @param {string} [algorithmCode]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1DisableAlgorithmGet(algorithmCode?: string, options?: any): AxiosPromise<object> {
+      return localVarFp
+        .apiV1DisableAlgorithmGet(algorithmCode, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @summary 启用脚本
+     * @param {string} [algorithmCode]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1EnableAlgorithmGet(algorithmCode?: string, options?: any): AxiosPromise<object> {
+      return localVarFp
+        .apiV1EnableAlgorithmGet(algorithmCode, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @summary 获取脚本运行日志
+     * @param {string} [algorithmCode]
+     * @param {string} [startTime]
+     * @param {string} [endTime]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1GetAlgorithmLogGet(
+      algorithmCode?: string,
+      startTime?: string,
+      endTime?: string,
+      options?: any,
+    ): AxiosPromise<void> {
+      return localVarFp
+        .apiV1GetAlgorithmLogGet(algorithmCode, startTime, endTime, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
      * @summary 获取算法目标部署机器
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -445,6 +725,17 @@ export const ScriptApiFactory = function (
     apiV1GetAlgorithmTargetDeployMachineGet(options?: any): AxiosPromise<DeployMachineOutput> {
       return localVarFp
         .apiV1GetAlgorithmTargetDeployMachineGet(options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @summary 获取脚本模板
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1GetAlgorithmTemplateGet(options?: any): AxiosPromise<void> {
+      return localVarFp
+        .apiV1GetAlgorithmTemplateGet(options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -533,6 +824,55 @@ export class ScriptApi extends BaseAPI {
 
   /**
    *
+   * @summary 停用脚本
+   * @param {string} [algorithmCode]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof ScriptApi
+   */
+  public apiV1DisableAlgorithmGet(algorithmCode?: string, options?: AxiosRequestConfig) {
+    return ScriptApiFp(this.configuration)
+      .apiV1DisableAlgorithmGet(algorithmCode, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary 启用脚本
+   * @param {string} [algorithmCode]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof ScriptApi
+   */
+  public apiV1EnableAlgorithmGet(algorithmCode?: string, options?: AxiosRequestConfig) {
+    return ScriptApiFp(this.configuration)
+      .apiV1EnableAlgorithmGet(algorithmCode, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary 获取脚本运行日志
+   * @param {string} [algorithmCode]
+   * @param {string} [startTime]
+   * @param {string} [endTime]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof ScriptApi
+   */
+  public apiV1GetAlgorithmLogGet(
+    algorithmCode?: string,
+    startTime?: string,
+    endTime?: string,
+    options?: AxiosRequestConfig,
+  ) {
+    return ScriptApiFp(this.configuration)
+      .apiV1GetAlgorithmLogGet(algorithmCode, startTime, endTime, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
    * @summary 获取算法目标部署机器
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
@@ -541,6 +881,19 @@ export class ScriptApi extends BaseAPI {
   public apiV1GetAlgorithmTargetDeployMachineGet(options?: AxiosRequestConfig) {
     return ScriptApiFp(this.configuration)
       .apiV1GetAlgorithmTargetDeployMachineGet(options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary 获取脚本模板
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof ScriptApi
+   */
+  public apiV1GetAlgorithmTemplateGet(options?: AxiosRequestConfig) {
+    return ScriptApiFp(this.configuration)
+      .apiV1GetAlgorithmTemplateGet(options)
       .then((request) => request(this.axios, this.basePath))
   }
 

@@ -54,6 +54,12 @@ export interface QueryAlgorithmByCodeOutput {
    */
   scriptFilePath?: string | null
   /**
+   * 脚本启用状态：0停用，1启用
+   * @type {number}
+   * @memberof QueryAlgorithmByCodeOutput
+   */
+  status?: number
+  /**
    *
    * @type {string}
    * @memberof QueryAlgorithmByCodeOutput
