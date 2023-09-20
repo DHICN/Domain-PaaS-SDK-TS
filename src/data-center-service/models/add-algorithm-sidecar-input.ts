@@ -53,4 +53,10 @@ export interface AddAlgorithmSidecarInput {
    * @memberof AddAlgorithmSidecarInput
    */
   scriptFilePath: string
+  /**
+   * 脚本启用状态：0停用，1启用
+   * @type {number}
+   * @memberof AddAlgorithmSidecarInput
+   */
+  status?: number
 }

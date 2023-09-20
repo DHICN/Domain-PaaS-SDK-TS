@@ -29,6 +29,7 @@
 - [x] log-service 日志服务
 - [x] data-center-service 数据中台服务
 - [x] plugin-service 插件服务
+- [x] file-service 文件服务
 
 ## 🌏 第三方依赖
 

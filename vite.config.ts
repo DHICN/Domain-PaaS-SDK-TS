@@ -29,6 +29,7 @@ module.exports = defineConfig({
         'log-service': path.resolve(__dirname, 'src/log-service/index.ts'),
         'data-center-service': path.resolve(__dirname, 'src/data-center-service/index.ts'),
         'plugin-service': path.resolve(__dirname, 'src/plugin-service/index.ts'),
+        'file-service': path.resolve(__dirname, 'src/file-service/index.ts'),
       },
       name: 'dhicn-domian-paas-client-ts-sdk',
       formats: ['es'],

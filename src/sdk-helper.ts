@@ -106,6 +106,7 @@ export const DomainServiceUrlMap = {
   },
   dataCenter: 'global-data-center-service',
   plugin: 'global-plugin-service',
+  fileServer: 'global-file-service',
 }
 
 /**
