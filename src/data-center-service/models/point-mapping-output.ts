@@ -22,10 +22,16 @@ import { DeviceIndicatorOutput } from './device-indicator-output'
 import { DeviceInfosOutput } from './device-infos-output'
 // May contain unused imports in some cases
 // @ts-ignore
+import { Library } from './library'
+// May contain unused imports in some cases
+// @ts-ignore
 import { ModelPointOutput } from './model-point-output'
 // May contain unused imports in some cases
 // @ts-ignore
 import { PointDataTypeInfo } from './point-data-type-info'
+// May contain unused imports in some cases
+// @ts-ignore
+import { TemplateScenario } from './template-scenario'
 
 /**
  *
@@ -69,4 +75,16 @@ export interface PointMappingOutput {
    * @memberof PointMappingOutput
    */
   modelPoints?: Array<ModelPointOutput> | null
+  /**
+   * 项目所有方案类库列表
+   * @type {Array<Library>}
+   * @memberof PointMappingOutput
+   */
+  libraries?: Array<Library> | null
+  /**
+   * 类库下的所有模板方案
+   * @type {Array<TemplateScenario>}
+   * @memberof PointMappingOutput
+   */
+  templateScenarios?: Array<TemplateScenario> | null
 }
