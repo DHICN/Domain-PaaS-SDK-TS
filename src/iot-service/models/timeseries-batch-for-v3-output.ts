@@ -30,6 +30,12 @@ export interface TimeseriesBatchForV3Output {
    */
   v?: Array<number> | null
   /**
+   * 设备编码,若当前项目下Indicator有重复,设备编码必传
+   * @type {string}
+   * @memberof TimeseriesBatchForV3Output
+   */
+  deviceCode?: string | null
+  /**
    * 指标
    * @type {string}
    * @memberof TimeseriesBatchForV3Output

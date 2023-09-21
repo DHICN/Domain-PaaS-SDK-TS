@@ -14,19 +14,13 @@
 /**
  *
  * @export
- * @interface GetAttributesInput
+ * @interface InlineObject3
  */
-export interface GetAttributesInput {
+export interface InlineObject3 {
   /**
-   * 设备ID device id
-   * @type {string}
-   * @memberof GetAttributesInput
+   *
+   * @type {any}
+   * @memberof InlineObject3
    */
-  deviceId: string
-  /**
-   * 属性的键 device attribute keys
-   * @type {Array<string>}
-   * @memberof GetAttributesInput
-   */
-  attributeKeys?: Array<string> | null
+  excelFile?: any
 }

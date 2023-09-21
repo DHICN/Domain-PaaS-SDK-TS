@@ -13,6 +13,9 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
+import { ModelResultOutput } from './model-result-output'
+// May contain unused imports in some cases
+// @ts-ignore
 import { SearchIndicator } from './search-indicator'
 // May contain unused imports in some cases
 // @ts-ignore
@@ -38,8 +41,8 @@ export interface SearchOutput {
   measureTsData?: Array<TimeseriesBatchForV3Output> | null
   /**
    * 模拟历史数据
-   * @type {Array<TimeseriesBatchForV3Output>}
+   * @type {Array<ModelResultOutput>}
    * @memberof SearchOutput
    */
-  modelTsData?: Array<TimeseriesBatchForV3Output> | null
+  modelTsData?: Array<ModelResultOutput> | null
 }

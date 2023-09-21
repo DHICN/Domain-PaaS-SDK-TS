@@ -14,25 +14,19 @@
 /**
  *
  * @export
- * @interface IotGroupEquipRelOutput
+ * @interface MeasureDataInput
  */
-export interface IotGroupEquipRelOutput {
+export interface MeasureDataInput {
   /**
-   * Id
+   * 指标
    * @type {string}
-   * @memberof IotGroupEquipRelOutput
+   * @memberof MeasureDataInput
    */
-  id?: string
+  indicator?: string | null
   /**
-   * 分组id，关联DeviceGroupConfig的id
-   * @type {string}
-   * @memberof IotGroupEquipRelOutput
+   * 指标值
+   * @type {number}
+   * @memberof MeasureDataInput
    */
-  groupId?: string
-  /**
-   * 资产或设备id，关联iot中的资产id或设备id
-   * @type {string}
-   * @memberof IotGroupEquipRelOutput
-   */
-  equipmentId?: string
+  value?: number
 }

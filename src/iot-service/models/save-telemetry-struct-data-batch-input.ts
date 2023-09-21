@@ -11,28 +11,26 @@
  * Do not edit the class manually.
  */
 
+// May contain unused imports in some cases
+// @ts-ignore
+import { MeasureDataInput } from './measure-data-input'
+
 /**
  *
  * @export
- * @interface IotGroupEquipRelOutput
+ * @interface SaveTelemetryStructDataBatchInput
  */
-export interface IotGroupEquipRelOutput {
+export interface SaveTelemetryStructDataBatchInput {
   /**
-   * Id
+   * 时间戳
    * @type {string}
-   * @memberof IotGroupEquipRelOutput
+   * @memberof SaveTelemetryStructDataBatchInput
    */
-  id?: string
+  ts?: string
   /**
-   * 分组id，关联DeviceGroupConfig的id
-   * @type {string}
-   * @memberof IotGroupEquipRelOutput
+   *
+   * @type {Array<MeasureDataInput>}
+   * @memberof SaveTelemetryStructDataBatchInput
    */
-  groupId?: string
-  /**
-   * 资产或设备id，关联iot中的资产id或设备id
-   * @type {string}
-   * @memberof IotGroupEquipRelOutput
-   */
-  equipmentId?: string
+  values?: Array<MeasureDataInput> | null
 }

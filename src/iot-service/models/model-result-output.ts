@@ -14,25 +14,25 @@
 /**
  *
  * @export
- * @interface IotGroupEquipRelOutput
+ * @interface ModelResultOutput
  */
-export interface IotGroupEquipRelOutput {
+export interface ModelResultOutput {
   /**
-   * Id
-   * @type {string}
-   * @memberof IotGroupEquipRelOutput
+   *
+   * @type {Array<string>}
+   * @memberof ModelResultOutput
    */
-  id?: string
+  t?: Array<string> | null
   /**
-   * 分组id，关联DeviceGroupConfig的id
-   * @type {string}
-   * @memberof IotGroupEquipRelOutput
+   *
+   * @type {Array<number>}
+   * @memberof ModelResultOutput
    */
-  groupId?: string
+  v?: Array<number> | null
   /**
-   * 资产或设备id，关联iot中的资产id或设备id
+   *
    * @type {string}
-   * @memberof IotGroupEquipRelOutput
+   * @memberof ModelResultOutput
    */
-  equipmentId?: string
+  modelFeatureId?: string | null
 }

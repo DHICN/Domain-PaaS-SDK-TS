@@ -36,6 +36,18 @@ export interface SearchIndicator {
    */
   indicator?: string | null
   /**
+   * 设备名称,若当前项目下Indicator有重复,设备名称必传
+   * @type {string}
+   * @memberof SearchIndicator
+   */
+  deviceCode?: string | null
+  /**
+   *
+   * @type {string}
+   * @memberof SearchIndicator
+   */
+  libraryId?: string | null
+  /**
    *
    * @type {string}
    * @memberof SearchIndicator
