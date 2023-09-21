@@ -35,9 +35,9 @@ import { LatestTimeSeriesInput } from '../models'
 // @ts-ignore
 import { LatestTimeSeriesOutput } from '../models'
 // @ts-ignore
-import { MockDeviceDataInput } from '../models'
-// @ts-ignore
 import { SaveTelemetryDataInput } from '../models'
+// @ts-ignore
+import { SaveTelemetryStructDataBatchInput } from '../models'
 // @ts-ignore
 import { TimeseriesBatchForV3Input } from '../models'
 // @ts-ignore
@@ -71,11 +71,7 @@ export const TelemetryApiAxiosParamCreator = function (configuration?: Configura
         baseOptions = configuration.baseOptions
       }
 
-      const localVarRequestOptions = {
-        method: 'POST',
-        ...baseOptions,
-        ...options,
-      }
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
 
@@ -90,53 +86,6 @@ export const TelemetryApiAxiosParamCreator = function (configuration?: Configura
       }
       localVarRequestOptions.data = serializeDataIfNeeded(
         latestTimeSeriesInput,
-        localVarRequestOptions,
-        configuration,
-      )
-
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      }
-    },
-    /**
-     *
-     * @summary Mock Device Data
-     * @param {MockDeviceDataInput} [mockDeviceDataInput]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    apiV1IotMockDeviceDataPost: async (
-      mockDeviceDataInput?: MockDeviceDataInput,
-      options: AxiosRequestConfig = {},
-    ): Promise<RequestArgs> => {
-      const localVarPath = `/api/v1/iot/mock-device-data`
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
-      let baseOptions
-      if (configuration) {
-        baseOptions = configuration.baseOptions
-      }
-
-      const localVarRequestOptions = {
-        method: 'POST',
-        ...baseOptions,
-        ...options,
-      }
-      const localVarHeaderParameter = {} as any
-      const localVarQueryParameter = {} as any
-
-      localVarHeaderParameter['Content-Type'] = 'application/json'
-
-      setSearchParams(localVarUrlObj, localVarQueryParameter)
-      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      }
-      localVarRequestOptions.data = serializeDataIfNeeded(
-        mockDeviceDataInput,
         localVarRequestOptions,
         configuration,
       )
@@ -185,11 +134,7 @@ export const TelemetryApiAxiosParamCreator = function (configuration?: Configura
         baseOptions = configuration.baseOptions
       }
 
-      const localVarRequestOptions = {
-        method: 'GET',
-        ...baseOptions,
-        ...options,
-      }
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
 
@@ -253,11 +198,7 @@ export const TelemetryApiAxiosParamCreator = function (configuration?: Configura
         baseOptions = configuration.baseOptions
       }
 
-      const localVarRequestOptions = {
-        method: 'POST',
-        ...baseOptions,
-        ...options,
-      }
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
 
@@ -300,11 +241,7 @@ export const TelemetryApiAxiosParamCreator = function (configuration?: Configura
         baseOptions = configuration.baseOptions
       }
 
-      const localVarRequestOptions = {
-        method: 'POST',
-        ...baseOptions,
-        ...options,
-      }
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
 
@@ -347,11 +284,7 @@ export const TelemetryApiAxiosParamCreator = function (configuration?: Configura
         baseOptions = configuration.baseOptions
       }
 
-      const localVarRequestOptions = {
-        method: 'POST',
-        ...baseOptions,
-        ...options,
-      }
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
 
@@ -414,11 +347,7 @@ export const TelemetryApiAxiosParamCreator = function (configuration?: Configura
         baseOptions = configuration.baseOptions
       }
 
-      const localVarRequestOptions = {
-        method: 'GET',
-        ...baseOptions,
-        ...options,
-      }
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
 
@@ -482,11 +411,7 @@ export const TelemetryApiAxiosParamCreator = function (configuration?: Configura
         baseOptions = configuration.baseOptions
       }
 
-      const localVarRequestOptions = {
-        method: 'POST',
-        ...baseOptions,
-        ...options,
-      }
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
 
@@ -501,6 +426,49 @@ export const TelemetryApiAxiosParamCreator = function (configuration?: Configura
       }
       localVarRequestOptions.data = serializeDataIfNeeded(
         timeseriesInput,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 以结构化的数据格式批量保存或更新实测数据 / Save or update measured data in batches in a structured data format
+     * @param {Array<SaveTelemetryStructDataBatchInput>} [saveTelemetryStructDataBatchInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV3IotSaveTelemetryDataBatchPost: async (
+      saveTelemetryStructDataBatchInput?: Array<SaveTelemetryStructDataBatchInput>,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v3/iot/save-telemetry-data-batch`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        saveTelemetryStructDataBatchInput,
         localVarRequestOptions,
         configuration,
       )
@@ -529,11 +497,7 @@ export const TelemetryApiAxiosParamCreator = function (configuration?: Configura
         baseOptions = configuration.baseOptions
       }
 
-      const localVarRequestOptions = {
-        method: 'POST',
-        ...baseOptions,
-        ...options,
-      }
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
 
@@ -582,23 +546,6 @@ export const TelemetryApiFp = function (configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1IotLatestTimeseriesPost(
         latestTimeSeriesInput,
-        options,
-      )
-      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
-    },
-    /**
-     *
-     * @summary Mock Device Data
-     * @param {MockDeviceDataInput} [mockDeviceDataInput]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    async apiV1IotMockDeviceDataPost(
-      mockDeviceDataInput?: MockDeviceDataInput,
-      options?: AxiosRequestConfig,
-    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
-      const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1IotMockDeviceDataPost(
-        mockDeviceDataInput,
         options,
       )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
@@ -755,6 +702,23 @@ export const TelemetryApiFp = function (configuration?: Configuration) {
     },
     /**
      *
+     * @summary 以结构化的数据格式批量保存或更新实测数据 / Save or update measured data in batches in a structured data format
+     * @param {Array<SaveTelemetryStructDataBatchInput>} [saveTelemetryStructDataBatchInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV3IotSaveTelemetryDataBatchPost(
+      saveTelemetryStructDataBatchInput?: Array<SaveTelemetryStructDataBatchInput>,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiV3IotSaveTelemetryDataBatchPost(
+        saveTelemetryStructDataBatchInput,
+        options,
+      )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
      * @summary 根据指标获取实测时序数据，要求指标编码在系统中是唯一的
      * @param {Array<TimeseriesBatchForV3Input>} [timeseriesBatchForV3Input]
      * @param {*} [options] Override http request option.
@@ -799,21 +763,6 @@ export const TelemetryApiFactory = function (
     ): AxiosPromise<Array<LatestTimeSeriesOutput>> {
       return localVarFp
         .apiV1IotLatestTimeseriesPost(latestTimeSeriesInput, options)
-        .then((request) => request(axios, basePath))
-    },
-    /**
-     *
-     * @summary Mock Device Data
-     * @param {MockDeviceDataInput} [mockDeviceDataInput]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    apiV1IotMockDeviceDataPost(
-      mockDeviceDataInput?: MockDeviceDataInput,
-      options?: any,
-    ): AxiosPromise<object> {
-      return localVarFp
-        .apiV1IotMockDeviceDataPost(mockDeviceDataInput, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -941,6 +890,21 @@ export const TelemetryApiFactory = function (
     },
     /**
      *
+     * @summary 以结构化的数据格式批量保存或更新实测数据 / Save or update measured data in batches in a structured data format
+     * @param {Array<SaveTelemetryStructDataBatchInput>} [saveTelemetryStructDataBatchInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV3IotSaveTelemetryDataBatchPost(
+      saveTelemetryStructDataBatchInput?: Array<SaveTelemetryStructDataBatchInput>,
+      options?: any,
+    ): AxiosPromise<object> {
+      return localVarFp
+        .apiV3IotSaveTelemetryDataBatchPost(saveTelemetryStructDataBatchInput, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
      * @summary 根据指标获取实测时序数据，要求指标编码在系统中是唯一的
      * @param {Array<TimeseriesBatchForV3Input>} [timeseriesBatchForV3Input]
      * @param {*} [options] Override http request option.
@@ -978,23 +942,6 @@ export class TelemetryApi extends BaseAPI {
   ) {
     return TelemetryApiFp(this.configuration)
       .apiV1IotLatestTimeseriesPost(latestTimeSeriesInput, options)
-      .then((request) => request(this.axios, this.basePath))
-  }
-
-  /**
-   *
-   * @summary Mock Device Data
-   * @param {MockDeviceDataInput} [mockDeviceDataInput]
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof TelemetryApi
-   */
-  public apiV1IotMockDeviceDataPost(
-    mockDeviceDataInput?: MockDeviceDataInput,
-    options?: AxiosRequestConfig,
-  ) {
-    return TelemetryApiFp(this.configuration)
-      .apiV1IotMockDeviceDataPost(mockDeviceDataInput, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -1130,6 +1077,23 @@ export class TelemetryApi extends BaseAPI {
   ) {
     return TelemetryApiFp(this.configuration)
       .apiV2IotTimeseriesBatchPost(timeseriesInput, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary 以结构化的数据格式批量保存或更新实测数据 / Save or update measured data in batches in a structured data format
+   * @param {Array<SaveTelemetryStructDataBatchInput>} [saveTelemetryStructDataBatchInput]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof TelemetryApi
+   */
+  public apiV3IotSaveTelemetryDataBatchPost(
+    saveTelemetryStructDataBatchInput?: Array<SaveTelemetryStructDataBatchInput>,
+    options?: AxiosRequestConfig,
+  ) {
+    return TelemetryApiFp(this.configuration)
+      .apiV3IotSaveTelemetryDataBatchPost(saveTelemetryStructDataBatchInput, options)
       .then((request) => request(this.axios, this.basePath))
   }
 

@@ -18,6 +18,12 @@
  */
 export interface TimeseriesBatchForV3Input {
   /**
+   * 设备编码,若当前项目下Indicator有重复,设备编码必传
+   * @type {string}
+   * @memberof TimeseriesBatchForV3Input
+   */
+  deviceCode?: string | null
+  /**
    * 指标 indicator
    * @type {string}
    * @memberof TimeseriesBatchForV3Input
@@ -41,4 +47,16 @@ export interface TimeseriesBatchForV3Input {
    * @memberof TimeseriesBatchForV3Input
    */
   orderBy?: string | null
+  /**
+   * 抽样类型,为空时代表不抽样,按:days hours year minutes years类型抽样
+   * @type {string}
+   * @memberof TimeseriesBatchForV3Input
+   */
+  sample?: string | null
+  /**
+   * 抽样频率,如:sample=minutes,interval=5,表示按照5分钟进行抽样
+   * @type {number}
+   * @memberof TimeseriesBatchForV3Input
+   */
+  interval?: number
 }

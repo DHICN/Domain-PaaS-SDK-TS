@@ -30,11 +30,17 @@ export interface HisDataSearchInput {
    */
   isSearchSimul: boolean
   /**
-   * 模拟场景,如:real-time-simulation-and-prediction-of-water-distribution(配水实时与预测),若IsSearchSimul为true,此字段必填
+   * 方案类库Id,即:模拟场景;若IsSearchSimul为true,此字段必填
    * @type {string}
    * @memberof HisDataSearchInput
    */
-  simulScene?: string | null
+  libraryId?: string | null
+  /**
+   * 设备名称,若当前项目下Indicator有重复,设备名称必传
+   * @type {string}
+   * @memberof HisDataSearchInput
+   */
+  deviceCode?: string | null
   /**
    * 指标 indicator
    * @type {string}
@@ -59,4 +65,16 @@ export interface HisDataSearchInput {
    * @memberof HisDataSearchInput
    */
   orderBy?: string | null
+  /**
+   * 抽样类型,为空时代表不抽样,按:days hours year minutes years类型抽样
+   * @type {string}
+   * @memberof HisDataSearchInput
+   */
+  sample?: string | null
+  /**
+   * 抽样频率,如:sample=minutes,interval=5,表示按照5分钟进行抽样
+   * @type {number}
+   * @memberof HisDataSearchInput
+   */
+  interval?: number
 }
