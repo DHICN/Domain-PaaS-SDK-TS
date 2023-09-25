@@ -33,6 +33,8 @@ import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } fr
 // @ts-ignore
 import { AddOpcUaComInput } from '../models'
 // @ts-ignore
+import { AddOpcUaConfigInput } from '../models'
+// @ts-ignore
 import { AddOpcUaPubSubInput } from '../models'
 // @ts-ignore
 import { InitOpcUaConfigInput } from '../models'
@@ -48,6 +50,10 @@ import { QueryOpcUaConfigOutput } from '../models'
 import { QueryOpcUaPubSubInput } from '../models'
 // @ts-ignore
 import { ReadNodeInput } from '../models'
+// @ts-ignore
+import { StringListResult } from '../models'
+// @ts-ignore
+import { UpdateOpcUaConfigInput } from '../models'
 // @ts-ignore
 import { WriteNodeInput } from '../models'
 /**
@@ -90,6 +96,49 @@ export const OpcuaApiAxiosParamCreator = function (configuration?: Configuration
       }
       localVarRequestOptions.data = serializeDataIfNeeded(
         addOpcUaComInput,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 新增OPC-UA Server信息 add OPC-UA Server information
+     * @param {Array<AddOpcUaConfigInput>} [addOpcUaConfigInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1OpcUaAddPost: async (
+      addOpcUaConfigInput?: Array<AddOpcUaConfigInput>,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/opc-ua/add`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        addOpcUaConfigInput,
         localVarRequestOptions,
         configuration,
       )
@@ -262,6 +311,127 @@ export const OpcuaApiAxiosParamCreator = function (configuration?: Configuration
       }
       localVarRequestOptions.data = serializeDataIfNeeded(
         requestBody,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 导出opcua配置
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1OpcUaExportOpcuaConfigPost: async (
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/opc-ua/export-opcua-config`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 导入opcua配置
+     * @param {any} [excelFile]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1OpcUaImportOpcuaConfigPost: async (
+      excelFile?: any,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/opc-ua/import-opcua-config`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+      const localVarFormParams = new ((configuration && configuration.formDataCtor) || FormData)()
+
+      if (excelFile !== undefined) {
+        localVarFormParams.append('excelFile', excelFile as any)
+      }
+
+      localVarHeaderParameter['Content-Type'] = 'multipart/form-data'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = localVarFormParams
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     * Opc检测点信息中IndicatorId/Node保证唯一，不存在则添加 The IndicatorId/Node in the Opc checkpoint information must be unique. If it does not exist, add it
+     * @summary 初始化指标对应的opc监测点，根据输入的监测点数据，删除系统中多余的监测点，如果输入的监测点已存在则更新，不存在则新增。   Init the opc monitoring point corresponding to the indicator
+     * @param {Array<AddOpcUaComInput>} [addOpcUaComInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1OpcUaInitCommunicationPost: async (
+      addOpcUaComInput?: Array<AddOpcUaComInput>,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/opc-ua/init-communication`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        addOpcUaComInput,
         localVarRequestOptions,
         configuration,
       )
@@ -568,6 +738,49 @@ export const OpcuaApiAxiosParamCreator = function (configuration?: Configuration
     },
     /**
      *
+     * @summary 更新OPC-UA Server信息 update OPC-UA Server information
+     * @param {Array<UpdateOpcUaConfigInput>} [updateOpcUaConfigInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1OpcUaUpdatePost: async (
+      updateOpcUaConfigInput?: Array<UpdateOpcUaConfigInput>,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/opc-ua/update`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        updateOpcUaConfigInput,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
      * @summary 修改opc-ua的发布订阅检测项 Modify the publish/subscribe detection item of opc ua
      * @param {Array<OpcUaPubSubPara>} [opcUaPubSubPara]
      * @param {*} [options] Override http request option.
@@ -723,6 +936,23 @@ export const OpcuaApiFp = function (configuration?: Configuration) {
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**
+     *
+     * @summary 新增OPC-UA Server信息 add OPC-UA Server information
+     * @param {Array<AddOpcUaConfigInput>} [addOpcUaConfigInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1OpcUaAddPost(
+      addOpcUaConfigInput?: Array<AddOpcUaConfigInput>,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<boolean>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1OpcUaAddPost(
+        addOpcUaConfigInput,
+        options,
+      )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
      * 发布订阅检测项中OpcFlag/SubKey/Node保证唯一，不存在则添加 OpcFlag/SubKey/Node in the publish/subscribe detection item is guaranteed to be unique. If it does not exist, add it
      * @summary 添加基于opc-ua的发布订阅检测项 Add opc ua based publish/subscribe detection item
      * @param {Array<AddOpcUaPubSubInput>} [addOpcUaPubSubInput]
@@ -786,6 +1016,54 @@ export const OpcuaApiFp = function (configuration?: Configuration) {
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<boolean>> {
       const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1OpcUaDeletePubSubPost(
         requestBody,
+        options,
+      )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
+     * @summary 导出opcua配置
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1OpcUaExportOpcuaConfigPost(
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1OpcUaExportOpcuaConfigPost(
+        options,
+      )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
+     * @summary 导入opcua配置
+     * @param {any} [excelFile]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1OpcUaImportOpcuaConfigPost(
+      excelFile?: any,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<StringListResult>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1OpcUaImportOpcuaConfigPost(
+        excelFile,
+        options,
+      )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     * Opc检测点信息中IndicatorId/Node保证唯一，不存在则添加 The IndicatorId/Node in the Opc checkpoint information must be unique. If it does not exist, add it
+     * @summary 初始化指标对应的opc监测点，根据输入的监测点数据，删除系统中多余的监测点，如果输入的监测点已存在则更新，不存在则新增。   Init the opc monitoring point corresponding to the indicator
+     * @param {Array<AddOpcUaComInput>} [addOpcUaComInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1OpcUaInitCommunicationPost(
+      addOpcUaComInput?: Array<AddOpcUaComInput>,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<boolean>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1OpcUaInitCommunicationPost(
+        addOpcUaComInput,
         options,
       )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
@@ -913,6 +1191,23 @@ export const OpcuaApiFp = function (configuration?: Configuration) {
     },
     /**
      *
+     * @summary 更新OPC-UA Server信息 update OPC-UA Server information
+     * @param {Array<UpdateOpcUaConfigInput>} [updateOpcUaConfigInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1OpcUaUpdatePost(
+      updateOpcUaConfigInput?: Array<UpdateOpcUaConfigInput>,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<boolean>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1OpcUaUpdatePost(
+        updateOpcUaConfigInput,
+        options,
+      )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
      * @summary 修改opc-ua的发布订阅检测项 Modify the publish/subscribe detection item of opc ua
      * @param {Array<OpcUaPubSubPara>} [opcUaPubSubPara]
      * @param {*} [options] Override http request option.
@@ -992,6 +1287,21 @@ export const OpcuaApiFactory = function (
         .then((request) => request(axios, basePath))
     },
     /**
+     *
+     * @summary 新增OPC-UA Server信息 add OPC-UA Server information
+     * @param {Array<AddOpcUaConfigInput>} [addOpcUaConfigInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1OpcUaAddPost(
+      addOpcUaConfigInput?: Array<AddOpcUaConfigInput>,
+      options?: any,
+    ): AxiosPromise<boolean> {
+      return localVarFp
+        .apiV1OpcUaAddPost(addOpcUaConfigInput, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
      * 发布订阅检测项中OpcFlag/SubKey/Node保证唯一，不存在则添加 OpcFlag/SubKey/Node in the publish/subscribe detection item is guaranteed to be unique. If it does not exist, add it
      * @summary 添加基于opc-ua的发布订阅检测项 Add opc ua based publish/subscribe detection item
      * @param {Array<AddOpcUaPubSubInput>} [addOpcUaPubSubInput]
@@ -1043,6 +1353,47 @@ export const OpcuaApiFactory = function (
     apiV1OpcUaDeletePubSubPost(requestBody?: Array<string>, options?: any): AxiosPromise<boolean> {
       return localVarFp
         .apiV1OpcUaDeletePubSubPost(requestBody, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @summary 导出opcua配置
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1OpcUaExportOpcuaConfigPost(options?: any): AxiosPromise<object> {
+      return localVarFp
+        .apiV1OpcUaExportOpcuaConfigPost(options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @summary 导入opcua配置
+     * @param {any} [excelFile]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1OpcUaImportOpcuaConfigPost(
+      excelFile?: any,
+      options?: any,
+    ): AxiosPromise<StringListResult> {
+      return localVarFp
+        .apiV1OpcUaImportOpcuaConfigPost(excelFile, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     * Opc检测点信息中IndicatorId/Node保证唯一，不存在则添加 The IndicatorId/Node in the Opc checkpoint information must be unique. If it does not exist, add it
+     * @summary 初始化指标对应的opc监测点，根据输入的监测点数据，删除系统中多余的监测点，如果输入的监测点已存在则更新，不存在则新增。   Init the opc monitoring point corresponding to the indicator
+     * @param {Array<AddOpcUaComInput>} [addOpcUaComInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1OpcUaInitCommunicationPost(
+      addOpcUaComInput?: Array<AddOpcUaComInput>,
+      options?: any,
+    ): AxiosPromise<boolean> {
+      return localVarFp
+        .apiV1OpcUaInitCommunicationPost(addOpcUaComInput, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -1146,6 +1497,21 @@ export const OpcuaApiFactory = function (
     },
     /**
      *
+     * @summary 更新OPC-UA Server信息 update OPC-UA Server information
+     * @param {Array<UpdateOpcUaConfigInput>} [updateOpcUaConfigInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1OpcUaUpdatePost(
+      updateOpcUaConfigInput?: Array<UpdateOpcUaConfigInput>,
+      options?: any,
+    ): AxiosPromise<boolean> {
+      return localVarFp
+        .apiV1OpcUaUpdatePost(updateOpcUaConfigInput, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
      * @summary 修改opc-ua的发布订阅检测项 Modify the publish/subscribe detection item of opc ua
      * @param {Array<OpcUaPubSubPara>} [opcUaPubSubPara]
      * @param {*} [options] Override http request option.
@@ -1214,6 +1580,23 @@ export class OpcuaApi extends BaseAPI {
   }
 
   /**
+   *
+   * @summary 新增OPC-UA Server信息 add OPC-UA Server information
+   * @param {Array<AddOpcUaConfigInput>} [addOpcUaConfigInput]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof OpcuaApi
+   */
+  public apiV1OpcUaAddPost(
+    addOpcUaConfigInput?: Array<AddOpcUaConfigInput>,
+    options?: AxiosRequestConfig,
+  ) {
+    return OpcuaApiFp(this.configuration)
+      .apiV1OpcUaAddPost(addOpcUaConfigInput, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
    * 发布订阅检测项中OpcFlag/SubKey/Node保证唯一，不存在则添加 OpcFlag/SubKey/Node in the publish/subscribe detection item is guaranteed to be unique. If it does not exist, add it
    * @summary 添加基于opc-ua的发布订阅检测项 Add opc ua based publish/subscribe detection item
    * @param {Array<AddOpcUaPubSubInput>} [addOpcUaPubSubInput]
@@ -1272,6 +1655,50 @@ export class OpcuaApi extends BaseAPI {
   public apiV1OpcUaDeletePubSubPost(requestBody?: Array<string>, options?: AxiosRequestConfig) {
     return OpcuaApiFp(this.configuration)
       .apiV1OpcUaDeletePubSubPost(requestBody, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary 导出opcua配置
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof OpcuaApi
+   */
+  public apiV1OpcUaExportOpcuaConfigPost(options?: AxiosRequestConfig) {
+    return OpcuaApiFp(this.configuration)
+      .apiV1OpcUaExportOpcuaConfigPost(options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary 导入opcua配置
+   * @param {any} [excelFile]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof OpcuaApi
+   */
+  public apiV1OpcUaImportOpcuaConfigPost(excelFile?: any, options?: AxiosRequestConfig) {
+    return OpcuaApiFp(this.configuration)
+      .apiV1OpcUaImportOpcuaConfigPost(excelFile, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   * Opc检测点信息中IndicatorId/Node保证唯一，不存在则添加 The IndicatorId/Node in the Opc checkpoint information must be unique. If it does not exist, add it
+   * @summary 初始化指标对应的opc监测点，根据输入的监测点数据，删除系统中多余的监测点，如果输入的监测点已存在则更新，不存在则新增。   Init the opc monitoring point corresponding to the indicator
+   * @param {Array<AddOpcUaComInput>} [addOpcUaComInput]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof OpcuaApi
+   */
+  public apiV1OpcUaInitCommunicationPost(
+    addOpcUaComInput?: Array<AddOpcUaComInput>,
+    options?: AxiosRequestConfig,
+  ) {
+    return OpcuaApiFp(this.configuration)
+      .apiV1OpcUaInitCommunicationPost(addOpcUaComInput, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -1382,6 +1809,23 @@ export class OpcuaApi extends BaseAPI {
   ) {
     return OpcuaApiFp(this.configuration)
       .apiV1OpcUaUpdateCommunicationPost(opcUaComPara, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary 更新OPC-UA Server信息 update OPC-UA Server information
+   * @param {Array<UpdateOpcUaConfigInput>} [updateOpcUaConfigInput]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof OpcuaApi
+   */
+  public apiV1OpcUaUpdatePost(
+    updateOpcUaConfigInput?: Array<UpdateOpcUaConfigInput>,
+    options?: AxiosRequestConfig,
+  ) {
+    return OpcuaApiFp(this.configuration)
+      .apiV1OpcUaUpdatePost(updateOpcUaConfigInput, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
