@@ -59,4 +59,32 @@ export interface OpcUaComPara {
    * @memberof OpcUaComPara
    */
   decimalPlaces?: number
+  /**
+   * 时间处理模式,枚举：second秒、minute分、hour小时、original(默认原始值,不做处理)
+   * @type {number}
+   * @memberof OpcUaComPara
+   */
+  timeProcessingMode?: OpcUaComParaTimeProcessingModeEnum
+  /**
+   * 时间步长
+   * @type {number}
+   * @memberof OpcUaComPara
+   */
+  period?: number | null
+  /**
+   * 标识，OpcUaConfig表的OpcFlag
+   * @type {string}
+   * @memberof OpcUaComPara
+   */
+  opcFlag?: string | null
 }
+
+export const OpcUaComParaTimeProcessingModeEnum = {
+  '0': 0 as number,
+  '1': 1 as number,
+  '2': 2 as number,
+  '3': 3 as number,
+} as const
+
+export type OpcUaComParaTimeProcessingModeEnum =
+  (typeof OpcUaComParaTimeProcessingModeEnum)[keyof typeof OpcUaComParaTimeProcessingModeEnum]
