@@ -39,6 +39,8 @@ import { AddOpcUaPubSubInput } from '../models'
 // @ts-ignore
 import { InitOpcUaConfigInput } from '../models'
 // @ts-ignore
+import { OpcUaComAssemblyInfo } from '../models'
+// @ts-ignore
 import { OpcUaComPara } from '../models'
 // @ts-ignore
 import { OpcUaPubSubPara } from '../models'
@@ -908,6 +910,40 @@ export const OpcuaApiAxiosParamCreator = function (configuration?: Configuration
         options: localVarRequestOptions,
       }
     },
+    /**
+     *
+     * @summary 查询指标对应的opc监测点，用于项目配置平台显示 The opc monitoring point corresponding to the query indicator，use to project config platform
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV2OpcUaQueryCommunicationPost: async (
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v2/opc-ua/query-communication`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
   }
 }
 
@@ -1257,6 +1293,22 @@ export const OpcuaApiFp = function (configuration?: Configuration) {
       )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
+    /**
+     *
+     * @summary 查询指标对应的opc监测点，用于项目配置平台显示 The opc monitoring point corresponding to the query indicator，use to project config platform
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV2OpcUaQueryCommunicationPost(
+      options?: AxiosRequestConfig,
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<OpcUaComAssemblyInfo>>
+    > {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiV2OpcUaQueryCommunicationPost(
+        options,
+      )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
   }
 }
 
@@ -1550,6 +1602,17 @@ export const OpcuaApiFactory = function (
     apiV1OpcUaWriteNodePost(writeNodeInput?: WriteNodeInput, options?: any): AxiosPromise<boolean> {
       return localVarFp
         .apiV1OpcUaWriteNodePost(writeNodeInput, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @summary 查询指标对应的opc监测点，用于项目配置平台显示 The opc monitoring point corresponding to the query indicator，use to project config platform
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV2OpcUaQueryCommunicationPost(options?: any): AxiosPromise<Array<OpcUaComAssemblyInfo>> {
+      return localVarFp
+        .apiV2OpcUaQueryCommunicationPost(options)
         .then((request) => request(axios, basePath))
     },
   }
@@ -1874,6 +1937,19 @@ export class OpcuaApi extends BaseAPI {
   public apiV1OpcUaWriteNodePost(writeNodeInput?: WriteNodeInput, options?: AxiosRequestConfig) {
     return OpcuaApiFp(this.configuration)
       .apiV1OpcUaWriteNodePost(writeNodeInput, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary 查询指标对应的opc监测点，用于项目配置平台显示 The opc monitoring point corresponding to the query indicator，use to project config platform
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof OpcuaApi
+   */
+  public apiV2OpcUaQueryCommunicationPost(options?: AxiosRequestConfig) {
+    return OpcuaApiFp(this.configuration)
+      .apiV2OpcUaQueryCommunicationPost(options)
       .then((request) => request(this.axios, this.basePath))
   }
 }
