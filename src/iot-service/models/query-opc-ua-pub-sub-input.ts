@@ -22,7 +22,7 @@ export interface QueryOpcUaPubSubInput {
    * @type {string}
    * @memberof QueryOpcUaPubSubInput
    */
-  opcFlag: string
+  opcFlag?: string | null
   /**
    * 订阅回调标识Key subscription callback ID Key
    * @type {string}
