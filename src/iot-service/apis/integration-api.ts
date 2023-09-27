@@ -37,6 +37,8 @@ import { PointMapAssemblyInfo } from '../models'
 // @ts-ignore
 import { SaveOutPointMapInput } from '../models'
 // @ts-ignore
+import { SearchInOutPointMapAssemblyInput } from '../models'
+// @ts-ignore
 import { StringListResult } from '../models'
 /**
  * IntegrationApi - axios parameter creator
@@ -368,6 +370,49 @@ export const IntegrationApiAxiosParamCreator = function (configuration?: Configu
         options: localVarRequestOptions,
       }
     },
+    /**
+     *
+     * @summary 通过设备、指标,检索:实测指标--与--模型输出点位,映射关系;实测指标--与--模型边界点位,映射关系  Through equipment and indicator, search: measured indicator -- and -- model point, mapping relationship;   Measured indicator -- and -- model boundary point, mapping relationship
+     * @param {SearchInOutPointMapAssemblyInput} [searchInOutPointMapAssemblyInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1IotIntegrationSearchGetInoutPointMapInfoPost: async (
+      searchInOutPointMapAssemblyInput?: SearchInOutPointMapAssemblyInput,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/iot/integration/search/get-inout-point-map-info`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        searchInOutPointMapAssemblyInput,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
   }
 }
 
@@ -515,6 +560,24 @@ export const IntegrationApiFp = function (configuration?: Configuration) {
         )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
+    /**
+     *
+     * @summary 通过设备、指标,检索:实测指标--与--模型输出点位,映射关系;实测指标--与--模型边界点位,映射关系  Through equipment and indicator, search: measured indicator -- and -- model point, mapping relationship;   Measured indicator -- and -- model boundary point, mapping relationship
+     * @param {SearchInOutPointMapAssemblyInput} [searchInOutPointMapAssemblyInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1IotIntegrationSearchGetInoutPointMapInfoPost(
+      searchInOutPointMapAssemblyInput?: SearchInOutPointMapAssemblyInput,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PointMapAssemblyInfo>> {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiV1IotIntegrationSearchGetInoutPointMapInfoPost(
+          searchInOutPointMapAssemblyInput,
+          options,
+        )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
   }
 }
 
@@ -642,6 +705,24 @@ export const IntegrationApiFactory = function (
     ): AxiosPromise<object> {
       return localVarFp
         .apiV1IotIntegrationSaveOutPointMapPost(saveOutPointMapInput, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @summary 通过设备、指标,检索:实测指标--与--模型输出点位,映射关系;实测指标--与--模型边界点位,映射关系  Through equipment and indicator, search: measured indicator -- and -- model point, mapping relationship;   Measured indicator -- and -- model boundary point, mapping relationship
+     * @param {SearchInOutPointMapAssemblyInput} [searchInOutPointMapAssemblyInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1IotIntegrationSearchGetInoutPointMapInfoPost(
+      searchInOutPointMapAssemblyInput?: SearchInOutPointMapAssemblyInput,
+      options?: any,
+    ): AxiosPromise<PointMapAssemblyInfo> {
+      return localVarFp
+        .apiV1IotIntegrationSearchGetInoutPointMapInfoPost(
+          searchInOutPointMapAssemblyInput,
+          options,
+        )
         .then((request) => request(axios, basePath))
     },
   }
@@ -780,6 +861,23 @@ export class IntegrationApi extends BaseAPI {
   ) {
     return IntegrationApiFp(this.configuration)
       .apiV1IotIntegrationSaveOutPointMapPost(saveOutPointMapInput, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary 通过设备、指标,检索:实测指标--与--模型输出点位,映射关系;实测指标--与--模型边界点位,映射关系  Through equipment and indicator, search: measured indicator -- and -- model point, mapping relationship;   Measured indicator -- and -- model boundary point, mapping relationship
+   * @param {SearchInOutPointMapAssemblyInput} [searchInOutPointMapAssemblyInput]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof IntegrationApi
+   */
+  public apiV1IotIntegrationSearchGetInoutPointMapInfoPost(
+    searchInOutPointMapAssemblyInput?: SearchInOutPointMapAssemblyInput,
+    options?: AxiosRequestConfig,
+  ) {
+    return IntegrationApiFp(this.configuration)
+      .apiV1IotIntegrationSearchGetInoutPointMapInfoPost(searchInOutPointMapAssemblyInput, options)
       .then((request) => request(this.axios, this.basePath))
   }
 }
