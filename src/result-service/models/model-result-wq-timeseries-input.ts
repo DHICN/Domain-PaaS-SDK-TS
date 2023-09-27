@@ -14,25 +14,25 @@
 /**
  *
  * @export
- * @interface ModelResultWqTimeseriesInput1
+ * @interface ModelResultWqTimeseriesInput
  */
-export interface ModelResultWqTimeseriesInput1 {
+export interface ModelResultWqTimeseriesInput {
   /**
    * 方案id scenario id
    * @type {string}
-   * @memberof ModelResultWqTimeseriesInput1
+   * @memberof ModelResultWqTimeseriesInput
    */
   scenarioId: string
   /**
    * 水质项 water quality item
    * @type {string}
-   * @memberof ModelResultWqTimeseriesInput1
+   * @memberof ModelResultWqTimeseriesInput
    */
   wqItem: string
   /**
    * 河道 river id,{河道Id,河道里程}
    * @type {string}
-   * @memberof ModelResultWqTimeseriesInput1
+   * @memberof ModelResultWqTimeseriesInput
    */
   modelFeatureId: string
 }
