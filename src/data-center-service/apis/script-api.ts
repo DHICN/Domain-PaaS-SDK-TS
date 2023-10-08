@@ -44,8 +44,6 @@ import { QueryAlgorithmByCodeOutputPage } from '../models'
 import { QueryAlgorithmByConInput } from '../models'
 // @ts-ignore
 import { RemoteServiceErrorResponse } from '../models'
-// @ts-ignore
-import { RunAlgorithmSidecarInput } from '../models'
 /**
  * ScriptApi - axios parameter creator
  * @export
@@ -381,12 +379,14 @@ export const ScriptApiAxiosParamCreator = function (configuration?: Configuratio
     /**
      *
      * @summary 运行Python脚本
-     * @param {RunAlgorithmSidecarInput} [runAlgorithmSidecarInput]
+     * @param {string} [algorithmCode]
+     * @param {{ [key: string]: string; }} [requestBody]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiV1RunAlgorithmPost: async (
-      runAlgorithmSidecarInput?: RunAlgorithmSidecarInput,
+      algorithmCode?: string,
+      requestBody?: { [key: string]: string },
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
       const localVarPath = `/api/v1/run/algorithm`
@@ -401,6 +401,10 @@ export const ScriptApiAxiosParamCreator = function (configuration?: Configuratio
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
 
+      if (algorithmCode !== undefined) {
+        localVarQueryParameter['algorithmCode'] = algorithmCode
+      }
+
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
       setSearchParams(localVarUrlObj, localVarQueryParameter)
@@ -411,7 +415,7 @@ export const ScriptApiAxiosParamCreator = function (configuration?: Configuratio
         ...options.headers,
       }
       localVarRequestOptions.data = serializeDataIfNeeded(
-        runAlgorithmSidecarInput,
+        requestBody,
         localVarRequestOptions,
         configuration,
       )
@@ -539,7 +543,7 @@ export const ScriptApiFp = function (configuration?: Configuration) {
       startTime?: string,
       endTime?: string,
       options?: AxiosRequestConfig,
-    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<string>> {
       const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1GetAlgorithmLogGet(
         algorithmCode,
         startTime,
@@ -616,16 +620,19 @@ export const ScriptApiFp = function (configuration?: Configuration) {
     /**
      *
      * @summary 运行Python脚本
-     * @param {RunAlgorithmSidecarInput} [runAlgorithmSidecarInput]
+     * @param {string} [algorithmCode]
+     * @param {{ [key: string]: string; }} [requestBody]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async apiV1RunAlgorithmPost(
-      runAlgorithmSidecarInput?: RunAlgorithmSidecarInput,
+      algorithmCode?: string,
+      requestBody?: { [key: string]: string },
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
       const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1RunAlgorithmPost(
-        runAlgorithmSidecarInput,
+        algorithmCode,
+        requestBody,
         options,
       )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
@@ -714,7 +721,7 @@ export const ScriptApiFactory = function (
       startTime?: string,
       endTime?: string,
       options?: any,
-    ): AxiosPromise<void> {
+    ): AxiosPromise<string> {
       return localVarFp
         .apiV1GetAlgorithmLogGet(algorithmCode, startTime, endTime, options)
         .then((request) => request(axios, basePath))
@@ -774,16 +781,18 @@ export const ScriptApiFactory = function (
     /**
      *
      * @summary 运行Python脚本
-     * @param {RunAlgorithmSidecarInput} [runAlgorithmSidecarInput]
+     * @param {string} [algorithmCode]
+     * @param {{ [key: string]: string; }} [requestBody]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiV1RunAlgorithmPost(
-      runAlgorithmSidecarInput?: RunAlgorithmSidecarInput,
+      algorithmCode?: string,
+      requestBody?: { [key: string]: string },
       options?: any,
     ): AxiosPromise<void> {
       return localVarFp
-        .apiV1RunAlgorithmPost(runAlgorithmSidecarInput, options)
+        .apiV1RunAlgorithmPost(algorithmCode, requestBody, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -937,17 +946,19 @@ export class ScriptApi extends BaseAPI {
   /**
    *
    * @summary 运行Python脚本
-   * @param {RunAlgorithmSidecarInput} [runAlgorithmSidecarInput]
+   * @param {string} [algorithmCode]
+   * @param {{ [key: string]: string; }} [requestBody]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof ScriptApi
    */
   public apiV1RunAlgorithmPost(
-    runAlgorithmSidecarInput?: RunAlgorithmSidecarInput,
+    algorithmCode?: string,
+    requestBody?: { [key: string]: string },
     options?: AxiosRequestConfig,
   ) {
     return ScriptApiFp(this.configuration)
-      .apiV1RunAlgorithmPost(runAlgorithmSidecarInput, options)
+      .apiV1RunAlgorithmPost(algorithmCode, requestBody, options)
       .then((request) => request(this.axios, this.basePath))
   }
 

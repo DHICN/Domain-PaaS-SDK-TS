@@ -59,4 +59,16 @@ export interface AddAlgorithmSidecarInput {
    * @memberof AddAlgorithmSidecarInput
    */
   status?: number
+  /**
+   * 算法运行url
+   * @type {string}
+   * @memberof AddAlgorithmSidecarInput
+   */
+  algorithmRunUrl?: string | null
+  /**
+   * 备注
+   * @type {string}
+   * @memberof AddAlgorithmSidecarInput
+   */
+  remark?: string | null
 }

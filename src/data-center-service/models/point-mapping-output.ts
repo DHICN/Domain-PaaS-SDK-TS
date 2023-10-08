@@ -25,6 +25,9 @@ import { DeviceInfosOutput } from './device-infos-output'
 import { Library } from './library'
 // May contain unused imports in some cases
 // @ts-ignore
+import { ModelBoundaryConfigFormatOutput } from './model-boundary-config-format-output'
+// May contain unused imports in some cases
+// @ts-ignore
 import { ModelPointOutput } from './model-point-output'
 // May contain unused imports in some cases
 // @ts-ignore
@@ -58,11 +61,17 @@ export interface PointMappingOutput {
    */
   deviceIndicators?: Array<DeviceIndicatorOutput> | null
   /**
-   * 模型点位数据类型列表,即: DeviceIndicatorId与ModelPointId、ModelDataType、TemplateId的关联关系
+   * [输出点位映射拓扑]模型点位数据类型与设备指标之间的映射关系,即: DeviceIndicatorId与ModelPointId、ModelDataType、TemplateId的关联关系
    * @type {Array<PointDataTypeInfo>}
    * @memberof PointMappingOutput
    */
   modelPointDataTypes?: Array<PointDataTypeInfo> | null
+  /**
+   * 模型边界列表
+   * @type {Array<ModelBoundaryConfigFormatOutput>}
+   * @memberof PointMappingOutput
+   */
+  modelBoundaryConfigs?: Array<ModelBoundaryConfigFormatOutput> | null
   /**
    * 模板Id列表
    * @type {Array<string>}
