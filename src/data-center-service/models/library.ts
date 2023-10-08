@@ -82,7 +82,7 @@ export interface Library {
    * @type {number}
    * @memberof Library
    */
-  enableMultiTemplate?: number
+  enableMultiTemplate?: number | null
   /**
    *
    * @type {string}

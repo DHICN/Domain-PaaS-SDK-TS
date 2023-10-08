@@ -65,4 +65,28 @@ export interface QueryAlgorithmByCodeOutput {
    * @memberof QueryAlgorithmByCodeOutput
    */
   tenantId?: string | null
+  /**
+   * 算法运行url
+   * @type {string}
+   * @memberof QueryAlgorithmByCodeOutput
+   */
+  algorithmRunUrl?: string | null
+  /**
+   * 备注
+   * @type {string}
+   * @memberof QueryAlgorithmByCodeOutput
+   */
+  remark?: string | null
+  /**
+   *
+   * @type {string}
+   * @memberof QueryAlgorithmByCodeOutput
+   */
+  creationTime?: string
+  /**
+   *
+   * @type {string}
+   * @memberof QueryAlgorithmByCodeOutput
+   */
+  lastModificationTime?: string | null
 }
