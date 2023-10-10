@@ -568,6 +568,276 @@ export const ScenarioApiAxiosParamCreator = function (configuration?: Configurat
         options: localVarRequestOptions,
       }
     },
+    /**
+     * 获取各个模板方案的配置进度，必要步骤必须完成配置之后模板方案才能启用 Get all the template scenarios\' configuration progress information, necessary steps must be finished before the template scenario can be enabled.
+     * @summary 获取模板方案的配置进度 Get template scenario\'s configuration progress
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV3ModelConfigurationScenarioConfigLogsGet: async (
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v3/model-configuration/scenario/config-logs`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     * 基于一个模板模型文件，创建模板方案，导出模型基本信息，同时会把相同库下面的其他模板方案禁用 Based on a template file to create a new template scenario, export model info, meanwhile disable all the old template scenarios of the same library.
+     * @summary 创建模板方案，导出模型基本信息 Create template scrnario, meanwhile export model info
+     * @param {string} [templateFileId]
+     * @param {string} [scenarioName]
+     * @param {string} [subType]
+     * @param {string} [modelVersion]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV3ModelConfigurationScenarioCreateTemplateScenarioPost: async (
+      templateFileId?: string,
+      scenarioName?: string,
+      subType?: string,
+      modelVersion?: string,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v3/model-configuration/scenario/create-template-scenario`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      if (templateFileId !== undefined) {
+        localVarQueryParameter['templateFileId'] = templateFileId
+      }
+
+      if (scenarioName !== undefined) {
+        localVarQueryParameter['scenarioName'] = scenarioName
+      }
+
+      if (subType !== undefined) {
+        localVarQueryParameter['subType'] = subType
+      }
+
+      if (modelVersion !== undefined) {
+        localVarQueryParameter['modelVersion'] = modelVersion
+      }
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     * 启用一个历史的模板方案，同时禁用同一个库下的其他模板方案，只有完成了必要的配置流程的模板方案才能被启用 Turn on a history template scenario to be active, meanwhile disable all the other template scenarios of the same library.  Only a template scenario which has finished all the necessary initialization steps can be activated.
+     * @summary 启用历史模板方案 Enable template scenario
+     * @param {string} [scenarioId] 模板方案ID template scenario\&#39;s id
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV3ModelConfigurationScenarioEnableTemplateScenarioPost: async (
+      scenarioId?: string,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v3/model-configuration/scenario/enable-template-scenario`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      if (scenarioId !== undefined) {
+        localVarQueryParameter['scenarioId'] = scenarioId
+      }
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary Init library on create
+     * @param {string} [tenantId]
+     * @param {InitLibraryInput} [initLibraryInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV3ModelConfigurationScenarioInitLibraryOnCreateOldPost: async (
+      tenantId?: string,
+      initLibraryInput?: InitLibraryInput,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v3/model-configuration/scenario/init-library-on-create_old`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      if (tenantId !== undefined) {
+        localVarQueryParameter['tenantId'] = tenantId
+      }
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        initLibraryInput,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary /api/v3/model-configuration/scenario/init-library-on-create
+     * @param {string} [tenantId]
+     * @param {Array<LibraryInfo>} [libraryInfo]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV3ModelConfigurationScenarioInitLibraryOnCreatePost: async (
+      tenantId?: string,
+      libraryInfo?: Array<LibraryInfo>,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v3/model-configuration/scenario/init-library-on-create`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      if (tenantId !== undefined) {
+        localVarQueryParameter['tenantId'] = tenantId
+      }
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        libraryInfo,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     * 获取单个模板方案的配置进度，必要步骤必须完成配置之后模板方案才能启用 Get template scenario\'s configuration progress information by scenario id, necessary steps must be finished before the template scenario can be enabled.
+     * @summary 根据模板方案ID获取模板方案的配置进度 Get template scenario\'s configuration progress by scenario id
+     * @param {string} [scenarioId] scenario id
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV3ModelConfigurationScenarioScenarioConfigLogGet: async (
+      scenarioId?: string,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v3/model-configuration/scenario/scenario-config-log`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      if (scenarioId !== undefined) {
+        localVarQueryParameter['scenarioId'] = scenarioId
+      }
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
   }
 }
 
@@ -817,6 +1087,130 @@ export const ScenarioApiFp = function (configuration?: Configuration) {
         )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
+    /**
+     * 获取各个模板方案的配置进度，必要步骤必须完成配置之后模板方案才能启用 Get all the template scenarios\' configuration progress information, necessary steps must be finished before the template scenario can be enabled.
+     * @summary 获取模板方案的配置进度 Get template scenario\'s configuration progress
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV3ModelConfigurationScenarioConfigLogsGet(
+      options?: AxiosRequestConfig,
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<TemplateScenarioLogOutput>>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiV3ModelConfigurationScenarioConfigLogsGet(options)
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     * 基于一个模板模型文件，创建模板方案，导出模型基本信息，同时会把相同库下面的其他模板方案禁用 Based on a template file to create a new template scenario, export model info, meanwhile disable all the old template scenarios of the same library.
+     * @summary 创建模板方案，导出模型基本信息 Create template scrnario, meanwhile export model info
+     * @param {string} [templateFileId]
+     * @param {string} [scenarioName]
+     * @param {string} [subType]
+     * @param {string} [modelVersion]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV3ModelConfigurationScenarioCreateTemplateScenarioPost(
+      templateFileId?: string,
+      scenarioName?: string,
+      subType?: string,
+      modelVersion?: string,
+      options?: AxiosRequestConfig,
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<CreateTemplateScenarioOutput>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiV3ModelConfigurationScenarioCreateTemplateScenarioPost(
+          templateFileId,
+          scenarioName,
+          subType,
+          modelVersion,
+          options,
+        )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     * 启用一个历史的模板方案，同时禁用同一个库下的其他模板方案，只有完成了必要的配置流程的模板方案才能被启用 Turn on a history template scenario to be active, meanwhile disable all the other template scenarios of the same library.  Only a template scenario which has finished all the necessary initialization steps can be activated.
+     * @summary 启用历史模板方案 Enable template scenario
+     * @param {string} [scenarioId] 模板方案ID template scenario\&#39;s id
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV3ModelConfigurationScenarioEnableTemplateScenarioPost(
+      scenarioId?: string,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<boolean>> {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiV3ModelConfigurationScenarioEnableTemplateScenarioPost(
+          scenarioId,
+          options,
+        )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
+     * @summary Init library on create
+     * @param {string} [tenantId]
+     * @param {InitLibraryInput} [initLibraryInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV3ModelConfigurationScenarioInitLibraryOnCreateOldPost(
+      tenantId?: string,
+      initLibraryInput?: InitLibraryInput,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<LibraryInfo>>> {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiV3ModelConfigurationScenarioInitLibraryOnCreateOldPost(
+          tenantId,
+          initLibraryInput,
+          options,
+        )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
+     * @summary /api/v3/model-configuration/scenario/init-library-on-create
+     * @param {string} [tenantId]
+     * @param {Array<LibraryInfo>} [libraryInfo]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV3ModelConfigurationScenarioInitLibraryOnCreatePost(
+      tenantId?: string,
+      libraryInfo?: Array<LibraryInfo>,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<LibraryInfo>>> {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiV3ModelConfigurationScenarioInitLibraryOnCreatePost(
+          tenantId,
+          libraryInfo,
+          options,
+        )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     * 获取单个模板方案的配置进度，必要步骤必须完成配置之后模板方案才能启用 Get template scenario\'s configuration progress information by scenario id, necessary steps must be finished before the template scenario can be enabled.
+     * @summary 根据模板方案ID获取模板方案的配置进度 Get template scenario\'s configuration progress by scenario id
+     * @param {string} [scenarioId] scenario id
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV3ModelConfigurationScenarioScenarioConfigLogGet(
+      scenarioId?: string,
+      options?: AxiosRequestConfig,
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<TemplateScenarioLogOutput>>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiV3ModelConfigurationScenarioScenarioConfigLogGet(
+          scenarioId,
+          options,
+        )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
   }
 }
 
@@ -1033,6 +1427,114 @@ export const ScenarioApiFactory = function (
     ): AxiosPromise<Array<TemplateScenarioLogOutput>> {
       return localVarFp
         .apiV2ModelConfigurationScenarioScenarioConfigLogGet(scenarioId, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     * 获取各个模板方案的配置进度，必要步骤必须完成配置之后模板方案才能启用 Get all the template scenarios\' configuration progress information, necessary steps must be finished before the template scenario can be enabled.
+     * @summary 获取模板方案的配置进度 Get template scenario\'s configuration progress
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV3ModelConfigurationScenarioConfigLogsGet(
+      options?: any,
+    ): AxiosPromise<Array<TemplateScenarioLogOutput>> {
+      return localVarFp
+        .apiV3ModelConfigurationScenarioConfigLogsGet(options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     * 基于一个模板模型文件，创建模板方案，导出模型基本信息，同时会把相同库下面的其他模板方案禁用 Based on a template file to create a new template scenario, export model info, meanwhile disable all the old template scenarios of the same library.
+     * @summary 创建模板方案，导出模型基本信息 Create template scrnario, meanwhile export model info
+     * @param {string} [templateFileId]
+     * @param {string} [scenarioName]
+     * @param {string} [subType]
+     * @param {string} [modelVersion]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV3ModelConfigurationScenarioCreateTemplateScenarioPost(
+      templateFileId?: string,
+      scenarioName?: string,
+      subType?: string,
+      modelVersion?: string,
+      options?: any,
+    ): AxiosPromise<CreateTemplateScenarioOutput> {
+      return localVarFp
+        .apiV3ModelConfigurationScenarioCreateTemplateScenarioPost(
+          templateFileId,
+          scenarioName,
+          subType,
+          modelVersion,
+          options,
+        )
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     * 启用一个历史的模板方案，同时禁用同一个库下的其他模板方案，只有完成了必要的配置流程的模板方案才能被启用 Turn on a history template scenario to be active, meanwhile disable all the other template scenarios of the same library.  Only a template scenario which has finished all the necessary initialization steps can be activated.
+     * @summary 启用历史模板方案 Enable template scenario
+     * @param {string} [scenarioId] 模板方案ID template scenario\&#39;s id
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV3ModelConfigurationScenarioEnableTemplateScenarioPost(
+      scenarioId?: string,
+      options?: any,
+    ): AxiosPromise<boolean> {
+      return localVarFp
+        .apiV3ModelConfigurationScenarioEnableTemplateScenarioPost(scenarioId, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @summary Init library on create
+     * @param {string} [tenantId]
+     * @param {InitLibraryInput} [initLibraryInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV3ModelConfigurationScenarioInitLibraryOnCreateOldPost(
+      tenantId?: string,
+      initLibraryInput?: InitLibraryInput,
+      options?: any,
+    ): AxiosPromise<Array<LibraryInfo>> {
+      return localVarFp
+        .apiV3ModelConfigurationScenarioInitLibraryOnCreateOldPost(
+          tenantId,
+          initLibraryInput,
+          options,
+        )
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @summary /api/v3/model-configuration/scenario/init-library-on-create
+     * @param {string} [tenantId]
+     * @param {Array<LibraryInfo>} [libraryInfo]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV3ModelConfigurationScenarioInitLibraryOnCreatePost(
+      tenantId?: string,
+      libraryInfo?: Array<LibraryInfo>,
+      options?: any,
+    ): AxiosPromise<Array<LibraryInfo>> {
+      return localVarFp
+        .apiV3ModelConfigurationScenarioInitLibraryOnCreatePost(tenantId, libraryInfo, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     * 获取单个模板方案的配置进度，必要步骤必须完成配置之后模板方案才能启用 Get template scenario\'s configuration progress information by scenario id, necessary steps must be finished before the template scenario can be enabled.
+     * @summary 根据模板方案ID获取模板方案的配置进度 Get template scenario\'s configuration progress by scenario id
+     * @param {string} [scenarioId] scenario id
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV3ModelConfigurationScenarioScenarioConfigLogGet(
+      scenarioId?: string,
+      options?: any,
+    ): AxiosPromise<Array<TemplateScenarioLogOutput>> {
+      return localVarFp
+        .apiV3ModelConfigurationScenarioScenarioConfigLogGet(scenarioId, options)
         .then((request) => request(axios, basePath))
     },
   }
@@ -1266,6 +1768,124 @@ export class ScenarioApi extends BaseAPI {
   ) {
     return ScenarioApiFp(this.configuration)
       .apiV2ModelConfigurationScenarioScenarioConfigLogGet(scenarioId, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   * 获取各个模板方案的配置进度，必要步骤必须完成配置之后模板方案才能启用 Get all the template scenarios\' configuration progress information, necessary steps must be finished before the template scenario can be enabled.
+   * @summary 获取模板方案的配置进度 Get template scenario\'s configuration progress
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof ScenarioApi
+   */
+  public apiV3ModelConfigurationScenarioConfigLogsGet(options?: AxiosRequestConfig) {
+    return ScenarioApiFp(this.configuration)
+      .apiV3ModelConfigurationScenarioConfigLogsGet(options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   * 基于一个模板模型文件，创建模板方案，导出模型基本信息，同时会把相同库下面的其他模板方案禁用 Based on a template file to create a new template scenario, export model info, meanwhile disable all the old template scenarios of the same library.
+   * @summary 创建模板方案，导出模型基本信息 Create template scrnario, meanwhile export model info
+   * @param {string} [templateFileId]
+   * @param {string} [scenarioName]
+   * @param {string} [subType]
+   * @param {string} [modelVersion]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof ScenarioApi
+   */
+  public apiV3ModelConfigurationScenarioCreateTemplateScenarioPost(
+    templateFileId?: string,
+    scenarioName?: string,
+    subType?: string,
+    modelVersion?: string,
+    options?: AxiosRequestConfig,
+  ) {
+    return ScenarioApiFp(this.configuration)
+      .apiV3ModelConfigurationScenarioCreateTemplateScenarioPost(
+        templateFileId,
+        scenarioName,
+        subType,
+        modelVersion,
+        options,
+      )
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   * 启用一个历史的模板方案，同时禁用同一个库下的其他模板方案，只有完成了必要的配置流程的模板方案才能被启用 Turn on a history template scenario to be active, meanwhile disable all the other template scenarios of the same library.  Only a template scenario which has finished all the necessary initialization steps can be activated.
+   * @summary 启用历史模板方案 Enable template scenario
+   * @param {string} [scenarioId] 模板方案ID template scenario\&#39;s id
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof ScenarioApi
+   */
+  public apiV3ModelConfigurationScenarioEnableTemplateScenarioPost(
+    scenarioId?: string,
+    options?: AxiosRequestConfig,
+  ) {
+    return ScenarioApiFp(this.configuration)
+      .apiV3ModelConfigurationScenarioEnableTemplateScenarioPost(scenarioId, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary Init library on create
+   * @param {string} [tenantId]
+   * @param {InitLibraryInput} [initLibraryInput]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof ScenarioApi
+   */
+  public apiV3ModelConfigurationScenarioInitLibraryOnCreateOldPost(
+    tenantId?: string,
+    initLibraryInput?: InitLibraryInput,
+    options?: AxiosRequestConfig,
+  ) {
+    return ScenarioApiFp(this.configuration)
+      .apiV3ModelConfigurationScenarioInitLibraryOnCreateOldPost(
+        tenantId,
+        initLibraryInput,
+        options,
+      )
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary /api/v3/model-configuration/scenario/init-library-on-create
+   * @param {string} [tenantId]
+   * @param {Array<LibraryInfo>} [libraryInfo]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof ScenarioApi
+   */
+  public apiV3ModelConfigurationScenarioInitLibraryOnCreatePost(
+    tenantId?: string,
+    libraryInfo?: Array<LibraryInfo>,
+    options?: AxiosRequestConfig,
+  ) {
+    return ScenarioApiFp(this.configuration)
+      .apiV3ModelConfigurationScenarioInitLibraryOnCreatePost(tenantId, libraryInfo, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   * 获取单个模板方案的配置进度，必要步骤必须完成配置之后模板方案才能启用 Get template scenario\'s configuration progress information by scenario id, necessary steps must be finished before the template scenario can be enabled.
+   * @summary 根据模板方案ID获取模板方案的配置进度 Get template scenario\'s configuration progress by scenario id
+   * @param {string} [scenarioId] scenario id
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof ScenarioApi
+   */
+  public apiV3ModelConfigurationScenarioScenarioConfigLogGet(
+    scenarioId?: string,
+    options?: AxiosRequestConfig,
+  ) {
+    return ScenarioApiFp(this.configuration)
+      .apiV3ModelConfigurationScenarioScenarioConfigLogGet(scenarioId, options)
       .then((request) => request(this.axios, this.basePath))
   }
 }
