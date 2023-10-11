@@ -51,14 +51,12 @@ export const ToxicityMonitorApiAxiosParamCreator = function (configuration?: Con
      * @summary 首页预警信息 Get toxicity alarm data
      * @param {string} [startTime] 开始时间 start time
      * @param {string} [endTime] 结束时间 end time
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiV2OutputToxicAlarmsGet: async (
       startTime?: string,
       endTime?: string,
-      tenantId?: string,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
       const localVarPath = `/api/v2/output/toxic-alarms`
@@ -81,10 +79,6 @@ export const ToxicityMonitorApiAxiosParamCreator = function (configuration?: Con
         localVarQueryParameter['endTime'] = endTime
       }
 
-      if (tenantId != null) {
-        localVarHeaderParameter['tenantId'] = String(tenantId)
-      }
-
       setSearchParams(localVarUrlObj, localVarQueryParameter)
       let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
       localVarRequestOptions.headers = {
@@ -101,13 +95,11 @@ export const ToxicityMonitorApiAxiosParamCreator = function (configuration?: Con
     /**
      *
      * @summary 获取预警记录 Get historical toxicity alarm records
-     * @param {string} [tenantId]
      * @param {ToxicityInput} [toxicityInput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiV2ToxicityMonitorAlarmHistoryPost: async (
-      tenantId?: string,
       toxicityInput?: ToxicityInput,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
@@ -122,10 +114,6 @@ export const ToxicityMonitorApiAxiosParamCreator = function (configuration?: Con
       const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
-
-      if (tenantId != null) {
-        localVarHeaderParameter['tenantId'] = String(tenantId)
-      }
 
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
@@ -150,13 +138,11 @@ export const ToxicityMonitorApiAxiosParamCreator = function (configuration?: Con
     /**
      *
      * @summary 获取质控记录 Get historical quality control records
-     * @param {string} [tenantId]
      * @param {ToxicityInput} [toxicityInput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiV2ToxicityMonitorControlHistoryPost: async (
-      tenantId?: string,
       toxicityInput?: ToxicityInput,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
@@ -171,10 +157,6 @@ export const ToxicityMonitorApiAxiosParamCreator = function (configuration?: Con
       const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
-
-      if (tenantId != null) {
-        localVarHeaderParameter['tenantId'] = String(tenantId)
-      }
 
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
@@ -199,13 +181,11 @@ export const ToxicityMonitorApiAxiosParamCreator = function (configuration?: Con
     /**
      *
      * @summary 获取毒性监测记录 Get historical toxicity monitoring records
-     * @param {string} [tenantId]
      * @param {ToxicityInput} [toxicityInput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiV2ToxicityMonitorMonitorHistoryPost: async (
-      tenantId?: string,
       toxicityInput?: ToxicityInput,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
@@ -220,10 +200,6 @@ export const ToxicityMonitorApiAxiosParamCreator = function (configuration?: Con
       const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
-
-      if (tenantId != null) {
-        localVarHeaderParameter['tenantId'] = String(tenantId)
-      }
 
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
@@ -248,12 +224,10 @@ export const ToxicityMonitorApiAxiosParamCreator = function (configuration?: Con
     /**
      *
      * @summary 实时水质毒性和实时生物抑制率 Get real time water toxicity and biological inhibition rate
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiV2ToxicityMonitorRealTimeGet: async (
-      tenantId?: string,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
       const localVarPath = `/api/v2/toxicity-monitor/real-time`
@@ -267,10 +241,6 @@ export const ToxicityMonitorApiAxiosParamCreator = function (configuration?: Con
       const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
-
-      if (tenantId != null) {
-        localVarHeaderParameter['tenantId'] = String(tenantId)
-      }
 
       setSearchParams(localVarUrlObj, localVarQueryParameter)
       let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
@@ -300,14 +270,12 @@ export const ToxicityMonitorApiFp = function (configuration?: Configuration) {
      * @summary 首页预警信息 Get toxicity alarm data
      * @param {string} [startTime] 开始时间 start time
      * @param {string} [endTime] 结束时间 end time
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async apiV2OutputToxicAlarmsGet(
       startTime?: string,
       endTime?: string,
-      tenantId?: string,
       options?: AxiosRequestConfig,
     ): Promise<
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<ToxicAlarmsOutput>>
@@ -315,7 +283,6 @@ export const ToxicityMonitorApiFp = function (configuration?: Configuration) {
       const localVarAxiosArgs = await localVarAxiosParamCreator.apiV2OutputToxicAlarmsGet(
         startTime,
         endTime,
-        tenantId,
         options,
       )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
@@ -323,40 +290,31 @@ export const ToxicityMonitorApiFp = function (configuration?: Configuration) {
     /**
      *
      * @summary 获取预警记录 Get historical toxicity alarm records
-     * @param {string} [tenantId]
      * @param {ToxicityInput} [toxicityInput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async apiV2ToxicityMonitorAlarmHistoryPost(
-      tenantId?: string,
       toxicityInput?: ToxicityInput,
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ToxicityOutput>> {
       const localVarAxiosArgs =
-        await localVarAxiosParamCreator.apiV2ToxicityMonitorAlarmHistoryPost(
-          tenantId,
-          toxicityInput,
-          options,
-        )
+        await localVarAxiosParamCreator.apiV2ToxicityMonitorAlarmHistoryPost(toxicityInput, options)
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**
      *
      * @summary 获取质控记录 Get historical quality control records
-     * @param {string} [tenantId]
      * @param {ToxicityInput} [toxicityInput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async apiV2ToxicityMonitorControlHistoryPost(
-      tenantId?: string,
       toxicityInput?: ToxicityInput,
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ToxicityOutput>> {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.apiV2ToxicityMonitorControlHistoryPost(
-          tenantId,
           toxicityInput,
           options,
         )
@@ -365,19 +323,16 @@ export const ToxicityMonitorApiFp = function (configuration?: Configuration) {
     /**
      *
      * @summary 获取毒性监测记录 Get historical toxicity monitoring records
-     * @param {string} [tenantId]
      * @param {ToxicityInput} [toxicityInput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async apiV2ToxicityMonitorMonitorHistoryPost(
-      tenantId?: string,
       toxicityInput?: ToxicityInput,
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ToxicityOutput>> {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.apiV2ToxicityMonitorMonitorHistoryPost(
-          tenantId,
           toxicityInput,
           options,
         )
@@ -386,16 +341,13 @@ export const ToxicityMonitorApiFp = function (configuration?: Configuration) {
     /**
      *
      * @summary 实时水质毒性和实时生物抑制率 Get real time water toxicity and biological inhibition rate
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async apiV2ToxicityMonitorRealTimeGet(
-      tenantId?: string,
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<RealTimeOutput>>> {
       const localVarAxiosArgs = await localVarAxiosParamCreator.apiV2ToxicityMonitorRealTimeGet(
-        tenantId,
         options,
       )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
@@ -419,84 +371,72 @@ export const ToxicityMonitorApiFactory = function (
      * @summary 首页预警信息 Get toxicity alarm data
      * @param {string} [startTime] 开始时间 start time
      * @param {string} [endTime] 结束时间 end time
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiV2OutputToxicAlarmsGet(
       startTime?: string,
       endTime?: string,
-      tenantId?: string,
       options?: any,
     ): AxiosPromise<Array<ToxicAlarmsOutput>> {
       return localVarFp
-        .apiV2OutputToxicAlarmsGet(startTime, endTime, tenantId, options)
+        .apiV2OutputToxicAlarmsGet(startTime, endTime, options)
         .then((request) => request(axios, basePath))
     },
     /**
      *
      * @summary 获取预警记录 Get historical toxicity alarm records
-     * @param {string} [tenantId]
      * @param {ToxicityInput} [toxicityInput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiV2ToxicityMonitorAlarmHistoryPost(
-      tenantId?: string,
       toxicityInput?: ToxicityInput,
       options?: any,
     ): AxiosPromise<ToxicityOutput> {
       return localVarFp
-        .apiV2ToxicityMonitorAlarmHistoryPost(tenantId, toxicityInput, options)
+        .apiV2ToxicityMonitorAlarmHistoryPost(toxicityInput, options)
         .then((request) => request(axios, basePath))
     },
     /**
      *
      * @summary 获取质控记录 Get historical quality control records
-     * @param {string} [tenantId]
      * @param {ToxicityInput} [toxicityInput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiV2ToxicityMonitorControlHistoryPost(
-      tenantId?: string,
       toxicityInput?: ToxicityInput,
       options?: any,
     ): AxiosPromise<ToxicityOutput> {
       return localVarFp
-        .apiV2ToxicityMonitorControlHistoryPost(tenantId, toxicityInput, options)
+        .apiV2ToxicityMonitorControlHistoryPost(toxicityInput, options)
         .then((request) => request(axios, basePath))
     },
     /**
      *
      * @summary 获取毒性监测记录 Get historical toxicity monitoring records
-     * @param {string} [tenantId]
      * @param {ToxicityInput} [toxicityInput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiV2ToxicityMonitorMonitorHistoryPost(
-      tenantId?: string,
       toxicityInput?: ToxicityInput,
       options?: any,
     ): AxiosPromise<ToxicityOutput> {
       return localVarFp
-        .apiV2ToxicityMonitorMonitorHistoryPost(tenantId, toxicityInput, options)
+        .apiV2ToxicityMonitorMonitorHistoryPost(toxicityInput, options)
         .then((request) => request(axios, basePath))
     },
     /**
      *
      * @summary 实时水质毒性和实时生物抑制率 Get real time water toxicity and biological inhibition rate
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    apiV2ToxicityMonitorRealTimeGet(
-      tenantId?: string,
-      options?: any,
-    ): AxiosPromise<Array<RealTimeOutput>> {
+    apiV2ToxicityMonitorRealTimeGet(options?: any): AxiosPromise<Array<RealTimeOutput>> {
       return localVarFp
-        .apiV2ToxicityMonitorRealTimeGet(tenantId, options)
+        .apiV2ToxicityMonitorRealTimeGet(options)
         .then((request) => request(axios, basePath))
     },
   }
@@ -514,7 +454,6 @@ export class ToxicityMonitorApi extends BaseAPI {
    * @summary 首页预警信息 Get toxicity alarm data
    * @param {string} [startTime] 开始时间 start time
    * @param {string} [endTime] 结束时间 end time
-   * @param {string} [tenantId]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof ToxicityMonitorApi
@@ -522,82 +461,74 @@ export class ToxicityMonitorApi extends BaseAPI {
   public apiV2OutputToxicAlarmsGet(
     startTime?: string,
     endTime?: string,
-    tenantId?: string,
     options?: AxiosRequestConfig,
   ) {
     return ToxicityMonitorApiFp(this.configuration)
-      .apiV2OutputToxicAlarmsGet(startTime, endTime, tenantId, options)
+      .apiV2OutputToxicAlarmsGet(startTime, endTime, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
   /**
    *
    * @summary 获取预警记录 Get historical toxicity alarm records
-   * @param {string} [tenantId]
    * @param {ToxicityInput} [toxicityInput]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof ToxicityMonitorApi
    */
   public apiV2ToxicityMonitorAlarmHistoryPost(
-    tenantId?: string,
     toxicityInput?: ToxicityInput,
     options?: AxiosRequestConfig,
   ) {
     return ToxicityMonitorApiFp(this.configuration)
-      .apiV2ToxicityMonitorAlarmHistoryPost(tenantId, toxicityInput, options)
+      .apiV2ToxicityMonitorAlarmHistoryPost(toxicityInput, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
   /**
    *
    * @summary 获取质控记录 Get historical quality control records
-   * @param {string} [tenantId]
    * @param {ToxicityInput} [toxicityInput]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof ToxicityMonitorApi
    */
   public apiV2ToxicityMonitorControlHistoryPost(
-    tenantId?: string,
     toxicityInput?: ToxicityInput,
     options?: AxiosRequestConfig,
   ) {
     return ToxicityMonitorApiFp(this.configuration)
-      .apiV2ToxicityMonitorControlHistoryPost(tenantId, toxicityInput, options)
+      .apiV2ToxicityMonitorControlHistoryPost(toxicityInput, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
   /**
    *
    * @summary 获取毒性监测记录 Get historical toxicity monitoring records
-   * @param {string} [tenantId]
    * @param {ToxicityInput} [toxicityInput]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof ToxicityMonitorApi
    */
   public apiV2ToxicityMonitorMonitorHistoryPost(
-    tenantId?: string,
     toxicityInput?: ToxicityInput,
     options?: AxiosRequestConfig,
   ) {
     return ToxicityMonitorApiFp(this.configuration)
-      .apiV2ToxicityMonitorMonitorHistoryPost(tenantId, toxicityInput, options)
+      .apiV2ToxicityMonitorMonitorHistoryPost(toxicityInput, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
   /**
    *
    * @summary 实时水质毒性和实时生物抑制率 Get real time water toxicity and biological inhibition rate
-   * @param {string} [tenantId]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof ToxicityMonitorApi
    */
-  public apiV2ToxicityMonitorRealTimeGet(tenantId?: string, options?: AxiosRequestConfig) {
+  public apiV2ToxicityMonitorRealTimeGet(options?: AxiosRequestConfig) {
     return ToxicityMonitorApiFp(this.configuration)
-      .apiV2ToxicityMonitorRealTimeGet(tenantId, options)
+      .apiV2ToxicityMonitorRealTimeGet(options)
       .then((request) => request(this.axios, this.basePath))
   }
 }

@@ -66,7 +66,6 @@ export const GeneralDataApiAxiosParamCreator = function (configuration?: Configu
      * @param {number} [displayTypeEnum] 展示类型
      * @param {string} [modelName] 模型名称
      * @param {string} [productLine] 工艺线
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -74,7 +73,6 @@ export const GeneralDataApiAxiosParamCreator = function (configuration?: Configu
       displayTypeEnum?: number,
       modelName?: string,
       productLine?: string,
-      tenantId?: string,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
       const localVarPath = `/api/GeneralData/GetAssemblyConfigs`
@@ -101,10 +99,6 @@ export const GeneralDataApiAxiosParamCreator = function (configuration?: Configu
         localVarQueryParameter['productLine'] = productLine
       }
 
-      if (tenantId != null) {
-        localVarHeaderParameter['tenantId'] = String(tenantId)
-      }
-
       setSearchParams(localVarUrlObj, localVarQueryParameter)
       let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
       localVarRequestOptions.headers = {
@@ -125,7 +119,6 @@ export const GeneralDataApiAxiosParamCreator = function (configuration?: Configu
      * @param {string} [endTime] 结束时间 end time
      * @param {string} [modelName] 模板模型名称 template model name
      * @param {string} [productLine] 工艺线代码 product line code
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -134,7 +127,6 @@ export const GeneralDataApiAxiosParamCreator = function (configuration?: Configu
       endTime?: string,
       modelName?: string,
       productLine?: string,
-      tenantId?: string,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
       const localVarPath = `/api/GeneralData/GetInletWQ`
@@ -165,10 +157,6 @@ export const GeneralDataApiAxiosParamCreator = function (configuration?: Configu
         localVarQueryParameter['productLine'] = productLine
       }
 
-      if (tenantId != null) {
-        localVarHeaderParameter['tenantId'] = String(tenantId)
-      }
-
       setSearchParams(localVarUrlObj, localVarQueryParameter)
       let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
       localVarRequestOptions.headers = {
@@ -188,7 +176,6 @@ export const GeneralDataApiAxiosParamCreator = function (configuration?: Configu
      * @param {string} [startTime] 开始时间 start time
      * @param {string} [endTime] 结束时间 end time
      * @param {string} [modelName] 模板模型名称 template model name
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -196,7 +183,6 @@ export const GeneralDataApiAxiosParamCreator = function (configuration?: Configu
       startTime?: string,
       endTime?: string,
       modelName?: string,
-      tenantId?: string,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
       const localVarPath = `/api/GeneralData/GetModelPrecision`
@@ -223,10 +209,6 @@ export const GeneralDataApiAxiosParamCreator = function (configuration?: Configu
         localVarQueryParameter['modelName'] = modelName
       }
 
-      if (tenantId != null) {
-        localVarHeaderParameter['tenantId'] = String(tenantId)
-      }
-
       setSearchParams(localVarUrlObj, localVarQueryParameter)
       let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
       localVarRequestOptions.headers = {
@@ -247,7 +229,6 @@ export const GeneralDataApiAxiosParamCreator = function (configuration?: Configu
      * @param {string} [endTime] 结束时间 end time
      * @param {string} [productLine] 工艺线代码 product line code
      * @param {string} [modelName] 模板模型名称 template model name
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -256,7 +237,6 @@ export const GeneralDataApiAxiosParamCreator = function (configuration?: Configu
       endTime?: string,
       productLine?: string,
       modelName?: string,
-      tenantId?: string,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
       const localVarPath = `/api/GeneralData/GetOptimOutData`
@@ -287,10 +267,6 @@ export const GeneralDataApiAxiosParamCreator = function (configuration?: Configu
         localVarQueryParameter['modelName'] = modelName
       }
 
-      if (tenantId != null) {
-        localVarHeaderParameter['tenantId'] = String(tenantId)
-      }
-
       setSearchParams(localVarUrlObj, localVarQueryParameter)
       let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
       localVarRequestOptions.headers = {
@@ -310,7 +286,6 @@ export const GeneralDataApiAxiosParamCreator = function (configuration?: Configu
      * @param {string} [startTime] 开始时间 start time
      * @param {string} [endTime] 结束时间 end time
      * @param {string} [modelName] 模板模型名称 template model name
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -318,7 +293,6 @@ export const GeneralDataApiAxiosParamCreator = function (configuration?: Configu
       startTime?: string,
       endTime?: string,
       modelName?: string,
-      tenantId?: string,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
       const localVarPath = `/api/GeneralData/GetOutletWQ`
@@ -345,10 +319,6 @@ export const GeneralDataApiAxiosParamCreator = function (configuration?: Configu
         localVarQueryParameter['modelName'] = modelName
       }
 
-      if (tenantId != null) {
-        localVarHeaderParameter['tenantId'] = String(tenantId)
-      }
-
       setSearchParams(localVarUrlObj, localVarQueryParameter)
       let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
       localVarRequestOptions.headers = {
@@ -369,7 +339,6 @@ export const GeneralDataApiAxiosParamCreator = function (configuration?: Configu
      * @param {string} [endTime] 结束时间 end time
      * @param {Array<string>} [alarmTypes] 消息类型 alarm types
      * @param {string} [isNationalStandard] 是否获取国标 true indicates grade&#x3D;1, and false indicates grade!&#x3D;1
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -378,7 +347,6 @@ export const GeneralDataApiAxiosParamCreator = function (configuration?: Configu
       endTime?: string,
       alarmTypes?: Array<string>,
       isNationalStandard?: string,
-      tenantId?: string,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
       const localVarPath = `/api/GeneralData/GetPredictAlarm`
@@ -409,10 +377,6 @@ export const GeneralDataApiAxiosParamCreator = function (configuration?: Configu
         localVarQueryParameter['IsNationalStandard'] = isNationalStandard
       }
 
-      if (tenantId != null) {
-        localVarHeaderParameter['tenantId'] = String(tenantId)
-      }
-
       setSearchParams(localVarUrlObj, localVarQueryParameter)
       let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
       localVarRequestOptions.headers = {
@@ -430,13 +394,11 @@ export const GeneralDataApiAxiosParamCreator = function (configuration?: Configu
      * 返回过去七天，每天每条工艺线上的碳源加药吨水药耗和MCCR加药吨水药耗 Carbon source doage cost per ton of water and MCCR dosage cost per ton of water of each product line and each day in the past seven days will be returned.
      * @summary 根据实际投药量，获取吨水药耗统计信息 Get dosage cost per ton of inflow water statistic result based on actual dosage
      * @param {string} [modelName] 模型名称 template model name
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiV2OutputChemicalCostGet: async (
       modelName?: string,
-      tenantId?: string,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
       const localVarPath = `/api/v2/output/chemical-cost`
@@ -455,10 +417,6 @@ export const GeneralDataApiAxiosParamCreator = function (configuration?: Configu
         localVarQueryParameter['modelName'] = modelName
       }
 
-      if (tenantId != null) {
-        localVarHeaderParameter['tenantId'] = String(tenantId)
-      }
-
       setSearchParams(localVarUrlObj, localVarQueryParameter)
       let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
       localVarRequestOptions.headers = {
@@ -475,14 +433,10 @@ export const GeneralDataApiAxiosParamCreator = function (configuration?: Configu
     /**
      *
      * @summary 获取数据看板统计数据 Get statistic data for data board
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    apiV2OutputDataBoardsGet: async (
-      tenantId?: string,
-      options: AxiosRequestConfig = {},
-    ): Promise<RequestArgs> => {
+    apiV2OutputDataBoardsGet: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
       const localVarPath = `/api/v2/output/data-boards`
       // use dummy base URL string because the URL constructor only accepts absolute URLs.
       const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
@@ -494,10 +448,6 @@ export const GeneralDataApiAxiosParamCreator = function (configuration?: Configu
       const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
-
-      if (tenantId != null) {
-        localVarHeaderParameter['tenantId'] = String(tenantId)
-      }
 
       setSearchParams(localVarUrlObj, localVarQueryParameter)
       let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
@@ -517,14 +467,12 @@ export const GeneralDataApiAxiosParamCreator = function (configuration?: Configu
      * @summary 查询关键设备维护预警信息 Get key device maintenance warning information
      * @param {string} [startTime] 开始时间 start time
      * @param {string} [endTime] 结束时间 end time
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiV2OutputDeviceMaintenanceGet: async (
       startTime?: string,
       endTime?: string,
-      tenantId?: string,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
       const localVarPath = `/api/v2/output/device/maintenance`
@@ -547,10 +495,6 @@ export const GeneralDataApiAxiosParamCreator = function (configuration?: Configu
         localVarQueryParameter['endTime'] = endTime
       }
 
-      if (tenantId != null) {
-        localVarHeaderParameter['tenantId'] = String(tenantId)
-      }
-
       setSearchParams(localVarUrlObj, localVarQueryParameter)
       let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
       localVarRequestOptions.headers = {
@@ -571,7 +515,6 @@ export const GeneralDataApiAxiosParamCreator = function (configuration?: Configu
      * @param {string} [startTime] 开始时间 start time
      * @param {string} [endTime] 结束时间 end time
      * @param {string} [modelName] 模板模型名称 template model name
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -580,7 +523,6 @@ export const GeneralDataApiAxiosParamCreator = function (configuration?: Configu
       startTime?: string,
       endTime?: string,
       modelName?: string,
-      tenantId?: string,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
       const localVarPath = `/api/v2/output/entire-process/ts-by-productline`
@@ -611,10 +553,6 @@ export const GeneralDataApiAxiosParamCreator = function (configuration?: Configu
         localVarQueryParameter['modelName'] = modelName
       }
 
-      if (tenantId != null) {
-        localVarHeaderParameter['tenantId'] = String(tenantId)
-      }
-
       setSearchParams(localVarUrlObj, localVarQueryParameter)
       let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
       localVarRequestOptions.headers = {
@@ -632,13 +570,11 @@ export const GeneralDataApiAxiosParamCreator = function (configuration?: Configu
      *
      * @summary 定时统计看板数据
      * @param {string} [tenantId]
-     * @param {string} [tenantId2]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiV2OutputRefreshDataBoardsGet: async (
       tenantId?: string,
-      tenantId2?: string,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
       const localVarPath = `/api/v2/output/refresh-data-boards`
@@ -655,10 +591,6 @@ export const GeneralDataApiAxiosParamCreator = function (configuration?: Configu
 
       if (tenantId !== undefined) {
         localVarQueryParameter['tenantId'] = tenantId
-      }
-
-      if (tenantId2 != null) {
-        localVarHeaderParameter['tenantId'] = String(tenantId2)
       }
 
       setSearchParams(localVarUrlObj, localVarQueryParameter)
@@ -690,7 +622,6 @@ export const GeneralDataApiFp = function (configuration?: Configuration) {
      * @param {number} [displayTypeEnum] 展示类型
      * @param {string} [modelName] 模型名称
      * @param {string} [productLine] 工艺线
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -698,7 +629,6 @@ export const GeneralDataApiFp = function (configuration?: Configuration) {
       displayTypeEnum?: number,
       modelName?: string,
       productLine?: string,
-      tenantId?: string,
       options?: AxiosRequestConfig,
     ): Promise<
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<AssemblyConfigOutput>>
@@ -707,7 +637,6 @@ export const GeneralDataApiFp = function (configuration?: Configuration) {
         displayTypeEnum,
         modelName,
         productLine,
-        tenantId,
         options,
       )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
@@ -719,7 +648,6 @@ export const GeneralDataApiFp = function (configuration?: Configuration) {
      * @param {string} [endTime] 结束时间 end time
      * @param {string} [modelName] 模板模型名称 template model name
      * @param {string} [productLine] 工艺线代码 product line code
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -728,7 +656,6 @@ export const GeneralDataApiFp = function (configuration?: Configuration) {
       endTime?: string,
       modelName?: string,
       productLine?: string,
-      tenantId?: string,
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<InletWqOut>>> {
       const localVarAxiosArgs = await localVarAxiosParamCreator.apiGeneralDataGetInletWQGet(
@@ -736,7 +663,6 @@ export const GeneralDataApiFp = function (configuration?: Configuration) {
         endTime,
         modelName,
         productLine,
-        tenantId,
         options,
       )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
@@ -747,7 +673,6 @@ export const GeneralDataApiFp = function (configuration?: Configuration) {
      * @param {string} [startTime] 开始时间 start time
      * @param {string} [endTime] 结束时间 end time
      * @param {string} [modelName] 模板模型名称 template model name
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -755,14 +680,12 @@ export const GeneralDataApiFp = function (configuration?: Configuration) {
       startTime?: string,
       endTime?: string,
       modelName?: string,
-      tenantId?: string,
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<ModelPrecision>>> {
       const localVarAxiosArgs = await localVarAxiosParamCreator.apiGeneralDataGetModelPrecisionGet(
         startTime,
         endTime,
         modelName,
-        tenantId,
         options,
       )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
@@ -774,7 +697,6 @@ export const GeneralDataApiFp = function (configuration?: Configuration) {
      * @param {string} [endTime] 结束时间 end time
      * @param {string} [productLine] 工艺线代码 product line code
      * @param {string} [modelName] 模板模型名称 template model name
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -783,7 +705,6 @@ export const GeneralDataApiFp = function (configuration?: Configuration) {
       endTime?: string,
       productLine?: string,
       modelName?: string,
-      tenantId?: string,
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ModelOptimDto>> {
       const localVarAxiosArgs = await localVarAxiosParamCreator.apiGeneralDataGetOptimOutDataGet(
@@ -791,7 +712,6 @@ export const GeneralDataApiFp = function (configuration?: Configuration) {
         endTime,
         productLine,
         modelName,
-        tenantId,
         options,
       )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
@@ -802,7 +722,6 @@ export const GeneralDataApiFp = function (configuration?: Configuration) {
      * @param {string} [startTime] 开始时间 start time
      * @param {string} [endTime] 结束时间 end time
      * @param {string} [modelName] 模板模型名称 template model name
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -810,14 +729,12 @@ export const GeneralDataApiFp = function (configuration?: Configuration) {
       startTime?: string,
       endTime?: string,
       modelName?: string,
-      tenantId?: string,
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<OutletWqOut>>> {
       const localVarAxiosArgs = await localVarAxiosParamCreator.apiGeneralDataGetOutletWQGet(
         startTime,
         endTime,
         modelName,
-        tenantId,
         options,
       )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
@@ -829,7 +746,6 @@ export const GeneralDataApiFp = function (configuration?: Configuration) {
      * @param {string} [endTime] 结束时间 end time
      * @param {Array<string>} [alarmTypes] 消息类型 alarm types
      * @param {string} [isNationalStandard] 是否获取国标 true indicates grade&#x3D;1, and false indicates grade!&#x3D;1
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -838,7 +754,6 @@ export const GeneralDataApiFp = function (configuration?: Configuration) {
       endTime?: string,
       alarmTypes?: Array<string>,
       isNationalStandard?: string,
-      tenantId?: string,
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<PredictAlarmOut>>> {
       const localVarAxiosArgs = await localVarAxiosParamCreator.apiGeneralDataGetPredictAlarmGet(
@@ -846,7 +761,6 @@ export const GeneralDataApiFp = function (configuration?: Configuration) {
         endTime,
         alarmTypes,
         isNationalStandard,
-        tenantId,
         options,
       )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
@@ -855,20 +769,17 @@ export const GeneralDataApiFp = function (configuration?: Configuration) {
      * 返回过去七天，每天每条工艺线上的碳源加药吨水药耗和MCCR加药吨水药耗 Carbon source doage cost per ton of water and MCCR dosage cost per ton of water of each product line and each day in the past seven days will be returned.
      * @summary 根据实际投药量，获取吨水药耗统计信息 Get dosage cost per ton of inflow water statistic result based on actual dosage
      * @param {string} [modelName] 模型名称 template model name
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async apiV2OutputChemicalCostGet(
       modelName?: string,
-      tenantId?: string,
       options?: AxiosRequestConfig,
     ): Promise<
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<ChemicalCostPerFlowOutput>>
     > {
       const localVarAxiosArgs = await localVarAxiosParamCreator.apiV2OutputChemicalCostGet(
         modelName,
-        tenantId,
         options,
       )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
@@ -876,20 +787,15 @@ export const GeneralDataApiFp = function (configuration?: Configuration) {
     /**
      *
      * @summary 获取数据看板统计数据 Get statistic data for data board
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async apiV2OutputDataBoardsGet(
-      tenantId?: string,
       options?: AxiosRequestConfig,
     ): Promise<
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<DataBoardFullOut>>
     > {
-      const localVarAxiosArgs = await localVarAxiosParamCreator.apiV2OutputDataBoardsGet(
-        tenantId,
-        options,
-      )
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiV2OutputDataBoardsGet(options)
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**
@@ -897,14 +803,12 @@ export const GeneralDataApiFp = function (configuration?: Configuration) {
      * @summary 查询关键设备维护预警信息 Get key device maintenance warning information
      * @param {string} [startTime] 开始时间 start time
      * @param {string} [endTime] 结束时间 end time
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async apiV2OutputDeviceMaintenanceGet(
       startTime?: string,
       endTime?: string,
-      tenantId?: string,
       options?: AxiosRequestConfig,
     ): Promise<
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<DeviceMaintenanceOutput>>
@@ -912,7 +816,6 @@ export const GeneralDataApiFp = function (configuration?: Configuration) {
       const localVarAxiosArgs = await localVarAxiosParamCreator.apiV2OutputDeviceMaintenanceGet(
         startTime,
         endTime,
-        tenantId,
         options,
       )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
@@ -924,7 +827,6 @@ export const GeneralDataApiFp = function (configuration?: Configuration) {
      * @param {string} [startTime] 开始时间 start time
      * @param {string} [endTime] 结束时间 end time
      * @param {string} [modelName] 模板模型名称 template model name
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -933,7 +835,6 @@ export const GeneralDataApiFp = function (configuration?: Configuration) {
       startTime?: string,
       endTime?: string,
       modelName?: string,
-      tenantId?: string,
       options?: AxiosRequestConfig,
     ): Promise<
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<EntireProcessWqOut>>
@@ -944,7 +845,6 @@ export const GeneralDataApiFp = function (configuration?: Configuration) {
           startTime,
           endTime,
           modelName,
-          tenantId,
           options,
         )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
@@ -953,18 +853,15 @@ export const GeneralDataApiFp = function (configuration?: Configuration) {
      *
      * @summary 定时统计看板数据
      * @param {string} [tenantId]
-     * @param {string} [tenantId2]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async apiV2OutputRefreshDataBoardsGet(
       tenantId?: string,
-      tenantId2?: string,
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<StatisDataBoardsView>> {
       const localVarAxiosArgs = await localVarAxiosParamCreator.apiV2OutputRefreshDataBoardsGet(
         tenantId,
-        tenantId2,
         options,
       )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
@@ -989,7 +886,6 @@ export const GeneralDataApiFactory = function (
      * @param {number} [displayTypeEnum] 展示类型
      * @param {string} [modelName] 模型名称
      * @param {string} [productLine] 工艺线
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -997,17 +893,10 @@ export const GeneralDataApiFactory = function (
       displayTypeEnum?: number,
       modelName?: string,
       productLine?: string,
-      tenantId?: string,
       options?: any,
     ): AxiosPromise<Array<AssemblyConfigOutput>> {
       return localVarFp
-        .apiGeneralDataGetAssemblyConfigsGet(
-          displayTypeEnum,
-          modelName,
-          productLine,
-          tenantId,
-          options,
-        )
+        .apiGeneralDataGetAssemblyConfigsGet(displayTypeEnum, modelName, productLine, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -1017,7 +906,6 @@ export const GeneralDataApiFactory = function (
      * @param {string} [endTime] 结束时间 end time
      * @param {string} [modelName] 模板模型名称 template model name
      * @param {string} [productLine] 工艺线代码 product line code
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -1026,11 +914,10 @@ export const GeneralDataApiFactory = function (
       endTime?: string,
       modelName?: string,
       productLine?: string,
-      tenantId?: string,
       options?: any,
     ): AxiosPromise<Array<InletWqOut>> {
       return localVarFp
-        .apiGeneralDataGetInletWQGet(startTime, endTime, modelName, productLine, tenantId, options)
+        .apiGeneralDataGetInletWQGet(startTime, endTime, modelName, productLine, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -1039,7 +926,6 @@ export const GeneralDataApiFactory = function (
      * @param {string} [startTime] 开始时间 start time
      * @param {string} [endTime] 结束时间 end time
      * @param {string} [modelName] 模板模型名称 template model name
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -1047,11 +933,10 @@ export const GeneralDataApiFactory = function (
       startTime?: string,
       endTime?: string,
       modelName?: string,
-      tenantId?: string,
       options?: any,
     ): AxiosPromise<Array<ModelPrecision>> {
       return localVarFp
-        .apiGeneralDataGetModelPrecisionGet(startTime, endTime, modelName, tenantId, options)
+        .apiGeneralDataGetModelPrecisionGet(startTime, endTime, modelName, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -1061,7 +946,6 @@ export const GeneralDataApiFactory = function (
      * @param {string} [endTime] 结束时间 end time
      * @param {string} [productLine] 工艺线代码 product line code
      * @param {string} [modelName] 模板模型名称 template model name
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -1070,18 +954,10 @@ export const GeneralDataApiFactory = function (
       endTime?: string,
       productLine?: string,
       modelName?: string,
-      tenantId?: string,
       options?: any,
     ): AxiosPromise<ModelOptimDto> {
       return localVarFp
-        .apiGeneralDataGetOptimOutDataGet(
-          startTime,
-          endTime,
-          productLine,
-          modelName,
-          tenantId,
-          options,
-        )
+        .apiGeneralDataGetOptimOutDataGet(startTime, endTime, productLine, modelName, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -1090,7 +966,6 @@ export const GeneralDataApiFactory = function (
      * @param {string} [startTime] 开始时间 start time
      * @param {string} [endTime] 结束时间 end time
      * @param {string} [modelName] 模板模型名称 template model name
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -1098,11 +973,10 @@ export const GeneralDataApiFactory = function (
       startTime?: string,
       endTime?: string,
       modelName?: string,
-      tenantId?: string,
       options?: any,
     ): AxiosPromise<Array<OutletWqOut>> {
       return localVarFp
-        .apiGeneralDataGetOutletWQGet(startTime, endTime, modelName, tenantId, options)
+        .apiGeneralDataGetOutletWQGet(startTime, endTime, modelName, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -1112,7 +986,6 @@ export const GeneralDataApiFactory = function (
      * @param {string} [endTime] 结束时间 end time
      * @param {Array<string>} [alarmTypes] 消息类型 alarm types
      * @param {string} [isNationalStandard] 是否获取国标 true indicates grade&#x3D;1, and false indicates grade!&#x3D;1
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -1121,7 +994,6 @@ export const GeneralDataApiFactory = function (
       endTime?: string,
       alarmTypes?: Array<string>,
       isNationalStandard?: string,
-      tenantId?: string,
       options?: any,
     ): AxiosPromise<Array<PredictAlarmOut>> {
       return localVarFp
@@ -1130,7 +1002,6 @@ export const GeneralDataApiFactory = function (
           endTime,
           alarmTypes,
           isNationalStandard,
-          tenantId,
           options,
         )
         .then((request) => request(axios, basePath))
@@ -1139,32 +1010,26 @@ export const GeneralDataApiFactory = function (
      * 返回过去七天，每天每条工艺线上的碳源加药吨水药耗和MCCR加药吨水药耗 Carbon source doage cost per ton of water and MCCR dosage cost per ton of water of each product line and each day in the past seven days will be returned.
      * @summary 根据实际投药量，获取吨水药耗统计信息 Get dosage cost per ton of inflow water statistic result based on actual dosage
      * @param {string} [modelName] 模型名称 template model name
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiV2OutputChemicalCostGet(
       modelName?: string,
-      tenantId?: string,
       options?: any,
     ): AxiosPromise<Array<ChemicalCostPerFlowOutput>> {
       return localVarFp
-        .apiV2OutputChemicalCostGet(modelName, tenantId, options)
+        .apiV2OutputChemicalCostGet(modelName, options)
         .then((request) => request(axios, basePath))
     },
     /**
      *
      * @summary 获取数据看板统计数据 Get statistic data for data board
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    apiV2OutputDataBoardsGet(
-      tenantId?: string,
-      options?: any,
-    ): AxiosPromise<Array<DataBoardFullOut>> {
+    apiV2OutputDataBoardsGet(options?: any): AxiosPromise<Array<DataBoardFullOut>> {
       return localVarFp
-        .apiV2OutputDataBoardsGet(tenantId, options)
+        .apiV2OutputDataBoardsGet(options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -1172,18 +1037,16 @@ export const GeneralDataApiFactory = function (
      * @summary 查询关键设备维护预警信息 Get key device maintenance warning information
      * @param {string} [startTime] 开始时间 start time
      * @param {string} [endTime] 结束时间 end time
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiV2OutputDeviceMaintenanceGet(
       startTime?: string,
       endTime?: string,
-      tenantId?: string,
       options?: any,
     ): AxiosPromise<Array<DeviceMaintenanceOutput>> {
       return localVarFp
-        .apiV2OutputDeviceMaintenanceGet(startTime, endTime, tenantId, options)
+        .apiV2OutputDeviceMaintenanceGet(startTime, endTime, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -1193,7 +1056,6 @@ export const GeneralDataApiFactory = function (
      * @param {string} [startTime] 开始时间 start time
      * @param {string} [endTime] 结束时间 end time
      * @param {string} [modelName] 模板模型名称 template model name
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -1202,7 +1064,6 @@ export const GeneralDataApiFactory = function (
       startTime?: string,
       endTime?: string,
       modelName?: string,
-      tenantId?: string,
       options?: any,
     ): AxiosPromise<Array<EntireProcessWqOut>> {
       return localVarFp
@@ -1211,7 +1072,6 @@ export const GeneralDataApiFactory = function (
           startTime,
           endTime,
           modelName,
-          tenantId,
           options,
         )
         .then((request) => request(axios, basePath))
@@ -1220,17 +1080,15 @@ export const GeneralDataApiFactory = function (
      *
      * @summary 定时统计看板数据
      * @param {string} [tenantId]
-     * @param {string} [tenantId2]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiV2OutputRefreshDataBoardsGet(
       tenantId?: string,
-      tenantId2?: string,
       options?: any,
     ): AxiosPromise<StatisDataBoardsView> {
       return localVarFp
-        .apiV2OutputRefreshDataBoardsGet(tenantId, tenantId2, options)
+        .apiV2OutputRefreshDataBoardsGet(tenantId, options)
         .then((request) => request(axios, basePath))
     },
   }
@@ -1249,7 +1107,6 @@ export class GeneralDataApi extends BaseAPI {
    * @param {number} [displayTypeEnum] 展示类型
    * @param {string} [modelName] 模型名称
    * @param {string} [productLine] 工艺线
-   * @param {string} [tenantId]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof GeneralDataApi
@@ -1258,17 +1115,10 @@ export class GeneralDataApi extends BaseAPI {
     displayTypeEnum?: number,
     modelName?: string,
     productLine?: string,
-    tenantId?: string,
     options?: AxiosRequestConfig,
   ) {
     return GeneralDataApiFp(this.configuration)
-      .apiGeneralDataGetAssemblyConfigsGet(
-        displayTypeEnum,
-        modelName,
-        productLine,
-        tenantId,
-        options,
-      )
+      .apiGeneralDataGetAssemblyConfigsGet(displayTypeEnum, modelName, productLine, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -1279,7 +1129,6 @@ export class GeneralDataApi extends BaseAPI {
    * @param {string} [endTime] 结束时间 end time
    * @param {string} [modelName] 模板模型名称 template model name
    * @param {string} [productLine] 工艺线代码 product line code
-   * @param {string} [tenantId]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof GeneralDataApi
@@ -1289,11 +1138,10 @@ export class GeneralDataApi extends BaseAPI {
     endTime?: string,
     modelName?: string,
     productLine?: string,
-    tenantId?: string,
     options?: AxiosRequestConfig,
   ) {
     return GeneralDataApiFp(this.configuration)
-      .apiGeneralDataGetInletWQGet(startTime, endTime, modelName, productLine, tenantId, options)
+      .apiGeneralDataGetInletWQGet(startTime, endTime, modelName, productLine, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -1303,7 +1151,6 @@ export class GeneralDataApi extends BaseAPI {
    * @param {string} [startTime] 开始时间 start time
    * @param {string} [endTime] 结束时间 end time
    * @param {string} [modelName] 模板模型名称 template model name
-   * @param {string} [tenantId]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof GeneralDataApi
@@ -1312,11 +1159,10 @@ export class GeneralDataApi extends BaseAPI {
     startTime?: string,
     endTime?: string,
     modelName?: string,
-    tenantId?: string,
     options?: AxiosRequestConfig,
   ) {
     return GeneralDataApiFp(this.configuration)
-      .apiGeneralDataGetModelPrecisionGet(startTime, endTime, modelName, tenantId, options)
+      .apiGeneralDataGetModelPrecisionGet(startTime, endTime, modelName, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -1327,7 +1173,6 @@ export class GeneralDataApi extends BaseAPI {
    * @param {string} [endTime] 结束时间 end time
    * @param {string} [productLine] 工艺线代码 product line code
    * @param {string} [modelName] 模板模型名称 template model name
-   * @param {string} [tenantId]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof GeneralDataApi
@@ -1337,18 +1182,10 @@ export class GeneralDataApi extends BaseAPI {
     endTime?: string,
     productLine?: string,
     modelName?: string,
-    tenantId?: string,
     options?: AxiosRequestConfig,
   ) {
     return GeneralDataApiFp(this.configuration)
-      .apiGeneralDataGetOptimOutDataGet(
-        startTime,
-        endTime,
-        productLine,
-        modelName,
-        tenantId,
-        options,
-      )
+      .apiGeneralDataGetOptimOutDataGet(startTime, endTime, productLine, modelName, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -1358,7 +1195,6 @@ export class GeneralDataApi extends BaseAPI {
    * @param {string} [startTime] 开始时间 start time
    * @param {string} [endTime] 结束时间 end time
    * @param {string} [modelName] 模板模型名称 template model name
-   * @param {string} [tenantId]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof GeneralDataApi
@@ -1367,11 +1203,10 @@ export class GeneralDataApi extends BaseAPI {
     startTime?: string,
     endTime?: string,
     modelName?: string,
-    tenantId?: string,
     options?: AxiosRequestConfig,
   ) {
     return GeneralDataApiFp(this.configuration)
-      .apiGeneralDataGetOutletWQGet(startTime, endTime, modelName, tenantId, options)
+      .apiGeneralDataGetOutletWQGet(startTime, endTime, modelName, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -1382,7 +1217,6 @@ export class GeneralDataApi extends BaseAPI {
    * @param {string} [endTime] 结束时间 end time
    * @param {Array<string>} [alarmTypes] 消息类型 alarm types
    * @param {string} [isNationalStandard] 是否获取国标 true indicates grade&#x3D;1, and false indicates grade!&#x3D;1
-   * @param {string} [tenantId]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof GeneralDataApi
@@ -1392,18 +1226,10 @@ export class GeneralDataApi extends BaseAPI {
     endTime?: string,
     alarmTypes?: Array<string>,
     isNationalStandard?: string,
-    tenantId?: string,
     options?: AxiosRequestConfig,
   ) {
     return GeneralDataApiFp(this.configuration)
-      .apiGeneralDataGetPredictAlarmGet(
-        startTime,
-        endTime,
-        alarmTypes,
-        isNationalStandard,
-        tenantId,
-        options,
-      )
+      .apiGeneralDataGetPredictAlarmGet(startTime, endTime, alarmTypes, isNationalStandard, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -1411,32 +1237,26 @@ export class GeneralDataApi extends BaseAPI {
    * 返回过去七天，每天每条工艺线上的碳源加药吨水药耗和MCCR加药吨水药耗 Carbon source doage cost per ton of water and MCCR dosage cost per ton of water of each product line and each day in the past seven days will be returned.
    * @summary 根据实际投药量，获取吨水药耗统计信息 Get dosage cost per ton of inflow water statistic result based on actual dosage
    * @param {string} [modelName] 模型名称 template model name
-   * @param {string} [tenantId]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof GeneralDataApi
    */
-  public apiV2OutputChemicalCostGet(
-    modelName?: string,
-    tenantId?: string,
-    options?: AxiosRequestConfig,
-  ) {
+  public apiV2OutputChemicalCostGet(modelName?: string, options?: AxiosRequestConfig) {
     return GeneralDataApiFp(this.configuration)
-      .apiV2OutputChemicalCostGet(modelName, tenantId, options)
+      .apiV2OutputChemicalCostGet(modelName, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
   /**
    *
    * @summary 获取数据看板统计数据 Get statistic data for data board
-   * @param {string} [tenantId]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof GeneralDataApi
    */
-  public apiV2OutputDataBoardsGet(tenantId?: string, options?: AxiosRequestConfig) {
+  public apiV2OutputDataBoardsGet(options?: AxiosRequestConfig) {
     return GeneralDataApiFp(this.configuration)
-      .apiV2OutputDataBoardsGet(tenantId, options)
+      .apiV2OutputDataBoardsGet(options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -1445,7 +1265,6 @@ export class GeneralDataApi extends BaseAPI {
    * @summary 查询关键设备维护预警信息 Get key device maintenance warning information
    * @param {string} [startTime] 开始时间 start time
    * @param {string} [endTime] 结束时间 end time
-   * @param {string} [tenantId]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof GeneralDataApi
@@ -1453,11 +1272,10 @@ export class GeneralDataApi extends BaseAPI {
   public apiV2OutputDeviceMaintenanceGet(
     startTime?: string,
     endTime?: string,
-    tenantId?: string,
     options?: AxiosRequestConfig,
   ) {
     return GeneralDataApiFp(this.configuration)
-      .apiV2OutputDeviceMaintenanceGet(startTime, endTime, tenantId, options)
+      .apiV2OutputDeviceMaintenanceGet(startTime, endTime, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -1468,7 +1286,6 @@ export class GeneralDataApi extends BaseAPI {
    * @param {string} [startTime] 开始时间 start time
    * @param {string} [endTime] 结束时间 end time
    * @param {string} [modelName] 模板模型名称 template model name
-   * @param {string} [tenantId]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof GeneralDataApi
@@ -1478,7 +1295,6 @@ export class GeneralDataApi extends BaseAPI {
     startTime?: string,
     endTime?: string,
     modelName?: string,
-    tenantId?: string,
     options?: AxiosRequestConfig,
   ) {
     return GeneralDataApiFp(this.configuration)
@@ -1487,7 +1303,6 @@ export class GeneralDataApi extends BaseAPI {
         startTime,
         endTime,
         modelName,
-        tenantId,
         options,
       )
       .then((request) => request(this.axios, this.basePath))
@@ -1497,18 +1312,13 @@ export class GeneralDataApi extends BaseAPI {
    *
    * @summary 定时统计看板数据
    * @param {string} [tenantId]
-   * @param {string} [tenantId2]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof GeneralDataApi
    */
-  public apiV2OutputRefreshDataBoardsGet(
-    tenantId?: string,
-    tenantId2?: string,
-    options?: AxiosRequestConfig,
-  ) {
+  public apiV2OutputRefreshDataBoardsGet(tenantId?: string, options?: AxiosRequestConfig) {
     return GeneralDataApiFp(this.configuration)
-      .apiV2OutputRefreshDataBoardsGet(tenantId, tenantId2, options)
+      .apiV2OutputRefreshDataBoardsGet(tenantId, options)
       .then((request) => request(this.axios, this.basePath))
   }
 }

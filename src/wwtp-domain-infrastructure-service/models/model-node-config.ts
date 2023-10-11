@@ -14,37 +14,49 @@
 /**
  *
  * @export
- * @interface ModelNodeConfigInputOutput
+ * @interface ModelNodeConfig
  */
-export interface ModelNodeConfigInputOutput {
+export interface ModelNodeConfig {
   /**
-   * 模型点位编码 model node code
+   *
    * @type {string}
-   * @memberof ModelNodeConfigInputOutput
+   * @memberof ModelNodeConfig
+   */
+  id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof ModelNodeConfig
+   */
+  tenantId?: string | null
+  /**
+   *
+   * @type {string}
+   * @memberof ModelNodeConfig
    */
   nodeCode?: string | null
   /**
-   * 模型点位名称 mode node name
+   *
    * @type {string}
-   * @memberof ModelNodeConfigInputOutput
+   * @memberof ModelNodeConfig
    */
   nodeName?: string | null
   /**
-   * 单位 data unit
+   *
    * @type {string}
-   * @memberof ModelNodeConfigInputOutput
+   * @memberof ModelNodeConfig
    */
   unit?: string | null
   /**
-   * 数据类型，如负荷、浓度等 data type like Load, Concentration, etc.
+   *
    * @type {string}
-   * @memberof ModelNodeConfigInputOutput
+   * @memberof ModelNodeConfig
    */
   dataType?: string | null
   /**
-   * 模板模型名称（即模板方案名称） template model name
+   *
    * @type {string}
-   * @memberof ModelNodeConfigInputOutput
+   * @memberof ModelNodeConfig
    */
   modelName?: string | null
 }

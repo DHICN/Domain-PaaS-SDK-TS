@@ -47,13 +47,11 @@ export const HistoryDataApiAxiosParamCreator = function (configuration?: Configu
     /**
      *
      * @summary 导出清洗后的在线数据，模拟结果数据 Export processed online data or model result data as an excel file
-     * @param {string} [tenantId]
      * @param {QueryByConditionInput} [queryByConditionInput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiV2HistoryDataExportPost: async (
-      tenantId?: string,
       queryByConditionInput?: QueryByConditionInput,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
@@ -68,10 +66,6 @@ export const HistoryDataApiAxiosParamCreator = function (configuration?: Configu
       const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
-
-      if (tenantId != null) {
-        localVarHeaderParameter['tenantId'] = String(tenantId)
-      }
 
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
@@ -96,13 +90,11 @@ export const HistoryDataApiAxiosParamCreator = function (configuration?: Configu
     /**
      *
      * @summary 根据时间段和点位代码查询清洗后的在线数据和模拟结果数据 Get processed online data or model result data by time and codes
-     * @param {string} [tenantId]
      * @param {QueryByConditionInput} [queryByConditionInput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiV2HistoryDataGetByConditionPost: async (
-      tenantId?: string,
       queryByConditionInput?: QueryByConditionInput,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
@@ -117,10 +109,6 @@ export const HistoryDataApiAxiosParamCreator = function (configuration?: Configu
       const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
-
-      if (tenantId != null) {
-        localVarHeaderParameter['tenantId'] = String(tenantId)
-      }
 
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
@@ -146,13 +134,11 @@ export const HistoryDataApiAxiosParamCreator = function (configuration?: Configu
      *
      * @summary 获取指标查询的可选择项的具体信息 Get all the historical data indicators for selection on the front end
      * @param {string} [modelName] 模板模型名称 template model name
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiV2HistoryDataSelectItemsGet: async (
       modelName?: string,
-      tenantId?: string,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
       const localVarPath = `/api/v2/history-data/select-items`
@@ -169,10 +155,6 @@ export const HistoryDataApiAxiosParamCreator = function (configuration?: Configu
 
       if (modelName !== undefined) {
         localVarQueryParameter['modelName'] = modelName
-      }
-
-      if (tenantId != null) {
-        localVarHeaderParameter['tenantId'] = String(tenantId)
       }
 
       setSearchParams(localVarUrlObj, localVarQueryParameter)
@@ -201,18 +183,15 @@ export const HistoryDataApiFp = function (configuration?: Configuration) {
     /**
      *
      * @summary 导出清洗后的在线数据，模拟结果数据 Export processed online data or model result data as an excel file
-     * @param {string} [tenantId]
      * @param {QueryByConditionInput} [queryByConditionInput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async apiV2HistoryDataExportPost(
-      tenantId?: string,
       queryByConditionInput?: QueryByConditionInput,
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
       const localVarAxiosArgs = await localVarAxiosParamCreator.apiV2HistoryDataExportPost(
-        tenantId,
         queryByConditionInput,
         options,
       )
@@ -221,18 +200,15 @@ export const HistoryDataApiFp = function (configuration?: Configuration) {
     /**
      *
      * @summary 根据时间段和点位代码查询清洗后的在线数据和模拟结果数据 Get processed online data or model result data by time and codes
-     * @param {string} [tenantId]
      * @param {QueryByConditionInput} [queryByConditionInput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async apiV2HistoryDataGetByConditionPost(
-      tenantId?: string,
       queryByConditionInput?: QueryByConditionInput,
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<TsDataOutput>>> {
       const localVarAxiosArgs = await localVarAxiosParamCreator.apiV2HistoryDataGetByConditionPost(
-        tenantId,
         queryByConditionInput,
         options,
       )
@@ -242,18 +218,15 @@ export const HistoryDataApiFp = function (configuration?: Configuration) {
      *
      * @summary 获取指标查询的可选择项的具体信息 Get all the historical data indicators for selection on the front end
      * @param {string} [modelName] 模板模型名称 template model name
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async apiV2HistoryDataSelectItemsGet(
       modelName?: string,
-      tenantId?: string,
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<SelectItemNode>>> {
       const localVarAxiosArgs = await localVarAxiosParamCreator.apiV2HistoryDataSelectItemsGet(
         modelName,
-        tenantId,
         options,
       )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
@@ -275,52 +248,46 @@ export const HistoryDataApiFactory = function (
     /**
      *
      * @summary 导出清洗后的在线数据，模拟结果数据 Export processed online data or model result data as an excel file
-     * @param {string} [tenantId]
      * @param {QueryByConditionInput} [queryByConditionInput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiV2HistoryDataExportPost(
-      tenantId?: string,
       queryByConditionInput?: QueryByConditionInput,
       options?: any,
     ): AxiosPromise<void> {
       return localVarFp
-        .apiV2HistoryDataExportPost(tenantId, queryByConditionInput, options)
+        .apiV2HistoryDataExportPost(queryByConditionInput, options)
         .then((request) => request(axios, basePath))
     },
     /**
      *
      * @summary 根据时间段和点位代码查询清洗后的在线数据和模拟结果数据 Get processed online data or model result data by time and codes
-     * @param {string} [tenantId]
      * @param {QueryByConditionInput} [queryByConditionInput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiV2HistoryDataGetByConditionPost(
-      tenantId?: string,
       queryByConditionInput?: QueryByConditionInput,
       options?: any,
     ): AxiosPromise<Array<TsDataOutput>> {
       return localVarFp
-        .apiV2HistoryDataGetByConditionPost(tenantId, queryByConditionInput, options)
+        .apiV2HistoryDataGetByConditionPost(queryByConditionInput, options)
         .then((request) => request(axios, basePath))
     },
     /**
      *
      * @summary 获取指标查询的可选择项的具体信息 Get all the historical data indicators for selection on the front end
      * @param {string} [modelName] 模板模型名称 template model name
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiV2HistoryDataSelectItemsGet(
       modelName?: string,
-      tenantId?: string,
       options?: any,
     ): AxiosPromise<Array<SelectItemNode>> {
       return localVarFp
-        .apiV2HistoryDataSelectItemsGet(modelName, tenantId, options)
+        .apiV2HistoryDataSelectItemsGet(modelName, options)
         .then((request) => request(axios, basePath))
     },
   }
@@ -336,38 +303,34 @@ export class HistoryDataApi extends BaseAPI {
   /**
    *
    * @summary 导出清洗后的在线数据，模拟结果数据 Export processed online data or model result data as an excel file
-   * @param {string} [tenantId]
    * @param {QueryByConditionInput} [queryByConditionInput]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof HistoryDataApi
    */
   public apiV2HistoryDataExportPost(
-    tenantId?: string,
     queryByConditionInput?: QueryByConditionInput,
     options?: AxiosRequestConfig,
   ) {
     return HistoryDataApiFp(this.configuration)
-      .apiV2HistoryDataExportPost(tenantId, queryByConditionInput, options)
+      .apiV2HistoryDataExportPost(queryByConditionInput, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
   /**
    *
    * @summary 根据时间段和点位代码查询清洗后的在线数据和模拟结果数据 Get processed online data or model result data by time and codes
-   * @param {string} [tenantId]
    * @param {QueryByConditionInput} [queryByConditionInput]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof HistoryDataApi
    */
   public apiV2HistoryDataGetByConditionPost(
-    tenantId?: string,
     queryByConditionInput?: QueryByConditionInput,
     options?: AxiosRequestConfig,
   ) {
     return HistoryDataApiFp(this.configuration)
-      .apiV2HistoryDataGetByConditionPost(tenantId, queryByConditionInput, options)
+      .apiV2HistoryDataGetByConditionPost(queryByConditionInput, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -375,18 +338,13 @@ export class HistoryDataApi extends BaseAPI {
    *
    * @summary 获取指标查询的可选择项的具体信息 Get all the historical data indicators for selection on the front end
    * @param {string} [modelName] 模板模型名称 template model name
-   * @param {string} [tenantId]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof HistoryDataApi
    */
-  public apiV2HistoryDataSelectItemsGet(
-    modelName?: string,
-    tenantId?: string,
-    options?: AxiosRequestConfig,
-  ) {
+  public apiV2HistoryDataSelectItemsGet(modelName?: string, options?: AxiosRequestConfig) {
     return HistoryDataApiFp(this.configuration)
-      .apiV2HistoryDataSelectItemsGet(modelName, tenantId, options)
+      .apiV2HistoryDataSelectItemsGet(modelName, options)
       .then((request) => request(this.axios, this.basePath))
   }
 }

@@ -43,13 +43,11 @@ export const BuildCalcDosageConfigApiAxiosParamCreator = function (configuration
     /**
      *
      * @summary 添加加药配置信息 Add dosing algorithm parameters config data
-     * @param {string} [tenantId]
      * @param {Array<BuildCalcDosageConfigInOut>} [buildCalcDosageConfigInOut]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiDosingSysIdConfigAddDosingSysIdConfigsPost: async (
-      tenantId?: string,
       buildCalcDosageConfigInOut?: Array<BuildCalcDosageConfigInOut>,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
@@ -64,10 +62,6 @@ export const BuildCalcDosageConfigApiAxiosParamCreator = function (configuration
       const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
-
-      if (tenantId != null) {
-        localVarHeaderParameter['tenantId'] = String(tenantId)
-      }
 
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
@@ -92,13 +86,11 @@ export const BuildCalcDosageConfigApiAxiosParamCreator = function (configuration
     /**
      *
      * @summary 根据ID删除加药配置信息 Delete dosing algorithm parameters config data by ids
-     * @param {string} [tenantId]
      * @param {Array<string>} [requestBody]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiDosingSysIdConfigDeleteDosingSysIdConfigsPost: async (
-      tenantId?: string,
       requestBody?: Array<string>,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
@@ -113,10 +105,6 @@ export const BuildCalcDosageConfigApiAxiosParamCreator = function (configuration
       const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
-
-      if (tenantId != null) {
-        localVarHeaderParameter['tenantId'] = String(tenantId)
-      }
 
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
@@ -141,12 +129,10 @@ export const BuildCalcDosageConfigApiAxiosParamCreator = function (configuration
     /**
      *
      * @summary 获取所有加药配置 Get all the dosing algorithm parameters config data
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiDosingSysIdConfigGetAllDosingSysIdConfigsGet: async (
-      tenantId?: string,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
       const localVarPath = `/api/DosingSysIdConfig/GetAllDosingSysIdConfigs`
@@ -160,10 +146,6 @@ export const BuildCalcDosageConfigApiAxiosParamCreator = function (configuration
       const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
-
-      if (tenantId != null) {
-        localVarHeaderParameter['tenantId'] = String(tenantId)
-      }
 
       setSearchParams(localVarUrlObj, localVarQueryParameter)
       let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
@@ -181,13 +163,11 @@ export const BuildCalcDosageConfigApiAxiosParamCreator = function (configuration
     /**
      *
      * @summary 更新加药配置信息 Update dosing algorithm parameters config data
-     * @param {string} [tenantId]
      * @param {Array<BuildCalcDosageConfigInOut>} [buildCalcDosageConfigInOut]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiDosingSysIdConfigUpdateDosingSysIdConfigsPost: async (
-      tenantId?: string,
       buildCalcDosageConfigInOut?: Array<BuildCalcDosageConfigInOut>,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
@@ -202,10 +182,6 @@ export const BuildCalcDosageConfigApiAxiosParamCreator = function (configuration
       const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
-
-      if (tenantId != null) {
-        localVarHeaderParameter['tenantId'] = String(tenantId)
-      }
 
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
@@ -240,19 +216,16 @@ export const BuildCalcDosageConfigApiFp = function (configuration?: Configuratio
     /**
      *
      * @summary 添加加药配置信息 Add dosing algorithm parameters config data
-     * @param {string} [tenantId]
      * @param {Array<BuildCalcDosageConfigInOut>} [buildCalcDosageConfigInOut]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async apiDosingSysIdConfigAddDosingSysIdConfigsPost(
-      tenantId?: string,
       buildCalcDosageConfigInOut?: Array<BuildCalcDosageConfigInOut>,
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.apiDosingSysIdConfigAddDosingSysIdConfigsPost(
-          tenantId,
           buildCalcDosageConfigInOut,
           options,
         )
@@ -261,19 +234,16 @@ export const BuildCalcDosageConfigApiFp = function (configuration?: Configuratio
     /**
      *
      * @summary 根据ID删除加药配置信息 Delete dosing algorithm parameters config data by ids
-     * @param {string} [tenantId]
      * @param {Array<string>} [requestBody]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async apiDosingSysIdConfigDeleteDosingSysIdConfigsPost(
-      tenantId?: string,
       requestBody?: Array<string>,
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.apiDosingSysIdConfigDeleteDosingSysIdConfigsPost(
-          tenantId,
           requestBody,
           options,
         )
@@ -282,39 +252,31 @@ export const BuildCalcDosageConfigApiFp = function (configuration?: Configuratio
     /**
      *
      * @summary 获取所有加药配置 Get all the dosing algorithm parameters config data
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async apiDosingSysIdConfigGetAllDosingSysIdConfigsGet(
-      tenantId?: string,
       options?: AxiosRequestConfig,
     ): Promise<
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<BuildCalcDosageConfigInOut>>
     > {
       const localVarAxiosArgs =
-        await localVarAxiosParamCreator.apiDosingSysIdConfigGetAllDosingSysIdConfigsGet(
-          tenantId,
-          options,
-        )
+        await localVarAxiosParamCreator.apiDosingSysIdConfigGetAllDosingSysIdConfigsGet(options)
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**
      *
      * @summary 更新加药配置信息 Update dosing algorithm parameters config data
-     * @param {string} [tenantId]
      * @param {Array<BuildCalcDosageConfigInOut>} [buildCalcDosageConfigInOut]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async apiDosingSysIdConfigUpdateDosingSysIdConfigsPost(
-      tenantId?: string,
       buildCalcDosageConfigInOut?: Array<BuildCalcDosageConfigInOut>,
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.apiDosingSysIdConfigUpdateDosingSysIdConfigsPost(
-          tenantId,
           buildCalcDosageConfigInOut,
           options,
         )
@@ -337,75 +299,59 @@ export const BuildCalcDosageConfigApiFactory = function (
     /**
      *
      * @summary 添加加药配置信息 Add dosing algorithm parameters config data
-     * @param {string} [tenantId]
      * @param {Array<BuildCalcDosageConfigInOut>} [buildCalcDosageConfigInOut]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiDosingSysIdConfigAddDosingSysIdConfigsPost(
-      tenantId?: string,
       buildCalcDosageConfigInOut?: Array<BuildCalcDosageConfigInOut>,
       options?: any,
     ): AxiosPromise<object> {
       return localVarFp
-        .apiDosingSysIdConfigAddDosingSysIdConfigsPost(
-          tenantId,
-          buildCalcDosageConfigInOut,
-          options,
-        )
+        .apiDosingSysIdConfigAddDosingSysIdConfigsPost(buildCalcDosageConfigInOut, options)
         .then((request) => request(axios, basePath))
     },
     /**
      *
      * @summary 根据ID删除加药配置信息 Delete dosing algorithm parameters config data by ids
-     * @param {string} [tenantId]
      * @param {Array<string>} [requestBody]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiDosingSysIdConfigDeleteDosingSysIdConfigsPost(
-      tenantId?: string,
       requestBody?: Array<string>,
       options?: any,
     ): AxiosPromise<object> {
       return localVarFp
-        .apiDosingSysIdConfigDeleteDosingSysIdConfigsPost(tenantId, requestBody, options)
+        .apiDosingSysIdConfigDeleteDosingSysIdConfigsPost(requestBody, options)
         .then((request) => request(axios, basePath))
     },
     /**
      *
      * @summary 获取所有加药配置 Get all the dosing algorithm parameters config data
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiDosingSysIdConfigGetAllDosingSysIdConfigsGet(
-      tenantId?: string,
       options?: any,
     ): AxiosPromise<Array<BuildCalcDosageConfigInOut>> {
       return localVarFp
-        .apiDosingSysIdConfigGetAllDosingSysIdConfigsGet(tenantId, options)
+        .apiDosingSysIdConfigGetAllDosingSysIdConfigsGet(options)
         .then((request) => request(axios, basePath))
     },
     /**
      *
      * @summary 更新加药配置信息 Update dosing algorithm parameters config data
-     * @param {string} [tenantId]
      * @param {Array<BuildCalcDosageConfigInOut>} [buildCalcDosageConfigInOut]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiDosingSysIdConfigUpdateDosingSysIdConfigsPost(
-      tenantId?: string,
       buildCalcDosageConfigInOut?: Array<BuildCalcDosageConfigInOut>,
       options?: any,
     ): AxiosPromise<object> {
       return localVarFp
-        .apiDosingSysIdConfigUpdateDosingSysIdConfigsPost(
-          tenantId,
-          buildCalcDosageConfigInOut,
-          options,
-        )
+        .apiDosingSysIdConfigUpdateDosingSysIdConfigsPost(buildCalcDosageConfigInOut, options)
         .then((request) => request(axios, basePath))
     },
   }
@@ -421,78 +367,64 @@ export class BuildCalcDosageConfigApi extends BaseAPI {
   /**
    *
    * @summary 添加加药配置信息 Add dosing algorithm parameters config data
-   * @param {string} [tenantId]
    * @param {Array<BuildCalcDosageConfigInOut>} [buildCalcDosageConfigInOut]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof BuildCalcDosageConfigApi
    */
   public apiDosingSysIdConfigAddDosingSysIdConfigsPost(
-    tenantId?: string,
     buildCalcDosageConfigInOut?: Array<BuildCalcDosageConfigInOut>,
     options?: AxiosRequestConfig,
   ) {
     return BuildCalcDosageConfigApiFp(this.configuration)
-      .apiDosingSysIdConfigAddDosingSysIdConfigsPost(tenantId, buildCalcDosageConfigInOut, options)
+      .apiDosingSysIdConfigAddDosingSysIdConfigsPost(buildCalcDosageConfigInOut, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
   /**
    *
    * @summary 根据ID删除加药配置信息 Delete dosing algorithm parameters config data by ids
-   * @param {string} [tenantId]
    * @param {Array<string>} [requestBody]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof BuildCalcDosageConfigApi
    */
   public apiDosingSysIdConfigDeleteDosingSysIdConfigsPost(
-    tenantId?: string,
     requestBody?: Array<string>,
     options?: AxiosRequestConfig,
   ) {
     return BuildCalcDosageConfigApiFp(this.configuration)
-      .apiDosingSysIdConfigDeleteDosingSysIdConfigsPost(tenantId, requestBody, options)
+      .apiDosingSysIdConfigDeleteDosingSysIdConfigsPost(requestBody, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
   /**
    *
    * @summary 获取所有加药配置 Get all the dosing algorithm parameters config data
-   * @param {string} [tenantId]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof BuildCalcDosageConfigApi
    */
-  public apiDosingSysIdConfigGetAllDosingSysIdConfigsGet(
-    tenantId?: string,
-    options?: AxiosRequestConfig,
-  ) {
+  public apiDosingSysIdConfigGetAllDosingSysIdConfigsGet(options?: AxiosRequestConfig) {
     return BuildCalcDosageConfigApiFp(this.configuration)
-      .apiDosingSysIdConfigGetAllDosingSysIdConfigsGet(tenantId, options)
+      .apiDosingSysIdConfigGetAllDosingSysIdConfigsGet(options)
       .then((request) => request(this.axios, this.basePath))
   }
 
   /**
    *
    * @summary 更新加药配置信息 Update dosing algorithm parameters config data
-   * @param {string} [tenantId]
    * @param {Array<BuildCalcDosageConfigInOut>} [buildCalcDosageConfigInOut]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof BuildCalcDosageConfigApi
    */
   public apiDosingSysIdConfigUpdateDosingSysIdConfigsPost(
-    tenantId?: string,
     buildCalcDosageConfigInOut?: Array<BuildCalcDosageConfigInOut>,
     options?: AxiosRequestConfig,
   ) {
     return BuildCalcDosageConfigApiFp(this.configuration)
-      .apiDosingSysIdConfigUpdateDosingSysIdConfigsPost(
-        tenantId,
-        buildCalcDosageConfigInOut,
-        options,
-      )
+      .apiDosingSysIdConfigUpdateDosingSysIdConfigsPost(buildCalcDosageConfigInOut, options)
       .then((request) => request(this.axios, this.basePath))
   }
 }
