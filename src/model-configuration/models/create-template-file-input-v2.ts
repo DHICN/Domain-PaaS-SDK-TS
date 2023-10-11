@@ -14,6 +14,12 @@
 // May contain unused imports in some cases
 // @ts-ignore
 import { BusinessTypeEnum } from './business-type-enum'
+// May contain unused imports in some cases
+// @ts-ignore
+import { LibraryTypeEnum } from './library-type-enum'
+// May contain unused imports in some cases
+// @ts-ignore
+import { ModelTypeEnum } from './model-type-enum'
 
 /**
  *
@@ -41,10 +47,10 @@ export interface CreateTemplateFileInputV2 {
   systemId?: string | null
   /**
    *
-   * @type {object}
+   * @type {LibraryTypeEnum}
    * @memberof CreateTemplateFileInputV2
    */
-  libraryType?: object
+  libraryType?: LibraryTypeEnum
   /**
    *
    * @type {BusinessTypeEnum}
@@ -53,8 +59,8 @@ export interface CreateTemplateFileInputV2 {
   businessType?: BusinessTypeEnum
   /**
    *
-   * @type {object}
+   * @type {ModelTypeEnum}
    * @memberof CreateTemplateFileInputV2
    */
-  modelType?: object
+  modelType?: ModelTypeEnum
 }
