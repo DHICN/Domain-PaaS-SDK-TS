@@ -45,13 +45,11 @@ export const CalculateDosageApiAxiosParamCreator = function (configuration?: Con
     /**
      *
      * @summary 计算指定产线的碳源加药量 calculate carbon\'s dosage by product line
-     * @param {string} [tenantId]
      * @param {Array<DosingParamSettingDto>} [dosingParamSettingDto]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiCalculateDosageCalculateCarbonDosagePost: async (
-      tenantId?: string,
       dosingParamSettingDto?: Array<DosingParamSettingDto>,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
@@ -66,10 +64,6 @@ export const CalculateDosageApiAxiosParamCreator = function (configuration?: Con
       const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
-
-      if (tenantId != null) {
-        localVarHeaderParameter['tenantId'] = String(tenantId)
-      }
 
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
@@ -95,13 +89,11 @@ export const CalculateDosageApiAxiosParamCreator = function (configuration?: Con
      * 此接口由计算服务在完成每个时刻的滚动计算之后调用 This API is called by compute service each hour after automatic simulation.
      * @summary 加药计算，包括碳源加药和MCCR加药计算 Execute dosage calculation, including carbon source dosage and MCCR dosage
      * @param {string} [tenantId]
-     * @param {string} [tenantId2]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiCalculateDosageCalculateDosageGet: async (
       tenantId?: string,
-      tenantId2?: string,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
       const localVarPath = `/api/CalculateDosage/CalculateDosage`
@@ -118,10 +110,6 @@ export const CalculateDosageApiAxiosParamCreator = function (configuration?: Con
 
       if (tenantId !== undefined) {
         localVarQueryParameter['tenantId'] = tenantId
-      }
-
-      if (tenantId2 != null) {
-        localVarHeaderParameter['tenantId'] = String(tenantId2)
       }
 
       setSearchParams(localVarUrlObj, localVarQueryParameter)
@@ -141,13 +129,11 @@ export const CalculateDosageApiAxiosParamCreator = function (configuration?: Con
      *
      * @summary 加药量日/月统计，定期执行（半小时） Execute dosage daily and monthly statistics periodically (every half an hour)
      * @param {string} [currentTime] 当前时间 current time
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiCalculateDosageDosageStatisticDailyGet: async (
       currentTime?: string,
-      tenantId?: string,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
       const localVarPath = `/api/CalculateDosage/DosageStatisticDaily`
@@ -164,10 +150,6 @@ export const CalculateDosageApiAxiosParamCreator = function (configuration?: Con
 
       if (currentTime !== undefined) {
         localVarQueryParameter['currentTime'] = currentTime
-      }
-
-      if (tenantId != null) {
-        localVarHeaderParameter['tenantId'] = String(tenantId)
       }
 
       setSearchParams(localVarUrlObj, localVarQueryParameter)
@@ -187,13 +169,11 @@ export const CalculateDosageApiAxiosParamCreator = function (configuration?: Con
      *
      * @summary 执行碳源加药plc控制，同时写入加药日志 Execute carbon source dosing plc control and write dosing logs
      * @param {string} [currentTime] 当前时间 current time
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiCalculateDosageExcutePLCGet: async (
       currentTime?: string,
-      tenantId?: string,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
       const localVarPath = `/api/CalculateDosage/ExcutePLC`
@@ -212,10 +192,6 @@ export const CalculateDosageApiAxiosParamCreator = function (configuration?: Con
         localVarQueryParameter['currentTime'] = currentTime
       }
 
-      if (tenantId != null) {
-        localVarHeaderParameter['tenantId'] = String(tenantId)
-      }
-
       setSearchParams(localVarUrlObj, localVarQueryParameter)
       let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
       localVarRequestOptions.headers = {
@@ -232,13 +208,11 @@ export const CalculateDosageApiAxiosParamCreator = function (configuration?: Con
     /**
      *
      * @summary 执行指定产线的碳源加药plc控制，同时写入加药日志 Execute carbon source dosing plc control and write dosing logs by specify product line
-     * @param {string} [tenantId]
      * @param {ExecutePlcInput} [executePlcInput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiCalculateDosageExecuteCarbonPLCByProductLinePost: async (
-      tenantId?: string,
       executePlcInput?: ExecutePlcInput,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
@@ -253,10 +227,6 @@ export const CalculateDosageApiAxiosParamCreator = function (configuration?: Con
       const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
-
-      if (tenantId != null) {
-        localVarHeaderParameter['tenantId'] = String(tenantId)
-      }
 
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
@@ -281,12 +251,10 @@ export const CalculateDosageApiAxiosParamCreator = function (configuration?: Con
     /**
      *
      * @summary 判断加药量，写入报警日志 Write dosage alarm logs based on dosage
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiCalculateDosageJudgeDosagePost: async (
-      tenantId?: string,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
       const localVarPath = `/api/CalculateDosage/JudgeDosage`
@@ -300,10 +268,6 @@ export const CalculateDosageApiAxiosParamCreator = function (configuration?: Con
       const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
-
-      if (tenantId != null) {
-        localVarHeaderParameter['tenantId'] = String(tenantId)
-      }
 
       setSearchParams(localVarUrlObj, localVarQueryParameter)
       let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
@@ -323,14 +287,12 @@ export const CalculateDosageApiAxiosParamCreator = function (configuration?: Con
      * @summary 更新计算参数-推送指定产线的数据（清洗数据） Push processed time-series data to dosage algorithm for one product line
      * @param {string} [scenarioId] 方案ID scenario id
      * @param {string} [productLine] 产线 product line
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiCalculateDosageUpdateComputerParametersByProductLineGet: async (
       scenarioId?: string,
       productLine?: string,
-      tenantId?: string,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
       const localVarPath = `/api/CalculateDosage/UpdateComputerParametersByProductLine`
@@ -353,10 +315,6 @@ export const CalculateDosageApiAxiosParamCreator = function (configuration?: Con
         localVarQueryParameter['productLine'] = productLine
       }
 
-      if (tenantId != null) {
-        localVarHeaderParameter['tenantId'] = String(tenantId)
-      }
-
       setSearchParams(localVarUrlObj, localVarQueryParameter)
       let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
       localVarRequestOptions.headers = {
@@ -375,14 +333,12 @@ export const CalculateDosageApiAxiosParamCreator = function (configuration?: Con
      * @summary 更新计算参数-推送数据（清洗数据） Push processed time-series data to dosage algorithm
      * @param {string} [tenantId] 租户ID tenant id
      * @param {string} [scenarioId] 方案ID scenario id
-     * @param {string} [tenantId2]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiCalculateDosageUpdateComputerParametersGet: async (
       tenantId?: string,
       scenarioId?: string,
-      tenantId2?: string,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
       const localVarPath = `/api/CalculateDosage/UpdateComputerParameters`
@@ -405,10 +361,6 @@ export const CalculateDosageApiAxiosParamCreator = function (configuration?: Con
         localVarQueryParameter['scenarioId'] = scenarioId
       }
 
-      if (tenantId2 != null) {
-        localVarHeaderParameter['tenantId'] = String(tenantId2)
-      }
-
       setSearchParams(localVarUrlObj, localVarQueryParameter)
       let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
       localVarRequestOptions.headers = {
@@ -427,14 +379,12 @@ export const CalculateDosageApiAxiosParamCreator = function (configuration?: Con
      * @summary 更新计算参数-推送数据（mccr相关点位推送原表数据） Push source time-series data to dosage algorithm
      * @param {string} [tenantId] 租户ID tenant id
      * @param {string} [scenarioId] 方案ID scenario id
-     * @param {string} [tenantId2]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiCalculateDosageUpdateComputerParametersSourceDataGet: async (
       tenantId?: string,
       scenarioId?: string,
-      tenantId2?: string,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
       const localVarPath = `/api/CalculateDosage/UpdateComputerParametersSourceData`
@@ -455,10 +405,6 @@ export const CalculateDosageApiAxiosParamCreator = function (configuration?: Con
 
       if (scenarioId !== undefined) {
         localVarQueryParameter['scenarioId'] = scenarioId
-      }
-
-      if (tenantId2 != null) {
-        localVarHeaderParameter['tenantId'] = String(tenantId2)
       }
 
       setSearchParams(localVarUrlObj, localVarQueryParameter)
@@ -487,19 +433,16 @@ export const CalculateDosageApiFp = function (configuration?: Configuration) {
     /**
      *
      * @summary 计算指定产线的碳源加药量 calculate carbon\'s dosage by product line
-     * @param {string} [tenantId]
      * @param {Array<DosingParamSettingDto>} [dosingParamSettingDto]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async apiCalculateDosageCalculateCarbonDosagePost(
-      tenantId?: string,
       dosingParamSettingDto?: Array<DosingParamSettingDto>,
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.apiCalculateDosageCalculateCarbonDosagePost(
-          tenantId,
           dosingParamSettingDto,
           options,
         )
@@ -509,40 +452,31 @@ export const CalculateDosageApiFp = function (configuration?: Configuration) {
      * 此接口由计算服务在完成每个时刻的滚动计算之后调用 This API is called by compute service each hour after automatic simulation.
      * @summary 加药计算，包括碳源加药和MCCR加药计算 Execute dosage calculation, including carbon source dosage and MCCR dosage
      * @param {string} [tenantId]
-     * @param {string} [tenantId2]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async apiCalculateDosageCalculateDosageGet(
       tenantId?: string,
-      tenantId2?: string,
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
       const localVarAxiosArgs =
-        await localVarAxiosParamCreator.apiCalculateDosageCalculateDosageGet(
-          tenantId,
-          tenantId2,
-          options,
-        )
+        await localVarAxiosParamCreator.apiCalculateDosageCalculateDosageGet(tenantId, options)
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**
      *
      * @summary 加药量日/月统计，定期执行（半小时） Execute dosage daily and monthly statistics periodically (every half an hour)
      * @param {string} [currentTime] 当前时间 current time
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async apiCalculateDosageDosageStatisticDailyGet(
       currentTime?: string,
-      tenantId?: string,
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.apiCalculateDosageDosageStatisticDailyGet(
           currentTime,
-          tenantId,
           options,
         )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
@@ -551,18 +485,15 @@ export const CalculateDosageApiFp = function (configuration?: Configuration) {
      *
      * @summary 执行碳源加药plc控制，同时写入加药日志 Execute carbon source dosing plc control and write dosing logs
      * @param {string} [currentTime] 当前时间 current time
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async apiCalculateDosageExcutePLCGet(
       currentTime?: string,
-      tenantId?: string,
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
       const localVarAxiosArgs = await localVarAxiosParamCreator.apiCalculateDosageExcutePLCGet(
         currentTime,
-        tenantId,
         options,
       )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
@@ -570,19 +501,16 @@ export const CalculateDosageApiFp = function (configuration?: Configuration) {
     /**
      *
      * @summary 执行指定产线的碳源加药plc控制，同时写入加药日志 Execute carbon source dosing plc control and write dosing logs by specify product line
-     * @param {string} [tenantId]
      * @param {ExecutePlcInput} [executePlcInput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async apiCalculateDosageExecuteCarbonPLCByProductLinePost(
-      tenantId?: string,
       executePlcInput?: ExecutePlcInput,
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.apiCalculateDosageExecuteCarbonPLCByProductLinePost(
-          tenantId,
           executePlcInput,
           options,
         )
@@ -591,16 +519,13 @@ export const CalculateDosageApiFp = function (configuration?: Configuration) {
     /**
      *
      * @summary 判断加药量，写入报警日志 Write dosage alarm logs based on dosage
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async apiCalculateDosageJudgeDosagePost(
-      tenantId?: string,
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
       const localVarAxiosArgs = await localVarAxiosParamCreator.apiCalculateDosageJudgeDosagePost(
-        tenantId,
         options,
       )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
@@ -610,21 +535,18 @@ export const CalculateDosageApiFp = function (configuration?: Configuration) {
      * @summary 更新计算参数-推送指定产线的数据（清洗数据） Push processed time-series data to dosage algorithm for one product line
      * @param {string} [scenarioId] 方案ID scenario id
      * @param {string} [productLine] 产线 product line
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async apiCalculateDosageUpdateComputerParametersByProductLineGet(
       scenarioId?: string,
       productLine?: string,
-      tenantId?: string,
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.apiCalculateDosageUpdateComputerParametersByProductLineGet(
           scenarioId,
           productLine,
-          tenantId,
           options,
         )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
@@ -634,21 +556,18 @@ export const CalculateDosageApiFp = function (configuration?: Configuration) {
      * @summary 更新计算参数-推送数据（清洗数据） Push processed time-series data to dosage algorithm
      * @param {string} [tenantId] 租户ID tenant id
      * @param {string} [scenarioId] 方案ID scenario id
-     * @param {string} [tenantId2]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async apiCalculateDosageUpdateComputerParametersGet(
       tenantId?: string,
       scenarioId?: string,
-      tenantId2?: string,
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.apiCalculateDosageUpdateComputerParametersGet(
           tenantId,
           scenarioId,
-          tenantId2,
           options,
         )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
@@ -658,21 +577,18 @@ export const CalculateDosageApiFp = function (configuration?: Configuration) {
      * @summary 更新计算参数-推送数据（mccr相关点位推送原表数据） Push source time-series data to dosage algorithm
      * @param {string} [tenantId] 租户ID tenant id
      * @param {string} [scenarioId] 方案ID scenario id
-     * @param {string} [tenantId2]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async apiCalculateDosageUpdateComputerParametersSourceDataGet(
       tenantId?: string,
       scenarioId?: string,
-      tenantId2?: string,
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.apiCalculateDosageUpdateComputerParametersSourceDataGet(
           tenantId,
           scenarioId,
-          tenantId2,
           options,
         )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
@@ -694,98 +610,81 @@ export const CalculateDosageApiFactory = function (
     /**
      *
      * @summary 计算指定产线的碳源加药量 calculate carbon\'s dosage by product line
-     * @param {string} [tenantId]
      * @param {Array<DosingParamSettingDto>} [dosingParamSettingDto]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiCalculateDosageCalculateCarbonDosagePost(
-      tenantId?: string,
       dosingParamSettingDto?: Array<DosingParamSettingDto>,
       options?: any,
     ): AxiosPromise<object> {
       return localVarFp
-        .apiCalculateDosageCalculateCarbonDosagePost(tenantId, dosingParamSettingDto, options)
+        .apiCalculateDosageCalculateCarbonDosagePost(dosingParamSettingDto, options)
         .then((request) => request(axios, basePath))
     },
     /**
      * 此接口由计算服务在完成每个时刻的滚动计算之后调用 This API is called by compute service each hour after automatic simulation.
      * @summary 加药计算，包括碳源加药和MCCR加药计算 Execute dosage calculation, including carbon source dosage and MCCR dosage
      * @param {string} [tenantId]
-     * @param {string} [tenantId2]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    apiCalculateDosageCalculateDosageGet(
-      tenantId?: string,
-      tenantId2?: string,
-      options?: any,
-    ): AxiosPromise<object> {
+    apiCalculateDosageCalculateDosageGet(tenantId?: string, options?: any): AxiosPromise<object> {
       return localVarFp
-        .apiCalculateDosageCalculateDosageGet(tenantId, tenantId2, options)
+        .apiCalculateDosageCalculateDosageGet(tenantId, options)
         .then((request) => request(axios, basePath))
     },
     /**
      *
      * @summary 加药量日/月统计，定期执行（半小时） Execute dosage daily and monthly statistics periodically (every half an hour)
      * @param {string} [currentTime] 当前时间 current time
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiCalculateDosageDosageStatisticDailyGet(
       currentTime?: string,
-      tenantId?: string,
       options?: any,
     ): AxiosPromise<object> {
       return localVarFp
-        .apiCalculateDosageDosageStatisticDailyGet(currentTime, tenantId, options)
+        .apiCalculateDosageDosageStatisticDailyGet(currentTime, options)
         .then((request) => request(axios, basePath))
     },
     /**
      *
      * @summary 执行碳源加药plc控制，同时写入加药日志 Execute carbon source dosing plc control and write dosing logs
      * @param {string} [currentTime] 当前时间 current time
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    apiCalculateDosageExcutePLCGet(
-      currentTime?: string,
-      tenantId?: string,
-      options?: any,
-    ): AxiosPromise<object> {
+    apiCalculateDosageExcutePLCGet(currentTime?: string, options?: any): AxiosPromise<object> {
       return localVarFp
-        .apiCalculateDosageExcutePLCGet(currentTime, tenantId, options)
+        .apiCalculateDosageExcutePLCGet(currentTime, options)
         .then((request) => request(axios, basePath))
     },
     /**
      *
      * @summary 执行指定产线的碳源加药plc控制，同时写入加药日志 Execute carbon source dosing plc control and write dosing logs by specify product line
-     * @param {string} [tenantId]
      * @param {ExecutePlcInput} [executePlcInput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiCalculateDosageExecuteCarbonPLCByProductLinePost(
-      tenantId?: string,
       executePlcInput?: ExecutePlcInput,
       options?: any,
     ): AxiosPromise<object> {
       return localVarFp
-        .apiCalculateDosageExecuteCarbonPLCByProductLinePost(tenantId, executePlcInput, options)
+        .apiCalculateDosageExecuteCarbonPLCByProductLinePost(executePlcInput, options)
         .then((request) => request(axios, basePath))
     },
     /**
      *
      * @summary 判断加药量，写入报警日志 Write dosage alarm logs based on dosage
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    apiCalculateDosageJudgeDosagePost(tenantId?: string, options?: any): AxiosPromise<object> {
+    apiCalculateDosageJudgeDosagePost(options?: any): AxiosPromise<object> {
       return localVarFp
-        .apiCalculateDosageJudgeDosagePost(tenantId, options)
+        .apiCalculateDosageJudgeDosagePost(options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -793,21 +692,18 @@ export const CalculateDosageApiFactory = function (
      * @summary 更新计算参数-推送指定产线的数据（清洗数据） Push processed time-series data to dosage algorithm for one product line
      * @param {string} [scenarioId] 方案ID scenario id
      * @param {string} [productLine] 产线 product line
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiCalculateDosageUpdateComputerParametersByProductLineGet(
       scenarioId?: string,
       productLine?: string,
-      tenantId?: string,
       options?: any,
     ): AxiosPromise<object> {
       return localVarFp
         .apiCalculateDosageUpdateComputerParametersByProductLineGet(
           scenarioId,
           productLine,
-          tenantId,
           options,
         )
         .then((request) => request(axios, basePath))
@@ -817,18 +713,16 @@ export const CalculateDosageApiFactory = function (
      * @summary 更新计算参数-推送数据（清洗数据） Push processed time-series data to dosage algorithm
      * @param {string} [tenantId] 租户ID tenant id
      * @param {string} [scenarioId] 方案ID scenario id
-     * @param {string} [tenantId2]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiCalculateDosageUpdateComputerParametersGet(
       tenantId?: string,
       scenarioId?: string,
-      tenantId2?: string,
       options?: any,
     ): AxiosPromise<object> {
       return localVarFp
-        .apiCalculateDosageUpdateComputerParametersGet(tenantId, scenarioId, tenantId2, options)
+        .apiCalculateDosageUpdateComputerParametersGet(tenantId, scenarioId, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -836,23 +730,16 @@ export const CalculateDosageApiFactory = function (
      * @summary 更新计算参数-推送数据（mccr相关点位推送原表数据） Push source time-series data to dosage algorithm
      * @param {string} [tenantId] 租户ID tenant id
      * @param {string} [scenarioId] 方案ID scenario id
-     * @param {string} [tenantId2]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiCalculateDosageUpdateComputerParametersSourceDataGet(
       tenantId?: string,
       scenarioId?: string,
-      tenantId2?: string,
       options?: any,
     ): AxiosPromise<object> {
       return localVarFp
-        .apiCalculateDosageUpdateComputerParametersSourceDataGet(
-          tenantId,
-          scenarioId,
-          tenantId2,
-          options,
-        )
+        .apiCalculateDosageUpdateComputerParametersSourceDataGet(tenantId, scenarioId, options)
         .then((request) => request(axios, basePath))
     },
   }
@@ -868,19 +755,17 @@ export class CalculateDosageApi extends BaseAPI {
   /**
    *
    * @summary 计算指定产线的碳源加药量 calculate carbon\'s dosage by product line
-   * @param {string} [tenantId]
    * @param {Array<DosingParamSettingDto>} [dosingParamSettingDto]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof CalculateDosageApi
    */
   public apiCalculateDosageCalculateCarbonDosagePost(
-    tenantId?: string,
     dosingParamSettingDto?: Array<DosingParamSettingDto>,
     options?: AxiosRequestConfig,
   ) {
     return CalculateDosageApiFp(this.configuration)
-      .apiCalculateDosageCalculateCarbonDosagePost(tenantId, dosingParamSettingDto, options)
+      .apiCalculateDosageCalculateCarbonDosagePost(dosingParamSettingDto, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -888,18 +773,13 @@ export class CalculateDosageApi extends BaseAPI {
    * 此接口由计算服务在完成每个时刻的滚动计算之后调用 This API is called by compute service each hour after automatic simulation.
    * @summary 加药计算，包括碳源加药和MCCR加药计算 Execute dosage calculation, including carbon source dosage and MCCR dosage
    * @param {string} [tenantId]
-   * @param {string} [tenantId2]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof CalculateDosageApi
    */
-  public apiCalculateDosageCalculateDosageGet(
-    tenantId?: string,
-    tenantId2?: string,
-    options?: AxiosRequestConfig,
-  ) {
+  public apiCalculateDosageCalculateDosageGet(tenantId?: string, options?: AxiosRequestConfig) {
     return CalculateDosageApiFp(this.configuration)
-      .apiCalculateDosageCalculateDosageGet(tenantId, tenantId2, options)
+      .apiCalculateDosageCalculateDosageGet(tenantId, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -907,18 +787,16 @@ export class CalculateDosageApi extends BaseAPI {
    *
    * @summary 加药量日/月统计，定期执行（半小时） Execute dosage daily and monthly statistics periodically (every half an hour)
    * @param {string} [currentTime] 当前时间 current time
-   * @param {string} [tenantId]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof CalculateDosageApi
    */
   public apiCalculateDosageDosageStatisticDailyGet(
     currentTime?: string,
-    tenantId?: string,
     options?: AxiosRequestConfig,
   ) {
     return CalculateDosageApiFp(this.configuration)
-      .apiCalculateDosageDosageStatisticDailyGet(currentTime, tenantId, options)
+      .apiCalculateDosageDosageStatisticDailyGet(currentTime, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -926,51 +804,43 @@ export class CalculateDosageApi extends BaseAPI {
    *
    * @summary 执行碳源加药plc控制，同时写入加药日志 Execute carbon source dosing plc control and write dosing logs
    * @param {string} [currentTime] 当前时间 current time
-   * @param {string} [tenantId]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof CalculateDosageApi
    */
-  public apiCalculateDosageExcutePLCGet(
-    currentTime?: string,
-    tenantId?: string,
-    options?: AxiosRequestConfig,
-  ) {
+  public apiCalculateDosageExcutePLCGet(currentTime?: string, options?: AxiosRequestConfig) {
     return CalculateDosageApiFp(this.configuration)
-      .apiCalculateDosageExcutePLCGet(currentTime, tenantId, options)
+      .apiCalculateDosageExcutePLCGet(currentTime, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
   /**
    *
    * @summary 执行指定产线的碳源加药plc控制，同时写入加药日志 Execute carbon source dosing plc control and write dosing logs by specify product line
-   * @param {string} [tenantId]
    * @param {ExecutePlcInput} [executePlcInput]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof CalculateDosageApi
    */
   public apiCalculateDosageExecuteCarbonPLCByProductLinePost(
-    tenantId?: string,
     executePlcInput?: ExecutePlcInput,
     options?: AxiosRequestConfig,
   ) {
     return CalculateDosageApiFp(this.configuration)
-      .apiCalculateDosageExecuteCarbonPLCByProductLinePost(tenantId, executePlcInput, options)
+      .apiCalculateDosageExecuteCarbonPLCByProductLinePost(executePlcInput, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
   /**
    *
    * @summary 判断加药量，写入报警日志 Write dosage alarm logs based on dosage
-   * @param {string} [tenantId]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof CalculateDosageApi
    */
-  public apiCalculateDosageJudgeDosagePost(tenantId?: string, options?: AxiosRequestConfig) {
+  public apiCalculateDosageJudgeDosagePost(options?: AxiosRequestConfig) {
     return CalculateDosageApiFp(this.configuration)
-      .apiCalculateDosageJudgeDosagePost(tenantId, options)
+      .apiCalculateDosageJudgeDosagePost(options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -979,7 +849,6 @@ export class CalculateDosageApi extends BaseAPI {
    * @summary 更新计算参数-推送指定产线的数据（清洗数据） Push processed time-series data to dosage algorithm for one product line
    * @param {string} [scenarioId] 方案ID scenario id
    * @param {string} [productLine] 产线 product line
-   * @param {string} [tenantId]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof CalculateDosageApi
@@ -987,16 +856,10 @@ export class CalculateDosageApi extends BaseAPI {
   public apiCalculateDosageUpdateComputerParametersByProductLineGet(
     scenarioId?: string,
     productLine?: string,
-    tenantId?: string,
     options?: AxiosRequestConfig,
   ) {
     return CalculateDosageApiFp(this.configuration)
-      .apiCalculateDosageUpdateComputerParametersByProductLineGet(
-        scenarioId,
-        productLine,
-        tenantId,
-        options,
-      )
+      .apiCalculateDosageUpdateComputerParametersByProductLineGet(scenarioId, productLine, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -1005,7 +868,6 @@ export class CalculateDosageApi extends BaseAPI {
    * @summary 更新计算参数-推送数据（清洗数据） Push processed time-series data to dosage algorithm
    * @param {string} [tenantId] 租户ID tenant id
    * @param {string} [scenarioId] 方案ID scenario id
-   * @param {string} [tenantId2]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof CalculateDosageApi
@@ -1013,11 +875,10 @@ export class CalculateDosageApi extends BaseAPI {
   public apiCalculateDosageUpdateComputerParametersGet(
     tenantId?: string,
     scenarioId?: string,
-    tenantId2?: string,
     options?: AxiosRequestConfig,
   ) {
     return CalculateDosageApiFp(this.configuration)
-      .apiCalculateDosageUpdateComputerParametersGet(tenantId, scenarioId, tenantId2, options)
+      .apiCalculateDosageUpdateComputerParametersGet(tenantId, scenarioId, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -1026,7 +887,6 @@ export class CalculateDosageApi extends BaseAPI {
    * @summary 更新计算参数-推送数据（mccr相关点位推送原表数据） Push source time-series data to dosage algorithm
    * @param {string} [tenantId] 租户ID tenant id
    * @param {string} [scenarioId] 方案ID scenario id
-   * @param {string} [tenantId2]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof CalculateDosageApi
@@ -1034,16 +894,10 @@ export class CalculateDosageApi extends BaseAPI {
   public apiCalculateDosageUpdateComputerParametersSourceDataGet(
     tenantId?: string,
     scenarioId?: string,
-    tenantId2?: string,
     options?: AxiosRequestConfig,
   ) {
     return CalculateDosageApiFp(this.configuration)
-      .apiCalculateDosageUpdateComputerParametersSourceDataGet(
-        tenantId,
-        scenarioId,
-        tenantId2,
-        options,
-      )
+      .apiCalculateDosageUpdateComputerParametersSourceDataGet(tenantId, scenarioId, options)
       .then((request) => request(this.axios, this.basePath))
   }
 }

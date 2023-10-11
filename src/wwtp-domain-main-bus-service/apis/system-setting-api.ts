@@ -51,13 +51,11 @@ export const SystemSettingApiAxiosParamCreator = function (configuration?: Confi
     /**
      *
      * @summary 增加所有清洗配置点位 Add processed settings for data clean algorithm
-     * @param {string} [tenantId]
      * @param {Array<ProcessedSettingDto>} [processedSettingDto]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiSystemSettingAddProcessedSettingsPost: async (
-      tenantId?: string,
       processedSettingDto?: Array<ProcessedSettingDto>,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
@@ -72,10 +70,6 @@ export const SystemSettingApiAxiosParamCreator = function (configuration?: Confi
       const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
-
-      if (tenantId != null) {
-        localVarHeaderParameter['tenantId'] = String(tenantId)
-      }
 
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
@@ -100,13 +94,11 @@ export const SystemSettingApiAxiosParamCreator = function (configuration?: Confi
     /**
      *
      * @summary 根据ID删除清洗配置点位 Delete processed settings by ids
-     * @param {string} [tenantId]
      * @param {Array<string>} [requestBody]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiSystemSettingDeleteProcessedSettingsPost: async (
-      tenantId?: string,
       requestBody?: Array<string>,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
@@ -121,10 +113,6 @@ export const SystemSettingApiAxiosParamCreator = function (configuration?: Confi
       const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
-
-      if (tenantId != null) {
-        localVarHeaderParameter['tenantId'] = String(tenantId)
-      }
 
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
@@ -149,12 +137,10 @@ export const SystemSettingApiAxiosParamCreator = function (configuration?: Confi
     /**
      *
      * @summary 获取所有清洗配置点位 Get all the processed settings for data clean algorithm
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiSystemSettingGetAllProcessedSettingsGet: async (
-      tenantId?: string,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
       const localVarPath = `/api/SystemSetting/GetAllProcessedSettings`
@@ -168,10 +154,6 @@ export const SystemSettingApiAxiosParamCreator = function (configuration?: Confi
       const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
-
-      if (tenantId != null) {
-        localVarHeaderParameter['tenantId'] = String(tenantId)
-      }
 
       setSearchParams(localVarUrlObj, localVarQueryParameter)
       let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
@@ -189,13 +171,11 @@ export const SystemSettingApiAxiosParamCreator = function (configuration?: Confi
     /**
      *
      * @summary 修改清洗配置点位 Update processed settings for data clean algorithm
-     * @param {string} [tenantId]
      * @param {Array<ProcessedSettingDto>} [processedSettingDto]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiSystemSettingUpdateProcessedSettingsPost: async (
-      tenantId?: string,
       processedSettingDto?: Array<ProcessedSettingDto>,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
@@ -210,10 +190,6 @@ export const SystemSettingApiAxiosParamCreator = function (configuration?: Confi
       const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
-
-      if (tenantId != null) {
-        localVarHeaderParameter['tenantId'] = String(tenantId)
-      }
 
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
@@ -240,14 +216,12 @@ export const SystemSettingApiAxiosParamCreator = function (configuration?: Confi
      * @summary 进水水质预警配置查询 Get inlet water quality alarm config
      * @param {string} [inlet] 进水点 inlet
      * @param {string} [modelName] 模板模型名称 template model name
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiV2SystemSettingInletAlarmConfigGet: async (
       inlet?: string,
       modelName?: string,
-      tenantId?: string,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
       const localVarPath = `/api/v2/system-setting/inlet-alarm-config`
@@ -270,10 +244,6 @@ export const SystemSettingApiAxiosParamCreator = function (configuration?: Confi
         localVarQueryParameter['modelName'] = modelName
       }
 
-      if (tenantId != null) {
-        localVarHeaderParameter['tenantId'] = String(tenantId)
-      }
-
       setSearchParams(localVarUrlObj, localVarQueryParameter)
       let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
       localVarRequestOptions.headers = {
@@ -292,14 +262,12 @@ export const SystemSettingApiAxiosParamCreator = function (configuration?: Confi
      * @summary 进水水质组分比例设置查询 Get inlet water quality parameter settings
      * @param {string} [inlet] 进水点 inlet
      * @param {string} [modelName] 模板模型名称 template model name
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiV2SystemSettingInletParametersGet: async (
       inlet?: string,
       modelName?: string,
-      tenantId?: string,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
       const localVarPath = `/api/v2/system-setting/inlet-parameters`
@@ -322,10 +290,6 @@ export const SystemSettingApiAxiosParamCreator = function (configuration?: Confi
         localVarQueryParameter['modelName'] = modelName
       }
 
-      if (tenantId != null) {
-        localVarHeaderParameter['tenantId'] = String(tenantId)
-      }
-
       setSearchParams(localVarUrlObj, localVarQueryParameter)
       let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
       localVarRequestOptions.headers = {
@@ -342,12 +306,10 @@ export const SystemSettingApiAxiosParamCreator = function (configuration?: Confi
     /**
      *
      * @summary 水质模拟预测点位配置查询 Get indicator config data for water quality simulation and analysis
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiV2SystemSettingWqSimulationIndicatorsGet: async (
-      tenantId?: string,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
       const localVarPath = `/api/v2/system-setting/wq-simulation-indicators`
@@ -361,10 +323,6 @@ export const SystemSettingApiAxiosParamCreator = function (configuration?: Confi
       const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
-
-      if (tenantId != null) {
-        localVarHeaderParameter['tenantId'] = String(tenantId)
-      }
 
       setSearchParams(localVarUrlObj, localVarQueryParameter)
       let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
@@ -382,13 +340,11 @@ export const SystemSettingApiAxiosParamCreator = function (configuration?: Confi
     /**
      *
      * @summary 水质模拟预测点位配置更新 Update indicator config data for water quality simulation and analysis
-     * @param {string} [tenantId]
      * @param {Array<WqSimulationIndicatorInput>} [wqSimulationIndicatorInput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiV2SystemSettingWqSimulationIndicatorsUpdatePost: async (
-      tenantId?: string,
       wqSimulationIndicatorInput?: Array<WqSimulationIndicatorInput>,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
@@ -403,10 +359,6 @@ export const SystemSettingApiAxiosParamCreator = function (configuration?: Confi
       const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
-
-      if (tenantId != null) {
-        localVarHeaderParameter['tenantId'] = String(tenantId)
-      }
 
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
@@ -441,19 +393,16 @@ export const SystemSettingApiFp = function (configuration?: Configuration) {
     /**
      *
      * @summary 增加所有清洗配置点位 Add processed settings for data clean algorithm
-     * @param {string} [tenantId]
      * @param {Array<ProcessedSettingDto>} [processedSettingDto]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async apiSystemSettingAddProcessedSettingsPost(
-      tenantId?: string,
       processedSettingDto?: Array<ProcessedSettingDto>,
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.apiSystemSettingAddProcessedSettingsPost(
-          tenantId,
           processedSettingDto,
           options,
         )
@@ -462,19 +411,16 @@ export const SystemSettingApiFp = function (configuration?: Configuration) {
     /**
      *
      * @summary 根据ID删除清洗配置点位 Delete processed settings by ids
-     * @param {string} [tenantId]
      * @param {Array<string>} [requestBody]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async apiSystemSettingDeleteProcessedSettingsPost(
-      tenantId?: string,
       requestBody?: Array<string>,
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.apiSystemSettingDeleteProcessedSettingsPost(
-          tenantId,
           requestBody,
           options,
         )
@@ -483,39 +429,31 @@ export const SystemSettingApiFp = function (configuration?: Configuration) {
     /**
      *
      * @summary 获取所有清洗配置点位 Get all the processed settings for data clean algorithm
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async apiSystemSettingGetAllProcessedSettingsGet(
-      tenantId?: string,
       options?: AxiosRequestConfig,
     ): Promise<
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<ProcessedSettingDto>>
     > {
       const localVarAxiosArgs =
-        await localVarAxiosParamCreator.apiSystemSettingGetAllProcessedSettingsGet(
-          tenantId,
-          options,
-        )
+        await localVarAxiosParamCreator.apiSystemSettingGetAllProcessedSettingsGet(options)
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**
      *
      * @summary 修改清洗配置点位 Update processed settings for data clean algorithm
-     * @param {string} [tenantId]
      * @param {Array<ProcessedSettingDto>} [processedSettingDto]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async apiSystemSettingUpdateProcessedSettingsPost(
-      tenantId?: string,
       processedSettingDto?: Array<ProcessedSettingDto>,
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.apiSystemSettingUpdateProcessedSettingsPost(
-          tenantId,
           processedSettingDto,
           options,
         )
@@ -526,14 +464,12 @@ export const SystemSettingApiFp = function (configuration?: Configuration) {
      * @summary 进水水质预警配置查询 Get inlet water quality alarm config
      * @param {string} [inlet] 进水点 inlet
      * @param {string} [modelName] 模板模型名称 template model name
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async apiV2SystemSettingInletAlarmConfigGet(
       inlet?: string,
       modelName?: string,
-      tenantId?: string,
       options?: AxiosRequestConfig,
     ): Promise<
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<AlarmConfigInOut>>
@@ -542,7 +478,6 @@ export const SystemSettingApiFp = function (configuration?: Configuration) {
         await localVarAxiosParamCreator.apiV2SystemSettingInletAlarmConfigGet(
           inlet,
           modelName,
-          tenantId,
           options,
         )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
@@ -552,14 +487,12 @@ export const SystemSettingApiFp = function (configuration?: Configuration) {
      * @summary 进水水质组分比例设置查询 Get inlet water quality parameter settings
      * @param {string} [inlet] 进水点 inlet
      * @param {string} [modelName] 模板模型名称 template model name
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async apiV2SystemSettingInletParametersGet(
       inlet?: string,
       modelName?: string,
-      tenantId?: string,
       options?: AxiosRequestConfig,
     ): Promise<
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<InletParametersOutput>>
@@ -568,7 +501,6 @@ export const SystemSettingApiFp = function (configuration?: Configuration) {
         await localVarAxiosParamCreator.apiV2SystemSettingInletParametersGet(
           inlet,
           modelName,
-          tenantId,
           options,
         )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
@@ -576,39 +508,31 @@ export const SystemSettingApiFp = function (configuration?: Configuration) {
     /**
      *
      * @summary 水质模拟预测点位配置查询 Get indicator config data for water quality simulation and analysis
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async apiV2SystemSettingWqSimulationIndicatorsGet(
-      tenantId?: string,
       options?: AxiosRequestConfig,
     ): Promise<
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<WqSimulationIndicatorOutput>>
     > {
       const localVarAxiosArgs =
-        await localVarAxiosParamCreator.apiV2SystemSettingWqSimulationIndicatorsGet(
-          tenantId,
-          options,
-        )
+        await localVarAxiosParamCreator.apiV2SystemSettingWqSimulationIndicatorsGet(options)
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**
      *
      * @summary 水质模拟预测点位配置更新 Update indicator config data for water quality simulation and analysis
-     * @param {string} [tenantId]
      * @param {Array<WqSimulationIndicatorInput>} [wqSimulationIndicatorInput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async apiV2SystemSettingWqSimulationIndicatorsUpdatePost(
-      tenantId?: string,
       wqSimulationIndicatorInput?: Array<WqSimulationIndicatorInput>,
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.apiV2SystemSettingWqSimulationIndicatorsUpdatePost(
-          tenantId,
           wqSimulationIndicatorInput,
           options,
         )
@@ -631,67 +555,59 @@ export const SystemSettingApiFactory = function (
     /**
      *
      * @summary 增加所有清洗配置点位 Add processed settings for data clean algorithm
-     * @param {string} [tenantId]
      * @param {Array<ProcessedSettingDto>} [processedSettingDto]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiSystemSettingAddProcessedSettingsPost(
-      tenantId?: string,
       processedSettingDto?: Array<ProcessedSettingDto>,
       options?: any,
     ): AxiosPromise<object> {
       return localVarFp
-        .apiSystemSettingAddProcessedSettingsPost(tenantId, processedSettingDto, options)
+        .apiSystemSettingAddProcessedSettingsPost(processedSettingDto, options)
         .then((request) => request(axios, basePath))
     },
     /**
      *
      * @summary 根据ID删除清洗配置点位 Delete processed settings by ids
-     * @param {string} [tenantId]
      * @param {Array<string>} [requestBody]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiSystemSettingDeleteProcessedSettingsPost(
-      tenantId?: string,
       requestBody?: Array<string>,
       options?: any,
     ): AxiosPromise<object> {
       return localVarFp
-        .apiSystemSettingDeleteProcessedSettingsPost(tenantId, requestBody, options)
+        .apiSystemSettingDeleteProcessedSettingsPost(requestBody, options)
         .then((request) => request(axios, basePath))
     },
     /**
      *
      * @summary 获取所有清洗配置点位 Get all the processed settings for data clean algorithm
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiSystemSettingGetAllProcessedSettingsGet(
-      tenantId?: string,
       options?: any,
     ): AxiosPromise<Array<ProcessedSettingDto>> {
       return localVarFp
-        .apiSystemSettingGetAllProcessedSettingsGet(tenantId, options)
+        .apiSystemSettingGetAllProcessedSettingsGet(options)
         .then((request) => request(axios, basePath))
     },
     /**
      *
      * @summary 修改清洗配置点位 Update processed settings for data clean algorithm
-     * @param {string} [tenantId]
      * @param {Array<ProcessedSettingDto>} [processedSettingDto]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiSystemSettingUpdateProcessedSettingsPost(
-      tenantId?: string,
       processedSettingDto?: Array<ProcessedSettingDto>,
       options?: any,
     ): AxiosPromise<object> {
       return localVarFp
-        .apiSystemSettingUpdateProcessedSettingsPost(tenantId, processedSettingDto, options)
+        .apiSystemSettingUpdateProcessedSettingsPost(processedSettingDto, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -699,18 +615,16 @@ export const SystemSettingApiFactory = function (
      * @summary 进水水质预警配置查询 Get inlet water quality alarm config
      * @param {string} [inlet] 进水点 inlet
      * @param {string} [modelName] 模板模型名称 template model name
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiV2SystemSettingInletAlarmConfigGet(
       inlet?: string,
       modelName?: string,
-      tenantId?: string,
       options?: any,
     ): AxiosPromise<Array<AlarmConfigInOut>> {
       return localVarFp
-        .apiV2SystemSettingInletAlarmConfigGet(inlet, modelName, tenantId, options)
+        .apiV2SystemSettingInletAlarmConfigGet(inlet, modelName, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -718,54 +632,44 @@ export const SystemSettingApiFactory = function (
      * @summary 进水水质组分比例设置查询 Get inlet water quality parameter settings
      * @param {string} [inlet] 进水点 inlet
      * @param {string} [modelName] 模板模型名称 template model name
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiV2SystemSettingInletParametersGet(
       inlet?: string,
       modelName?: string,
-      tenantId?: string,
       options?: any,
     ): AxiosPromise<Array<InletParametersOutput>> {
       return localVarFp
-        .apiV2SystemSettingInletParametersGet(inlet, modelName, tenantId, options)
+        .apiV2SystemSettingInletParametersGet(inlet, modelName, options)
         .then((request) => request(axios, basePath))
     },
     /**
      *
      * @summary 水质模拟预测点位配置查询 Get indicator config data for water quality simulation and analysis
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiV2SystemSettingWqSimulationIndicatorsGet(
-      tenantId?: string,
       options?: any,
     ): AxiosPromise<Array<WqSimulationIndicatorOutput>> {
       return localVarFp
-        .apiV2SystemSettingWqSimulationIndicatorsGet(tenantId, options)
+        .apiV2SystemSettingWqSimulationIndicatorsGet(options)
         .then((request) => request(axios, basePath))
     },
     /**
      *
      * @summary 水质模拟预测点位配置更新 Update indicator config data for water quality simulation and analysis
-     * @param {string} [tenantId]
      * @param {Array<WqSimulationIndicatorInput>} [wqSimulationIndicatorInput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiV2SystemSettingWqSimulationIndicatorsUpdatePost(
-      tenantId?: string,
       wqSimulationIndicatorInput?: Array<WqSimulationIndicatorInput>,
       options?: any,
     ): AxiosPromise<object> {
       return localVarFp
-        .apiV2SystemSettingWqSimulationIndicatorsUpdatePost(
-          tenantId,
-          wqSimulationIndicatorInput,
-          options,
-        )
+        .apiV2SystemSettingWqSimulationIndicatorsUpdatePost(wqSimulationIndicatorInput, options)
         .then((request) => request(axios, basePath))
     },
   }
@@ -781,74 +685,64 @@ export class SystemSettingApi extends BaseAPI {
   /**
    *
    * @summary 增加所有清洗配置点位 Add processed settings for data clean algorithm
-   * @param {string} [tenantId]
    * @param {Array<ProcessedSettingDto>} [processedSettingDto]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof SystemSettingApi
    */
   public apiSystemSettingAddProcessedSettingsPost(
-    tenantId?: string,
     processedSettingDto?: Array<ProcessedSettingDto>,
     options?: AxiosRequestConfig,
   ) {
     return SystemSettingApiFp(this.configuration)
-      .apiSystemSettingAddProcessedSettingsPost(tenantId, processedSettingDto, options)
+      .apiSystemSettingAddProcessedSettingsPost(processedSettingDto, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
   /**
    *
    * @summary 根据ID删除清洗配置点位 Delete processed settings by ids
-   * @param {string} [tenantId]
    * @param {Array<string>} [requestBody]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof SystemSettingApi
    */
   public apiSystemSettingDeleteProcessedSettingsPost(
-    tenantId?: string,
     requestBody?: Array<string>,
     options?: AxiosRequestConfig,
   ) {
     return SystemSettingApiFp(this.configuration)
-      .apiSystemSettingDeleteProcessedSettingsPost(tenantId, requestBody, options)
+      .apiSystemSettingDeleteProcessedSettingsPost(requestBody, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
   /**
    *
    * @summary 获取所有清洗配置点位 Get all the processed settings for data clean algorithm
-   * @param {string} [tenantId]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof SystemSettingApi
    */
-  public apiSystemSettingGetAllProcessedSettingsGet(
-    tenantId?: string,
-    options?: AxiosRequestConfig,
-  ) {
+  public apiSystemSettingGetAllProcessedSettingsGet(options?: AxiosRequestConfig) {
     return SystemSettingApiFp(this.configuration)
-      .apiSystemSettingGetAllProcessedSettingsGet(tenantId, options)
+      .apiSystemSettingGetAllProcessedSettingsGet(options)
       .then((request) => request(this.axios, this.basePath))
   }
 
   /**
    *
    * @summary 修改清洗配置点位 Update processed settings for data clean algorithm
-   * @param {string} [tenantId]
    * @param {Array<ProcessedSettingDto>} [processedSettingDto]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof SystemSettingApi
    */
   public apiSystemSettingUpdateProcessedSettingsPost(
-    tenantId?: string,
     processedSettingDto?: Array<ProcessedSettingDto>,
     options?: AxiosRequestConfig,
   ) {
     return SystemSettingApiFp(this.configuration)
-      .apiSystemSettingUpdateProcessedSettingsPost(tenantId, processedSettingDto, options)
+      .apiSystemSettingUpdateProcessedSettingsPost(processedSettingDto, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -857,7 +751,6 @@ export class SystemSettingApi extends BaseAPI {
    * @summary 进水水质预警配置查询 Get inlet water quality alarm config
    * @param {string} [inlet] 进水点 inlet
    * @param {string} [modelName] 模板模型名称 template model name
-   * @param {string} [tenantId]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof SystemSettingApi
@@ -865,11 +758,10 @@ export class SystemSettingApi extends BaseAPI {
   public apiV2SystemSettingInletAlarmConfigGet(
     inlet?: string,
     modelName?: string,
-    tenantId?: string,
     options?: AxiosRequestConfig,
   ) {
     return SystemSettingApiFp(this.configuration)
-      .apiV2SystemSettingInletAlarmConfigGet(inlet, modelName, tenantId, options)
+      .apiV2SystemSettingInletAlarmConfigGet(inlet, modelName, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -878,7 +770,6 @@ export class SystemSettingApi extends BaseAPI {
    * @summary 进水水质组分比例设置查询 Get inlet water quality parameter settings
    * @param {string} [inlet] 进水点 inlet
    * @param {string} [modelName] 模板模型名称 template model name
-   * @param {string} [tenantId]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof SystemSettingApi
@@ -886,51 +777,40 @@ export class SystemSettingApi extends BaseAPI {
   public apiV2SystemSettingInletParametersGet(
     inlet?: string,
     modelName?: string,
-    tenantId?: string,
     options?: AxiosRequestConfig,
   ) {
     return SystemSettingApiFp(this.configuration)
-      .apiV2SystemSettingInletParametersGet(inlet, modelName, tenantId, options)
+      .apiV2SystemSettingInletParametersGet(inlet, modelName, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
   /**
    *
    * @summary 水质模拟预测点位配置查询 Get indicator config data for water quality simulation and analysis
-   * @param {string} [tenantId]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof SystemSettingApi
    */
-  public apiV2SystemSettingWqSimulationIndicatorsGet(
-    tenantId?: string,
-    options?: AxiosRequestConfig,
-  ) {
+  public apiV2SystemSettingWqSimulationIndicatorsGet(options?: AxiosRequestConfig) {
     return SystemSettingApiFp(this.configuration)
-      .apiV2SystemSettingWqSimulationIndicatorsGet(tenantId, options)
+      .apiV2SystemSettingWqSimulationIndicatorsGet(options)
       .then((request) => request(this.axios, this.basePath))
   }
 
   /**
    *
    * @summary 水质模拟预测点位配置更新 Update indicator config data for water quality simulation and analysis
-   * @param {string} [tenantId]
    * @param {Array<WqSimulationIndicatorInput>} [wqSimulationIndicatorInput]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof SystemSettingApi
    */
   public apiV2SystemSettingWqSimulationIndicatorsUpdatePost(
-    tenantId?: string,
     wqSimulationIndicatorInput?: Array<WqSimulationIndicatorInput>,
     options?: AxiosRequestConfig,
   ) {
     return SystemSettingApiFp(this.configuration)
-      .apiV2SystemSettingWqSimulationIndicatorsUpdatePost(
-        tenantId,
-        wqSimulationIndicatorInput,
-        options,
-      )
+      .apiV2SystemSettingWqSimulationIndicatorsUpdatePost(wqSimulationIndicatorInput, options)
       .then((request) => request(this.axios, this.basePath))
   }
 }

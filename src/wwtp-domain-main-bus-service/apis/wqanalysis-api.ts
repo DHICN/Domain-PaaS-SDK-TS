@@ -57,14 +57,12 @@ export const WQAnalysisApiAxiosParamCreator = function (configuration?: Configur
      * @summary 查询特定工艺线下的工艺运行输入点位 Get online control points detailed information on a certain product line
      * @param {string} [modelName] 模型名称 template model name
      * @param {string} [productLine] 工艺线 product line code
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiV2WqAnalysisControlOnlinePointsGet: async (
       modelName?: string,
       productLine?: string,
-      tenantId?: string,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
       const localVarPath = `/api/v2/wq-analysis/control-online-points`
@@ -87,10 +85,6 @@ export const WQAnalysisApiAxiosParamCreator = function (configuration?: Configur
         localVarQueryParameter['productLine'] = productLine
       }
 
-      if (tenantId != null) {
-        localVarHeaderParameter['tenantId'] = String(tenantId)
-      }
-
       setSearchParams(localVarUrlObj, localVarQueryParameter)
       let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
       localVarRequestOptions.headers = {
@@ -111,7 +105,6 @@ export const WQAnalysisApiAxiosParamCreator = function (configuration?: Configur
      * @param {string} [endTime] 结束时间 end time
      * @param {string} [modelName] 模型名称 template model name
      * @param {string} [productLine] 工艺线 product line code
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -120,7 +113,6 @@ export const WQAnalysisApiAxiosParamCreator = function (configuration?: Configur
       endTime?: string,
       modelName?: string,
       productLine?: string,
-      tenantId?: string,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
       const localVarPath = `/api/v2/wq-analysis/entire-process`
@@ -151,10 +143,6 @@ export const WQAnalysisApiAxiosParamCreator = function (configuration?: Configur
         localVarQueryParameter['productLine'] = productLine
       }
 
-      if (tenantId != null) {
-        localVarHeaderParameter['tenantId'] = String(tenantId)
-      }
-
       setSearchParams(localVarUrlObj, localVarQueryParameter)
       let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
       localVarRequestOptions.headers = {
@@ -171,13 +159,11 @@ export const WQAnalysisApiAxiosParamCreator = function (configuration?: Configur
     /**
      *
      * @summary 查询在线点位时间序列数据 Get online water quality or control data
-     * @param {string} [tenantId]
      * @param {WqOnlineDataInput} [wqOnlineDataInput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiV2WqAnalysisWqOnlineDataPost: async (
-      tenantId?: string,
       wqOnlineDataInput?: WqOnlineDataInput,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
@@ -192,10 +178,6 @@ export const WQAnalysisApiAxiosParamCreator = function (configuration?: Configur
       const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
-
-      if (tenantId != null) {
-        localVarHeaderParameter['tenantId'] = String(tenantId)
-      }
 
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
@@ -221,13 +203,11 @@ export const WQAnalysisApiAxiosParamCreator = function (configuration?: Configur
      *
      * @summary 查询水质输入点位信息 Get online water quality points detailed information
      * @param {string} [modelName] 模型名称 template model name
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiV2WqAnalysisWqOnlinePointsGet: async (
       modelName?: string,
-      tenantId?: string,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
       const localVarPath = `/api/v2/wq-analysis/wq-online-points`
@@ -246,10 +226,6 @@ export const WQAnalysisApiAxiosParamCreator = function (configuration?: Configur
         localVarQueryParameter['modelName'] = modelName
       }
 
-      if (tenantId != null) {
-        localVarHeaderParameter['tenantId'] = String(tenantId)
-      }
-
       setSearchParams(localVarUrlObj, localVarQueryParameter)
       let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
       localVarRequestOptions.headers = {
@@ -266,13 +242,11 @@ export const WQAnalysisApiAxiosParamCreator = function (configuration?: Configur
     /**
      *
      * @summary 更新在线水质或控制点数据 Update online water quality or control data
-     * @param {string} [tenantId]
      * @param {Array<UpdateWqInputDataInput>} [updateWqInputDataInput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiWQAnalysisUpdateWQInputDataPost: async (
-      tenantId?: string,
       updateWqInputDataInput?: Array<UpdateWqInputDataInput>,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
@@ -287,10 +261,6 @@ export const WQAnalysisApiAxiosParamCreator = function (configuration?: Configur
       const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
-
-      if (tenantId != null) {
-        localVarHeaderParameter['tenantId'] = String(tenantId)
-      }
 
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
@@ -319,7 +289,6 @@ export const WQAnalysisApiAxiosParamCreator = function (configuration?: Configur
      * @param {string} [endTime] 结束时间 end time
      * @param {string} [modelName] 模型名称 template model name
      * @param {string} [productLine] 工艺线 product line code
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -328,7 +297,6 @@ export const WQAnalysisApiAxiosParamCreator = function (configuration?: Configur
       endTime?: string,
       modelName?: string,
       productLine?: string,
-      tenantId?: string,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
       const localVarPath = `/v2/wq-analysis/micro-organism`
@@ -359,10 +327,6 @@ export const WQAnalysisApiAxiosParamCreator = function (configuration?: Configur
         localVarQueryParameter['productLine'] = productLine
       }
 
-      if (tenantId != null) {
-        localVarHeaderParameter['tenantId'] = String(tenantId)
-      }
-
       setSearchParams(localVarUrlObj, localVarQueryParameter)
       let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
       localVarRequestOptions.headers = {
@@ -391,14 +355,12 @@ export const WQAnalysisApiFp = function (configuration?: Configuration) {
      * @summary 查询特定工艺线下的工艺运行输入点位 Get online control points detailed information on a certain product line
      * @param {string} [modelName] 模型名称 template model name
      * @param {string} [productLine] 工艺线 product line code
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async apiV2WqAnalysisControlOnlinePointsGet(
       modelName?: string,
       productLine?: string,
-      tenantId?: string,
       options?: AxiosRequestConfig,
     ): Promise<
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<ControlOnlinePointOutput>
@@ -407,7 +369,6 @@ export const WQAnalysisApiFp = function (configuration?: Configuration) {
         await localVarAxiosParamCreator.apiV2WqAnalysisControlOnlinePointsGet(
           modelName,
           productLine,
-          tenantId,
           options,
         )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
@@ -419,7 +380,6 @@ export const WQAnalysisApiFp = function (configuration?: Configuration) {
      * @param {string} [endTime] 结束时间 end time
      * @param {string} [modelName] 模型名称 template model name
      * @param {string} [productLine] 工艺线 product line code
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -428,7 +388,6 @@ export const WQAnalysisApiFp = function (configuration?: Configuration) {
       endTime?: string,
       modelName?: string,
       productLine?: string,
-      tenantId?: string,
       options?: AxiosRequestConfig,
     ): Promise<
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<WqStatisticOutput>>
@@ -438,7 +397,6 @@ export const WQAnalysisApiFp = function (configuration?: Configuration) {
         endTime,
         modelName,
         productLine,
-        tenantId,
         options,
       )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
@@ -446,20 +404,17 @@ export const WQAnalysisApiFp = function (configuration?: Configuration) {
     /**
      *
      * @summary 查询在线点位时间序列数据 Get online water quality or control data
-     * @param {string} [tenantId]
      * @param {WqOnlineDataInput} [wqOnlineDataInput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async apiV2WqAnalysisWqOnlineDataPost(
-      tenantId?: string,
       wqOnlineDataInput?: WqOnlineDataInput,
       options?: AxiosRequestConfig,
     ): Promise<
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<WqOnlineDataOutput>>
     > {
       const localVarAxiosArgs = await localVarAxiosParamCreator.apiV2WqAnalysisWqOnlineDataPost(
-        tenantId,
         wqOnlineDataInput,
         options,
       )
@@ -469,20 +424,17 @@ export const WQAnalysisApiFp = function (configuration?: Configuration) {
      *
      * @summary 查询水质输入点位信息 Get online water quality points detailed information
      * @param {string} [modelName] 模型名称 template model name
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async apiV2WqAnalysisWqOnlinePointsGet(
       modelName?: string,
-      tenantId?: string,
       options?: AxiosRequestConfig,
     ): Promise<
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<WqOnlinePointOutput>>
     > {
       const localVarAxiosArgs = await localVarAxiosParamCreator.apiV2WqAnalysisWqOnlinePointsGet(
         modelName,
-        tenantId,
         options,
       )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
@@ -490,18 +442,15 @@ export const WQAnalysisApiFp = function (configuration?: Configuration) {
     /**
      *
      * @summary 更新在线水质或控制点数据 Update online water quality or control data
-     * @param {string} [tenantId]
      * @param {Array<UpdateWqInputDataInput>} [updateWqInputDataInput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async apiWQAnalysisUpdateWQInputDataPost(
-      tenantId?: string,
       updateWqInputDataInput?: Array<UpdateWqInputDataInput>,
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
       const localVarAxiosArgs = await localVarAxiosParamCreator.apiWQAnalysisUpdateWQInputDataPost(
-        tenantId,
         updateWqInputDataInput,
         options,
       )
@@ -514,7 +463,6 @@ export const WQAnalysisApiFp = function (configuration?: Configuration) {
      * @param {string} [endTime] 结束时间 end time
      * @param {string} [modelName] 模型名称 template model name
      * @param {string} [productLine] 工艺线 product line code
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -523,7 +471,6 @@ export const WQAnalysisApiFp = function (configuration?: Configuration) {
       endTime?: string,
       modelName?: string,
       productLine?: string,
-      tenantId?: string,
       options?: AxiosRequestConfig,
     ): Promise<
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<MicroOrganismOutput>>
@@ -533,7 +480,6 @@ export const WQAnalysisApiFp = function (configuration?: Configuration) {
         endTime,
         modelName,
         productLine,
-        tenantId,
         options,
       )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
@@ -557,18 +503,16 @@ export const WQAnalysisApiFactory = function (
      * @summary 查询特定工艺线下的工艺运行输入点位 Get online control points detailed information on a certain product line
      * @param {string} [modelName] 模型名称 template model name
      * @param {string} [productLine] 工艺线 product line code
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiV2WqAnalysisControlOnlinePointsGet(
       modelName?: string,
       productLine?: string,
-      tenantId?: string,
       options?: any,
     ): AxiosPromise<ControlOnlinePointOutput> {
       return localVarFp
-        .apiV2WqAnalysisControlOnlinePointsGet(modelName, productLine, tenantId, options)
+        .apiV2WqAnalysisControlOnlinePointsGet(modelName, productLine, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -578,7 +522,6 @@ export const WQAnalysisApiFactory = function (
      * @param {string} [endTime] 结束时间 end time
      * @param {string} [modelName] 模型名称 template model name
      * @param {string} [productLine] 工艺线 product line code
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -587,69 +530,55 @@ export const WQAnalysisApiFactory = function (
       endTime?: string,
       modelName?: string,
       productLine?: string,
-      tenantId?: string,
       options?: any,
     ): AxiosPromise<Array<WqStatisticOutput>> {
       return localVarFp
-        .apiV2WqAnalysisEntireProcessGet(
-          startTime,
-          endTime,
-          modelName,
-          productLine,
-          tenantId,
-          options,
-        )
+        .apiV2WqAnalysisEntireProcessGet(startTime, endTime, modelName, productLine, options)
         .then((request) => request(axios, basePath))
     },
     /**
      *
      * @summary 查询在线点位时间序列数据 Get online water quality or control data
-     * @param {string} [tenantId]
      * @param {WqOnlineDataInput} [wqOnlineDataInput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiV2WqAnalysisWqOnlineDataPost(
-      tenantId?: string,
       wqOnlineDataInput?: WqOnlineDataInput,
       options?: any,
     ): AxiosPromise<Array<WqOnlineDataOutput>> {
       return localVarFp
-        .apiV2WqAnalysisWqOnlineDataPost(tenantId, wqOnlineDataInput, options)
+        .apiV2WqAnalysisWqOnlineDataPost(wqOnlineDataInput, options)
         .then((request) => request(axios, basePath))
     },
     /**
      *
      * @summary 查询水质输入点位信息 Get online water quality points detailed information
      * @param {string} [modelName] 模型名称 template model name
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiV2WqAnalysisWqOnlinePointsGet(
       modelName?: string,
-      tenantId?: string,
       options?: any,
     ): AxiosPromise<Array<WqOnlinePointOutput>> {
       return localVarFp
-        .apiV2WqAnalysisWqOnlinePointsGet(modelName, tenantId, options)
+        .apiV2WqAnalysisWqOnlinePointsGet(modelName, options)
         .then((request) => request(axios, basePath))
     },
     /**
      *
      * @summary 更新在线水质或控制点数据 Update online water quality or control data
-     * @param {string} [tenantId]
      * @param {Array<UpdateWqInputDataInput>} [updateWqInputDataInput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiWQAnalysisUpdateWQInputDataPost(
-      tenantId?: string,
       updateWqInputDataInput?: Array<UpdateWqInputDataInput>,
       options?: any,
     ): AxiosPromise<object> {
       return localVarFp
-        .apiWQAnalysisUpdateWQInputDataPost(tenantId, updateWqInputDataInput, options)
+        .apiWQAnalysisUpdateWQInputDataPost(updateWqInputDataInput, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -659,7 +588,6 @@ export const WQAnalysisApiFactory = function (
      * @param {string} [endTime] 结束时间 end time
      * @param {string} [modelName] 模型名称 template model name
      * @param {string} [productLine] 工艺线 product line code
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -668,11 +596,10 @@ export const WQAnalysisApiFactory = function (
       endTime?: string,
       modelName?: string,
       productLine?: string,
-      tenantId?: string,
       options?: any,
     ): AxiosPromise<Array<MicroOrganismOutput>> {
       return localVarFp
-        .v2WqAnalysisMicroOrganismGet(startTime, endTime, modelName, productLine, tenantId, options)
+        .v2WqAnalysisMicroOrganismGet(startTime, endTime, modelName, productLine, options)
         .then((request) => request(axios, basePath))
     },
   }
@@ -690,7 +617,6 @@ export class WQAnalysisApi extends BaseAPI {
    * @summary 查询特定工艺线下的工艺运行输入点位 Get online control points detailed information on a certain product line
    * @param {string} [modelName] 模型名称 template model name
    * @param {string} [productLine] 工艺线 product line code
-   * @param {string} [tenantId]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof WQAnalysisApi
@@ -698,11 +624,10 @@ export class WQAnalysisApi extends BaseAPI {
   public apiV2WqAnalysisControlOnlinePointsGet(
     modelName?: string,
     productLine?: string,
-    tenantId?: string,
     options?: AxiosRequestConfig,
   ) {
     return WQAnalysisApiFp(this.configuration)
-      .apiV2WqAnalysisControlOnlinePointsGet(modelName, productLine, tenantId, options)
+      .apiV2WqAnalysisControlOnlinePointsGet(modelName, productLine, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -713,7 +638,6 @@ export class WQAnalysisApi extends BaseAPI {
    * @param {string} [endTime] 结束时间 end time
    * @param {string} [modelName] 模型名称 template model name
    * @param {string} [productLine] 工艺线 product line code
-   * @param {string} [tenantId]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof WQAnalysisApi
@@ -723,37 +647,27 @@ export class WQAnalysisApi extends BaseAPI {
     endTime?: string,
     modelName?: string,
     productLine?: string,
-    tenantId?: string,
     options?: AxiosRequestConfig,
   ) {
     return WQAnalysisApiFp(this.configuration)
-      .apiV2WqAnalysisEntireProcessGet(
-        startTime,
-        endTime,
-        modelName,
-        productLine,
-        tenantId,
-        options,
-      )
+      .apiV2WqAnalysisEntireProcessGet(startTime, endTime, modelName, productLine, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
   /**
    *
    * @summary 查询在线点位时间序列数据 Get online water quality or control data
-   * @param {string} [tenantId]
    * @param {WqOnlineDataInput} [wqOnlineDataInput]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof WQAnalysisApi
    */
   public apiV2WqAnalysisWqOnlineDataPost(
-    tenantId?: string,
     wqOnlineDataInput?: WqOnlineDataInput,
     options?: AxiosRequestConfig,
   ) {
     return WQAnalysisApiFp(this.configuration)
-      .apiV2WqAnalysisWqOnlineDataPost(tenantId, wqOnlineDataInput, options)
+      .apiV2WqAnalysisWqOnlineDataPost(wqOnlineDataInput, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -761,37 +675,30 @@ export class WQAnalysisApi extends BaseAPI {
    *
    * @summary 查询水质输入点位信息 Get online water quality points detailed information
    * @param {string} [modelName] 模型名称 template model name
-   * @param {string} [tenantId]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof WQAnalysisApi
    */
-  public apiV2WqAnalysisWqOnlinePointsGet(
-    modelName?: string,
-    tenantId?: string,
-    options?: AxiosRequestConfig,
-  ) {
+  public apiV2WqAnalysisWqOnlinePointsGet(modelName?: string, options?: AxiosRequestConfig) {
     return WQAnalysisApiFp(this.configuration)
-      .apiV2WqAnalysisWqOnlinePointsGet(modelName, tenantId, options)
+      .apiV2WqAnalysisWqOnlinePointsGet(modelName, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
   /**
    *
    * @summary 更新在线水质或控制点数据 Update online water quality or control data
-   * @param {string} [tenantId]
    * @param {Array<UpdateWqInputDataInput>} [updateWqInputDataInput]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof WQAnalysisApi
    */
   public apiWQAnalysisUpdateWQInputDataPost(
-    tenantId?: string,
     updateWqInputDataInput?: Array<UpdateWqInputDataInput>,
     options?: AxiosRequestConfig,
   ) {
     return WQAnalysisApiFp(this.configuration)
-      .apiWQAnalysisUpdateWQInputDataPost(tenantId, updateWqInputDataInput, options)
+      .apiWQAnalysisUpdateWQInputDataPost(updateWqInputDataInput, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -802,7 +709,6 @@ export class WQAnalysisApi extends BaseAPI {
    * @param {string} [endTime] 结束时间 end time
    * @param {string} [modelName] 模型名称 template model name
    * @param {string} [productLine] 工艺线 product line code
-   * @param {string} [tenantId]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof WQAnalysisApi
@@ -812,11 +718,10 @@ export class WQAnalysisApi extends BaseAPI {
     endTime?: string,
     modelName?: string,
     productLine?: string,
-    tenantId?: string,
     options?: AxiosRequestConfig,
   ) {
     return WQAnalysisApiFp(this.configuration)
-      .v2WqAnalysisMicroOrganismGet(startTime, endTime, modelName, productLine, tenantId, options)
+      .v2WqAnalysisMicroOrganismGet(startTime, endTime, modelName, productLine, options)
       .then((request) => request(this.axios, this.basePath))
   }
 }

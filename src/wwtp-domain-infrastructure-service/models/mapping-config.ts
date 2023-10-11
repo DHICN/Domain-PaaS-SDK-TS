@@ -14,43 +14,49 @@
 /**
  *
  * @export
- * @interface MappingConfigInputOutput
+ * @interface MappingConfig
  */
-export interface MappingConfigInputOutput {
+export interface MappingConfig {
   /**
-   * 点位ID mapping id
+   *
    * @type {string}
-   * @memberof MappingConfigInputOutput
+   * @memberof MappingConfig
    */
   id?: string
   /**
-   * 系统点位编码 online point code
+   *
    * @type {string}
-   * @memberof MappingConfigInputOutput
+   * @memberof MappingConfig
+   */
+  tenantId?: string | null
+  /**
+   *
+   * @type {string}
+   * @memberof MappingConfig
    */
   pointCode?: string | null
   /**
-   * 模型点位编码 model node code
+   *
    * @type {string}
-   * @memberof MappingConfigInputOutput
+   * @memberof MappingConfig
    */
   modelNodeCode?: string | null
   /**
-   * 系统点位ID system point id
+   *
    * @type {string}
-   * @memberof MappingConfigInputOutput
+   * @memberof MappingConfig
    */
   sysId?: string
   /**
-   * 保留字段 reserved field
+   *
    * @type {string}
-   * @memberof MappingConfigInputOutput
+   * @memberof MappingConfig
    */
   reserve?: string | null
   /**
-   * 模板模型名称（即模板方案名称） template model name
+   *
    * @type {string}
-   * @memberof MappingConfigInputOutput
+   * @memberof MappingConfig
    */
   modelName?: string | null
 }

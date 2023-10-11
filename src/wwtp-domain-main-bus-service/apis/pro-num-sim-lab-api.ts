@@ -66,13 +66,11 @@ export const ProNumSimLabApiAxiosParamCreator = function (configuration?: Config
      *
      * @summary 获取方案的出水水质结果数据 Get outlet water quality time-series result of a scenario
      * @param {string} [scenarioId] 方案ID scenario id
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiProNumSimLabSimResultsGet: async (
       scenarioId?: string,
-      tenantId?: string,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
       const localVarPath = `/api/ProNumSimLab/SimResults`
@@ -89,10 +87,6 @@ export const ProNumSimLabApiAxiosParamCreator = function (configuration?: Config
 
       if (scenarioId !== undefined) {
         localVarQueryParameter['scenarioId'] = scenarioId
-      }
-
-      if (tenantId != null) {
-        localVarHeaderParameter['tenantId'] = String(tenantId)
       }
 
       setSearchParams(localVarUrlObj, localVarQueryParameter)
@@ -113,14 +107,12 @@ export const ProNumSimLabApiAxiosParamCreator = function (configuration?: Config
      * @summary 生化池查询 Get biochemical pool config data
      * @param {string} [productLine] 工艺线代码 product line code
      * @param {string} [modelName] 模板模型名称 template model name
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiV2ConfigBiochemicaltanksGet: async (
       productLine?: string,
       modelName?: string,
-      tenantId?: string,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
       const localVarPath = `/api/v2/config/biochemicaltanks`
@@ -143,10 +135,6 @@ export const ProNumSimLabApiAxiosParamCreator = function (configuration?: Config
         localVarQueryParameter['ModelName'] = modelName
       }
 
-      if (tenantId != null) {
-        localVarHeaderParameter['tenantId'] = String(tenantId)
-      }
-
       setSearchParams(localVarUrlObj, localVarQueryParameter)
       let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
       localVarRequestOptions.headers = {
@@ -163,13 +151,11 @@ export const ProNumSimLabApiAxiosParamCreator = function (configuration?: Config
     /**
      * 只有多个方案之间设置不同的参数才会返回 Only parameters with difference setting values among the scenarios will be returned
      * @summary 多方案控制参数对比 Get several scenarios\' control paramters for comparison
-     * @param {string} [tenantId]
      * @param {QueryControlParamCompareInput} [queryControlParamCompareInput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiV2SimulationLabCompareControlParamPost: async (
-      tenantId?: string,
       queryControlParamCompareInput?: QueryControlParamCompareInput,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
@@ -184,10 +170,6 @@ export const ProNumSimLabApiAxiosParamCreator = function (configuration?: Config
       const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
-
-      if (tenantId != null) {
-        localVarHeaderParameter['tenantId'] = String(tenantId)
-      }
 
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
@@ -216,7 +198,6 @@ export const ProNumSimLabApiAxiosParamCreator = function (configuration?: Config
      * @param {string} [productLine] 工艺线代码 product line code
      * @param {string} [tankNo] 生化池序号 biochemical pool index
      * @param {string} [modelName] 模板模型名称 template model name
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -225,7 +206,6 @@ export const ProNumSimLabApiAxiosParamCreator = function (configuration?: Config
       productLine?: string,
       tankNo?: string,
       modelName?: string,
-      tenantId?: string,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
       const localVarPath = `/api/v2/simulation-lab/result/indicator-statistic`
@@ -256,10 +236,6 @@ export const ProNumSimLabApiAxiosParamCreator = function (configuration?: Config
         localVarQueryParameter['ModelName'] = modelName
       }
 
-      if (tenantId != null) {
-        localVarHeaderParameter['tenantId'] = String(tenantId)
-      }
-
       setSearchParams(localVarUrlObj, localVarQueryParameter)
       let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
       localVarRequestOptions.headers = {
@@ -279,7 +255,6 @@ export const ProNumSimLabApiAxiosParamCreator = function (configuration?: Config
      * @param {string} [scenarioId] 方案ID scenario id
      * @param {string} [productLine] 工艺线代码 product line code
      * @param {string} [modelName] 模板模型名称 template model name
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -287,7 +262,6 @@ export const ProNumSimLabApiAxiosParamCreator = function (configuration?: Config
       scenarioId?: string,
       productLine?: string,
       modelName?: string,
-      tenantId?: string,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
       const localVarPath = `/api/v2/simulation-lab/result/ts-by-productline`
@@ -314,10 +288,6 @@ export const ProNumSimLabApiAxiosParamCreator = function (configuration?: Config
         localVarQueryParameter['ModelName'] = modelName
       }
 
-      if (tenantId != null) {
-        localVarHeaderParameter['tenantId'] = String(tenantId)
-      }
-
       setSearchParams(localVarUrlObj, localVarQueryParameter)
       let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
       localVarRequestOptions.headers = {
@@ -334,13 +304,11 @@ export const ProNumSimLabApiAxiosParamCreator = function (configuration?: Config
     /**
      *
      * @summary 根据ID删除方案，同时删除方案相关的设置数据 Delete scenario as well as its corresponding setting data by scenario ids
-     * @param {string} [tenantId]
      * @param {DeleteScenarioInput} [deleteScenarioInput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiV2SimulationLabScenarioDeletePost: async (
-      tenantId?: string,
       deleteScenarioInput?: DeleteScenarioInput,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
@@ -355,10 +323,6 @@ export const ProNumSimLabApiAxiosParamCreator = function (configuration?: Config
       const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
-
-      if (tenantId != null) {
-        localVarHeaderParameter['tenantId'] = String(tenantId)
-      }
 
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
@@ -385,14 +349,12 @@ export const ProNumSimLabApiAxiosParamCreator = function (configuration?: Config
      * @summary 查询方案进水数据 Get scenario\'s inlet time-series data
      * @param {string} [scenarioId] 方案ID scenario id
      * @param {string} [inlet] 进水点 inlet
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiV2SimulationLabScenarioInletDataGet: async (
       scenarioId?: string,
       inlet?: string,
-      tenantId?: string,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
       const localVarPath = `/api/v2/simulation-lab/scenario/inlet-data`
@@ -415,10 +377,6 @@ export const ProNumSimLabApiAxiosParamCreator = function (configuration?: Config
         localVarQueryParameter['Inlet'] = inlet
       }
 
-      if (tenantId != null) {
-        localVarHeaderParameter['tenantId'] = String(tenantId)
-      }
-
       setSearchParams(localVarUrlObj, localVarQueryParameter)
       let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
       localVarRequestOptions.headers = {
@@ -435,13 +393,11 @@ export const ProNumSimLabApiAxiosParamCreator = function (configuration?: Config
     /**
      *
      * @summary 保存进水数据到方案（入数据库） Save inlet time-series data of a scenario in database
-     * @param {string} [tenantId]
      * @param {Array<SaveInletDataInput>} [saveInletDataInput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiV2SimulationLabScenarioInletDataSavePost: async (
-      tenantId?: string,
       saveInletDataInput?: Array<SaveInletDataInput>,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
@@ -456,10 +412,6 @@ export const ProNumSimLabApiAxiosParamCreator = function (configuration?: Config
       const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
-
-      if (tenantId != null) {
-        localVarHeaderParameter['tenantId'] = String(tenantId)
-      }
 
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
@@ -484,12 +436,10 @@ export const ProNumSimLabApiAxiosParamCreator = function (configuration?: Config
     /**
      *
      * @summary 进水点文件模板下载 Download the inlet time-series data excel file template.
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiV2SimulationLabScenarioInletDataTemplateDownloadPost: async (
-      tenantId?: string,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
       const localVarPath = `/api/v2/simulation-lab/scenario/inlet-data-template/download`
@@ -503,10 +453,6 @@ export const ProNumSimLabApiAxiosParamCreator = function (configuration?: Config
       const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
-
-      if (tenantId != null) {
-        localVarHeaderParameter['tenantId'] = String(tenantId)
-      }
 
       setSearchParams(localVarUrlObj, localVarQueryParameter)
       let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
@@ -524,13 +470,11 @@ export const ProNumSimLabApiAxiosParamCreator = function (configuration?: Config
     /**
      *
      * @summary 进水点数据文件excel上传 Upload inlet time-series data in an excel file
-     * @param {string} [tenantId]
      * @param {any} [excel]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiV2SimulationLabScenarioInletDataTemplateUploadPost: async (
-      tenantId?: string,
       excel?: any,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
@@ -546,10 +490,6 @@ export const ProNumSimLabApiAxiosParamCreator = function (configuration?: Config
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
       const localVarFormParams = new ((configuration && configuration.formDataCtor) || FormData)()
-
-      if (tenantId != null) {
-        localVarHeaderParameter['tenantId'] = String(tenantId)
-      }
 
       if (excel !== undefined) {
         localVarFormParams.append('Excel', excel as any)
@@ -577,7 +517,6 @@ export const ProNumSimLabApiAxiosParamCreator = function (configuration?: Config
      * @param {string} [inlet] 进水点 inlet
      * @param {string} [startTime] 开始时间 start time
      * @param {string} [endTime] 结束时间 end time
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -585,7 +524,6 @@ export const ProNumSimLabApiAxiosParamCreator = function (configuration?: Config
       inlet?: string,
       startTime?: string,
       endTime?: string,
-      tenantId?: string,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
       const localVarPath = `/api/v2/simulation-lab/scenario/inlet/scada`
@@ -612,10 +550,6 @@ export const ProNumSimLabApiAxiosParamCreator = function (configuration?: Config
         localVarQueryParameter['EndTime'] = endTime
       }
 
-      if (tenantId != null) {
-        localVarHeaderParameter['tenantId'] = String(tenantId)
-      }
-
       setSearchParams(localVarUrlObj, localVarQueryParameter)
       let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
       localVarRequestOptions.headers = {
@@ -634,14 +568,12 @@ export const ProNumSimLabApiAxiosParamCreator = function (configuration?: Config
      * @summary 查询方案参数设置 Get scenario\'s parameter setting data
      * @param {string} [scenarioId] 方案ID scenario id
      * @param {string} [productLine] 工艺线代码 product line code
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiV2SimulationLabScenarioParamGet: async (
       scenarioId?: string,
       productLine?: string,
-      tenantId?: string,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
       const localVarPath = `/api/v2/simulation-lab/scenario/param`
@@ -664,10 +596,6 @@ export const ProNumSimLabApiAxiosParamCreator = function (configuration?: Config
         localVarQueryParameter['ProductLine'] = productLine
       }
 
-      if (tenantId != null) {
-        localVarHeaderParameter['tenantId'] = String(tenantId)
-      }
-
       setSearchParams(localVarUrlObj, localVarQueryParameter)
       let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
       localVarRequestOptions.headers = {
@@ -684,13 +612,11 @@ export const ProNumSimLabApiAxiosParamCreator = function (configuration?: Config
     /**
      *
      * @summary 保存方案参数设置 Save scenario\'s parameter setting data
-     * @param {string} [tenantId]
      * @param {Array<SaveParamInput>} [saveParamInput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiV2SimulationLabScenarioParamSavePost: async (
-      tenantId?: string,
       saveParamInput?: Array<SaveParamInput>,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
@@ -705,10 +631,6 @@ export const ProNumSimLabApiAxiosParamCreator = function (configuration?: Config
       const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
-
-      if (tenantId != null) {
-        localVarHeaderParameter['tenantId'] = String(tenantId)
-      }
 
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
@@ -734,13 +656,11 @@ export const ProNumSimLabApiAxiosParamCreator = function (configuration?: Config
      *
      * @summary 查询方案结果配置 Get scenario\'s result setting data
      * @param {string} [scenarioId] 方案ID scenario id
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiV2SimulationLabScenarioResultSettingGet: async (
       scenarioId?: string,
-      tenantId?: string,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
       const localVarPath = `/api/v2/simulation-lab/scenario/result-setting`
@@ -759,10 +679,6 @@ export const ProNumSimLabApiAxiosParamCreator = function (configuration?: Config
         localVarQueryParameter['scenarioId'] = scenarioId
       }
 
-      if (tenantId != null) {
-        localVarHeaderParameter['tenantId'] = String(tenantId)
-      }
-
       setSearchParams(localVarUrlObj, localVarQueryParameter)
       let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
       localVarRequestOptions.headers = {
@@ -779,13 +695,11 @@ export const ProNumSimLabApiAxiosParamCreator = function (configuration?: Config
     /**
      *
      * @summary 保存方案结果配置 Save scenario\'s result setting data
-     * @param {string} [tenantId]
      * @param {ResultParam} [resultParam]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiV2SimulationLabScenarioResultSettingSavePost: async (
-      tenantId?: string,
       resultParam?: ResultParam,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
@@ -800,10 +714,6 @@ export const ProNumSimLabApiAxiosParamCreator = function (configuration?: Config
       const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
-
-      if (tenantId != null) {
-        localVarHeaderParameter['tenantId'] = String(tenantId)
-      }
 
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
@@ -829,13 +739,11 @@ export const ProNumSimLabApiAxiosParamCreator = function (configuration?: Config
      * 能够进行对比的方案需满足两个条件，分别是时间范围一致和结果配置一致 scenarios that can be compared must have consistent time period and result setting
      * @summary 查询与指定方案的结果配置一样的方案列表 Get scenarios which can be compared with the specified scenario
      * @param {string} [scenarioId] 方案ID scenario id
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiV2SimulationLabScenarioScenariosForCompareGet: async (
       scenarioId?: string,
-      tenantId?: string,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
       const localVarPath = `/api/v2/simulation-lab/scenario/scenarios-for-compare`
@@ -852,10 +760,6 @@ export const ProNumSimLabApiAxiosParamCreator = function (configuration?: Config
 
       if (scenarioId !== undefined) {
         localVarQueryParameter['scenarioId'] = scenarioId
-      }
-
-      if (tenantId != null) {
-        localVarHeaderParameter['tenantId'] = String(tenantId)
       }
 
       setSearchParams(localVarUrlObj, localVarQueryParameter)
@@ -885,20 +789,17 @@ export const ProNumSimLabApiFp = function (configuration?: Configuration) {
      *
      * @summary 获取方案的出水水质结果数据 Get outlet water quality time-series result of a scenario
      * @param {string} [scenarioId] 方案ID scenario id
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async apiProNumSimLabSimResultsGet(
       scenarioId?: string,
-      tenantId?: string,
       options?: AxiosRequestConfig,
     ): Promise<
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<SimResultsOutupt>>
     > {
       const localVarAxiosArgs = await localVarAxiosParamCreator.apiProNumSimLabSimResultsGet(
         scenarioId,
-        tenantId,
         options,
       )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
@@ -908,14 +809,12 @@ export const ProNumSimLabApiFp = function (configuration?: Configuration) {
      * @summary 生化池查询 Get biochemical pool config data
      * @param {string} [productLine] 工艺线代码 product line code
      * @param {string} [modelName] 模板模型名称 template model name
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async apiV2ConfigBiochemicaltanksGet(
       productLine?: string,
       modelName?: string,
-      tenantId?: string,
       options?: AxiosRequestConfig,
     ): Promise<
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<QueryBiochemicaltanksOutput>>
@@ -923,7 +822,6 @@ export const ProNumSimLabApiFp = function (configuration?: Configuration) {
       const localVarAxiosArgs = await localVarAxiosParamCreator.apiV2ConfigBiochemicaltanksGet(
         productLine,
         modelName,
-        tenantId,
         options,
       )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
@@ -931,13 +829,11 @@ export const ProNumSimLabApiFp = function (configuration?: Configuration) {
     /**
      * 只有多个方案之间设置不同的参数才会返回 Only parameters with difference setting values among the scenarios will be returned
      * @summary 多方案控制参数对比 Get several scenarios\' control paramters for comparison
-     * @param {string} [tenantId]
      * @param {QueryControlParamCompareInput} [queryControlParamCompareInput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async apiV2SimulationLabCompareControlParamPost(
-      tenantId?: string,
       queryControlParamCompareInput?: QueryControlParamCompareInput,
       options?: AxiosRequestConfig,
     ): Promise<
@@ -948,7 +844,6 @@ export const ProNumSimLabApiFp = function (configuration?: Configuration) {
     > {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.apiV2SimulationLabCompareControlParamPost(
-          tenantId,
           queryControlParamCompareInput,
           options,
         )
@@ -961,7 +856,6 @@ export const ProNumSimLabApiFp = function (configuration?: Configuration) {
      * @param {string} [productLine] 工艺线代码 product line code
      * @param {string} [tankNo] 生化池序号 biochemical pool index
      * @param {string} [modelName] 模板模型名称 template model name
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -970,7 +864,6 @@ export const ProNumSimLabApiFp = function (configuration?: Configuration) {
       productLine?: string,
       tankNo?: string,
       modelName?: string,
-      tenantId?: string,
       options?: AxiosRequestConfig,
     ): Promise<
       (
@@ -984,7 +877,6 @@ export const ProNumSimLabApiFp = function (configuration?: Configuration) {
           productLine,
           tankNo,
           modelName,
-          tenantId,
           options,
         )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
@@ -995,7 +887,6 @@ export const ProNumSimLabApiFp = function (configuration?: Configuration) {
      * @param {string} [scenarioId] 方案ID scenario id
      * @param {string} [productLine] 工艺线代码 product line code
      * @param {string} [modelName] 模板模型名称 template model name
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -1003,7 +894,6 @@ export const ProNumSimLabApiFp = function (configuration?: Configuration) {
       scenarioId?: string,
       productLine?: string,
       modelName?: string,
-      tenantId?: string,
       options?: AxiosRequestConfig,
     ): Promise<
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<EntireProcessWqOut>>
@@ -1013,7 +903,6 @@ export const ProNumSimLabApiFp = function (configuration?: Configuration) {
           scenarioId,
           productLine,
           modelName,
-          tenantId,
           options,
         )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
@@ -1021,19 +910,16 @@ export const ProNumSimLabApiFp = function (configuration?: Configuration) {
     /**
      *
      * @summary 根据ID删除方案，同时删除方案相关的设置数据 Delete scenario as well as its corresponding setting data by scenario ids
-     * @param {string} [tenantId]
      * @param {DeleteScenarioInput} [deleteScenarioInput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async apiV2SimulationLabScenarioDeletePost(
-      tenantId?: string,
       deleteScenarioInput?: DeleteScenarioInput,
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.apiV2SimulationLabScenarioDeletePost(
-          tenantId,
           deleteScenarioInput,
           options,
         )
@@ -1044,21 +930,18 @@ export const ProNumSimLabApiFp = function (configuration?: Configuration) {
      * @summary 查询方案进水数据 Get scenario\'s inlet time-series data
      * @param {string} [scenarioId] 方案ID scenario id
      * @param {string} [inlet] 进水点 inlet
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async apiV2SimulationLabScenarioInletDataGet(
       scenarioId?: string,
       inlet?: string,
-      tenantId?: string,
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<QueryInletDataOutput>> {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.apiV2SimulationLabScenarioInletDataGet(
           scenarioId,
           inlet,
-          tenantId,
           options,
         )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
@@ -1066,19 +949,16 @@ export const ProNumSimLabApiFp = function (configuration?: Configuration) {
     /**
      *
      * @summary 保存进水数据到方案（入数据库） Save inlet time-series data of a scenario in database
-     * @param {string} [tenantId]
      * @param {Array<SaveInletDataInput>} [saveInletDataInput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async apiV2SimulationLabScenarioInletDataSavePost(
-      tenantId?: string,
       saveInletDataInput?: Array<SaveInletDataInput>,
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.apiV2SimulationLabScenarioInletDataSavePost(
-          tenantId,
           saveInletDataInput,
           options,
         )
@@ -1087,17 +967,14 @@ export const ProNumSimLabApiFp = function (configuration?: Configuration) {
     /**
      *
      * @summary 进水点文件模板下载 Download the inlet time-series data excel file template.
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async apiV2SimulationLabScenarioInletDataTemplateDownloadPost(
-      tenantId?: string,
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.apiV2SimulationLabScenarioInletDataTemplateDownloadPost(
-          tenantId,
           options,
         )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
@@ -1105,13 +982,11 @@ export const ProNumSimLabApiFp = function (configuration?: Configuration) {
     /**
      *
      * @summary 进水点数据文件excel上传 Upload inlet time-series data in an excel file
-     * @param {string} [tenantId]
      * @param {any} [excel]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async apiV2SimulationLabScenarioInletDataTemplateUploadPost(
-      tenantId?: string,
       excel?: any,
       options?: AxiosRequestConfig,
     ): Promise<
@@ -1119,7 +994,6 @@ export const ProNumSimLabApiFp = function (configuration?: Configuration) {
     > {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.apiV2SimulationLabScenarioInletDataTemplateUploadPost(
-          tenantId,
           excel,
           options,
         )
@@ -1131,7 +1005,6 @@ export const ProNumSimLabApiFp = function (configuration?: Configuration) {
      * @param {string} [inlet] 进水点 inlet
      * @param {string} [startTime] 开始时间 start time
      * @param {string} [endTime] 结束时间 end time
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -1139,7 +1012,6 @@ export const ProNumSimLabApiFp = function (configuration?: Configuration) {
       inlet?: string,
       startTime?: string,
       endTime?: string,
-      tenantId?: string,
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<QueryInletDataOutput>> {
       const localVarAxiosArgs =
@@ -1147,7 +1019,6 @@ export const ProNumSimLabApiFp = function (configuration?: Configuration) {
           inlet,
           startTime,
           endTime,
-          tenantId,
           options,
         )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
@@ -1157,20 +1028,17 @@ export const ProNumSimLabApiFp = function (configuration?: Configuration) {
      * @summary 查询方案参数设置 Get scenario\'s parameter setting data
      * @param {string} [scenarioId] 方案ID scenario id
      * @param {string} [productLine] 工艺线代码 product line code
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async apiV2SimulationLabScenarioParamGet(
       scenarioId?: string,
       productLine?: string,
-      tenantId?: string,
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<ModelParam>>> {
       const localVarAxiosArgs = await localVarAxiosParamCreator.apiV2SimulationLabScenarioParamGet(
         scenarioId,
         productLine,
-        tenantId,
         options,
       )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
@@ -1178,19 +1046,16 @@ export const ProNumSimLabApiFp = function (configuration?: Configuration) {
     /**
      *
      * @summary 保存方案参数设置 Save scenario\'s parameter setting data
-     * @param {string} [tenantId]
      * @param {Array<SaveParamInput>} [saveParamInput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async apiV2SimulationLabScenarioParamSavePost(
-      tenantId?: string,
       saveParamInput?: Array<SaveParamInput>,
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.apiV2SimulationLabScenarioParamSavePost(
-          tenantId,
           saveParamInput,
           options,
         )
@@ -1200,19 +1065,16 @@ export const ProNumSimLabApiFp = function (configuration?: Configuration) {
      *
      * @summary 查询方案结果配置 Get scenario\'s result setting data
      * @param {string} [scenarioId] 方案ID scenario id
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async apiV2SimulationLabScenarioResultSettingGet(
       scenarioId?: string,
-      tenantId?: string,
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ResultParam>> {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.apiV2SimulationLabScenarioResultSettingGet(
           scenarioId,
-          tenantId,
           options,
         )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
@@ -1220,19 +1082,16 @@ export const ProNumSimLabApiFp = function (configuration?: Configuration) {
     /**
      *
      * @summary 保存方案结果配置 Save scenario\'s result setting data
-     * @param {string} [tenantId]
      * @param {ResultParam} [resultParam]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async apiV2SimulationLabScenarioResultSettingSavePost(
-      tenantId?: string,
       resultParam?: ResultParam,
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.apiV2SimulationLabScenarioResultSettingSavePost(
-          tenantId,
           resultParam,
           options,
         )
@@ -1242,19 +1101,16 @@ export const ProNumSimLabApiFp = function (configuration?: Configuration) {
      * 能够进行对比的方案需满足两个条件，分别是时间范围一致和结果配置一致 scenarios that can be compared must have consistent time period and result setting
      * @summary 查询与指定方案的结果配置一样的方案列表 Get scenarios which can be compared with the specified scenario
      * @param {string} [scenarioId] 方案ID scenario id
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async apiV2SimulationLabScenarioScenariosForCompareGet(
       scenarioId?: string,
-      tenantId?: string,
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<string>>> {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.apiV2SimulationLabScenarioScenariosForCompareGet(
           scenarioId,
-          tenantId,
           options,
         )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
@@ -1277,17 +1133,15 @@ export const ProNumSimLabApiFactory = function (
      *
      * @summary 获取方案的出水水质结果数据 Get outlet water quality time-series result of a scenario
      * @param {string} [scenarioId] 方案ID scenario id
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiProNumSimLabSimResultsGet(
       scenarioId?: string,
-      tenantId?: string,
       options?: any,
     ): AxiosPromise<Array<SimResultsOutupt>> {
       return localVarFp
-        .apiProNumSimLabSimResultsGet(scenarioId, tenantId, options)
+        .apiProNumSimLabSimResultsGet(scenarioId, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -1295,35 +1149,31 @@ export const ProNumSimLabApiFactory = function (
      * @summary 生化池查询 Get biochemical pool config data
      * @param {string} [productLine] 工艺线代码 product line code
      * @param {string} [modelName] 模板模型名称 template model name
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiV2ConfigBiochemicaltanksGet(
       productLine?: string,
       modelName?: string,
-      tenantId?: string,
       options?: any,
     ): AxiosPromise<Array<QueryBiochemicaltanksOutput>> {
       return localVarFp
-        .apiV2ConfigBiochemicaltanksGet(productLine, modelName, tenantId, options)
+        .apiV2ConfigBiochemicaltanksGet(productLine, modelName, options)
         .then((request) => request(axios, basePath))
     },
     /**
      * 只有多个方案之间设置不同的参数才会返回 Only parameters with difference setting values among the scenarios will be returned
      * @summary 多方案控制参数对比 Get several scenarios\' control paramters for comparison
-     * @param {string} [tenantId]
      * @param {QueryControlParamCompareInput} [queryControlParamCompareInput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiV2SimulationLabCompareControlParamPost(
-      tenantId?: string,
       queryControlParamCompareInput?: QueryControlParamCompareInput,
       options?: any,
     ): AxiosPromise<Array<QueryControlParamCompareOutput>> {
       return localVarFp
-        .apiV2SimulationLabCompareControlParamPost(tenantId, queryControlParamCompareInput, options)
+        .apiV2SimulationLabCompareControlParamPost(queryControlParamCompareInput, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -1333,7 +1183,6 @@ export const ProNumSimLabApiFactory = function (
      * @param {string} [productLine] 工艺线代码 product line code
      * @param {string} [tankNo] 生化池序号 biochemical pool index
      * @param {string} [modelName] 模板模型名称 template model name
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -1342,7 +1191,6 @@ export const ProNumSimLabApiFactory = function (
       productLine?: string,
       tankNo?: string,
       modelName?: string,
-      tenantId?: string,
       options?: any,
     ): AxiosPromise<Array<QueryIndicatorStatisticOutput>> {
       return localVarFp
@@ -1351,7 +1199,6 @@ export const ProNumSimLabApiFactory = function (
           productLine,
           tankNo,
           modelName,
-          tenantId,
           options,
         )
         .then((request) => request(axios, basePath))
@@ -1362,7 +1209,6 @@ export const ProNumSimLabApiFactory = function (
      * @param {string} [scenarioId] 方案ID scenario id
      * @param {string} [productLine] 工艺线代码 product line code
      * @param {string} [modelName] 模板模型名称 template model name
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -1370,34 +1216,25 @@ export const ProNumSimLabApiFactory = function (
       scenarioId?: string,
       productLine?: string,
       modelName?: string,
-      tenantId?: string,
       options?: any,
     ): AxiosPromise<Array<EntireProcessWqOut>> {
       return localVarFp
-        .apiV2SimulationLabResultTsByProductlineGet(
-          scenarioId,
-          productLine,
-          modelName,
-          tenantId,
-          options,
-        )
+        .apiV2SimulationLabResultTsByProductlineGet(scenarioId, productLine, modelName, options)
         .then((request) => request(axios, basePath))
     },
     /**
      *
      * @summary 根据ID删除方案，同时删除方案相关的设置数据 Delete scenario as well as its corresponding setting data by scenario ids
-     * @param {string} [tenantId]
      * @param {DeleteScenarioInput} [deleteScenarioInput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiV2SimulationLabScenarioDeletePost(
-      tenantId?: string,
       deleteScenarioInput?: DeleteScenarioInput,
       options?: any,
     ): AxiosPromise<object> {
       return localVarFp
-        .apiV2SimulationLabScenarioDeletePost(tenantId, deleteScenarioInput, options)
+        .apiV2SimulationLabScenarioDeletePost(deleteScenarioInput, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -1405,67 +1242,57 @@ export const ProNumSimLabApiFactory = function (
      * @summary 查询方案进水数据 Get scenario\'s inlet time-series data
      * @param {string} [scenarioId] 方案ID scenario id
      * @param {string} [inlet] 进水点 inlet
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiV2SimulationLabScenarioInletDataGet(
       scenarioId?: string,
       inlet?: string,
-      tenantId?: string,
       options?: any,
     ): AxiosPromise<QueryInletDataOutput> {
       return localVarFp
-        .apiV2SimulationLabScenarioInletDataGet(scenarioId, inlet, tenantId, options)
+        .apiV2SimulationLabScenarioInletDataGet(scenarioId, inlet, options)
         .then((request) => request(axios, basePath))
     },
     /**
      *
      * @summary 保存进水数据到方案（入数据库） Save inlet time-series data of a scenario in database
-     * @param {string} [tenantId]
      * @param {Array<SaveInletDataInput>} [saveInletDataInput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiV2SimulationLabScenarioInletDataSavePost(
-      tenantId?: string,
       saveInletDataInput?: Array<SaveInletDataInput>,
       options?: any,
     ): AxiosPromise<object> {
       return localVarFp
-        .apiV2SimulationLabScenarioInletDataSavePost(tenantId, saveInletDataInput, options)
+        .apiV2SimulationLabScenarioInletDataSavePost(saveInletDataInput, options)
         .then((request) => request(axios, basePath))
     },
     /**
      *
      * @summary 进水点文件模板下载 Download the inlet time-series data excel file template.
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    apiV2SimulationLabScenarioInletDataTemplateDownloadPost(
-      tenantId?: string,
-      options?: any,
-    ): AxiosPromise<void> {
+    apiV2SimulationLabScenarioInletDataTemplateDownloadPost(options?: any): AxiosPromise<void> {
       return localVarFp
-        .apiV2SimulationLabScenarioInletDataTemplateDownloadPost(tenantId, options)
+        .apiV2SimulationLabScenarioInletDataTemplateDownloadPost(options)
         .then((request) => request(axios, basePath))
     },
     /**
      *
      * @summary 进水点数据文件excel上传 Upload inlet time-series data in an excel file
-     * @param {string} [tenantId]
      * @param {any} [excel]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiV2SimulationLabScenarioInletDataTemplateUploadPost(
-      tenantId?: string,
       excel?: any,
       options?: any,
     ): AxiosPromise<Array<SaveInletDataInput>> {
       return localVarFp
-        .apiV2SimulationLabScenarioInletDataTemplateUploadPost(tenantId, excel, options)
+        .apiV2SimulationLabScenarioInletDataTemplateUploadPost(excel, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -1474,7 +1301,6 @@ export const ProNumSimLabApiFactory = function (
      * @param {string} [inlet] 进水点 inlet
      * @param {string} [startTime] 开始时间 start time
      * @param {string} [endTime] 结束时间 end time
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -1482,11 +1308,10 @@ export const ProNumSimLabApiFactory = function (
       inlet?: string,
       startTime?: string,
       endTime?: string,
-      tenantId?: string,
       options?: any,
     ): AxiosPromise<QueryInletDataOutput> {
       return localVarFp
-        .apiV2SimulationLabScenarioInletScadaGet(inlet, startTime, endTime, tenantId, options)
+        .apiV2SimulationLabScenarioInletScadaGet(inlet, startTime, endTime, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -1494,86 +1319,76 @@ export const ProNumSimLabApiFactory = function (
      * @summary 查询方案参数设置 Get scenario\'s parameter setting data
      * @param {string} [scenarioId] 方案ID scenario id
      * @param {string} [productLine] 工艺线代码 product line code
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiV2SimulationLabScenarioParamGet(
       scenarioId?: string,
       productLine?: string,
-      tenantId?: string,
       options?: any,
     ): AxiosPromise<Array<ModelParam>> {
       return localVarFp
-        .apiV2SimulationLabScenarioParamGet(scenarioId, productLine, tenantId, options)
+        .apiV2SimulationLabScenarioParamGet(scenarioId, productLine, options)
         .then((request) => request(axios, basePath))
     },
     /**
      *
      * @summary 保存方案参数设置 Save scenario\'s parameter setting data
-     * @param {string} [tenantId]
      * @param {Array<SaveParamInput>} [saveParamInput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiV2SimulationLabScenarioParamSavePost(
-      tenantId?: string,
       saveParamInput?: Array<SaveParamInput>,
       options?: any,
     ): AxiosPromise<object> {
       return localVarFp
-        .apiV2SimulationLabScenarioParamSavePost(tenantId, saveParamInput, options)
+        .apiV2SimulationLabScenarioParamSavePost(saveParamInput, options)
         .then((request) => request(axios, basePath))
     },
     /**
      *
      * @summary 查询方案结果配置 Get scenario\'s result setting data
      * @param {string} [scenarioId] 方案ID scenario id
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiV2SimulationLabScenarioResultSettingGet(
       scenarioId?: string,
-      tenantId?: string,
       options?: any,
     ): AxiosPromise<ResultParam> {
       return localVarFp
-        .apiV2SimulationLabScenarioResultSettingGet(scenarioId, tenantId, options)
+        .apiV2SimulationLabScenarioResultSettingGet(scenarioId, options)
         .then((request) => request(axios, basePath))
     },
     /**
      *
      * @summary 保存方案结果配置 Save scenario\'s result setting data
-     * @param {string} [tenantId]
      * @param {ResultParam} [resultParam]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiV2SimulationLabScenarioResultSettingSavePost(
-      tenantId?: string,
       resultParam?: ResultParam,
       options?: any,
     ): AxiosPromise<object> {
       return localVarFp
-        .apiV2SimulationLabScenarioResultSettingSavePost(tenantId, resultParam, options)
+        .apiV2SimulationLabScenarioResultSettingSavePost(resultParam, options)
         .then((request) => request(axios, basePath))
     },
     /**
      * 能够进行对比的方案需满足两个条件，分别是时间范围一致和结果配置一致 scenarios that can be compared must have consistent time period and result setting
      * @summary 查询与指定方案的结果配置一样的方案列表 Get scenarios which can be compared with the specified scenario
      * @param {string} [scenarioId] 方案ID scenario id
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiV2SimulationLabScenarioScenariosForCompareGet(
       scenarioId?: string,
-      tenantId?: string,
       options?: any,
     ): AxiosPromise<Array<string>> {
       return localVarFp
-        .apiV2SimulationLabScenarioScenariosForCompareGet(scenarioId, tenantId, options)
+        .apiV2SimulationLabScenarioScenariosForCompareGet(scenarioId, options)
         .then((request) => request(axios, basePath))
     },
   }
@@ -1590,18 +1405,13 @@ export class ProNumSimLabApi extends BaseAPI {
    *
    * @summary 获取方案的出水水质结果数据 Get outlet water quality time-series result of a scenario
    * @param {string} [scenarioId] 方案ID scenario id
-   * @param {string} [tenantId]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof ProNumSimLabApi
    */
-  public apiProNumSimLabSimResultsGet(
-    scenarioId?: string,
-    tenantId?: string,
-    options?: AxiosRequestConfig,
-  ) {
+  public apiProNumSimLabSimResultsGet(scenarioId?: string, options?: AxiosRequestConfig) {
     return ProNumSimLabApiFp(this.configuration)
-      .apiProNumSimLabSimResultsGet(scenarioId, tenantId, options)
+      .apiProNumSimLabSimResultsGet(scenarioId, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -1610,7 +1420,6 @@ export class ProNumSimLabApi extends BaseAPI {
    * @summary 生化池查询 Get biochemical pool config data
    * @param {string} [productLine] 工艺线代码 product line code
    * @param {string} [modelName] 模板模型名称 template model name
-   * @param {string} [tenantId]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof ProNumSimLabApi
@@ -1618,30 +1427,27 @@ export class ProNumSimLabApi extends BaseAPI {
   public apiV2ConfigBiochemicaltanksGet(
     productLine?: string,
     modelName?: string,
-    tenantId?: string,
     options?: AxiosRequestConfig,
   ) {
     return ProNumSimLabApiFp(this.configuration)
-      .apiV2ConfigBiochemicaltanksGet(productLine, modelName, tenantId, options)
+      .apiV2ConfigBiochemicaltanksGet(productLine, modelName, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
   /**
    * 只有多个方案之间设置不同的参数才会返回 Only parameters with difference setting values among the scenarios will be returned
    * @summary 多方案控制参数对比 Get several scenarios\' control paramters for comparison
-   * @param {string} [tenantId]
    * @param {QueryControlParamCompareInput} [queryControlParamCompareInput]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof ProNumSimLabApi
    */
   public apiV2SimulationLabCompareControlParamPost(
-    tenantId?: string,
     queryControlParamCompareInput?: QueryControlParamCompareInput,
     options?: AxiosRequestConfig,
   ) {
     return ProNumSimLabApiFp(this.configuration)
-      .apiV2SimulationLabCompareControlParamPost(tenantId, queryControlParamCompareInput, options)
+      .apiV2SimulationLabCompareControlParamPost(queryControlParamCompareInput, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -1652,7 +1458,6 @@ export class ProNumSimLabApi extends BaseAPI {
    * @param {string} [productLine] 工艺线代码 product line code
    * @param {string} [tankNo] 生化池序号 biochemical pool index
    * @param {string} [modelName] 模板模型名称 template model name
-   * @param {string} [tenantId]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof ProNumSimLabApi
@@ -1662,7 +1467,6 @@ export class ProNumSimLabApi extends BaseAPI {
     productLine?: string,
     tankNo?: string,
     modelName?: string,
-    tenantId?: string,
     options?: AxiosRequestConfig,
   ) {
     return ProNumSimLabApiFp(this.configuration)
@@ -1671,7 +1475,6 @@ export class ProNumSimLabApi extends BaseAPI {
         productLine,
         tankNo,
         modelName,
-        tenantId,
         options,
       )
       .then((request) => request(this.axios, this.basePath))
@@ -1683,7 +1486,6 @@ export class ProNumSimLabApi extends BaseAPI {
    * @param {string} [scenarioId] 方案ID scenario id
    * @param {string} [productLine] 工艺线代码 product line code
    * @param {string} [modelName] 模板模型名称 template model name
-   * @param {string} [tenantId]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof ProNumSimLabApi
@@ -1692,36 +1494,27 @@ export class ProNumSimLabApi extends BaseAPI {
     scenarioId?: string,
     productLine?: string,
     modelName?: string,
-    tenantId?: string,
     options?: AxiosRequestConfig,
   ) {
     return ProNumSimLabApiFp(this.configuration)
-      .apiV2SimulationLabResultTsByProductlineGet(
-        scenarioId,
-        productLine,
-        modelName,
-        tenantId,
-        options,
-      )
+      .apiV2SimulationLabResultTsByProductlineGet(scenarioId, productLine, modelName, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
   /**
    *
    * @summary 根据ID删除方案，同时删除方案相关的设置数据 Delete scenario as well as its corresponding setting data by scenario ids
-   * @param {string} [tenantId]
    * @param {DeleteScenarioInput} [deleteScenarioInput]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof ProNumSimLabApi
    */
   public apiV2SimulationLabScenarioDeletePost(
-    tenantId?: string,
     deleteScenarioInput?: DeleteScenarioInput,
     options?: AxiosRequestConfig,
   ) {
     return ProNumSimLabApiFp(this.configuration)
-      .apiV2SimulationLabScenarioDeletePost(tenantId, deleteScenarioInput, options)
+      .apiV2SimulationLabScenarioDeletePost(deleteScenarioInput, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -1730,7 +1523,6 @@ export class ProNumSimLabApi extends BaseAPI {
    * @summary 查询方案进水数据 Get scenario\'s inlet time-series data
    * @param {string} [scenarioId] 方案ID scenario id
    * @param {string} [inlet] 进水点 inlet
-   * @param {string} [tenantId]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof ProNumSimLabApi
@@ -1738,66 +1530,57 @@ export class ProNumSimLabApi extends BaseAPI {
   public apiV2SimulationLabScenarioInletDataGet(
     scenarioId?: string,
     inlet?: string,
-    tenantId?: string,
     options?: AxiosRequestConfig,
   ) {
     return ProNumSimLabApiFp(this.configuration)
-      .apiV2SimulationLabScenarioInletDataGet(scenarioId, inlet, tenantId, options)
+      .apiV2SimulationLabScenarioInletDataGet(scenarioId, inlet, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
   /**
    *
    * @summary 保存进水数据到方案（入数据库） Save inlet time-series data of a scenario in database
-   * @param {string} [tenantId]
    * @param {Array<SaveInletDataInput>} [saveInletDataInput]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof ProNumSimLabApi
    */
   public apiV2SimulationLabScenarioInletDataSavePost(
-    tenantId?: string,
     saveInletDataInput?: Array<SaveInletDataInput>,
     options?: AxiosRequestConfig,
   ) {
     return ProNumSimLabApiFp(this.configuration)
-      .apiV2SimulationLabScenarioInletDataSavePost(tenantId, saveInletDataInput, options)
+      .apiV2SimulationLabScenarioInletDataSavePost(saveInletDataInput, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
   /**
    *
    * @summary 进水点文件模板下载 Download the inlet time-series data excel file template.
-   * @param {string} [tenantId]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof ProNumSimLabApi
    */
-  public apiV2SimulationLabScenarioInletDataTemplateDownloadPost(
-    tenantId?: string,
-    options?: AxiosRequestConfig,
-  ) {
+  public apiV2SimulationLabScenarioInletDataTemplateDownloadPost(options?: AxiosRequestConfig) {
     return ProNumSimLabApiFp(this.configuration)
-      .apiV2SimulationLabScenarioInletDataTemplateDownloadPost(tenantId, options)
+      .apiV2SimulationLabScenarioInletDataTemplateDownloadPost(options)
       .then((request) => request(this.axios, this.basePath))
   }
 
   /**
    *
    * @summary 进水点数据文件excel上传 Upload inlet time-series data in an excel file
-   * @param {string} [tenantId]
    * @param {any} [excel]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof ProNumSimLabApi
    */
   public apiV2SimulationLabScenarioInletDataTemplateUploadPost(
-    tenantId?: string,
     excel?: any,
     options?: AxiosRequestConfig,
   ) {
     return ProNumSimLabApiFp(this.configuration)
-      .apiV2SimulationLabScenarioInletDataTemplateUploadPost(tenantId, excel, options)
+      .apiV2SimulationLabScenarioInletDataTemplateUploadPost(excel, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -1807,7 +1590,6 @@ export class ProNumSimLabApi extends BaseAPI {
    * @param {string} [inlet] 进水点 inlet
    * @param {string} [startTime] 开始时间 start time
    * @param {string} [endTime] 结束时间 end time
-   * @param {string} [tenantId]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof ProNumSimLabApi
@@ -1816,11 +1598,10 @@ export class ProNumSimLabApi extends BaseAPI {
     inlet?: string,
     startTime?: string,
     endTime?: string,
-    tenantId?: string,
     options?: AxiosRequestConfig,
   ) {
     return ProNumSimLabApiFp(this.configuration)
-      .apiV2SimulationLabScenarioInletScadaGet(inlet, startTime, endTime, tenantId, options)
+      .apiV2SimulationLabScenarioInletScadaGet(inlet, startTime, endTime, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -1829,7 +1610,6 @@ export class ProNumSimLabApi extends BaseAPI {
    * @summary 查询方案参数设置 Get scenario\'s parameter setting data
    * @param {string} [scenarioId] 方案ID scenario id
    * @param {string} [productLine] 工艺线代码 product line code
-   * @param {string} [tenantId]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof ProNumSimLabApi
@@ -1837,30 +1617,27 @@ export class ProNumSimLabApi extends BaseAPI {
   public apiV2SimulationLabScenarioParamGet(
     scenarioId?: string,
     productLine?: string,
-    tenantId?: string,
     options?: AxiosRequestConfig,
   ) {
     return ProNumSimLabApiFp(this.configuration)
-      .apiV2SimulationLabScenarioParamGet(scenarioId, productLine, tenantId, options)
+      .apiV2SimulationLabScenarioParamGet(scenarioId, productLine, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
   /**
    *
    * @summary 保存方案参数设置 Save scenario\'s parameter setting data
-   * @param {string} [tenantId]
    * @param {Array<SaveParamInput>} [saveParamInput]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof ProNumSimLabApi
    */
   public apiV2SimulationLabScenarioParamSavePost(
-    tenantId?: string,
     saveParamInput?: Array<SaveParamInput>,
     options?: AxiosRequestConfig,
   ) {
     return ProNumSimLabApiFp(this.configuration)
-      .apiV2SimulationLabScenarioParamSavePost(tenantId, saveParamInput, options)
+      .apiV2SimulationLabScenarioParamSavePost(saveParamInput, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -1868,37 +1645,33 @@ export class ProNumSimLabApi extends BaseAPI {
    *
    * @summary 查询方案结果配置 Get scenario\'s result setting data
    * @param {string} [scenarioId] 方案ID scenario id
-   * @param {string} [tenantId]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof ProNumSimLabApi
    */
   public apiV2SimulationLabScenarioResultSettingGet(
     scenarioId?: string,
-    tenantId?: string,
     options?: AxiosRequestConfig,
   ) {
     return ProNumSimLabApiFp(this.configuration)
-      .apiV2SimulationLabScenarioResultSettingGet(scenarioId, tenantId, options)
+      .apiV2SimulationLabScenarioResultSettingGet(scenarioId, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
   /**
    *
    * @summary 保存方案结果配置 Save scenario\'s result setting data
-   * @param {string} [tenantId]
    * @param {ResultParam} [resultParam]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof ProNumSimLabApi
    */
   public apiV2SimulationLabScenarioResultSettingSavePost(
-    tenantId?: string,
     resultParam?: ResultParam,
     options?: AxiosRequestConfig,
   ) {
     return ProNumSimLabApiFp(this.configuration)
-      .apiV2SimulationLabScenarioResultSettingSavePost(tenantId, resultParam, options)
+      .apiV2SimulationLabScenarioResultSettingSavePost(resultParam, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -1906,18 +1679,16 @@ export class ProNumSimLabApi extends BaseAPI {
    * 能够进行对比的方案需满足两个条件，分别是时间范围一致和结果配置一致 scenarios that can be compared must have consistent time period and result setting
    * @summary 查询与指定方案的结果配置一样的方案列表 Get scenarios which can be compared with the specified scenario
    * @param {string} [scenarioId] 方案ID scenario id
-   * @param {string} [tenantId]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof ProNumSimLabApi
    */
   public apiV2SimulationLabScenarioScenariosForCompareGet(
     scenarioId?: string,
-    tenantId?: string,
     options?: AxiosRequestConfig,
   ) {
     return ProNumSimLabApiFp(this.configuration)
-      .apiV2SimulationLabScenarioScenariosForCompareGet(scenarioId, tenantId, options)
+      .apiV2SimulationLabScenarioScenariosForCompareGet(scenarioId, options)
       .then((request) => request(this.axios, this.basePath))
   }
 }

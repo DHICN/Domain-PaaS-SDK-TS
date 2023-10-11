@@ -68,7 +68,6 @@ export const IntelligentDenitrificationApiAxiosParamCreator = function (
      * @param {string} [startTime] 开始时间 start time
      * @param {string} [endTime] 结束时间 end time
      * @param {string} [downloadKey] 下载key download key
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -78,7 +77,6 @@ export const IntelligentDenitrificationApiAxiosParamCreator = function (
       startTime?: string,
       endTime?: string,
       downloadKey?: string,
-      tenantId?: string,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
       const localVarPath = `/api/IntelligentDenitrification/DownloadDosingLog`
@@ -113,10 +111,6 @@ export const IntelligentDenitrificationApiAxiosParamCreator = function (
         localVarQueryParameter['downloadKey'] = downloadKey
       }
 
-      if (tenantId != null) {
-        localVarHeaderParameter['tenantId'] = String(tenantId)
-      }
-
       setSearchParams(localVarUrlObj, localVarQueryParameter)
       let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
       localVarRequestOptions.headers = {
@@ -137,7 +131,6 @@ export const IntelligentDenitrificationApiAxiosParamCreator = function (
      * @param {string} [startTime] 开始时间 start time
      * @param {string} [endTime] 结束时间 end time
      * @param {string} [downloadKey] 下载key download key
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -146,7 +139,6 @@ export const IntelligentDenitrificationApiAxiosParamCreator = function (
       startTime?: string,
       endTime?: string,
       downloadKey?: string,
-      tenantId?: string,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
       const localVarPath = `/api/IntelligentDenitrification/DownloadDosingStatisticDaily`
@@ -177,10 +169,6 @@ export const IntelligentDenitrificationApiAxiosParamCreator = function (
         localVarQueryParameter['downloadKey'] = downloadKey
       }
 
-      if (tenantId != null) {
-        localVarHeaderParameter['tenantId'] = String(tenantId)
-      }
-
       setSearchParams(localVarUrlObj, localVarQueryParameter)
       let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
       localVarRequestOptions.headers = {
@@ -200,7 +188,6 @@ export const IntelligentDenitrificationApiAxiosParamCreator = function (
      * @param {string} [productionLine] 产线编号 product line code
      * @param {string} [startTime] 开始时间 start time
      * @param {string} [endTime] 结束时间 end time
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -208,7 +195,6 @@ export const IntelligentDenitrificationApiAxiosParamCreator = function (
       productionLine?: string,
       startTime?: string,
       endTime?: string,
-      tenantId?: string,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
       const localVarPath = `/api/IntelligentDenitrification/GetABFTProcessStatus`
@@ -235,10 +221,6 @@ export const IntelligentDenitrificationApiAxiosParamCreator = function (
         localVarQueryParameter['endTime'] = endTime
       }
 
-      if (tenantId != null) {
-        localVarHeaderParameter['tenantId'] = String(tenantId)
-      }
-
       setSearchParams(localVarUrlObj, localVarQueryParameter)
       let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
       localVarRequestOptions.headers = {
@@ -258,7 +240,6 @@ export const IntelligentDenitrificationApiAxiosParamCreator = function (
      * @param {string} [productionLine] 产线编号 product line code
      * @param {string} [startTime] 开始时间 start time
      * @param {string} [endTime] 结束时间 end time
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -266,7 +247,6 @@ export const IntelligentDenitrificationApiAxiosParamCreator = function (
       productionLine?: string,
       startTime?: string,
       endTime?: string,
-      tenantId?: string,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
       const localVarPath = `/api/IntelligentDenitrification/GetAnoxicNO3`
@@ -293,10 +273,6 @@ export const IntelligentDenitrificationApiAxiosParamCreator = function (
         localVarQueryParameter['endTime'] = endTime
       }
 
-      if (tenantId != null) {
-        localVarHeaderParameter['tenantId'] = String(tenantId)
-      }
-
       setSearchParams(localVarUrlObj, localVarQueryParameter)
       let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
       localVarRequestOptions.headers = {
@@ -315,14 +291,12 @@ export const IntelligentDenitrificationApiAxiosParamCreator = function (
      * @summary 根据展示类别获取点位配置信息
      * @param {number} [displayTypeEnum] 展示枚举
      * @param {string} [productLine] 产线
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiIntelligentDenitrificationGetAssemblyConfigsGet: async (
       displayTypeEnum?: number,
       productLine?: string,
-      tenantId?: string,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
       const localVarPath = `/api/IntelligentDenitrification/GetAssemblyConfigs`
@@ -345,10 +319,6 @@ export const IntelligentDenitrificationApiAxiosParamCreator = function (
         localVarQueryParameter['productLine'] = productLine
       }
 
-      if (tenantId != null) {
-        localVarHeaderParameter['tenantId'] = String(tenantId)
-      }
-
       setSearchParams(localVarUrlObj, localVarQueryParameter)
       let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
       localVarRequestOptions.headers = {
@@ -368,7 +338,6 @@ export const IntelligentDenitrificationApiAxiosParamCreator = function (
      * @param {string} [productionLine] 产线编号 product line code
      * @param {string} [startTime] 开始时间 start time
      * @param {string} [endTime] 结束时间 end time
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -376,7 +345,6 @@ export const IntelligentDenitrificationApiAxiosParamCreator = function (
       productionLine?: string,
       startTime?: string,
       endTime?: string,
-      tenantId?: string,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
       const localVarPath = `/api/IntelligentDenitrification/GetCDAdditionRate`
@@ -403,10 +371,6 @@ export const IntelligentDenitrificationApiAxiosParamCreator = function (
         localVarQueryParameter['endTime'] = endTime
       }
 
-      if (tenantId != null) {
-        localVarHeaderParameter['tenantId'] = String(tenantId)
-      }
-
       setSearchParams(localVarUrlObj, localVarQueryParameter)
       let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
       localVarRequestOptions.headers = {
@@ -426,7 +390,6 @@ export const IntelligentDenitrificationApiAxiosParamCreator = function (
      * @param {string} [productionLine] 产线编号 product line code
      * @param {string} [startTime] 开始时间 start time
      * @param {string} [endTime] 结束时间 end time
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -434,7 +397,6 @@ export const IntelligentDenitrificationApiAxiosParamCreator = function (
       productionLine?: string,
       startTime?: string,
       endTime?: string,
-      tenantId?: string,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
       const localVarPath = `/api/IntelligentDenitrification/GetDenitrificationRate`
@@ -461,10 +423,6 @@ export const IntelligentDenitrificationApiAxiosParamCreator = function (
         localVarQueryParameter['endTime'] = endTime
       }
 
-      if (tenantId != null) {
-        localVarHeaderParameter['tenantId'] = String(tenantId)
-      }
-
       setSearchParams(localVarUrlObj, localVarQueryParameter)
       let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
       localVarRequestOptions.headers = {
@@ -485,7 +443,6 @@ export const IntelligentDenitrificationApiAxiosParamCreator = function (
      * @param {string} [productionLine] 产线代码 product line code
      * @param {string} [startTime] 开始时间 start time
      * @param {string} [endTime] 结束时间 end time
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -494,7 +451,6 @@ export const IntelligentDenitrificationApiAxiosParamCreator = function (
       productionLine?: string,
       startTime?: string,
       endTime?: string,
-      tenantId?: string,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
       const localVarPath = `/api/IntelligentDenitrification/GetDosingLog`
@@ -525,10 +481,6 @@ export const IntelligentDenitrificationApiAxiosParamCreator = function (
         localVarQueryParameter['endTime'] = endTime
       }
 
-      if (tenantId != null) {
-        localVarHeaderParameter['tenantId'] = String(tenantId)
-      }
-
       setSearchParams(localVarUrlObj, localVarQueryParameter)
       let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
       localVarRequestOptions.headers = {
@@ -547,14 +499,12 @@ export const IntelligentDenitrificationApiAxiosParamCreator = function (
      * @summary 获取加药参数 Get dosing paramters
      * @param {number} [category] 加药类别 dosage type
      * @param {string} [productionLineCode] 产线编号 product line code
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiIntelligentDenitrificationGetDosingParameterGet: async (
       category?: number,
       productionLineCode?: string,
-      tenantId?: string,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
       const localVarPath = `/api/IntelligentDenitrification/GetDosingParameter`
@@ -577,10 +527,6 @@ export const IntelligentDenitrificationApiAxiosParamCreator = function (
         localVarQueryParameter['productionLineCode'] = productionLineCode
       }
 
-      if (tenantId != null) {
-        localVarHeaderParameter['tenantId'] = String(tenantId)
-      }
-
       setSearchParams(localVarUrlObj, localVarQueryParameter)
       let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
       localVarRequestOptions.headers = {
@@ -600,7 +546,6 @@ export const IntelligentDenitrificationApiAxiosParamCreator = function (
      * @param {number} [category] 加药类型 dosage type
      * @param {string} [startTime] 开始时间 start time
      * @param {string} [endTime] 结束时间 end time
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -608,7 +553,6 @@ export const IntelligentDenitrificationApiAxiosParamCreator = function (
       category?: number,
       startTime?: string,
       endTime?: string,
-      tenantId?: string,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
       const localVarPath = `/api/IntelligentDenitrification/GetDosingStatisticDailys`
@@ -635,10 +579,6 @@ export const IntelligentDenitrificationApiAxiosParamCreator = function (
         localVarQueryParameter['endTime'] = endTime
       }
 
-      if (tenantId != null) {
-        localVarHeaderParameter['tenantId'] = String(tenantId)
-      }
-
       setSearchParams(localVarUrlObj, localVarQueryParameter)
       let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
       localVarRequestOptions.headers = {
@@ -658,7 +598,6 @@ export const IntelligentDenitrificationApiAxiosParamCreator = function (
      * @param {string} [productionLine] 产线编号 product line code
      * @param {string} [startTime] 开始时间 start time
      * @param {string} [endTime] 结束时间 end time
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -666,7 +605,6 @@ export const IntelligentDenitrificationApiAxiosParamCreator = function (
       productionLine?: string,
       startTime?: string,
       endTime?: string,
-      tenantId?: string,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
       const localVarPath = `/api/IntelligentDenitrification/GetInletLoad`
@@ -693,10 +631,6 @@ export const IntelligentDenitrificationApiAxiosParamCreator = function (
         localVarQueryParameter['endTime'] = endTime
       }
 
-      if (tenantId != null) {
-        localVarHeaderParameter['tenantId'] = String(tenantId)
-      }
-
       setSearchParams(localVarUrlObj, localVarQueryParameter)
       let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
       localVarRequestOptions.headers = {
@@ -715,14 +649,12 @@ export const IntelligentDenitrificationApiAxiosParamCreator = function (
      * @summary 获取出水总氮 Get total effluent nitrogen concentration
      * @param {string} [startTime] 开始时间 start time
      * @param {string} [endTime] 结束时间 end time
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiIntelligentDenitrificationGetOutletTNGet: async (
       startTime?: string,
       endTime?: string,
-      tenantId?: string,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
       const localVarPath = `/api/IntelligentDenitrification/GetOutletTN`
@@ -745,10 +677,6 @@ export const IntelligentDenitrificationApiAxiosParamCreator = function (
         localVarQueryParameter['endTime'] = endTime
       }
 
-      if (tenantId != null) {
-        localVarHeaderParameter['tenantId'] = String(tenantId)
-      }
-
       setSearchParams(localVarUrlObj, localVarQueryParameter)
       let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
       localVarRequestOptions.headers = {
@@ -765,13 +693,11 @@ export const IntelligentDenitrificationApiAxiosParamCreator = function (
     /**
      *
      * @summary 保存加药参数 Save dosing parameters
-     * @param {string} [tenantId]
      * @param {Array<DosingParamSettingDto>} [dosingParamSettingDto]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiIntelligentDenitrificationSaveDosingParameterPost: async (
-      tenantId?: string,
       dosingParamSettingDto?: Array<DosingParamSettingDto>,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
@@ -786,10 +712,6 @@ export const IntelligentDenitrificationApiAxiosParamCreator = function (
       const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
-
-      if (tenantId != null) {
-        localVarHeaderParameter['tenantId'] = String(tenantId)
-      }
 
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
@@ -829,7 +751,6 @@ export const IntelligentDenitrificationApiFp = function (configuration?: Configu
      * @param {string} [startTime] 开始时间 start time
      * @param {string} [endTime] 结束时间 end time
      * @param {string} [downloadKey] 下载key download key
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -839,7 +760,6 @@ export const IntelligentDenitrificationApiFp = function (configuration?: Configu
       startTime?: string,
       endTime?: string,
       downloadKey?: string,
-      tenantId?: string,
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
       const localVarAxiosArgs =
@@ -849,7 +769,6 @@ export const IntelligentDenitrificationApiFp = function (configuration?: Configu
           startTime,
           endTime,
           downloadKey,
-          tenantId,
           options,
         )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
@@ -861,7 +780,6 @@ export const IntelligentDenitrificationApiFp = function (configuration?: Configu
      * @param {string} [startTime] 开始时间 start time
      * @param {string} [endTime] 结束时间 end time
      * @param {string} [downloadKey] 下载key download key
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -870,7 +788,6 @@ export const IntelligentDenitrificationApiFp = function (configuration?: Configu
       startTime?: string,
       endTime?: string,
       downloadKey?: string,
-      tenantId?: string,
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
       const localVarAxiosArgs =
@@ -879,7 +796,6 @@ export const IntelligentDenitrificationApiFp = function (configuration?: Configu
           startTime,
           endTime,
           downloadKey,
-          tenantId,
           options,
         )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
@@ -890,7 +806,6 @@ export const IntelligentDenitrificationApiFp = function (configuration?: Configu
      * @param {string} [productionLine] 产线编号 product line code
      * @param {string} [startTime] 开始时间 start time
      * @param {string} [endTime] 结束时间 end time
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -898,7 +813,6 @@ export const IntelligentDenitrificationApiFp = function (configuration?: Configu
       productionLine?: string,
       startTime?: string,
       endTime?: string,
-      tenantId?: string,
       options?: AxiosRequestConfig,
     ): Promise<
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<AbftProcessStatusOutput>>
@@ -908,7 +822,6 @@ export const IntelligentDenitrificationApiFp = function (configuration?: Configu
           productionLine,
           startTime,
           endTime,
-          tenantId,
           options,
         )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
@@ -919,7 +832,6 @@ export const IntelligentDenitrificationApiFp = function (configuration?: Configu
      * @param {string} [productionLine] 产线编号 product line code
      * @param {string} [startTime] 开始时间 start time
      * @param {string} [endTime] 结束时间 end time
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -927,7 +839,6 @@ export const IntelligentDenitrificationApiFp = function (configuration?: Configu
       productionLine?: string,
       startTime?: string,
       endTime?: string,
-      tenantId?: string,
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<SingleCodeDatasOutput>> {
       const localVarAxiosArgs =
@@ -935,7 +846,6 @@ export const IntelligentDenitrificationApiFp = function (configuration?: Configu
           productionLine,
           startTime,
           endTime,
-          tenantId,
           options,
         )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
@@ -945,14 +855,12 @@ export const IntelligentDenitrificationApiFp = function (configuration?: Configu
      * @summary 根据展示类别获取点位配置信息
      * @param {number} [displayTypeEnum] 展示枚举
      * @param {string} [productLine] 产线
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async apiIntelligentDenitrificationGetAssemblyConfigsGet(
       displayTypeEnum?: number,
       productLine?: string,
-      tenantId?: string,
       options?: AxiosRequestConfig,
     ): Promise<
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<AssemblyConfigOutput>>
@@ -961,7 +869,6 @@ export const IntelligentDenitrificationApiFp = function (configuration?: Configu
         await localVarAxiosParamCreator.apiIntelligentDenitrificationGetAssemblyConfigsGet(
           displayTypeEnum,
           productLine,
-          tenantId,
           options,
         )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
@@ -972,7 +879,6 @@ export const IntelligentDenitrificationApiFp = function (configuration?: Configu
      * @param {string} [productionLine] 产线编号 product line code
      * @param {string} [startTime] 开始时间 start time
      * @param {string} [endTime] 结束时间 end time
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -980,7 +886,6 @@ export const IntelligentDenitrificationApiFp = function (configuration?: Configu
       productionLine?: string,
       startTime?: string,
       endTime?: string,
-      tenantId?: string,
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CdAdditionRateOutput>> {
       const localVarAxiosArgs =
@@ -988,7 +893,6 @@ export const IntelligentDenitrificationApiFp = function (configuration?: Configu
           productionLine,
           startTime,
           endTime,
-          tenantId,
           options,
         )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
@@ -999,7 +903,6 @@ export const IntelligentDenitrificationApiFp = function (configuration?: Configu
      * @param {string} [productionLine] 产线编号 product line code
      * @param {string} [startTime] 开始时间 start time
      * @param {string} [endTime] 结束时间 end time
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -1007,7 +910,6 @@ export const IntelligentDenitrificationApiFp = function (configuration?: Configu
       productionLine?: string,
       startTime?: string,
       endTime?: string,
-      tenantId?: string,
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<SingleCodeDatasOutput>> {
       const localVarAxiosArgs =
@@ -1015,7 +917,6 @@ export const IntelligentDenitrificationApiFp = function (configuration?: Configu
           productionLine,
           startTime,
           endTime,
-          tenantId,
           options,
         )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
@@ -1027,7 +928,6 @@ export const IntelligentDenitrificationApiFp = function (configuration?: Configu
      * @param {string} [productionLine] 产线代码 product line code
      * @param {string} [startTime] 开始时间 start time
      * @param {string} [endTime] 结束时间 end time
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -1036,7 +936,6 @@ export const IntelligentDenitrificationApiFp = function (configuration?: Configu
       productionLine?: string,
       startTime?: string,
       endTime?: string,
-      tenantId?: string,
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DosingLogOutput>> {
       const localVarAxiosArgs =
@@ -1045,7 +944,6 @@ export const IntelligentDenitrificationApiFp = function (configuration?: Configu
           productionLine,
           startTime,
           endTime,
-          tenantId,
           options,
         )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
@@ -1055,14 +953,12 @@ export const IntelligentDenitrificationApiFp = function (configuration?: Configu
      * @summary 获取加药参数 Get dosing paramters
      * @param {number} [category] 加药类别 dosage type
      * @param {string} [productionLineCode] 产线编号 product line code
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async apiIntelligentDenitrificationGetDosingParameterGet(
       category?: number,
       productionLineCode?: string,
-      tenantId?: string,
       options?: AxiosRequestConfig,
     ): Promise<
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<DosingParameterOutput>>
@@ -1071,7 +967,6 @@ export const IntelligentDenitrificationApiFp = function (configuration?: Configu
         await localVarAxiosParamCreator.apiIntelligentDenitrificationGetDosingParameterGet(
           category,
           productionLineCode,
-          tenantId,
           options,
         )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
@@ -1082,7 +977,6 @@ export const IntelligentDenitrificationApiFp = function (configuration?: Configu
      * @param {number} [category] 加药类型 dosage type
      * @param {string} [startTime] 开始时间 start time
      * @param {string} [endTime] 结束时间 end time
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -1090,7 +984,6 @@ export const IntelligentDenitrificationApiFp = function (configuration?: Configu
       category?: number,
       startTime?: string,
       endTime?: string,
-      tenantId?: string,
       options?: AxiosRequestConfig,
     ): Promise<
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<DosingStatisticDailysOutput>>
@@ -1100,7 +993,6 @@ export const IntelligentDenitrificationApiFp = function (configuration?: Configu
           category,
           startTime,
           endTime,
-          tenantId,
           options,
         )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
@@ -1111,7 +1003,6 @@ export const IntelligentDenitrificationApiFp = function (configuration?: Configu
      * @param {string} [productionLine] 产线编号 product line code
      * @param {string} [startTime] 开始时间 start time
      * @param {string} [endTime] 结束时间 end time
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -1119,7 +1010,6 @@ export const IntelligentDenitrificationApiFp = function (configuration?: Configu
       productionLine?: string,
       startTime?: string,
       endTime?: string,
-      tenantId?: string,
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<InletLoadOutput>>> {
       const localVarAxiosArgs =
@@ -1127,7 +1017,6 @@ export const IntelligentDenitrificationApiFp = function (configuration?: Configu
           productionLine,
           startTime,
           endTime,
-          tenantId,
           options,
         )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
@@ -1137,21 +1026,18 @@ export const IntelligentDenitrificationApiFp = function (configuration?: Configu
      * @summary 获取出水总氮 Get total effluent nitrogen concentration
      * @param {string} [startTime] 开始时间 start time
      * @param {string} [endTime] 结束时间 end time
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async apiIntelligentDenitrificationGetOutletTNGet(
       startTime?: string,
       endTime?: string,
-      tenantId?: string,
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OutletTnOutput>> {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.apiIntelligentDenitrificationGetOutletTNGet(
           startTime,
           endTime,
-          tenantId,
           options,
         )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
@@ -1159,19 +1045,16 @@ export const IntelligentDenitrificationApiFp = function (configuration?: Configu
     /**
      *
      * @summary 保存加药参数 Save dosing parameters
-     * @param {string} [tenantId]
      * @param {Array<DosingParamSettingDto>} [dosingParamSettingDto]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async apiIntelligentDenitrificationSaveDosingParameterPost(
-      tenantId?: string,
       dosingParamSettingDto?: Array<DosingParamSettingDto>,
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.apiIntelligentDenitrificationSaveDosingParameterPost(
-          tenantId,
           dosingParamSettingDto,
           options,
         )
@@ -1199,7 +1082,6 @@ export const IntelligentDenitrificationApiFactory = function (
      * @param {string} [startTime] 开始时间 start time
      * @param {string} [endTime] 结束时间 end time
      * @param {string} [downloadKey] 下载key download key
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -1209,7 +1091,6 @@ export const IntelligentDenitrificationApiFactory = function (
       startTime?: string,
       endTime?: string,
       downloadKey?: string,
-      tenantId?: string,
       options?: any,
     ): AxiosPromise<void> {
       return localVarFp
@@ -1219,7 +1100,6 @@ export const IntelligentDenitrificationApiFactory = function (
           startTime,
           endTime,
           downloadKey,
-          tenantId,
           options,
         )
         .then((request) => request(axios, basePath))
@@ -1231,7 +1111,6 @@ export const IntelligentDenitrificationApiFactory = function (
      * @param {string} [startTime] 开始时间 start time
      * @param {string} [endTime] 结束时间 end time
      * @param {string} [downloadKey] 下载key download key
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -1240,7 +1119,6 @@ export const IntelligentDenitrificationApiFactory = function (
       startTime?: string,
       endTime?: string,
       downloadKey?: string,
-      tenantId?: string,
       options?: any,
     ): AxiosPromise<void> {
       return localVarFp
@@ -1249,7 +1127,6 @@ export const IntelligentDenitrificationApiFactory = function (
           startTime,
           endTime,
           downloadKey,
-          tenantId,
           options,
         )
         .then((request) => request(axios, basePath))
@@ -1260,7 +1137,6 @@ export const IntelligentDenitrificationApiFactory = function (
      * @param {string} [productionLine] 产线编号 product line code
      * @param {string} [startTime] 开始时间 start time
      * @param {string} [endTime] 结束时间 end time
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -1268,7 +1144,6 @@ export const IntelligentDenitrificationApiFactory = function (
       productionLine?: string,
       startTime?: string,
       endTime?: string,
-      tenantId?: string,
       options?: any,
     ): AxiosPromise<Array<AbftProcessStatusOutput>> {
       return localVarFp
@@ -1276,7 +1151,6 @@ export const IntelligentDenitrificationApiFactory = function (
           productionLine,
           startTime,
           endTime,
-          tenantId,
           options,
         )
         .then((request) => request(axios, basePath))
@@ -1287,7 +1161,6 @@ export const IntelligentDenitrificationApiFactory = function (
      * @param {string} [productionLine] 产线编号 product line code
      * @param {string} [startTime] 开始时间 start time
      * @param {string} [endTime] 结束时间 end time
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -1295,17 +1168,10 @@ export const IntelligentDenitrificationApiFactory = function (
       productionLine?: string,
       startTime?: string,
       endTime?: string,
-      tenantId?: string,
       options?: any,
     ): AxiosPromise<SingleCodeDatasOutput> {
       return localVarFp
-        .apiIntelligentDenitrificationGetAnoxicNO3Get(
-          productionLine,
-          startTime,
-          endTime,
-          tenantId,
-          options,
-        )
+        .apiIntelligentDenitrificationGetAnoxicNO3Get(productionLine, startTime, endTime, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -1313,23 +1179,16 @@ export const IntelligentDenitrificationApiFactory = function (
      * @summary 根据展示类别获取点位配置信息
      * @param {number} [displayTypeEnum] 展示枚举
      * @param {string} [productLine] 产线
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiIntelligentDenitrificationGetAssemblyConfigsGet(
       displayTypeEnum?: number,
       productLine?: string,
-      tenantId?: string,
       options?: any,
     ): AxiosPromise<Array<AssemblyConfigOutput>> {
       return localVarFp
-        .apiIntelligentDenitrificationGetAssemblyConfigsGet(
-          displayTypeEnum,
-          productLine,
-          tenantId,
-          options,
-        )
+        .apiIntelligentDenitrificationGetAssemblyConfigsGet(displayTypeEnum, productLine, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -1338,7 +1197,6 @@ export const IntelligentDenitrificationApiFactory = function (
      * @param {string} [productionLine] 产线编号 product line code
      * @param {string} [startTime] 开始时间 start time
      * @param {string} [endTime] 结束时间 end time
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -1346,7 +1204,6 @@ export const IntelligentDenitrificationApiFactory = function (
       productionLine?: string,
       startTime?: string,
       endTime?: string,
-      tenantId?: string,
       options?: any,
     ): AxiosPromise<CdAdditionRateOutput> {
       return localVarFp
@@ -1354,7 +1211,6 @@ export const IntelligentDenitrificationApiFactory = function (
           productionLine,
           startTime,
           endTime,
-          tenantId,
           options,
         )
         .then((request) => request(axios, basePath))
@@ -1365,7 +1221,6 @@ export const IntelligentDenitrificationApiFactory = function (
      * @param {string} [productionLine] 产线编号 product line code
      * @param {string} [startTime] 开始时间 start time
      * @param {string} [endTime] 结束时间 end time
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -1373,7 +1228,6 @@ export const IntelligentDenitrificationApiFactory = function (
       productionLine?: string,
       startTime?: string,
       endTime?: string,
-      tenantId?: string,
       options?: any,
     ): AxiosPromise<SingleCodeDatasOutput> {
       return localVarFp
@@ -1381,7 +1235,6 @@ export const IntelligentDenitrificationApiFactory = function (
           productionLine,
           startTime,
           endTime,
-          tenantId,
           options,
         )
         .then((request) => request(axios, basePath))
@@ -1393,7 +1246,6 @@ export const IntelligentDenitrificationApiFactory = function (
      * @param {string} [productionLine] 产线代码 product line code
      * @param {string} [startTime] 开始时间 start time
      * @param {string} [endTime] 结束时间 end time
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -1402,7 +1254,6 @@ export const IntelligentDenitrificationApiFactory = function (
       productionLine?: string,
       startTime?: string,
       endTime?: string,
-      tenantId?: string,
       options?: any,
     ): AxiosPromise<DosingLogOutput> {
       return localVarFp
@@ -1411,7 +1262,6 @@ export const IntelligentDenitrificationApiFactory = function (
           productionLine,
           startTime,
           endTime,
-          tenantId,
           options,
         )
         .then((request) => request(axios, basePath))
@@ -1421,23 +1271,16 @@ export const IntelligentDenitrificationApiFactory = function (
      * @summary 获取加药参数 Get dosing paramters
      * @param {number} [category] 加药类别 dosage type
      * @param {string} [productionLineCode] 产线编号 product line code
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiIntelligentDenitrificationGetDosingParameterGet(
       category?: number,
       productionLineCode?: string,
-      tenantId?: string,
       options?: any,
     ): AxiosPromise<Array<DosingParameterOutput>> {
       return localVarFp
-        .apiIntelligentDenitrificationGetDosingParameterGet(
-          category,
-          productionLineCode,
-          tenantId,
-          options,
-        )
+        .apiIntelligentDenitrificationGetDosingParameterGet(category, productionLineCode, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -1446,7 +1289,6 @@ export const IntelligentDenitrificationApiFactory = function (
      * @param {number} [category] 加药类型 dosage type
      * @param {string} [startTime] 开始时间 start time
      * @param {string} [endTime] 结束时间 end time
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -1454,7 +1296,6 @@ export const IntelligentDenitrificationApiFactory = function (
       category?: number,
       startTime?: string,
       endTime?: string,
-      tenantId?: string,
       options?: any,
     ): AxiosPromise<Array<DosingStatisticDailysOutput>> {
       return localVarFp
@@ -1462,7 +1303,6 @@ export const IntelligentDenitrificationApiFactory = function (
           category,
           startTime,
           endTime,
-          tenantId,
           options,
         )
         .then((request) => request(axios, basePath))
@@ -1473,7 +1313,6 @@ export const IntelligentDenitrificationApiFactory = function (
      * @param {string} [productionLine] 产线编号 product line code
      * @param {string} [startTime] 开始时间 start time
      * @param {string} [endTime] 结束时间 end time
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -1481,17 +1320,10 @@ export const IntelligentDenitrificationApiFactory = function (
       productionLine?: string,
       startTime?: string,
       endTime?: string,
-      tenantId?: string,
       options?: any,
     ): AxiosPromise<Array<InletLoadOutput>> {
       return localVarFp
-        .apiIntelligentDenitrificationGetInletLoadGet(
-          productionLine,
-          startTime,
-          endTime,
-          tenantId,
-          options,
-        )
+        .apiIntelligentDenitrificationGetInletLoadGet(productionLine, startTime, endTime, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -1499,39 +1331,31 @@ export const IntelligentDenitrificationApiFactory = function (
      * @summary 获取出水总氮 Get total effluent nitrogen concentration
      * @param {string} [startTime] 开始时间 start time
      * @param {string} [endTime] 结束时间 end time
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiIntelligentDenitrificationGetOutletTNGet(
       startTime?: string,
       endTime?: string,
-      tenantId?: string,
       options?: any,
     ): AxiosPromise<OutletTnOutput> {
       return localVarFp
-        .apiIntelligentDenitrificationGetOutletTNGet(startTime, endTime, tenantId, options)
+        .apiIntelligentDenitrificationGetOutletTNGet(startTime, endTime, options)
         .then((request) => request(axios, basePath))
     },
     /**
      *
      * @summary 保存加药参数 Save dosing parameters
-     * @param {string} [tenantId]
      * @param {Array<DosingParamSettingDto>} [dosingParamSettingDto]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiIntelligentDenitrificationSaveDosingParameterPost(
-      tenantId?: string,
       dosingParamSettingDto?: Array<DosingParamSettingDto>,
       options?: any,
     ): AxiosPromise<object> {
       return localVarFp
-        .apiIntelligentDenitrificationSaveDosingParameterPost(
-          tenantId,
-          dosingParamSettingDto,
-          options,
-        )
+        .apiIntelligentDenitrificationSaveDosingParameterPost(dosingParamSettingDto, options)
         .then((request) => request(axios, basePath))
     },
   }
@@ -1552,7 +1376,6 @@ export class IntelligentDenitrificationApi extends BaseAPI {
    * @param {string} [startTime] 开始时间 start time
    * @param {string} [endTime] 结束时间 end time
    * @param {string} [downloadKey] 下载key download key
-   * @param {string} [tenantId]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof IntelligentDenitrificationApi
@@ -1563,7 +1386,6 @@ export class IntelligentDenitrificationApi extends BaseAPI {
     startTime?: string,
     endTime?: string,
     downloadKey?: string,
-    tenantId?: string,
     options?: AxiosRequestConfig,
   ) {
     return IntelligentDenitrificationApiFp(this.configuration)
@@ -1573,7 +1395,6 @@ export class IntelligentDenitrificationApi extends BaseAPI {
         startTime,
         endTime,
         downloadKey,
-        tenantId,
         options,
       )
       .then((request) => request(this.axios, this.basePath))
@@ -1586,7 +1407,6 @@ export class IntelligentDenitrificationApi extends BaseAPI {
    * @param {string} [startTime] 开始时间 start time
    * @param {string} [endTime] 结束时间 end time
    * @param {string} [downloadKey] 下载key download key
-   * @param {string} [tenantId]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof IntelligentDenitrificationApi
@@ -1596,7 +1416,6 @@ export class IntelligentDenitrificationApi extends BaseAPI {
     startTime?: string,
     endTime?: string,
     downloadKey?: string,
-    tenantId?: string,
     options?: AxiosRequestConfig,
   ) {
     return IntelligentDenitrificationApiFp(this.configuration)
@@ -1605,7 +1424,6 @@ export class IntelligentDenitrificationApi extends BaseAPI {
         startTime,
         endTime,
         downloadKey,
-        tenantId,
         options,
       )
       .then((request) => request(this.axios, this.basePath))
@@ -1617,7 +1435,6 @@ export class IntelligentDenitrificationApi extends BaseAPI {
    * @param {string} [productionLine] 产线编号 product line code
    * @param {string} [startTime] 开始时间 start time
    * @param {string} [endTime] 结束时间 end time
-   * @param {string} [tenantId]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof IntelligentDenitrificationApi
@@ -1626,7 +1443,6 @@ export class IntelligentDenitrificationApi extends BaseAPI {
     productionLine?: string,
     startTime?: string,
     endTime?: string,
-    tenantId?: string,
     options?: AxiosRequestConfig,
   ) {
     return IntelligentDenitrificationApiFp(this.configuration)
@@ -1634,7 +1450,6 @@ export class IntelligentDenitrificationApi extends BaseAPI {
         productionLine,
         startTime,
         endTime,
-        tenantId,
         options,
       )
       .then((request) => request(this.axios, this.basePath))
@@ -1646,7 +1461,6 @@ export class IntelligentDenitrificationApi extends BaseAPI {
    * @param {string} [productionLine] 产线编号 product line code
    * @param {string} [startTime] 开始时间 start time
    * @param {string} [endTime] 结束时间 end time
-   * @param {string} [tenantId]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof IntelligentDenitrificationApi
@@ -1655,17 +1469,10 @@ export class IntelligentDenitrificationApi extends BaseAPI {
     productionLine?: string,
     startTime?: string,
     endTime?: string,
-    tenantId?: string,
     options?: AxiosRequestConfig,
   ) {
     return IntelligentDenitrificationApiFp(this.configuration)
-      .apiIntelligentDenitrificationGetAnoxicNO3Get(
-        productionLine,
-        startTime,
-        endTime,
-        tenantId,
-        options,
-      )
+      .apiIntelligentDenitrificationGetAnoxicNO3Get(productionLine, startTime, endTime, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -1674,7 +1481,6 @@ export class IntelligentDenitrificationApi extends BaseAPI {
    * @summary 根据展示类别获取点位配置信息
    * @param {number} [displayTypeEnum] 展示枚举
    * @param {string} [productLine] 产线
-   * @param {string} [tenantId]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof IntelligentDenitrificationApi
@@ -1682,16 +1488,10 @@ export class IntelligentDenitrificationApi extends BaseAPI {
   public apiIntelligentDenitrificationGetAssemblyConfigsGet(
     displayTypeEnum?: number,
     productLine?: string,
-    tenantId?: string,
     options?: AxiosRequestConfig,
   ) {
     return IntelligentDenitrificationApiFp(this.configuration)
-      .apiIntelligentDenitrificationGetAssemblyConfigsGet(
-        displayTypeEnum,
-        productLine,
-        tenantId,
-        options,
-      )
+      .apiIntelligentDenitrificationGetAssemblyConfigsGet(displayTypeEnum, productLine, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -1701,7 +1501,6 @@ export class IntelligentDenitrificationApi extends BaseAPI {
    * @param {string} [productionLine] 产线编号 product line code
    * @param {string} [startTime] 开始时间 start time
    * @param {string} [endTime] 结束时间 end time
-   * @param {string} [tenantId]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof IntelligentDenitrificationApi
@@ -1710,7 +1509,6 @@ export class IntelligentDenitrificationApi extends BaseAPI {
     productionLine?: string,
     startTime?: string,
     endTime?: string,
-    tenantId?: string,
     options?: AxiosRequestConfig,
   ) {
     return IntelligentDenitrificationApiFp(this.configuration)
@@ -1718,7 +1516,6 @@ export class IntelligentDenitrificationApi extends BaseAPI {
         productionLine,
         startTime,
         endTime,
-        tenantId,
         options,
       )
       .then((request) => request(this.axios, this.basePath))
@@ -1730,7 +1527,6 @@ export class IntelligentDenitrificationApi extends BaseAPI {
    * @param {string} [productionLine] 产线编号 product line code
    * @param {string} [startTime] 开始时间 start time
    * @param {string} [endTime] 结束时间 end time
-   * @param {string} [tenantId]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof IntelligentDenitrificationApi
@@ -1739,7 +1535,6 @@ export class IntelligentDenitrificationApi extends BaseAPI {
     productionLine?: string,
     startTime?: string,
     endTime?: string,
-    tenantId?: string,
     options?: AxiosRequestConfig,
   ) {
     return IntelligentDenitrificationApiFp(this.configuration)
@@ -1747,7 +1542,6 @@ export class IntelligentDenitrificationApi extends BaseAPI {
         productionLine,
         startTime,
         endTime,
-        tenantId,
         options,
       )
       .then((request) => request(this.axios, this.basePath))
@@ -1760,7 +1554,6 @@ export class IntelligentDenitrificationApi extends BaseAPI {
    * @param {string} [productionLine] 产线代码 product line code
    * @param {string} [startTime] 开始时间 start time
    * @param {string} [endTime] 结束时间 end time
-   * @param {string} [tenantId]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof IntelligentDenitrificationApi
@@ -1770,7 +1563,6 @@ export class IntelligentDenitrificationApi extends BaseAPI {
     productionLine?: string,
     startTime?: string,
     endTime?: string,
-    tenantId?: string,
     options?: AxiosRequestConfig,
   ) {
     return IntelligentDenitrificationApiFp(this.configuration)
@@ -1779,7 +1571,6 @@ export class IntelligentDenitrificationApi extends BaseAPI {
         productionLine,
         startTime,
         endTime,
-        tenantId,
         options,
       )
       .then((request) => request(this.axios, this.basePath))
@@ -1790,7 +1581,6 @@ export class IntelligentDenitrificationApi extends BaseAPI {
    * @summary 获取加药参数 Get dosing paramters
    * @param {number} [category] 加药类别 dosage type
    * @param {string} [productionLineCode] 产线编号 product line code
-   * @param {string} [tenantId]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof IntelligentDenitrificationApi
@@ -1798,16 +1588,10 @@ export class IntelligentDenitrificationApi extends BaseAPI {
   public apiIntelligentDenitrificationGetDosingParameterGet(
     category?: number,
     productionLineCode?: string,
-    tenantId?: string,
     options?: AxiosRequestConfig,
   ) {
     return IntelligentDenitrificationApiFp(this.configuration)
-      .apiIntelligentDenitrificationGetDosingParameterGet(
-        category,
-        productionLineCode,
-        tenantId,
-        options,
-      )
+      .apiIntelligentDenitrificationGetDosingParameterGet(category, productionLineCode, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -1817,7 +1601,6 @@ export class IntelligentDenitrificationApi extends BaseAPI {
    * @param {number} [category] 加药类型 dosage type
    * @param {string} [startTime] 开始时间 start time
    * @param {string} [endTime] 结束时间 end time
-   * @param {string} [tenantId]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof IntelligentDenitrificationApi
@@ -1826,7 +1609,6 @@ export class IntelligentDenitrificationApi extends BaseAPI {
     category?: number,
     startTime?: string,
     endTime?: string,
-    tenantId?: string,
     options?: AxiosRequestConfig,
   ) {
     return IntelligentDenitrificationApiFp(this.configuration)
@@ -1834,7 +1616,6 @@ export class IntelligentDenitrificationApi extends BaseAPI {
         category,
         startTime,
         endTime,
-        tenantId,
         options,
       )
       .then((request) => request(this.axios, this.basePath))
@@ -1846,7 +1627,6 @@ export class IntelligentDenitrificationApi extends BaseAPI {
    * @param {string} [productionLine] 产线编号 product line code
    * @param {string} [startTime] 开始时间 start time
    * @param {string} [endTime] 结束时间 end time
-   * @param {string} [tenantId]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof IntelligentDenitrificationApi
@@ -1855,17 +1635,10 @@ export class IntelligentDenitrificationApi extends BaseAPI {
     productionLine?: string,
     startTime?: string,
     endTime?: string,
-    tenantId?: string,
     options?: AxiosRequestConfig,
   ) {
     return IntelligentDenitrificationApiFp(this.configuration)
-      .apiIntelligentDenitrificationGetInletLoadGet(
-        productionLine,
-        startTime,
-        endTime,
-        tenantId,
-        options,
-      )
+      .apiIntelligentDenitrificationGetInletLoadGet(productionLine, startTime, endTime, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -1874,7 +1647,6 @@ export class IntelligentDenitrificationApi extends BaseAPI {
    * @summary 获取出水总氮 Get total effluent nitrogen concentration
    * @param {string} [startTime] 开始时间 start time
    * @param {string} [endTime] 结束时间 end time
-   * @param {string} [tenantId]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof IntelligentDenitrificationApi
@@ -1882,34 +1654,27 @@ export class IntelligentDenitrificationApi extends BaseAPI {
   public apiIntelligentDenitrificationGetOutletTNGet(
     startTime?: string,
     endTime?: string,
-    tenantId?: string,
     options?: AxiosRequestConfig,
   ) {
     return IntelligentDenitrificationApiFp(this.configuration)
-      .apiIntelligentDenitrificationGetOutletTNGet(startTime, endTime, tenantId, options)
+      .apiIntelligentDenitrificationGetOutletTNGet(startTime, endTime, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
   /**
    *
    * @summary 保存加药参数 Save dosing parameters
-   * @param {string} [tenantId]
    * @param {Array<DosingParamSettingDto>} [dosingParamSettingDto]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof IntelligentDenitrificationApi
    */
   public apiIntelligentDenitrificationSaveDosingParameterPost(
-    tenantId?: string,
     dosingParamSettingDto?: Array<DosingParamSettingDto>,
     options?: AxiosRequestConfig,
   ) {
     return IntelligentDenitrificationApiFp(this.configuration)
-      .apiIntelligentDenitrificationSaveDosingParameterPost(
-        tenantId,
-        dosingParamSettingDto,
-        options,
-      )
+      .apiIntelligentDenitrificationSaveDosingParameterPost(dosingParamSettingDto, options)
       .then((request) => request(this.axios, this.basePath))
   }
 }

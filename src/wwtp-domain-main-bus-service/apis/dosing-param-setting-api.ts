@@ -43,13 +43,11 @@ export const DosingParamSettingApiAxiosParamCreator = function (configuration?: 
     /**
      *
      * @summary 添加加药参数设置信息 Add dosing parameter setting data
-     * @param {string} [tenantId]
      * @param {Array<DosingParamSettingDto>} [dosingParamSettingDto]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiDosingParamSettingAddDosingParamSettingsPost: async (
-      tenantId?: string,
       dosingParamSettingDto?: Array<DosingParamSettingDto>,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
@@ -64,10 +62,6 @@ export const DosingParamSettingApiAxiosParamCreator = function (configuration?: 
       const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
-
-      if (tenantId != null) {
-        localVarHeaderParameter['tenantId'] = String(tenantId)
-      }
 
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
@@ -92,13 +86,11 @@ export const DosingParamSettingApiAxiosParamCreator = function (configuration?: 
     /**
      *
      * @summary 根据ID删除加药参数设置信息 Delete dosing parameter setting data by ids
-     * @param {string} [tenantId]
      * @param {Array<string>} [requestBody]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiDosingParamSettingDeleteDosingParamSettingsPost: async (
-      tenantId?: string,
       requestBody?: Array<string>,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
@@ -113,10 +105,6 @@ export const DosingParamSettingApiAxiosParamCreator = function (configuration?: 
       const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
-
-      if (tenantId != null) {
-        localVarHeaderParameter['tenantId'] = String(tenantId)
-      }
 
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
@@ -141,12 +129,10 @@ export const DosingParamSettingApiAxiosParamCreator = function (configuration?: 
     /**
      *
      * @summary 获取所有加药参数设置信息 Get all dosing parameter setting data
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiDosingParamSettingGetAllDosingParamSettingsGet: async (
-      tenantId?: string,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
       const localVarPath = `/api/DosingParamSetting/GetAllDosingParamSettings`
@@ -160,10 +146,6 @@ export const DosingParamSettingApiAxiosParamCreator = function (configuration?: 
       const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
-
-      if (tenantId != null) {
-        localVarHeaderParameter['tenantId'] = String(tenantId)
-      }
 
       setSearchParams(localVarUrlObj, localVarQueryParameter)
       let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
@@ -183,14 +165,12 @@ export const DosingParamSettingApiAxiosParamCreator = function (configuration?: 
      * @summary 通过代码和工艺线查询加药参数设置信息 Get dosing parameter setting data by code and product line
      * @param {number} [codeEnum] 代码 code
      * @param {string} [productionLine] 工艺线代码 product line code
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiDosingParamSettingGetDosingParamSettingsByCodeGet: async (
       codeEnum?: number,
       productionLine?: string,
-      tenantId?: string,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
       const localVarPath = `/api/DosingParamSetting/GetDosingParamSettingsByCode`
@@ -213,10 +193,6 @@ export const DosingParamSettingApiAxiosParamCreator = function (configuration?: 
         localVarQueryParameter['productionLine'] = productionLine
       }
 
-      if (tenantId != null) {
-        localVarHeaderParameter['tenantId'] = String(tenantId)
-      }
-
       setSearchParams(localVarUrlObj, localVarQueryParameter)
       let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
       localVarRequestOptions.headers = {
@@ -235,14 +211,12 @@ export const DosingParamSettingApiAxiosParamCreator = function (configuration?: 
      * @summary 通过条件查询加药参数设置信息 Get dosing parameter setting data by condition
      * @param {number} [category] 加药类型 dosage type
      * @param {string} [productionLine] 生产线代码 product line code
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiDosingParamSettingGetDosingParamSettingsByConditionGet: async (
       category?: number,
       productionLine?: string,
-      tenantId?: string,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
       const localVarPath = `/api/DosingParamSetting/GetDosingParamSettingsByCondition`
@@ -265,10 +239,6 @@ export const DosingParamSettingApiAxiosParamCreator = function (configuration?: 
         localVarQueryParameter['productionLine'] = productionLine
       }
 
-      if (tenantId != null) {
-        localVarHeaderParameter['tenantId'] = String(tenantId)
-      }
-
       setSearchParams(localVarUrlObj, localVarQueryParameter)
       let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
       localVarRequestOptions.headers = {
@@ -285,13 +255,11 @@ export const DosingParamSettingApiAxiosParamCreator = function (configuration?: 
     /**
      *
      * @summary 更新加药参数设置信息 Update dosing parameter setting data
-     * @param {string} [tenantId]
      * @param {Array<DosingParamSettingDto>} [dosingParamSettingDto]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiDosingParamSettingUpdateDosingParamSettingsPost: async (
-      tenantId?: string,
       dosingParamSettingDto?: Array<DosingParamSettingDto>,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
@@ -306,10 +274,6 @@ export const DosingParamSettingApiAxiosParamCreator = function (configuration?: 
       const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
-
-      if (tenantId != null) {
-        localVarHeaderParameter['tenantId'] = String(tenantId)
-      }
 
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
@@ -344,19 +308,16 @@ export const DosingParamSettingApiFp = function (configuration?: Configuration) 
     /**
      *
      * @summary 添加加药参数设置信息 Add dosing parameter setting data
-     * @param {string} [tenantId]
      * @param {Array<DosingParamSettingDto>} [dosingParamSettingDto]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async apiDosingParamSettingAddDosingParamSettingsPost(
-      tenantId?: string,
       dosingParamSettingDto?: Array<DosingParamSettingDto>,
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.apiDosingParamSettingAddDosingParamSettingsPost(
-          tenantId,
           dosingParamSettingDto,
           options,
         )
@@ -365,19 +326,16 @@ export const DosingParamSettingApiFp = function (configuration?: Configuration) 
     /**
      *
      * @summary 根据ID删除加药参数设置信息 Delete dosing parameter setting data by ids
-     * @param {string} [tenantId]
      * @param {Array<string>} [requestBody]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async apiDosingParamSettingDeleteDosingParamSettingsPost(
-      tenantId?: string,
       requestBody?: Array<string>,
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.apiDosingParamSettingDeleteDosingParamSettingsPost(
-          tenantId,
           requestBody,
           options,
         )
@@ -386,21 +344,16 @@ export const DosingParamSettingApiFp = function (configuration?: Configuration) 
     /**
      *
      * @summary 获取所有加药参数设置信息 Get all dosing parameter setting data
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async apiDosingParamSettingGetAllDosingParamSettingsGet(
-      tenantId?: string,
       options?: AxiosRequestConfig,
     ): Promise<
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<DosingParamSettingDto>>
     > {
       const localVarAxiosArgs =
-        await localVarAxiosParamCreator.apiDosingParamSettingGetAllDosingParamSettingsGet(
-          tenantId,
-          options,
-        )
+        await localVarAxiosParamCreator.apiDosingParamSettingGetAllDosingParamSettingsGet(options)
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**
@@ -408,14 +361,12 @@ export const DosingParamSettingApiFp = function (configuration?: Configuration) 
      * @summary 通过代码和工艺线查询加药参数设置信息 Get dosing parameter setting data by code and product line
      * @param {number} [codeEnum] 代码 code
      * @param {string} [productionLine] 工艺线代码 product line code
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async apiDosingParamSettingGetDosingParamSettingsByCodeGet(
       codeEnum?: number,
       productionLine?: string,
-      tenantId?: string,
       options?: AxiosRequestConfig,
     ): Promise<
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<DosingParamSettingDto>>
@@ -424,7 +375,6 @@ export const DosingParamSettingApiFp = function (configuration?: Configuration) 
         await localVarAxiosParamCreator.apiDosingParamSettingGetDosingParamSettingsByCodeGet(
           codeEnum,
           productionLine,
-          tenantId,
           options,
         )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
@@ -434,14 +384,12 @@ export const DosingParamSettingApiFp = function (configuration?: Configuration) 
      * @summary 通过条件查询加药参数设置信息 Get dosing parameter setting data by condition
      * @param {number} [category] 加药类型 dosage type
      * @param {string} [productionLine] 生产线代码 product line code
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async apiDosingParamSettingGetDosingParamSettingsByConditionGet(
       category?: number,
       productionLine?: string,
-      tenantId?: string,
       options?: AxiosRequestConfig,
     ): Promise<
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<DosingParamSettingDto>>
@@ -450,7 +398,6 @@ export const DosingParamSettingApiFp = function (configuration?: Configuration) 
         await localVarAxiosParamCreator.apiDosingParamSettingGetDosingParamSettingsByConditionGet(
           category,
           productionLine,
-          tenantId,
           options,
         )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
@@ -458,19 +405,16 @@ export const DosingParamSettingApiFp = function (configuration?: Configuration) 
     /**
      *
      * @summary 更新加药参数设置信息 Update dosing parameter setting data
-     * @param {string} [tenantId]
      * @param {Array<DosingParamSettingDto>} [dosingParamSettingDto]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async apiDosingParamSettingUpdateDosingParamSettingsPost(
-      tenantId?: string,
       dosingParamSettingDto?: Array<DosingParamSettingDto>,
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.apiDosingParamSettingUpdateDosingParamSettingsPost(
-          tenantId,
           dosingParamSettingDto,
           options,
         )
@@ -493,50 +437,44 @@ export const DosingParamSettingApiFactory = function (
     /**
      *
      * @summary 添加加药参数设置信息 Add dosing parameter setting data
-     * @param {string} [tenantId]
      * @param {Array<DosingParamSettingDto>} [dosingParamSettingDto]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiDosingParamSettingAddDosingParamSettingsPost(
-      tenantId?: string,
       dosingParamSettingDto?: Array<DosingParamSettingDto>,
       options?: any,
     ): AxiosPromise<object> {
       return localVarFp
-        .apiDosingParamSettingAddDosingParamSettingsPost(tenantId, dosingParamSettingDto, options)
+        .apiDosingParamSettingAddDosingParamSettingsPost(dosingParamSettingDto, options)
         .then((request) => request(axios, basePath))
     },
     /**
      *
      * @summary 根据ID删除加药参数设置信息 Delete dosing parameter setting data by ids
-     * @param {string} [tenantId]
      * @param {Array<string>} [requestBody]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiDosingParamSettingDeleteDosingParamSettingsPost(
-      tenantId?: string,
       requestBody?: Array<string>,
       options?: any,
     ): AxiosPromise<object> {
       return localVarFp
-        .apiDosingParamSettingDeleteDosingParamSettingsPost(tenantId, requestBody, options)
+        .apiDosingParamSettingDeleteDosingParamSettingsPost(requestBody, options)
         .then((request) => request(axios, basePath))
     },
     /**
      *
      * @summary 获取所有加药参数设置信息 Get all dosing parameter setting data
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiDosingParamSettingGetAllDosingParamSettingsGet(
-      tenantId?: string,
       options?: any,
     ): AxiosPromise<Array<DosingParamSettingDto>> {
       return localVarFp
-        .apiDosingParamSettingGetAllDosingParamSettingsGet(tenantId, options)
+        .apiDosingParamSettingGetAllDosingParamSettingsGet(options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -544,23 +482,16 @@ export const DosingParamSettingApiFactory = function (
      * @summary 通过代码和工艺线查询加药参数设置信息 Get dosing parameter setting data by code and product line
      * @param {number} [codeEnum] 代码 code
      * @param {string} [productionLine] 工艺线代码 product line code
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiDosingParamSettingGetDosingParamSettingsByCodeGet(
       codeEnum?: number,
       productionLine?: string,
-      tenantId?: string,
       options?: any,
     ): AxiosPromise<Array<DosingParamSettingDto>> {
       return localVarFp
-        .apiDosingParamSettingGetDosingParamSettingsByCodeGet(
-          codeEnum,
-          productionLine,
-          tenantId,
-          options,
-        )
+        .apiDosingParamSettingGetDosingParamSettingsByCodeGet(codeEnum, productionLine, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -568,21 +499,18 @@ export const DosingParamSettingApiFactory = function (
      * @summary 通过条件查询加药参数设置信息 Get dosing parameter setting data by condition
      * @param {number} [category] 加药类型 dosage type
      * @param {string} [productionLine] 生产线代码 product line code
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiDosingParamSettingGetDosingParamSettingsByConditionGet(
       category?: number,
       productionLine?: string,
-      tenantId?: string,
       options?: any,
     ): AxiosPromise<Array<DosingParamSettingDto>> {
       return localVarFp
         .apiDosingParamSettingGetDosingParamSettingsByConditionGet(
           category,
           productionLine,
-          tenantId,
           options,
         )
         .then((request) => request(axios, basePath))
@@ -590,22 +518,16 @@ export const DosingParamSettingApiFactory = function (
     /**
      *
      * @summary 更新加药参数设置信息 Update dosing parameter setting data
-     * @param {string} [tenantId]
      * @param {Array<DosingParamSettingDto>} [dosingParamSettingDto]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiDosingParamSettingUpdateDosingParamSettingsPost(
-      tenantId?: string,
       dosingParamSettingDto?: Array<DosingParamSettingDto>,
       options?: any,
     ): AxiosPromise<object> {
       return localVarFp
-        .apiDosingParamSettingUpdateDosingParamSettingsPost(
-          tenantId,
-          dosingParamSettingDto,
-          options,
-        )
+        .apiDosingParamSettingUpdateDosingParamSettingsPost(dosingParamSettingDto, options)
         .then((request) => request(axios, basePath))
     },
   }
@@ -621,55 +543,47 @@ export class DosingParamSettingApi extends BaseAPI {
   /**
    *
    * @summary 添加加药参数设置信息 Add dosing parameter setting data
-   * @param {string} [tenantId]
    * @param {Array<DosingParamSettingDto>} [dosingParamSettingDto]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof DosingParamSettingApi
    */
   public apiDosingParamSettingAddDosingParamSettingsPost(
-    tenantId?: string,
     dosingParamSettingDto?: Array<DosingParamSettingDto>,
     options?: AxiosRequestConfig,
   ) {
     return DosingParamSettingApiFp(this.configuration)
-      .apiDosingParamSettingAddDosingParamSettingsPost(tenantId, dosingParamSettingDto, options)
+      .apiDosingParamSettingAddDosingParamSettingsPost(dosingParamSettingDto, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
   /**
    *
    * @summary 根据ID删除加药参数设置信息 Delete dosing parameter setting data by ids
-   * @param {string} [tenantId]
    * @param {Array<string>} [requestBody]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof DosingParamSettingApi
    */
   public apiDosingParamSettingDeleteDosingParamSettingsPost(
-    tenantId?: string,
     requestBody?: Array<string>,
     options?: AxiosRequestConfig,
   ) {
     return DosingParamSettingApiFp(this.configuration)
-      .apiDosingParamSettingDeleteDosingParamSettingsPost(tenantId, requestBody, options)
+      .apiDosingParamSettingDeleteDosingParamSettingsPost(requestBody, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
   /**
    *
    * @summary 获取所有加药参数设置信息 Get all dosing parameter setting data
-   * @param {string} [tenantId]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof DosingParamSettingApi
    */
-  public apiDosingParamSettingGetAllDosingParamSettingsGet(
-    tenantId?: string,
-    options?: AxiosRequestConfig,
-  ) {
+  public apiDosingParamSettingGetAllDosingParamSettingsGet(options?: AxiosRequestConfig) {
     return DosingParamSettingApiFp(this.configuration)
-      .apiDosingParamSettingGetAllDosingParamSettingsGet(tenantId, options)
+      .apiDosingParamSettingGetAllDosingParamSettingsGet(options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -678,7 +592,6 @@ export class DosingParamSettingApi extends BaseAPI {
    * @summary 通过代码和工艺线查询加药参数设置信息 Get dosing parameter setting data by code and product line
    * @param {number} [codeEnum] 代码 code
    * @param {string} [productionLine] 工艺线代码 product line code
-   * @param {string} [tenantId]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof DosingParamSettingApi
@@ -686,16 +599,10 @@ export class DosingParamSettingApi extends BaseAPI {
   public apiDosingParamSettingGetDosingParamSettingsByCodeGet(
     codeEnum?: number,
     productionLine?: string,
-    tenantId?: string,
     options?: AxiosRequestConfig,
   ) {
     return DosingParamSettingApiFp(this.configuration)
-      .apiDosingParamSettingGetDosingParamSettingsByCodeGet(
-        codeEnum,
-        productionLine,
-        tenantId,
-        options,
-      )
+      .apiDosingParamSettingGetDosingParamSettingsByCodeGet(codeEnum, productionLine, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -704,7 +611,6 @@ export class DosingParamSettingApi extends BaseAPI {
    * @summary 通过条件查询加药参数设置信息 Get dosing parameter setting data by condition
    * @param {number} [category] 加药类型 dosage type
    * @param {string} [productionLine] 生产线代码 product line code
-   * @param {string} [tenantId]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof DosingParamSettingApi
@@ -712,35 +618,27 @@ export class DosingParamSettingApi extends BaseAPI {
   public apiDosingParamSettingGetDosingParamSettingsByConditionGet(
     category?: number,
     productionLine?: string,
-    tenantId?: string,
     options?: AxiosRequestConfig,
   ) {
     return DosingParamSettingApiFp(this.configuration)
-      .apiDosingParamSettingGetDosingParamSettingsByConditionGet(
-        category,
-        productionLine,
-        tenantId,
-        options,
-      )
+      .apiDosingParamSettingGetDosingParamSettingsByConditionGet(category, productionLine, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
   /**
    *
    * @summary 更新加药参数设置信息 Update dosing parameter setting data
-   * @param {string} [tenantId]
    * @param {Array<DosingParamSettingDto>} [dosingParamSettingDto]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof DosingParamSettingApi
    */
   public apiDosingParamSettingUpdateDosingParamSettingsPost(
-    tenantId?: string,
     dosingParamSettingDto?: Array<DosingParamSettingDto>,
     options?: AxiosRequestConfig,
   ) {
     return DosingParamSettingApiFp(this.configuration)
-      .apiDosingParamSettingUpdateDosingParamSettingsPost(tenantId, dosingParamSettingDto, options)
+      .apiDosingParamSettingUpdateDosingParamSettingsPost(dosingParamSettingDto, options)
       .then((request) => request(this.axios, this.basePath))
   }
 }

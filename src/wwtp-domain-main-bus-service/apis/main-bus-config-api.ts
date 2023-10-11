@@ -57,13 +57,11 @@ export const MainBusConfigApiAxiosParamCreator = function (configuration?: Confi
     /**
      *
      * @summary 添加首页展示配置信息 Add home page display config data
-     * @param {string} [tenantId]
      * @param {Array<HpDisplayConfigInOut>} [hpDisplayConfigInOut]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiMainBusConfigAddHomePageDisplayConfigsPost: async (
-      tenantId?: string,
       hpDisplayConfigInOut?: Array<HpDisplayConfigInOut>,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
@@ -78,10 +76,6 @@ export const MainBusConfigApiAxiosParamCreator = function (configuration?: Confi
       const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
-
-      if (tenantId != null) {
-        localVarHeaderParameter['tenantId'] = String(tenantId)
-      }
 
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
@@ -106,13 +100,11 @@ export const MainBusConfigApiAxiosParamCreator = function (configuration?: Confi
     /**
      *
      * @summary 添加模型精度配置 Add model precision config data
-     * @param {string} [tenantId]
      * @param {Array<AddModelPrecisionConfigInput>} [addModelPrecisionConfigInput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiMainBusConfigAddModelPrecisionConfigPost: async (
-      tenantId?: string,
       addModelPrecisionConfigInput?: Array<AddModelPrecisionConfigInput>,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
@@ -127,10 +119,6 @@ export const MainBusConfigApiAxiosParamCreator = function (configuration?: Confi
       const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
-
-      if (tenantId != null) {
-        localVarHeaderParameter['tenantId'] = String(tenantId)
-      }
 
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
@@ -155,13 +143,11 @@ export const MainBusConfigApiAxiosParamCreator = function (configuration?: Confi
     /**
      *
      * @summary 添加工艺模拟实验室方案指标配置 Add process simulation lab indicator config data
-     * @param {string} [tenantId]
      * @param {Array<AddProNumSimLabIndexConfigInput>} [addProNumSimLabIndexConfigInput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiMainBusConfigAddProNumSimLabIndexConfigPost: async (
-      tenantId?: string,
       addProNumSimLabIndexConfigInput?: Array<AddProNumSimLabIndexConfigInput>,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
@@ -176,10 +162,6 @@ export const MainBusConfigApiAxiosParamCreator = function (configuration?: Confi
       const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
-
-      if (tenantId != null) {
-        localVarHeaderParameter['tenantId'] = String(tenantId)
-      }
 
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
@@ -204,13 +186,11 @@ export const MainBusConfigApiAxiosParamCreator = function (configuration?: Confi
     /**
      *
      * @summary 添加数据看板统计配置信息 Add system statistic config data for data board
-     * @param {string} [tenantId]
      * @param {Array<AddSysStatisticConfigsInput>} [addSysStatisticConfigsInput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiMainBusConfigAddSysStatisticConfigsPost: async (
-      tenantId?: string,
       addSysStatisticConfigsInput?: Array<AddSysStatisticConfigsInput>,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
@@ -225,10 +205,6 @@ export const MainBusConfigApiAxiosParamCreator = function (configuration?: Confi
       const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
-
-      if (tenantId != null) {
-        localVarHeaderParameter['tenantId'] = String(tenantId)
-      }
 
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
@@ -253,13 +229,11 @@ export const MainBusConfigApiAxiosParamCreator = function (configuration?: Confi
     /**
      *
      * @summary 根据ID删除首页配置信息 Delete home page display config data by ids
-     * @param {string} [tenantId]
      * @param {Array<string>} [requestBody]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiMainBusConfigDeleteHomePageDisplayConfigsPost: async (
-      tenantId?: string,
       requestBody?: Array<string>,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
@@ -274,10 +248,6 @@ export const MainBusConfigApiAxiosParamCreator = function (configuration?: Confi
       const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
-
-      if (tenantId != null) {
-        localVarHeaderParameter['tenantId'] = String(tenantId)
-      }
 
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
@@ -302,13 +272,11 @@ export const MainBusConfigApiAxiosParamCreator = function (configuration?: Confi
     /**
      *
      * @summary 根据ID删除统计配置信息 Delete system statistic config data for data board by ids
-     * @param {string} [tenantId]
      * @param {Array<string>} [requestBody]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiMainBusConfigDeleteSysStatisticConfigsPost: async (
-      tenantId?: string,
       requestBody?: Array<string>,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
@@ -323,10 +291,6 @@ export const MainBusConfigApiAxiosParamCreator = function (configuration?: Confi
       const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
-
-      if (tenantId != null) {
-        localVarHeaderParameter['tenantId'] = String(tenantId)
-      }
 
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
@@ -351,12 +315,10 @@ export const MainBusConfigApiAxiosParamCreator = function (configuration?: Confi
     /**
      *
      * @summary 获取所有首页展示指标配置信息 Get all home page display config data
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiMainBusConfigGetAllHomePageDisplayConfigsGet: async (
-      tenantId?: string,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
       const localVarPath = `/api/MainBusConfig/GetAllHomePageDisplayConfigs`
@@ -370,10 +332,6 @@ export const MainBusConfigApiAxiosParamCreator = function (configuration?: Confi
       const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
-
-      if (tenantId != null) {
-        localVarHeaderParameter['tenantId'] = String(tenantId)
-      }
 
       setSearchParams(localVarUrlObj, localVarQueryParameter)
       let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
@@ -391,12 +349,10 @@ export const MainBusConfigApiAxiosParamCreator = function (configuration?: Confi
     /**
      *
      * @summary 获取所有系统统计配置信息 Get all system statistic config data for data board
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiMainBusConfigGetAllSysStatisticConfigsGet: async (
-      tenantId?: string,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
       const localVarPath = `/api/MainBusConfig/GetAllSysStatisticConfigs`
@@ -410,10 +366,6 @@ export const MainBusConfigApiAxiosParamCreator = function (configuration?: Confi
       const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
-
-      if (tenantId != null) {
-        localVarHeaderParameter['tenantId'] = String(tenantId)
-      }
 
       setSearchParams(localVarUrlObj, localVarQueryParameter)
       let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
@@ -432,13 +384,11 @@ export const MainBusConfigApiAxiosParamCreator = function (configuration?: Confi
      *
      * @summary 根据展示类型枚举获取配置信息 Get home page display config data by display type
      * @param {number} [displayType] 展示的类型 display type
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiMainBusConfigGetHomePageDisplayConfigByTypeGet: async (
       displayType?: number,
-      tenantId?: string,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
       const localVarPath = `/api/MainBusConfig/GetHomePageDisplayConfigByType`
@@ -457,10 +407,6 @@ export const MainBusConfigApiAxiosParamCreator = function (configuration?: Confi
         localVarQueryParameter['displayType'] = displayType
       }
 
-      if (tenantId != null) {
-        localVarHeaderParameter['tenantId'] = String(tenantId)
-      }
-
       setSearchParams(localVarUrlObj, localVarQueryParameter)
       let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
       localVarRequestOptions.headers = {
@@ -477,12 +423,10 @@ export const MainBusConfigApiAxiosParamCreator = function (configuration?: Confi
     /**
      *
      * @summary 获取模型精度配置 Get model precision config data
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiMainBusConfigGetModelPrecisionConfigsGet: async (
-      tenantId?: string,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
       const localVarPath = `/api/MainBusConfig/GetModelPrecisionConfigs`
@@ -496,10 +440,6 @@ export const MainBusConfigApiAxiosParamCreator = function (configuration?: Confi
       const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
-
-      if (tenantId != null) {
-        localVarHeaderParameter['tenantId'] = String(tenantId)
-      }
 
       setSearchParams(localVarUrlObj, localVarQueryParameter)
       let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
@@ -517,12 +457,10 @@ export const MainBusConfigApiAxiosParamCreator = function (configuration?: Confi
     /**
      *
      * @summary 获取工艺模拟实验室方案指标配置 Get process simulation lab indicator config data
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiMainBusConfigGetProNumSimLabIndexConfigGet: async (
-      tenantId?: string,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
       const localVarPath = `/api/MainBusConfig/GetProNumSimLabIndexConfig`
@@ -536,10 +474,6 @@ export const MainBusConfigApiAxiosParamCreator = function (configuration?: Confi
       const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
-
-      if (tenantId != null) {
-        localVarHeaderParameter['tenantId'] = String(tenantId)
-      }
 
       setSearchParams(localVarUrlObj, localVarQueryParameter)
       let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
@@ -558,13 +492,11 @@ export const MainBusConfigApiAxiosParamCreator = function (configuration?: Confi
      *
      * @summary 通过统计编码获取统计配置信息 Get system statistic config data for data board by code
      * @param {string} [statisticCode] 统计编码 statistic code
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiMainBusConfigGetSysStatisticConfigByStatisticCodeGet: async (
       statisticCode?: string,
-      tenantId?: string,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
       const localVarPath = `/api/MainBusConfig/GetSysStatisticConfigByStatisticCode`
@@ -583,10 +515,6 @@ export const MainBusConfigApiAxiosParamCreator = function (configuration?: Confi
         localVarQueryParameter['statisticCode'] = statisticCode
       }
 
-      if (tenantId != null) {
-        localVarHeaderParameter['tenantId'] = String(tenantId)
-      }
-
       setSearchParams(localVarUrlObj, localVarQueryParameter)
       let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
       localVarRequestOptions.headers = {
@@ -603,13 +531,11 @@ export const MainBusConfigApiAxiosParamCreator = function (configuration?: Confi
     /**
      *
      * @summary 更新首页配置信息 Update home page display config data
-     * @param {string} [tenantId]
      * @param {Array<HpDisplayConfigInOut>} [hpDisplayConfigInOut]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiMainBusConfigUpdateHomePageDisplayConfigsPost: async (
-      tenantId?: string,
       hpDisplayConfigInOut?: Array<HpDisplayConfigInOut>,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
@@ -624,10 +550,6 @@ export const MainBusConfigApiAxiosParamCreator = function (configuration?: Confi
       const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
-
-      if (tenantId != null) {
-        localVarHeaderParameter['tenantId'] = String(tenantId)
-      }
 
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
@@ -652,13 +574,11 @@ export const MainBusConfigApiAxiosParamCreator = function (configuration?: Confi
     /**
      *
      * @summary 修改统计配置信息 Update system statistic config data for data board
-     * @param {string} [tenantId]
      * @param {Array<UpdateSysStatisticConfigsInput>} [updateSysStatisticConfigsInput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiMainBusConfigUpdateSysStatisticConfigsPost: async (
-      tenantId?: string,
       updateSysStatisticConfigsInput?: Array<UpdateSysStatisticConfigsInput>,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
@@ -673,10 +593,6 @@ export const MainBusConfigApiAxiosParamCreator = function (configuration?: Confi
       const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
-
-      if (tenantId != null) {
-        localVarHeaderParameter['tenantId'] = String(tenantId)
-      }
 
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
@@ -711,19 +627,16 @@ export const MainBusConfigApiFp = function (configuration?: Configuration) {
     /**
      *
      * @summary 添加首页展示配置信息 Add home page display config data
-     * @param {string} [tenantId]
      * @param {Array<HpDisplayConfigInOut>} [hpDisplayConfigInOut]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async apiMainBusConfigAddHomePageDisplayConfigsPost(
-      tenantId?: string,
       hpDisplayConfigInOut?: Array<HpDisplayConfigInOut>,
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.apiMainBusConfigAddHomePageDisplayConfigsPost(
-          tenantId,
           hpDisplayConfigInOut,
           options,
         )
@@ -732,19 +645,16 @@ export const MainBusConfigApiFp = function (configuration?: Configuration) {
     /**
      *
      * @summary 添加模型精度配置 Add model precision config data
-     * @param {string} [tenantId]
      * @param {Array<AddModelPrecisionConfigInput>} [addModelPrecisionConfigInput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async apiMainBusConfigAddModelPrecisionConfigPost(
-      tenantId?: string,
       addModelPrecisionConfigInput?: Array<AddModelPrecisionConfigInput>,
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.apiMainBusConfigAddModelPrecisionConfigPost(
-          tenantId,
           addModelPrecisionConfigInput,
           options,
         )
@@ -753,19 +663,16 @@ export const MainBusConfigApiFp = function (configuration?: Configuration) {
     /**
      *
      * @summary 添加工艺模拟实验室方案指标配置 Add process simulation lab indicator config data
-     * @param {string} [tenantId]
      * @param {Array<AddProNumSimLabIndexConfigInput>} [addProNumSimLabIndexConfigInput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async apiMainBusConfigAddProNumSimLabIndexConfigPost(
-      tenantId?: string,
       addProNumSimLabIndexConfigInput?: Array<AddProNumSimLabIndexConfigInput>,
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.apiMainBusConfigAddProNumSimLabIndexConfigPost(
-          tenantId,
           addProNumSimLabIndexConfigInput,
           options,
         )
@@ -774,19 +681,16 @@ export const MainBusConfigApiFp = function (configuration?: Configuration) {
     /**
      *
      * @summary 添加数据看板统计配置信息 Add system statistic config data for data board
-     * @param {string} [tenantId]
      * @param {Array<AddSysStatisticConfigsInput>} [addSysStatisticConfigsInput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async apiMainBusConfigAddSysStatisticConfigsPost(
-      tenantId?: string,
       addSysStatisticConfigsInput?: Array<AddSysStatisticConfigsInput>,
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.apiMainBusConfigAddSysStatisticConfigsPost(
-          tenantId,
           addSysStatisticConfigsInput,
           options,
         )
@@ -795,19 +699,16 @@ export const MainBusConfigApiFp = function (configuration?: Configuration) {
     /**
      *
      * @summary 根据ID删除首页配置信息 Delete home page display config data by ids
-     * @param {string} [tenantId]
      * @param {Array<string>} [requestBody]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async apiMainBusConfigDeleteHomePageDisplayConfigsPost(
-      tenantId?: string,
       requestBody?: Array<string>,
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.apiMainBusConfigDeleteHomePageDisplayConfigsPost(
-          tenantId,
           requestBody,
           options,
         )
@@ -816,19 +717,16 @@ export const MainBusConfigApiFp = function (configuration?: Configuration) {
     /**
      *
      * @summary 根据ID删除统计配置信息 Delete system statistic config data for data board by ids
-     * @param {string} [tenantId]
      * @param {Array<string>} [requestBody]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async apiMainBusConfigDeleteSysStatisticConfigsPost(
-      tenantId?: string,
       requestBody?: Array<string>,
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.apiMainBusConfigDeleteSysStatisticConfigsPost(
-          tenantId,
           requestBody,
           options,
         )
@@ -837,54 +735,42 @@ export const MainBusConfigApiFp = function (configuration?: Configuration) {
     /**
      *
      * @summary 获取所有首页展示指标配置信息 Get all home page display config data
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async apiMainBusConfigGetAllHomePageDisplayConfigsGet(
-      tenantId?: string,
       options?: AxiosRequestConfig,
     ): Promise<
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<HpDisplayConfigInOut>>
     > {
       const localVarAxiosArgs =
-        await localVarAxiosParamCreator.apiMainBusConfigGetAllHomePageDisplayConfigsGet(
-          tenantId,
-          options,
-        )
+        await localVarAxiosParamCreator.apiMainBusConfigGetAllHomePageDisplayConfigsGet(options)
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**
      *
      * @summary 获取所有系统统计配置信息 Get all system statistic config data for data board
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async apiMainBusConfigGetAllSysStatisticConfigsGet(
-      tenantId?: string,
       options?: AxiosRequestConfig,
     ): Promise<
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<SysStatisticConfigInOut>>
     > {
       const localVarAxiosArgs =
-        await localVarAxiosParamCreator.apiMainBusConfigGetAllSysStatisticConfigsGet(
-          tenantId,
-          options,
-        )
+        await localVarAxiosParamCreator.apiMainBusConfigGetAllSysStatisticConfigsGet(options)
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**
      *
      * @summary 根据展示类型枚举获取配置信息 Get home page display config data by display type
      * @param {number} [displayType] 展示的类型 display type
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async apiMainBusConfigGetHomePageDisplayConfigByTypeGet(
       displayType?: number,
-      tenantId?: string,
       options?: AxiosRequestConfig,
     ): Promise<
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<HpDisplayConfigInOut>>
@@ -892,7 +778,6 @@ export const MainBusConfigApiFp = function (configuration?: Configuration) {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.apiMainBusConfigGetHomePageDisplayConfigByTypeGet(
           displayType,
-          tenantId,
           options,
         )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
@@ -900,32 +785,25 @@ export const MainBusConfigApiFp = function (configuration?: Configuration) {
     /**
      *
      * @summary 获取模型精度配置 Get model precision config data
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async apiMainBusConfigGetModelPrecisionConfigsGet(
-      tenantId?: string,
       options?: AxiosRequestConfig,
     ): Promise<
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<ModelPrecisionConfigsDto>>
     > {
       const localVarAxiosArgs =
-        await localVarAxiosParamCreator.apiMainBusConfigGetModelPrecisionConfigsGet(
-          tenantId,
-          options,
-        )
+        await localVarAxiosParamCreator.apiMainBusConfigGetModelPrecisionConfigsGet(options)
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**
      *
      * @summary 获取工艺模拟实验室方案指标配置 Get process simulation lab indicator config data
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async apiMainBusConfigGetProNumSimLabIndexConfigGet(
-      tenantId?: string,
       options?: AxiosRequestConfig,
     ): Promise<
       (
@@ -934,23 +812,18 @@ export const MainBusConfigApiFp = function (configuration?: Configuration) {
       ) => AxiosPromise<Array<GetProNumSimLabIndexConfigOutput>>
     > {
       const localVarAxiosArgs =
-        await localVarAxiosParamCreator.apiMainBusConfigGetProNumSimLabIndexConfigGet(
-          tenantId,
-          options,
-        )
+        await localVarAxiosParamCreator.apiMainBusConfigGetProNumSimLabIndexConfigGet(options)
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**
      *
      * @summary 通过统计编码获取统计配置信息 Get system statistic config data for data board by code
      * @param {string} [statisticCode] 统计编码 statistic code
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async apiMainBusConfigGetSysStatisticConfigByStatisticCodeGet(
       statisticCode?: string,
-      tenantId?: string,
       options?: AxiosRequestConfig,
     ): Promise<
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<SysStatisticConfigInOut>>
@@ -958,7 +831,6 @@ export const MainBusConfigApiFp = function (configuration?: Configuration) {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.apiMainBusConfigGetSysStatisticConfigByStatisticCodeGet(
           statisticCode,
-          tenantId,
           options,
         )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
@@ -966,19 +838,16 @@ export const MainBusConfigApiFp = function (configuration?: Configuration) {
     /**
      *
      * @summary 更新首页配置信息 Update home page display config data
-     * @param {string} [tenantId]
      * @param {Array<HpDisplayConfigInOut>} [hpDisplayConfigInOut]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async apiMainBusConfigUpdateHomePageDisplayConfigsPost(
-      tenantId?: string,
       hpDisplayConfigInOut?: Array<HpDisplayConfigInOut>,
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.apiMainBusConfigUpdateHomePageDisplayConfigsPost(
-          tenantId,
           hpDisplayConfigInOut,
           options,
         )
@@ -987,19 +856,16 @@ export const MainBusConfigApiFp = function (configuration?: Configuration) {
     /**
      *
      * @summary 修改统计配置信息 Update system statistic config data for data board
-     * @param {string} [tenantId]
      * @param {Array<UpdateSysStatisticConfigsInput>} [updateSysStatisticConfigsInput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async apiMainBusConfigUpdateSysStatisticConfigsPost(
-      tenantId?: string,
       updateSysStatisticConfigsInput?: Array<UpdateSysStatisticConfigsInput>,
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.apiMainBusConfigUpdateSysStatisticConfigsPost(
-          tenantId,
           updateSysStatisticConfigsInput,
           options,
         )
@@ -1022,243 +888,203 @@ export const MainBusConfigApiFactory = function (
     /**
      *
      * @summary 添加首页展示配置信息 Add home page display config data
-     * @param {string} [tenantId]
      * @param {Array<HpDisplayConfigInOut>} [hpDisplayConfigInOut]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiMainBusConfigAddHomePageDisplayConfigsPost(
-      tenantId?: string,
       hpDisplayConfigInOut?: Array<HpDisplayConfigInOut>,
       options?: any,
     ): AxiosPromise<object> {
       return localVarFp
-        .apiMainBusConfigAddHomePageDisplayConfigsPost(tenantId, hpDisplayConfigInOut, options)
+        .apiMainBusConfigAddHomePageDisplayConfigsPost(hpDisplayConfigInOut, options)
         .then((request) => request(axios, basePath))
     },
     /**
      *
      * @summary 添加模型精度配置 Add model precision config data
-     * @param {string} [tenantId]
      * @param {Array<AddModelPrecisionConfigInput>} [addModelPrecisionConfigInput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiMainBusConfigAddModelPrecisionConfigPost(
-      tenantId?: string,
       addModelPrecisionConfigInput?: Array<AddModelPrecisionConfigInput>,
       options?: any,
     ): AxiosPromise<object> {
       return localVarFp
-        .apiMainBusConfigAddModelPrecisionConfigPost(
-          tenantId,
-          addModelPrecisionConfigInput,
-          options,
-        )
+        .apiMainBusConfigAddModelPrecisionConfigPost(addModelPrecisionConfigInput, options)
         .then((request) => request(axios, basePath))
     },
     /**
      *
      * @summary 添加工艺模拟实验室方案指标配置 Add process simulation lab indicator config data
-     * @param {string} [tenantId]
      * @param {Array<AddProNumSimLabIndexConfigInput>} [addProNumSimLabIndexConfigInput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiMainBusConfigAddProNumSimLabIndexConfigPost(
-      tenantId?: string,
       addProNumSimLabIndexConfigInput?: Array<AddProNumSimLabIndexConfigInput>,
       options?: any,
     ): AxiosPromise<object> {
       return localVarFp
-        .apiMainBusConfigAddProNumSimLabIndexConfigPost(
-          tenantId,
-          addProNumSimLabIndexConfigInput,
-          options,
-        )
+        .apiMainBusConfigAddProNumSimLabIndexConfigPost(addProNumSimLabIndexConfigInput, options)
         .then((request) => request(axios, basePath))
     },
     /**
      *
      * @summary 添加数据看板统计配置信息 Add system statistic config data for data board
-     * @param {string} [tenantId]
      * @param {Array<AddSysStatisticConfigsInput>} [addSysStatisticConfigsInput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiMainBusConfigAddSysStatisticConfigsPost(
-      tenantId?: string,
       addSysStatisticConfigsInput?: Array<AddSysStatisticConfigsInput>,
       options?: any,
     ): AxiosPromise<object> {
       return localVarFp
-        .apiMainBusConfigAddSysStatisticConfigsPost(tenantId, addSysStatisticConfigsInput, options)
+        .apiMainBusConfigAddSysStatisticConfigsPost(addSysStatisticConfigsInput, options)
         .then((request) => request(axios, basePath))
     },
     /**
      *
      * @summary 根据ID删除首页配置信息 Delete home page display config data by ids
-     * @param {string} [tenantId]
      * @param {Array<string>} [requestBody]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiMainBusConfigDeleteHomePageDisplayConfigsPost(
-      tenantId?: string,
       requestBody?: Array<string>,
       options?: any,
     ): AxiosPromise<object> {
       return localVarFp
-        .apiMainBusConfigDeleteHomePageDisplayConfigsPost(tenantId, requestBody, options)
+        .apiMainBusConfigDeleteHomePageDisplayConfigsPost(requestBody, options)
         .then((request) => request(axios, basePath))
     },
     /**
      *
      * @summary 根据ID删除统计配置信息 Delete system statistic config data for data board by ids
-     * @param {string} [tenantId]
      * @param {Array<string>} [requestBody]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiMainBusConfigDeleteSysStatisticConfigsPost(
-      tenantId?: string,
       requestBody?: Array<string>,
       options?: any,
     ): AxiosPromise<object> {
       return localVarFp
-        .apiMainBusConfigDeleteSysStatisticConfigsPost(tenantId, requestBody, options)
+        .apiMainBusConfigDeleteSysStatisticConfigsPost(requestBody, options)
         .then((request) => request(axios, basePath))
     },
     /**
      *
      * @summary 获取所有首页展示指标配置信息 Get all home page display config data
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiMainBusConfigGetAllHomePageDisplayConfigsGet(
-      tenantId?: string,
       options?: any,
     ): AxiosPromise<Array<HpDisplayConfigInOut>> {
       return localVarFp
-        .apiMainBusConfigGetAllHomePageDisplayConfigsGet(tenantId, options)
+        .apiMainBusConfigGetAllHomePageDisplayConfigsGet(options)
         .then((request) => request(axios, basePath))
     },
     /**
      *
      * @summary 获取所有系统统计配置信息 Get all system statistic config data for data board
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiMainBusConfigGetAllSysStatisticConfigsGet(
-      tenantId?: string,
       options?: any,
     ): AxiosPromise<Array<SysStatisticConfigInOut>> {
       return localVarFp
-        .apiMainBusConfigGetAllSysStatisticConfigsGet(tenantId, options)
+        .apiMainBusConfigGetAllSysStatisticConfigsGet(options)
         .then((request) => request(axios, basePath))
     },
     /**
      *
      * @summary 根据展示类型枚举获取配置信息 Get home page display config data by display type
      * @param {number} [displayType] 展示的类型 display type
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiMainBusConfigGetHomePageDisplayConfigByTypeGet(
       displayType?: number,
-      tenantId?: string,
       options?: any,
     ): AxiosPromise<Array<HpDisplayConfigInOut>> {
       return localVarFp
-        .apiMainBusConfigGetHomePageDisplayConfigByTypeGet(displayType, tenantId, options)
+        .apiMainBusConfigGetHomePageDisplayConfigByTypeGet(displayType, options)
         .then((request) => request(axios, basePath))
     },
     /**
      *
      * @summary 获取模型精度配置 Get model precision config data
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiMainBusConfigGetModelPrecisionConfigsGet(
-      tenantId?: string,
       options?: any,
     ): AxiosPromise<Array<ModelPrecisionConfigsDto>> {
       return localVarFp
-        .apiMainBusConfigGetModelPrecisionConfigsGet(tenantId, options)
+        .apiMainBusConfigGetModelPrecisionConfigsGet(options)
         .then((request) => request(axios, basePath))
     },
     /**
      *
      * @summary 获取工艺模拟实验室方案指标配置 Get process simulation lab indicator config data
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiMainBusConfigGetProNumSimLabIndexConfigGet(
-      tenantId?: string,
       options?: any,
     ): AxiosPromise<Array<GetProNumSimLabIndexConfigOutput>> {
       return localVarFp
-        .apiMainBusConfigGetProNumSimLabIndexConfigGet(tenantId, options)
+        .apiMainBusConfigGetProNumSimLabIndexConfigGet(options)
         .then((request) => request(axios, basePath))
     },
     /**
      *
      * @summary 通过统计编码获取统计配置信息 Get system statistic config data for data board by code
      * @param {string} [statisticCode] 统计编码 statistic code
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiMainBusConfigGetSysStatisticConfigByStatisticCodeGet(
       statisticCode?: string,
-      tenantId?: string,
       options?: any,
     ): AxiosPromise<Array<SysStatisticConfigInOut>> {
       return localVarFp
-        .apiMainBusConfigGetSysStatisticConfigByStatisticCodeGet(statisticCode, tenantId, options)
+        .apiMainBusConfigGetSysStatisticConfigByStatisticCodeGet(statisticCode, options)
         .then((request) => request(axios, basePath))
     },
     /**
      *
      * @summary 更新首页配置信息 Update home page display config data
-     * @param {string} [tenantId]
      * @param {Array<HpDisplayConfigInOut>} [hpDisplayConfigInOut]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiMainBusConfigUpdateHomePageDisplayConfigsPost(
-      tenantId?: string,
       hpDisplayConfigInOut?: Array<HpDisplayConfigInOut>,
       options?: any,
     ): AxiosPromise<object> {
       return localVarFp
-        .apiMainBusConfigUpdateHomePageDisplayConfigsPost(tenantId, hpDisplayConfigInOut, options)
+        .apiMainBusConfigUpdateHomePageDisplayConfigsPost(hpDisplayConfigInOut, options)
         .then((request) => request(axios, basePath))
     },
     /**
      *
      * @summary 修改统计配置信息 Update system statistic config data for data board
-     * @param {string} [tenantId]
      * @param {Array<UpdateSysStatisticConfigsInput>} [updateSysStatisticConfigsInput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiMainBusConfigUpdateSysStatisticConfigsPost(
-      tenantId?: string,
       updateSysStatisticConfigsInput?: Array<UpdateSysStatisticConfigsInput>,
       options?: any,
     ): AxiosPromise<object> {
       return localVarFp
-        .apiMainBusConfigUpdateSysStatisticConfigsPost(
-          tenantId,
-          updateSysStatisticConfigsInput,
-          options,
-        )
+        .apiMainBusConfigUpdateSysStatisticConfigsPost(updateSysStatisticConfigsInput, options)
         .then((request) => request(axios, basePath))
     },
   }
@@ -1274,152 +1100,128 @@ export class MainBusConfigApi extends BaseAPI {
   /**
    *
    * @summary 添加首页展示配置信息 Add home page display config data
-   * @param {string} [tenantId]
    * @param {Array<HpDisplayConfigInOut>} [hpDisplayConfigInOut]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof MainBusConfigApi
    */
   public apiMainBusConfigAddHomePageDisplayConfigsPost(
-    tenantId?: string,
     hpDisplayConfigInOut?: Array<HpDisplayConfigInOut>,
     options?: AxiosRequestConfig,
   ) {
     return MainBusConfigApiFp(this.configuration)
-      .apiMainBusConfigAddHomePageDisplayConfigsPost(tenantId, hpDisplayConfigInOut, options)
+      .apiMainBusConfigAddHomePageDisplayConfigsPost(hpDisplayConfigInOut, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
   /**
    *
    * @summary 添加模型精度配置 Add model precision config data
-   * @param {string} [tenantId]
    * @param {Array<AddModelPrecisionConfigInput>} [addModelPrecisionConfigInput]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof MainBusConfigApi
    */
   public apiMainBusConfigAddModelPrecisionConfigPost(
-    tenantId?: string,
     addModelPrecisionConfigInput?: Array<AddModelPrecisionConfigInput>,
     options?: AxiosRequestConfig,
   ) {
     return MainBusConfigApiFp(this.configuration)
-      .apiMainBusConfigAddModelPrecisionConfigPost(tenantId, addModelPrecisionConfigInput, options)
+      .apiMainBusConfigAddModelPrecisionConfigPost(addModelPrecisionConfigInput, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
   /**
    *
    * @summary 添加工艺模拟实验室方案指标配置 Add process simulation lab indicator config data
-   * @param {string} [tenantId]
    * @param {Array<AddProNumSimLabIndexConfigInput>} [addProNumSimLabIndexConfigInput]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof MainBusConfigApi
    */
   public apiMainBusConfigAddProNumSimLabIndexConfigPost(
-    tenantId?: string,
     addProNumSimLabIndexConfigInput?: Array<AddProNumSimLabIndexConfigInput>,
     options?: AxiosRequestConfig,
   ) {
     return MainBusConfigApiFp(this.configuration)
-      .apiMainBusConfigAddProNumSimLabIndexConfigPost(
-        tenantId,
-        addProNumSimLabIndexConfigInput,
-        options,
-      )
+      .apiMainBusConfigAddProNumSimLabIndexConfigPost(addProNumSimLabIndexConfigInput, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
   /**
    *
    * @summary 添加数据看板统计配置信息 Add system statistic config data for data board
-   * @param {string} [tenantId]
    * @param {Array<AddSysStatisticConfigsInput>} [addSysStatisticConfigsInput]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof MainBusConfigApi
    */
   public apiMainBusConfigAddSysStatisticConfigsPost(
-    tenantId?: string,
     addSysStatisticConfigsInput?: Array<AddSysStatisticConfigsInput>,
     options?: AxiosRequestConfig,
   ) {
     return MainBusConfigApiFp(this.configuration)
-      .apiMainBusConfigAddSysStatisticConfigsPost(tenantId, addSysStatisticConfigsInput, options)
+      .apiMainBusConfigAddSysStatisticConfigsPost(addSysStatisticConfigsInput, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
   /**
    *
    * @summary 根据ID删除首页配置信息 Delete home page display config data by ids
-   * @param {string} [tenantId]
    * @param {Array<string>} [requestBody]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof MainBusConfigApi
    */
   public apiMainBusConfigDeleteHomePageDisplayConfigsPost(
-    tenantId?: string,
     requestBody?: Array<string>,
     options?: AxiosRequestConfig,
   ) {
     return MainBusConfigApiFp(this.configuration)
-      .apiMainBusConfigDeleteHomePageDisplayConfigsPost(tenantId, requestBody, options)
+      .apiMainBusConfigDeleteHomePageDisplayConfigsPost(requestBody, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
   /**
    *
    * @summary 根据ID删除统计配置信息 Delete system statistic config data for data board by ids
-   * @param {string} [tenantId]
    * @param {Array<string>} [requestBody]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof MainBusConfigApi
    */
   public apiMainBusConfigDeleteSysStatisticConfigsPost(
-    tenantId?: string,
     requestBody?: Array<string>,
     options?: AxiosRequestConfig,
   ) {
     return MainBusConfigApiFp(this.configuration)
-      .apiMainBusConfigDeleteSysStatisticConfigsPost(tenantId, requestBody, options)
+      .apiMainBusConfigDeleteSysStatisticConfigsPost(requestBody, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
   /**
    *
    * @summary 获取所有首页展示指标配置信息 Get all home page display config data
-   * @param {string} [tenantId]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof MainBusConfigApi
    */
-  public apiMainBusConfigGetAllHomePageDisplayConfigsGet(
-    tenantId?: string,
-    options?: AxiosRequestConfig,
-  ) {
+  public apiMainBusConfigGetAllHomePageDisplayConfigsGet(options?: AxiosRequestConfig) {
     return MainBusConfigApiFp(this.configuration)
-      .apiMainBusConfigGetAllHomePageDisplayConfigsGet(tenantId, options)
+      .apiMainBusConfigGetAllHomePageDisplayConfigsGet(options)
       .then((request) => request(this.axios, this.basePath))
   }
 
   /**
    *
    * @summary 获取所有系统统计配置信息 Get all system statistic config data for data board
-   * @param {string} [tenantId]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof MainBusConfigApi
    */
-  public apiMainBusConfigGetAllSysStatisticConfigsGet(
-    tenantId?: string,
-    options?: AxiosRequestConfig,
-  ) {
+  public apiMainBusConfigGetAllSysStatisticConfigsGet(options?: AxiosRequestConfig) {
     return MainBusConfigApiFp(this.configuration)
-      .apiMainBusConfigGetAllSysStatisticConfigsGet(tenantId, options)
+      .apiMainBusConfigGetAllSysStatisticConfigsGet(options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -1427,52 +1229,42 @@ export class MainBusConfigApi extends BaseAPI {
    *
    * @summary 根据展示类型枚举获取配置信息 Get home page display config data by display type
    * @param {number} [displayType] 展示的类型 display type
-   * @param {string} [tenantId]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof MainBusConfigApi
    */
   public apiMainBusConfigGetHomePageDisplayConfigByTypeGet(
     displayType?: number,
-    tenantId?: string,
     options?: AxiosRequestConfig,
   ) {
     return MainBusConfigApiFp(this.configuration)
-      .apiMainBusConfigGetHomePageDisplayConfigByTypeGet(displayType, tenantId, options)
+      .apiMainBusConfigGetHomePageDisplayConfigByTypeGet(displayType, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
   /**
    *
    * @summary 获取模型精度配置 Get model precision config data
-   * @param {string} [tenantId]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof MainBusConfigApi
    */
-  public apiMainBusConfigGetModelPrecisionConfigsGet(
-    tenantId?: string,
-    options?: AxiosRequestConfig,
-  ) {
+  public apiMainBusConfigGetModelPrecisionConfigsGet(options?: AxiosRequestConfig) {
     return MainBusConfigApiFp(this.configuration)
-      .apiMainBusConfigGetModelPrecisionConfigsGet(tenantId, options)
+      .apiMainBusConfigGetModelPrecisionConfigsGet(options)
       .then((request) => request(this.axios, this.basePath))
   }
 
   /**
    *
    * @summary 获取工艺模拟实验室方案指标配置 Get process simulation lab indicator config data
-   * @param {string} [tenantId]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof MainBusConfigApi
    */
-  public apiMainBusConfigGetProNumSimLabIndexConfigGet(
-    tenantId?: string,
-    options?: AxiosRequestConfig,
-  ) {
+  public apiMainBusConfigGetProNumSimLabIndexConfigGet(options?: AxiosRequestConfig) {
     return MainBusConfigApiFp(this.configuration)
-      .apiMainBusConfigGetProNumSimLabIndexConfigGet(tenantId, options)
+      .apiMainBusConfigGetProNumSimLabIndexConfigGet(options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -1480,60 +1272,50 @@ export class MainBusConfigApi extends BaseAPI {
    *
    * @summary 通过统计编码获取统计配置信息 Get system statistic config data for data board by code
    * @param {string} [statisticCode] 统计编码 statistic code
-   * @param {string} [tenantId]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof MainBusConfigApi
    */
   public apiMainBusConfigGetSysStatisticConfigByStatisticCodeGet(
     statisticCode?: string,
-    tenantId?: string,
     options?: AxiosRequestConfig,
   ) {
     return MainBusConfigApiFp(this.configuration)
-      .apiMainBusConfigGetSysStatisticConfigByStatisticCodeGet(statisticCode, tenantId, options)
+      .apiMainBusConfigGetSysStatisticConfigByStatisticCodeGet(statisticCode, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
   /**
    *
    * @summary 更新首页配置信息 Update home page display config data
-   * @param {string} [tenantId]
    * @param {Array<HpDisplayConfigInOut>} [hpDisplayConfigInOut]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof MainBusConfigApi
    */
   public apiMainBusConfigUpdateHomePageDisplayConfigsPost(
-    tenantId?: string,
     hpDisplayConfigInOut?: Array<HpDisplayConfigInOut>,
     options?: AxiosRequestConfig,
   ) {
     return MainBusConfigApiFp(this.configuration)
-      .apiMainBusConfigUpdateHomePageDisplayConfigsPost(tenantId, hpDisplayConfigInOut, options)
+      .apiMainBusConfigUpdateHomePageDisplayConfigsPost(hpDisplayConfigInOut, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
   /**
    *
    * @summary 修改统计配置信息 Update system statistic config data for data board
-   * @param {string} [tenantId]
    * @param {Array<UpdateSysStatisticConfigsInput>} [updateSysStatisticConfigsInput]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof MainBusConfigApi
    */
   public apiMainBusConfigUpdateSysStatisticConfigsPost(
-    tenantId?: string,
     updateSysStatisticConfigsInput?: Array<UpdateSysStatisticConfigsInput>,
     options?: AxiosRequestConfig,
   ) {
     return MainBusConfigApiFp(this.configuration)
-      .apiMainBusConfigUpdateSysStatisticConfigsPost(
-        tenantId,
-        updateSysStatisticConfigsInput,
-        options,
-      )
+      .apiMainBusConfigUpdateSysStatisticConfigsPost(updateSysStatisticConfigsInput, options)
       .then((request) => request(this.axios, this.basePath))
   }
 }

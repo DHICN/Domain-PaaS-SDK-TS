@@ -57,7 +57,6 @@ export const IntelligentMccrApiAxiosParamCreator = function (configuration?: Con
      * @param {number} [category] 药剂类型 dosage type
      * @param {string} [startTime] 开始时间 start time
      * @param {string} [endTime] 结束时间 end time
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -66,7 +65,6 @@ export const IntelligentMccrApiAxiosParamCreator = function (configuration?: Con
       category?: number,
       startTime?: string,
       endTime?: string,
-      tenantId?: string,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
       const localVarPath = `/api/v2/intelligent-mccr/add-rates`
@@ -97,10 +95,6 @@ export const IntelligentMccrApiAxiosParamCreator = function (configuration?: Con
         localVarQueryParameter['endTime'] = endTime
       }
 
-      if (tenantId != null) {
-        localVarHeaderParameter['tenantId'] = String(tenantId)
-      }
-
       setSearchParams(localVarUrlObj, localVarQueryParameter)
       let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
       localVarRequestOptions.headers = {
@@ -117,13 +111,11 @@ export const IntelligentMccrApiAxiosParamCreator = function (configuration?: Con
     /**
      *
      * @summary 计算指定产线的MCCR加药量 calculate MCCR\'s dosage by product line
-     * @param {string} [tenantId]
      * @param {Array<DosingParamSettingDto>} [dosingParamSettingDto]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiV2IntelligentMccrCalculateMccrDosagePost: async (
-      tenantId?: string,
       dosingParamSettingDto?: Array<DosingParamSettingDto>,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
@@ -138,10 +130,6 @@ export const IntelligentMccrApiAxiosParamCreator = function (configuration?: Con
       const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
-
-      if (tenantId != null) {
-        localVarHeaderParameter['tenantId'] = String(tenantId)
-      }
 
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
@@ -169,7 +157,6 @@ export const IntelligentMccrApiAxiosParamCreator = function (configuration?: Con
      * @param {string} [productLine]
      * @param {string} [startTime] 开始时间 start time
      * @param {string} [endTime] 结束时间 end time
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -177,7 +164,6 @@ export const IntelligentMccrApiAxiosParamCreator = function (configuration?: Con
       productLine?: string,
       startTime?: string,
       endTime?: string,
-      tenantId?: string,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
       const localVarPath = `/api/v2/intelligent-mccr/catalysis-before-after`
@@ -204,10 +190,6 @@ export const IntelligentMccrApiAxiosParamCreator = function (configuration?: Con
         localVarQueryParameter['endTime'] = endTime
       }
 
-      if (tenantId != null) {
-        localVarHeaderParameter['tenantId'] = String(tenantId)
-      }
-
       setSearchParams(localVarUrlObj, localVarQueryParameter)
       let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
       localVarRequestOptions.headers = {
@@ -227,7 +209,6 @@ export const IntelligentMccrApiAxiosParamCreator = function (configuration?: Con
      * @param {string} [productLine]
      * @param {string} [startTime] 开始时间 start time
      * @param {string} [endTime] 结束时间 end time
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -235,7 +216,6 @@ export const IntelligentMccrApiAxiosParamCreator = function (configuration?: Con
       productLine?: string,
       startTime?: string,
       endTime?: string,
-      tenantId?: string,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
       const localVarPath = `/api/v2/intelligent-mccr/catalysis-tank-data`
@@ -262,10 +242,6 @@ export const IntelligentMccrApiAxiosParamCreator = function (configuration?: Con
         localVarQueryParameter['endTime'] = endTime
       }
 
-      if (tenantId != null) {
-        localVarHeaderParameter['tenantId'] = String(tenantId)
-      }
-
       setSearchParams(localVarUrlObj, localVarQueryParameter)
       let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
       localVarRequestOptions.headers = {
@@ -285,7 +261,6 @@ export const IntelligentMccrApiAxiosParamCreator = function (configuration?: Con
      * @param {string} [productionLine] 工艺线代码 product line code
      * @param {string} [startTime] 开始时间 start time
      * @param {string} [endTime] 结束时间 end time
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -293,7 +268,6 @@ export const IntelligentMccrApiAxiosParamCreator = function (configuration?: Con
       productionLine?: string,
       startTime?: string,
       endTime?: string,
-      tenantId?: string,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
       const localVarPath = `/api/v2/intelligent-mccr/daily-statistics/export`
@@ -320,10 +294,6 @@ export const IntelligentMccrApiAxiosParamCreator = function (configuration?: Con
         localVarQueryParameter['endTime'] = endTime
       }
 
-      if (tenantId != null) {
-        localVarHeaderParameter['tenantId'] = String(tenantId)
-      }
-
       setSearchParams(localVarUrlObj, localVarQueryParameter)
       let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
       localVarRequestOptions.headers = {
@@ -343,7 +313,6 @@ export const IntelligentMccrApiAxiosParamCreator = function (configuration?: Con
      * @param {string} [productionLine] 工艺线代码 product line code
      * @param {string} [startTime] 开始时间 start time
      * @param {string} [endTime] 结束时间 end time
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -351,7 +320,6 @@ export const IntelligentMccrApiAxiosParamCreator = function (configuration?: Con
       productionLine?: string,
       startTime?: string,
       endTime?: string,
-      tenantId?: string,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
       const localVarPath = `/api/v2/intelligent-mccr/daily-statistics`
@@ -378,10 +346,6 @@ export const IntelligentMccrApiAxiosParamCreator = function (configuration?: Con
         localVarQueryParameter['endTime'] = endTime
       }
 
-      if (tenantId != null) {
-        localVarHeaderParameter['tenantId'] = String(tenantId)
-      }
-
       setSearchParams(localVarUrlObj, localVarQueryParameter)
       let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
       localVarRequestOptions.headers = {
@@ -401,7 +365,6 @@ export const IntelligentMccrApiAxiosParamCreator = function (configuration?: Con
      * @param {string} [productionLine] 工艺线代码 product line code
      * @param {string} [startTime] 开始时间 start time
      * @param {string} [endTime] 结束时间 end time
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -409,7 +372,6 @@ export const IntelligentMccrApiAxiosParamCreator = function (configuration?: Con
       productionLine?: string,
       startTime?: string,
       endTime?: string,
-      tenantId?: string,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
       const localVarPath = `/api/v2/intelligent-mccr/dosing-log/export`
@@ -436,10 +398,6 @@ export const IntelligentMccrApiAxiosParamCreator = function (configuration?: Con
         localVarQueryParameter['endTime'] = endTime
       }
 
-      if (tenantId != null) {
-        localVarHeaderParameter['tenantId'] = String(tenantId)
-      }
-
       setSearchParams(localVarUrlObj, localVarQueryParameter)
       let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
       localVarRequestOptions.headers = {
@@ -456,13 +414,11 @@ export const IntelligentMccrApiAxiosParamCreator = function (configuration?: Con
     /**
      *
      * @summary 执行指定产线的MCCR加药plc控制，同时写入加药日志 Execute MCCR dosing plc control and write dosing logs for one product line
-     * @param {string} [tenantId]
      * @param {ExecutePlcInput} [executePlcInput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiV2IntelligentMccrPlcControlByProductLinePost: async (
-      tenantId?: string,
       executePlcInput?: ExecutePlcInput,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
@@ -477,10 +433,6 @@ export const IntelligentMccrApiAxiosParamCreator = function (configuration?: Con
       const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
-
-      if (tenantId != null) {
-        localVarHeaderParameter['tenantId'] = String(tenantId)
-      }
 
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
@@ -506,13 +458,11 @@ export const IntelligentMccrApiAxiosParamCreator = function (configuration?: Con
      *
      * @summary 执行MCCR加药plc控制，同时写入加药日志 Execute MCCR dosing plc control and write dosing logs
      * @param {string} [currentTime] 当前时刻 current time
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiV2IntelligentMccrPlcControlGet: async (
       currentTime?: string,
-      tenantId?: string,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
       const localVarPath = `/api/v2/intelligent-mccr/plc-control`
@@ -529,10 +479,6 @@ export const IntelligentMccrApiAxiosParamCreator = function (configuration?: Con
 
       if (currentTime !== undefined) {
         localVarQueryParameter['currentTime'] = currentTime
-      }
-
-      if (tenantId != null) {
-        localVarHeaderParameter['tenantId'] = String(tenantId)
       }
 
       setSearchParams(localVarUrlObj, localVarQueryParameter)
@@ -565,7 +511,6 @@ export const IntelligentMccrApiFp = function (configuration?: Configuration) {
      * @param {number} [category] 药剂类型 dosage type
      * @param {string} [startTime] 开始时间 start time
      * @param {string} [endTime] 结束时间 end time
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -574,7 +519,6 @@ export const IntelligentMccrApiFp = function (configuration?: Configuration) {
       category?: number,
       startTime?: string,
       endTime?: string,
-      tenantId?: string,
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CdAdditionRateOutput>> {
       const localVarAxiosArgs = await localVarAxiosParamCreator.apiV2IntelligentMccrAddRatesGet(
@@ -582,7 +526,6 @@ export const IntelligentMccrApiFp = function (configuration?: Configuration) {
         category,
         startTime,
         endTime,
-        tenantId,
         options,
       )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
@@ -590,19 +533,16 @@ export const IntelligentMccrApiFp = function (configuration?: Configuration) {
     /**
      *
      * @summary 计算指定产线的MCCR加药量 calculate MCCR\'s dosage by product line
-     * @param {string} [tenantId]
      * @param {Array<DosingParamSettingDto>} [dosingParamSettingDto]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async apiV2IntelligentMccrCalculateMccrDosagePost(
-      tenantId?: string,
       dosingParamSettingDto?: Array<DosingParamSettingDto>,
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.apiV2IntelligentMccrCalculateMccrDosagePost(
-          tenantId,
           dosingParamSettingDto,
           options,
         )
@@ -614,7 +554,6 @@ export const IntelligentMccrApiFp = function (configuration?: Configuration) {
      * @param {string} [productLine]
      * @param {string} [startTime] 开始时间 start time
      * @param {string} [endTime] 结束时间 end time
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -622,7 +561,6 @@ export const IntelligentMccrApiFp = function (configuration?: Configuration) {
       productLine?: string,
       startTime?: string,
       endTime?: string,
-      tenantId?: string,
       options?: AxiosRequestConfig,
     ): Promise<
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<CatalysisBfOutput>>
@@ -632,7 +570,6 @@ export const IntelligentMccrApiFp = function (configuration?: Configuration) {
           productLine,
           startTime,
           endTime,
-          tenantId,
           options,
         )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
@@ -643,7 +580,6 @@ export const IntelligentMccrApiFp = function (configuration?: Configuration) {
      * @param {string} [productLine]
      * @param {string} [startTime] 开始时间 start time
      * @param {string} [endTime] 结束时间 end time
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -651,7 +587,6 @@ export const IntelligentMccrApiFp = function (configuration?: Configuration) {
       productLine?: string,
       startTime?: string,
       endTime?: string,
-      tenantId?: string,
       options?: AxiosRequestConfig,
     ): Promise<
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<CatalysisTankOutput>>
@@ -661,7 +596,6 @@ export const IntelligentMccrApiFp = function (configuration?: Configuration) {
           productLine,
           startTime,
           endTime,
-          tenantId,
           options,
         )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
@@ -672,7 +606,6 @@ export const IntelligentMccrApiFp = function (configuration?: Configuration) {
      * @param {string} [productionLine] 工艺线代码 product line code
      * @param {string} [startTime] 开始时间 start time
      * @param {string} [endTime] 结束时间 end time
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -680,7 +613,6 @@ export const IntelligentMccrApiFp = function (configuration?: Configuration) {
       productionLine?: string,
       startTime?: string,
       endTime?: string,
-      tenantId?: string,
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
       const localVarAxiosArgs =
@@ -688,7 +620,6 @@ export const IntelligentMccrApiFp = function (configuration?: Configuration) {
           productionLine,
           startTime,
           endTime,
-          tenantId,
           options,
         )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
@@ -699,7 +630,6 @@ export const IntelligentMccrApiFp = function (configuration?: Configuration) {
      * @param {string} [productionLine] 工艺线代码 product line code
      * @param {string} [startTime] 开始时间 start time
      * @param {string} [endTime] 结束时间 end time
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -707,7 +637,6 @@ export const IntelligentMccrApiFp = function (configuration?: Configuration) {
       productionLine?: string,
       startTime?: string,
       endTime?: string,
-      tenantId?: string,
       options?: AxiosRequestConfig,
     ): Promise<
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<DosingStatisticDailysOutput>>
@@ -717,7 +646,6 @@ export const IntelligentMccrApiFp = function (configuration?: Configuration) {
           productionLine,
           startTime,
           endTime,
-          tenantId,
           options,
         )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
@@ -728,7 +656,6 @@ export const IntelligentMccrApiFp = function (configuration?: Configuration) {
      * @param {string} [productionLine] 工艺线代码 product line code
      * @param {string} [startTime] 开始时间 start time
      * @param {string} [endTime] 结束时间 end time
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -736,7 +663,6 @@ export const IntelligentMccrApiFp = function (configuration?: Configuration) {
       productionLine?: string,
       startTime?: string,
       endTime?: string,
-      tenantId?: string,
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
       const localVarAxiosArgs =
@@ -744,7 +670,6 @@ export const IntelligentMccrApiFp = function (configuration?: Configuration) {
           productionLine,
           startTime,
           endTime,
-          tenantId,
           options,
         )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
@@ -752,19 +677,16 @@ export const IntelligentMccrApiFp = function (configuration?: Configuration) {
     /**
      *
      * @summary 执行指定产线的MCCR加药plc控制，同时写入加药日志 Execute MCCR dosing plc control and write dosing logs for one product line
-     * @param {string} [tenantId]
      * @param {ExecutePlcInput} [executePlcInput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async apiV2IntelligentMccrPlcControlByProductLinePost(
-      tenantId?: string,
       executePlcInput?: ExecutePlcInput,
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.apiV2IntelligentMccrPlcControlByProductLinePost(
-          tenantId,
           executePlcInput,
           options,
         )
@@ -774,18 +696,15 @@ export const IntelligentMccrApiFp = function (configuration?: Configuration) {
      *
      * @summary 执行MCCR加药plc控制，同时写入加药日志 Execute MCCR dosing plc control and write dosing logs
      * @param {string} [currentTime] 当前时刻 current time
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async apiV2IntelligentMccrPlcControlGet(
       currentTime?: string,
-      tenantId?: string,
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
       const localVarAxiosArgs = await localVarAxiosParamCreator.apiV2IntelligentMccrPlcControlGet(
         currentTime,
-        tenantId,
         options,
       )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
@@ -811,7 +730,6 @@ export const IntelligentMccrApiFactory = function (
      * @param {number} [category] 药剂类型 dosage type
      * @param {string} [startTime] 开始时间 start time
      * @param {string} [endTime] 结束时间 end time
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -820,35 +738,25 @@ export const IntelligentMccrApiFactory = function (
       category?: number,
       startTime?: string,
       endTime?: string,
-      tenantId?: string,
       options?: any,
     ): AxiosPromise<CdAdditionRateOutput> {
       return localVarFp
-        .apiV2IntelligentMccrAddRatesGet(
-          productionLine,
-          category,
-          startTime,
-          endTime,
-          tenantId,
-          options,
-        )
+        .apiV2IntelligentMccrAddRatesGet(productionLine, category, startTime, endTime, options)
         .then((request) => request(axios, basePath))
     },
     /**
      *
      * @summary 计算指定产线的MCCR加药量 calculate MCCR\'s dosage by product line
-     * @param {string} [tenantId]
      * @param {Array<DosingParamSettingDto>} [dosingParamSettingDto]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiV2IntelligentMccrCalculateMccrDosagePost(
-      tenantId?: string,
       dosingParamSettingDto?: Array<DosingParamSettingDto>,
       options?: any,
     ): AxiosPromise<object> {
       return localVarFp
-        .apiV2IntelligentMccrCalculateMccrDosagePost(tenantId, dosingParamSettingDto, options)
+        .apiV2IntelligentMccrCalculateMccrDosagePost(dosingParamSettingDto, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -857,7 +765,6 @@ export const IntelligentMccrApiFactory = function (
      * @param {string} [productLine]
      * @param {string} [startTime] 开始时间 start time
      * @param {string} [endTime] 结束时间 end time
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -865,17 +772,10 @@ export const IntelligentMccrApiFactory = function (
       productLine?: string,
       startTime?: string,
       endTime?: string,
-      tenantId?: string,
       options?: any,
     ): AxiosPromise<Array<CatalysisBfOutput>> {
       return localVarFp
-        .apiV2IntelligentMccrCatalysisBeforeAfterGet(
-          productLine,
-          startTime,
-          endTime,
-          tenantId,
-          options,
-        )
+        .apiV2IntelligentMccrCatalysisBeforeAfterGet(productLine, startTime, endTime, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -884,7 +784,6 @@ export const IntelligentMccrApiFactory = function (
      * @param {string} [productLine]
      * @param {string} [startTime] 开始时间 start time
      * @param {string} [endTime] 结束时间 end time
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -892,17 +791,10 @@ export const IntelligentMccrApiFactory = function (
       productLine?: string,
       startTime?: string,
       endTime?: string,
-      tenantId?: string,
       options?: any,
     ): AxiosPromise<Array<CatalysisTankOutput>> {
       return localVarFp
-        .apiV2IntelligentMccrCatalysisTankDataGet(
-          productLine,
-          startTime,
-          endTime,
-          tenantId,
-          options,
-        )
+        .apiV2IntelligentMccrCatalysisTankDataGet(productLine, startTime, endTime, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -911,7 +803,6 @@ export const IntelligentMccrApiFactory = function (
      * @param {string} [productionLine] 工艺线代码 product line code
      * @param {string} [startTime] 开始时间 start time
      * @param {string} [endTime] 结束时间 end time
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -919,17 +810,10 @@ export const IntelligentMccrApiFactory = function (
       productionLine?: string,
       startTime?: string,
       endTime?: string,
-      tenantId?: string,
       options?: any,
     ): AxiosPromise<void> {
       return localVarFp
-        .apiV2IntelligentMccrDailyStatisticsExportGet(
-          productionLine,
-          startTime,
-          endTime,
-          tenantId,
-          options,
-        )
+        .apiV2IntelligentMccrDailyStatisticsExportGet(productionLine, startTime, endTime, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -938,7 +822,6 @@ export const IntelligentMccrApiFactory = function (
      * @param {string} [productionLine] 工艺线代码 product line code
      * @param {string} [startTime] 开始时间 start time
      * @param {string} [endTime] 结束时间 end time
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -946,17 +829,10 @@ export const IntelligentMccrApiFactory = function (
       productionLine?: string,
       startTime?: string,
       endTime?: string,
-      tenantId?: string,
       options?: any,
     ): AxiosPromise<Array<DosingStatisticDailysOutput>> {
       return localVarFp
-        .apiV2IntelligentMccrDailyStatisticsGet(
-          productionLine,
-          startTime,
-          endTime,
-          tenantId,
-          options,
-        )
+        .apiV2IntelligentMccrDailyStatisticsGet(productionLine, startTime, endTime, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -965,7 +841,6 @@ export const IntelligentMccrApiFactory = function (
      * @param {string} [productionLine] 工艺线代码 product line code
      * @param {string} [startTime] 开始时间 start time
      * @param {string} [endTime] 结束时间 end time
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -973,51 +848,37 @@ export const IntelligentMccrApiFactory = function (
       productionLine?: string,
       startTime?: string,
       endTime?: string,
-      tenantId?: string,
       options?: any,
     ): AxiosPromise<void> {
       return localVarFp
-        .apiV2IntelligentMccrDosingLogExportGet(
-          productionLine,
-          startTime,
-          endTime,
-          tenantId,
-          options,
-        )
+        .apiV2IntelligentMccrDosingLogExportGet(productionLine, startTime, endTime, options)
         .then((request) => request(axios, basePath))
     },
     /**
      *
      * @summary 执行指定产线的MCCR加药plc控制，同时写入加药日志 Execute MCCR dosing plc control and write dosing logs for one product line
-     * @param {string} [tenantId]
      * @param {ExecutePlcInput} [executePlcInput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiV2IntelligentMccrPlcControlByProductLinePost(
-      tenantId?: string,
       executePlcInput?: ExecutePlcInput,
       options?: any,
     ): AxiosPromise<object> {
       return localVarFp
-        .apiV2IntelligentMccrPlcControlByProductLinePost(tenantId, executePlcInput, options)
+        .apiV2IntelligentMccrPlcControlByProductLinePost(executePlcInput, options)
         .then((request) => request(axios, basePath))
     },
     /**
      *
      * @summary 执行MCCR加药plc控制，同时写入加药日志 Execute MCCR dosing plc control and write dosing logs
      * @param {string} [currentTime] 当前时刻 current time
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    apiV2IntelligentMccrPlcControlGet(
-      currentTime?: string,
-      tenantId?: string,
-      options?: any,
-    ): AxiosPromise<object> {
+    apiV2IntelligentMccrPlcControlGet(currentTime?: string, options?: any): AxiosPromise<object> {
       return localVarFp
-        .apiV2IntelligentMccrPlcControlGet(currentTime, tenantId, options)
+        .apiV2IntelligentMccrPlcControlGet(currentTime, options)
         .then((request) => request(axios, basePath))
     },
   }
@@ -1037,7 +898,6 @@ export class IntelligentMccrApi extends BaseAPI {
    * @param {number} [category] 药剂类型 dosage type
    * @param {string} [startTime] 开始时间 start time
    * @param {string} [endTime] 结束时间 end time
-   * @param {string} [tenantId]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof IntelligentMccrApi
@@ -1047,37 +907,27 @@ export class IntelligentMccrApi extends BaseAPI {
     category?: number,
     startTime?: string,
     endTime?: string,
-    tenantId?: string,
     options?: AxiosRequestConfig,
   ) {
     return IntelligentMccrApiFp(this.configuration)
-      .apiV2IntelligentMccrAddRatesGet(
-        productionLine,
-        category,
-        startTime,
-        endTime,
-        tenantId,
-        options,
-      )
+      .apiV2IntelligentMccrAddRatesGet(productionLine, category, startTime, endTime, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
   /**
    *
    * @summary 计算指定产线的MCCR加药量 calculate MCCR\'s dosage by product line
-   * @param {string} [tenantId]
    * @param {Array<DosingParamSettingDto>} [dosingParamSettingDto]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof IntelligentMccrApi
    */
   public apiV2IntelligentMccrCalculateMccrDosagePost(
-    tenantId?: string,
     dosingParamSettingDto?: Array<DosingParamSettingDto>,
     options?: AxiosRequestConfig,
   ) {
     return IntelligentMccrApiFp(this.configuration)
-      .apiV2IntelligentMccrCalculateMccrDosagePost(tenantId, dosingParamSettingDto, options)
+      .apiV2IntelligentMccrCalculateMccrDosagePost(dosingParamSettingDto, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -1087,7 +937,6 @@ export class IntelligentMccrApi extends BaseAPI {
    * @param {string} [productLine]
    * @param {string} [startTime] 开始时间 start time
    * @param {string} [endTime] 结束时间 end time
-   * @param {string} [tenantId]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof IntelligentMccrApi
@@ -1096,17 +945,10 @@ export class IntelligentMccrApi extends BaseAPI {
     productLine?: string,
     startTime?: string,
     endTime?: string,
-    tenantId?: string,
     options?: AxiosRequestConfig,
   ) {
     return IntelligentMccrApiFp(this.configuration)
-      .apiV2IntelligentMccrCatalysisBeforeAfterGet(
-        productLine,
-        startTime,
-        endTime,
-        tenantId,
-        options,
-      )
+      .apiV2IntelligentMccrCatalysisBeforeAfterGet(productLine, startTime, endTime, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -1116,7 +958,6 @@ export class IntelligentMccrApi extends BaseAPI {
    * @param {string} [productLine]
    * @param {string} [startTime] 开始时间 start time
    * @param {string} [endTime] 结束时间 end time
-   * @param {string} [tenantId]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof IntelligentMccrApi
@@ -1125,11 +966,10 @@ export class IntelligentMccrApi extends BaseAPI {
     productLine?: string,
     startTime?: string,
     endTime?: string,
-    tenantId?: string,
     options?: AxiosRequestConfig,
   ) {
     return IntelligentMccrApiFp(this.configuration)
-      .apiV2IntelligentMccrCatalysisTankDataGet(productLine, startTime, endTime, tenantId, options)
+      .apiV2IntelligentMccrCatalysisTankDataGet(productLine, startTime, endTime, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -1139,7 +979,6 @@ export class IntelligentMccrApi extends BaseAPI {
    * @param {string} [productionLine] 工艺线代码 product line code
    * @param {string} [startTime] 开始时间 start time
    * @param {string} [endTime] 结束时间 end time
-   * @param {string} [tenantId]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof IntelligentMccrApi
@@ -1148,17 +987,10 @@ export class IntelligentMccrApi extends BaseAPI {
     productionLine?: string,
     startTime?: string,
     endTime?: string,
-    tenantId?: string,
     options?: AxiosRequestConfig,
   ) {
     return IntelligentMccrApiFp(this.configuration)
-      .apiV2IntelligentMccrDailyStatisticsExportGet(
-        productionLine,
-        startTime,
-        endTime,
-        tenantId,
-        options,
-      )
+      .apiV2IntelligentMccrDailyStatisticsExportGet(productionLine, startTime, endTime, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -1168,7 +1000,6 @@ export class IntelligentMccrApi extends BaseAPI {
    * @param {string} [productionLine] 工艺线代码 product line code
    * @param {string} [startTime] 开始时间 start time
    * @param {string} [endTime] 结束时间 end time
-   * @param {string} [tenantId]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof IntelligentMccrApi
@@ -1177,11 +1008,10 @@ export class IntelligentMccrApi extends BaseAPI {
     productionLine?: string,
     startTime?: string,
     endTime?: string,
-    tenantId?: string,
     options?: AxiosRequestConfig,
   ) {
     return IntelligentMccrApiFp(this.configuration)
-      .apiV2IntelligentMccrDailyStatisticsGet(productionLine, startTime, endTime, tenantId, options)
+      .apiV2IntelligentMccrDailyStatisticsGet(productionLine, startTime, endTime, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -1191,7 +1021,6 @@ export class IntelligentMccrApi extends BaseAPI {
    * @param {string} [productionLine] 工艺线代码 product line code
    * @param {string} [startTime] 开始时间 start time
    * @param {string} [endTime] 结束时间 end time
-   * @param {string} [tenantId]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof IntelligentMccrApi
@@ -1200,30 +1029,27 @@ export class IntelligentMccrApi extends BaseAPI {
     productionLine?: string,
     startTime?: string,
     endTime?: string,
-    tenantId?: string,
     options?: AxiosRequestConfig,
   ) {
     return IntelligentMccrApiFp(this.configuration)
-      .apiV2IntelligentMccrDosingLogExportGet(productionLine, startTime, endTime, tenantId, options)
+      .apiV2IntelligentMccrDosingLogExportGet(productionLine, startTime, endTime, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
   /**
    *
    * @summary 执行指定产线的MCCR加药plc控制，同时写入加药日志 Execute MCCR dosing plc control and write dosing logs for one product line
-   * @param {string} [tenantId]
    * @param {ExecutePlcInput} [executePlcInput]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof IntelligentMccrApi
    */
   public apiV2IntelligentMccrPlcControlByProductLinePost(
-    tenantId?: string,
     executePlcInput?: ExecutePlcInput,
     options?: AxiosRequestConfig,
   ) {
     return IntelligentMccrApiFp(this.configuration)
-      .apiV2IntelligentMccrPlcControlByProductLinePost(tenantId, executePlcInput, options)
+      .apiV2IntelligentMccrPlcControlByProductLinePost(executePlcInput, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -1231,18 +1057,13 @@ export class IntelligentMccrApi extends BaseAPI {
    *
    * @summary 执行MCCR加药plc控制，同时写入加药日志 Execute MCCR dosing plc control and write dosing logs
    * @param {string} [currentTime] 当前时刻 current time
-   * @param {string} [tenantId]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof IntelligentMccrApi
    */
-  public apiV2IntelligentMccrPlcControlGet(
-    currentTime?: string,
-    tenantId?: string,
-    options?: AxiosRequestConfig,
-  ) {
+  public apiV2IntelligentMccrPlcControlGet(currentTime?: string, options?: AxiosRequestConfig) {
     return IntelligentMccrApiFp(this.configuration)
-      .apiV2IntelligentMccrPlcControlGet(currentTime, tenantId, options)
+      .apiV2IntelligentMccrPlcControlGet(currentTime, options)
       .then((request) => request(this.axios, this.basePath))
   }
 }

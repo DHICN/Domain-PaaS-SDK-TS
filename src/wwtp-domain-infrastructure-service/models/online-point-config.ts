@@ -14,61 +14,73 @@
 /**
  *
  * @export
- * @interface OnlinePointConfigInputOutput
+ * @interface OnlinePointConfig
  */
-export interface OnlinePointConfigInputOutput {
+export interface OnlinePointConfig {
   /**
-   * 点位编码 online point code
+   *
    * @type {string}
-   * @memberof OnlinePointConfigInputOutput
+   * @memberof OnlinePointConfig
+   */
+  id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof OnlinePointConfig
+   */
+  tenantId?: string | null
+  /**
+   *
+   * @type {string}
+   * @memberof OnlinePointConfig
    */
   pointCode?: string | null
   /**
-   * 位置 online point position
+   *
    * @type {string}
-   * @memberof OnlinePointConfigInputOutput
+   * @memberof OnlinePointConfig
    */
   position?: string | null
   /**
-   * 点位名称 online point name
+   *
    * @type {string}
-   * @memberof OnlinePointConfigInputOutput
+   * @memberof OnlinePointConfig
    */
   pointName?: string | null
   /**
-   * 站点编码 station code
+   *
    * @type {string}
-   * @memberof OnlinePointConfigInputOutput
+   * @memberof OnlinePointConfig
    */
   stationCode?: string | null
   /**
-   * 单位 data unit
+   *
    * @type {string}
-   * @memberof OnlinePointConfigInputOutput
+   * @memberof OnlinePointConfig
    */
   unit?: string | null
   /**
-   * 是否为关键点位 if it is a key point
+   *
    * @type {boolean}
-   * @memberof OnlinePointConfigInputOutput
+   * @memberof OnlinePointConfig
    */
   isKeyPoint?: boolean
   /**
-   * 是否是输入数据 if it has input data
+   *
    * @type {boolean}
-   * @memberof OnlinePointConfigInputOutput
+   * @memberof OnlinePointConfig
    */
   isInput?: boolean
   /**
-   * 是否启用该点位 if it is in use
+   *
    * @type {boolean}
-   * @memberof OnlinePointConfigInputOutput
+   * @memberof OnlinePointConfig
    */
   isUse?: boolean
   /**
-   * 默认值 default value
+   *
    * @type {number}
-   * @memberof OnlinePointConfigInputOutput
+   * @memberof OnlinePointConfig
    */
   defaultValue?: number
 }

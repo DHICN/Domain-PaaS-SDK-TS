@@ -43,13 +43,11 @@ export const IntelligentBusConfigApiAxiosParamCreator = function (configuration?
     /**
      *
      * @summary 添加智能加药展示配置信息 Add intelligent dosage page display config data
-     * @param {string} [tenantId]
      * @param {Array<IntelligentDeniConfigInOut>} [intelligentDeniConfigInOut]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiIntelligentBusConfigAddIntelligentDeniDisplayConfigsPost: async (
-      tenantId?: string,
       intelligentDeniConfigInOut?: Array<IntelligentDeniConfigInOut>,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
@@ -64,10 +62,6 @@ export const IntelligentBusConfigApiAxiosParamCreator = function (configuration?
       const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
-
-      if (tenantId != null) {
-        localVarHeaderParameter['tenantId'] = String(tenantId)
-      }
 
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
@@ -92,13 +86,11 @@ export const IntelligentBusConfigApiAxiosParamCreator = function (configuration?
     /**
      *
      * @summary 根据ID删除智能加药展示配置信息 Delete intelligent dosage page display config data by ids
-     * @param {string} [tenantId]
      * @param {Array<string>} [requestBody]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiIntelligentBusConfigDeleteIntelligentDeniDisplayConfigsPost: async (
-      tenantId?: string,
       requestBody?: Array<string>,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
@@ -113,10 +105,6 @@ export const IntelligentBusConfigApiAxiosParamCreator = function (configuration?
       const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
-
-      if (tenantId != null) {
-        localVarHeaderParameter['tenantId'] = String(tenantId)
-      }
 
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
@@ -141,12 +129,10 @@ export const IntelligentBusConfigApiAxiosParamCreator = function (configuration?
     /**
      *
      * @summary 获取所有的智能加药展示配置信息 Get all intelligent dosage page display config data
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiIntelligentBusConfigGetAllIntelligentDeniDisplayConfigsGet: async (
-      tenantId?: string,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
       const localVarPath = `/api/IntelligentBusConfig/GetAllIntelligentDeniDisplayConfigs`
@@ -160,10 +146,6 @@ export const IntelligentBusConfigApiAxiosParamCreator = function (configuration?
       const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
-
-      if (tenantId != null) {
-        localVarHeaderParameter['tenantId'] = String(tenantId)
-      }
 
       setSearchParams(localVarUrlObj, localVarQueryParameter)
       let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
@@ -182,13 +164,11 @@ export const IntelligentBusConfigApiAxiosParamCreator = function (configuration?
      *
      * @summary 通过展示类型枚举获取配置信息 Get intelligent dosage page display config data by display type
      * @param {number} [displayType] 展示类型枚举 display type
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiIntelligentBusConfigGetIntelligentDeniDisplayConfigByTypeGet: async (
       displayType?: number,
-      tenantId?: string,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
       const localVarPath = `/api/IntelligentBusConfig/GetIntelligentDeniDisplayConfigByType`
@@ -207,10 +187,6 @@ export const IntelligentBusConfigApiAxiosParamCreator = function (configuration?
         localVarQueryParameter['displayType'] = displayType
       }
 
-      if (tenantId != null) {
-        localVarHeaderParameter['tenantId'] = String(tenantId)
-      }
-
       setSearchParams(localVarUrlObj, localVarQueryParameter)
       let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
       localVarRequestOptions.headers = {
@@ -227,13 +203,11 @@ export const IntelligentBusConfigApiAxiosParamCreator = function (configuration?
     /**
      *
      * @summary 更新智能加药展示配置信息 Update intelligent dosage page display config data
-     * @param {string} [tenantId]
      * @param {Array<IntelligentDeniConfigInOut>} [intelligentDeniConfigInOut]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiIntelligentBusConfigUpdateIntelligentDeniDisplayConfigsPost: async (
-      tenantId?: string,
       intelligentDeniConfigInOut?: Array<IntelligentDeniConfigInOut>,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
@@ -248,10 +222,6 @@ export const IntelligentBusConfigApiAxiosParamCreator = function (configuration?
       const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
-
-      if (tenantId != null) {
-        localVarHeaderParameter['tenantId'] = String(tenantId)
-      }
 
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
@@ -286,19 +256,16 @@ export const IntelligentBusConfigApiFp = function (configuration?: Configuration
     /**
      *
      * @summary 添加智能加药展示配置信息 Add intelligent dosage page display config data
-     * @param {string} [tenantId]
      * @param {Array<IntelligentDeniConfigInOut>} [intelligentDeniConfigInOut]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async apiIntelligentBusConfigAddIntelligentDeniDisplayConfigsPost(
-      tenantId?: string,
       intelligentDeniConfigInOut?: Array<IntelligentDeniConfigInOut>,
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.apiIntelligentBusConfigAddIntelligentDeniDisplayConfigsPost(
-          tenantId,
           intelligentDeniConfigInOut,
           options,
         )
@@ -307,19 +274,16 @@ export const IntelligentBusConfigApiFp = function (configuration?: Configuration
     /**
      *
      * @summary 根据ID删除智能加药展示配置信息 Delete intelligent dosage page display config data by ids
-     * @param {string} [tenantId]
      * @param {Array<string>} [requestBody]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async apiIntelligentBusConfigDeleteIntelligentDeniDisplayConfigsPost(
-      tenantId?: string,
       requestBody?: Array<string>,
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.apiIntelligentBusConfigDeleteIntelligentDeniDisplayConfigsPost(
-          tenantId,
           requestBody,
           options,
         )
@@ -328,19 +292,16 @@ export const IntelligentBusConfigApiFp = function (configuration?: Configuration
     /**
      *
      * @summary 获取所有的智能加药展示配置信息 Get all intelligent dosage page display config data
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async apiIntelligentBusConfigGetAllIntelligentDeniDisplayConfigsGet(
-      tenantId?: string,
       options?: AxiosRequestConfig,
     ): Promise<
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<IntelligentDeniConfigInOut>>
     > {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.apiIntelligentBusConfigGetAllIntelligentDeniDisplayConfigsGet(
-          tenantId,
           options,
         )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
@@ -349,13 +310,11 @@ export const IntelligentBusConfigApiFp = function (configuration?: Configuration
      *
      * @summary 通过展示类型枚举获取配置信息 Get intelligent dosage page display config data by display type
      * @param {number} [displayType] 展示类型枚举 display type
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async apiIntelligentBusConfigGetIntelligentDeniDisplayConfigByTypeGet(
       displayType?: number,
-      tenantId?: string,
       options?: AxiosRequestConfig,
     ): Promise<
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<IntelligentDeniConfigInOut>>
@@ -363,7 +322,6 @@ export const IntelligentBusConfigApiFp = function (configuration?: Configuration
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.apiIntelligentBusConfigGetIntelligentDeniDisplayConfigByTypeGet(
           displayType,
-          tenantId,
           options,
         )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
@@ -371,19 +329,16 @@ export const IntelligentBusConfigApiFp = function (configuration?: Configuration
     /**
      *
      * @summary 更新智能加药展示配置信息 Update intelligent dosage page display config data
-     * @param {string} [tenantId]
      * @param {Array<IntelligentDeniConfigInOut>} [intelligentDeniConfigInOut]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async apiIntelligentBusConfigUpdateIntelligentDeniDisplayConfigsPost(
-      tenantId?: string,
       intelligentDeniConfigInOut?: Array<IntelligentDeniConfigInOut>,
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.apiIntelligentBusConfigUpdateIntelligentDeniDisplayConfigsPost(
-          tenantId,
           intelligentDeniConfigInOut,
           options,
         )
@@ -406,19 +361,16 @@ export const IntelligentBusConfigApiFactory = function (
     /**
      *
      * @summary 添加智能加药展示配置信息 Add intelligent dosage page display config data
-     * @param {string} [tenantId]
      * @param {Array<IntelligentDeniConfigInOut>} [intelligentDeniConfigInOut]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiIntelligentBusConfigAddIntelligentDeniDisplayConfigsPost(
-      tenantId?: string,
       intelligentDeniConfigInOut?: Array<IntelligentDeniConfigInOut>,
       options?: any,
     ): AxiosPromise<object> {
       return localVarFp
         .apiIntelligentBusConfigAddIntelligentDeniDisplayConfigsPost(
-          tenantId,
           intelligentDeniConfigInOut,
           options,
         )
@@ -427,76 +379,59 @@ export const IntelligentBusConfigApiFactory = function (
     /**
      *
      * @summary 根据ID删除智能加药展示配置信息 Delete intelligent dosage page display config data by ids
-     * @param {string} [tenantId]
      * @param {Array<string>} [requestBody]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiIntelligentBusConfigDeleteIntelligentDeniDisplayConfigsPost(
-      tenantId?: string,
       requestBody?: Array<string>,
       options?: any,
     ): AxiosPromise<object> {
       return localVarFp
-        .apiIntelligentBusConfigDeleteIntelligentDeniDisplayConfigsPost(
-          tenantId,
-          requestBody,
-          options,
-        )
+        .apiIntelligentBusConfigDeleteIntelligentDeniDisplayConfigsPost(requestBody, options)
         .then((request) => request(axios, basePath))
     },
     /**
      *
      * @summary 获取所有的智能加药展示配置信息 Get all intelligent dosage page display config data
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiIntelligentBusConfigGetAllIntelligentDeniDisplayConfigsGet(
-      tenantId?: string,
       options?: any,
     ): AxiosPromise<Array<IntelligentDeniConfigInOut>> {
       return localVarFp
-        .apiIntelligentBusConfigGetAllIntelligentDeniDisplayConfigsGet(tenantId, options)
+        .apiIntelligentBusConfigGetAllIntelligentDeniDisplayConfigsGet(options)
         .then((request) => request(axios, basePath))
     },
     /**
      *
      * @summary 通过展示类型枚举获取配置信息 Get intelligent dosage page display config data by display type
      * @param {number} [displayType] 展示类型枚举 display type
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiIntelligentBusConfigGetIntelligentDeniDisplayConfigByTypeGet(
       displayType?: number,
-      tenantId?: string,
       options?: any,
     ): AxiosPromise<Array<IntelligentDeniConfigInOut>> {
       return localVarFp
-        .apiIntelligentBusConfigGetIntelligentDeniDisplayConfigByTypeGet(
-          displayType,
-          tenantId,
-          options,
-        )
+        .apiIntelligentBusConfigGetIntelligentDeniDisplayConfigByTypeGet(displayType, options)
         .then((request) => request(axios, basePath))
     },
     /**
      *
      * @summary 更新智能加药展示配置信息 Update intelligent dosage page display config data
-     * @param {string} [tenantId]
      * @param {Array<IntelligentDeniConfigInOut>} [intelligentDeniConfigInOut]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiIntelligentBusConfigUpdateIntelligentDeniDisplayConfigsPost(
-      tenantId?: string,
       intelligentDeniConfigInOut?: Array<IntelligentDeniConfigInOut>,
       options?: any,
     ): AxiosPromise<object> {
       return localVarFp
         .apiIntelligentBusConfigUpdateIntelligentDeniDisplayConfigsPost(
-          tenantId,
           intelligentDeniConfigInOut,
           options,
         )
@@ -515,20 +450,17 @@ export class IntelligentBusConfigApi extends BaseAPI {
   /**
    *
    * @summary 添加智能加药展示配置信息 Add intelligent dosage page display config data
-   * @param {string} [tenantId]
    * @param {Array<IntelligentDeniConfigInOut>} [intelligentDeniConfigInOut]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof IntelligentBusConfigApi
    */
   public apiIntelligentBusConfigAddIntelligentDeniDisplayConfigsPost(
-    tenantId?: string,
     intelligentDeniConfigInOut?: Array<IntelligentDeniConfigInOut>,
     options?: AxiosRequestConfig,
   ) {
     return IntelligentBusConfigApiFp(this.configuration)
       .apiIntelligentBusConfigAddIntelligentDeniDisplayConfigsPost(
-        tenantId,
         intelligentDeniConfigInOut,
         options,
       )
@@ -538,40 +470,32 @@ export class IntelligentBusConfigApi extends BaseAPI {
   /**
    *
    * @summary 根据ID删除智能加药展示配置信息 Delete intelligent dosage page display config data by ids
-   * @param {string} [tenantId]
    * @param {Array<string>} [requestBody]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof IntelligentBusConfigApi
    */
   public apiIntelligentBusConfigDeleteIntelligentDeniDisplayConfigsPost(
-    tenantId?: string,
     requestBody?: Array<string>,
     options?: AxiosRequestConfig,
   ) {
     return IntelligentBusConfigApiFp(this.configuration)
-      .apiIntelligentBusConfigDeleteIntelligentDeniDisplayConfigsPost(
-        tenantId,
-        requestBody,
-        options,
-      )
+      .apiIntelligentBusConfigDeleteIntelligentDeniDisplayConfigsPost(requestBody, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
   /**
    *
    * @summary 获取所有的智能加药展示配置信息 Get all intelligent dosage page display config data
-   * @param {string} [tenantId]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof IntelligentBusConfigApi
    */
   public apiIntelligentBusConfigGetAllIntelligentDeniDisplayConfigsGet(
-    tenantId?: string,
     options?: AxiosRequestConfig,
   ) {
     return IntelligentBusConfigApiFp(this.configuration)
-      .apiIntelligentBusConfigGetAllIntelligentDeniDisplayConfigsGet(tenantId, options)
+      .apiIntelligentBusConfigGetAllIntelligentDeniDisplayConfigsGet(options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -579,42 +503,33 @@ export class IntelligentBusConfigApi extends BaseAPI {
    *
    * @summary 通过展示类型枚举获取配置信息 Get intelligent dosage page display config data by display type
    * @param {number} [displayType] 展示类型枚举 display type
-   * @param {string} [tenantId]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof IntelligentBusConfigApi
    */
   public apiIntelligentBusConfigGetIntelligentDeniDisplayConfigByTypeGet(
     displayType?: number,
-    tenantId?: string,
     options?: AxiosRequestConfig,
   ) {
     return IntelligentBusConfigApiFp(this.configuration)
-      .apiIntelligentBusConfigGetIntelligentDeniDisplayConfigByTypeGet(
-        displayType,
-        tenantId,
-        options,
-      )
+      .apiIntelligentBusConfigGetIntelligentDeniDisplayConfigByTypeGet(displayType, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
   /**
    *
    * @summary 更新智能加药展示配置信息 Update intelligent dosage page display config data
-   * @param {string} [tenantId]
    * @param {Array<IntelligentDeniConfigInOut>} [intelligentDeniConfigInOut]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof IntelligentBusConfigApi
    */
   public apiIntelligentBusConfigUpdateIntelligentDeniDisplayConfigsPost(
-    tenantId?: string,
     intelligentDeniConfigInOut?: Array<IntelligentDeniConfigInOut>,
     options?: AxiosRequestConfig,
   ) {
     return IntelligentBusConfigApiFp(this.configuration)
       .apiIntelligentBusConfigUpdateIntelligentDeniDisplayConfigsPost(
-        tenantId,
         intelligentDeniConfigInOut,
         options,
       )

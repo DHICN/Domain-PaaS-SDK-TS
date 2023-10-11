@@ -43,13 +43,11 @@ export const DosingStatisticMonthlyApiAxiosParamCreator = function (configuratio
     /**
      *
      * @summary 添加加药月统计信息 Add dosing monthly statistic data
-     * @param {string} [tenantId]
      * @param {Array<DosingStatisticMonthlysInOut>} [dosingStatisticMonthlysInOut]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiDosingStatisticMonthlyAddDosingStatisticMonthlysPost: async (
-      tenantId?: string,
       dosingStatisticMonthlysInOut?: Array<DosingStatisticMonthlysInOut>,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
@@ -64,10 +62,6 @@ export const DosingStatisticMonthlyApiAxiosParamCreator = function (configuratio
       const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
-
-      if (tenantId != null) {
-        localVarHeaderParameter['tenantId'] = String(tenantId)
-      }
 
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
@@ -92,13 +86,11 @@ export const DosingStatisticMonthlyApiAxiosParamCreator = function (configuratio
     /**
      *
      * @summary 根据ID删除加药月统计信息 Delete dosing monthly statistic data by ids
-     * @param {string} [tenantId]
      * @param {Array<string>} [requestBody]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiDosingStatisticMonthlyDeleteDosingStatisticMonthlysPost: async (
-      tenantId?: string,
       requestBody?: Array<string>,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
@@ -113,10 +105,6 @@ export const DosingStatisticMonthlyApiAxiosParamCreator = function (configuratio
       const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
-
-      if (tenantId != null) {
-        localVarHeaderParameter['tenantId'] = String(tenantId)
-      }
 
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
@@ -141,12 +129,10 @@ export const DosingStatisticMonthlyApiAxiosParamCreator = function (configuratio
     /**
      *
      * @summary 获取所有加药月统计信息 Get all dosing monthly statistic data
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiDosingStatisticMonthlyGetAllDosingStatisticMonthlysGet: async (
-      tenantId?: string,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
       const localVarPath = `/api/DosingStatisticMonthly/GetAllDosingStatisticMonthlys`
@@ -160,10 +146,6 @@ export const DosingStatisticMonthlyApiAxiosParamCreator = function (configuratio
       const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
-
-      if (tenantId != null) {
-        localVarHeaderParameter['tenantId'] = String(tenantId)
-      }
 
       setSearchParams(localVarUrlObj, localVarQueryParameter)
       let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
@@ -184,7 +166,6 @@ export const DosingStatisticMonthlyApiAxiosParamCreator = function (configuratio
      * @param {number} [category] 药剂类型 dosage type
      * @param {string} [startTime] 开始时间 start time
      * @param {string} [endTime] 结束时间 end time
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -192,7 +173,6 @@ export const DosingStatisticMonthlyApiAxiosParamCreator = function (configuratio
       category?: number,
       startTime?: string,
       endTime?: string,
-      tenantId?: string,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
       const localVarPath = `/api/DosingStatisticMonthly/GetDosingStatisticMonthlysByCategory`
@@ -219,10 +199,6 @@ export const DosingStatisticMonthlyApiAxiosParamCreator = function (configuratio
         localVarQueryParameter['endTime'] = endTime
       }
 
-      if (tenantId != null) {
-        localVarHeaderParameter['tenantId'] = String(tenantId)
-      }
-
       setSearchParams(localVarUrlObj, localVarQueryParameter)
       let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
       localVarRequestOptions.headers = {
@@ -240,13 +216,11 @@ export const DosingStatisticMonthlyApiAxiosParamCreator = function (configuratio
      *
      * @summary 通过时间获取加药月统计信息 Get dosing monthly statistic data by time
      * @param {string} [time] 时间 time
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiDosingStatisticMonthlyGetDosingStatisticMonthlysByDateGet: async (
       time?: string,
-      tenantId?: string,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
       const localVarPath = `/api/DosingStatisticMonthly/GetDosingStatisticMonthlysByDate`
@@ -265,10 +239,6 @@ export const DosingStatisticMonthlyApiAxiosParamCreator = function (configuratio
         localVarQueryParameter['time'] = time
       }
 
-      if (tenantId != null) {
-        localVarHeaderParameter['tenantId'] = String(tenantId)
-      }
-
       setSearchParams(localVarUrlObj, localVarQueryParameter)
       let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
       localVarRequestOptions.headers = {
@@ -285,13 +255,11 @@ export const DosingStatisticMonthlyApiAxiosParamCreator = function (configuratio
     /**
      *
      * @summary 更新加药月统计信息 Update dosing monthly statistic data
-     * @param {string} [tenantId]
      * @param {Array<DosingStatisticMonthlysInOut>} [dosingStatisticMonthlysInOut]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiDosingStatisticMonthlyUpdateDosingStatisticMonthlysPost: async (
-      tenantId?: string,
       dosingStatisticMonthlysInOut?: Array<DosingStatisticMonthlysInOut>,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
@@ -306,10 +274,6 @@ export const DosingStatisticMonthlyApiAxiosParamCreator = function (configuratio
       const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
-
-      if (tenantId != null) {
-        localVarHeaderParameter['tenantId'] = String(tenantId)
-      }
 
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
@@ -344,19 +308,16 @@ export const DosingStatisticMonthlyApiFp = function (configuration?: Configurati
     /**
      *
      * @summary 添加加药月统计信息 Add dosing monthly statistic data
-     * @param {string} [tenantId]
      * @param {Array<DosingStatisticMonthlysInOut>} [dosingStatisticMonthlysInOut]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async apiDosingStatisticMonthlyAddDosingStatisticMonthlysPost(
-      tenantId?: string,
       dosingStatisticMonthlysInOut?: Array<DosingStatisticMonthlysInOut>,
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.apiDosingStatisticMonthlyAddDosingStatisticMonthlysPost(
-          tenantId,
           dosingStatisticMonthlysInOut,
           options,
         )
@@ -365,19 +326,16 @@ export const DosingStatisticMonthlyApiFp = function (configuration?: Configurati
     /**
      *
      * @summary 根据ID删除加药月统计信息 Delete dosing monthly statistic data by ids
-     * @param {string} [tenantId]
      * @param {Array<string>} [requestBody]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async apiDosingStatisticMonthlyDeleteDosingStatisticMonthlysPost(
-      tenantId?: string,
       requestBody?: Array<string>,
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.apiDosingStatisticMonthlyDeleteDosingStatisticMonthlysPost(
-          tenantId,
           requestBody,
           options,
         )
@@ -386,12 +344,10 @@ export const DosingStatisticMonthlyApiFp = function (configuration?: Configurati
     /**
      *
      * @summary 获取所有加药月统计信息 Get all dosing monthly statistic data
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async apiDosingStatisticMonthlyGetAllDosingStatisticMonthlysGet(
-      tenantId?: string,
       options?: AxiosRequestConfig,
     ): Promise<
       (
@@ -401,7 +357,6 @@ export const DosingStatisticMonthlyApiFp = function (configuration?: Configurati
     > {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.apiDosingStatisticMonthlyGetAllDosingStatisticMonthlysGet(
-          tenantId,
           options,
         )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
@@ -412,7 +367,6 @@ export const DosingStatisticMonthlyApiFp = function (configuration?: Configurati
      * @param {number} [category] 药剂类型 dosage type
      * @param {string} [startTime] 开始时间 start time
      * @param {string} [endTime] 结束时间 end time
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -420,7 +374,6 @@ export const DosingStatisticMonthlyApiFp = function (configuration?: Configurati
       category?: number,
       startTime?: string,
       endTime?: string,
-      tenantId?: string,
       options?: AxiosRequestConfig,
     ): Promise<
       (
@@ -433,7 +386,6 @@ export const DosingStatisticMonthlyApiFp = function (configuration?: Configurati
           category,
           startTime,
           endTime,
-          tenantId,
           options,
         )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
@@ -442,13 +394,11 @@ export const DosingStatisticMonthlyApiFp = function (configuration?: Configurati
      *
      * @summary 通过时间获取加药月统计信息 Get dosing monthly statistic data by time
      * @param {string} [time] 时间 time
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async apiDosingStatisticMonthlyGetDosingStatisticMonthlysByDateGet(
       time?: string,
-      tenantId?: string,
       options?: AxiosRequestConfig,
     ): Promise<
       (
@@ -459,7 +409,6 @@ export const DosingStatisticMonthlyApiFp = function (configuration?: Configurati
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.apiDosingStatisticMonthlyGetDosingStatisticMonthlysByDateGet(
           time,
-          tenantId,
           options,
         )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
@@ -467,19 +416,16 @@ export const DosingStatisticMonthlyApiFp = function (configuration?: Configurati
     /**
      *
      * @summary 更新加药月统计信息 Update dosing monthly statistic data
-     * @param {string} [tenantId]
      * @param {Array<DosingStatisticMonthlysInOut>} [dosingStatisticMonthlysInOut]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async apiDosingStatisticMonthlyUpdateDosingStatisticMonthlysPost(
-      tenantId?: string,
       dosingStatisticMonthlysInOut?: Array<DosingStatisticMonthlysInOut>,
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.apiDosingStatisticMonthlyUpdateDosingStatisticMonthlysPost(
-          tenantId,
           dosingStatisticMonthlysInOut,
           options,
         )
@@ -502,19 +448,16 @@ export const DosingStatisticMonthlyApiFactory = function (
     /**
      *
      * @summary 添加加药月统计信息 Add dosing monthly statistic data
-     * @param {string} [tenantId]
      * @param {Array<DosingStatisticMonthlysInOut>} [dosingStatisticMonthlysInOut]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiDosingStatisticMonthlyAddDosingStatisticMonthlysPost(
-      tenantId?: string,
       dosingStatisticMonthlysInOut?: Array<DosingStatisticMonthlysInOut>,
       options?: any,
     ): AxiosPromise<object> {
       return localVarFp
         .apiDosingStatisticMonthlyAddDosingStatisticMonthlysPost(
-          tenantId,
           dosingStatisticMonthlysInOut,
           options,
         )
@@ -523,33 +466,29 @@ export const DosingStatisticMonthlyApiFactory = function (
     /**
      *
      * @summary 根据ID删除加药月统计信息 Delete dosing monthly statistic data by ids
-     * @param {string} [tenantId]
      * @param {Array<string>} [requestBody]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiDosingStatisticMonthlyDeleteDosingStatisticMonthlysPost(
-      tenantId?: string,
       requestBody?: Array<string>,
       options?: any,
     ): AxiosPromise<object> {
       return localVarFp
-        .apiDosingStatisticMonthlyDeleteDosingStatisticMonthlysPost(tenantId, requestBody, options)
+        .apiDosingStatisticMonthlyDeleteDosingStatisticMonthlysPost(requestBody, options)
         .then((request) => request(axios, basePath))
     },
     /**
      *
      * @summary 获取所有加药月统计信息 Get all dosing monthly statistic data
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiDosingStatisticMonthlyGetAllDosingStatisticMonthlysGet(
-      tenantId?: string,
       options?: any,
     ): AxiosPromise<Array<DosingStatisticMonthlysInOut>> {
       return localVarFp
-        .apiDosingStatisticMonthlyGetAllDosingStatisticMonthlysGet(tenantId, options)
+        .apiDosingStatisticMonthlyGetAllDosingStatisticMonthlysGet(options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -558,7 +497,6 @@ export const DosingStatisticMonthlyApiFactory = function (
      * @param {number} [category] 药剂类型 dosage type
      * @param {string} [startTime] 开始时间 start time
      * @param {string} [endTime] 结束时间 end time
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -566,7 +504,6 @@ export const DosingStatisticMonthlyApiFactory = function (
       category?: number,
       startTime?: string,
       endTime?: string,
-      tenantId?: string,
       options?: any,
     ): AxiosPromise<Array<DosingStatisticMonthlysInOut>> {
       return localVarFp
@@ -574,7 +511,6 @@ export const DosingStatisticMonthlyApiFactory = function (
           category,
           startTime,
           endTime,
-          tenantId,
           options,
         )
         .then((request) => request(axios, basePath))
@@ -583,35 +519,30 @@ export const DosingStatisticMonthlyApiFactory = function (
      *
      * @summary 通过时间获取加药月统计信息 Get dosing monthly statistic data by time
      * @param {string} [time] 时间 time
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiDosingStatisticMonthlyGetDosingStatisticMonthlysByDateGet(
       time?: string,
-      tenantId?: string,
       options?: any,
     ): AxiosPromise<Array<DosingStatisticMonthlysInOut>> {
       return localVarFp
-        .apiDosingStatisticMonthlyGetDosingStatisticMonthlysByDateGet(time, tenantId, options)
+        .apiDosingStatisticMonthlyGetDosingStatisticMonthlysByDateGet(time, options)
         .then((request) => request(axios, basePath))
     },
     /**
      *
      * @summary 更新加药月统计信息 Update dosing monthly statistic data
-     * @param {string} [tenantId]
      * @param {Array<DosingStatisticMonthlysInOut>} [dosingStatisticMonthlysInOut]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiDosingStatisticMonthlyUpdateDosingStatisticMonthlysPost(
-      tenantId?: string,
       dosingStatisticMonthlysInOut?: Array<DosingStatisticMonthlysInOut>,
       options?: any,
     ): AxiosPromise<object> {
       return localVarFp
         .apiDosingStatisticMonthlyUpdateDosingStatisticMonthlysPost(
-          tenantId,
           dosingStatisticMonthlysInOut,
           options,
         )
@@ -630,20 +561,17 @@ export class DosingStatisticMonthlyApi extends BaseAPI {
   /**
    *
    * @summary 添加加药月统计信息 Add dosing monthly statistic data
-   * @param {string} [tenantId]
    * @param {Array<DosingStatisticMonthlysInOut>} [dosingStatisticMonthlysInOut]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof DosingStatisticMonthlyApi
    */
   public apiDosingStatisticMonthlyAddDosingStatisticMonthlysPost(
-    tenantId?: string,
     dosingStatisticMonthlysInOut?: Array<DosingStatisticMonthlysInOut>,
     options?: AxiosRequestConfig,
   ) {
     return DosingStatisticMonthlyApiFp(this.configuration)
       .apiDosingStatisticMonthlyAddDosingStatisticMonthlysPost(
-        tenantId,
         dosingStatisticMonthlysInOut,
         options,
       )
@@ -653,36 +581,30 @@ export class DosingStatisticMonthlyApi extends BaseAPI {
   /**
    *
    * @summary 根据ID删除加药月统计信息 Delete dosing monthly statistic data by ids
-   * @param {string} [tenantId]
    * @param {Array<string>} [requestBody]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof DosingStatisticMonthlyApi
    */
   public apiDosingStatisticMonthlyDeleteDosingStatisticMonthlysPost(
-    tenantId?: string,
     requestBody?: Array<string>,
     options?: AxiosRequestConfig,
   ) {
     return DosingStatisticMonthlyApiFp(this.configuration)
-      .apiDosingStatisticMonthlyDeleteDosingStatisticMonthlysPost(tenantId, requestBody, options)
+      .apiDosingStatisticMonthlyDeleteDosingStatisticMonthlysPost(requestBody, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
   /**
    *
    * @summary 获取所有加药月统计信息 Get all dosing monthly statistic data
-   * @param {string} [tenantId]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof DosingStatisticMonthlyApi
    */
-  public apiDosingStatisticMonthlyGetAllDosingStatisticMonthlysGet(
-    tenantId?: string,
-    options?: AxiosRequestConfig,
-  ) {
+  public apiDosingStatisticMonthlyGetAllDosingStatisticMonthlysGet(options?: AxiosRequestConfig) {
     return DosingStatisticMonthlyApiFp(this.configuration)
-      .apiDosingStatisticMonthlyGetAllDosingStatisticMonthlysGet(tenantId, options)
+      .apiDosingStatisticMonthlyGetAllDosingStatisticMonthlysGet(options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -692,7 +614,6 @@ export class DosingStatisticMonthlyApi extends BaseAPI {
    * @param {number} [category] 药剂类型 dosage type
    * @param {string} [startTime] 开始时间 start time
    * @param {string} [endTime] 结束时间 end time
-   * @param {string} [tenantId]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof DosingStatisticMonthlyApi
@@ -701,7 +622,6 @@ export class DosingStatisticMonthlyApi extends BaseAPI {
     category?: number,
     startTime?: string,
     endTime?: string,
-    tenantId?: string,
     options?: AxiosRequestConfig,
   ) {
     return DosingStatisticMonthlyApiFp(this.configuration)
@@ -709,7 +629,6 @@ export class DosingStatisticMonthlyApi extends BaseAPI {
         category,
         startTime,
         endTime,
-        tenantId,
         options,
       )
       .then((request) => request(this.axios, this.basePath))
@@ -719,38 +638,33 @@ export class DosingStatisticMonthlyApi extends BaseAPI {
    *
    * @summary 通过时间获取加药月统计信息 Get dosing monthly statistic data by time
    * @param {string} [time] 时间 time
-   * @param {string} [tenantId]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof DosingStatisticMonthlyApi
    */
   public apiDosingStatisticMonthlyGetDosingStatisticMonthlysByDateGet(
     time?: string,
-    tenantId?: string,
     options?: AxiosRequestConfig,
   ) {
     return DosingStatisticMonthlyApiFp(this.configuration)
-      .apiDosingStatisticMonthlyGetDosingStatisticMonthlysByDateGet(time, tenantId, options)
+      .apiDosingStatisticMonthlyGetDosingStatisticMonthlysByDateGet(time, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
   /**
    *
    * @summary 更新加药月统计信息 Update dosing monthly statistic data
-   * @param {string} [tenantId]
    * @param {Array<DosingStatisticMonthlysInOut>} [dosingStatisticMonthlysInOut]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof DosingStatisticMonthlyApi
    */
   public apiDosingStatisticMonthlyUpdateDosingStatisticMonthlysPost(
-    tenantId?: string,
     dosingStatisticMonthlysInOut?: Array<DosingStatisticMonthlysInOut>,
     options?: AxiosRequestConfig,
   ) {
     return DosingStatisticMonthlyApiFp(this.configuration)
       .apiDosingStatisticMonthlyUpdateDosingStatisticMonthlysPost(
-        tenantId,
         dosingStatisticMonthlysInOut,
         options,
       )

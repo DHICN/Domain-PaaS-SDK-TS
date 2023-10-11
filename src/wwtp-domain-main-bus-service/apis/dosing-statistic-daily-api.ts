@@ -43,13 +43,11 @@ export const DosingStatisticDailyApiAxiosParamCreator = function (configuration?
     /**
      *
      * @summary 添加加药日统计信息 Add dosing daily statistic data
-     * @param {string} [tenantId]
      * @param {Array<DosingStatisticDailysInOut>} [dosingStatisticDailysInOut]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiDosingStatisticDailyAddDosingStatisticDailysPost: async (
-      tenantId?: string,
       dosingStatisticDailysInOut?: Array<DosingStatisticDailysInOut>,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
@@ -64,10 +62,6 @@ export const DosingStatisticDailyApiAxiosParamCreator = function (configuration?
       const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
-
-      if (tenantId != null) {
-        localVarHeaderParameter['tenantId'] = String(tenantId)
-      }
 
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
@@ -92,13 +86,11 @@ export const DosingStatisticDailyApiAxiosParamCreator = function (configuration?
     /**
      *
      * @summary 根据ID删除加药日统计信息 Delete dosing daily statistic data by ids
-     * @param {string} [tenantId]
      * @param {Array<string>} [requestBody]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiDosingStatisticDailyDeleteDosingStatisticDailysPost: async (
-      tenantId?: string,
       requestBody?: Array<string>,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
@@ -113,10 +105,6 @@ export const DosingStatisticDailyApiAxiosParamCreator = function (configuration?
       const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
-
-      if (tenantId != null) {
-        localVarHeaderParameter['tenantId'] = String(tenantId)
-      }
 
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
@@ -141,12 +129,10 @@ export const DosingStatisticDailyApiAxiosParamCreator = function (configuration?
     /**
      *
      * @summary 获取所有加药日统计信息 Get all dosing daily statistic data
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiDosingStatisticDailyGetAllDosingStatisticDailysGet: async (
-      tenantId?: string,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
       const localVarPath = `/api/DosingStatisticDaily/GetAllDosingStatisticDailys`
@@ -160,10 +146,6 @@ export const DosingStatisticDailyApiAxiosParamCreator = function (configuration?
       const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
-
-      if (tenantId != null) {
-        localVarHeaderParameter['tenantId'] = String(tenantId)
-      }
 
       setSearchParams(localVarUrlObj, localVarQueryParameter)
       let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
@@ -184,7 +166,6 @@ export const DosingStatisticDailyApiAxiosParamCreator = function (configuration?
      * @param {number} [category] 药剂类型 dosage type
      * @param {string} [startTime] 开始时间 start time
      * @param {string} [endTime] 结束时间 end time
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -192,7 +173,6 @@ export const DosingStatisticDailyApiAxiosParamCreator = function (configuration?
       category?: number,
       startTime?: string,
       endTime?: string,
-      tenantId?: string,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
       const localVarPath = `/api/DosingStatisticDaily/GetDosingStatisticDailysByCategory`
@@ -219,10 +199,6 @@ export const DosingStatisticDailyApiAxiosParamCreator = function (configuration?
         localVarQueryParameter['endTime'] = endTime
       }
 
-      if (tenantId != null) {
-        localVarHeaderParameter['tenantId'] = String(tenantId)
-      }
-
       setSearchParams(localVarUrlObj, localVarQueryParameter)
       let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
       localVarRequestOptions.headers = {
@@ -240,13 +216,11 @@ export const DosingStatisticDailyApiAxiosParamCreator = function (configuration?
      *
      * @summary 通过时间获取加药日统计信息 Get dosing daily statistic data by time
      * @param {string} [time] 时间 time
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiDosingStatisticDailyGetDosingStatisticDailysByDateGet: async (
       time?: string,
-      tenantId?: string,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
       const localVarPath = `/api/DosingStatisticDaily/GetDosingStatisticDailysByDate`
@@ -265,10 +239,6 @@ export const DosingStatisticDailyApiAxiosParamCreator = function (configuration?
         localVarQueryParameter['time'] = time
       }
 
-      if (tenantId != null) {
-        localVarHeaderParameter['tenantId'] = String(tenantId)
-      }
-
       setSearchParams(localVarUrlObj, localVarQueryParameter)
       let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
       localVarRequestOptions.headers = {
@@ -285,13 +255,11 @@ export const DosingStatisticDailyApiAxiosParamCreator = function (configuration?
     /**
      *
      * @summary 更新加药日统计信息 Update dosing daily statistic data
-     * @param {string} [tenantId]
      * @param {Array<DosingStatisticDailysInOut>} [dosingStatisticDailysInOut]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiDosingStatisticDailyUpdateDosingStatisticDailysPost: async (
-      tenantId?: string,
       dosingStatisticDailysInOut?: Array<DosingStatisticDailysInOut>,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
@@ -306,10 +274,6 @@ export const DosingStatisticDailyApiAxiosParamCreator = function (configuration?
       const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
-
-      if (tenantId != null) {
-        localVarHeaderParameter['tenantId'] = String(tenantId)
-      }
 
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
@@ -344,19 +308,16 @@ export const DosingStatisticDailyApiFp = function (configuration?: Configuration
     /**
      *
      * @summary 添加加药日统计信息 Add dosing daily statistic data
-     * @param {string} [tenantId]
      * @param {Array<DosingStatisticDailysInOut>} [dosingStatisticDailysInOut]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async apiDosingStatisticDailyAddDosingStatisticDailysPost(
-      tenantId?: string,
       dosingStatisticDailysInOut?: Array<DosingStatisticDailysInOut>,
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.apiDosingStatisticDailyAddDosingStatisticDailysPost(
-          tenantId,
           dosingStatisticDailysInOut,
           options,
         )
@@ -365,19 +326,16 @@ export const DosingStatisticDailyApiFp = function (configuration?: Configuration
     /**
      *
      * @summary 根据ID删除加药日统计信息 Delete dosing daily statistic data by ids
-     * @param {string} [tenantId]
      * @param {Array<string>} [requestBody]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async apiDosingStatisticDailyDeleteDosingStatisticDailysPost(
-      tenantId?: string,
       requestBody?: Array<string>,
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.apiDosingStatisticDailyDeleteDosingStatisticDailysPost(
-          tenantId,
           requestBody,
           options,
         )
@@ -386,19 +344,16 @@ export const DosingStatisticDailyApiFp = function (configuration?: Configuration
     /**
      *
      * @summary 获取所有加药日统计信息 Get all dosing daily statistic data
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async apiDosingStatisticDailyGetAllDosingStatisticDailysGet(
-      tenantId?: string,
       options?: AxiosRequestConfig,
     ): Promise<
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<DosingStatisticDailysInOut>>
     > {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.apiDosingStatisticDailyGetAllDosingStatisticDailysGet(
-          tenantId,
           options,
         )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
@@ -409,7 +364,6 @@ export const DosingStatisticDailyApiFp = function (configuration?: Configuration
      * @param {number} [category] 药剂类型 dosage type
      * @param {string} [startTime] 开始时间 start time
      * @param {string} [endTime] 结束时间 end time
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -417,7 +371,6 @@ export const DosingStatisticDailyApiFp = function (configuration?: Configuration
       category?: number,
       startTime?: string,
       endTime?: string,
-      tenantId?: string,
       options?: AxiosRequestConfig,
     ): Promise<
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<DosingStatisticDailysInOut>>
@@ -427,7 +380,6 @@ export const DosingStatisticDailyApiFp = function (configuration?: Configuration
           category,
           startTime,
           endTime,
-          tenantId,
           options,
         )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
@@ -436,13 +388,11 @@ export const DosingStatisticDailyApiFp = function (configuration?: Configuration
      *
      * @summary 通过时间获取加药日统计信息 Get dosing daily statistic data by time
      * @param {string} [time] 时间 time
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async apiDosingStatisticDailyGetDosingStatisticDailysByDateGet(
       time?: string,
-      tenantId?: string,
       options?: AxiosRequestConfig,
     ): Promise<
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<DosingStatisticDailysInOut>>
@@ -450,7 +400,6 @@ export const DosingStatisticDailyApiFp = function (configuration?: Configuration
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.apiDosingStatisticDailyGetDosingStatisticDailysByDateGet(
           time,
-          tenantId,
           options,
         )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
@@ -458,19 +407,16 @@ export const DosingStatisticDailyApiFp = function (configuration?: Configuration
     /**
      *
      * @summary 更新加药日统计信息 Update dosing daily statistic data
-     * @param {string} [tenantId]
      * @param {Array<DosingStatisticDailysInOut>} [dosingStatisticDailysInOut]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async apiDosingStatisticDailyUpdateDosingStatisticDailysPost(
-      tenantId?: string,
       dosingStatisticDailysInOut?: Array<DosingStatisticDailysInOut>,
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.apiDosingStatisticDailyUpdateDosingStatisticDailysPost(
-          tenantId,
           dosingStatisticDailysInOut,
           options,
         )
@@ -493,54 +439,44 @@ export const DosingStatisticDailyApiFactory = function (
     /**
      *
      * @summary 添加加药日统计信息 Add dosing daily statistic data
-     * @param {string} [tenantId]
      * @param {Array<DosingStatisticDailysInOut>} [dosingStatisticDailysInOut]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiDosingStatisticDailyAddDosingStatisticDailysPost(
-      tenantId?: string,
       dosingStatisticDailysInOut?: Array<DosingStatisticDailysInOut>,
       options?: any,
     ): AxiosPromise<object> {
       return localVarFp
-        .apiDosingStatisticDailyAddDosingStatisticDailysPost(
-          tenantId,
-          dosingStatisticDailysInOut,
-          options,
-        )
+        .apiDosingStatisticDailyAddDosingStatisticDailysPost(dosingStatisticDailysInOut, options)
         .then((request) => request(axios, basePath))
     },
     /**
      *
      * @summary 根据ID删除加药日统计信息 Delete dosing daily statistic data by ids
-     * @param {string} [tenantId]
      * @param {Array<string>} [requestBody]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiDosingStatisticDailyDeleteDosingStatisticDailysPost(
-      tenantId?: string,
       requestBody?: Array<string>,
       options?: any,
     ): AxiosPromise<object> {
       return localVarFp
-        .apiDosingStatisticDailyDeleteDosingStatisticDailysPost(tenantId, requestBody, options)
+        .apiDosingStatisticDailyDeleteDosingStatisticDailysPost(requestBody, options)
         .then((request) => request(axios, basePath))
     },
     /**
      *
      * @summary 获取所有加药日统计信息 Get all dosing daily statistic data
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiDosingStatisticDailyGetAllDosingStatisticDailysGet(
-      tenantId?: string,
       options?: any,
     ): AxiosPromise<Array<DosingStatisticDailysInOut>> {
       return localVarFp
-        .apiDosingStatisticDailyGetAllDosingStatisticDailysGet(tenantId, options)
+        .apiDosingStatisticDailyGetAllDosingStatisticDailysGet(options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -549,7 +485,6 @@ export const DosingStatisticDailyApiFactory = function (
      * @param {number} [category] 药剂类型 dosage type
      * @param {string} [startTime] 开始时间 start time
      * @param {string} [endTime] 结束时间 end time
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -557,7 +492,6 @@ export const DosingStatisticDailyApiFactory = function (
       category?: number,
       startTime?: string,
       endTime?: string,
-      tenantId?: string,
       options?: any,
     ): AxiosPromise<Array<DosingStatisticDailysInOut>> {
       return localVarFp
@@ -565,7 +499,6 @@ export const DosingStatisticDailyApiFactory = function (
           category,
           startTime,
           endTime,
-          tenantId,
           options,
         )
         .then((request) => request(axios, basePath))
@@ -574,38 +507,30 @@ export const DosingStatisticDailyApiFactory = function (
      *
      * @summary 通过时间获取加药日统计信息 Get dosing daily statistic data by time
      * @param {string} [time] 时间 time
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiDosingStatisticDailyGetDosingStatisticDailysByDateGet(
       time?: string,
-      tenantId?: string,
       options?: any,
     ): AxiosPromise<Array<DosingStatisticDailysInOut>> {
       return localVarFp
-        .apiDosingStatisticDailyGetDosingStatisticDailysByDateGet(time, tenantId, options)
+        .apiDosingStatisticDailyGetDosingStatisticDailysByDateGet(time, options)
         .then((request) => request(axios, basePath))
     },
     /**
      *
      * @summary 更新加药日统计信息 Update dosing daily statistic data
-     * @param {string} [tenantId]
      * @param {Array<DosingStatisticDailysInOut>} [dosingStatisticDailysInOut]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiDosingStatisticDailyUpdateDosingStatisticDailysPost(
-      tenantId?: string,
       dosingStatisticDailysInOut?: Array<DosingStatisticDailysInOut>,
       options?: any,
     ): AxiosPromise<object> {
       return localVarFp
-        .apiDosingStatisticDailyUpdateDosingStatisticDailysPost(
-          tenantId,
-          dosingStatisticDailysInOut,
-          options,
-        )
+        .apiDosingStatisticDailyUpdateDosingStatisticDailysPost(dosingStatisticDailysInOut, options)
         .then((request) => request(axios, basePath))
     },
   }
@@ -621,59 +546,47 @@ export class DosingStatisticDailyApi extends BaseAPI {
   /**
    *
    * @summary 添加加药日统计信息 Add dosing daily statistic data
-   * @param {string} [tenantId]
    * @param {Array<DosingStatisticDailysInOut>} [dosingStatisticDailysInOut]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof DosingStatisticDailyApi
    */
   public apiDosingStatisticDailyAddDosingStatisticDailysPost(
-    tenantId?: string,
     dosingStatisticDailysInOut?: Array<DosingStatisticDailysInOut>,
     options?: AxiosRequestConfig,
   ) {
     return DosingStatisticDailyApiFp(this.configuration)
-      .apiDosingStatisticDailyAddDosingStatisticDailysPost(
-        tenantId,
-        dosingStatisticDailysInOut,
-        options,
-      )
+      .apiDosingStatisticDailyAddDosingStatisticDailysPost(dosingStatisticDailysInOut, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
   /**
    *
    * @summary 根据ID删除加药日统计信息 Delete dosing daily statistic data by ids
-   * @param {string} [tenantId]
    * @param {Array<string>} [requestBody]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof DosingStatisticDailyApi
    */
   public apiDosingStatisticDailyDeleteDosingStatisticDailysPost(
-    tenantId?: string,
     requestBody?: Array<string>,
     options?: AxiosRequestConfig,
   ) {
     return DosingStatisticDailyApiFp(this.configuration)
-      .apiDosingStatisticDailyDeleteDosingStatisticDailysPost(tenantId, requestBody, options)
+      .apiDosingStatisticDailyDeleteDosingStatisticDailysPost(requestBody, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
   /**
    *
    * @summary 获取所有加药日统计信息 Get all dosing daily statistic data
-   * @param {string} [tenantId]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof DosingStatisticDailyApi
    */
-  public apiDosingStatisticDailyGetAllDosingStatisticDailysGet(
-    tenantId?: string,
-    options?: AxiosRequestConfig,
-  ) {
+  public apiDosingStatisticDailyGetAllDosingStatisticDailysGet(options?: AxiosRequestConfig) {
     return DosingStatisticDailyApiFp(this.configuration)
-      .apiDosingStatisticDailyGetAllDosingStatisticDailysGet(tenantId, options)
+      .apiDosingStatisticDailyGetAllDosingStatisticDailysGet(options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -683,7 +596,6 @@ export class DosingStatisticDailyApi extends BaseAPI {
    * @param {number} [category] 药剂类型 dosage type
    * @param {string} [startTime] 开始时间 start time
    * @param {string} [endTime] 结束时间 end time
-   * @param {string} [tenantId]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof DosingStatisticDailyApi
@@ -692,7 +604,6 @@ export class DosingStatisticDailyApi extends BaseAPI {
     category?: number,
     startTime?: string,
     endTime?: string,
-    tenantId?: string,
     options?: AxiosRequestConfig,
   ) {
     return DosingStatisticDailyApiFp(this.configuration)
@@ -700,7 +611,6 @@ export class DosingStatisticDailyApi extends BaseAPI {
         category,
         startTime,
         endTime,
-        tenantId,
         options,
       )
       .then((request) => request(this.axios, this.basePath))
@@ -710,41 +620,33 @@ export class DosingStatisticDailyApi extends BaseAPI {
    *
    * @summary 通过时间获取加药日统计信息 Get dosing daily statistic data by time
    * @param {string} [time] 时间 time
-   * @param {string} [tenantId]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof DosingStatisticDailyApi
    */
   public apiDosingStatisticDailyGetDosingStatisticDailysByDateGet(
     time?: string,
-    tenantId?: string,
     options?: AxiosRequestConfig,
   ) {
     return DosingStatisticDailyApiFp(this.configuration)
-      .apiDosingStatisticDailyGetDosingStatisticDailysByDateGet(time, tenantId, options)
+      .apiDosingStatisticDailyGetDosingStatisticDailysByDateGet(time, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
   /**
    *
    * @summary 更新加药日统计信息 Update dosing daily statistic data
-   * @param {string} [tenantId]
    * @param {Array<DosingStatisticDailysInOut>} [dosingStatisticDailysInOut]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof DosingStatisticDailyApi
    */
   public apiDosingStatisticDailyUpdateDosingStatisticDailysPost(
-    tenantId?: string,
     dosingStatisticDailysInOut?: Array<DosingStatisticDailysInOut>,
     options?: AxiosRequestConfig,
   ) {
     return DosingStatisticDailyApiFp(this.configuration)
-      .apiDosingStatisticDailyUpdateDosingStatisticDailysPost(
-        tenantId,
-        dosingStatisticDailysInOut,
-        options,
-      )
+      .apiDosingStatisticDailyUpdateDosingStatisticDailysPost(dosingStatisticDailysInOut, options)
       .then((request) => request(this.axios, this.basePath))
   }
 }

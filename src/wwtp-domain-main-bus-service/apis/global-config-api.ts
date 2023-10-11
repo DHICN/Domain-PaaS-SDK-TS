@@ -43,13 +43,11 @@ export const GlobalConfigApiAxiosParamCreator = function (configuration?: Config
     /**
      *
      * @summary 添加全局配置信息 Add global config data
-     * @param {string} [tenantId]
      * @param {Array<GlobalConfigInOut>} [globalConfigInOut]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiGlobalConfigAddGlobalConfigsPost: async (
-      tenantId?: string,
       globalConfigInOut?: Array<GlobalConfigInOut>,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
@@ -64,10 +62,6 @@ export const GlobalConfigApiAxiosParamCreator = function (configuration?: Config
       const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
-
-      if (tenantId != null) {
-        localVarHeaderParameter['tenantId'] = String(tenantId)
-      }
 
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
@@ -92,13 +86,11 @@ export const GlobalConfigApiAxiosParamCreator = function (configuration?: Config
     /**
      *
      * @summary 删除全局配置信息 Delete global config data
-     * @param {string} [tenantId]
      * @param {Array<string>} [requestBody]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiGlobalConfigDeleteGlobalConfigsPost: async (
-      tenantId?: string,
       requestBody?: Array<string>,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
@@ -113,10 +105,6 @@ export const GlobalConfigApiAxiosParamCreator = function (configuration?: Config
       const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
-
-      if (tenantId != null) {
-        localVarHeaderParameter['tenantId'] = String(tenantId)
-      }
 
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
@@ -141,12 +129,10 @@ export const GlobalConfigApiAxiosParamCreator = function (configuration?: Config
     /**
      *
      * @summary 获取所有全局配置信息 Get all global config data
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiGlobalConfigGetAllGlobalConfigsGet: async (
-      tenantId?: string,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
       const localVarPath = `/api/GlobalConfig/GetAllGlobalConfigs`
@@ -160,10 +146,6 @@ export const GlobalConfigApiAxiosParamCreator = function (configuration?: Config
       const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
-
-      if (tenantId != null) {
-        localVarHeaderParameter['tenantId'] = String(tenantId)
-      }
 
       setSearchParams(localVarUrlObj, localVarQueryParameter)
       let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
@@ -182,13 +164,11 @@ export const GlobalConfigApiAxiosParamCreator = function (configuration?: Config
      *
      * @summary 通过配置类型获取全局配置信息 Get global config data by config type
      * @param {string} [configType] 配置类型 config type
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiGlobalConfigGetGlobalConfigByConfigTypeGet: async (
       configType?: string,
-      tenantId?: string,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
       const localVarPath = `/api/GlobalConfig/GetGlobalConfigByConfigType`
@@ -207,10 +187,6 @@ export const GlobalConfigApiAxiosParamCreator = function (configuration?: Config
         localVarQueryParameter['configType'] = configType
       }
 
-      if (tenantId != null) {
-        localVarHeaderParameter['tenantId'] = String(tenantId)
-      }
-
       setSearchParams(localVarUrlObj, localVarQueryParameter)
       let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
       localVarRequestOptions.headers = {
@@ -227,13 +203,11 @@ export const GlobalConfigApiAxiosParamCreator = function (configuration?: Config
     /**
      *
      * @summary 更新全局配置信息 Update global config data
-     * @param {string} [tenantId]
      * @param {Array<GlobalConfigInOut>} [globalConfigInOut]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiGlobalConfigUpdateGlobalConfigsPost: async (
-      tenantId?: string,
       globalConfigInOut?: Array<GlobalConfigInOut>,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
@@ -248,10 +222,6 @@ export const GlobalConfigApiAxiosParamCreator = function (configuration?: Config
       const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
-
-      if (tenantId != null) {
-        localVarHeaderParameter['tenantId'] = String(tenantId)
-      }
 
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
@@ -286,18 +256,15 @@ export const GlobalConfigApiFp = function (configuration?: Configuration) {
     /**
      *
      * @summary 添加全局配置信息 Add global config data
-     * @param {string} [tenantId]
      * @param {Array<GlobalConfigInOut>} [globalConfigInOut]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async apiGlobalConfigAddGlobalConfigsPost(
-      tenantId?: string,
       globalConfigInOut?: Array<GlobalConfigInOut>,
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
       const localVarAxiosArgs = await localVarAxiosParamCreator.apiGlobalConfigAddGlobalConfigsPost(
-        tenantId,
         globalConfigInOut,
         options,
       )
@@ -306,52 +273,42 @@ export const GlobalConfigApiFp = function (configuration?: Configuration) {
     /**
      *
      * @summary 删除全局配置信息 Delete global config data
-     * @param {string} [tenantId]
      * @param {Array<string>} [requestBody]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async apiGlobalConfigDeleteGlobalConfigsPost(
-      tenantId?: string,
       requestBody?: Array<string>,
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
       const localVarAxiosArgs =
-        await localVarAxiosParamCreator.apiGlobalConfigDeleteGlobalConfigsPost(
-          tenantId,
-          requestBody,
-          options,
-        )
+        await localVarAxiosParamCreator.apiGlobalConfigDeleteGlobalConfigsPost(requestBody, options)
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**
      *
      * @summary 获取所有全局配置信息 Get all global config data
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async apiGlobalConfigGetAllGlobalConfigsGet(
-      tenantId?: string,
       options?: AxiosRequestConfig,
     ): Promise<
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<GlobalConfigInOut>>
     > {
       const localVarAxiosArgs =
-        await localVarAxiosParamCreator.apiGlobalConfigGetAllGlobalConfigsGet(tenantId, options)
+        await localVarAxiosParamCreator.apiGlobalConfigGetAllGlobalConfigsGet(options)
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**
      *
      * @summary 通过配置类型获取全局配置信息 Get global config data by config type
      * @param {string} [configType] 配置类型 config type
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async apiGlobalConfigGetGlobalConfigByConfigTypeGet(
       configType?: string,
-      tenantId?: string,
       options?: AxiosRequestConfig,
     ): Promise<
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<GlobalConfigInOut>>
@@ -359,7 +316,6 @@ export const GlobalConfigApiFp = function (configuration?: Configuration) {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.apiGlobalConfigGetGlobalConfigByConfigTypeGet(
           configType,
-          tenantId,
           options,
         )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
@@ -367,19 +323,16 @@ export const GlobalConfigApiFp = function (configuration?: Configuration) {
     /**
      *
      * @summary 更新全局配置信息 Update global config data
-     * @param {string} [tenantId]
      * @param {Array<GlobalConfigInOut>} [globalConfigInOut]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async apiGlobalConfigUpdateGlobalConfigsPost(
-      tenantId?: string,
       globalConfigInOut?: Array<GlobalConfigInOut>,
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.apiGlobalConfigUpdateGlobalConfigsPost(
-          tenantId,
           globalConfigInOut,
           options,
         )
@@ -402,84 +355,72 @@ export const GlobalConfigApiFactory = function (
     /**
      *
      * @summary 添加全局配置信息 Add global config data
-     * @param {string} [tenantId]
      * @param {Array<GlobalConfigInOut>} [globalConfigInOut]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiGlobalConfigAddGlobalConfigsPost(
-      tenantId?: string,
       globalConfigInOut?: Array<GlobalConfigInOut>,
       options?: any,
     ): AxiosPromise<object> {
       return localVarFp
-        .apiGlobalConfigAddGlobalConfigsPost(tenantId, globalConfigInOut, options)
+        .apiGlobalConfigAddGlobalConfigsPost(globalConfigInOut, options)
         .then((request) => request(axios, basePath))
     },
     /**
      *
      * @summary 删除全局配置信息 Delete global config data
-     * @param {string} [tenantId]
      * @param {Array<string>} [requestBody]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiGlobalConfigDeleteGlobalConfigsPost(
-      tenantId?: string,
       requestBody?: Array<string>,
       options?: any,
     ): AxiosPromise<object> {
       return localVarFp
-        .apiGlobalConfigDeleteGlobalConfigsPost(tenantId, requestBody, options)
+        .apiGlobalConfigDeleteGlobalConfigsPost(requestBody, options)
         .then((request) => request(axios, basePath))
     },
     /**
      *
      * @summary 获取所有全局配置信息 Get all global config data
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    apiGlobalConfigGetAllGlobalConfigsGet(
-      tenantId?: string,
-      options?: any,
-    ): AxiosPromise<Array<GlobalConfigInOut>> {
+    apiGlobalConfigGetAllGlobalConfigsGet(options?: any): AxiosPromise<Array<GlobalConfigInOut>> {
       return localVarFp
-        .apiGlobalConfigGetAllGlobalConfigsGet(tenantId, options)
+        .apiGlobalConfigGetAllGlobalConfigsGet(options)
         .then((request) => request(axios, basePath))
     },
     /**
      *
      * @summary 通过配置类型获取全局配置信息 Get global config data by config type
      * @param {string} [configType] 配置类型 config type
-     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiGlobalConfigGetGlobalConfigByConfigTypeGet(
       configType?: string,
-      tenantId?: string,
       options?: any,
     ): AxiosPromise<Array<GlobalConfigInOut>> {
       return localVarFp
-        .apiGlobalConfigGetGlobalConfigByConfigTypeGet(configType, tenantId, options)
+        .apiGlobalConfigGetGlobalConfigByConfigTypeGet(configType, options)
         .then((request) => request(axios, basePath))
     },
     /**
      *
      * @summary 更新全局配置信息 Update global config data
-     * @param {string} [tenantId]
      * @param {Array<GlobalConfigInOut>} [globalConfigInOut]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiGlobalConfigUpdateGlobalConfigsPost(
-      tenantId?: string,
       globalConfigInOut?: Array<GlobalConfigInOut>,
       options?: any,
     ): AxiosPromise<object> {
       return localVarFp
-        .apiGlobalConfigUpdateGlobalConfigsPost(tenantId, globalConfigInOut, options)
+        .apiGlobalConfigUpdateGlobalConfigsPost(globalConfigInOut, options)
         .then((request) => request(axios, basePath))
     },
   }
@@ -495,52 +436,47 @@ export class GlobalConfigApi extends BaseAPI {
   /**
    *
    * @summary 添加全局配置信息 Add global config data
-   * @param {string} [tenantId]
    * @param {Array<GlobalConfigInOut>} [globalConfigInOut]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof GlobalConfigApi
    */
   public apiGlobalConfigAddGlobalConfigsPost(
-    tenantId?: string,
     globalConfigInOut?: Array<GlobalConfigInOut>,
     options?: AxiosRequestConfig,
   ) {
     return GlobalConfigApiFp(this.configuration)
-      .apiGlobalConfigAddGlobalConfigsPost(tenantId, globalConfigInOut, options)
+      .apiGlobalConfigAddGlobalConfigsPost(globalConfigInOut, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
   /**
    *
    * @summary 删除全局配置信息 Delete global config data
-   * @param {string} [tenantId]
    * @param {Array<string>} [requestBody]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof GlobalConfigApi
    */
   public apiGlobalConfigDeleteGlobalConfigsPost(
-    tenantId?: string,
     requestBody?: Array<string>,
     options?: AxiosRequestConfig,
   ) {
     return GlobalConfigApiFp(this.configuration)
-      .apiGlobalConfigDeleteGlobalConfigsPost(tenantId, requestBody, options)
+      .apiGlobalConfigDeleteGlobalConfigsPost(requestBody, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
   /**
    *
    * @summary 获取所有全局配置信息 Get all global config data
-   * @param {string} [tenantId]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof GlobalConfigApi
    */
-  public apiGlobalConfigGetAllGlobalConfigsGet(tenantId?: string, options?: AxiosRequestConfig) {
+  public apiGlobalConfigGetAllGlobalConfigsGet(options?: AxiosRequestConfig) {
     return GlobalConfigApiFp(this.configuration)
-      .apiGlobalConfigGetAllGlobalConfigsGet(tenantId, options)
+      .apiGlobalConfigGetAllGlobalConfigsGet(options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -548,37 +484,33 @@ export class GlobalConfigApi extends BaseAPI {
    *
    * @summary 通过配置类型获取全局配置信息 Get global config data by config type
    * @param {string} [configType] 配置类型 config type
-   * @param {string} [tenantId]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof GlobalConfigApi
    */
   public apiGlobalConfigGetGlobalConfigByConfigTypeGet(
     configType?: string,
-    tenantId?: string,
     options?: AxiosRequestConfig,
   ) {
     return GlobalConfigApiFp(this.configuration)
-      .apiGlobalConfigGetGlobalConfigByConfigTypeGet(configType, tenantId, options)
+      .apiGlobalConfigGetGlobalConfigByConfigTypeGet(configType, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
   /**
    *
    * @summary 更新全局配置信息 Update global config data
-   * @param {string} [tenantId]
    * @param {Array<GlobalConfigInOut>} [globalConfigInOut]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof GlobalConfigApi
    */
   public apiGlobalConfigUpdateGlobalConfigsPost(
-    tenantId?: string,
     globalConfigInOut?: Array<GlobalConfigInOut>,
     options?: AxiosRequestConfig,
   ) {
     return GlobalConfigApiFp(this.configuration)
-      .apiGlobalConfigUpdateGlobalConfigsPost(tenantId, globalConfigInOut, options)
+      .apiGlobalConfigUpdateGlobalConfigsPost(globalConfigInOut, options)
       .then((request) => request(this.axios, this.basePath))
   }
 }
