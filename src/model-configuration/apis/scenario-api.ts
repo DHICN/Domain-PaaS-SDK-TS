@@ -609,6 +609,7 @@ export const ScenarioApiAxiosParamCreator = function (configuration?: Configurat
      * @param {string} [scenarioName]
      * @param {string} [subType]
      * @param {string} [modelVersion]
+     * @param {string} [bCheckAndExportModelData]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -617,6 +618,7 @@ export const ScenarioApiAxiosParamCreator = function (configuration?: Configurat
       scenarioName?: string,
       subType?: string,
       modelVersion?: string,
+      bCheckAndExportModelData?: string,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
       const localVarPath = `/api/v3/model-configuration/scenario/create-template-scenario`
@@ -645,6 +647,10 @@ export const ScenarioApiAxiosParamCreator = function (configuration?: Configurat
 
       if (modelVersion !== undefined) {
         localVarQueryParameter['modelVersion'] = modelVersion
+      }
+
+      if (bCheckAndExportModelData !== undefined) {
+        localVarQueryParameter['bCheckAndExportModelData'] = bCheckAndExportModelData
       }
 
       setSearchParams(localVarUrlObj, localVarQueryParameter)
@@ -1109,6 +1115,7 @@ export const ScenarioApiFp = function (configuration?: Configuration) {
      * @param {string} [scenarioName]
      * @param {string} [subType]
      * @param {string} [modelVersion]
+     * @param {string} [bCheckAndExportModelData]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -1117,6 +1124,7 @@ export const ScenarioApiFp = function (configuration?: Configuration) {
       scenarioName?: string,
       subType?: string,
       modelVersion?: string,
+      bCheckAndExportModelData?: string,
       options?: AxiosRequestConfig,
     ): Promise<
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<CreateTemplateScenarioOutput>
@@ -1127,6 +1135,7 @@ export const ScenarioApiFp = function (configuration?: Configuration) {
           scenarioName,
           subType,
           modelVersion,
+          bCheckAndExportModelData,
           options,
         )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
@@ -1449,6 +1458,7 @@ export const ScenarioApiFactory = function (
      * @param {string} [scenarioName]
      * @param {string} [subType]
      * @param {string} [modelVersion]
+     * @param {string} [bCheckAndExportModelData]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -1457,6 +1467,7 @@ export const ScenarioApiFactory = function (
       scenarioName?: string,
       subType?: string,
       modelVersion?: string,
+      bCheckAndExportModelData?: string,
       options?: any,
     ): AxiosPromise<CreateTemplateScenarioOutput> {
       return localVarFp
@@ -1465,6 +1476,7 @@ export const ScenarioApiFactory = function (
           scenarioName,
           subType,
           modelVersion,
+          bCheckAndExportModelData,
           options,
         )
         .then((request) => request(axios, basePath))
@@ -1791,6 +1803,7 @@ export class ScenarioApi extends BaseAPI {
    * @param {string} [scenarioName]
    * @param {string} [subType]
    * @param {string} [modelVersion]
+   * @param {string} [bCheckAndExportModelData]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof ScenarioApi
@@ -1800,6 +1813,7 @@ export class ScenarioApi extends BaseAPI {
     scenarioName?: string,
     subType?: string,
     modelVersion?: string,
+    bCheckAndExportModelData?: string,
     options?: AxiosRequestConfig,
   ) {
     return ScenarioApiFp(this.configuration)
@@ -1808,6 +1822,7 @@ export class ScenarioApi extends BaseAPI {
         scenarioName,
         subType,
         modelVersion,
+        bCheckAndExportModelData,
         options,
       )
       .then((request) => request(this.axios, this.basePath))
