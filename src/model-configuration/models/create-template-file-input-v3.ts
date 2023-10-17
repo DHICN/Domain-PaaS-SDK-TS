@@ -57,4 +57,10 @@ export interface CreateTemplateFileInputV3 {
    * @memberof CreateTemplateFileInputV3
    */
   modelVersion?: string | null
+  /**
+   * 模型版本
+   * @type {boolean}
+   * @memberof CreateTemplateFileInputV3
+   */
+  bCheckAndExportModelData?: boolean
 }
