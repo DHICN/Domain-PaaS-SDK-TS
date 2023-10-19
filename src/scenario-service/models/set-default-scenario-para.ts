@@ -14,19 +14,19 @@
 /**
  *
  * @export
- * @interface CreateScenarioGroupPara
+ * @interface SetDefaultScenarioPara
  */
-export interface CreateScenarioGroupPara {
+export interface SetDefaultScenarioPara {
   /**
-   * 父方案组ID parent scenario group\'s Id
+   *
    * @type {string}
-   * @memberof CreateScenarioGroupPara
+   * @memberof SetDefaultScenarioPara
    */
-  parentId?: string | null
+  libraryId?: string
   /**
-   * 方案组名称 scenario group name
+   *
    * @type {string}
-   * @memberof CreateScenarioGroupPara
+   * @memberof SetDefaultScenarioPara
    */
-  groupName?: string | null
+  scenarioId?: string
 }
