@@ -37,6 +37,10 @@ import { BaseTimeseriesOutput } from '../models'
 // @ts-ignore
 import { M2DByRangeTimeInput } from '../models'
 // @ts-ignore
+import { M2DGeoJsonOutput } from '../models'
+// @ts-ignore
+import { M2DpngOutput } from '../models'
+// @ts-ignore
 import { RemoteServiceErrorResponse } from '../models'
 /**
  * M2DApi - axios parameter creator
@@ -324,6 +328,120 @@ export const M2DApiAxiosParamCreator = function (configuration?: Configuration) 
       }
     },
     /**
+     * 二维模型结果被转换成GeoJson格式的矢量等值面图，用于展示和渲染 2D model result has been transferred to contour map vector data in GeoJson format which can be used for display and rendering
+     * @summary 获取时间段内的二维GeoJson格式动态结果 Get 2D dynamic results in GeoJson format for a specified time range
+     * @param {string} startTime 查询结果的开始时刻，此项不传则默认值为方案开始时间 start time used to get result, default value is scenario\&#39;s start time if it not given
+     * @param {string} endTime 查询结果的结束时刻，此项不传则默认值为方案结束时间 end time used to get result, default value is scenario\&#39;s end time if it is not given
+     * @param {string} scenarioId 方案的ID scenario’s ID
+     * @param {number} [frequency] 查询结果的时间频率，此项不传则默认值为1 time frequency used to get result, default value is 1 if it is not given
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1Result2dGeojsonByRangeTimeGet: async (
+      startTime: string,
+      endTime: string,
+      scenarioId: string,
+      frequency?: number,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'startTime' is not null or undefined
+      assertParamExists('apiV1Result2dGeojsonByRangeTimeGet', 'startTime', startTime)
+      // verify required parameter 'endTime' is not null or undefined
+      assertParamExists('apiV1Result2dGeojsonByRangeTimeGet', 'endTime', endTime)
+      // verify required parameter 'scenarioId' is not null or undefined
+      assertParamExists('apiV1Result2dGeojsonByRangeTimeGet', 'scenarioId', scenarioId)
+      const localVarPath = `/api/v1/result/2d/geojson/by-range-time`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      if (frequency !== undefined) {
+        localVarQueryParameter['Frequency'] = frequency
+      }
+
+      if (startTime !== undefined) {
+        localVarQueryParameter['StartTime'] = startTime
+      }
+
+      if (endTime !== undefined) {
+        localVarQueryParameter['EndTime'] = endTime
+      }
+
+      if (scenarioId !== undefined) {
+        localVarQueryParameter['ScenarioId'] = scenarioId
+      }
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     * 获取二维模型的统计结果，包括最大积水深度（单位：米）、积水历时（单位：小时）、最大内涝风险等，结果为GeoJson格式的矢量等值面图，用于展示和渲染 Get 2D statistic results including max water depth (unit: m), waterlogging duration (unit: hour), max flood risk, of a flood scenario. Result has been transferred to contour map vector data in GeoJson format which can be used for display and rendering.
+     * @summary 获取二维GeoJson格式统计结果 Get 2D statistic results in GeoJson format
+     * @param {string} m2DStatisticType 二维统计结果类型 2D statistic type:  0-MaxWaterDepth;  1-FloodDuration;  2-FloodRisk;
+     * @param {string} scenarioId 方案的ID scenario’s ID
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1Result2dGeojsonStaticGet: async (
+      m2DStatisticType: string,
+      scenarioId: string,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'm2DStatisticType' is not null or undefined
+      assertParamExists('apiV1Result2dGeojsonStaticGet', 'm2DStatisticType', m2DStatisticType)
+      // verify required parameter 'scenarioId' is not null or undefined
+      assertParamExists('apiV1Result2dGeojsonStaticGet', 'scenarioId', scenarioId)
+      const localVarPath = `/api/v1/result/2d/geojson/static`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      if (m2DStatisticType !== undefined) {
+        localVarQueryParameter['M2DStatisticType'] = m2DStatisticType
+      }
+
+      if (scenarioId !== undefined) {
+        localVarQueryParameter['ScenarioId'] = scenarioId
+      }
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
      * 获取所有有出现积水的网格ID列表（三角网格dfsu文件返回的是elementid，正交网格dfs2文件返回的是j,k）Get all element ids(for dfsu) or grid ids (for dfs2,format:j,k), water depth of which are above 0
      * @summary 获取有积水的二维网格的ID列表 Get 2d result model feature ids
      * @param {string} scenarioId 方案的ID scenario’s ID
@@ -347,6 +465,120 @@ export const M2DApiAxiosParamCreator = function (configuration?: Configuration) 
       const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
+
+      if (scenarioId !== undefined) {
+        localVarQueryParameter['ScenarioId'] = scenarioId
+      }
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     * 二维模型结果被转换成PNG格式的等值面图，用于展示和渲染 2D model result has been transferred to contour map in PNG format which can be used for display and rendering
+     * @summary 获取时间段内的二维PNG格式动态结果 Get 2D dynamic results in png format for a specified time range
+     * @param {string} startTime 查询结果的开始时刻，此项不传则默认值为方案开始时间 start time used to get result, default value is scenario\&#39;s start time if it not given
+     * @param {string} endTime 查询结果的结束时刻，此项不传则默认值为方案结束时间 end time used to get result, default value is scenario\&#39;s end time if it is not given
+     * @param {string} scenarioId 方案的ID scenario’s ID
+     * @param {number} [frequency] 查询结果的时间频率，此项不传则默认值为1 time frequency used to get result, default value is 1 if it is not given
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1Result2dPngByRangeTimeGet: async (
+      startTime: string,
+      endTime: string,
+      scenarioId: string,
+      frequency?: number,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'startTime' is not null or undefined
+      assertParamExists('apiV1Result2dPngByRangeTimeGet', 'startTime', startTime)
+      // verify required parameter 'endTime' is not null or undefined
+      assertParamExists('apiV1Result2dPngByRangeTimeGet', 'endTime', endTime)
+      // verify required parameter 'scenarioId' is not null or undefined
+      assertParamExists('apiV1Result2dPngByRangeTimeGet', 'scenarioId', scenarioId)
+      const localVarPath = `/api/v1/result/2d/png/by-range-time`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      if (frequency !== undefined) {
+        localVarQueryParameter['Frequency'] = frequency
+      }
+
+      if (startTime !== undefined) {
+        localVarQueryParameter['StartTime'] = startTime
+      }
+
+      if (endTime !== undefined) {
+        localVarQueryParameter['EndTime'] = endTime
+      }
+
+      if (scenarioId !== undefined) {
+        localVarQueryParameter['ScenarioId'] = scenarioId
+      }
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     * 获取二维模型的统计结果，包括最大积水深度（单位：米）、积水历时（单位：小时）、最大内涝风险等，结果为PNG格式的等值面图，用于展示和渲染 Get 2D statistic results including max water depth (unit: m), waterlogging duration (unit: hour), max flood risk, of a flood scenario. Result has been transferred to contour map in PNG format which can be used for display and rendering.
+     * @summary 获取二维PNG格式统计结果 Get 2D statistic results in PNG format
+     * @param {string} m2DStatisticType 二维统计结果类型 2D statistic type:  0-MaxWaterDepth;  1-FloodDuration;  2-FloodRisk;
+     * @param {string} scenarioId 方案的ID scenario’s ID
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1Result2dPngStaticGet: async (
+      m2DStatisticType: string,
+      scenarioId: string,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'm2DStatisticType' is not null or undefined
+      assertParamExists('apiV1Result2dPngStaticGet', 'm2DStatisticType', m2DStatisticType)
+      // verify required parameter 'scenarioId' is not null or undefined
+      assertParamExists('apiV1Result2dPngStaticGet', 'scenarioId', scenarioId)
+      const localVarPath = `/api/v1/result/2d/png/static`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      if (m2DStatisticType !== undefined) {
+        localVarQueryParameter['M2DStatisticType'] = m2DStatisticType
+      }
 
       if (scenarioId !== undefined) {
         localVarQueryParameter['ScenarioId'] = scenarioId
@@ -598,6 +830,52 @@ export const M2DApiFp = function (configuration?: Configuration) {
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**
+     * 二维模型结果被转换成GeoJson格式的矢量等值面图，用于展示和渲染 2D model result has been transferred to contour map vector data in GeoJson format which can be used for display and rendering
+     * @summary 获取时间段内的二维GeoJson格式动态结果 Get 2D dynamic results in GeoJson format for a specified time range
+     * @param {string} startTime 查询结果的开始时刻，此项不传则默认值为方案开始时间 start time used to get result, default value is scenario\&#39;s start time if it not given
+     * @param {string} endTime 查询结果的结束时刻，此项不传则默认值为方案结束时间 end time used to get result, default value is scenario\&#39;s end time if it is not given
+     * @param {string} scenarioId 方案的ID scenario’s ID
+     * @param {number} [frequency] 查询结果的时间频率，此项不传则默认值为1 time frequency used to get result, default value is 1 if it is not given
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1Result2dGeojsonByRangeTimeGet(
+      startTime: string,
+      endTime: string,
+      scenarioId: string,
+      frequency?: number,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<M2DGeoJsonOutput>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1Result2dGeojsonByRangeTimeGet(
+        startTime,
+        endTime,
+        scenarioId,
+        frequency,
+        options,
+      )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     * 获取二维模型的统计结果，包括最大积水深度（单位：米）、积水历时（单位：小时）、最大内涝风险等，结果为GeoJson格式的矢量等值面图，用于展示和渲染 Get 2D statistic results including max water depth (unit: m), waterlogging duration (unit: hour), max flood risk, of a flood scenario. Result has been transferred to contour map vector data in GeoJson format which can be used for display and rendering.
+     * @summary 获取二维GeoJson格式统计结果 Get 2D statistic results in GeoJson format
+     * @param {string} m2DStatisticType 二维统计结果类型 2D statistic type:  0-MaxWaterDepth;  1-FloodDuration;  2-FloodRisk;
+     * @param {string} scenarioId 方案的ID scenario’s ID
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1Result2dGeojsonStaticGet(
+      m2DStatisticType: string,
+      scenarioId: string,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<M2DGeoJsonOutput>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1Result2dGeojsonStaticGet(
+        m2DStatisticType,
+        scenarioId,
+        options,
+      )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
      * 获取所有有出现积水的网格ID列表（三角网格dfsu文件返回的是elementid，正交网格dfs2文件返回的是j,k）Get all element ids(for dfsu) or grid ids (for dfs2,format:j,k), water depth of which are above 0
      * @summary 获取有积水的二维网格的ID列表 Get 2d result model feature ids
      * @param {string} scenarioId 方案的ID scenario’s ID
@@ -609,6 +887,52 @@ export const M2DApiFp = function (configuration?: Configuration) {
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<string>>> {
       const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1Result2dMuidsGet(
+        scenarioId,
+        options,
+      )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     * 二维模型结果被转换成PNG格式的等值面图，用于展示和渲染 2D model result has been transferred to contour map in PNG format which can be used for display and rendering
+     * @summary 获取时间段内的二维PNG格式动态结果 Get 2D dynamic results in png format for a specified time range
+     * @param {string} startTime 查询结果的开始时刻，此项不传则默认值为方案开始时间 start time used to get result, default value is scenario\&#39;s start time if it not given
+     * @param {string} endTime 查询结果的结束时刻，此项不传则默认值为方案结束时间 end time used to get result, default value is scenario\&#39;s end time if it is not given
+     * @param {string} scenarioId 方案的ID scenario’s ID
+     * @param {number} [frequency] 查询结果的时间频率，此项不传则默认值为1 time frequency used to get result, default value is 1 if it is not given
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1Result2dPngByRangeTimeGet(
+      startTime: string,
+      endTime: string,
+      scenarioId: string,
+      frequency?: number,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<M2DpngOutput>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1Result2dPngByRangeTimeGet(
+        startTime,
+        endTime,
+        scenarioId,
+        frequency,
+        options,
+      )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     * 获取二维模型的统计结果，包括最大积水深度（单位：米）、积水历时（单位：小时）、最大内涝风险等，结果为PNG格式的等值面图，用于展示和渲染 Get 2D statistic results including max water depth (unit: m), waterlogging duration (unit: hour), max flood risk, of a flood scenario. Result has been transferred to contour map in PNG format which can be used for display and rendering.
+     * @summary 获取二维PNG格式统计结果 Get 2D statistic results in PNG format
+     * @param {string} m2DStatisticType 二维统计结果类型 2D statistic type:  0-MaxWaterDepth;  1-FloodDuration;  2-FloodRisk;
+     * @param {string} scenarioId 方案的ID scenario’s ID
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1Result2dPngStaticGet(
+      m2DStatisticType: string,
+      scenarioId: string,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<M2DpngOutput>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1Result2dPngStaticGet(
+        m2DStatisticType,
         scenarioId,
         options,
       )
@@ -774,6 +1098,44 @@ export const M2DApiFactory = function (
         .then((request) => request(axios, basePath))
     },
     /**
+     * 二维模型结果被转换成GeoJson格式的矢量等值面图，用于展示和渲染 2D model result has been transferred to contour map vector data in GeoJson format which can be used for display and rendering
+     * @summary 获取时间段内的二维GeoJson格式动态结果 Get 2D dynamic results in GeoJson format for a specified time range
+     * @param {string} startTime 查询结果的开始时刻，此项不传则默认值为方案开始时间 start time used to get result, default value is scenario\&#39;s start time if it not given
+     * @param {string} endTime 查询结果的结束时刻，此项不传则默认值为方案结束时间 end time used to get result, default value is scenario\&#39;s end time if it is not given
+     * @param {string} scenarioId 方案的ID scenario’s ID
+     * @param {number} [frequency] 查询结果的时间频率，此项不传则默认值为1 time frequency used to get result, default value is 1 if it is not given
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1Result2dGeojsonByRangeTimeGet(
+      startTime: string,
+      endTime: string,
+      scenarioId: string,
+      frequency?: number,
+      options?: any,
+    ): AxiosPromise<M2DGeoJsonOutput> {
+      return localVarFp
+        .apiV1Result2dGeojsonByRangeTimeGet(startTime, endTime, scenarioId, frequency, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     * 获取二维模型的统计结果，包括最大积水深度（单位：米）、积水历时（单位：小时）、最大内涝风险等，结果为GeoJson格式的矢量等值面图，用于展示和渲染 Get 2D statistic results including max water depth (unit: m), waterlogging duration (unit: hour), max flood risk, of a flood scenario. Result has been transferred to contour map vector data in GeoJson format which can be used for display and rendering.
+     * @summary 获取二维GeoJson格式统计结果 Get 2D statistic results in GeoJson format
+     * @param {string} m2DStatisticType 二维统计结果类型 2D statistic type:  0-MaxWaterDepth;  1-FloodDuration;  2-FloodRisk;
+     * @param {string} scenarioId 方案的ID scenario’s ID
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1Result2dGeojsonStaticGet(
+      m2DStatisticType: string,
+      scenarioId: string,
+      options?: any,
+    ): AxiosPromise<M2DGeoJsonOutput> {
+      return localVarFp
+        .apiV1Result2dGeojsonStaticGet(m2DStatisticType, scenarioId, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
      * 获取所有有出现积水的网格ID列表（三角网格dfsu文件返回的是elementid，正交网格dfs2文件返回的是j,k）Get all element ids(for dfsu) or grid ids (for dfs2,format:j,k), water depth of which are above 0
      * @summary 获取有积水的二维网格的ID列表 Get 2d result model feature ids
      * @param {string} scenarioId 方案的ID scenario’s ID
@@ -783,6 +1145,44 @@ export const M2DApiFactory = function (
     apiV1Result2dMuidsGet(scenarioId: string, options?: any): AxiosPromise<Array<string>> {
       return localVarFp
         .apiV1Result2dMuidsGet(scenarioId, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     * 二维模型结果被转换成PNG格式的等值面图，用于展示和渲染 2D model result has been transferred to contour map in PNG format which can be used for display and rendering
+     * @summary 获取时间段内的二维PNG格式动态结果 Get 2D dynamic results in png format for a specified time range
+     * @param {string} startTime 查询结果的开始时刻，此项不传则默认值为方案开始时间 start time used to get result, default value is scenario\&#39;s start time if it not given
+     * @param {string} endTime 查询结果的结束时刻，此项不传则默认值为方案结束时间 end time used to get result, default value is scenario\&#39;s end time if it is not given
+     * @param {string} scenarioId 方案的ID scenario’s ID
+     * @param {number} [frequency] 查询结果的时间频率，此项不传则默认值为1 time frequency used to get result, default value is 1 if it is not given
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1Result2dPngByRangeTimeGet(
+      startTime: string,
+      endTime: string,
+      scenarioId: string,
+      frequency?: number,
+      options?: any,
+    ): AxiosPromise<M2DpngOutput> {
+      return localVarFp
+        .apiV1Result2dPngByRangeTimeGet(startTime, endTime, scenarioId, frequency, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     * 获取二维模型的统计结果，包括最大积水深度（单位：米）、积水历时（单位：小时）、最大内涝风险等，结果为PNG格式的等值面图，用于展示和渲染 Get 2D statistic results including max water depth (unit: m), waterlogging duration (unit: hour), max flood risk, of a flood scenario. Result has been transferred to contour map in PNG format which can be used for display and rendering.
+     * @summary 获取二维PNG格式统计结果 Get 2D statistic results in PNG format
+     * @param {string} m2DStatisticType 二维统计结果类型 2D statistic type:  0-MaxWaterDepth;  1-FloodDuration;  2-FloodRisk;
+     * @param {string} scenarioId 方案的ID scenario’s ID
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1Result2dPngStaticGet(
+      m2DStatisticType: string,
+      scenarioId: string,
+      options?: any,
+    ): AxiosPromise<M2DpngOutput> {
+      return localVarFp
+        .apiV1Result2dPngStaticGet(m2DStatisticType, scenarioId, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -944,6 +1344,48 @@ export class M2DApi extends BaseAPI {
   }
 
   /**
+   * 二维模型结果被转换成GeoJson格式的矢量等值面图，用于展示和渲染 2D model result has been transferred to contour map vector data in GeoJson format which can be used for display and rendering
+   * @summary 获取时间段内的二维GeoJson格式动态结果 Get 2D dynamic results in GeoJson format for a specified time range
+   * @param {string} startTime 查询结果的开始时刻，此项不传则默认值为方案开始时间 start time used to get result, default value is scenario\&#39;s start time if it not given
+   * @param {string} endTime 查询结果的结束时刻，此项不传则默认值为方案结束时间 end time used to get result, default value is scenario\&#39;s end time if it is not given
+   * @param {string} scenarioId 方案的ID scenario’s ID
+   * @param {number} [frequency] 查询结果的时间频率，此项不传则默认值为1 time frequency used to get result, default value is 1 if it is not given
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof M2DApi
+   */
+  public apiV1Result2dGeojsonByRangeTimeGet(
+    startTime: string,
+    endTime: string,
+    scenarioId: string,
+    frequency?: number,
+    options?: AxiosRequestConfig,
+  ) {
+    return M2DApiFp(this.configuration)
+      .apiV1Result2dGeojsonByRangeTimeGet(startTime, endTime, scenarioId, frequency, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   * 获取二维模型的统计结果，包括最大积水深度（单位：米）、积水历时（单位：小时）、最大内涝风险等，结果为GeoJson格式的矢量等值面图，用于展示和渲染 Get 2D statistic results including max water depth (unit: m), waterlogging duration (unit: hour), max flood risk, of a flood scenario. Result has been transferred to contour map vector data in GeoJson format which can be used for display and rendering.
+   * @summary 获取二维GeoJson格式统计结果 Get 2D statistic results in GeoJson format
+   * @param {string} m2DStatisticType 二维统计结果类型 2D statistic type:  0-MaxWaterDepth;  1-FloodDuration;  2-FloodRisk;
+   * @param {string} scenarioId 方案的ID scenario’s ID
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof M2DApi
+   */
+  public apiV1Result2dGeojsonStaticGet(
+    m2DStatisticType: string,
+    scenarioId: string,
+    options?: AxiosRequestConfig,
+  ) {
+    return M2DApiFp(this.configuration)
+      .apiV1Result2dGeojsonStaticGet(m2DStatisticType, scenarioId, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
    * 获取所有有出现积水的网格ID列表（三角网格dfsu文件返回的是elementid，正交网格dfs2文件返回的是j,k）Get all element ids(for dfsu) or grid ids (for dfs2,format:j,k), water depth of which are above 0
    * @summary 获取有积水的二维网格的ID列表 Get 2d result model feature ids
    * @param {string} scenarioId 方案的ID scenario’s ID
@@ -954,6 +1396,48 @@ export class M2DApi extends BaseAPI {
   public apiV1Result2dMuidsGet(scenarioId: string, options?: AxiosRequestConfig) {
     return M2DApiFp(this.configuration)
       .apiV1Result2dMuidsGet(scenarioId, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   * 二维模型结果被转换成PNG格式的等值面图，用于展示和渲染 2D model result has been transferred to contour map in PNG format which can be used for display and rendering
+   * @summary 获取时间段内的二维PNG格式动态结果 Get 2D dynamic results in png format for a specified time range
+   * @param {string} startTime 查询结果的开始时刻，此项不传则默认值为方案开始时间 start time used to get result, default value is scenario\&#39;s start time if it not given
+   * @param {string} endTime 查询结果的结束时刻，此项不传则默认值为方案结束时间 end time used to get result, default value is scenario\&#39;s end time if it is not given
+   * @param {string} scenarioId 方案的ID scenario’s ID
+   * @param {number} [frequency] 查询结果的时间频率，此项不传则默认值为1 time frequency used to get result, default value is 1 if it is not given
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof M2DApi
+   */
+  public apiV1Result2dPngByRangeTimeGet(
+    startTime: string,
+    endTime: string,
+    scenarioId: string,
+    frequency?: number,
+    options?: AxiosRequestConfig,
+  ) {
+    return M2DApiFp(this.configuration)
+      .apiV1Result2dPngByRangeTimeGet(startTime, endTime, scenarioId, frequency, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   * 获取二维模型的统计结果，包括最大积水深度（单位：米）、积水历时（单位：小时）、最大内涝风险等，结果为PNG格式的等值面图，用于展示和渲染 Get 2D statistic results including max water depth (unit: m), waterlogging duration (unit: hour), max flood risk, of a flood scenario. Result has been transferred to contour map in PNG format which can be used for display and rendering.
+   * @summary 获取二维PNG格式统计结果 Get 2D statistic results in PNG format
+   * @param {string} m2DStatisticType 二维统计结果类型 2D statistic type:  0-MaxWaterDepth;  1-FloodDuration;  2-FloodRisk;
+   * @param {string} scenarioId 方案的ID scenario’s ID
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof M2DApi
+   */
+  public apiV1Result2dPngStaticGet(
+    m2DStatisticType: string,
+    scenarioId: string,
+    options?: AxiosRequestConfig,
+  ) {
+    return M2DApiFp(this.configuration)
+      .apiV1Result2dPngStaticGet(m2DStatisticType, scenarioId, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
