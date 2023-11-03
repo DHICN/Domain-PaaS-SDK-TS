@@ -41,6 +41,8 @@ import { NetworkProfile } from '../models'
 // @ts-ignore
 import { NetworkStatisticsOutput } from '../models'
 // @ts-ignore
+import { ProcessedModelResultOutput } from '../models'
+// @ts-ignore
 import { PumpStatisticsOutput } from '../models'
 // @ts-ignore
 import { RemoteServiceErrorResponse } from '../models'
@@ -391,11 +393,11 @@ export const NetworkApiAxiosParamCreator = function (configuration?: Configurati
       }
     },
     /**
-     * 获取单个管道堰的高度、流量时间序列结果数据 Get water level or discharge time series result of a single pump of a scenario.
-     * @summary 获取管道堰高/堰流量时间序列结果 Get time-series results of a network orifice
+     * 获取单个堰高/流量时间序列结果 Get the time series results of single weir height/discharge
+     * @summary 获取堰高/流量时间序列结果 Get weir height/flow time series results
      * @param {string} scenarioId 方案的ID scenario’s ID
-     * @param {string} [orificeID] 堰的ID pump ID
-     * @param {string} [orificeDataType] 堰的数据类型 pump data type: 4-GateLevel; 1-Discharge;
+     * @param {string} [orificeID] 堰的ID OrificeID
+     * @param {string} [orificeDataType] 堰数据类型 OrificeDataType:  Discharge &#x3D; 1,过堰流量  GateLevel &#x3D; 4,堰高
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -425,6 +427,54 @@ export const NetworkApiAxiosParamCreator = function (configuration?: Configurati
 
       if (orificeDataType !== undefined) {
         localVarQueryParameter['OrificeDataType'] = orificeDataType
+      }
+
+      if (scenarioId !== undefined) {
+        localVarQueryParameter['ScenarioId'] = scenarioId
+      }
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     * 获取处理后的模型数据 Get time series results of processed
+     * @summary 获取处理后的模型数据 Get time series results of processed
+     * @param {string} scenarioId 方案的ID scenario’s ID
+     * @param {Array<string>} [modelFeatureIds] 模型虚拟IDs model\&#39;s virtual ids
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1ResultNetworkProcessedTimeseriesGet: async (
+      scenarioId: string,
+      modelFeatureIds?: Array<string>,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'scenarioId' is not null or undefined
+      assertParamExists('apiV1ResultNetworkProcessedTimeseriesGet', 'scenarioId', scenarioId)
+      const localVarPath = `/api/v1/result/network/processed-timeseries`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      if (modelFeatureIds !== undefined) {
+        localVarQueryParameter['ModelFeatureIds'] = modelFeatureIds
       }
 
       if (scenarioId !== undefined) {
@@ -934,11 +984,11 @@ export const NetworkApiFp = function (configuration?: Configuration) {
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**
-     * 获取单个管道堰的高度、流量时间序列结果数据 Get water level or discharge time series result of a single pump of a scenario.
-     * @summary 获取管道堰高/堰流量时间序列结果 Get time-series results of a network orifice
+     * 获取单个堰高/流量时间序列结果 Get the time series results of single weir height/discharge
+     * @summary 获取堰高/流量时间序列结果 Get weir height/flow time series results
      * @param {string} scenarioId 方案的ID scenario’s ID
-     * @param {string} [orificeID] 堰的ID pump ID
-     * @param {string} [orificeDataType] 堰的数据类型 pump data type: 4-GateLevel; 1-Discharge;
+     * @param {string} [orificeID] 堰的ID OrificeID
+     * @param {string} [orificeDataType] 堰数据类型 OrificeDataType:  Discharge &#x3D; 1,过堰流量  GateLevel &#x3D; 4,堰高
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -953,6 +1003,29 @@ export const NetworkApiFp = function (configuration?: Configuration) {
           scenarioId,
           orificeID,
           orificeDataType,
+          options,
+        )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     * 获取处理后的模型数据 Get time series results of processed
+     * @summary 获取处理后的模型数据 Get time series results of processed
+     * @param {string} scenarioId 方案的ID scenario’s ID
+     * @param {Array<string>} [modelFeatureIds] 模型虚拟IDs model\&#39;s virtual ids
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1ResultNetworkProcessedTimeseriesGet(
+      scenarioId: string,
+      modelFeatureIds?: Array<string>,
+      options?: AxiosRequestConfig,
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<ProcessedModelResultOutput>>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiV1ResultNetworkProcessedTimeseriesGet(
+          scenarioId,
+          modelFeatureIds,
           options,
         )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
@@ -1249,11 +1322,11 @@ export const NetworkApiFactory = function (
         .then((request) => request(axios, basePath))
     },
     /**
-     * 获取单个管道堰的高度、流量时间序列结果数据 Get water level or discharge time series result of a single pump of a scenario.
-     * @summary 获取管道堰高/堰流量时间序列结果 Get time-series results of a network orifice
+     * 获取单个堰高/流量时间序列结果 Get the time series results of single weir height/discharge
+     * @summary 获取堰高/流量时间序列结果 Get weir height/flow time series results
      * @param {string} scenarioId 方案的ID scenario’s ID
-     * @param {string} [orificeID] 堰的ID pump ID
-     * @param {string} [orificeDataType] 堰的数据类型 pump data type: 4-GateLevel; 1-Discharge;
+     * @param {string} [orificeID] 堰的ID OrificeID
+     * @param {string} [orificeDataType] 堰数据类型 OrificeDataType:  Discharge &#x3D; 1,过堰流量  GateLevel &#x3D; 4,堰高
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -1265,6 +1338,23 @@ export const NetworkApiFactory = function (
     ): AxiosPromise<BaseTimeseriesOutput> {
       return localVarFp
         .apiV1ResultNetworkOrificeTimeseriesGet(scenarioId, orificeID, orificeDataType, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     * 获取处理后的模型数据 Get time series results of processed
+     * @summary 获取处理后的模型数据 Get time series results of processed
+     * @param {string} scenarioId 方案的ID scenario’s ID
+     * @param {Array<string>} [modelFeatureIds] 模型虚拟IDs model\&#39;s virtual ids
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1ResultNetworkProcessedTimeseriesGet(
+      scenarioId: string,
+      modelFeatureIds?: Array<string>,
+      options?: any,
+    ): AxiosPromise<Array<ProcessedModelResultOutput>> {
+      return localVarFp
+        .apiV1ResultNetworkProcessedTimeseriesGet(scenarioId, modelFeatureIds, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -1538,11 +1628,11 @@ export class NetworkApi extends BaseAPI {
   }
 
   /**
-   * 获取单个管道堰的高度、流量时间序列结果数据 Get water level or discharge time series result of a single pump of a scenario.
-   * @summary 获取管道堰高/堰流量时间序列结果 Get time-series results of a network orifice
+   * 获取单个堰高/流量时间序列结果 Get the time series results of single weir height/discharge
+   * @summary 获取堰高/流量时间序列结果 Get weir height/flow time series results
    * @param {string} scenarioId 方案的ID scenario’s ID
-   * @param {string} [orificeID] 堰的ID pump ID
-   * @param {string} [orificeDataType] 堰的数据类型 pump data type: 4-GateLevel; 1-Discharge;
+   * @param {string} [orificeID] 堰的ID OrificeID
+   * @param {string} [orificeDataType] 堰数据类型 OrificeDataType:  Discharge &#x3D; 1,过堰流量  GateLevel &#x3D; 4,堰高
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof NetworkApi
@@ -1555,6 +1645,25 @@ export class NetworkApi extends BaseAPI {
   ) {
     return NetworkApiFp(this.configuration)
       .apiV1ResultNetworkOrificeTimeseriesGet(scenarioId, orificeID, orificeDataType, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   * 获取处理后的模型数据 Get time series results of processed
+   * @summary 获取处理后的模型数据 Get time series results of processed
+   * @param {string} scenarioId 方案的ID scenario’s ID
+   * @param {Array<string>} [modelFeatureIds] 模型虚拟IDs model\&#39;s virtual ids
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof NetworkApi
+   */
+  public apiV1ResultNetworkProcessedTimeseriesGet(
+    scenarioId: string,
+    modelFeatureIds?: Array<string>,
+    options?: AxiosRequestConfig,
+  ) {
+    return NetworkApiFp(this.configuration)
+      .apiV1ResultNetworkProcessedTimeseriesGet(scenarioId, modelFeatureIds, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
