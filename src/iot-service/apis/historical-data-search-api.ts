@@ -92,10 +92,12 @@ export const HistoricalDataSearchApiAxiosParamCreator = function (configuration?
     /**
      *
      * @summary 历史数据搜索条件
+     * @param {string} [scene]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiV1HistoricalDataSearchConditionsGet: async (
+      scene?: string,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
       const localVarPath = `/api/v1/historical-data/search/conditions`
@@ -109,6 +111,10 @@ export const HistoricalDataSearchApiAxiosParamCreator = function (configuration?
       const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
+
+      if (scene !== undefined) {
+        localVarQueryParameter['scene'] = scene
+      }
 
       setSearchParams(localVarUrlObj, localVarQueryParameter)
       let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
@@ -212,10 +218,12 @@ export const HistoricalDataSearchApiAxiosParamCreator = function (configuration?
     /**
      *
      * @summary 历史数据搜索记录
+     * @param {string} [scene]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiV1HistoricalDataSearchRecordsGet: async (
+      scene?: string,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
       const localVarPath = `/api/v1/historical-data/search/records`
@@ -229,6 +237,10 @@ export const HistoricalDataSearchApiAxiosParamCreator = function (configuration?
       const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
+
+      if (scene !== undefined) {
+        localVarQueryParameter['scene'] = scene
+      }
 
       setSearchParams(localVarUrlObj, localVarQueryParameter)
       let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
@@ -359,16 +371,18 @@ export const HistoricalDataSearchApiFp = function (configuration?: Configuration
     /**
      *
      * @summary 历史数据搜索条件
+     * @param {string} [scene]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async apiV1HistoricalDataSearchConditionsGet(
+      scene?: string,
       options?: AxiosRequestConfig,
     ): Promise<
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<SearchCategoryOutput>>
     > {
       const localVarAxiosArgs =
-        await localVarAxiosParamCreator.apiV1HistoricalDataSearchConditionsGet(options)
+        await localVarAxiosParamCreator.apiV1HistoricalDataSearchConditionsGet(scene, options)
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**
@@ -409,15 +423,18 @@ export const HistoricalDataSearchApiFp = function (configuration?: Configuration
     /**
      *
      * @summary 历史数据搜索记录
+     * @param {string} [scene]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async apiV1HistoricalDataSearchRecordsGet(
+      scene?: string,
       options?: AxiosRequestConfig,
     ): Promise<
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<HistorySearchRecordOutput>>
     > {
       const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1HistoricalDataSearchRecordsGet(
+        scene,
         options,
       )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
@@ -490,14 +507,16 @@ export const HistoricalDataSearchApiFactory = function (
     /**
      *
      * @summary 历史数据搜索条件
+     * @param {string} [scene]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiV1HistoricalDataSearchConditionsGet(
+      scene?: string,
       options?: any,
     ): AxiosPromise<Array<SearchCategoryOutput>> {
       return localVarFp
-        .apiV1HistoricalDataSearchConditionsGet(options)
+        .apiV1HistoricalDataSearchConditionsGet(scene, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -533,14 +552,16 @@ export const HistoricalDataSearchApiFactory = function (
     /**
      *
      * @summary 历史数据搜索记录
+     * @param {string} [scene]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiV1HistoricalDataSearchRecordsGet(
+      scene?: string,
       options?: any,
     ): AxiosPromise<Array<HistorySearchRecordOutput>> {
       return localVarFp
-        .apiV1HistoricalDataSearchRecordsGet(options)
+        .apiV1HistoricalDataSearchRecordsGet(scene, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -603,13 +624,14 @@ export class HistoricalDataSearchApi extends BaseAPI {
   /**
    *
    * @summary 历史数据搜索条件
+   * @param {string} [scene]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof HistoricalDataSearchApi
    */
-  public apiV1HistoricalDataSearchConditionsGet(options?: AxiosRequestConfig) {
+  public apiV1HistoricalDataSearchConditionsGet(scene?: string, options?: AxiosRequestConfig) {
     return HistoricalDataSearchApiFp(this.configuration)
-      .apiV1HistoricalDataSearchConditionsGet(options)
+      .apiV1HistoricalDataSearchConditionsGet(scene, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -650,13 +672,14 @@ export class HistoricalDataSearchApi extends BaseAPI {
   /**
    *
    * @summary 历史数据搜索记录
+   * @param {string} [scene]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof HistoricalDataSearchApi
    */
-  public apiV1HistoricalDataSearchRecordsGet(options?: AxiosRequestConfig) {
+  public apiV1HistoricalDataSearchRecordsGet(scene?: string, options?: AxiosRequestConfig) {
     return HistoricalDataSearchApiFp(this.configuration)
-      .apiV1HistoricalDataSearchRecordsGet(options)
+      .apiV1HistoricalDataSearchRecordsGet(scene, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
