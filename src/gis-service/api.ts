@@ -11,4 +11,5 @@
  * Do not edit the class manually.
  */
 
+export * from './apis/gis-query-api'
 export * from './apis/gis-gis-query-api'
