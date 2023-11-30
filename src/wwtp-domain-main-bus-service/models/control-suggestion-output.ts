@@ -22,6 +22,12 @@ import { ItemValue } from './item-value'
  */
 export interface ControlSuggestionOutput {
   /**
+   * 控制模块的ID control module Id
+   * @type {string}
+   * @memberof ControlSuggestionOutput
+   */
+  moduleId?: string
+  /**
    * 控制模块名称 control module name
    * @type {string}
    * @memberof ControlSuggestionOutput
