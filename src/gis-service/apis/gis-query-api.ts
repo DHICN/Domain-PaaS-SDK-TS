@@ -42,86 +42,6 @@ export const GisQueryApiAxiosParamCreator = function (configuration?: Configurat
   return {
     /**
      *
-     * @summary 获取DMA GIS信息
-     * @param {string} [templateScenarioId]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    apiGisV1GetDmaGisGet: async (
-      templateScenarioId?: string,
-      options: AxiosRequestConfig = {},
-    ): Promise<RequestArgs> => {
-      const localVarPath = `/api/gis/v1/get-dma-gis`
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
-      let baseOptions
-      if (configuration) {
-        baseOptions = configuration.baseOptions
-      }
-
-      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
-      const localVarHeaderParameter = {} as any
-      const localVarQueryParameter = {} as any
-
-      if (templateScenarioId !== undefined) {
-        localVarQueryParameter['templateScenarioId'] = templateScenarioId
-      }
-
-      setSearchParams(localVarUrlObj, localVarQueryParameter)
-      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      }
-
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      }
-    },
-    /**
-     *
-     * @summary 获取节点GIS信息
-     * @param {string} [templateScenarioId]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    apiGisV1GetJunctionGisGet: async (
-      templateScenarioId?: string,
-      options: AxiosRequestConfig = {},
-    ): Promise<RequestArgs> => {
-      const localVarPath = `/api/gis/v1/get-junction-gis`
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
-      let baseOptions
-      if (configuration) {
-        baseOptions = configuration.baseOptions
-      }
-
-      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
-      const localVarHeaderParameter = {} as any
-      const localVarQueryParameter = {} as any
-
-      if (templateScenarioId !== undefined) {
-        localVarQueryParameter['templateScenarioId'] = templateScenarioId
-      }
-
-      setSearchParams(localVarUrlObj, localVarQueryParameter)
-      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      }
-
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      }
-    },
-    /**
-     *
      * @summary 获取二维网格 Gis信息
      * @param {string} [templateScenarioId]
      * @param {*} [options] Override http request option.
@@ -322,86 +242,6 @@ export const GisQueryApiAxiosParamCreator = function (configuration?: Configurat
     },
     /**
      *
-     * @summary 获取管道GIS信息
-     * @param {string} [templateScenarioId]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    apiGisV1GetPipeGisGet: async (
-      templateScenarioId?: string,
-      options: AxiosRequestConfig = {},
-    ): Promise<RequestArgs> => {
-      const localVarPath = `/api/gis/v1/get-pipe-gis`
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
-      let baseOptions
-      if (configuration) {
-        baseOptions = configuration.baseOptions
-      }
-
-      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
-      const localVarHeaderParameter = {} as any
-      const localVarQueryParameter = {} as any
-
-      if (templateScenarioId !== undefined) {
-        localVarQueryParameter['templateScenarioId'] = templateScenarioId
-      }
-
-      setSearchParams(localVarUrlObj, localVarQueryParameter)
-      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      }
-
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      }
-    },
-    /**
-     *
-     * @summary 获取水泵GIS信息
-     * @param {string} [templateScenarioId]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    apiGisV1GetPumpGisGet: async (
-      templateScenarioId?: string,
-      options: AxiosRequestConfig = {},
-    ): Promise<RequestArgs> => {
-      const localVarPath = `/api/gis/v1/get-pump-gis`
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
-      let baseOptions
-      if (configuration) {
-        baseOptions = configuration.baseOptions
-      }
-
-      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
-      const localVarHeaderParameter = {} as any
-      const localVarQueryParameter = {} as any
-
-      if (templateScenarioId !== undefined) {
-        localVarQueryParameter['templateScenarioId'] = templateScenarioId
-      }
-
-      setSearchParams(localVarUrlObj, localVarQueryParameter)
-      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      }
-
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      }
-    },
-    /**
-     *
      * @summary 获取河流Gis信息
      * @param {string} [templateScenarioId]
      * @param {*} [options] Override http request option.
@@ -412,86 +252,6 @@ export const GisQueryApiAxiosParamCreator = function (configuration?: Configurat
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
       const localVarPath = `/api/gis/v1/get-river-gis`
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
-      let baseOptions
-      if (configuration) {
-        baseOptions = configuration.baseOptions
-      }
-
-      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
-      const localVarHeaderParameter = {} as any
-      const localVarQueryParameter = {} as any
-
-      if (templateScenarioId !== undefined) {
-        localVarQueryParameter['templateScenarioId'] = templateScenarioId
-      }
-
-      setSearchParams(localVarUrlObj, localVarQueryParameter)
-      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      }
-
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      }
-    },
-    /**
-     *
-     * @summary 获取水池GIS信息
-     * @param {string} [templateScenarioId]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    apiGisV1GetTankGisGet: async (
-      templateScenarioId?: string,
-      options: AxiosRequestConfig = {},
-    ): Promise<RequestArgs> => {
-      const localVarPath = `/api/gis/v1/get-tank-gis`
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
-      let baseOptions
-      if (configuration) {
-        baseOptions = configuration.baseOptions
-      }
-
-      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
-      const localVarHeaderParameter = {} as any
-      const localVarQueryParameter = {} as any
-
-      if (templateScenarioId !== undefined) {
-        localVarQueryParameter['templateScenarioId'] = templateScenarioId
-      }
-
-      setSearchParams(localVarUrlObj, localVarQueryParameter)
-      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      }
-
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      }
-    },
-    /**
-     *
-     * @summary 获取阀门GIS信息
-     * @param {string} [templateScenarioId]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    apiGisV1GetValveGisGet: async (
-      templateScenarioId?: string,
-      options: AxiosRequestConfig = {},
-    ): Promise<RequestArgs> => {
-      const localVarPath = `/api/gis/v1/get-valve-gis`
       // use dummy base URL string because the URL constructor only accepts absolute URLs.
       const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
       let baseOptions
@@ -772,40 +532,6 @@ export const GisQueryApiFp = function (configuration?: Configuration) {
   return {
     /**
      *
-     * @summary 获取DMA GIS信息
-     * @param {string} [templateScenarioId]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    async apiGisV1GetDmaGisGet(
-      templateScenarioId?: string,
-      options?: AxiosRequestConfig,
-    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<string>> {
-      const localVarAxiosArgs = await localVarAxiosParamCreator.apiGisV1GetDmaGisGet(
-        templateScenarioId,
-        options,
-      )
-      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
-    },
-    /**
-     *
-     * @summary 获取节点GIS信息
-     * @param {string} [templateScenarioId]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    async apiGisV1GetJunctionGisGet(
-      templateScenarioId?: string,
-      options?: AxiosRequestConfig,
-    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<string>> {
-      const localVarAxiosArgs = await localVarAxiosParamCreator.apiGisV1GetJunctionGisGet(
-        templateScenarioId,
-        options,
-      )
-      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
-    },
-    /**
-     *
      * @summary 获取二维网格 Gis信息
      * @param {string} [templateScenarioId]
      * @param {*} [options] Override http request option.
@@ -892,40 +618,6 @@ export const GisQueryApiFp = function (configuration?: Configuration) {
     },
     /**
      *
-     * @summary 获取管道GIS信息
-     * @param {string} [templateScenarioId]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    async apiGisV1GetPipeGisGet(
-      templateScenarioId?: string,
-      options?: AxiosRequestConfig,
-    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<string>> {
-      const localVarAxiosArgs = await localVarAxiosParamCreator.apiGisV1GetPipeGisGet(
-        templateScenarioId,
-        options,
-      )
-      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
-    },
-    /**
-     *
-     * @summary 获取水泵GIS信息
-     * @param {string} [templateScenarioId]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    async apiGisV1GetPumpGisGet(
-      templateScenarioId?: string,
-      options?: AxiosRequestConfig,
-    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<string>> {
-      const localVarAxiosArgs = await localVarAxiosParamCreator.apiGisV1GetPumpGisGet(
-        templateScenarioId,
-        options,
-      )
-      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
-    },
-    /**
-     *
      * @summary 获取河流Gis信息
      * @param {string} [templateScenarioId]
      * @param {*} [options] Override http request option.
@@ -936,40 +628,6 @@ export const GisQueryApiFp = function (configuration?: Configuration) {
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<GisOutput>>> {
       const localVarAxiosArgs = await localVarAxiosParamCreator.apiGisV1GetRiverGisGet(
-        templateScenarioId,
-        options,
-      )
-      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
-    },
-    /**
-     *
-     * @summary 获取水池GIS信息
-     * @param {string} [templateScenarioId]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    async apiGisV1GetTankGisGet(
-      templateScenarioId?: string,
-      options?: AxiosRequestConfig,
-    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<string>> {
-      const localVarAxiosArgs = await localVarAxiosParamCreator.apiGisV1GetTankGisGet(
-        templateScenarioId,
-        options,
-      )
-      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
-    },
-    /**
-     *
-     * @summary 获取阀门GIS信息
-     * @param {string} [templateScenarioId]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    async apiGisV1GetValveGisGet(
-      templateScenarioId?: string,
-      options?: AxiosRequestConfig,
-    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<string>> {
-      const localVarAxiosArgs = await localVarAxiosParamCreator.apiGisV1GetValveGisGet(
         templateScenarioId,
         options,
       )
@@ -1093,30 +751,6 @@ export const GisQueryApiFactory = function (
   return {
     /**
      *
-     * @summary 获取DMA GIS信息
-     * @param {string} [templateScenarioId]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    apiGisV1GetDmaGisGet(templateScenarioId?: string, options?: any): AxiosPromise<string> {
-      return localVarFp
-        .apiGisV1GetDmaGisGet(templateScenarioId, options)
-        .then((request) => request(axios, basePath))
-    },
-    /**
-     *
-     * @summary 获取节点GIS信息
-     * @param {string} [templateScenarioId]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    apiGisV1GetJunctionGisGet(templateScenarioId?: string, options?: any): AxiosPromise<string> {
-      return localVarFp
-        .apiGisV1GetJunctionGisGet(templateScenarioId, options)
-        .then((request) => request(axios, basePath))
-    },
-    /**
-     *
      * @summary 获取二维网格 Gis信息
      * @param {string} [templateScenarioId]
      * @param {*} [options] Override http request option.
@@ -1192,30 +826,6 @@ export const GisQueryApiFactory = function (
     },
     /**
      *
-     * @summary 获取管道GIS信息
-     * @param {string} [templateScenarioId]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    apiGisV1GetPipeGisGet(templateScenarioId?: string, options?: any): AxiosPromise<string> {
-      return localVarFp
-        .apiGisV1GetPipeGisGet(templateScenarioId, options)
-        .then((request) => request(axios, basePath))
-    },
-    /**
-     *
-     * @summary 获取水泵GIS信息
-     * @param {string} [templateScenarioId]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    apiGisV1GetPumpGisGet(templateScenarioId?: string, options?: any): AxiosPromise<string> {
-      return localVarFp
-        .apiGisV1GetPumpGisGet(templateScenarioId, options)
-        .then((request) => request(axios, basePath))
-    },
-    /**
-     *
      * @summary 获取河流Gis信息
      * @param {string} [templateScenarioId]
      * @param {*} [options] Override http request option.
@@ -1227,30 +837,6 @@ export const GisQueryApiFactory = function (
     ): AxiosPromise<Array<GisOutput>> {
       return localVarFp
         .apiGisV1GetRiverGisGet(templateScenarioId, options)
-        .then((request) => request(axios, basePath))
-    },
-    /**
-     *
-     * @summary 获取水池GIS信息
-     * @param {string} [templateScenarioId]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    apiGisV1GetTankGisGet(templateScenarioId?: string, options?: any): AxiosPromise<string> {
-      return localVarFp
-        .apiGisV1GetTankGisGet(templateScenarioId, options)
-        .then((request) => request(axios, basePath))
-    },
-    /**
-     *
-     * @summary 获取阀门GIS信息
-     * @param {string} [templateScenarioId]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    apiGisV1GetValveGisGet(templateScenarioId?: string, options?: any): AxiosPromise<string> {
-      return localVarFp
-        .apiGisV1GetValveGisGet(templateScenarioId, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -1337,34 +923,6 @@ export const GisQueryApiFactory = function (
 export class GisQueryApi extends BaseAPI {
   /**
    *
-   * @summary 获取DMA GIS信息
-   * @param {string} [templateScenarioId]
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof GisQueryApi
-   */
-  public apiGisV1GetDmaGisGet(templateScenarioId?: string, options?: AxiosRequestConfig) {
-    return GisQueryApiFp(this.configuration)
-      .apiGisV1GetDmaGisGet(templateScenarioId, options)
-      .then((request) => request(this.axios, this.basePath))
-  }
-
-  /**
-   *
-   * @summary 获取节点GIS信息
-   * @param {string} [templateScenarioId]
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof GisQueryApi
-   */
-  public apiGisV1GetJunctionGisGet(templateScenarioId?: string, options?: AxiosRequestConfig) {
-    return GisQueryApiFp(this.configuration)
-      .apiGisV1GetJunctionGisGet(templateScenarioId, options)
-      .then((request) => request(this.axios, this.basePath))
-  }
-
-  /**
-   *
    * @summary 获取二维网格 Gis信息
    * @param {string} [templateScenarioId]
    * @param {*} [options] Override http request option.
@@ -1438,34 +996,6 @@ export class GisQueryApi extends BaseAPI {
 
   /**
    *
-   * @summary 获取管道GIS信息
-   * @param {string} [templateScenarioId]
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof GisQueryApi
-   */
-  public apiGisV1GetPipeGisGet(templateScenarioId?: string, options?: AxiosRequestConfig) {
-    return GisQueryApiFp(this.configuration)
-      .apiGisV1GetPipeGisGet(templateScenarioId, options)
-      .then((request) => request(this.axios, this.basePath))
-  }
-
-  /**
-   *
-   * @summary 获取水泵GIS信息
-   * @param {string} [templateScenarioId]
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof GisQueryApi
-   */
-  public apiGisV1GetPumpGisGet(templateScenarioId?: string, options?: AxiosRequestConfig) {
-    return GisQueryApiFp(this.configuration)
-      .apiGisV1GetPumpGisGet(templateScenarioId, options)
-      .then((request) => request(this.axios, this.basePath))
-  }
-
-  /**
-   *
    * @summary 获取河流Gis信息
    * @param {string} [templateScenarioId]
    * @param {*} [options] Override http request option.
@@ -1475,34 +1005,6 @@ export class GisQueryApi extends BaseAPI {
   public apiGisV1GetRiverGisGet(templateScenarioId?: string, options?: AxiosRequestConfig) {
     return GisQueryApiFp(this.configuration)
       .apiGisV1GetRiverGisGet(templateScenarioId, options)
-      .then((request) => request(this.axios, this.basePath))
-  }
-
-  /**
-   *
-   * @summary 获取水池GIS信息
-   * @param {string} [templateScenarioId]
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof GisQueryApi
-   */
-  public apiGisV1GetTankGisGet(templateScenarioId?: string, options?: AxiosRequestConfig) {
-    return GisQueryApiFp(this.configuration)
-      .apiGisV1GetTankGisGet(templateScenarioId, options)
-      .then((request) => request(this.axios, this.basePath))
-  }
-
-  /**
-   *
-   * @summary 获取阀门GIS信息
-   * @param {string} [templateScenarioId]
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof GisQueryApi
-   */
-  public apiGisV1GetValveGisGet(templateScenarioId?: string, options?: AxiosRequestConfig) {
-    return GisQueryApiFp(this.configuration)
-      .apiGisV1GetValveGisGet(templateScenarioId, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
