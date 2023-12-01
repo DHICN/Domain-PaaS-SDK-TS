@@ -27,13 +27,15 @@ import {
   serializeDataIfNeeded,
   toPathString,
   createRequestFunction,
-} from '../common'
+} from '../common' // @ts-ignore
+
 // @ts-ignore
 import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } from '../base'
-// @ts-ignore
 import { FloodingRiskInfo } from '../models'
 // @ts-ignore
 import { RemoteServiceErrorResponse } from '../models'
+// @ts-ignore
+import { SensitivePointGridTimeseriesInfo } from '../models'
 // @ts-ignore
 import { SensitivePointRisk } from '../models'
 // @ts-ignore
@@ -178,6 +180,58 @@ export const UrbanFloodingApiAxiosParamCreator = function (configuration?: Confi
       const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
+
+      if (scenarioId !== undefined) {
+        localVarQueryParameter['ScenarioId'] = scenarioId
+      }
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 获取易捞点内的网格的积水信息
+     * @param {string} scenarioId 方案的ID scenario’s ID
+     * @param {string} [grid] 网格号
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1ResultUrbanFloodingSensitivePointsGridWaterDepthTimeseriesGet: async (
+      scenarioId: string,
+      grid?: string,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'scenarioId' is not null or undefined
+      assertParamExists(
+        'apiV1ResultUrbanFloodingSensitivePointsGridWaterDepthTimeseriesGet',
+        'scenarioId',
+        scenarioId,
+      )
+      const localVarPath = `/api/v1/result/urban-flooding/sensitive-points/grid/water-depth/timeseries`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      if (grid !== undefined) {
+        localVarQueryParameter['Grid'] = grid
+      }
 
       if (scenarioId !== undefined) {
         localVarQueryParameter['ScenarioId'] = scenarioId
@@ -361,6 +415,29 @@ export const UrbanFloodingApiFp = function (configuration?: Configuration) {
     },
     /**
      *
+     * @summary 获取易捞点内的网格的积水信息
+     * @param {string} scenarioId 方案的ID scenario’s ID
+     * @param {string} [grid] 网格号
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1ResultUrbanFloodingSensitivePointsGridWaterDepthTimeseriesGet(
+      scenarioId: string,
+      grid?: string,
+      options?: AxiosRequestConfig,
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<SensitivePointGridTimeseriesInfo>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiV1ResultUrbanFloodingSensitivePointsGridWaterDepthTimeseriesGet(
+          scenarioId,
+          grid,
+          options,
+        )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
      * @summary 获取易涝点风险等级信息 Get flood sensitive points risk information
      * @param {string} scenarioId 方案的ID scenario’s ID
      * @param {*} [options] Override http request option.
@@ -474,6 +551,27 @@ export const UrbanFloodingApiFactory = function (
     },
     /**
      *
+     * @summary 获取易捞点内的网格的积水信息
+     * @param {string} scenarioId 方案的ID scenario’s ID
+     * @param {string} [grid] 网格号
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1ResultUrbanFloodingSensitivePointsGridWaterDepthTimeseriesGet(
+      scenarioId: string,
+      grid?: string,
+      options?: any,
+    ): AxiosPromise<SensitivePointGridTimeseriesInfo> {
+      return localVarFp
+        .apiV1ResultUrbanFloodingSensitivePointsGridWaterDepthTimeseriesGet(
+          scenarioId,
+          grid,
+          options,
+        )
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
      * @summary 获取易涝点风险等级信息 Get flood sensitive points risk information
      * @param {string} scenarioId 方案的ID scenario’s ID
      * @param {*} [options] Override http request option.
@@ -571,6 +669,25 @@ export class UrbanFloodingApi extends BaseAPI {
   public apiV1ResultUrbanFloodingFloodingRiskGet(scenarioId: string, options?: AxiosRequestConfig) {
     return UrbanFloodingApiFp(this.configuration)
       .apiV1ResultUrbanFloodingFloodingRiskGet(scenarioId, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary 获取易捞点内的网格的积水信息
+   * @param {string} scenarioId 方案的ID scenario’s ID
+   * @param {string} [grid] 网格号
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof UrbanFloodingApi
+   */
+  public apiV1ResultUrbanFloodingSensitivePointsGridWaterDepthTimeseriesGet(
+    scenarioId: string,
+    grid?: string,
+    options?: AxiosRequestConfig,
+  ) {
+    return UrbanFloodingApiFp(this.configuration)
+      .apiV1ResultUrbanFloodingSensitivePointsGridWaterDepthTimeseriesGet(scenarioId, grid, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
