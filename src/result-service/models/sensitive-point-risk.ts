@@ -36,6 +36,18 @@ export interface SensitivePointRisk {
    */
   pointType?: string | null
   /**
+   * 易捞点边界 border of flood sensitive point
+   * @type {string}
+   * @memberof SensitivePointRisk
+   */
+  border?: string | null
+  /**
+   * 关键网格  最大积水深度或最长积水历时所在点，  max water depth point
+   * @type {string}
+   * @memberof SensitivePointRisk
+   */
+  keyGrid?: string | null
+  /**
    * 风险等级 flood risk level
    * @type {number}
    * @memberof SensitivePointRisk
