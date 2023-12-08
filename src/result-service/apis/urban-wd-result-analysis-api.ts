@@ -39,9 +39,13 @@ import { BaseTimeseriesOutput } from '../models'
 // @ts-ignore
 import { FilterModelResultDto } from '../models'
 // @ts-ignore
+import { FilterModelResultRangeTimeDto } from '../models'
+// @ts-ignore
 import { FlushingResultEntity } from '../models'
 // @ts-ignore
 import { GetFilterModelResultInput } from '../models'
+// @ts-ignore
+import { GetFilterModelResultRangeTime } from '../models'
 // @ts-ignore
 import { GetStatisticResultInput } from '../models'
 // @ts-ignore
@@ -718,6 +722,49 @@ export const UrbanWdResultAnalysisApiAxiosParamCreator = function (configuration
       }
       localVarRequestOptions.data = serializeDataIfNeeded(
         getFilterModelResultInput,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 按照筛选条件查询时段内模型信息和模拟结果
+     * @param {GetFilterModelResultRangeTime} [getFilterModelResultRangeTime]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1ResultAnalysisUrbanWdFilterModelResultRangetimePost: async (
+      getFilterModelResultRangeTime?: GetFilterModelResultRangeTime,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/result-analysis/urban-wd/filter-model-result-rangetime`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        getFilterModelResultRangeTime,
         localVarRequestOptions,
         configuration,
       )
@@ -2516,6 +2563,29 @@ export const UrbanWdResultAnalysisApiFp = function (configuration?: Configuratio
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**
+     *
+     * @summary 按照筛选条件查询时段内模型信息和模拟结果
+     * @param {GetFilterModelResultRangeTime} [getFilterModelResultRangeTime]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1ResultAnalysisUrbanWdFilterModelResultRangetimePost(
+      getFilterModelResultRangeTime?: GetFilterModelResultRangeTime,
+      options?: AxiosRequestConfig,
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string,
+      ) => AxiosPromise<Array<FilterModelResultRangeTimeDto>>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiV1ResultAnalysisUrbanWdFilterModelResultRangetimePost(
+          getFilterModelResultRangeTime,
+          options,
+        )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
      * 返回的数据包含：模型id列表，时间列表，结果值二维数据
      * @summary 根据方案id获取全管网流量模拟结果值,适用大模型结果读取
      * @param {string} scenarioId 方案id
@@ -3458,6 +3528,24 @@ export const UrbanWdResultAnalysisApiFactory = function (
         .then((request) => request(axios, basePath))
     },
     /**
+     *
+     * @summary 按照筛选条件查询时段内模型信息和模拟结果
+     * @param {GetFilterModelResultRangeTime} [getFilterModelResultRangeTime]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1ResultAnalysisUrbanWdFilterModelResultRangetimePost(
+      getFilterModelResultRangeTime?: GetFilterModelResultRangeTime,
+      options?: any,
+    ): AxiosPromise<Array<FilterModelResultRangeTimeDto>> {
+      return localVarFp
+        .apiV1ResultAnalysisUrbanWdFilterModelResultRangetimePost(
+          getFilterModelResultRangeTime,
+          options,
+        )
+        .then((request) => request(axios, basePath))
+    },
+    /**
      * 返回的数据包含：模型id列表，时间列表，结果值二维数据
      * @summary 根据方案id获取全管网流量模拟结果值,适用大模型结果读取
      * @param {string} scenarioId 方案id
@@ -4382,6 +4470,26 @@ export class UrbanWdResultAnalysisApi extends BaseAPI {
   ) {
     return UrbanWdResultAnalysisApiFp(this.configuration)
       .apiV1ResultAnalysisUrbanWdFilterModelResultPost(getFilterModelResultInput, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary 按照筛选条件查询时段内模型信息和模拟结果
+   * @param {GetFilterModelResultRangeTime} [getFilterModelResultRangeTime]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof UrbanWdResultAnalysisApi
+   */
+  public apiV1ResultAnalysisUrbanWdFilterModelResultRangetimePost(
+    getFilterModelResultRangeTime?: GetFilterModelResultRangeTime,
+    options?: AxiosRequestConfig,
+  ) {
+    return UrbanWdResultAnalysisApiFp(this.configuration)
+      .apiV1ResultAnalysisUrbanWdFilterModelResultRangetimePost(
+        getFilterModelResultRangeTime,
+        options,
+      )
       .then((request) => request(this.axios, this.basePath))
   }
 
