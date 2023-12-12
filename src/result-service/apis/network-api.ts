@@ -39,7 +39,11 @@ import { BaseTimeseriesOutput } from '../models'
 // @ts-ignore
 import { NetworkProfile } from '../models'
 // @ts-ignore
+import { NetworkStaticLengthInput } from '../models'
+// @ts-ignore
 import { NetworkStatisticsOutput } from '../models'
+// @ts-ignore
+import { PipeStaticLengthOutput } from '../models'
 // @ts-ignore
 import { ProcessedModelResultOutput } from '../models'
 // @ts-ignore
@@ -451,14 +455,12 @@ export const NetworkApiAxiosParamCreator = function (configuration?: Configurati
      * @summary 获取处理后的模型数据 Get time series results of processed
      * @param {string} scenarioId 方案的ID scenario’s ID
      * @param {Array<string>} [modelFeatureIds] 模型虚拟IDs model\&#39;s virtual ids
-     * @param {number} [interval]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiV1ResultNetworkProcessedTimeseriesGet: async (
       scenarioId: string,
       modelFeatureIds?: Array<string>,
-      interval?: number,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
       // verify required parameter 'scenarioId' is not null or undefined
@@ -481,10 +483,6 @@ export const NetworkApiAxiosParamCreator = function (configuration?: Configurati
 
       if (scenarioId !== undefined) {
         localVarQueryParameter['ScenarioId'] = scenarioId
-      }
-
-      if (interval !== undefined) {
-        localVarQueryParameter['interval'] = interval
       }
 
       setSearchParams(localVarUrlObj, localVarQueryParameter)
@@ -692,6 +690,49 @@ export const NetworkApiAxiosParamCreator = function (configuration?: Configurati
         ...headersFromBaseOptions,
         ...options.headers,
       }
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     * 根据传入的等级数据获取一维管道的长度统计结果，统计依据为流量、流速、充满度、水位等的最大值、最小值, According to the incoming grade data, the length statistics of the one-dimensional pipeline are obtained, and the statistics are based on the maximum and minimum values of flow, flow rate, filling degree, water level, etc
+     * @summary 获取一维管道的长度统计结果 Obtain the length statistics of a 1D pipe
+     * @param {NetworkStaticLengthInput} [networkStaticLengthInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1ResultNetworkStaticLengthPost: async (
+      networkStaticLengthInput?: NetworkStaticLengthInput,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/result/network/static/length`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        networkStaticLengthInput,
+        localVarRequestOptions,
+        configuration,
+      )
 
       return {
         url: toPathString(localVarUrlObj),
@@ -1018,14 +1059,12 @@ export const NetworkApiFp = function (configuration?: Configuration) {
      * @summary 获取处理后的模型数据 Get time series results of processed
      * @param {string} scenarioId 方案的ID scenario’s ID
      * @param {Array<string>} [modelFeatureIds] 模型虚拟IDs model\&#39;s virtual ids
-     * @param {number} [interval]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async apiV1ResultNetworkProcessedTimeseriesGet(
       scenarioId: string,
       modelFeatureIds?: Array<string>,
-      interval?: number,
       options?: AxiosRequestConfig,
     ): Promise<
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<ProcessedModelResultOutput>>
@@ -1034,7 +1073,6 @@ export const NetworkApiFp = function (configuration?: Configuration) {
         await localVarAxiosParamCreator.apiV1ResultNetworkProcessedTimeseriesGet(
           scenarioId,
           modelFeatureIds,
-          interval,
           options,
         )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
@@ -1121,6 +1159,25 @@ export const NetworkApiFp = function (configuration?: Configuration) {
         scenarioId,
         pipeDataType,
         statisticType,
+        options,
+      )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     * 根据传入的等级数据获取一维管道的长度统计结果，统计依据为流量、流速、充满度、水位等的最大值、最小值, According to the incoming grade data, the length statistics of the one-dimensional pipeline are obtained, and the statistics are based on the maximum and minimum values of flow, flow rate, filling degree, water level, etc
+     * @summary 获取一维管道的长度统计结果 Obtain the length statistics of a 1D pipe
+     * @param {NetworkStaticLengthInput} [networkStaticLengthInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1ResultNetworkStaticLengthPost(
+      networkStaticLengthInput?: NetworkStaticLengthInput,
+      options?: AxiosRequestConfig,
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<PipeStaticLengthOutput>>
+    > {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1ResultNetworkStaticLengthPost(
+        networkStaticLengthInput,
         options,
       )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
@@ -1354,18 +1411,16 @@ export const NetworkApiFactory = function (
      * @summary 获取处理后的模型数据 Get time series results of processed
      * @param {string} scenarioId 方案的ID scenario’s ID
      * @param {Array<string>} [modelFeatureIds] 模型虚拟IDs model\&#39;s virtual ids
-     * @param {number} [interval]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiV1ResultNetworkProcessedTimeseriesGet(
       scenarioId: string,
       modelFeatureIds?: Array<string>,
-      interval?: number,
       options?: any,
     ): AxiosPromise<Array<ProcessedModelResultOutput>> {
       return localVarFp
-        .apiV1ResultNetworkProcessedTimeseriesGet(scenarioId, modelFeatureIds, interval, options)
+        .apiV1ResultNetworkProcessedTimeseriesGet(scenarioId, modelFeatureIds, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -1436,6 +1491,21 @@ export const NetworkApiFactory = function (
     ): AxiosPromise<BaseStaticOutput> {
       return localVarFp
         .apiV1ResultNetworkStaticGet(scenarioId, pipeDataType, statisticType, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     * 根据传入的等级数据获取一维管道的长度统计结果，统计依据为流量、流速、充满度、水位等的最大值、最小值, According to the incoming grade data, the length statistics of the one-dimensional pipeline are obtained, and the statistics are based on the maximum and minimum values of flow, flow rate, filling degree, water level, etc
+     * @summary 获取一维管道的长度统计结果 Obtain the length statistics of a 1D pipe
+     * @param {NetworkStaticLengthInput} [networkStaticLengthInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1ResultNetworkStaticLengthPost(
+      networkStaticLengthInput?: NetworkStaticLengthInput,
+      options?: any,
+    ): AxiosPromise<Array<PipeStaticLengthOutput>> {
+      return localVarFp
+        .apiV1ResultNetworkStaticLengthPost(networkStaticLengthInput, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -1664,7 +1734,6 @@ export class NetworkApi extends BaseAPI {
    * @summary 获取处理后的模型数据 Get time series results of processed
    * @param {string} scenarioId 方案的ID scenario’s ID
    * @param {Array<string>} [modelFeatureIds] 模型虚拟IDs model\&#39;s virtual ids
-   * @param {number} [interval]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof NetworkApi
@@ -1672,11 +1741,10 @@ export class NetworkApi extends BaseAPI {
   public apiV1ResultNetworkProcessedTimeseriesGet(
     scenarioId: string,
     modelFeatureIds?: Array<string>,
-    interval?: number,
     options?: AxiosRequestConfig,
   ) {
     return NetworkApiFp(this.configuration)
-      .apiV1ResultNetworkProcessedTimeseriesGet(scenarioId, modelFeatureIds, interval, options)
+      .apiV1ResultNetworkProcessedTimeseriesGet(scenarioId, modelFeatureIds, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -1752,6 +1820,23 @@ export class NetworkApi extends BaseAPI {
   ) {
     return NetworkApiFp(this.configuration)
       .apiV1ResultNetworkStaticGet(scenarioId, pipeDataType, statisticType, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   * 根据传入的等级数据获取一维管道的长度统计结果，统计依据为流量、流速、充满度、水位等的最大值、最小值, According to the incoming grade data, the length statistics of the one-dimensional pipeline are obtained, and the statistics are based on the maximum and minimum values of flow, flow rate, filling degree, water level, etc
+   * @summary 获取一维管道的长度统计结果 Obtain the length statistics of a 1D pipe
+   * @param {NetworkStaticLengthInput} [networkStaticLengthInput]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof NetworkApi
+   */
+  public apiV1ResultNetworkStaticLengthPost(
+    networkStaticLengthInput?: NetworkStaticLengthInput,
+    options?: AxiosRequestConfig,
+  ) {
+    return NetworkApiFp(this.configuration)
+      .apiV1ResultNetworkStaticLengthPost(networkStaticLengthInput, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
