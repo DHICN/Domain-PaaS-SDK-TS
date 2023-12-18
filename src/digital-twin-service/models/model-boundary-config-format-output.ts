@@ -11,6 +11,13 @@
  * Do not edit the class manually.
  */
 
+// May contain unused imports in some cases
+// @ts-ignore
+import { DataCenterDeviceIndicatorOutput } from './data-center-device-indicator-output'
+// May contain unused imports in some cases
+// @ts-ignore
+import { GroupEquipRelOutputCache } from './group-equip-rel-output-cache'
+
 /**
  *
  * @export
@@ -95,52 +102,64 @@ export interface ModelBoundaryConfigFormatOutput {
    * @memberof ModelBoundaryConfigFormatOutput
    */
   sort?: number
+  /**
+   *
+   * @type {DataCenterDeviceIndicatorOutput}
+   * @memberof ModelBoundaryConfigFormatOutput
+   */
+  indicator?: DataCenterDeviceIndicatorOutput
+  /**
+   *
+   * @type {GroupEquipRelOutputCache}
+   * @memberof ModelBoundaryConfigFormatOutput
+   */
+  deviceGroup?: GroupEquipRelOutputCache
 }
 
 export const ModelBoundaryConfigFormatOutputBoundaryTypeEnum = {
-  '1': 1 as number,
-  '2': 2 as number,
-  '3': 3 as number,
-  '4': 4 as number,
-  '5': 5 as number,
-  '6': 6 as number,
-  '7': 7 as number,
-  '8': 8 as number,
-  '9': 9 as number,
-  '10': 10 as number,
-  '11': 11 as number,
-  '12': 12 as number,
-  '13': 13 as number,
-  '14': 14 as number,
-  '15': 15 as number,
-  '16': 16 as number,
-  '17': 17 as number,
-  '18': 18 as number,
-  '19': 19 as number,
-  '20': 20 as number,
-  '21': 21 as number,
-  '22': 22 as number,
-  '30': 30 as number,
-  '31': 31 as number,
-  '32': 32 as number,
-  '33': 33 as number,
-  '34': 34 as number,
-  '41': 41 as number,
-  '42': 42 as number,
-  '43': 43 as number,
-  '44': 44 as number,
-  '45': 45 as number,
-  '46': 46 as number,
-  '47': 47 as number,
-  '48': 48 as number,
-  '49': 49 as number,
-  '50': 50 as number,
-  '51': 51 as number,
-  '52': 52 as number,
-  '53': 53 as number,
-  '54': 54 as number,
-  '999': 999 as number,
-  '-1': -1 as number,
+  NUMBER_1: 1,
+  NUMBER_2: 2,
+  NUMBER_3: 3,
+  NUMBER_4: 4,
+  NUMBER_5: 5,
+  NUMBER_6: 6,
+  NUMBER_7: 7,
+  NUMBER_8: 8,
+  NUMBER_9: 9,
+  NUMBER_10: 10,
+  NUMBER_11: 11,
+  NUMBER_12: 12,
+  NUMBER_13: 13,
+  NUMBER_14: 14,
+  NUMBER_15: 15,
+  NUMBER_16: 16,
+  NUMBER_17: 17,
+  NUMBER_18: 18,
+  NUMBER_19: 19,
+  NUMBER_20: 20,
+  NUMBER_21: 21,
+  NUMBER_22: 22,
+  NUMBER_30: 30,
+  NUMBER_31: 31,
+  NUMBER_32: 32,
+  NUMBER_33: 33,
+  NUMBER_34: 34,
+  NUMBER_41: 41,
+  NUMBER_42: 42,
+  NUMBER_43: 43,
+  NUMBER_44: 44,
+  NUMBER_45: 45,
+  NUMBER_46: 46,
+  NUMBER_47: 47,
+  NUMBER_48: 48,
+  NUMBER_49: 49,
+  NUMBER_50: 50,
+  NUMBER_51: 51,
+  NUMBER_52: 52,
+  NUMBER_53: 53,
+  NUMBER_54: 54,
+  NUMBER_999: 999,
+  NUMBER_MINUS_1: -1,
 } as const
 
 export type ModelBoundaryConfigFormatOutputBoundaryTypeEnum =
