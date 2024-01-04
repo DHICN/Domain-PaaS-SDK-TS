@@ -29,4 +29,16 @@ export interface RiverGate {
    * @memberof RiverGate
    */
   controlWL?: number
+  /**
+   *
+   * @type {number}
+   * @memberof RiverGate
+   */
+  openLevel?: number
+  /**
+   *
+   * @type {number}
+   * @memberof RiverGate
+   */
+  closeLevel?: number
 }
