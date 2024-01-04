@@ -28,6 +28,12 @@ export interface UpdateAssetInput {
    */
   name: string
   /**
+   * 父资产
+   * @type {string}
+   * @memberof UpdateAssetInput
+   */
+  parentAssetName?: string | null
+  /**
    * 资产类型（自定义） asset type (customized)
    * @type {string}
    * @memberof UpdateAssetInput
