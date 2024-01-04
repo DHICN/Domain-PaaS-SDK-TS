@@ -401,7 +401,7 @@ export const DeviceApiAxiosParamCreator = function (configuration?: Configuratio
     /**
      * 分页获取设备列表，结果可以基于某个属性进行排序，也可以基于某个关键词进行过滤 Get device list with pagination, results can be sorted by a certain property and keywords can be used to filter the results.
      * @summary 分页查询设备列表 Get device list: pagination query of devices
-     * @param {number} [sortProperty] 用于排序的属性 sort attribute:  0-createdTime,  1-customerTitle,  2-deviceProfileName,  3-label,  4-name
+     * @param {number} [sortProperty] 用于排序的属性 sort attribute:  0-createdTime,  1-label,  2-name,
      * @param {number} [sortOrder] 排序的方式 sort order:  0-ASC,  1-DESC
      * @param {string} [type] 设备类型
      * @param {number} [pageIndex]
@@ -471,7 +471,7 @@ export const DeviceApiAxiosParamCreator = function (configuration?: Configuratio
     /**
      * 分页获取设备列表，结果可以基于某个属性进行排序，也可以基于某个关键词进行过滤 Get device list with pagination, results can be sorted by a certain property and keywords can be used to filter the results.
      * @summary 分页查询设备列表 Get device list: pagination query of devices
-     * @param {number} [sortProperty] 用于排序的属性 sort attribute:  0-createdTime,  1-customerTitle,  2-deviceProfileName,  3-label,  4-name
+     * @param {number} [sortProperty] 用于排序的属性 sort attribute:  0-createdTime,  1-label,  2-name,
      * @param {number} [sortOrder] 排序的方式 sort order:  0-ASC,  1-DESC
      * @param {string} [type] 设备类型
      * @param {number} [pageIndex]
@@ -866,7 +866,7 @@ export const DeviceApiFp = function (configuration?: Configuration) {
     /**
      * 分页获取设备列表，结果可以基于某个属性进行排序，也可以基于某个关键词进行过滤 Get device list with pagination, results can be sorted by a certain property and keywords can be used to filter the results.
      * @summary 分页查询设备列表 Get device list: pagination query of devices
-     * @param {number} [sortProperty] 用于排序的属性 sort attribute:  0-createdTime,  1-customerTitle,  2-deviceProfileName,  3-label,  4-name
+     * @param {number} [sortProperty] 用于排序的属性 sort attribute:  0-createdTime,  1-label,  2-name,
      * @param {number} [sortOrder] 排序的方式 sort order:  0-ASC,  1-DESC
      * @param {string} [type] 设备类型
      * @param {number} [pageIndex]
@@ -898,7 +898,7 @@ export const DeviceApiFp = function (configuration?: Configuration) {
     /**
      * 分页获取设备列表，结果可以基于某个属性进行排序，也可以基于某个关键词进行过滤 Get device list with pagination, results can be sorted by a certain property and keywords can be used to filter the results.
      * @summary 分页查询设备列表 Get device list: pagination query of devices
-     * @param {number} [sortProperty] 用于排序的属性 sort attribute:  0-createdTime,  1-customerTitle,  2-deviceProfileName,  3-label,  4-name
+     * @param {number} [sortProperty] 用于排序的属性 sort attribute:  0-createdTime,  1-label,  2-name,
      * @param {number} [sortOrder] 排序的方式 sort order:  0-ASC,  1-DESC
      * @param {string} [type] 设备类型
      * @param {number} [pageIndex]
@@ -1132,7 +1132,7 @@ export const DeviceApiFactory = function (
     /**
      * 分页获取设备列表，结果可以基于某个属性进行排序，也可以基于某个关键词进行过滤 Get device list with pagination, results can be sorted by a certain property and keywords can be used to filter the results.
      * @summary 分页查询设备列表 Get device list: pagination query of devices
-     * @param {number} [sortProperty] 用于排序的属性 sort attribute:  0-createdTime,  1-customerTitle,  2-deviceProfileName,  3-label,  4-name
+     * @param {number} [sortProperty] 用于排序的属性 sort attribute:  0-createdTime,  1-label,  2-name,
      * @param {number} [sortOrder] 排序的方式 sort order:  0-ASC,  1-DESC
      * @param {string} [type] 设备类型
      * @param {number} [pageIndex]
@@ -1165,7 +1165,7 @@ export const DeviceApiFactory = function (
     /**
      * 分页获取设备列表，结果可以基于某个属性进行排序，也可以基于某个关键词进行过滤 Get device list with pagination, results can be sorted by a certain property and keywords can be used to filter the results.
      * @summary 分页查询设备列表 Get device list: pagination query of devices
-     * @param {number} [sortProperty] 用于排序的属性 sort attribute:  0-createdTime,  1-customerTitle,  2-deviceProfileName,  3-label,  4-name
+     * @param {number} [sortProperty] 用于排序的属性 sort attribute:  0-createdTime,  1-label,  2-name,
      * @param {number} [sortOrder] 排序的方式 sort order:  0-ASC,  1-DESC
      * @param {string} [type] 设备类型
      * @param {number} [pageIndex]
@@ -1395,7 +1395,7 @@ export class DeviceApi extends BaseAPI {
   /**
    * 分页获取设备列表，结果可以基于某个属性进行排序，也可以基于某个关键词进行过滤 Get device list with pagination, results can be sorted by a certain property and keywords can be used to filter the results.
    * @summary 分页查询设备列表 Get device list: pagination query of devices
-   * @param {number} [sortProperty] 用于排序的属性 sort attribute:  0-createdTime,  1-customerTitle,  2-deviceProfileName,  3-label,  4-name
+   * @param {number} [sortProperty] 用于排序的属性 sort attribute:  0-createdTime,  1-label,  2-name,
    * @param {number} [sortOrder] 排序的方式 sort order:  0-ASC,  1-DESC
    * @param {string} [type] 设备类型
    * @param {number} [pageIndex]
@@ -1422,7 +1422,7 @@ export class DeviceApi extends BaseAPI {
   /**
    * 分页获取设备列表，结果可以基于某个属性进行排序，也可以基于某个关键词进行过滤 Get device list with pagination, results can be sorted by a certain property and keywords can be used to filter the results.
    * @summary 分页查询设备列表 Get device list: pagination query of devices
-   * @param {number} [sortProperty] 用于排序的属性 sort attribute:  0-createdTime,  1-customerTitle,  2-deviceProfileName,  3-label,  4-name
+   * @param {number} [sortProperty] 用于排序的属性 sort attribute:  0-createdTime,  1-label,  2-name,
    * @param {number} [sortOrder] 排序的方式 sort order:  0-ASC,  1-DESC
    * @param {string} [type] 设备类型
    * @param {number} [pageIndex]
