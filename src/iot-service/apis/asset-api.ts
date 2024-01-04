@@ -41,6 +41,26 @@ import { AssetRelationsInput } from '../models'
 // @ts-ignore
 import { DeleteAssetsInput } from '../models'
 // @ts-ignore
+import { GetAssetsIndicatorAttributesInput } from '../models'
+// @ts-ignore
+import { GetAssetsIndicatorAttributesOuput } from '../models'
+// @ts-ignore
+import { GetLatestValueInput } from '../models'
+// @ts-ignore
+import { GetLatestValueOutput } from '../models'
+// @ts-ignore
+import { GetSubAssetsInput } from '../models'
+// @ts-ignore
+import { GetSubAssetsInputV11 } from '../models'
+// @ts-ignore
+import { GetSubAssetsOuput } from '../models'
+// @ts-ignore
+import { GetTimeseriesValueInput } from '../models'
+// @ts-ignore
+import { GetTimeseriesValueOutput } from '../models'
+// @ts-ignore
+import { SubAssetInfoV11 } from '../models'
+// @ts-ignore
 import { UpdateAssetInput } from '../models'
 /**
  * AssetApi - axios parameter creator
@@ -48,6 +68,49 @@ import { UpdateAssetInput } from '../models'
  */
 export const AssetApiAxiosParamCreator = function (configuration?: Configuration) {
   return {
+    /**
+     *
+     * @summary 获取子资产 / query sub assets
+     * @param {GetSubAssetsInputV11} [getSubAssetsInputV11]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV11IotAssetQuerySubAssetsPost: async (
+      getSubAssetsInputV11?: GetSubAssetsInputV11,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1.1/iot/asset/query-sub-assets`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        getSubAssetsInputV11,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
     /**
      *
      * @summary 添加一条资产信息 Add an asset
@@ -195,6 +258,178 @@ export const AssetApiAxiosParamCreator = function (configuration?: Configuration
         ...headersFromBaseOptions,
         ...options.headers,
       }
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 获取资产指标属性 / query assets indicator attributes
+     * @param {GetAssetsIndicatorAttributesInput} [getAssetsIndicatorAttributesInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1IotAssetQueryAssetsIndicatorAttributesPost: async (
+      getAssetsIndicatorAttributesInput?: GetAssetsIndicatorAttributesInput,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/iot/asset/query-assets-indicator-attributes`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        getAssetsIndicatorAttributesInput,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 获取资产指标属性-最新时刻值 / query asset latest value
+     * @param {Array<GetLatestValueInput>} [getLatestValueInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1IotAssetQueryLatestValuePost: async (
+      getLatestValueInput?: Array<GetLatestValueInput>,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/iot/asset/query-latest-value`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        getLatestValueInput,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 获取子资产 / query sub assets
+     * @param {GetSubAssetsInput} [getSubAssetsInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1IotAssetQuerySubAssetsPost: async (
+      getSubAssetsInput?: GetSubAssetsInput,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/iot/asset/query-sub-assets`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        getSubAssetsInput,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 获取资产指标属性-时序值 / query asset timeseries value
+     * @param {Array<GetTimeseriesValueInput>} [getTimeseriesValueInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1IotAssetQueryTimeseriesValuePost: async (
+      getTimeseriesValueInput?: Array<GetTimeseriesValueInput>,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/iot/asset/query-timeseries-value`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        getTimeseriesValueInput,
+        localVarRequestOptions,
+        configuration,
+      )
 
       return {
         url: toPathString(localVarUrlObj),
@@ -471,6 +706,23 @@ export const AssetApiFp = function (configuration?: Configuration) {
   return {
     /**
      *
+     * @summary 获取子资产 / query sub assets
+     * @param {GetSubAssetsInputV11} [getSubAssetsInputV11]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV11IotAssetQuerySubAssetsPost(
+      getSubAssetsInputV11?: GetSubAssetsInputV11,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<SubAssetInfoV11>>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiV11IotAssetQuerySubAssetsPost(
+        getSubAssetsInputV11,
+        options,
+      )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
      * @summary 添加一条资产信息 Add an asset
      * @param {AddAssetInput} [addAssetInput]
      * @param {*} [options] Override http request option.
@@ -530,6 +782,87 @@ export const AssetApiFp = function (configuration?: Configuration) {
         keyWords,
         options,
       )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
+     * @summary 获取资产指标属性 / query assets indicator attributes
+     * @param {GetAssetsIndicatorAttributesInput} [getAssetsIndicatorAttributesInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1IotAssetQueryAssetsIndicatorAttributesPost(
+      getAssetsIndicatorAttributesInput?: GetAssetsIndicatorAttributesInput,
+      options?: AxiosRequestConfig,
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string,
+      ) => AxiosPromise<Array<GetAssetsIndicatorAttributesOuput>>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiV1IotAssetQueryAssetsIndicatorAttributesPost(
+          getAssetsIndicatorAttributesInput,
+          options,
+        )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
+     * @summary 获取资产指标属性-最新时刻值 / query asset latest value
+     * @param {Array<GetLatestValueInput>} [getLatestValueInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1IotAssetQueryLatestValuePost(
+      getLatestValueInput?: Array<GetLatestValueInput>,
+      options?: AxiosRequestConfig,
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<GetLatestValueOutput>>
+    > {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1IotAssetQueryLatestValuePost(
+        getLatestValueInput,
+        options,
+      )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
+     * @summary 获取子资产 / query sub assets
+     * @param {GetSubAssetsInput} [getSubAssetsInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1IotAssetQuerySubAssetsPost(
+      getSubAssetsInput?: GetSubAssetsInput,
+      options?: AxiosRequestConfig,
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<GetSubAssetsOuput>>
+    > {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1IotAssetQuerySubAssetsPost(
+        getSubAssetsInput,
+        options,
+      )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
+     * @summary 获取资产指标属性-时序值 / query asset timeseries value
+     * @param {Array<GetTimeseriesValueInput>} [getTimeseriesValueInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1IotAssetQueryTimeseriesValuePost(
+      getTimeseriesValueInput?: Array<GetTimeseriesValueInput>,
+      options?: AxiosRequestConfig,
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<GetTimeseriesValueOutput>>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiV1IotAssetQueryTimeseriesValuePost(
+          getTimeseriesValueInput,
+          options,
+        )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**
@@ -652,6 +985,21 @@ export const AssetApiFactory = function (
   return {
     /**
      *
+     * @summary 获取子资产 / query sub assets
+     * @param {GetSubAssetsInputV11} [getSubAssetsInputV11]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV11IotAssetQuerySubAssetsPost(
+      getSubAssetsInputV11?: GetSubAssetsInputV11,
+      options?: any,
+    ): AxiosPromise<Array<SubAssetInfoV11>> {
+      return localVarFp
+        .apiV11IotAssetQuerySubAssetsPost(getSubAssetsInputV11, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
      * @summary 添加一条资产信息 Add an asset
      * @param {AddAssetInput} [addAssetInput]
      * @param {*} [options] Override http request option.
@@ -697,6 +1045,66 @@ export const AssetApiFactory = function (
     ): AxiosPromise<AssetInfoOutputPage> {
       return localVarFp
         .apiV1IotAssetListGet(sortProperty, sortOrder, type, pageIndex, pageSize, keyWords, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @summary 获取资产指标属性 / query assets indicator attributes
+     * @param {GetAssetsIndicatorAttributesInput} [getAssetsIndicatorAttributesInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1IotAssetQueryAssetsIndicatorAttributesPost(
+      getAssetsIndicatorAttributesInput?: GetAssetsIndicatorAttributesInput,
+      options?: any,
+    ): AxiosPromise<Array<GetAssetsIndicatorAttributesOuput>> {
+      return localVarFp
+        .apiV1IotAssetQueryAssetsIndicatorAttributesPost(getAssetsIndicatorAttributesInput, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @summary 获取资产指标属性-最新时刻值 / query asset latest value
+     * @param {Array<GetLatestValueInput>} [getLatestValueInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1IotAssetQueryLatestValuePost(
+      getLatestValueInput?: Array<GetLatestValueInput>,
+      options?: any,
+    ): AxiosPromise<Array<GetLatestValueOutput>> {
+      return localVarFp
+        .apiV1IotAssetQueryLatestValuePost(getLatestValueInput, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @summary 获取子资产 / query sub assets
+     * @param {GetSubAssetsInput} [getSubAssetsInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1IotAssetQuerySubAssetsPost(
+      getSubAssetsInput?: GetSubAssetsInput,
+      options?: any,
+    ): AxiosPromise<Array<GetSubAssetsOuput>> {
+      return localVarFp
+        .apiV1IotAssetQuerySubAssetsPost(getSubAssetsInput, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @summary 获取资产指标属性-时序值 / query asset timeseries value
+     * @param {Array<GetTimeseriesValueInput>} [getTimeseriesValueInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1IotAssetQueryTimeseriesValuePost(
+      getTimeseriesValueInput?: Array<GetTimeseriesValueInput>,
+      options?: any,
+    ): AxiosPromise<Array<GetTimeseriesValueOutput>> {
+      return localVarFp
+        .apiV1IotAssetQueryTimeseriesValuePost(getTimeseriesValueInput, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -801,6 +1209,23 @@ export const AssetApiFactory = function (
 export class AssetApi extends BaseAPI {
   /**
    *
+   * @summary 获取子资产 / query sub assets
+   * @param {GetSubAssetsInputV11} [getSubAssetsInputV11]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof AssetApi
+   */
+  public apiV11IotAssetQuerySubAssetsPost(
+    getSubAssetsInputV11?: GetSubAssetsInputV11,
+    options?: AxiosRequestConfig,
+  ) {
+    return AssetApiFp(this.configuration)
+      .apiV11IotAssetQuerySubAssetsPost(getSubAssetsInputV11, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
    * @summary 添加一条资产信息 Add an asset
    * @param {AddAssetInput} [addAssetInput]
    * @param {*} [options] Override http request option.
@@ -851,6 +1276,74 @@ export class AssetApi extends BaseAPI {
   ) {
     return AssetApiFp(this.configuration)
       .apiV1IotAssetListGet(sortProperty, sortOrder, type, pageIndex, pageSize, keyWords, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary 获取资产指标属性 / query assets indicator attributes
+   * @param {GetAssetsIndicatorAttributesInput} [getAssetsIndicatorAttributesInput]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof AssetApi
+   */
+  public apiV1IotAssetQueryAssetsIndicatorAttributesPost(
+    getAssetsIndicatorAttributesInput?: GetAssetsIndicatorAttributesInput,
+    options?: AxiosRequestConfig,
+  ) {
+    return AssetApiFp(this.configuration)
+      .apiV1IotAssetQueryAssetsIndicatorAttributesPost(getAssetsIndicatorAttributesInput, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary 获取资产指标属性-最新时刻值 / query asset latest value
+   * @param {Array<GetLatestValueInput>} [getLatestValueInput]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof AssetApi
+   */
+  public apiV1IotAssetQueryLatestValuePost(
+    getLatestValueInput?: Array<GetLatestValueInput>,
+    options?: AxiosRequestConfig,
+  ) {
+    return AssetApiFp(this.configuration)
+      .apiV1IotAssetQueryLatestValuePost(getLatestValueInput, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary 获取子资产 / query sub assets
+   * @param {GetSubAssetsInput} [getSubAssetsInput]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof AssetApi
+   */
+  public apiV1IotAssetQuerySubAssetsPost(
+    getSubAssetsInput?: GetSubAssetsInput,
+    options?: AxiosRequestConfig,
+  ) {
+    return AssetApiFp(this.configuration)
+      .apiV1IotAssetQuerySubAssetsPost(getSubAssetsInput, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary 获取资产指标属性-时序值 / query asset timeseries value
+   * @param {Array<GetTimeseriesValueInput>} [getTimeseriesValueInput]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof AssetApi
+   */
+  public apiV1IotAssetQueryTimeseriesValuePost(
+    getTimeseriesValueInput?: Array<GetTimeseriesValueInput>,
+    options?: AxiosRequestConfig,
+  ) {
+    return AssetApiFp(this.configuration)
+      .apiV1IotAssetQueryTimeseriesValuePost(getTimeseriesValueInput, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
