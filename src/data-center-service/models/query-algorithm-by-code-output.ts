@@ -89,4 +89,10 @@ export interface QueryAlgorithmByCodeOutput {
    * @memberof QueryAlgorithmByCodeOutput
    */
   lastModificationTime?: string | null
+  /**
+   * 脚本类型 ExportReport-导出报告，CleaningAlgorithm-清洗算法
+   * @type {string}
+   * @memberof QueryAlgorithmByCodeOutput
+   */
+  scriptType?: string | null
 }

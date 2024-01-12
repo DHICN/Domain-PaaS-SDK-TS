@@ -22,6 +22,9 @@ import { DeviceIndicatorOutput } from './device-indicator-output'
 import { DeviceInfosOutput } from './device-infos-output'
 // May contain unused imports in some cases
 // @ts-ignore
+import { GetAllGroupEquipRelOutputCache } from './get-all-group-equip-rel-output-cache'
+// May contain unused imports in some cases
+// @ts-ignore
 import { Library } from './library'
 // May contain unused imports in some cases
 // @ts-ignore
@@ -96,4 +99,10 @@ export interface PointMappingOutput {
    * @memberof PointMappingOutput
    */
   templateScenarios?: Array<TemplateScenario> | null
+  /**
+   *
+   * @type {GetAllGroupEquipRelOutputCache}
+   * @memberof PointMappingOutput
+   */
+  equipGrouRelsCache?: GetAllGroupEquipRelOutputCache
 }
