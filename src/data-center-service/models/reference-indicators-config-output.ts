@@ -11,9 +11,22 @@
  * Do not edit the class manually.
  */
 
-export * from './apis/data-clean-api'
-export * from './apis/data-index-api'
-export * from './apis/rabbit-mqapp-serive-api'
-export * from './apis/redis-api'
-export * from './apis/script-api'
-export * from './apis/service-data-cache-api'
+/**
+ *
+ * @export
+ * @interface ReferenceIndicatorsConfigOutput
+ */
+export interface ReferenceIndicatorsConfigOutput {
+  /**
+   * 指标ID
+   * @type {string}
+   * @memberof ReferenceIndicatorsConfigOutput
+   */
+  indicatorConfigId?: string
+  /**
+   * 参考指标ID
+   * @type {string}
+   * @memberof ReferenceIndicatorsConfigOutput
+   */
+  referenceIndicatorId?: string
+}

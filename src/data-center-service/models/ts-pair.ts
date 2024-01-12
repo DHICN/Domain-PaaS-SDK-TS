@@ -11,9 +11,22 @@
  * Do not edit the class manually.
  */
 
-export * from './apis/data-clean-api'
-export * from './apis/data-index-api'
-export * from './apis/rabbit-mqapp-serive-api'
-export * from './apis/redis-api'
-export * from './apis/script-api'
-export * from './apis/service-data-cache-api'
+/**
+ *
+ * @export
+ * @interface TsPair
+ */
+export interface TsPair {
+  /**
+   *
+   * @type {string}
+   * @memberof TsPair
+   */
+  ts?: string | null
+  /**
+   *
+   * @type {number}
+   * @memberof TsPair
+   */
+  value?: number
+}
