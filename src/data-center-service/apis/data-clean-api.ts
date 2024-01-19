@@ -45,6 +45,8 @@ import { DeleteDataCleanAlgorithmConfig } from '../models'
 // @ts-ignore
 import { DeleteDataCleanTagConfig } from '../models'
 // @ts-ignore
+import { IndicatorToMuiltipleAlgorithmOutput } from '../models'
+// @ts-ignore
 import { PageInput } from '../models'
 // @ts-ignore
 import { RemoteServiceErrorResponse } from '../models'
@@ -88,6 +90,83 @@ export const DataCleanApiAxiosParamCreator = function (configuration?: Configura
       }
       localVarRequestOptions.data = serializeDataIfNeeded(
         deleteDataCleanAlgorithmConfig,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 获取多算法指标信息
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1DataCleanAlgorithmMuiltipleAlgorithmGet: async (
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/data-clean/algorithm/muiltiple-algorithm`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 保存多算法指标信息
+     * @param {Array<IndicatorToMuiltipleAlgorithmOutput>} [indicatorToMuiltipleAlgorithmOutput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1DataCleanAlgorithmMuiltipleAlgorithmSavePost: async (
+      indicatorToMuiltipleAlgorithmOutput?: Array<IndicatorToMuiltipleAlgorithmOutput>,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/data-clean/algorithm/muiltiple-algorithm/save`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        indicatorToMuiltipleAlgorithmOutput,
         localVarRequestOptions,
         configuration,
       )
@@ -384,6 +463,42 @@ export const DataCleanApiFp = function (configuration?: Configuration) {
     },
     /**
      *
+     * @summary 获取多算法指标信息
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1DataCleanAlgorithmMuiltipleAlgorithmGet(
+      options?: AxiosRequestConfig,
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string,
+      ) => AxiosPromise<Array<IndicatorToMuiltipleAlgorithmOutput>>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiV1DataCleanAlgorithmMuiltipleAlgorithmGet(options)
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
+     * @summary 保存多算法指标信息
+     * @param {Array<IndicatorToMuiltipleAlgorithmOutput>} [indicatorToMuiltipleAlgorithmOutput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1DataCleanAlgorithmMuiltipleAlgorithmSavePost(
+      indicatorToMuiltipleAlgorithmOutput?: Array<IndicatorToMuiltipleAlgorithmOutput>,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiV1DataCleanAlgorithmMuiltipleAlgorithmSavePost(
+          indicatorToMuiltipleAlgorithmOutput,
+          options,
+        )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
      * @summary 分页查询清洗算法配置
      * @param {PageInput} [pageInput]
      * @param {*} [options] Override http request option.
@@ -519,6 +634,37 @@ export const DataCleanApiFactory = function (
     },
     /**
      *
+     * @summary 获取多算法指标信息
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1DataCleanAlgorithmMuiltipleAlgorithmGet(
+      options?: any,
+    ): AxiosPromise<Array<IndicatorToMuiltipleAlgorithmOutput>> {
+      return localVarFp
+        .apiV1DataCleanAlgorithmMuiltipleAlgorithmGet(options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @summary 保存多算法指标信息
+     * @param {Array<IndicatorToMuiltipleAlgorithmOutput>} [indicatorToMuiltipleAlgorithmOutput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1DataCleanAlgorithmMuiltipleAlgorithmSavePost(
+      indicatorToMuiltipleAlgorithmOutput?: Array<IndicatorToMuiltipleAlgorithmOutput>,
+      options?: any,
+    ): AxiosPromise<object> {
+      return localVarFp
+        .apiV1DataCleanAlgorithmMuiltipleAlgorithmSavePost(
+          indicatorToMuiltipleAlgorithmOutput,
+          options,
+        )
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
      * @summary 分页查询清洗算法配置
      * @param {PageInput} [pageInput]
      * @param {*} [options] Override http request option.
@@ -631,6 +777,39 @@ export class DataCleanApi extends BaseAPI {
   ) {
     return DataCleanApiFp(this.configuration)
       .apiV1DataCleanAlgorithmDeletePost(deleteDataCleanAlgorithmConfig, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary 获取多算法指标信息
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof DataCleanApi
+   */
+  public apiV1DataCleanAlgorithmMuiltipleAlgorithmGet(options?: AxiosRequestConfig) {
+    return DataCleanApiFp(this.configuration)
+      .apiV1DataCleanAlgorithmMuiltipleAlgorithmGet(options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary 保存多算法指标信息
+   * @param {Array<IndicatorToMuiltipleAlgorithmOutput>} [indicatorToMuiltipleAlgorithmOutput]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof DataCleanApi
+   */
+  public apiV1DataCleanAlgorithmMuiltipleAlgorithmSavePost(
+    indicatorToMuiltipleAlgorithmOutput?: Array<IndicatorToMuiltipleAlgorithmOutput>,
+    options?: AxiosRequestConfig,
+  ) {
+    return DataCleanApiFp(this.configuration)
+      .apiV1DataCleanAlgorithmMuiltipleAlgorithmSavePost(
+        indicatorToMuiltipleAlgorithmOutput,
+        options,
+      )
       .then((request) => request(this.axios, this.basePath))
   }
 
