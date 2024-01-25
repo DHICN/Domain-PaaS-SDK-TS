@@ -37,6 +37,8 @@ import { BaseStaticOutput } from '../models'
 // @ts-ignore
 import { BaseTimeseriesOutput } from '../models'
 // @ts-ignore
+import { BatchNetworkTimeseriesQueryInput } from '../models'
+// @ts-ignore
 import { NetworkProfile } from '../models'
 // @ts-ignore
 import { NetworkStaticLengthInput } from '../models'
@@ -58,6 +60,49 @@ import { ValveStatisticsOutput } from '../models'
  */
 export const NetworkApiAxiosParamCreator = function (configuration?: Configuration) {
   return {
+    /**
+     * 获取管道多个计算点上的流量、流速、充满度、水位、溢流状态等时间序列结果 Get pipe flow, velocity, filling, water level,flood state etc. time series result on multiple points of a scenario.
+     * @summary 获取管道多点时间序列结果 Get pipe network multi-point time series results
+     * @param {BatchNetworkTimeseriesQueryInput} [batchNetworkTimeseriesQueryInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1ResultNetworkBatchTimeseriesPost: async (
+      batchNetworkTimeseriesQueryInput?: BatchNetworkTimeseriesQueryInput,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/result/network/batch/timeseries`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        batchNetworkTimeseriesQueryInput,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
     /**
      *
      * @summary Get 1D dynamic chainage results of pipe network (pipe)
@@ -168,9 +213,10 @@ export const NetworkApiAxiosParamCreator = function (configuration?: Configurati
      * 获取管道多个计算点上的流量、流速、充满度、水位等时间序列结果 Get pipe flow, velocity, filling, water level, etc. time series result on multiple points of a scenario.
      * @summary 获取管道多点时间序列结果 Get pipe network multi-point time series results
      * @param {string} scenarioId 方案的ID scenario’s ID
-     * @param {string} [pipeDataType] 管道结果类型 pipe result type:  0-PipeFlow;  1-PipeVelocity;  2-PipeFilling;  3-PipeWaterLevel
+     * @param {string} [pipeDataType] 管道结果类型 pipe result type:  0-PipeFlow;  1-PipeVelocity;  2-PipeFilling;  3-PipeWaterDepth  4-PipeWaterLevel  5-PipeFlood
      * @param {string} [pipeID] 管道ID pipe ID
      * @param {*} [options] Override http request option.
+     * @deprecated
      * @throws {RequiredError}
      */
     apiV1ResultNetworkMultipointTimeseriesGet: async (
@@ -785,7 +831,7 @@ export const NetworkApiAxiosParamCreator = function (configuration?: Configurati
      * 获取管道单个计算点上的流量、流速、充满度、水位等时间序列结果 Get pipe flow, velocity, filling, water level, etc. time series result on a single pipe of a scenario.
      * @summary 获取管道单点时间序列结果 Get pipe network single point time series results
      * @param {string} scenarioId 方案的ID scenario’s ID
-     * @param {string} [pipeDataType] 管道结果类型 pipe result type:  0-PipeFlow;  1-PipeVelocity;  2-PipeFilling;  3-PipeWaterLevel
+     * @param {string} [pipeDataType] 管道结果类型 pipe result type:  0-PipeFlow;  1-PipeVelocity;  2-PipeFilling;  3-PipeWaterDepth  4-PipeWaterLevel  5-PipeFlood
      * @param {string} [pipeID] 管道ID pipe ID
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -888,6 +934,24 @@ export const NetworkApiFp = function (configuration?: Configuration) {
   const localVarAxiosParamCreator = NetworkApiAxiosParamCreator(configuration)
   return {
     /**
+     * 获取管道多个计算点上的流量、流速、充满度、水位、溢流状态等时间序列结果 Get pipe flow, velocity, filling, water level,flood state etc. time series result on multiple points of a scenario.
+     * @summary 获取管道多点时间序列结果 Get pipe network multi-point time series results
+     * @param {BatchNetworkTimeseriesQueryInput} [batchNetworkTimeseriesQueryInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1ResultNetworkBatchTimeseriesPost(
+      batchNetworkTimeseriesQueryInput?: BatchNetworkTimeseriesQueryInput,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<BaseDynamicOutput>> {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiV1ResultNetworkBatchTimeseriesPost(
+          batchNetworkTimeseriesQueryInput,
+          options,
+        )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
      *
      * @summary Get 1D dynamic chainage results of pipe network (pipe)
      * @param {string} [scenarioId]
@@ -935,9 +999,10 @@ export const NetworkApiFp = function (configuration?: Configuration) {
      * 获取管道多个计算点上的流量、流速、充满度、水位等时间序列结果 Get pipe flow, velocity, filling, water level, etc. time series result on multiple points of a scenario.
      * @summary 获取管道多点时间序列结果 Get pipe network multi-point time series results
      * @param {string} scenarioId 方案的ID scenario’s ID
-     * @param {string} [pipeDataType] 管道结果类型 pipe result type:  0-PipeFlow;  1-PipeVelocity;  2-PipeFilling;  3-PipeWaterLevel
+     * @param {string} [pipeDataType] 管道结果类型 pipe result type:  0-PipeFlow;  1-PipeVelocity;  2-PipeFilling;  3-PipeWaterDepth  4-PipeWaterLevel  5-PipeFlood
      * @param {string} [pipeID] 管道ID pipe ID
      * @param {*} [options] Override http request option.
+     * @deprecated
      * @throws {RequiredError}
      */
     async apiV1ResultNetworkMultipointTimeseriesGet(
@@ -1205,7 +1270,7 @@ export const NetworkApiFp = function (configuration?: Configuration) {
      * 获取管道单个计算点上的流量、流速、充满度、水位等时间序列结果 Get pipe flow, velocity, filling, water level, etc. time series result on a single pipe of a scenario.
      * @summary 获取管道单点时间序列结果 Get pipe network single point time series results
      * @param {string} scenarioId 方案的ID scenario’s ID
-     * @param {string} [pipeDataType] 管道结果类型 pipe result type:  0-PipeFlow;  1-PipeVelocity;  2-PipeFilling;  3-PipeWaterLevel
+     * @param {string} [pipeDataType] 管道结果类型 pipe result type:  0-PipeFlow;  1-PipeVelocity;  2-PipeFilling;  3-PipeWaterDepth  4-PipeWaterLevel  5-PipeFlood
      * @param {string} [pipeID] 管道ID pipe ID
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -1256,6 +1321,21 @@ export const NetworkApiFactory = function (
   const localVarFp = NetworkApiFp(configuration)
   return {
     /**
+     * 获取管道多个计算点上的流量、流速、充满度、水位、溢流状态等时间序列结果 Get pipe flow, velocity, filling, water level,flood state etc. time series result on multiple points of a scenario.
+     * @summary 获取管道多点时间序列结果 Get pipe network multi-point time series results
+     * @param {BatchNetworkTimeseriesQueryInput} [batchNetworkTimeseriesQueryInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1ResultNetworkBatchTimeseriesPost(
+      batchNetworkTimeseriesQueryInput?: BatchNetworkTimeseriesQueryInput,
+      options?: any,
+    ): AxiosPromise<BaseDynamicOutput> {
+      return localVarFp
+        .apiV1ResultNetworkBatchTimeseriesPost(batchNetworkTimeseriesQueryInput, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
      *
      * @summary Get 1D dynamic chainage results of pipe network (pipe)
      * @param {string} [scenarioId]
@@ -1304,9 +1384,10 @@ export const NetworkApiFactory = function (
      * 获取管道多个计算点上的流量、流速、充满度、水位等时间序列结果 Get pipe flow, velocity, filling, water level, etc. time series result on multiple points of a scenario.
      * @summary 获取管道多点时间序列结果 Get pipe network multi-point time series results
      * @param {string} scenarioId 方案的ID scenario’s ID
-     * @param {string} [pipeDataType] 管道结果类型 pipe result type:  0-PipeFlow;  1-PipeVelocity;  2-PipeFilling;  3-PipeWaterLevel
+     * @param {string} [pipeDataType] 管道结果类型 pipe result type:  0-PipeFlow;  1-PipeVelocity;  2-PipeFilling;  3-PipeWaterDepth  4-PipeWaterLevel  5-PipeFlood
      * @param {string} [pipeID] 管道ID pipe ID
      * @param {*} [options] Override http request option.
+     * @deprecated
      * @throws {RequiredError}
      */
     apiV1ResultNetworkMultipointTimeseriesGet(
@@ -1527,7 +1608,7 @@ export const NetworkApiFactory = function (
      * 获取管道单个计算点上的流量、流速、充满度、水位等时间序列结果 Get pipe flow, velocity, filling, water level, etc. time series result on a single pipe of a scenario.
      * @summary 获取管道单点时间序列结果 Get pipe network single point time series results
      * @param {string} scenarioId 方案的ID scenario’s ID
-     * @param {string} [pipeDataType] 管道结果类型 pipe result type:  0-PipeFlow;  1-PipeVelocity;  2-PipeFilling;  3-PipeWaterLevel
+     * @param {string} [pipeDataType] 管道结果类型 pipe result type:  0-PipeFlow;  1-PipeVelocity;  2-PipeFilling;  3-PipeWaterDepth  4-PipeWaterLevel  5-PipeFlood
      * @param {string} [pipeID] 管道ID pipe ID
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -1567,6 +1648,23 @@ export const NetworkApiFactory = function (
  * @extends {BaseAPI}
  */
 export class NetworkApi extends BaseAPI {
+  /**
+   * 获取管道多个计算点上的流量、流速、充满度、水位、溢流状态等时间序列结果 Get pipe flow, velocity, filling, water level,flood state etc. time series result on multiple points of a scenario.
+   * @summary 获取管道多点时间序列结果 Get pipe network multi-point time series results
+   * @param {BatchNetworkTimeseriesQueryInput} [batchNetworkTimeseriesQueryInput]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof NetworkApi
+   */
+  public apiV1ResultNetworkBatchTimeseriesPost(
+    batchNetworkTimeseriesQueryInput?: BatchNetworkTimeseriesQueryInput,
+    options?: AxiosRequestConfig,
+  ) {
+    return NetworkApiFp(this.configuration)
+      .apiV1ResultNetworkBatchTimeseriesPost(batchNetworkTimeseriesQueryInput, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
   /**
    *
    * @summary Get 1D dynamic chainage results of pipe network (pipe)
@@ -1617,9 +1715,10 @@ export class NetworkApi extends BaseAPI {
    * 获取管道多个计算点上的流量、流速、充满度、水位等时间序列结果 Get pipe flow, velocity, filling, water level, etc. time series result on multiple points of a scenario.
    * @summary 获取管道多点时间序列结果 Get pipe network multi-point time series results
    * @param {string} scenarioId 方案的ID scenario’s ID
-   * @param {string} [pipeDataType] 管道结果类型 pipe result type:  0-PipeFlow;  1-PipeVelocity;  2-PipeFilling;  3-PipeWaterLevel
+   * @param {string} [pipeDataType] 管道结果类型 pipe result type:  0-PipeFlow;  1-PipeVelocity;  2-PipeFilling;  3-PipeWaterDepth  4-PipeWaterLevel  5-PipeFlood
    * @param {string} [pipeID] 管道ID pipe ID
    * @param {*} [options] Override http request option.
+   * @deprecated
    * @throws {RequiredError}
    * @memberof NetworkApi
    */
@@ -1858,7 +1957,7 @@ export class NetworkApi extends BaseAPI {
    * 获取管道单个计算点上的流量、流速、充满度、水位等时间序列结果 Get pipe flow, velocity, filling, water level, etc. time series result on a single pipe of a scenario.
    * @summary 获取管道单点时间序列结果 Get pipe network single point time series results
    * @param {string} scenarioId 方案的ID scenario’s ID
-   * @param {string} [pipeDataType] 管道结果类型 pipe result type:  0-PipeFlow;  1-PipeVelocity;  2-PipeFilling;  3-PipeWaterLevel
+   * @param {string} [pipeDataType] 管道结果类型 pipe result type:  0-PipeFlow;  1-PipeVelocity;  2-PipeFilling;  3-PipeWaterDepth  4-PipeWaterLevel  5-PipeFlood
    * @param {string} [pipeID] 管道ID pipe ID
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
