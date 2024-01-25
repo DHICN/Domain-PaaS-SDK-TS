@@ -29,4 +29,10 @@ export interface NodeItem {
    * @memberof NodeItem
    */
   invertLevel?: number
+  /**
+   * pipe ground level
+   * @type {number}
+   * @memberof NodeItem
+   */
+  groundLevel?: number
 }
