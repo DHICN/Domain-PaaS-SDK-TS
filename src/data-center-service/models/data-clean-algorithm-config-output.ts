@@ -64,7 +64,7 @@ export interface DataCleanAlgorithmConfigOutput {
    */
   cleanFrequency?: number
   /**
-   * 0-Unknown 1-Amount 2-Time
+   * 0-Amount 1-Time
    * @type {number}
    * @memberof DataCleanAlgorithmConfigOutput
    */
@@ -76,7 +76,7 @@ export interface DataCleanAlgorithmConfigOutput {
    */
   dataWindowSize?: number
   /**
-   * 0-Unknown 1-Numbers 2-Minute
+   * 0-Numbers 1-Minute
    * @type {number}
    * @memberof DataCleanAlgorithmConfigOutput
    */
@@ -125,7 +125,6 @@ export type DataCleanAlgorithmConfigOutputCleanModelEnum =
 export const DataCleanAlgorithmConfigOutputDataWindowTypeEnum = {
   '0': 0 as number,
   '1': 1 as number,
-  '2': 2 as number,
 } as const
 
 export type DataCleanAlgorithmConfigOutputDataWindowTypeEnum =
@@ -133,7 +132,6 @@ export type DataCleanAlgorithmConfigOutputDataWindowTypeEnum =
 export const DataCleanAlgorithmConfigOutputDataWindowUnitEnum = {
   '0': 0 as number,
   '1': 1 as number,
-  '2': 2 as number,
 } as const
 
 export type DataCleanAlgorithmConfigOutputDataWindowUnitEnum =

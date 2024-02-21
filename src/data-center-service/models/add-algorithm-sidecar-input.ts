@@ -40,12 +40,6 @@ export interface AddAlgorithmSidecarInput {
    * @type {string}
    * @memberof AddAlgorithmSidecarInput
    */
-  port: string
-  /**
-   *
-   * @type {string}
-   * @memberof AddAlgorithmSidecarInput
-   */
   scriptName: string
   /**
    *
@@ -53,18 +47,6 @@ export interface AddAlgorithmSidecarInput {
    * @memberof AddAlgorithmSidecarInput
    */
   scriptFilePath: string
-  /**
-   * 脚本启用状态：0停用，1启用
-   * @type {number}
-   * @memberof AddAlgorithmSidecarInput
-   */
-  status?: number
-  /**
-   * 算法运行url
-   * @type {string}
-   * @memberof AddAlgorithmSidecarInput
-   */
-  algorithmRunUrl?: string | null
   /**
    * 备注
    * @type {string}
