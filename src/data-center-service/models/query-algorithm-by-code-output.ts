@@ -11,12 +11,22 @@
  * Do not edit the class manually.
  */
 
+// May contain unused imports in some cases
+// @ts-ignore
+import { AlgorithmInstanceConfigDto } from './algorithm-instance-config-dto'
+
 /**
  *
  * @export
  * @interface QueryAlgorithmByCodeOutput
  */
 export interface QueryAlgorithmByCodeOutput {
+  /**
+   *
+   * @type {string}
+   * @memberof QueryAlgorithmByCodeOutput
+   */
+  id?: string
   /**
    *
    * @type {string}
@@ -95,4 +105,10 @@ export interface QueryAlgorithmByCodeOutput {
    * @memberof QueryAlgorithmByCodeOutput
    */
   scriptType?: string | null
+  /**
+   *
+   * @type {Array<AlgorithmInstanceConfigDto>}
+   * @memberof QueryAlgorithmByCodeOutput
+   */
+  algorithmInstanceConfigs?: Array<AlgorithmInstanceConfigDto> | null
 }
