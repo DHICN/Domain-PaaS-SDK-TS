@@ -16,6 +16,9 @@
 import { BusinessTypeEnum } from './business-type-enum'
 // May contain unused imports in some cases
 // @ts-ignore
+import { LibraryTypeEnum } from './library-type-enum'
+// May contain unused imports in some cases
+// @ts-ignore
 import { TriggerTypeEnum } from './trigger-type-enum'
 
 /**
@@ -38,16 +41,16 @@ export interface SaveAutoForecastConfigInput {
   triggerType?: TriggerTypeEnum
   /**
    * 触发的降雨阈值（单位：毫米） trigger rainfall threshold (unit:mm)
-   * @type {string}
+   * @type {number}
    * @memberof SaveAutoForecastConfigInput
    */
-  triggerThreshold?: string | null
+  triggerThreshold?: number | null
   /**
    * 滚动停止的降雨阈值 auto forecast stop rainfall threshold
-   * @type {string}
+   * @type {number}
    * @memberof SaveAutoForecastConfigInput
    */
-  triggerCancelThreshold?: string | null
+  triggerCancelThreshold?: number | null
   /**
    * 滚动预报触发后的执行周期（单位：小时） cycle time after auto forecast be triggered (unit:hour)
    * @type {number}
@@ -68,10 +71,10 @@ export interface SaveAutoForecastConfigInput {
   forecastHours?: number | null
   /**
    *
-   * @type {object}
+   * @type {LibraryTypeEnum}
    * @memberof SaveAutoForecastConfigInput
    */
-  libraryType?: object
+  libraryType?: LibraryTypeEnum
   /**
    *
    * @type {BusinessTypeEnum}
@@ -79,9 +82,15 @@ export interface SaveAutoForecastConfigInput {
    */
   businessType?: BusinessTypeEnum
   /**
-   * 预报降雨阈值统计的时间范围（单位：小时） statistic duration of forecast rainfall (unit:hour)
+   * 预报降雨阈值统计的时间范围（单位：分钟） statistic duration of forecast rainfall (unit:minutes)
    * @type {number}
    * @memberof SaveAutoForecastConfigInput
    */
   duration?: number | null
+  /**
+   * 是否启用
+   * @type {boolean}
+   * @memberof SaveAutoForecastConfigInput
+   */
+  isEnable?: boolean
 }

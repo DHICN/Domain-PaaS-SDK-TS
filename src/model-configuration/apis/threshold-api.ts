@@ -88,6 +88,49 @@ export const ThresholdApiAxiosParamCreator = function (configuration?: Configura
       }
     },
     /**
+     * 根据ID更新对应的内涝风险等级与阈值配置信息 Update flood risk level and threshold config item by id.
+     * @summary 更新内涝风险等级阈值配置信息 Update flood risk level threshold config item
+     * @param {Array<UpdateFloodingThresholdInput>} [updateFloodingThresholdInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1ModelConfigurationThresholdBatchUpdatePost: async (
+      updateFloodingThresholdInput?: Array<UpdateFloodingThresholdInput>,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/model-configuration/threshold/batch-update`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        updateFloodingThresholdInput,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
      * 获取所有的内涝风险等级阈值配置项 Get all the flood risk threshold config items.
      * @summary 获取内涝风险等级阈值配置信息 Get flood risk level threshold config items
      * @param {*} [options] Override http request option.
@@ -276,6 +319,24 @@ export const ThresholdApiFp = function (configuration?: Configuration) {
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**
+     * 根据ID更新对应的内涝风险等级与阈值配置信息 Update flood risk level and threshold config item by id.
+     * @summary 更新内涝风险等级阈值配置信息 Update flood risk level threshold config item
+     * @param {Array<UpdateFloodingThresholdInput>} [updateFloodingThresholdInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1ModelConfigurationThresholdBatchUpdatePost(
+      updateFloodingThresholdInput?: Array<UpdateFloodingThresholdInput>,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<boolean>> {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiV1ModelConfigurationThresholdBatchUpdatePost(
+          updateFloodingThresholdInput,
+          options,
+        )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
      * 获取所有的内涝风险等级阈值配置项 Get all the flood risk threshold config items.
      * @summary 获取内涝风险等级阈值配置信息 Get flood risk level threshold config items
      * @param {*} [options] Override http request option.
@@ -375,6 +436,21 @@ export const ThresholdApiFactory = function (
         .then((request) => request(axios, basePath))
     },
     /**
+     * 根据ID更新对应的内涝风险等级与阈值配置信息 Update flood risk level and threshold config item by id.
+     * @summary 更新内涝风险等级阈值配置信息 Update flood risk level threshold config item
+     * @param {Array<UpdateFloodingThresholdInput>} [updateFloodingThresholdInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1ModelConfigurationThresholdBatchUpdatePost(
+      updateFloodingThresholdInput?: Array<UpdateFloodingThresholdInput>,
+      options?: any,
+    ): AxiosPromise<boolean> {
+      return localVarFp
+        .apiV1ModelConfigurationThresholdBatchUpdatePost(updateFloodingThresholdInput, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
      * 获取所有的内涝风险等级阈值配置项 Get all the flood risk threshold config items.
      * @summary 获取内涝风险等级阈值配置信息 Get flood risk level threshold config items
      * @param {*} [options] Override http request option.
@@ -453,6 +529,23 @@ export class ThresholdApi extends BaseAPI {
   ) {
     return ThresholdApiFp(this.configuration)
       .apiV1ModelConfigurationThresholdAddPost(addFloodingThresholdInput, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   * 根据ID更新对应的内涝风险等级与阈值配置信息 Update flood risk level and threshold config item by id.
+   * @summary 更新内涝风险等级阈值配置信息 Update flood risk level threshold config item
+   * @param {Array<UpdateFloodingThresholdInput>} [updateFloodingThresholdInput]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof ThresholdApi
+   */
+  public apiV1ModelConfigurationThresholdBatchUpdatePost(
+    updateFloodingThresholdInput?: Array<UpdateFloodingThresholdInput>,
+    options?: AxiosRequestConfig,
+  ) {
+    return ThresholdApiFp(this.configuration)
+      .apiV1ModelConfigurationThresholdBatchUpdatePost(updateFloodingThresholdInput, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
