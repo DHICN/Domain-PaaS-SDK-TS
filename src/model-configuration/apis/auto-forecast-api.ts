@@ -44,6 +44,49 @@ export const AutoForecastApiAxiosParamCreator = function (configuration?: Config
   return {
     /**
      *
+     * @summary 新增一条配置
+     * @param {SaveAutoForecastConfigInput} [saveAutoForecastConfigInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1ModelConfigurationAutoforecastAddConfigPost: async (
+      saveAutoForecastConfigInput?: SaveAutoForecastConfigInput,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/model-configuration/autoforecast/add-config`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        saveAutoForecastConfigInput,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
      * @summary 获取所有的滚动预报配置 Get all the auto forecast configs
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -130,6 +173,7 @@ export const AutoForecastApiAxiosParamCreator = function (configuration?: Config
      * @summary 保存一条滚动预报配置 Save an auto forecast config
      * @param {SaveAutoForecastConfigInput} [saveAutoForecastConfigInput]
      * @param {*} [options] Override http request option.
+     * @deprecated
      * @throws {RequiredError}
      */
     apiV1ModelConfigurationAutoforecastSaveconfigPost: async (
@@ -137,6 +181,49 @@ export const AutoForecastApiAxiosParamCreator = function (configuration?: Config
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
       const localVarPath = `/api/v1/model-configuration/autoforecast/saveconfig`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        saveAutoForecastConfigInput,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 更新预报配置
+     * @param {Array<SaveAutoForecastConfigInput>} [saveAutoForecastConfigInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1ModelConfigurationAutoforecastUpdateConfigPost: async (
+      saveAutoForecastConfigInput?: Array<SaveAutoForecastConfigInput>,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/model-configuration/autoforecast/update-config`
       // use dummy base URL string because the URL constructor only accepts absolute URLs.
       const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
       let baseOptions
@@ -180,6 +267,24 @@ export const AutoForecastApiFp = function (configuration?: Configuration) {
   return {
     /**
      *
+     * @summary 新增一条配置
+     * @param {SaveAutoForecastConfigInput} [saveAutoForecastConfigInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1ModelConfigurationAutoforecastAddConfigPost(
+      saveAutoForecastConfigInput?: SaveAutoForecastConfigInput,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<string>> {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiV1ModelConfigurationAutoforecastAddConfigPost(
+          saveAutoForecastConfigInput,
+          options,
+        )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
      * @summary 获取所有的滚动预报配置 Get all the auto forecast configs
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -219,6 +324,7 @@ export const AutoForecastApiFp = function (configuration?: Configuration) {
      * @summary 保存一条滚动预报配置 Save an auto forecast config
      * @param {SaveAutoForecastConfigInput} [saveAutoForecastConfigInput]
      * @param {*} [options] Override http request option.
+     * @deprecated
      * @throws {RequiredError}
      */
     async apiV1ModelConfigurationAutoforecastSaveconfigPost(
@@ -227,6 +333,24 @@ export const AutoForecastApiFp = function (configuration?: Configuration) {
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<string>> {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.apiV1ModelConfigurationAutoforecastSaveconfigPost(
+          saveAutoForecastConfigInput,
+          options,
+        )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
+     * @summary 更新预报配置
+     * @param {Array<SaveAutoForecastConfigInput>} [saveAutoForecastConfigInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1ModelConfigurationAutoforecastUpdateConfigPost(
+      saveAutoForecastConfigInput?: Array<SaveAutoForecastConfigInput>,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<boolean>> {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiV1ModelConfigurationAutoforecastUpdateConfigPost(
           saveAutoForecastConfigInput,
           options,
         )
@@ -246,6 +370,21 @@ export const AutoForecastApiFactory = function (
 ) {
   const localVarFp = AutoForecastApiFp(configuration)
   return {
+    /**
+     *
+     * @summary 新增一条配置
+     * @param {SaveAutoForecastConfigInput} [saveAutoForecastConfigInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1ModelConfigurationAutoforecastAddConfigPost(
+      saveAutoForecastConfigInput?: SaveAutoForecastConfigInput,
+      options?: any,
+    ): AxiosPromise<string> {
+      return localVarFp
+        .apiV1ModelConfigurationAutoforecastAddConfigPost(saveAutoForecastConfigInput, options)
+        .then((request) => request(axios, basePath))
+    },
     /**
      *
      * @summary 获取所有的滚动预报配置 Get all the auto forecast configs
@@ -281,6 +420,7 @@ export const AutoForecastApiFactory = function (
      * @summary 保存一条滚动预报配置 Save an auto forecast config
      * @param {SaveAutoForecastConfigInput} [saveAutoForecastConfigInput]
      * @param {*} [options] Override http request option.
+     * @deprecated
      * @throws {RequiredError}
      */
     apiV1ModelConfigurationAutoforecastSaveconfigPost(
@@ -289,6 +429,21 @@ export const AutoForecastApiFactory = function (
     ): AxiosPromise<string> {
       return localVarFp
         .apiV1ModelConfigurationAutoforecastSaveconfigPost(saveAutoForecastConfigInput, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @summary 更新预报配置
+     * @param {Array<SaveAutoForecastConfigInput>} [saveAutoForecastConfigInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1ModelConfigurationAutoforecastUpdateConfigPost(
+      saveAutoForecastConfigInput?: Array<SaveAutoForecastConfigInput>,
+      options?: any,
+    ): AxiosPromise<boolean> {
+      return localVarFp
+        .apiV1ModelConfigurationAutoforecastUpdateConfigPost(saveAutoForecastConfigInput, options)
         .then((request) => request(axios, basePath))
     },
   }
@@ -301,6 +456,23 @@ export const AutoForecastApiFactory = function (
  * @extends {BaseAPI}
  */
 export class AutoForecastApi extends BaseAPI {
+  /**
+   *
+   * @summary 新增一条配置
+   * @param {SaveAutoForecastConfigInput} [saveAutoForecastConfigInput]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof AutoForecastApi
+   */
+  public apiV1ModelConfigurationAutoforecastAddConfigPost(
+    saveAutoForecastConfigInput?: SaveAutoForecastConfigInput,
+    options?: AxiosRequestConfig,
+  ) {
+    return AutoForecastApiFp(this.configuration)
+      .apiV1ModelConfigurationAutoforecastAddConfigPost(saveAutoForecastConfigInput, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
   /**
    *
    * @summary 获取所有的滚动预报配置 Get all the auto forecast configs
@@ -338,6 +510,7 @@ export class AutoForecastApi extends BaseAPI {
    * @summary 保存一条滚动预报配置 Save an auto forecast config
    * @param {SaveAutoForecastConfigInput} [saveAutoForecastConfigInput]
    * @param {*} [options] Override http request option.
+   * @deprecated
    * @throws {RequiredError}
    * @memberof AutoForecastApi
    */
@@ -347,6 +520,23 @@ export class AutoForecastApi extends BaseAPI {
   ) {
     return AutoForecastApiFp(this.configuration)
       .apiV1ModelConfigurationAutoforecastSaveconfigPost(saveAutoForecastConfigInput, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary 更新预报配置
+   * @param {Array<SaveAutoForecastConfigInput>} [saveAutoForecastConfigInput]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof AutoForecastApi
+   */
+  public apiV1ModelConfigurationAutoforecastUpdateConfigPost(
+    saveAutoForecastConfigInput?: Array<SaveAutoForecastConfigInput>,
+    options?: AxiosRequestConfig,
+  ) {
+    return AutoForecastApiFp(this.configuration)
+      .apiV1ModelConfigurationAutoforecastUpdateConfigPost(saveAutoForecastConfigInput, options)
       .then((request) => request(this.axios, this.basePath))
   }
 }
