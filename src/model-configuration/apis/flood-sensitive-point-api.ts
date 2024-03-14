@@ -31,6 +31,8 @@ import {
 // @ts-ignore
 import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } from '../base'
 // @ts-ignore
+import { AddFloodSensitivePointInput } from '../models'
+// @ts-ignore
 import { FloodSensitivePointInfo } from '../models'
 // @ts-ignore
 import { RemoteServiceErrorResponse } from '../models'
@@ -43,12 +45,16 @@ export const FloodSensitivePointApiAxiosParamCreator = function (configuration?:
     /**
      *
      * @summary 添加一个易涝点 Add a flood sensitive point
-     * @param {FloodSensitivePointInfo} [floodSensitivePointInfo]
+     * @param {string} [tenantId]
+     * @param {string} [debugHeaderSign]
+     * @param {AddFloodSensitivePointInput} [addFloodSensitivePointInput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiV1ModelConfigurationSensitivePointAddPost: async (
-      floodSensitivePointInfo?: FloodSensitivePointInfo,
+      tenantId?: string,
+      debugHeaderSign?: string,
+      addFloodSensitivePointInput?: AddFloodSensitivePointInput,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
       const localVarPath = `/api/v1/model-configuration/sensitive-point/add`
@@ -63,6 +69,14 @@ export const FloodSensitivePointApiAxiosParamCreator = function (configuration?:
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
 
+      if (tenantId != null) {
+        localVarHeaderParameter['tenantId'] = String(tenantId)
+      }
+
+      if (debugHeaderSign != null) {
+        localVarHeaderParameter['debug-header-sign'] = String(debugHeaderSign)
+      }
+
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
       setSearchParams(localVarUrlObj, localVarQueryParameter)
@@ -73,7 +87,7 @@ export const FloodSensitivePointApiAxiosParamCreator = function (configuration?:
         ...options.headers,
       }
       localVarRequestOptions.data = serializeDataIfNeeded(
-        floodSensitivePointInfo,
+        addFloodSensitivePointInput,
         localVarRequestOptions,
         configuration,
       )
@@ -87,11 +101,15 @@ export const FloodSensitivePointApiAxiosParamCreator = function (configuration?:
      * 根据模板方案的ID，查询所有的易涝点信息列表 Get all the flood sensitive points by template scenario id.
      * @summary 获取所有的易涝点信息列表 Get all the flood sensitive points
      * @param {string} [scenarioId] 模板方案ID template scenario\&#39;s id
+     * @param {string} [tenantId]
+     * @param {string} [debugHeaderSign]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiV1ModelConfigurationSensitivePointListGet: async (
       scenarioId?: string,
+      tenantId?: string,
+      debugHeaderSign?: string,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
       const localVarPath = `/api/v1/model-configuration/sensitive-point/list`
@@ -108,6 +126,14 @@ export const FloodSensitivePointApiAxiosParamCreator = function (configuration?:
 
       if (scenarioId !== undefined) {
         localVarQueryParameter['ScenarioId'] = scenarioId
+      }
+
+      if (tenantId != null) {
+        localVarHeaderParameter['tenantId'] = String(tenantId)
+      }
+
+      if (debugHeaderSign != null) {
+        localVarHeaderParameter['debug-header-sign'] = String(debugHeaderSign)
       }
 
       setSearchParams(localVarUrlObj, localVarQueryParameter)
@@ -127,11 +153,15 @@ export const FloodSensitivePointApiAxiosParamCreator = function (configuration?:
      * 根据ID删除一个易涝点信息 Delete a flood sensitive point by Id.
      * @summary 删除一个易涝点 Remove a flood sensitive point
      * @param {string} [id] flood sensitive point id
+     * @param {string} [tenantId]
+     * @param {string} [debugHeaderSign]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiV1ModelConfigurationSensitivePointRemoveDelete: async (
       id?: string,
+      tenantId?: string,
+      debugHeaderSign?: string,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
       const localVarPath = `/api/v1/model-configuration/sensitive-point/remove`
@@ -150,6 +180,14 @@ export const FloodSensitivePointApiAxiosParamCreator = function (configuration?:
         localVarQueryParameter['Id'] = id
       }
 
+      if (tenantId != null) {
+        localVarHeaderParameter['tenantId'] = String(tenantId)
+      }
+
+      if (debugHeaderSign != null) {
+        localVarHeaderParameter['debug-header-sign'] = String(debugHeaderSign)
+      }
+
       setSearchParams(localVarUrlObj, localVarQueryParameter)
       let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
       localVarRequestOptions.headers = {
@@ -164,13 +202,72 @@ export const FloodSensitivePointApiAxiosParamCreator = function (configuration?:
       }
     },
     /**
+     *
+     * @summary 重新保存易捞点数据，会先按方案删除原数据，然后增加新数据
+     * @param {string} [tenantId]
+     * @param {string} [debugHeaderSign]
+     * @param {Array<AddFloodSensitivePointInput>} [addFloodSensitivePointInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1ModelConfigurationSensitivePointResavePost: async (
+      tenantId?: string,
+      debugHeaderSign?: string,
+      addFloodSensitivePointInput?: Array<AddFloodSensitivePointInput>,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/model-configuration/sensitive-point/resave`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      if (tenantId != null) {
+        localVarHeaderParameter['tenantId'] = String(tenantId)
+      }
+
+      if (debugHeaderSign != null) {
+        localVarHeaderParameter['debug-header-sign'] = String(debugHeaderSign)
+      }
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        addFloodSensitivePointInput,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
      * 根据ID更新一个易涝点信息 Update a flood sensitive point by Id.
      * @summary 更新一个易涝点信息 Update a flood sensitive point
+     * @param {string} [tenantId]
+     * @param {string} [debugHeaderSign]
      * @param {FloodSensitivePointInfo} [floodSensitivePointInfo]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiV1ModelConfigurationSensitivePointUpdatePut: async (
+      tenantId?: string,
+      debugHeaderSign?: string,
       floodSensitivePointInfo?: FloodSensitivePointInfo,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
@@ -185,6 +282,14 @@ export const FloodSensitivePointApiAxiosParamCreator = function (configuration?:
       const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
+
+      if (tenantId != null) {
+        localVarHeaderParameter['tenantId'] = String(tenantId)
+      }
+
+      if (debugHeaderSign != null) {
+        localVarHeaderParameter['debug-header-sign'] = String(debugHeaderSign)
+      }
 
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
@@ -219,17 +324,23 @@ export const FloodSensitivePointApiFp = function (configuration?: Configuration)
     /**
      *
      * @summary 添加一个易涝点 Add a flood sensitive point
-     * @param {FloodSensitivePointInfo} [floodSensitivePointInfo]
+     * @param {string} [tenantId]
+     * @param {string} [debugHeaderSign]
+     * @param {AddFloodSensitivePointInput} [addFloodSensitivePointInput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async apiV1ModelConfigurationSensitivePointAddPost(
-      floodSensitivePointInfo?: FloodSensitivePointInfo,
+      tenantId?: string,
+      debugHeaderSign?: string,
+      addFloodSensitivePointInput?: AddFloodSensitivePointInput,
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<string>> {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.apiV1ModelConfigurationSensitivePointAddPost(
-          floodSensitivePointInfo,
+          tenantId,
+          debugHeaderSign,
+          addFloodSensitivePointInput,
           options,
         )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
@@ -238,11 +349,15 @@ export const FloodSensitivePointApiFp = function (configuration?: Configuration)
      * 根据模板方案的ID，查询所有的易涝点信息列表 Get all the flood sensitive points by template scenario id.
      * @summary 获取所有的易涝点信息列表 Get all the flood sensitive points
      * @param {string} [scenarioId] 模板方案ID template scenario\&#39;s id
+     * @param {string} [tenantId]
+     * @param {string} [debugHeaderSign]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async apiV1ModelConfigurationSensitivePointListGet(
       scenarioId?: string,
+      tenantId?: string,
+      debugHeaderSign?: string,
       options?: AxiosRequestConfig,
     ): Promise<
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<FloodSensitivePointInfo>>
@@ -250,6 +365,8 @@ export const FloodSensitivePointApiFp = function (configuration?: Configuration)
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.apiV1ModelConfigurationSensitivePointListGet(
           scenarioId,
+          tenantId,
+          debugHeaderSign,
           options,
         )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
@@ -258,16 +375,46 @@ export const FloodSensitivePointApiFp = function (configuration?: Configuration)
      * 根据ID删除一个易涝点信息 Delete a flood sensitive point by Id.
      * @summary 删除一个易涝点 Remove a flood sensitive point
      * @param {string} [id] flood sensitive point id
+     * @param {string} [tenantId]
+     * @param {string} [debugHeaderSign]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async apiV1ModelConfigurationSensitivePointRemoveDelete(
       id?: string,
+      tenantId?: string,
+      debugHeaderSign?: string,
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.apiV1ModelConfigurationSensitivePointRemoveDelete(
           id,
+          tenantId,
+          debugHeaderSign,
+          options,
+        )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
+     * @summary 重新保存易捞点数据，会先按方案删除原数据，然后增加新数据
+     * @param {string} [tenantId]
+     * @param {string} [debugHeaderSign]
+     * @param {Array<AddFloodSensitivePointInput>} [addFloodSensitivePointInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1ModelConfigurationSensitivePointResavePost(
+      tenantId?: string,
+      debugHeaderSign?: string,
+      addFloodSensitivePointInput?: Array<AddFloodSensitivePointInput>,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<boolean>> {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiV1ModelConfigurationSensitivePointResavePost(
+          tenantId,
+          debugHeaderSign,
+          addFloodSensitivePointInput,
           options,
         )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
@@ -275,16 +422,22 @@ export const FloodSensitivePointApiFp = function (configuration?: Configuration)
     /**
      * 根据ID更新一个易涝点信息 Update a flood sensitive point by Id.
      * @summary 更新一个易涝点信息 Update a flood sensitive point
+     * @param {string} [tenantId]
+     * @param {string} [debugHeaderSign]
      * @param {FloodSensitivePointInfo} [floodSensitivePointInfo]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async apiV1ModelConfigurationSensitivePointUpdatePut(
+      tenantId?: string,
+      debugHeaderSign?: string,
       floodSensitivePointInfo?: FloodSensitivePointInfo,
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.apiV1ModelConfigurationSensitivePointUpdatePut(
+          tenantId,
+          debugHeaderSign,
           floodSensitivePointInfo,
           options,
         )
@@ -307,61 +460,116 @@ export const FloodSensitivePointApiFactory = function (
     /**
      *
      * @summary 添加一个易涝点 Add a flood sensitive point
-     * @param {FloodSensitivePointInfo} [floodSensitivePointInfo]
+     * @param {string} [tenantId]
+     * @param {string} [debugHeaderSign]
+     * @param {AddFloodSensitivePointInput} [addFloodSensitivePointInput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiV1ModelConfigurationSensitivePointAddPost(
-      floodSensitivePointInfo?: FloodSensitivePointInfo,
+      tenantId?: string,
+      debugHeaderSign?: string,
+      addFloodSensitivePointInput?: AddFloodSensitivePointInput,
       options?: any,
     ): AxiosPromise<string> {
       return localVarFp
-        .apiV1ModelConfigurationSensitivePointAddPost(floodSensitivePointInfo, options)
+        .apiV1ModelConfigurationSensitivePointAddPost(
+          tenantId,
+          debugHeaderSign,
+          addFloodSensitivePointInput,
+          options,
+        )
         .then((request) => request(axios, basePath))
     },
     /**
      * 根据模板方案的ID，查询所有的易涝点信息列表 Get all the flood sensitive points by template scenario id.
      * @summary 获取所有的易涝点信息列表 Get all the flood sensitive points
      * @param {string} [scenarioId] 模板方案ID template scenario\&#39;s id
+     * @param {string} [tenantId]
+     * @param {string} [debugHeaderSign]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiV1ModelConfigurationSensitivePointListGet(
       scenarioId?: string,
+      tenantId?: string,
+      debugHeaderSign?: string,
       options?: any,
     ): AxiosPromise<Array<FloodSensitivePointInfo>> {
       return localVarFp
-        .apiV1ModelConfigurationSensitivePointListGet(scenarioId, options)
+        .apiV1ModelConfigurationSensitivePointListGet(
+          scenarioId,
+          tenantId,
+          debugHeaderSign,
+          options,
+        )
         .then((request) => request(axios, basePath))
     },
     /**
      * 根据ID删除一个易涝点信息 Delete a flood sensitive point by Id.
      * @summary 删除一个易涝点 Remove a flood sensitive point
      * @param {string} [id] flood sensitive point id
+     * @param {string} [tenantId]
+     * @param {string} [debugHeaderSign]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiV1ModelConfigurationSensitivePointRemoveDelete(
       id?: string,
+      tenantId?: string,
+      debugHeaderSign?: string,
       options?: any,
     ): AxiosPromise<object> {
       return localVarFp
-        .apiV1ModelConfigurationSensitivePointRemoveDelete(id, options)
+        .apiV1ModelConfigurationSensitivePointRemoveDelete(id, tenantId, debugHeaderSign, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @summary 重新保存易捞点数据，会先按方案删除原数据，然后增加新数据
+     * @param {string} [tenantId]
+     * @param {string} [debugHeaderSign]
+     * @param {Array<AddFloodSensitivePointInput>} [addFloodSensitivePointInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1ModelConfigurationSensitivePointResavePost(
+      tenantId?: string,
+      debugHeaderSign?: string,
+      addFloodSensitivePointInput?: Array<AddFloodSensitivePointInput>,
+      options?: any,
+    ): AxiosPromise<boolean> {
+      return localVarFp
+        .apiV1ModelConfigurationSensitivePointResavePost(
+          tenantId,
+          debugHeaderSign,
+          addFloodSensitivePointInput,
+          options,
+        )
         .then((request) => request(axios, basePath))
     },
     /**
      * 根据ID更新一个易涝点信息 Update a flood sensitive point by Id.
      * @summary 更新一个易涝点信息 Update a flood sensitive point
+     * @param {string} [tenantId]
+     * @param {string} [debugHeaderSign]
      * @param {FloodSensitivePointInfo} [floodSensitivePointInfo]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiV1ModelConfigurationSensitivePointUpdatePut(
+      tenantId?: string,
+      debugHeaderSign?: string,
       floodSensitivePointInfo?: FloodSensitivePointInfo,
       options?: any,
     ): AxiosPromise<object> {
       return localVarFp
-        .apiV1ModelConfigurationSensitivePointUpdatePut(floodSensitivePointInfo, options)
+        .apiV1ModelConfigurationSensitivePointUpdatePut(
+          tenantId,
+          debugHeaderSign,
+          floodSensitivePointInfo,
+          options,
+        )
         .then((request) => request(axios, basePath))
     },
   }
@@ -377,17 +585,26 @@ export class FloodSensitivePointApi extends BaseAPI {
   /**
    *
    * @summary 添加一个易涝点 Add a flood sensitive point
-   * @param {FloodSensitivePointInfo} [floodSensitivePointInfo]
+   * @param {string} [tenantId]
+   * @param {string} [debugHeaderSign]
+   * @param {AddFloodSensitivePointInput} [addFloodSensitivePointInput]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof FloodSensitivePointApi
    */
   public apiV1ModelConfigurationSensitivePointAddPost(
-    floodSensitivePointInfo?: FloodSensitivePointInfo,
+    tenantId?: string,
+    debugHeaderSign?: string,
+    addFloodSensitivePointInput?: AddFloodSensitivePointInput,
     options?: AxiosRequestConfig,
   ) {
     return FloodSensitivePointApiFp(this.configuration)
-      .apiV1ModelConfigurationSensitivePointAddPost(floodSensitivePointInfo, options)
+      .apiV1ModelConfigurationSensitivePointAddPost(
+        tenantId,
+        debugHeaderSign,
+        addFloodSensitivePointInput,
+        options,
+      )
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -395,16 +612,20 @@ export class FloodSensitivePointApi extends BaseAPI {
    * 根据模板方案的ID，查询所有的易涝点信息列表 Get all the flood sensitive points by template scenario id.
    * @summary 获取所有的易涝点信息列表 Get all the flood sensitive points
    * @param {string} [scenarioId] 模板方案ID template scenario\&#39;s id
+   * @param {string} [tenantId]
+   * @param {string} [debugHeaderSign]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof FloodSensitivePointApi
    */
   public apiV1ModelConfigurationSensitivePointListGet(
     scenarioId?: string,
+    tenantId?: string,
+    debugHeaderSign?: string,
     options?: AxiosRequestConfig,
   ) {
     return FloodSensitivePointApiFp(this.configuration)
-      .apiV1ModelConfigurationSensitivePointListGet(scenarioId, options)
+      .apiV1ModelConfigurationSensitivePointListGet(scenarioId, tenantId, debugHeaderSign, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -412,33 +633,72 @@ export class FloodSensitivePointApi extends BaseAPI {
    * 根据ID删除一个易涝点信息 Delete a flood sensitive point by Id.
    * @summary 删除一个易涝点 Remove a flood sensitive point
    * @param {string} [id] flood sensitive point id
+   * @param {string} [tenantId]
+   * @param {string} [debugHeaderSign]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof FloodSensitivePointApi
    */
   public apiV1ModelConfigurationSensitivePointRemoveDelete(
     id?: string,
+    tenantId?: string,
+    debugHeaderSign?: string,
     options?: AxiosRequestConfig,
   ) {
     return FloodSensitivePointApiFp(this.configuration)
-      .apiV1ModelConfigurationSensitivePointRemoveDelete(id, options)
+      .apiV1ModelConfigurationSensitivePointRemoveDelete(id, tenantId, debugHeaderSign, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary 重新保存易捞点数据，会先按方案删除原数据，然后增加新数据
+   * @param {string} [tenantId]
+   * @param {string} [debugHeaderSign]
+   * @param {Array<AddFloodSensitivePointInput>} [addFloodSensitivePointInput]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof FloodSensitivePointApi
+   */
+  public apiV1ModelConfigurationSensitivePointResavePost(
+    tenantId?: string,
+    debugHeaderSign?: string,
+    addFloodSensitivePointInput?: Array<AddFloodSensitivePointInput>,
+    options?: AxiosRequestConfig,
+  ) {
+    return FloodSensitivePointApiFp(this.configuration)
+      .apiV1ModelConfigurationSensitivePointResavePost(
+        tenantId,
+        debugHeaderSign,
+        addFloodSensitivePointInput,
+        options,
+      )
       .then((request) => request(this.axios, this.basePath))
   }
 
   /**
    * 根据ID更新一个易涝点信息 Update a flood sensitive point by Id.
    * @summary 更新一个易涝点信息 Update a flood sensitive point
+   * @param {string} [tenantId]
+   * @param {string} [debugHeaderSign]
    * @param {FloodSensitivePointInfo} [floodSensitivePointInfo]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof FloodSensitivePointApi
    */
   public apiV1ModelConfigurationSensitivePointUpdatePut(
+    tenantId?: string,
+    debugHeaderSign?: string,
     floodSensitivePointInfo?: FloodSensitivePointInfo,
     options?: AxiosRequestConfig,
   ) {
     return FloodSensitivePointApiFp(this.configuration)
-      .apiV1ModelConfigurationSensitivePointUpdatePut(floodSensitivePointInfo, options)
+      .apiV1ModelConfigurationSensitivePointUpdatePut(
+        tenantId,
+        debugHeaderSign,
+        floodSensitivePointInfo,
+        options,
+      )
       .then((request) => request(this.axios, this.basePath))
   }
 }
