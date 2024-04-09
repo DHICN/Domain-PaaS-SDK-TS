@@ -35,13 +35,23 @@ import { AddOrUpdateOnlineDatasInput } from '../models'
 // @ts-ignore
 import { GetOnlineTsDataInput } from '../models'
 // @ts-ignore
+import { GetOnlineTsDataInputV2 } from '../models'
+// @ts-ignore
 import { ModifyOnlineProcessedDatasInput } from '../models'
 // @ts-ignore
 import { QueryByTime } from '../models'
 // @ts-ignore
+import { SaveOnlineProcessedData } from '../models'
+// @ts-ignore
+import { TimeseriesBatchForV3Input } from '../models'
+// @ts-ignore
 import { TsDataInputOutput } from '../models'
 // @ts-ignore
+import { TsDataInputOutputV3 } from '../models'
+// @ts-ignore
 import { UpdateLatestTagInput } from '../models'
+// @ts-ignore
+import { UpdateLatestTagInputV2 } from '../models'
 /**
  * DataApi - axios parameter creator
  * @export
@@ -50,7 +60,7 @@ export const DataApiAxiosParamCreator = function (configuration?: Configuration)
   return {
     /**
      *
-     * @summary 添加清洗数据信息 Add online processed data
+     * @summary 添加清洗数据信息 Add online processed data  注：此接口未在污水基础服务、污水领域服务、清洗算法使用，因此暂不做升级，若后续发现有使用，则可升级，否则可直接废弃
      * @param {Array<TsDataInputOutput>} [tsDataInputOutput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -136,7 +146,7 @@ export const DataApiAxiosParamCreator = function (configuration?: Configuration)
     },
     /**
      *
-     * @summary 添加或更新清洗数据信息 Add or update processed data
+     * @summary 添加或更新清洗数据信息-目前仅提供给清洗算法使用，升级后改为调用Save接口
      * @param {AddOrUpdateOnlineDatasInput} [addOrUpdateOnlineDatasInput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -265,7 +275,7 @@ export const DataApiAxiosParamCreator = function (configuration?: Configuration)
     },
     /**
      *
-     * @summary /api/Data/MockOnlineSourceDatas
+     * @summary 仿真在线数据
      * @param {string} [tenantId]
      * @param {string} [onlineProcessed]
      * @param {string} [beginTime]
@@ -329,7 +339,7 @@ export const DataApiAxiosParamCreator = function (configuration?: Configuration)
     },
     /**
      *
-     * @summary /api/Data/ModifyOnlineProcessedDatas
+     * @summary 修改清洗数据-目前仅提供给清洗算法使用，升级后改为调用Save接口
      * @param {Array<ModifyOnlineProcessedDatasInput>} [modifyOnlineProcessedDatasInput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -361,6 +371,49 @@ export const DataApiAxiosParamCreator = function (configuration?: Configuration)
       }
       localVarRequestOptions.data = serializeDataIfNeeded(
         modifyOnlineProcessedDatasInput,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 保存清洗数据到iot | save online processed data to iot service  注：此接口为升级后的保存清洗数据接口
+     * @param {Array<SaveOnlineProcessedData>} [saveOnlineProcessedData]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiDataOnlineProcessedDatasSavePost: async (
+      saveOnlineProcessedData?: Array<SaveOnlineProcessedData>,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/Data/OnlineProcessedDatas/Save`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        saveOnlineProcessedData,
         localVarRequestOptions,
         configuration,
       )
@@ -415,7 +468,7 @@ export const DataApiAxiosParamCreator = function (configuration?: Configuration)
     },
     /**
      *
-     * @summary 更新清洗数据信息 Update online processed data
+     * @summary 更新清洗数据信息 Update online processed data  注：升级后改为调用OnlineProcessedDatas/Save接口
      * @param {Array<TsDataInputOutput>} [tsDataInputOutput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -456,6 +509,199 @@ export const DataApiAxiosParamCreator = function (configuration?: Configuration)
         options: localVarRequestOptions,
       }
     },
+    /**
+     *
+     * @summary 获取清洗数据  注：此接口主要用于兼容已有的污水项目，接口参数结构和返回数据结构增加了DeviceCode，PointCode改为Indicator，待前端和清洗算法都改为调用v3接口后，此接口便可废弃
+     * @param {GetOnlineTsDataInputV2} [getOnlineTsDataInputV2]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiDataV2GetOnlineProcessedDatasByConditionsPost: async (
+      getOnlineTsDataInputV2?: GetOnlineTsDataInputV2,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/Data/v2/GetOnlineProcessedDatasByConditions`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        getOnlineTsDataInputV2,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 仿真在线数据
+     * @param {string} [tenantId]
+     * @param {string} [onlineProcessed]
+     * @param {string} [beginTime]
+     * @param {string} [endTime]
+     * @param {string} [timeSpan]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiDataV2MockOnlineSourceDatasGet: async (
+      tenantId?: string,
+      onlineProcessed?: string,
+      beginTime?: string,
+      endTime?: string,
+      timeSpan?: string,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/Data/v2/MockOnlineSourceDatas`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      if (tenantId !== undefined) {
+        localVarQueryParameter['tenantId'] = tenantId
+      }
+
+      if (onlineProcessed !== undefined) {
+        localVarQueryParameter['onlineProcessed'] = onlineProcessed
+      }
+
+      if (beginTime !== undefined) {
+        localVarQueryParameter['beginTime'] = beginTime
+      }
+
+      if (endTime !== undefined) {
+        localVarQueryParameter['endTime'] = endTime
+      }
+
+      if (timeSpan !== undefined) {
+        localVarQueryParameter['timeSpan'] = timeSpan
+      }
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 修改最新的Tag Update latest processed data tag
+     * @param {Array<UpdateLatestTagInputV2>} [updateLatestTagInputV2]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiDataV2UpdateLatestTagPost: async (
+      updateLatestTagInputV2?: Array<UpdateLatestTagInputV2>,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/Data/v2/UpdateLatestTag`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        updateLatestTagInputV2,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 获取清洗数据（数据结构与iot保持一致，搜索条件不包含Tag）
+     * @param {Array<TimeseriesBatchForV3Input>} [timeseriesBatchForV3Input]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiDataV3GetOnlineProcessedDatasByConditionsPost: async (
+      timeseriesBatchForV3Input?: Array<TimeseriesBatchForV3Input>,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/Data/v3/GetOnlineProcessedDatasByConditions`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        timeseriesBatchForV3Input,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
   }
 }
 
@@ -468,7 +714,7 @@ export const DataApiFp = function (configuration?: Configuration) {
   return {
     /**
      *
-     * @summary 添加清洗数据信息 Add online processed data
+     * @summary 添加清洗数据信息 Add online processed data  注：此接口未在污水基础服务、污水领域服务、清洗算法使用，因此暂不做升级，若后续发现有使用，则可升级，否则可直接废弃
      * @param {Array<TsDataInputOutput>} [tsDataInputOutput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -502,7 +748,7 @@ export const DataApiFp = function (configuration?: Configuration) {
     },
     /**
      *
-     * @summary 添加或更新清洗数据信息 Add or update processed data
+     * @summary 添加或更新清洗数据信息-目前仅提供给清洗算法使用，升级后改为调用Save接口
      * @param {AddOrUpdateOnlineDatasInput} [addOrUpdateOnlineDatasInput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -555,7 +801,7 @@ export const DataApiFp = function (configuration?: Configuration) {
     },
     /**
      *
-     * @summary /api/Data/MockOnlineSourceDatas
+     * @summary 仿真在线数据
      * @param {string} [tenantId]
      * @param {string} [onlineProcessed]
      * @param {string} [beginTime]
@@ -584,7 +830,7 @@ export const DataApiFp = function (configuration?: Configuration) {
     },
     /**
      *
-     * @summary /api/Data/ModifyOnlineProcessedDatas
+     * @summary 修改清洗数据-目前仅提供给清洗算法使用，升级后改为调用Save接口
      * @param {Array<ModifyOnlineProcessedDatasInput>} [modifyOnlineProcessedDatasInput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -598,6 +844,23 @@ export const DataApiFp = function (configuration?: Configuration) {
           modifyOnlineProcessedDatasInput,
           options,
         )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
+     * @summary 保存清洗数据到iot | save online processed data to iot service  注：此接口为升级后的保存清洗数据接口
+     * @param {Array<SaveOnlineProcessedData>} [saveOnlineProcessedData]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiDataOnlineProcessedDatasSavePost(
+      saveOnlineProcessedData?: Array<SaveOnlineProcessedData>,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiDataOnlineProcessedDatasSavePost(
+        saveOnlineProcessedData,
+        options,
+      )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**
@@ -619,7 +882,7 @@ export const DataApiFp = function (configuration?: Configuration) {
     },
     /**
      *
-     * @summary 更新清洗数据信息 Update online processed data
+     * @summary 更新清洗数据信息 Update online processed data  注：升级后改为调用OnlineProcessedDatas/Save接口
      * @param {Array<TsDataInputOutput>} [tsDataInputOutput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -631,6 +894,92 @@ export const DataApiFp = function (configuration?: Configuration) {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.apiDataUpdateOnlineProcessedDatasPost(
           tsDataInputOutput,
+          options,
+        )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
+     * @summary 获取清洗数据  注：此接口主要用于兼容已有的污水项目，接口参数结构和返回数据结构增加了DeviceCode，PointCode改为Indicator，待前端和清洗算法都改为调用v3接口后，此接口便可废弃
+     * @param {GetOnlineTsDataInputV2} [getOnlineTsDataInputV2]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiDataV2GetOnlineProcessedDatasByConditionsPost(
+      getOnlineTsDataInputV2?: GetOnlineTsDataInputV2,
+      options?: AxiosRequestConfig,
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<SaveOnlineProcessedData>>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiDataV2GetOnlineProcessedDatasByConditionsPost(
+          getOnlineTsDataInputV2,
+          options,
+        )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
+     * @summary 仿真在线数据
+     * @param {string} [tenantId]
+     * @param {string} [onlineProcessed]
+     * @param {string} [beginTime]
+     * @param {string} [endTime]
+     * @param {string} [timeSpan]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiDataV2MockOnlineSourceDatasGet(
+      tenantId?: string,
+      onlineProcessed?: string,
+      beginTime?: string,
+      endTime?: string,
+      timeSpan?: string,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiDataV2MockOnlineSourceDatasGet(
+        tenantId,
+        onlineProcessed,
+        beginTime,
+        endTime,
+        timeSpan,
+        options,
+      )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
+     * @summary 修改最新的Tag Update latest processed data tag
+     * @param {Array<UpdateLatestTagInputV2>} [updateLatestTagInputV2]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiDataV2UpdateLatestTagPost(
+      updateLatestTagInputV2?: Array<UpdateLatestTagInputV2>,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiDataV2UpdateLatestTagPost(
+        updateLatestTagInputV2,
+        options,
+      )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
+     * @summary 获取清洗数据（数据结构与iot保持一致，搜索条件不包含Tag）
+     * @param {Array<TimeseriesBatchForV3Input>} [timeseriesBatchForV3Input]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiDataV3GetOnlineProcessedDatasByConditionsPost(
+      timeseriesBatchForV3Input?: Array<TimeseriesBatchForV3Input>,
+      options?: AxiosRequestConfig,
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<TsDataInputOutputV3>>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiDataV3GetOnlineProcessedDatasByConditionsPost(
+          timeseriesBatchForV3Input,
           options,
         )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
@@ -651,7 +1000,7 @@ export const DataApiFactory = function (
   return {
     /**
      *
-     * @summary 添加清洗数据信息 Add online processed data
+     * @summary 添加清洗数据信息 Add online processed data  注：此接口未在污水基础服务、污水领域服务、清洗算法使用，因此暂不做升级，若后续发现有使用，则可升级，否则可直接废弃
      * @param {Array<TsDataInputOutput>} [tsDataInputOutput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -681,7 +1030,7 @@ export const DataApiFactory = function (
     },
     /**
      *
-     * @summary 添加或更新清洗数据信息 Add or update processed data
+     * @summary 添加或更新清洗数据信息-目前仅提供给清洗算法使用，升级后改为调用Save接口
      * @param {AddOrUpdateOnlineDatasInput} [addOrUpdateOnlineDatasInput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -726,7 +1075,7 @@ export const DataApiFactory = function (
     },
     /**
      *
-     * @summary /api/Data/MockOnlineSourceDatas
+     * @summary 仿真在线数据
      * @param {string} [tenantId]
      * @param {string} [onlineProcessed]
      * @param {string} [beginTime]
@@ -756,7 +1105,7 @@ export const DataApiFactory = function (
     },
     /**
      *
-     * @summary /api/Data/ModifyOnlineProcessedDatas
+     * @summary 修改清洗数据-目前仅提供给清洗算法使用，升级后改为调用Save接口
      * @param {Array<ModifyOnlineProcessedDatasInput>} [modifyOnlineProcessedDatasInput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -767,6 +1116,21 @@ export const DataApiFactory = function (
     ): AxiosPromise<object> {
       return localVarFp
         .apiDataModifyOnlineProcessedDatasPost(modifyOnlineProcessedDatasInput, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @summary 保存清洗数据到iot | save online processed data to iot service  注：此接口为升级后的保存清洗数据接口
+     * @param {Array<SaveOnlineProcessedData>} [saveOnlineProcessedData]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiDataOnlineProcessedDatasSavePost(
+      saveOnlineProcessedData?: Array<SaveOnlineProcessedData>,
+      options?: any,
+    ): AxiosPromise<object> {
+      return localVarFp
+        .apiDataOnlineProcessedDatasSavePost(saveOnlineProcessedData, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -786,7 +1150,7 @@ export const DataApiFactory = function (
     },
     /**
      *
-     * @summary 更新清洗数据信息 Update online processed data
+     * @summary 更新清洗数据信息 Update online processed data  注：升级后改为调用OnlineProcessedDatas/Save接口
      * @param {Array<TsDataInputOutput>} [tsDataInputOutput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -797,6 +1161,81 @@ export const DataApiFactory = function (
     ): AxiosPromise<object> {
       return localVarFp
         .apiDataUpdateOnlineProcessedDatasPost(tsDataInputOutput, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @summary 获取清洗数据  注：此接口主要用于兼容已有的污水项目，接口参数结构和返回数据结构增加了DeviceCode，PointCode改为Indicator，待前端和清洗算法都改为调用v3接口后，此接口便可废弃
+     * @param {GetOnlineTsDataInputV2} [getOnlineTsDataInputV2]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiDataV2GetOnlineProcessedDatasByConditionsPost(
+      getOnlineTsDataInputV2?: GetOnlineTsDataInputV2,
+      options?: any,
+    ): AxiosPromise<Array<SaveOnlineProcessedData>> {
+      return localVarFp
+        .apiDataV2GetOnlineProcessedDatasByConditionsPost(getOnlineTsDataInputV2, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @summary 仿真在线数据
+     * @param {string} [tenantId]
+     * @param {string} [onlineProcessed]
+     * @param {string} [beginTime]
+     * @param {string} [endTime]
+     * @param {string} [timeSpan]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiDataV2MockOnlineSourceDatasGet(
+      tenantId?: string,
+      onlineProcessed?: string,
+      beginTime?: string,
+      endTime?: string,
+      timeSpan?: string,
+      options?: any,
+    ): AxiosPromise<object> {
+      return localVarFp
+        .apiDataV2MockOnlineSourceDatasGet(
+          tenantId,
+          onlineProcessed,
+          beginTime,
+          endTime,
+          timeSpan,
+          options,
+        )
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @summary 修改最新的Tag Update latest processed data tag
+     * @param {Array<UpdateLatestTagInputV2>} [updateLatestTagInputV2]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiDataV2UpdateLatestTagPost(
+      updateLatestTagInputV2?: Array<UpdateLatestTagInputV2>,
+      options?: any,
+    ): AxiosPromise<object> {
+      return localVarFp
+        .apiDataV2UpdateLatestTagPost(updateLatestTagInputV2, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @summary 获取清洗数据（数据结构与iot保持一致，搜索条件不包含Tag）
+     * @param {Array<TimeseriesBatchForV3Input>} [timeseriesBatchForV3Input]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiDataV3GetOnlineProcessedDatasByConditionsPost(
+      timeseriesBatchForV3Input?: Array<TimeseriesBatchForV3Input>,
+      options?: any,
+    ): AxiosPromise<Array<TsDataInputOutputV3>> {
+      return localVarFp
+        .apiDataV3GetOnlineProcessedDatasByConditionsPost(timeseriesBatchForV3Input, options)
         .then((request) => request(axios, basePath))
     },
   }
@@ -811,7 +1250,7 @@ export const DataApiFactory = function (
 export class DataApi extends BaseAPI {
   /**
    *
-   * @summary 添加清洗数据信息 Add online processed data
+   * @summary 添加清洗数据信息 Add online processed data  注：此接口未在污水基础服务、污水领域服务、清洗算法使用，因此暂不做升级，若后续发现有使用，则可升级，否则可直接废弃
    * @param {Array<TsDataInputOutput>} [tsDataInputOutput]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
@@ -845,7 +1284,7 @@ export class DataApi extends BaseAPI {
 
   /**
    *
-   * @summary 添加或更新清洗数据信息 Add or update processed data
+   * @summary 添加或更新清洗数据信息-目前仅提供给清洗算法使用，升级后改为调用Save接口
    * @param {AddOrUpdateOnlineDatasInput} [addOrUpdateOnlineDatasInput]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
@@ -896,7 +1335,7 @@ export class DataApi extends BaseAPI {
 
   /**
    *
-   * @summary /api/Data/MockOnlineSourceDatas
+   * @summary 仿真在线数据
    * @param {string} [tenantId]
    * @param {string} [onlineProcessed]
    * @param {string} [beginTime]
@@ -928,7 +1367,7 @@ export class DataApi extends BaseAPI {
 
   /**
    *
-   * @summary /api/Data/ModifyOnlineProcessedDatas
+   * @summary 修改清洗数据-目前仅提供给清洗算法使用，升级后改为调用Save接口
    * @param {Array<ModifyOnlineProcessedDatasInput>} [modifyOnlineProcessedDatasInput]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
@@ -940,6 +1379,23 @@ export class DataApi extends BaseAPI {
   ) {
     return DataApiFp(this.configuration)
       .apiDataModifyOnlineProcessedDatasPost(modifyOnlineProcessedDatasInput, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary 保存清洗数据到iot | save online processed data to iot service  注：此接口为升级后的保存清洗数据接口
+   * @param {Array<SaveOnlineProcessedData>} [saveOnlineProcessedData]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof DataApi
+   */
+  public apiDataOnlineProcessedDatasSavePost(
+    saveOnlineProcessedData?: Array<SaveOnlineProcessedData>,
+    options?: AxiosRequestConfig,
+  ) {
+    return DataApiFp(this.configuration)
+      .apiDataOnlineProcessedDatasSavePost(saveOnlineProcessedData, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -962,7 +1418,7 @@ export class DataApi extends BaseAPI {
 
   /**
    *
-   * @summary 更新清洗数据信息 Update online processed data
+   * @summary 更新清洗数据信息 Update online processed data  注：升级后改为调用OnlineProcessedDatas/Save接口
    * @param {Array<TsDataInputOutput>} [tsDataInputOutput]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
@@ -974,6 +1430,89 @@ export class DataApi extends BaseAPI {
   ) {
     return DataApiFp(this.configuration)
       .apiDataUpdateOnlineProcessedDatasPost(tsDataInputOutput, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary 获取清洗数据  注：此接口主要用于兼容已有的污水项目，接口参数结构和返回数据结构增加了DeviceCode，PointCode改为Indicator，待前端和清洗算法都改为调用v3接口后，此接口便可废弃
+   * @param {GetOnlineTsDataInputV2} [getOnlineTsDataInputV2]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof DataApi
+   */
+  public apiDataV2GetOnlineProcessedDatasByConditionsPost(
+    getOnlineTsDataInputV2?: GetOnlineTsDataInputV2,
+    options?: AxiosRequestConfig,
+  ) {
+    return DataApiFp(this.configuration)
+      .apiDataV2GetOnlineProcessedDatasByConditionsPost(getOnlineTsDataInputV2, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary 仿真在线数据
+   * @param {string} [tenantId]
+   * @param {string} [onlineProcessed]
+   * @param {string} [beginTime]
+   * @param {string} [endTime]
+   * @param {string} [timeSpan]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof DataApi
+   */
+  public apiDataV2MockOnlineSourceDatasGet(
+    tenantId?: string,
+    onlineProcessed?: string,
+    beginTime?: string,
+    endTime?: string,
+    timeSpan?: string,
+    options?: AxiosRequestConfig,
+  ) {
+    return DataApiFp(this.configuration)
+      .apiDataV2MockOnlineSourceDatasGet(
+        tenantId,
+        onlineProcessed,
+        beginTime,
+        endTime,
+        timeSpan,
+        options,
+      )
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary 修改最新的Tag Update latest processed data tag
+   * @param {Array<UpdateLatestTagInputV2>} [updateLatestTagInputV2]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof DataApi
+   */
+  public apiDataV2UpdateLatestTagPost(
+    updateLatestTagInputV2?: Array<UpdateLatestTagInputV2>,
+    options?: AxiosRequestConfig,
+  ) {
+    return DataApiFp(this.configuration)
+      .apiDataV2UpdateLatestTagPost(updateLatestTagInputV2, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary 获取清洗数据（数据结构与iot保持一致，搜索条件不包含Tag）
+   * @param {Array<TimeseriesBatchForV3Input>} [timeseriesBatchForV3Input]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof DataApi
+   */
+  public apiDataV3GetOnlineProcessedDatasByConditionsPost(
+    timeseriesBatchForV3Input?: Array<TimeseriesBatchForV3Input>,
+    options?: AxiosRequestConfig,
+  ) {
+    return DataApiFp(this.configuration)
+      .apiDataV3GetOnlineProcessedDatasByConditionsPost(timeseriesBatchForV3Input, options)
       .then((request) => request(this.axios, this.basePath))
   }
 }
