@@ -94,13 +94,71 @@ export const IntegrationApiAxiosParamCreator = function (configuration?: Configu
     },
     /**
      *
+     * @summary 导出资产设备指标excel
+     * @param {string} [templateId]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1IotIntegrationExportIotConfigExcelPost: async (
+      templateId?: string,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/iot/integration/export-iot-config-excel`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      if (templateId !== undefined) {
+        localVarQueryParameter['templateId'] = templateId
+      }
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
      * @summary 获取输入输出点位映射信息
      * @param {string} [templateId]
+     * @param {Array<string>} [assets] 资产列表
+     * @param {Array<string>} [devices] 设备列表
+     * @param {Array<string>} [deviceIndicators] 设备指标列表
+     * @param {Array<string>} [modelPointDataTypes] 模型点位数据类型列表,即: DeviceIndicatorId与ModelPointId、ModelDataType、TemplateId的关联关系
+     * @param {Array<string>} [modelBoundaryConfigs] 模型边界列表
+     * @param {Array<string>} [templateIds] 模板Id列表
+     * @param {Array<string>} [modelPoints] 模型点位信息列表
+     * @param {Array<string>} [libraries] 项目所有方案类库列表
+     * @param {Array<string>} [templateScenarios] 类库下的所有模板方案
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiV1IotIntegrationGetInoutPointMapInfoGet: async (
       templateId?: string,
+      assets?: Array<string>,
+      devices?: Array<string>,
+      deviceIndicators?: Array<string>,
+      modelPointDataTypes?: Array<string>,
+      modelBoundaryConfigs?: Array<string>,
+      templateIds?: Array<string>,
+      modelPoints?: Array<string>,
+      libraries?: Array<string>,
+      templateScenarios?: Array<string>,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
       const localVarPath = `/api/v1/iot/integration/get-inout-point-map-info`
@@ -117,6 +175,42 @@ export const IntegrationApiAxiosParamCreator = function (configuration?: Configu
 
       if (templateId !== undefined) {
         localVarQueryParameter['templateId'] = templateId
+      }
+
+      if (assets !== undefined) {
+        localVarQueryParameter['Assets'] = assets
+      }
+
+      if (devices !== undefined) {
+        localVarQueryParameter['Devices'] = devices
+      }
+
+      if (deviceIndicators !== undefined) {
+        localVarQueryParameter['DeviceIndicators'] = deviceIndicators
+      }
+
+      if (modelPointDataTypes !== undefined) {
+        localVarQueryParameter['ModelPointDataTypes'] = modelPointDataTypes
+      }
+
+      if (modelBoundaryConfigs !== undefined) {
+        localVarQueryParameter['ModelBoundaryConfigs'] = modelBoundaryConfigs
+      }
+
+      if (templateIds !== undefined) {
+        localVarQueryParameter['TemplateIds'] = templateIds
+      }
+
+      if (modelPoints !== undefined) {
+        localVarQueryParameter['ModelPoints'] = modelPoints
+      }
+
+      if (libraries !== undefined) {
+        localVarQueryParameter['Libraries'] = libraries
+      }
+
+      if (templateScenarios !== undefined) {
+        localVarQueryParameter['TemplateScenarios'] = templateScenarios
       }
 
       setSearchParams(localVarUrlObj, localVarQueryParameter)
@@ -446,18 +540,63 @@ export const IntegrationApiFp = function (configuration?: Configuration) {
     },
     /**
      *
+     * @summary 导出资产设备指标excel
+     * @param {string} [templateId]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1IotIntegrationExportIotConfigExcelPost(
+      templateId?: string,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiV1IotIntegrationExportIotConfigExcelPost(
+          templateId,
+          options,
+        )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
      * @summary 获取输入输出点位映射信息
      * @param {string} [templateId]
+     * @param {Array<string>} [assets] 资产列表
+     * @param {Array<string>} [devices] 设备列表
+     * @param {Array<string>} [deviceIndicators] 设备指标列表
+     * @param {Array<string>} [modelPointDataTypes] 模型点位数据类型列表,即: DeviceIndicatorId与ModelPointId、ModelDataType、TemplateId的关联关系
+     * @param {Array<string>} [modelBoundaryConfigs] 模型边界列表
+     * @param {Array<string>} [templateIds] 模板Id列表
+     * @param {Array<string>} [modelPoints] 模型点位信息列表
+     * @param {Array<string>} [libraries] 项目所有方案类库列表
+     * @param {Array<string>} [templateScenarios] 类库下的所有模板方案
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async apiV1IotIntegrationGetInoutPointMapInfoGet(
       templateId?: string,
+      assets?: Array<string>,
+      devices?: Array<string>,
+      deviceIndicators?: Array<string>,
+      modelPointDataTypes?: Array<string>,
+      modelBoundaryConfigs?: Array<string>,
+      templateIds?: Array<string>,
+      modelPoints?: Array<string>,
+      libraries?: Array<string>,
+      templateScenarios?: Array<string>,
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PointMapAssemblyInfo>> {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.apiV1IotIntegrationGetInoutPointMapInfoGet(
           templateId,
+          assets,
+          devices,
+          deviceIndicators,
+          modelPointDataTypes,
+          modelBoundaryConfigs,
+          templateIds,
+          modelPoints,
+          libraries,
+          templateScenarios,
           options,
         )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
@@ -611,17 +750,62 @@ export const IntegrationApiFactory = function (
     },
     /**
      *
+     * @summary 导出资产设备指标excel
+     * @param {string} [templateId]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1IotIntegrationExportIotConfigExcelPost(
+      templateId?: string,
+      options?: any,
+    ): AxiosPromise<object> {
+      return localVarFp
+        .apiV1IotIntegrationExportIotConfigExcelPost(templateId, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
      * @summary 获取输入输出点位映射信息
      * @param {string} [templateId]
+     * @param {Array<string>} [assets] 资产列表
+     * @param {Array<string>} [devices] 设备列表
+     * @param {Array<string>} [deviceIndicators] 设备指标列表
+     * @param {Array<string>} [modelPointDataTypes] 模型点位数据类型列表,即: DeviceIndicatorId与ModelPointId、ModelDataType、TemplateId的关联关系
+     * @param {Array<string>} [modelBoundaryConfigs] 模型边界列表
+     * @param {Array<string>} [templateIds] 模板Id列表
+     * @param {Array<string>} [modelPoints] 模型点位信息列表
+     * @param {Array<string>} [libraries] 项目所有方案类库列表
+     * @param {Array<string>} [templateScenarios] 类库下的所有模板方案
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiV1IotIntegrationGetInoutPointMapInfoGet(
       templateId?: string,
+      assets?: Array<string>,
+      devices?: Array<string>,
+      deviceIndicators?: Array<string>,
+      modelPointDataTypes?: Array<string>,
+      modelBoundaryConfigs?: Array<string>,
+      templateIds?: Array<string>,
+      modelPoints?: Array<string>,
+      libraries?: Array<string>,
+      templateScenarios?: Array<string>,
       options?: any,
     ): AxiosPromise<PointMapAssemblyInfo> {
       return localVarFp
-        .apiV1IotIntegrationGetInoutPointMapInfoGet(templateId, options)
+        .apiV1IotIntegrationGetInoutPointMapInfoGet(
+          templateId,
+          assets,
+          devices,
+          deviceIndicators,
+          modelPointDataTypes,
+          modelBoundaryConfigs,
+          templateIds,
+          modelPoints,
+          libraries,
+          templateScenarios,
+          options,
+        )
         .then((request) => request(axios, basePath))
     },
     /**
@@ -756,18 +940,65 @@ export class IntegrationApi extends BaseAPI {
 
   /**
    *
+   * @summary 导出资产设备指标excel
+   * @param {string} [templateId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof IntegrationApi
+   */
+  public apiV1IotIntegrationExportIotConfigExcelPost(
+    templateId?: string,
+    options?: AxiosRequestConfig,
+  ) {
+    return IntegrationApiFp(this.configuration)
+      .apiV1IotIntegrationExportIotConfigExcelPost(templateId, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
    * @summary 获取输入输出点位映射信息
    * @param {string} [templateId]
+   * @param {Array<string>} [assets] 资产列表
+   * @param {Array<string>} [devices] 设备列表
+   * @param {Array<string>} [deviceIndicators] 设备指标列表
+   * @param {Array<string>} [modelPointDataTypes] 模型点位数据类型列表,即: DeviceIndicatorId与ModelPointId、ModelDataType、TemplateId的关联关系
+   * @param {Array<string>} [modelBoundaryConfigs] 模型边界列表
+   * @param {Array<string>} [templateIds] 模板Id列表
+   * @param {Array<string>} [modelPoints] 模型点位信息列表
+   * @param {Array<string>} [libraries] 项目所有方案类库列表
+   * @param {Array<string>} [templateScenarios] 类库下的所有模板方案
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof IntegrationApi
    */
   public apiV1IotIntegrationGetInoutPointMapInfoGet(
     templateId?: string,
+    assets?: Array<string>,
+    devices?: Array<string>,
+    deviceIndicators?: Array<string>,
+    modelPointDataTypes?: Array<string>,
+    modelBoundaryConfigs?: Array<string>,
+    templateIds?: Array<string>,
+    modelPoints?: Array<string>,
+    libraries?: Array<string>,
+    templateScenarios?: Array<string>,
     options?: AxiosRequestConfig,
   ) {
     return IntegrationApiFp(this.configuration)
-      .apiV1IotIntegrationGetInoutPointMapInfoGet(templateId, options)
+      .apiV1IotIntegrationGetInoutPointMapInfoGet(
+        templateId,
+        assets,
+        devices,
+        deviceIndicators,
+        modelPointDataTypes,
+        modelBoundaryConfigs,
+        templateIds,
+        modelPoints,
+        libraries,
+        templateScenarios,
+        options,
+      )
       .then((request) => request(this.axios, this.basePath))
   }
 
