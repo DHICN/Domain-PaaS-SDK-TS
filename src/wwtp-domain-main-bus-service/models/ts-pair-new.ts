@@ -14,31 +14,19 @@
 /**
  *
  * @export
- * @interface ItemValue
+ * @interface TsPairNew
  */
-export interface ItemValue {
+export interface TsPairNew {
   /**
-   * 系统点位代码 point code
+   * 时间 time
    * @type {string}
-   * @memberof ItemValue
+   * @memberof TsPairNew
    */
-  code?: string | null
-  /**
-   * 系统点位名称 point name
-   * @type {string}
-   * @memberof ItemValue
-   */
-  name?: string | null
-  /**
-   * 数值单位 unit of the value
-   * @type {string}
-   * @memberof ItemValue
-   */
-  unit?: string | null
+  time?: string | null
   /**
    * 数值 value
    * @type {number}
-   * @memberof ItemValue
+   * @memberof TsPairNew
    */
   value?: number
 }

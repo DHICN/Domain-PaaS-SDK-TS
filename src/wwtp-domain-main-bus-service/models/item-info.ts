@@ -14,31 +14,25 @@
 /**
  *
  * @export
- * @interface ItemValue
+ * @interface ItemInfo
  */
-export interface ItemValue {
+export interface ItemInfo {
   /**
    * 系统点位代码 point code
    * @type {string}
-   * @memberof ItemValue
+   * @memberof ItemInfo
    */
   code?: string | null
   /**
    * 系统点位名称 point name
    * @type {string}
-   * @memberof ItemValue
+   * @memberof ItemInfo
    */
   name?: string | null
   /**
    * 数值单位 unit of the value
    * @type {string}
-   * @memberof ItemValue
+   * @memberof ItemInfo
    */
   unit?: string | null
-  /**
-   * 数值 value
-   * @type {number}
-   * @memberof ItemValue
-   */
-  value?: number
 }

@@ -11,34 +11,26 @@
  * Do not edit the class manually.
  */
 
+// May contain unused imports in some cases
+// @ts-ignore
+import { TsPairNew } from './ts-pair-new'
+
 /**
  *
  * @export
- * @interface ItemValue
+ * @interface GetTimeSeriesDataOutput
  */
-export interface ItemValue {
+export interface GetTimeSeriesDataOutput {
   /**
-   * 系统点位代码 point code
+   * 点位编码 point code
    * @type {string}
-   * @memberof ItemValue
+   * @memberof GetTimeSeriesDataOutput
    */
   code?: string | null
   /**
-   * 系统点位名称 point name
-   * @type {string}
-   * @memberof ItemValue
+   * 时间序列数据 time-series data
+   * @type {Array<TsPairNew>}
+   * @memberof GetTimeSeriesDataOutput
    */
-  name?: string | null
-  /**
-   * 数值单位 unit of the value
-   * @type {string}
-   * @memberof ItemValue
-   */
-  unit?: string | null
-  /**
-   * 数值 value
-   * @type {number}
-   * @memberof ItemValue
-   */
-  value?: number
+  value?: Array<TsPairNew> | null
 }
