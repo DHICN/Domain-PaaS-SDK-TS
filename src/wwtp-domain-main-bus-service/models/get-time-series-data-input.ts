@@ -14,31 +14,31 @@
 /**
  *
  * @export
- * @interface ItemValue
+ * @interface GetTimeSeriesDataInput
  */
-export interface ItemValue {
+export interface GetTimeSeriesDataInput {
   /**
-   * 系统点位代码 point code
+   * 开始时间 start time
    * @type {string}
-   * @memberof ItemValue
+   * @memberof GetTimeSeriesDataInput
    */
-  code?: string | null
+  startTime?: string
   /**
-   * 系统点位名称 point name
+   * 结束时间 end time
    * @type {string}
-   * @memberof ItemValue
+   * @memberof GetTimeSeriesDataInput
    */
-  name?: string | null
+  endTime?: string
   /**
-   * 数值单位 unit of the value
+   * 工艺线 product line
    * @type {string}
-   * @memberof ItemValue
+   * @memberof GetTimeSeriesDataInput
    */
-  unit?: string | null
+  productLine?: string | null
   /**
-   * 数值 value
-   * @type {number}
-   * @memberof ItemValue
+   * 点位编码列表 point codes
+   * @type {Array<string>}
+   * @memberof GetTimeSeriesDataInput
    */
-  value?: number
+  codes?: Array<string> | null
 }
