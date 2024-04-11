@@ -29,4 +29,10 @@ export interface GateStatisticsOutput {
    * @memberof GateStatisticsOutput
    */
   accOpenTime?: number
+  /**
+   * 总流量
+   * @type {number}
+   * @memberof GateStatisticsOutput
+   */
+  accDischarge?: number
 }

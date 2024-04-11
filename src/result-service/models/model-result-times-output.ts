@@ -53,4 +53,10 @@ export interface ModelResultTimesOutput {
    * @memberof ModelResultTimesOutput
    */
   timeNo?: number
+  /**
+   * 所有时间序列
+   * @type {Array<string>}
+   * @memberof ModelResultTimesOutput
+   */
+  times?: Array<string> | null
 }

@@ -12,7 +12,7 @@
  */
 
 /**
- * 0-PipeFlow 1-PipeVelocity 2-PipeFilling 3-PipeWaterDepth
+ * 0-PipeFlow 1-PipeVelocity 2-PipeFilling 3-PipeWaterDepth 4-PipeWaterLevel 5-PipeFlood
  * @export
  * @enum {string}
  */
@@ -22,6 +22,8 @@ export const PipeDataTypeEnum = {
   NUMBER_1: 1,
   NUMBER_2: 2,
   NUMBER_3: 3,
+  NUMBER_4: 4,
+  NUMBER_5: 5,
 } as const
 
 export type PipeDataTypeEnum = (typeof PipeDataTypeEnum)[keyof typeof PipeDataTypeEnum]

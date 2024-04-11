@@ -27,10 +27,10 @@ import {
   serializeDataIfNeeded,
   toPathString,
   createRequestFunction,
-} from '../common' // @ts-ignore
-
+} from '../common'
 // @ts-ignore
 import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } from '../base'
+// @ts-ignore
 import { FloodingRiskInfo } from '../models'
 // @ts-ignore
 import { RemoteServiceErrorResponse } from '../models'

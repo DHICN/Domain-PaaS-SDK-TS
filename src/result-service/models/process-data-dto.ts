@@ -14,31 +14,43 @@
 /**
  *
  * @export
- * @interface FilterModelResultRangeTimeDto
+ * @interface ProcessDataDto
  */
-export interface FilterModelResultRangeTimeDto {
+export interface ProcessDataDto {
   /**
    *
    * @type {string}
-   * @memberof FilterModelResultRangeTimeDto
+   * @memberof ProcessDataDto
    */
-  modelId?: string | null
+  modelFeatureId?: string | null
   /**
    *
    * @type {string}
-   * @memberof FilterModelResultRangeTimeDto
+   * @memberof ProcessDataDto
    */
-  name?: string | null
+  dataType?: string | null
+  /**
+   *
+   * @type {string}
+   * @memberof ProcessDataDto
+   */
+  indicator?: string | null
+  /**
+   *
+   * @type {string}
+   * @memberof ProcessDataDto
+   */
+  t?: string | null
   /**
    *
    * @type {number}
-   * @memberof FilterModelResultRangeTimeDto
+   * @memberof ProcessDataDto
    */
-  x?: number
+  v?: number
   /**
    *
-   * @type {number}
-   * @memberof FilterModelResultRangeTimeDto
+   * @type {string}
+   * @memberof ProcessDataDto
    */
-  y?: number
+  unit?: string | null
 }

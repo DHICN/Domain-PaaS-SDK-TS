@@ -11,34 +11,32 @@
  * Do not edit the class manually.
  */
 
+// May contain unused imports in some cases
+// @ts-ignore
+import { Null } from './null'
+
 /**
  *
  * @export
- * @interface FilterModelResultRangeTimeDto
+ * @interface ModelPointAttributeOutput
  */
-export interface FilterModelResultRangeTimeDto {
+export interface ModelPointAttributeOutput {
   /**
    *
    * @type {string}
-   * @memberof FilterModelResultRangeTimeDto
+   * @memberof ModelPointAttributeOutput
    */
-  modelId?: string | null
+  key?: string | null
   /**
    *
+   * @type {Null}
+   * @memberof ModelPointAttributeOutput
+   */
+  value?: Null
+  /**
+   * 数据类型
    * @type {string}
-   * @memberof FilterModelResultRangeTimeDto
+   * @memberof ModelPointAttributeOutput
    */
-  name?: string | null
-  /**
-   *
-   * @type {number}
-   * @memberof FilterModelResultRangeTimeDto
-   */
-  x?: number
-  /**
-   *
-   * @type {number}
-   * @memberof FilterModelResultRangeTimeDto
-   */
-  y?: number
+  dataType?: string | null
 }
