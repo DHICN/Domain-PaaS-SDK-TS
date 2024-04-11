@@ -29,4 +29,10 @@ export interface ValveStatisticsOutput {
    * @memberof ValveStatisticsOutput
    */
   accOpenTime?: number
+  /**
+   * 总流量
+   * @type {number}
+   * @memberof ValveStatisticsOutput
+   */
+  accDischarge?: number
 }

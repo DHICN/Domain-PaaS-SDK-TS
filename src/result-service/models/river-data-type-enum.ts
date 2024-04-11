@@ -12,7 +12,7 @@
  */
 
 /**
- * 0-WaterDepth 1-Discharge
+ * 0-WaterDepth 1-Discharge 2-WaterLevel
  * @export
  * @enum {string}
  */
@@ -20,6 +20,7 @@
 export const RiverDataTypeEnum = {
   NUMBER_0: 0,
   NUMBER_1: 1,
+  NUMBER_2: 2,
 } as const
 
 export type RiverDataTypeEnum = (typeof RiverDataTypeEnum)[keyof typeof RiverDataTypeEnum]

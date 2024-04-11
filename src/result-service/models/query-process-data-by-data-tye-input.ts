@@ -14,31 +14,25 @@
 /**
  *
  * @export
- * @interface FilterModelResultRangeTimeDto
+ * @interface QueryProcessDataByDataTyeInput
  */
-export interface FilterModelResultRangeTimeDto {
+export interface QueryProcessDataByDataTyeInput {
   /**
    *
    * @type {string}
-   * @memberof FilterModelResultRangeTimeDto
+   * @memberof QueryProcessDataByDataTyeInput
    */
-  modelId?: string | null
+  scenarioId: string
   /**
    *
    * @type {string}
-   * @memberof FilterModelResultRangeTimeDto
+   * @memberof QueryProcessDataByDataTyeInput
    */
-  name?: string | null
+  dataType: string
   /**
    *
-   * @type {number}
-   * @memberof FilterModelResultRangeTimeDto
+   * @type {Array<string>}
+   * @memberof QueryProcessDataByDataTyeInput
    */
-  x?: number
-  /**
-   *
-   * @type {number}
-   * @memberof FilterModelResultRangeTimeDto
-   */
-  y?: number
+  modelFeatureIds?: Array<string> | null
 }

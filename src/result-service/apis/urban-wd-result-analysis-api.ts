@@ -1352,7 +1352,7 @@ export const UrbanWdResultAnalysisApiAxiosParamCreator = function (configuration
     },
     /**
      *
-     * @summary 根据方案id获取单个管网的模拟结果
+     * @summary 根据方案id获取停水关阀用户
      * @param {string} [scenarioId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -2842,7 +2842,7 @@ export const UrbanWdResultAnalysisApiFp = function (configuration?: Configuratio
     },
     /**
      *
-     * @summary 根据方案id获取单个管网的模拟结果
+     * @summary 根据方案id获取停水关阀用户
      * @param {string} [scenarioId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -3795,7 +3795,7 @@ export const UrbanWdResultAnalysisApiFactory = function (
     },
     /**
      *
-     * @summary 根据方案id获取单个管网的模拟结果
+     * @summary 根据方案id获取停水关阀用户
      * @param {string} [scenarioId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -4751,7 +4751,7 @@ export class UrbanWdResultAnalysisApi extends BaseAPI {
 
   /**
    *
-   * @summary 根据方案id获取单个管网的模拟结果
+   * @summary 根据方案id获取停水关阀用户
    * @param {string} [scenarioId]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
