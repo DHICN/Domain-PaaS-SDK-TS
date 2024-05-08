@@ -33,7 +33,7 @@ import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } fr
 // @ts-ignore
 import { DataCleanTagConfigOutput } from '../models'
 // @ts-ignore
-import { ModelInputFileConfigOutput } from '../models'
+import { ModelInputOutputTransInterval } from '../models'
 // @ts-ignore
 import { ModelParameterConfigOutput } from '../models'
 // @ts-ignore
@@ -82,14 +82,14 @@ export const ModelConfigApiAxiosParamCreator = function (configuration?: Configu
     },
     /**
      *
-     * @summary 查询所有的模型输入文件配置项 Get all model input file configs
+     * @summary 查询所有的模型输入输出文件平移周期配置项 Get all model input/output translation interval  file configs
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    apiV2CodeConfigModelInputGetAllGet: async (
+    apiV2CodeConfigModelInputOutputTranslationIntervalGetAllGet: async (
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
-      const localVarPath = `/api/v2/code-config/model-input/get-all`
+      const localVarPath = `/api/v2/code-config/model-input-output/translation/interval/get-all`
       // use dummy base URL string because the URL constructor only accepts absolute URLs.
       const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
       let baseOptions
@@ -116,16 +116,16 @@ export const ModelConfigApiAxiosParamCreator = function (configuration?: Configu
     },
     /**
      *
-     * @summary 根据模型名称查询模型输入文件配置项 Get model input file configs by model name
+     * @summary 根据模型名称查询模型输入输出文件配置项 Get model input/output translation interval file configs by model name
      * @param {string} [modelName] 模板模型名称 template scenario name
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    apiV2CodeConfigModelInputGetByModelGet: async (
+    apiV2CodeConfigModelInputOutputTranslationIntervalGetByModelGet: async (
       modelName?: string,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
-      const localVarPath = `/api/v2/code-config/model-input/get-by-model`
+      const localVarPath = `/api/v2/code-config/model-input-output/translation/interval/get-by-model`
       // use dummy base URL string because the URL constructor only accepts absolute URLs.
       const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
       let baseOptions
@@ -298,35 +298,45 @@ export const ModelConfigApiFp = function (configuration?: Configuration) {
     },
     /**
      *
-     * @summary 查询所有的模型输入文件配置项 Get all model input file configs
+     * @summary 查询所有的模型输入输出文件平移周期配置项 Get all model input/output translation interval  file configs
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async apiV2CodeConfigModelInputGetAllGet(
+    async apiV2CodeConfigModelInputOutputTranslationIntervalGetAllGet(
       options?: AxiosRequestConfig,
     ): Promise<
-      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<ModelInputFileConfigOutput>>
+      (
+        axios?: AxiosInstance,
+        basePath?: string,
+      ) => AxiosPromise<Array<ModelInputOutputTransInterval>>
     > {
-      const localVarAxiosArgs = await localVarAxiosParamCreator.apiV2CodeConfigModelInputGetAllGet(
-        options,
-      )
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiV2CodeConfigModelInputOutputTranslationIntervalGetAllGet(
+          options,
+        )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**
      *
-     * @summary 根据模型名称查询模型输入文件配置项 Get model input file configs by model name
+     * @summary 根据模型名称查询模型输入输出文件配置项 Get model input/output translation interval file configs by model name
      * @param {string} [modelName] 模板模型名称 template scenario name
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async apiV2CodeConfigModelInputGetByModelGet(
+    async apiV2CodeConfigModelInputOutputTranslationIntervalGetByModelGet(
       modelName?: string,
       options?: AxiosRequestConfig,
     ): Promise<
-      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<ModelInputFileConfigOutput>>
+      (
+        axios?: AxiosInstance,
+        basePath?: string,
+      ) => AxiosPromise<Array<ModelInputOutputTransInterval>>
     > {
       const localVarAxiosArgs =
-        await localVarAxiosParamCreator.apiV2CodeConfigModelInputGetByModelGet(modelName, options)
+        await localVarAxiosParamCreator.apiV2CodeConfigModelInputOutputTranslationIntervalGetByModelGet(
+          modelName,
+          options,
+        )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**
@@ -409,30 +419,30 @@ export const ModelConfigApiFactory = function (
     },
     /**
      *
-     * @summary 查询所有的模型输入文件配置项 Get all model input file configs
+     * @summary 查询所有的模型输入输出文件平移周期配置项 Get all model input/output translation interval  file configs
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    apiV2CodeConfigModelInputGetAllGet(
+    apiV2CodeConfigModelInputOutputTranslationIntervalGetAllGet(
       options?: any,
-    ): AxiosPromise<Array<ModelInputFileConfigOutput>> {
+    ): AxiosPromise<Array<ModelInputOutputTransInterval>> {
       return localVarFp
-        .apiV2CodeConfigModelInputGetAllGet(options)
+        .apiV2CodeConfigModelInputOutputTranslationIntervalGetAllGet(options)
         .then((request) => request(axios, basePath))
     },
     /**
      *
-     * @summary 根据模型名称查询模型输入文件配置项 Get model input file configs by model name
+     * @summary 根据模型名称查询模型输入输出文件配置项 Get model input/output translation interval file configs by model name
      * @param {string} [modelName] 模板模型名称 template scenario name
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    apiV2CodeConfigModelInputGetByModelGet(
+    apiV2CodeConfigModelInputOutputTranslationIntervalGetByModelGet(
       modelName?: string,
       options?: any,
-    ): AxiosPromise<Array<ModelInputFileConfigOutput>> {
+    ): AxiosPromise<Array<ModelInputOutputTransInterval>> {
       return localVarFp
-        .apiV2CodeConfigModelInputGetByModelGet(modelName, options)
+        .apiV2CodeConfigModelInputOutputTranslationIntervalGetByModelGet(modelName, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -503,28 +513,31 @@ export class ModelConfigApi extends BaseAPI {
 
   /**
    *
-   * @summary 查询所有的模型输入文件配置项 Get all model input file configs
+   * @summary 查询所有的模型输入输出文件平移周期配置项 Get all model input/output translation interval  file configs
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof ModelConfigApi
    */
-  public apiV2CodeConfigModelInputGetAllGet(options?: AxiosRequestConfig) {
+  public apiV2CodeConfigModelInputOutputTranslationIntervalGetAllGet(options?: AxiosRequestConfig) {
     return ModelConfigApiFp(this.configuration)
-      .apiV2CodeConfigModelInputGetAllGet(options)
+      .apiV2CodeConfigModelInputOutputTranslationIntervalGetAllGet(options)
       .then((request) => request(this.axios, this.basePath))
   }
 
   /**
    *
-   * @summary 根据模型名称查询模型输入文件配置项 Get model input file configs by model name
+   * @summary 根据模型名称查询模型输入输出文件配置项 Get model input/output translation interval file configs by model name
    * @param {string} [modelName] 模板模型名称 template scenario name
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof ModelConfigApi
    */
-  public apiV2CodeConfigModelInputGetByModelGet(modelName?: string, options?: AxiosRequestConfig) {
+  public apiV2CodeConfigModelInputOutputTranslationIntervalGetByModelGet(
+    modelName?: string,
+    options?: AxiosRequestConfig,
+  ) {
     return ModelConfigApiFp(this.configuration)
-      .apiV2CodeConfigModelInputGetByModelGet(modelName, options)
+      .apiV2CodeConfigModelInputOutputTranslationIntervalGetByModelGet(modelName, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
