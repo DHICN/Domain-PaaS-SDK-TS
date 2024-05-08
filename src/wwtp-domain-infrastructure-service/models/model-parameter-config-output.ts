@@ -65,4 +65,10 @@ export interface ModelParameterConfigOutput {
    * @memberof ModelParameterConfigOutput
    */
   description?: string | null
+  /**
+   * 分组 group
+   * @type {string}
+   * @memberof ModelParameterConfigOutput
+   */
+  group?: string | null
 }
