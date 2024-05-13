@@ -37,6 +37,8 @@ import { ControlSuggestionOutput } from '../models'
 // @ts-ignore
 import { EnergyCostCompareData } from '../models'
 // @ts-ignore
+import { OptimizationConfig } from '../models'
+// @ts-ignore
 import { RemoteServiceErrorResponse } from '../models'
 // @ts-ignore
 import { SwitchControlInput } from '../models'
@@ -46,6 +48,46 @@ import { SwitchControlInput } from '../models'
  */
 export const OptimizationApiAxiosParamCreator = function (configuration?: Configuration) {
   return {
+    /**
+     *
+     * @summary 根据类型获取优化配置 Get Optimization config by type
+     * @param {number} [displayType] 类型 type
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV2OptimizationConfigGet: async (
+      displayType?: number,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v2/optimization/config`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      if (displayType !== undefined) {
+        localVarQueryParameter['displayType'] = displayType
+      }
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
     /**
      *
      * @summary 获取优化控制点位上，实测值与优化模拟值的对比信息 Get online data and optimization model result data on control points
@@ -459,6 +501,64 @@ export const OptimizationApiAxiosParamCreator = function (configuration?: Config
         options: localVarRequestOptions,
       }
     },
+    /**
+     * 与v2版本的区别是此方法是基于日总电耗来统计的 this statistic is based on daily total energy
+     * @summary 获取吨水电耗的实际值与优化值，包括时间序列与平均值 Get real energy cost per ton and optimized energy cost per ton, including time-series data and average value
+     * @param {string} [startTime] 开始时刻 start time
+     * @param {string} [endTime] 结束时刻 end time
+     * @param {string} [modelName] 模板模型名称 template model name
+     * @param {string} [productLine] 工艺线编码 product line code
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV3OptimizationEnergyCostCompareGet: async (
+      startTime?: string,
+      endTime?: string,
+      modelName?: string,
+      productLine?: string,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v3/optimization/energy-cost-compare`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      if (startTime !== undefined) {
+        localVarQueryParameter['startTime'] = startTime
+      }
+
+      if (endTime !== undefined) {
+        localVarQueryParameter['endTime'] = endTime
+      }
+
+      if (modelName !== undefined) {
+        localVarQueryParameter['modelName'] = modelName
+      }
+
+      if (productLine !== undefined) {
+        localVarQueryParameter['productLine'] = productLine
+      }
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
   }
 }
 
@@ -469,6 +569,25 @@ export const OptimizationApiAxiosParamCreator = function (configuration?: Config
 export const OptimizationApiFp = function (configuration?: Configuration) {
   const localVarAxiosParamCreator = OptimizationApiAxiosParamCreator(configuration)
   return {
+    /**
+     *
+     * @summary 根据类型获取优化配置 Get Optimization config by type
+     * @param {number} [displayType] 类型 type
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV2OptimizationConfigGet(
+      displayType?: number,
+      options?: AxiosRequestConfig,
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<OptimizationConfig>>
+    > {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiV2OptimizationConfigGet(
+        displayType,
+        options,
+      )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
     /**
      *
      * @summary 获取优化控制点位上，实测值与优化模拟值的对比信息 Get online data and optimization model result data on control points
@@ -652,6 +771,33 @@ export const OptimizationApiFp = function (configuration?: Configuration) {
       )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
+    /**
+     * 与v2版本的区别是此方法是基于日总电耗来统计的 this statistic is based on daily total energy
+     * @summary 获取吨水电耗的实际值与优化值，包括时间序列与平均值 Get real energy cost per ton and optimized energy cost per ton, including time-series data and average value
+     * @param {string} [startTime] 开始时刻 start time
+     * @param {string} [endTime] 结束时刻 end time
+     * @param {string} [modelName] 模板模型名称 template model name
+     * @param {string} [productLine] 工艺线编码 product line code
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV3OptimizationEnergyCostCompareGet(
+      startTime?: string,
+      endTime?: string,
+      modelName?: string,
+      productLine?: string,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<EnergyCostCompareData>> {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiV3OptimizationEnergyCostCompareGet(
+          startTime,
+          endTime,
+          modelName,
+          productLine,
+          options,
+        )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
   }
 }
 
@@ -666,6 +812,21 @@ export const OptimizationApiFactory = function (
 ) {
   const localVarFp = OptimizationApiFp(configuration)
   return {
+    /**
+     *
+     * @summary 根据类型获取优化配置 Get Optimization config by type
+     * @param {number} [displayType] 类型 type
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV2OptimizationConfigGet(
+      displayType?: number,
+      options?: any,
+    ): AxiosPromise<Array<OptimizationConfig>> {
+      return localVarFp
+        .apiV2OptimizationConfigGet(displayType, options)
+        .then((request) => request(axios, basePath))
+    },
     /**
      *
      * @summary 获取优化控制点位上，实测值与优化模拟值的对比信息 Get online data and optimization model result data on control points
@@ -816,6 +977,27 @@ export const OptimizationApiFactory = function (
         .apiV2OptimizationSwitchControlPost(switchControlInput, options)
         .then((request) => request(axios, basePath))
     },
+    /**
+     * 与v2版本的区别是此方法是基于日总电耗来统计的 this statistic is based on daily total energy
+     * @summary 获取吨水电耗的实际值与优化值，包括时间序列与平均值 Get real energy cost per ton and optimized energy cost per ton, including time-series data and average value
+     * @param {string} [startTime] 开始时刻 start time
+     * @param {string} [endTime] 结束时刻 end time
+     * @param {string} [modelName] 模板模型名称 template model name
+     * @param {string} [productLine] 工艺线编码 product line code
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV3OptimizationEnergyCostCompareGet(
+      startTime?: string,
+      endTime?: string,
+      modelName?: string,
+      productLine?: string,
+      options?: any,
+    ): AxiosPromise<EnergyCostCompareData> {
+      return localVarFp
+        .apiV3OptimizationEnergyCostCompareGet(startTime, endTime, modelName, productLine, options)
+        .then((request) => request(axios, basePath))
+    },
   }
 }
 
@@ -826,6 +1008,20 @@ export const OptimizationApiFactory = function (
  * @extends {BaseAPI}
  */
 export class OptimizationApi extends BaseAPI {
+  /**
+   *
+   * @summary 根据类型获取优化配置 Get Optimization config by type
+   * @param {number} [displayType] 类型 type
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof OptimizationApi
+   */
+  public apiV2OptimizationConfigGet(displayType?: number, options?: AxiosRequestConfig) {
+    return OptimizationApiFp(this.configuration)
+      .apiV2OptimizationConfigGet(displayType, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
   /**
    *
    * @summary 获取优化控制点位上，实测值与优化模拟值的对比信息 Get online data and optimization model result data on control points
@@ -986,6 +1182,29 @@ export class OptimizationApi extends BaseAPI {
   ) {
     return OptimizationApiFp(this.configuration)
       .apiV2OptimizationSwitchControlPost(switchControlInput, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   * 与v2版本的区别是此方法是基于日总电耗来统计的 this statistic is based on daily total energy
+   * @summary 获取吨水电耗的实际值与优化值，包括时间序列与平均值 Get real energy cost per ton and optimized energy cost per ton, including time-series data and average value
+   * @param {string} [startTime] 开始时刻 start time
+   * @param {string} [endTime] 结束时刻 end time
+   * @param {string} [modelName] 模板模型名称 template model name
+   * @param {string} [productLine] 工艺线编码 product line code
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof OptimizationApi
+   */
+  public apiV3OptimizationEnergyCostCompareGet(
+    startTime?: string,
+    endTime?: string,
+    modelName?: string,
+    productLine?: string,
+    options?: AxiosRequestConfig,
+  ) {
+    return OptimizationApiFp(this.configuration)
+      .apiV3OptimizationEnergyCostCompareGet(startTime, endTime, modelName, productLine, options)
       .then((request) => request(this.axios, this.basePath))
   }
 }

@@ -2,7 +2,7 @@
   "name": "@dhicn/domain-paas-sdk-ts",
   "license": "MIT",
   "private": false,
-  "version": "2.6.8",
+  "version": "2.6.9",
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",
