@@ -86,10 +86,11 @@ export interface DosingParameterOutput {
 }
 
 export const DosingParameterOutputCategoryEnum = {
-  '1': 1 as number,
-  '2': 2 as number,
-  '3': 3 as number,
-  '4': 4 as number,
+  NUMBER_1: 1,
+  NUMBER_2: 2,
+  NUMBER_3: 3,
+  NUMBER_4: 4,
+  NUMBER_5: 5,
 } as const
 
 export type DosingParameterOutputCategoryEnum =

@@ -33,8 +33,6 @@ import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } fr
 // @ts-ignore
 import { AbftProcessStatusOutput } from '../models'
 // @ts-ignore
-import { AssemblyConfigOutput } from '../models'
-// @ts-ignore
 import { CdAdditionRateOutput } from '../models'
 // @ts-ignore
 import { DosingLogOutput } from '../models'
@@ -47,7 +45,7 @@ import { DosingStatisticDailysOutput } from '../models'
 // @ts-ignore
 import { InletLoadOutput } from '../models'
 // @ts-ignore
-import { OutletTnOutput } from '../models'
+import { OutletOutput } from '../models'
 // @ts-ignore
 import { RemoteServiceErrorResponse } from '../models'
 // @ts-ignore
@@ -185,6 +183,7 @@ export const IntelligentDenitrificationApiAxiosParamCreator = function (
     /**
      *
      * @summary 获取生化池工艺运行状态 Get biochemical pool operation status
+     * @param {number} [category] 加药类别 dosage type
      * @param {string} [productionLine] 产线编号 product line code
      * @param {string} [startTime] 开始时间 start time
      * @param {string} [endTime] 结束时间 end time
@@ -192,6 +191,7 @@ export const IntelligentDenitrificationApiAxiosParamCreator = function (
      * @throws {RequiredError}
      */
     apiIntelligentDenitrificationGetABFTProcessStatusGet: async (
+      category?: number,
       productionLine?: string,
       startTime?: string,
       endTime?: string,
@@ -208,6 +208,10 @@ export const IntelligentDenitrificationApiAxiosParamCreator = function (
       const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
+
+      if (category !== undefined) {
+        localVarQueryParameter['category'] = category
+      }
 
       if (productionLine !== undefined) {
         localVarQueryParameter['productionLine'] = productionLine
@@ -271,52 +275,6 @@ export const IntelligentDenitrificationApiAxiosParamCreator = function (
 
       if (endTime !== undefined) {
         localVarQueryParameter['endTime'] = endTime
-      }
-
-      setSearchParams(localVarUrlObj, localVarQueryParameter)
-      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      }
-
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      }
-    },
-    /**
-     * 根据展示类别获取点位配置信息
-     * @summary 根据展示类别获取点位配置信息
-     * @param {number} [displayTypeEnum] 展示枚举
-     * @param {string} [productLine] 产线
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    apiIntelligentDenitrificationGetAssemblyConfigsGet: async (
-      displayTypeEnum?: number,
-      productLine?: string,
-      options: AxiosRequestConfig = {},
-    ): Promise<RequestArgs> => {
-      const localVarPath = `/api/IntelligentDenitrification/GetAssemblyConfigs`
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
-      let baseOptions
-      if (configuration) {
-        baseOptions = configuration.baseOptions
-      }
-
-      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
-      const localVarHeaderParameter = {} as any
-      const localVarQueryParameter = {} as any
-
-      if (displayTypeEnum !== undefined) {
-        localVarQueryParameter['displayTypeEnum'] = displayTypeEnum
-      }
-
-      if (productLine !== undefined) {
-        localVarQueryParameter['productLine'] = productLine
       }
 
       setSearchParams(localVarUrlObj, localVarQueryParameter)
@@ -803,6 +761,7 @@ export const IntelligentDenitrificationApiFp = function (configuration?: Configu
     /**
      *
      * @summary 获取生化池工艺运行状态 Get biochemical pool operation status
+     * @param {number} [category] 加药类别 dosage type
      * @param {string} [productionLine] 产线编号 product line code
      * @param {string} [startTime] 开始时间 start time
      * @param {string} [endTime] 结束时间 end time
@@ -810,6 +769,7 @@ export const IntelligentDenitrificationApiFp = function (configuration?: Configu
      * @throws {RequiredError}
      */
     async apiIntelligentDenitrificationGetABFTProcessStatusGet(
+      category?: number,
       productionLine?: string,
       startTime?: string,
       endTime?: string,
@@ -819,6 +779,7 @@ export const IntelligentDenitrificationApiFp = function (configuration?: Configu
     > {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.apiIntelligentDenitrificationGetABFTProcessStatusGet(
+          category,
           productionLine,
           startTime,
           endTime,
@@ -846,29 +807,6 @@ export const IntelligentDenitrificationApiFp = function (configuration?: Configu
           productionLine,
           startTime,
           endTime,
-          options,
-        )
-      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
-    },
-    /**
-     * 根据展示类别获取点位配置信息
-     * @summary 根据展示类别获取点位配置信息
-     * @param {number} [displayTypeEnum] 展示枚举
-     * @param {string} [productLine] 产线
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    async apiIntelligentDenitrificationGetAssemblyConfigsGet(
-      displayTypeEnum?: number,
-      productLine?: string,
-      options?: AxiosRequestConfig,
-    ): Promise<
-      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<AssemblyConfigOutput>>
-    > {
-      const localVarAxiosArgs =
-        await localVarAxiosParamCreator.apiIntelligentDenitrificationGetAssemblyConfigsGet(
-          displayTypeEnum,
-          productLine,
           options,
         )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
@@ -1033,7 +971,7 @@ export const IntelligentDenitrificationApiFp = function (configuration?: Configu
       startTime?: string,
       endTime?: string,
       options?: AxiosRequestConfig,
-    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OutletTnOutput>> {
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OutletOutput>> {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.apiIntelligentDenitrificationGetOutletTNGet(
           startTime,
@@ -1134,6 +1072,7 @@ export const IntelligentDenitrificationApiFactory = function (
     /**
      *
      * @summary 获取生化池工艺运行状态 Get biochemical pool operation status
+     * @param {number} [category] 加药类别 dosage type
      * @param {string} [productionLine] 产线编号 product line code
      * @param {string} [startTime] 开始时间 start time
      * @param {string} [endTime] 结束时间 end time
@@ -1141,6 +1080,7 @@ export const IntelligentDenitrificationApiFactory = function (
      * @throws {RequiredError}
      */
     apiIntelligentDenitrificationGetABFTProcessStatusGet(
+      category?: number,
       productionLine?: string,
       startTime?: string,
       endTime?: string,
@@ -1148,6 +1088,7 @@ export const IntelligentDenitrificationApiFactory = function (
     ): AxiosPromise<Array<AbftProcessStatusOutput>> {
       return localVarFp
         .apiIntelligentDenitrificationGetABFTProcessStatusGet(
+          category,
           productionLine,
           startTime,
           endTime,
@@ -1172,23 +1113,6 @@ export const IntelligentDenitrificationApiFactory = function (
     ): AxiosPromise<SingleCodeDatasOutput> {
       return localVarFp
         .apiIntelligentDenitrificationGetAnoxicNO3Get(productionLine, startTime, endTime, options)
-        .then((request) => request(axios, basePath))
-    },
-    /**
-     * 根据展示类别获取点位配置信息
-     * @summary 根据展示类别获取点位配置信息
-     * @param {number} [displayTypeEnum] 展示枚举
-     * @param {string} [productLine] 产线
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    apiIntelligentDenitrificationGetAssemblyConfigsGet(
-      displayTypeEnum?: number,
-      productLine?: string,
-      options?: any,
-    ): AxiosPromise<Array<AssemblyConfigOutput>> {
-      return localVarFp
-        .apiIntelligentDenitrificationGetAssemblyConfigsGet(displayTypeEnum, productLine, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -1338,7 +1262,7 @@ export const IntelligentDenitrificationApiFactory = function (
       startTime?: string,
       endTime?: string,
       options?: any,
-    ): AxiosPromise<OutletTnOutput> {
+    ): AxiosPromise<OutletOutput> {
       return localVarFp
         .apiIntelligentDenitrificationGetOutletTNGet(startTime, endTime, options)
         .then((request) => request(axios, basePath))
@@ -1432,6 +1356,7 @@ export class IntelligentDenitrificationApi extends BaseAPI {
   /**
    *
    * @summary 获取生化池工艺运行状态 Get biochemical pool operation status
+   * @param {number} [category] 加药类别 dosage type
    * @param {string} [productionLine] 产线编号 product line code
    * @param {string} [startTime] 开始时间 start time
    * @param {string} [endTime] 结束时间 end time
@@ -1440,6 +1365,7 @@ export class IntelligentDenitrificationApi extends BaseAPI {
    * @memberof IntelligentDenitrificationApi
    */
   public apiIntelligentDenitrificationGetABFTProcessStatusGet(
+    category?: number,
     productionLine?: string,
     startTime?: string,
     endTime?: string,
@@ -1447,6 +1373,7 @@ export class IntelligentDenitrificationApi extends BaseAPI {
   ) {
     return IntelligentDenitrificationApiFp(this.configuration)
       .apiIntelligentDenitrificationGetABFTProcessStatusGet(
+        category,
         productionLine,
         startTime,
         endTime,
@@ -1473,25 +1400,6 @@ export class IntelligentDenitrificationApi extends BaseAPI {
   ) {
     return IntelligentDenitrificationApiFp(this.configuration)
       .apiIntelligentDenitrificationGetAnoxicNO3Get(productionLine, startTime, endTime, options)
-      .then((request) => request(this.axios, this.basePath))
-  }
-
-  /**
-   * 根据展示类别获取点位配置信息
-   * @summary 根据展示类别获取点位配置信息
-   * @param {number} [displayTypeEnum] 展示枚举
-   * @param {string} [productLine] 产线
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof IntelligentDenitrificationApi
-   */
-  public apiIntelligentDenitrificationGetAssemblyConfigsGet(
-    displayTypeEnum?: number,
-    productLine?: string,
-    options?: AxiosRequestConfig,
-  ) {
-    return IntelligentDenitrificationApiFp(this.configuration)
-      .apiIntelligentDenitrificationGetAssemblyConfigsGet(displayTypeEnum, productLine, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
