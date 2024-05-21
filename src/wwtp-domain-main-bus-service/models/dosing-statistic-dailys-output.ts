@@ -13,7 +13,7 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { TsPair } from './ts-pair'
+import { TsPairNew } from './ts-pair-new'
 
 /**
  *
@@ -77,8 +77,8 @@ export interface DosingStatisticDailysOutput {
   sumValue?: number
   /**
    * 时间序列 time-series data
-   * @type {Array<TsPair>}
+   * @type {Array<TsPairNew>}
    * @memberof DosingStatisticDailysOutput
    */
-  tsData?: Array<TsPair> | null
+  tsData?: Array<TsPairNew> | null
 }
