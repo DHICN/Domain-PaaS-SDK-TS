@@ -19,6 +19,10 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - run: npm install -g pnpm
+
+      - name: Set npm registry to Taobao
+        run: npm config set registry https://registry.npmmirror.com
+
       - name: use pnpm install packages
         run: pnpm install --no-frozen-lockfile
 
