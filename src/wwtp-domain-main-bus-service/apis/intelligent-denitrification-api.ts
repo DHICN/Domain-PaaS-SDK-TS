@@ -691,6 +691,64 @@ export const IntelligentDenitrificationApiAxiosParamCreator = function (
         options: localVarRequestOptions,
       }
     },
+    /**
+     *
+     * @summary 获取生化区相应模块的数据 Get data in biochemical tanks
+     * @param {number} [module] 模块，包括缺氧区硝酸盐浓度4，好氧区硝酸盐浓度17，反硝化速率3等 module
+     * @param {string} [productionLine] 产线编号 product line code
+     * @param {string} [startTime] 开始时间 start time
+     * @param {string} [endTime] 结束时间 end time
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV2IntelligentCdBiochemicalDataGet: async (
+      module?: number,
+      productionLine?: string,
+      startTime?: string,
+      endTime?: string,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v2/intelligent-cd/biochemical-data`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      if (module !== undefined) {
+        localVarQueryParameter['module'] = module
+      }
+
+      if (productionLine !== undefined) {
+        localVarQueryParameter['productionLine'] = productionLine
+      }
+
+      if (startTime !== undefined) {
+        localVarQueryParameter['startTime'] = startTime
+      }
+
+      if (endTime !== undefined) {
+        localVarQueryParameter['endTime'] = endTime
+      }
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
   }
 }
 
@@ -998,6 +1056,33 @@ export const IntelligentDenitrificationApiFp = function (configuration?: Configu
         )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
+    /**
+     *
+     * @summary 获取生化区相应模块的数据 Get data in biochemical tanks
+     * @param {number} [module] 模块，包括缺氧区硝酸盐浓度4，好氧区硝酸盐浓度17，反硝化速率3等 module
+     * @param {string} [productionLine] 产线编号 product line code
+     * @param {string} [startTime] 开始时间 start time
+     * @param {string} [endTime] 结束时间 end time
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV2IntelligentCdBiochemicalDataGet(
+      module?: number,
+      productionLine?: string,
+      startTime?: string,
+      endTime?: string,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<SingleCodeDatasOutput>> {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiV2IntelligentCdBiochemicalDataGet(
+          module,
+          productionLine,
+          startTime,
+          endTime,
+          options,
+        )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
   }
 }
 
@@ -1280,6 +1365,27 @@ export const IntelligentDenitrificationApiFactory = function (
     ): AxiosPromise<object> {
       return localVarFp
         .apiIntelligentDenitrificationSaveDosingParameterPost(dosingParamSettingDto, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @summary 获取生化区相应模块的数据 Get data in biochemical tanks
+     * @param {number} [module] 模块，包括缺氧区硝酸盐浓度4，好氧区硝酸盐浓度17，反硝化速率3等 module
+     * @param {string} [productionLine] 产线编号 product line code
+     * @param {string} [startTime] 开始时间 start time
+     * @param {string} [endTime] 结束时间 end time
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV2IntelligentCdBiochemicalDataGet(
+      module?: number,
+      productionLine?: string,
+      startTime?: string,
+      endTime?: string,
+      options?: any,
+    ): AxiosPromise<SingleCodeDatasOutput> {
+      return localVarFp
+        .apiV2IntelligentCdBiochemicalDataGet(module, productionLine, startTime, endTime, options)
         .then((request) => request(axios, basePath))
     },
   }
@@ -1583,6 +1689,29 @@ export class IntelligentDenitrificationApi extends BaseAPI {
   ) {
     return IntelligentDenitrificationApiFp(this.configuration)
       .apiIntelligentDenitrificationSaveDosingParameterPost(dosingParamSettingDto, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary 获取生化区相应模块的数据 Get data in biochemical tanks
+   * @param {number} [module] 模块，包括缺氧区硝酸盐浓度4，好氧区硝酸盐浓度17，反硝化速率3等 module
+   * @param {string} [productionLine] 产线编号 product line code
+   * @param {string} [startTime] 开始时间 start time
+   * @param {string} [endTime] 结束时间 end time
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof IntelligentDenitrificationApi
+   */
+  public apiV2IntelligentCdBiochemicalDataGet(
+    module?: number,
+    productionLine?: string,
+    startTime?: string,
+    endTime?: string,
+    options?: AxiosRequestConfig,
+  ) {
+    return IntelligentDenitrificationApiFp(this.configuration)
+      .apiV2IntelligentCdBiochemicalDataGet(module, productionLine, startTime, endTime, options)
       .then((request) => request(this.axios, this.basePath))
   }
 }

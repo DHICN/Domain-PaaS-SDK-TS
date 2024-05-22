@@ -13,7 +13,7 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { TsPair } from './ts-pair'
+import { TsPairNew } from './ts-pair-new'
 
 /**
  *
@@ -29,10 +29,10 @@ export interface SingleCodeDatasOutput {
   code?: string | null
   /**
    * 值 value
-   * @type {Array<TsPair>}
+   * @type {Array<TsPairNew>}
    * @memberof SingleCodeDatasOutput
    */
-  value?: Array<TsPair> | null
+  value?: Array<TsPairNew> | null
   /**
    * 单位 unit
    * @type {string}
