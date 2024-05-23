@@ -29,4 +29,10 @@ export interface AddAlgorithmInstanceInput {
    * @memberof AddAlgorithmInstanceInput
    */
   algorithmId?: string
+  /**
+   * 自定义端口映射
+   * @type {Array<string>}
+   * @memberof AddAlgorithmInstanceInput
+   */
+  customPortMap?: Array<string> | null
 }
