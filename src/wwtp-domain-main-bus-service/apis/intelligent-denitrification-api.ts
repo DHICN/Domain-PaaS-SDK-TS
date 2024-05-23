@@ -33,6 +33,8 @@ import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } fr
 // @ts-ignore
 import { AbftProcessStatusOutput } from '../models'
 // @ts-ignore
+import { AdditionRateOutput } from '../models'
+// @ts-ignore
 import { CdAdditionRateOutput } from '../models'
 // @ts-ignore
 import { DosingLogOutput } from '../models'
@@ -50,6 +52,8 @@ import { OutletOutput } from '../models'
 import { RemoteServiceErrorResponse } from '../models'
 // @ts-ignore
 import { SingleCodeDatasOutput } from '../models'
+// @ts-ignore
+import { TimeSeriesData } from '../models'
 /**
  * IntelligentDenitrificationApi - axios parameter creator
  * @export
@@ -401,6 +405,7 @@ export const IntelligentDenitrificationApiAxiosParamCreator = function (
      * @param {string} [productionLine] 产线代码 product line code
      * @param {string} [startTime] 开始时间 start time
      * @param {string} [endTime] 结束时间 end time
+     * @param {string} [code] 加药参数代码 dosing parameter code
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -409,6 +414,7 @@ export const IntelligentDenitrificationApiAxiosParamCreator = function (
       productionLine?: string,
       startTime?: string,
       endTime?: string,
+      code?: string,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
       const localVarPath = `/api/IntelligentDenitrification/GetDosingLog`
@@ -437,6 +443,10 @@ export const IntelligentDenitrificationApiAxiosParamCreator = function (
 
       if (endTime !== undefined) {
         localVarQueryParameter['endTime'] = endTime
+      }
+
+      if (code !== undefined) {
+        localVarQueryParameter['code'] = code
       }
 
       setSearchParams(localVarUrlObj, localVarQueryParameter)
@@ -691,6 +701,186 @@ export const IntelligentDenitrificationApiAxiosParamCreator = function (
         options: localVarRequestOptions,
       }
     },
+    /**
+     *
+     * @summary 获取生化区相应模块的数据 Get data in biochemical tanks
+     * @param {number} [module] 模块，包括缺氧区硝酸盐浓度4，好氧区硝酸盐浓度17，反硝化速率3等 module
+     * @param {string} [productionLine] 产线编号 product line code
+     * @param {string} [startTime] 开始时间 start time
+     * @param {string} [endTime] 结束时间 end time
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV2IntelligentCdBiochemicalDataGet: async (
+      module?: number,
+      productionLine?: string,
+      startTime?: string,
+      endTime?: string,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v2/intelligent-cd/biochemical-data`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      if (module !== undefined) {
+        localVarQueryParameter['module'] = module
+      }
+
+      if (productionLine !== undefined) {
+        localVarQueryParameter['productionLine'] = productionLine
+      }
+
+      if (startTime !== undefined) {
+        localVarQueryParameter['startTime'] = startTime
+      }
+
+      if (endTime !== undefined) {
+        localVarQueryParameter['endTime'] = endTime
+      }
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 获取药剂投加速率 Get dosing rate data
+     * @param {number} [category] 加药类别 dosage type
+     * @param {string} [productionLine] 产线编号 product line code
+     * @param {string} [startTime] 开始时间 start time
+     * @param {string} [endTime] 结束时间 end time
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV2IntelligentDosingAddRateGet: async (
+      category?: number,
+      productionLine?: string,
+      startTime?: string,
+      endTime?: string,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v2/intelligent-dosing/add-rate`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      if (category !== undefined) {
+        localVarQueryParameter['category'] = category
+      }
+
+      if (productionLine !== undefined) {
+        localVarQueryParameter['productionLine'] = productionLine
+      }
+
+      if (startTime !== undefined) {
+        localVarQueryParameter['startTime'] = startTime
+      }
+
+      if (endTime !== undefined) {
+        localVarQueryParameter['endTime'] = endTime
+      }
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 获取实测或模拟的时间序列数据 Get online or simulated time-series data
+     * @param {number} [category] 加药类别 dosage type
+     * @param {number} [module] 模块 module
+     * @param {string} [startTime] 开始时间 start time
+     * @param {string} [endTime] 结束时间 end time
+     * @param {string} [productLine] 产线编号 product line code
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV2IntelligentDosingTimeSeriesGet: async (
+      category?: number,
+      module?: number,
+      startTime?: string,
+      endTime?: string,
+      productLine?: string,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v2/intelligent-dosing/time-series`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      if (category !== undefined) {
+        localVarQueryParameter['category'] = category
+      }
+
+      if (module !== undefined) {
+        localVarQueryParameter['module'] = module
+      }
+
+      if (startTime !== undefined) {
+        localVarQueryParameter['startTime'] = startTime
+      }
+
+      if (endTime !== undefined) {
+        localVarQueryParameter['endTime'] = endTime
+      }
+
+      if (productLine !== undefined) {
+        localVarQueryParameter['productLine'] = productLine
+      }
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
   }
 }
 
@@ -866,6 +1056,7 @@ export const IntelligentDenitrificationApiFp = function (configuration?: Configu
      * @param {string} [productionLine] 产线代码 product line code
      * @param {string} [startTime] 开始时间 start time
      * @param {string} [endTime] 结束时间 end time
+     * @param {string} [code] 加药参数代码 dosing parameter code
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -874,6 +1065,7 @@ export const IntelligentDenitrificationApiFp = function (configuration?: Configu
       productionLine?: string,
       startTime?: string,
       endTime?: string,
+      code?: string,
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DosingLogOutput>> {
       const localVarAxiosArgs =
@@ -882,6 +1074,7 @@ export const IntelligentDenitrificationApiFp = function (configuration?: Configu
           productionLine,
           startTime,
           endTime,
+          code,
           options,
         )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
@@ -996,6 +1189,90 @@ export const IntelligentDenitrificationApiFp = function (configuration?: Configu
           dosingParamSettingDto,
           options,
         )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
+     * @summary 获取生化区相应模块的数据 Get data in biochemical tanks
+     * @param {number} [module] 模块，包括缺氧区硝酸盐浓度4，好氧区硝酸盐浓度17，反硝化速率3等 module
+     * @param {string} [productionLine] 产线编号 product line code
+     * @param {string} [startTime] 开始时间 start time
+     * @param {string} [endTime] 结束时间 end time
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV2IntelligentCdBiochemicalDataGet(
+      module?: number,
+      productionLine?: string,
+      startTime?: string,
+      endTime?: string,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<SingleCodeDatasOutput>> {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiV2IntelligentCdBiochemicalDataGet(
+          module,
+          productionLine,
+          startTime,
+          endTime,
+          options,
+        )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
+     * @summary 获取药剂投加速率 Get dosing rate data
+     * @param {number} [category] 加药类别 dosage type
+     * @param {string} [productionLine] 产线编号 product line code
+     * @param {string} [startTime] 开始时间 start time
+     * @param {string} [endTime] 结束时间 end time
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV2IntelligentDosingAddRateGet(
+      category?: number,
+      productionLine?: string,
+      startTime?: string,
+      endTime?: string,
+      options?: AxiosRequestConfig,
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<AdditionRateOutput>>
+    > {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiV2IntelligentDosingAddRateGet(
+        category,
+        productionLine,
+        startTime,
+        endTime,
+        options,
+      )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
+     * @summary 获取实测或模拟的时间序列数据 Get online or simulated time-series data
+     * @param {number} [category] 加药类别 dosage type
+     * @param {number} [module] 模块 module
+     * @param {string} [startTime] 开始时间 start time
+     * @param {string} [endTime] 结束时间 end time
+     * @param {string} [productLine] 产线编号 product line code
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV2IntelligentDosingTimeSeriesGet(
+      category?: number,
+      module?: number,
+      startTime?: string,
+      endTime?: string,
+      productLine?: string,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<TimeSeriesData>>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiV2IntelligentDosingTimeSeriesGet(
+        category,
+        module,
+        startTime,
+        endTime,
+        productLine,
+        options,
+      )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
   }
@@ -1170,6 +1447,7 @@ export const IntelligentDenitrificationApiFactory = function (
      * @param {string} [productionLine] 产线代码 product line code
      * @param {string} [startTime] 开始时间 start time
      * @param {string} [endTime] 结束时间 end time
+     * @param {string} [code] 加药参数代码 dosing parameter code
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -1178,6 +1456,7 @@ export const IntelligentDenitrificationApiFactory = function (
       productionLine?: string,
       startTime?: string,
       endTime?: string,
+      code?: string,
       options?: any,
     ): AxiosPromise<DosingLogOutput> {
       return localVarFp
@@ -1186,6 +1465,7 @@ export const IntelligentDenitrificationApiFactory = function (
           productionLine,
           startTime,
           endTime,
+          code,
           options,
         )
         .then((request) => request(axios, basePath))
@@ -1280,6 +1560,78 @@ export const IntelligentDenitrificationApiFactory = function (
     ): AxiosPromise<object> {
       return localVarFp
         .apiIntelligentDenitrificationSaveDosingParameterPost(dosingParamSettingDto, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @summary 获取生化区相应模块的数据 Get data in biochemical tanks
+     * @param {number} [module] 模块，包括缺氧区硝酸盐浓度4，好氧区硝酸盐浓度17，反硝化速率3等 module
+     * @param {string} [productionLine] 产线编号 product line code
+     * @param {string} [startTime] 开始时间 start time
+     * @param {string} [endTime] 结束时间 end time
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV2IntelligentCdBiochemicalDataGet(
+      module?: number,
+      productionLine?: string,
+      startTime?: string,
+      endTime?: string,
+      options?: any,
+    ): AxiosPromise<SingleCodeDatasOutput> {
+      return localVarFp
+        .apiV2IntelligentCdBiochemicalDataGet(module, productionLine, startTime, endTime, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @summary 获取药剂投加速率 Get dosing rate data
+     * @param {number} [category] 加药类别 dosage type
+     * @param {string} [productionLine] 产线编号 product line code
+     * @param {string} [startTime] 开始时间 start time
+     * @param {string} [endTime] 结束时间 end time
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV2IntelligentDosingAddRateGet(
+      category?: number,
+      productionLine?: string,
+      startTime?: string,
+      endTime?: string,
+      options?: any,
+    ): AxiosPromise<Array<AdditionRateOutput>> {
+      return localVarFp
+        .apiV2IntelligentDosingAddRateGet(category, productionLine, startTime, endTime, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @summary 获取实测或模拟的时间序列数据 Get online or simulated time-series data
+     * @param {number} [category] 加药类别 dosage type
+     * @param {number} [module] 模块 module
+     * @param {string} [startTime] 开始时间 start time
+     * @param {string} [endTime] 结束时间 end time
+     * @param {string} [productLine] 产线编号 product line code
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV2IntelligentDosingTimeSeriesGet(
+      category?: number,
+      module?: number,
+      startTime?: string,
+      endTime?: string,
+      productLine?: string,
+      options?: any,
+    ): AxiosPromise<Array<TimeSeriesData>> {
+      return localVarFp
+        .apiV2IntelligentDosingTimeSeriesGet(
+          category,
+          module,
+          startTime,
+          endTime,
+          productLine,
+          options,
+        )
         .then((request) => request(axios, basePath))
     },
   }
@@ -1462,6 +1814,7 @@ export class IntelligentDenitrificationApi extends BaseAPI {
    * @param {string} [productionLine] 产线代码 product line code
    * @param {string} [startTime] 开始时间 start time
    * @param {string} [endTime] 结束时间 end time
+   * @param {string} [code] 加药参数代码 dosing parameter code
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof IntelligentDenitrificationApi
@@ -1471,6 +1824,7 @@ export class IntelligentDenitrificationApi extends BaseAPI {
     productionLine?: string,
     startTime?: string,
     endTime?: string,
+    code?: string,
     options?: AxiosRequestConfig,
   ) {
     return IntelligentDenitrificationApiFp(this.configuration)
@@ -1479,6 +1833,7 @@ export class IntelligentDenitrificationApi extends BaseAPI {
         productionLine,
         startTime,
         endTime,
+        code,
         options,
       )
       .then((request) => request(this.axios, this.basePath))
@@ -1583,6 +1938,84 @@ export class IntelligentDenitrificationApi extends BaseAPI {
   ) {
     return IntelligentDenitrificationApiFp(this.configuration)
       .apiIntelligentDenitrificationSaveDosingParameterPost(dosingParamSettingDto, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary 获取生化区相应模块的数据 Get data in biochemical tanks
+   * @param {number} [module] 模块，包括缺氧区硝酸盐浓度4，好氧区硝酸盐浓度17，反硝化速率3等 module
+   * @param {string} [productionLine] 产线编号 product line code
+   * @param {string} [startTime] 开始时间 start time
+   * @param {string} [endTime] 结束时间 end time
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof IntelligentDenitrificationApi
+   */
+  public apiV2IntelligentCdBiochemicalDataGet(
+    module?: number,
+    productionLine?: string,
+    startTime?: string,
+    endTime?: string,
+    options?: AxiosRequestConfig,
+  ) {
+    return IntelligentDenitrificationApiFp(this.configuration)
+      .apiV2IntelligentCdBiochemicalDataGet(module, productionLine, startTime, endTime, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary 获取药剂投加速率 Get dosing rate data
+   * @param {number} [category] 加药类别 dosage type
+   * @param {string} [productionLine] 产线编号 product line code
+   * @param {string} [startTime] 开始时间 start time
+   * @param {string} [endTime] 结束时间 end time
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof IntelligentDenitrificationApi
+   */
+  public apiV2IntelligentDosingAddRateGet(
+    category?: number,
+    productionLine?: string,
+    startTime?: string,
+    endTime?: string,
+    options?: AxiosRequestConfig,
+  ) {
+    return IntelligentDenitrificationApiFp(this.configuration)
+      .apiV2IntelligentDosingAddRateGet(category, productionLine, startTime, endTime, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary 获取实测或模拟的时间序列数据 Get online or simulated time-series data
+   * @param {number} [category] 加药类别 dosage type
+   * @param {number} [module] 模块 module
+   * @param {string} [startTime] 开始时间 start time
+   * @param {string} [endTime] 结束时间 end time
+   * @param {string} [productLine] 产线编号 product line code
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof IntelligentDenitrificationApi
+   */
+  public apiV2IntelligentDosingTimeSeriesGet(
+    category?: number,
+    module?: number,
+    startTime?: string,
+    endTime?: string,
+    productLine?: string,
+    options?: AxiosRequestConfig,
+  ) {
+    return IntelligentDenitrificationApiFp(this.configuration)
+      .apiV2IntelligentDosingTimeSeriesGet(
+        category,
+        module,
+        startTime,
+        endTime,
+        productLine,
+        options,
+      )
       .then((request) => request(this.axios, this.basePath))
   }
 }
