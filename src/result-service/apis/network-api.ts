@@ -39,6 +39,8 @@ import { BaseTimeseriesOutput } from '../models'
 // @ts-ignore
 import { BatchNetworkTimeseriesQueryInput } from '../models'
 // @ts-ignore
+import { EarlyWarningDto } from '../models'
+// @ts-ignore
 import { NetworkProfile } from '../models'
 // @ts-ignore
 import { NetworkStaticLengthInput } from '../models'
@@ -194,6 +196,46 @@ export const NetworkApiAxiosParamCreator = function (configuration?: Configurati
 
       if (scenarioId !== undefined) {
         localVarQueryParameter['ScenarioId'] = scenarioId
+      }
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 管网泵站液位预警
+     * @param {string} [scenarioId]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1ResultNetworkEarlyWarningWaterLevelPumpGet: async (
+      scenarioId?: string,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/result/network/early-warning/water-level/pump`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      if (scenarioId !== undefined) {
+        localVarQueryParameter['scenarioId'] = scenarioId
       }
 
       setSearchParams(localVarUrlObj, localVarQueryParameter)
@@ -996,6 +1038,24 @@ export const NetworkApiFp = function (configuration?: Configuration) {
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**
+     *
+     * @summary 管网泵站液位预警
+     * @param {string} [scenarioId]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1ResultNetworkEarlyWarningWaterLevelPumpGet(
+      scenarioId?: string,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<EarlyWarningDto>>> {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiV1ResultNetworkEarlyWarningWaterLevelPumpGet(
+          scenarioId,
+          options,
+        )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
      * 获取管道多个计算点上的流量、流速、充满度、水位等时间序列结果 Get pipe flow, velocity, filling, water level, etc. time series result on multiple points of a scenario.
      * @summary 获取管道多点时间序列结果 Get pipe network multi-point time series results
      * @param {string} scenarioId 方案的ID scenario’s ID
@@ -1381,6 +1441,21 @@ export const NetworkApiFactory = function (
         .then((request) => request(axios, basePath))
     },
     /**
+     *
+     * @summary 管网泵站液位预警
+     * @param {string} [scenarioId]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1ResultNetworkEarlyWarningWaterLevelPumpGet(
+      scenarioId?: string,
+      options?: any,
+    ): AxiosPromise<Array<EarlyWarningDto>> {
+      return localVarFp
+        .apiV1ResultNetworkEarlyWarningWaterLevelPumpGet(scenarioId, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
      * 获取管道多个计算点上的流量、流速、充满度、水位等时间序列结果 Get pipe flow, velocity, filling, water level, etc. time series result on multiple points of a scenario.
      * @summary 获取管道多点时间序列结果 Get pipe network multi-point time series results
      * @param {string} scenarioId 方案的ID scenario’s ID
@@ -1708,6 +1783,23 @@ export class NetworkApi extends BaseAPI {
         endTime,
         options,
       )
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary 管网泵站液位预警
+   * @param {string} [scenarioId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof NetworkApi
+   */
+  public apiV1ResultNetworkEarlyWarningWaterLevelPumpGet(
+    scenarioId?: string,
+    options?: AxiosRequestConfig,
+  ) {
+    return NetworkApiFp(this.configuration)
+      .apiV1ResultNetworkEarlyWarningWaterLevelPumpGet(scenarioId, options)
       .then((request) => request(this.axios, this.basePath))
   }
 

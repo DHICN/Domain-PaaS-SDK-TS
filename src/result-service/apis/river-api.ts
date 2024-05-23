@@ -37,6 +37,8 @@ import { BaseStaticOutput } from '../models'
 // @ts-ignore
 import { BaseTimeseriesOutput } from '../models'
 // @ts-ignore
+import { EarlyWarningDto } from '../models'
+// @ts-ignore
 import { GateStatisticsOutput } from '../models'
 // @ts-ignore
 import { PumpStatisticsOutput } from '../models'
@@ -101,6 +103,46 @@ export const RiverApiAxiosParamCreator = function (configuration?: Configuration
 
       if (scenarioId !== undefined) {
         localVarQueryParameter['ScenarioId'] = scenarioId
+      }
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 闸站液位预警
+     * @param {string} [scenarioId]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1ResultRiverEarlyWarningWaterLevelGateGet: async (
+      scenarioId?: string,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/result/river/early-warning/water-level/gate`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      if (scenarioId !== undefined) {
+        localVarQueryParameter['scenarioId'] = scenarioId
       }
 
       setSearchParams(localVarUrlObj, localVarQueryParameter)
@@ -456,6 +498,24 @@ export const RiverApiFp = function (configuration?: Configuration) {
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**
+     *
+     * @summary 闸站液位预警
+     * @param {string} [scenarioId]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1ResultRiverEarlyWarningWaterLevelGateGet(
+      scenarioId?: string,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<EarlyWarningDto>>> {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiV1ResultRiverEarlyWarningWaterLevelGateGet(
+          scenarioId,
+          options,
+        )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
      * 获取河道闸门的统计结果数据，包括累计开启时长等 Get river structure gates statistic results, including gate accumulated open time, etc. of a scenario.
      * @summary 获取河道闸门的统计结果 Get statistic result of river gates
      * @param {string} scenarioId 方案的ID scenario’s ID
@@ -631,6 +691,21 @@ export const RiverApiFactory = function (
         .then((request) => request(axios, basePath))
     },
     /**
+     *
+     * @summary 闸站液位预警
+     * @param {string} [scenarioId]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1ResultRiverEarlyWarningWaterLevelGateGet(
+      scenarioId?: string,
+      options?: any,
+    ): AxiosPromise<Array<EarlyWarningDto>> {
+      return localVarFp
+        .apiV1ResultRiverEarlyWarningWaterLevelGateGet(scenarioId, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
      * 获取河道闸门的统计结果数据，包括累计开启时长等 Get river structure gates statistic results, including gate accumulated open time, etc. of a scenario.
      * @summary 获取河道闸门的统计结果 Get statistic result of river gates
      * @param {string} scenarioId 方案的ID scenario’s ID
@@ -768,6 +843,23 @@ export class RiverApi extends BaseAPI {
   ) {
     return RiverApiFp(this.configuration)
       .apiV1ResultRiverDynamicGet(scenarioId, riverDataType, frequency, startTime, endTime, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary 闸站液位预警
+   * @param {string} [scenarioId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof RiverApi
+   */
+  public apiV1ResultRiverEarlyWarningWaterLevelGateGet(
+    scenarioId?: string,
+    options?: AxiosRequestConfig,
+  ) {
+    return RiverApiFp(this.configuration)
+      .apiV1ResultRiverEarlyWarningWaterLevelGateGet(scenarioId, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
