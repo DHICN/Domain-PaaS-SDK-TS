@@ -19,14 +19,18 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - run: npm install -g pnpm
+
+      # - name: Set npm registry to Taobao
+      #   run: npm config set registry https://registry.npmmirror.com
+
       - name: use pnpm install packages
         run: pnpm install --no-frozen-lockfile
 
       - name: use pnpm build
         run: pnpm build
 
-      - name: Use JS-DevTools pubilsh to npm
-        uses: JS-DevTools/npm-publish@v2
+      - name: Use JS-DevTools publish to npm
+        uses: JS-DevTools/npm-publish@v3
         with:
           token: ${{ secrets.NPM_TOKEN }}
           access: public
