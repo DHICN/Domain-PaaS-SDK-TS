@@ -251,6 +251,58 @@ export const ProNumSimLabApiAxiosParamCreator = function (configuration?: Config
     },
     /**
      *
+     * @summary 获取单个方案MABR池水质项的分层时间序列数据 Get scenario\'s water quality time-series data in MABR layers
+     * @param {string} [scenarioId]
+     * @param {string} [productLine]
+     * @param {string} [modelName]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV2SimulationLabResultMabrLayerDataGet: async (
+      scenarioId?: string,
+      productLine?: string,
+      modelName?: string,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v2/simulation-lab/result/mabr-layer-data`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      if (scenarioId !== undefined) {
+        localVarQueryParameter['scenarioId'] = scenarioId
+      }
+
+      if (productLine !== undefined) {
+        localVarQueryParameter['productLine'] = productLine
+      }
+
+      if (modelName !== undefined) {
+        localVarQueryParameter['modelName'] = modelName
+      }
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
      * @summary 单个工艺线水质全流程查询 Get scenario\'s water quality entire process result data of a certain product line
      * @param {string} [scenarioId] 方案ID scenario id
      * @param {string} [productLine] 工艺线代码 product line code
@@ -775,6 +827,58 @@ export const ProNumSimLabApiAxiosParamCreator = function (configuration?: Config
         options: localVarRequestOptions,
       }
     },
+    /**
+     *
+     * @summary /v2/simulation-lab/result/mabr-layer-data
+     * @param {string} [scenarioId]
+     * @param {string} [productLine]
+     * @param {string} [modelName]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    v2SimulationLabResultMabrLayerDataGet: async (
+      scenarioId?: string,
+      productLine?: string,
+      modelName?: string,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/v2/simulation-lab/result/mabr-layer-data`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      if (scenarioId !== undefined) {
+        localVarQueryParameter['scenarioId'] = scenarioId
+      }
+
+      if (productLine !== undefined) {
+        localVarQueryParameter['productLine'] = productLine
+      }
+
+      if (modelName !== undefined) {
+        localVarQueryParameter['modelName'] = modelName
+      }
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
   }
 }
 
@@ -876,6 +980,32 @@ export const ProNumSimLabApiFp = function (configuration?: Configuration) {
           scenarioId,
           productLine,
           tankNo,
+          modelName,
+          options,
+        )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
+     * @summary 获取单个方案MABR池水质项的分层时间序列数据 Get scenario\'s water quality time-series data in MABR layers
+     * @param {string} [scenarioId]
+     * @param {string} [productLine]
+     * @param {string} [modelName]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV2SimulationLabResultMabrLayerDataGet(
+      scenarioId?: string,
+      productLine?: string,
+      modelName?: string,
+      options?: AxiosRequestConfig,
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<EntireProcessWqOut>>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiV2SimulationLabResultMabrLayerDataGet(
+          scenarioId,
+          productLine,
           modelName,
           options,
         )
@@ -1115,6 +1245,32 @@ export const ProNumSimLabApiFp = function (configuration?: Configuration) {
         )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
+    /**
+     *
+     * @summary /v2/simulation-lab/result/mabr-layer-data
+     * @param {string} [scenarioId]
+     * @param {string} [productLine]
+     * @param {string} [modelName]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async v2SimulationLabResultMabrLayerDataGet(
+      scenarioId?: string,
+      productLine?: string,
+      modelName?: string,
+      options?: AxiosRequestConfig,
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<EntireProcessWqOut>>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.v2SimulationLabResultMabrLayerDataGet(
+          scenarioId,
+          productLine,
+          modelName,
+          options,
+        )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
   }
 }
 
@@ -1201,6 +1357,25 @@ export const ProNumSimLabApiFactory = function (
           modelName,
           options,
         )
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @summary 获取单个方案MABR池水质项的分层时间序列数据 Get scenario\'s water quality time-series data in MABR layers
+     * @param {string} [scenarioId]
+     * @param {string} [productLine]
+     * @param {string} [modelName]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV2SimulationLabResultMabrLayerDataGet(
+      scenarioId?: string,
+      productLine?: string,
+      modelName?: string,
+      options?: any,
+    ): AxiosPromise<Array<EntireProcessWqOut>> {
+      return localVarFp
+        .apiV2SimulationLabResultMabrLayerDataGet(scenarioId, productLine, modelName, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -1391,6 +1566,25 @@ export const ProNumSimLabApiFactory = function (
         .apiV2SimulationLabScenarioScenariosForCompareGet(scenarioId, options)
         .then((request) => request(axios, basePath))
     },
+    /**
+     *
+     * @summary /v2/simulation-lab/result/mabr-layer-data
+     * @param {string} [scenarioId]
+     * @param {string} [productLine]
+     * @param {string} [modelName]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    v2SimulationLabResultMabrLayerDataGet(
+      scenarioId?: string,
+      productLine?: string,
+      modelName?: string,
+      options?: any,
+    ): AxiosPromise<Array<EntireProcessWqOut>> {
+      return localVarFp
+        .v2SimulationLabResultMabrLayerDataGet(scenarioId, productLine, modelName, options)
+        .then((request) => request(axios, basePath))
+    },
   }
 }
 
@@ -1477,6 +1671,27 @@ export class ProNumSimLabApi extends BaseAPI {
         modelName,
         options,
       )
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary 获取单个方案MABR池水质项的分层时间序列数据 Get scenario\'s water quality time-series data in MABR layers
+   * @param {string} [scenarioId]
+   * @param {string} [productLine]
+   * @param {string} [modelName]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof ProNumSimLabApi
+   */
+  public apiV2SimulationLabResultMabrLayerDataGet(
+    scenarioId?: string,
+    productLine?: string,
+    modelName?: string,
+    options?: AxiosRequestConfig,
+  ) {
+    return ProNumSimLabApiFp(this.configuration)
+      .apiV2SimulationLabResultMabrLayerDataGet(scenarioId, productLine, modelName, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -1689,6 +1904,27 @@ export class ProNumSimLabApi extends BaseAPI {
   ) {
     return ProNumSimLabApiFp(this.configuration)
       .apiV2SimulationLabScenarioScenariosForCompareGet(scenarioId, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary /v2/simulation-lab/result/mabr-layer-data
+   * @param {string} [scenarioId]
+   * @param {string} [productLine]
+   * @param {string} [modelName]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof ProNumSimLabApi
+   */
+  public v2SimulationLabResultMabrLayerDataGet(
+    scenarioId?: string,
+    productLine?: string,
+    modelName?: string,
+    options?: AxiosRequestConfig,
+  ) {
+    return ProNumSimLabApiFp(this.configuration)
+      .v2SimulationLabResultMabrLayerDataGet(scenarioId, productLine, modelName, options)
       .then((request) => request(this.axios, this.basePath))
   }
 }

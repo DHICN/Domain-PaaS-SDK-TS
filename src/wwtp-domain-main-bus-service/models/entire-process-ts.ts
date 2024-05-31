@@ -26,7 +26,7 @@ export interface EntireProcessTs {
    * @type {string}
    * @memberof EntireProcessTs
    */
-  time?: string
+  time?: string | null
   /**
    * 全流程水质数据 data of each biochemical pool
    * @type {Array<BioValue>}

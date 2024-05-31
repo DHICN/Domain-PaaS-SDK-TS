@@ -80,16 +80,16 @@ export interface AlarmConfigInOut {
 }
 
 export const AlarmConfigInOutAlarmTypeEnum = {
-  '0': 0 as number,
-  '1': 1 as number,
-  '2': 2 as number,
+  NUMBER_0: 0,
+  NUMBER_1: 1,
+  NUMBER_2: 2,
 } as const
 
 export type AlarmConfigInOutAlarmTypeEnum =
   (typeof AlarmConfigInOutAlarmTypeEnum)[keyof typeof AlarmConfigInOutAlarmTypeEnum]
 export const AlarmConfigInOutNodeTypeEnum = {
-  '0': 0 as number,
-  '1': 1 as number,
+  NUMBER_0: 0,
+  NUMBER_1: 1,
 } as const
 
 export type AlarmConfigInOutNodeTypeEnum =
