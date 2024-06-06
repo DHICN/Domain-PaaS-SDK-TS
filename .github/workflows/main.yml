@@ -2,7 +2,9 @@ name: Publish NPM
 
 on:
   push:
-    branches: [main]
+    branches: 
+      - main
+      - main-v3
 
 jobs:
   build:
@@ -14,14 +16,13 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
+
       - name: Use Node.js ${{ matrix.node-version }} install pnpm
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
-      - run: npm install -g pnpm
 
-      # - name: Set npm registry to Taobao
-      #   run: npm config set registry https://registry.npmmirror.com
+      - run: npm install -g pnpm
 
       - name: use pnpm install packages
         run: pnpm install --no-frozen-lockfile
@@ -29,24 +30,41 @@ jobs:
       - name: use pnpm build
         run: pnpm build
 
-      - name: Use JS-DevTools publish to npm
-        uses: JS-DevTools/npm-publish@v3
+      - name: Publish to npm (main)
+        if: github.ref == 'refs/heads/main'
+        uses: JS-DevTools/npm-publish@v2
         with:
           token: ${{ secrets.NPM_TOKEN }}
           access: public
-      #      - run: npm test
+
+      - name: Publish to npm (main-v3)
+        if: github.ref == 'refs/heads/main-v3'
+        uses: JS-DevTools/npm-publish@v2
+        with:
+          token: ${{ secrets.NPM_TOKEN }}
+          access: public
 
       - name: Extract version
         id: extract_version
         uses: Saionaro/extract-package-version@v1.2.1
-      # From now you can access the version
+
       - name: Print version
         run: echo ${{ steps.extract_version.outputs.version }}
 
-      - name: Create a Release
+      - name: Create a Release (main)
+        if: github.ref == 'refs/heads/main'
         uses: ncipollo/release-action@v1
         env:
           GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
         with:
           tag: v${{ steps.extract_version.outputs.version }}
+          token: ${{ secrets.RELEASE_TOKEN }}
+
+      - name: Create a Release (main-v3)
+        if: github.ref == 'refs/heads/main-v3'
+        uses: ncipollo/release-action@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
+        with:
+          tag: v3-${{ steps.extract_version.outputs.version }}
           token: ${{ secrets.RELEASE_TOKEN }}
