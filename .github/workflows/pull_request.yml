@@ -27,5 +27,5 @@ jobs:
       - name: Install packages with pnpm
         run: pnpm install --no-frozen-lockfile
 
-- name: Build with pnpm
-run: pnpm build
+      - name: Build with pnpm
+        run: pnpm build
