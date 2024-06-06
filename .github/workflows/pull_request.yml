@@ -2,7 +2,9 @@ name: Pull Request
 
 on:
   pull_request:
-    branches: [main-v3]
+    branches: 
+      - main
+      - main-v3
 
 jobs:
   build:
@@ -14,13 +16,16 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
+
       - name: Use Node.js ${{ matrix.node-version }} install pnpm
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
+
       - run: npm install -g pnpm
-      - name: use pnpm install packages
+
+      - name: Install packages with pnpm
         run: pnpm install --no-frozen-lockfile
 
-      - name: use pnpm build
+      - name: Build with pnpm
         run: pnpm build
