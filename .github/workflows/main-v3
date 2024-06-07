@@ -1,0 +1,48 @@
+name: Publish NPM v3
+
+on:
+  push:
+    branches: [main-v3]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [18.x]
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Use Node.js ${{ matrix.node-version }} install pnpm
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+      - run: npm install -g pnpm
+      - name: use pnpm install packages
+        run: pnpm install --no-frozen-lockfile
+
+      - name: use pnpm build
+        run: pnpm build
+
+      - name: Use JS-DevTools pubilsh to npm
+        uses: JS-DevTools/npm-publish@v2
+        with:
+          token: ${{ secrets.NPM_TOKEN }}
+          access: public
+      #      - run: npm test
+
+      - name: Extract version
+        id: extract_version
+        uses: Saionaro/extract-package-version@v1.2.1
+      # From now you can access the version
+      - name: Print version
+        run: echo ${{ steps.extract_version.outputs.version }}
+
+      - name: Create a Release
+        uses: ncipollo/release-action@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
+        with:
+          tag: v${{ steps.extract_version.outputs.version }}
+          token: ${{ secrets.RELEASE_TOKEN }}
