@@ -2,7 +2,8 @@ name: Publish NPM
 
 on:
   push:
-    branches: [main-v3]
+    branches: [main, main-v3]
+  workflow_dispatch:
 
 jobs:
   build:
