@@ -1,8 +1,9 @@
-name: Publish NPM v3
+name: Publish NPM for main-v3
 
 on:
   push:
     branches: [main-v3]
+  workflow_dispatch:
 
 jobs:
   build:
