@@ -246,21 +246,17 @@ export const OptimizationApiAxiosParamCreator = function (configuration?: Config
     },
     /**
      *
-     * @summary 获取吨水药耗的实际值与优化值，包括时间序列与平均值 Get real dosage cost per ton and optimized dosage cost per ton, including time-series data and average value
-     * @param {number} [category] 药剂类型 category
+     * @summary 获取总吨水药耗的实际值与优化值，包括时间序列与平均值 Get overall real dosage cost per ton and optimized dosage cost per ton, including time-series data and average value
      * @param {string} [startTime] 开始时刻 start time
      * @param {string} [endTime] 结束时刻 end time
      * @param {string} [modelName] 模板模型名称 template model name
-     * @param {string} [productLine] 工艺线编码 product line code
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiV2OptimizationDosageCostCompareGet: async (
-      category?: number,
       startTime?: string,
       endTime?: string,
       modelName?: string,
-      productLine?: string,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
       const localVarPath = `/api/v2/optimization/dosage-cost-compare`
@@ -275,10 +271,6 @@ export const OptimizationApiAxiosParamCreator = function (configuration?: Config
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
 
-      if (category !== undefined) {
-        localVarQueryParameter['category'] = category
-      }
-
       if (startTime !== undefined) {
         localVarQueryParameter['startTime'] = startTime
       }
@@ -289,10 +281,6 @@ export const OptimizationApiAxiosParamCreator = function (configuration?: Config
 
       if (modelName !== undefined) {
         localVarQueryParameter['modelName'] = modelName
-      }
-
-      if (productLine !== undefined) {
-        localVarQueryParameter['productLine'] = productLine
       }
 
       setSearchParams(localVarUrlObj, localVarQueryParameter)
@@ -726,30 +714,24 @@ export const OptimizationApiFp = function (configuration?: Configuration) {
     },
     /**
      *
-     * @summary 获取吨水药耗的实际值与优化值，包括时间序列与平均值 Get real dosage cost per ton and optimized dosage cost per ton, including time-series data and average value
-     * @param {number} [category] 药剂类型 category
+     * @summary 获取总吨水药耗的实际值与优化值，包括时间序列与平均值 Get overall real dosage cost per ton and optimized dosage cost per ton, including time-series data and average value
      * @param {string} [startTime] 开始时刻 start time
      * @param {string} [endTime] 结束时刻 end time
      * @param {string} [modelName] 模板模型名称 template model name
-     * @param {string} [productLine] 工艺线编码 product line code
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async apiV2OptimizationDosageCostCompareGet(
-      category?: number,
       startTime?: string,
       endTime?: string,
       modelName?: string,
-      productLine?: string,
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<EnergyCostCompareData>> {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.apiV2OptimizationDosageCostCompareGet(
-          category,
           startTime,
           endTime,
           modelName,
-          productLine,
           options,
         )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
@@ -980,32 +962,21 @@ export const OptimizationApiFactory = function (
     },
     /**
      *
-     * @summary 获取吨水药耗的实际值与优化值，包括时间序列与平均值 Get real dosage cost per ton and optimized dosage cost per ton, including time-series data and average value
-     * @param {number} [category] 药剂类型 category
+     * @summary 获取总吨水药耗的实际值与优化值，包括时间序列与平均值 Get overall real dosage cost per ton and optimized dosage cost per ton, including time-series data and average value
      * @param {string} [startTime] 开始时刻 start time
      * @param {string} [endTime] 结束时刻 end time
      * @param {string} [modelName] 模板模型名称 template model name
-     * @param {string} [productLine] 工艺线编码 product line code
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiV2OptimizationDosageCostCompareGet(
-      category?: number,
       startTime?: string,
       endTime?: string,
       modelName?: string,
-      productLine?: string,
       options?: any,
     ): AxiosPromise<EnergyCostCompareData> {
       return localVarFp
-        .apiV2OptimizationDosageCostCompareGet(
-          category,
-          startTime,
-          endTime,
-          modelName,
-          productLine,
-          options,
-        )
+        .apiV2OptimizationDosageCostCompareGet(startTime, endTime, modelName, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -1211,33 +1182,22 @@ export class OptimizationApi extends BaseAPI {
 
   /**
    *
-   * @summary 获取吨水药耗的实际值与优化值，包括时间序列与平均值 Get real dosage cost per ton and optimized dosage cost per ton, including time-series data and average value
-   * @param {number} [category] 药剂类型 category
+   * @summary 获取总吨水药耗的实际值与优化值，包括时间序列与平均值 Get overall real dosage cost per ton and optimized dosage cost per ton, including time-series data and average value
    * @param {string} [startTime] 开始时刻 start time
    * @param {string} [endTime] 结束时刻 end time
    * @param {string} [modelName] 模板模型名称 template model name
-   * @param {string} [productLine] 工艺线编码 product line code
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof OptimizationApi
    */
   public apiV2OptimizationDosageCostCompareGet(
-    category?: number,
     startTime?: string,
     endTime?: string,
     modelName?: string,
-    productLine?: string,
     options?: AxiosRequestConfig,
   ) {
     return OptimizationApiFp(this.configuration)
-      .apiV2OptimizationDosageCostCompareGet(
-        category,
-        startTime,
-        endTime,
-        modelName,
-        productLine,
-        options,
-      )
+      .apiV2OptimizationDosageCostCompareGet(startTime, endTime, modelName, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
