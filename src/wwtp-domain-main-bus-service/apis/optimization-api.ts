@@ -29,8 +29,7 @@ import {
   createRequestFunction,
 } from '../common'
 // @ts-ignore
-import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } from '../base'
-// @ts-ignore
+import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } from '../base' // @ts-ignore
 import { CompareOutput } from '../models'
 // @ts-ignore
 import { ControlSuggestionOutput } from '../models'
@@ -454,6 +453,70 @@ export const OptimizationApiAxiosParamCreator = function (configuration?: Config
     },
     /**
      *
+     * @summary 获取指定优化类型的实际值与优化值，包括时间序列与平均值 Get specify optimization point of real and optimized, including time-series data and average value
+     * @param {string} [startTime] 开始时刻 start time
+     * @param {string} [endTime] 结束时刻 end time
+     * @param {string} [modelName] 模板模型名称 template model name
+     * @param {string} [productLine] 工艺线编码 product line code
+     * @param {number} [controlCompareSubEnum] 对比的优化类型
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV2OptimizationGeneralCompareGet: async (
+      startTime?: string,
+      endTime?: string,
+      modelName?: string,
+      productLine?: string,
+      controlCompareSubEnum?: number,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v2/optimization/general-compare`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      if (startTime !== undefined) {
+        localVarQueryParameter['startTime'] = startTime
+      }
+
+      if (endTime !== undefined) {
+        localVarQueryParameter['endTime'] = endTime
+      }
+
+      if (modelName !== undefined) {
+        localVarQueryParameter['modelName'] = modelName
+      }
+
+      if (productLine !== undefined) {
+        localVarQueryParameter['productLine'] = productLine
+      }
+
+      if (controlCompareSubEnum !== undefined) {
+        localVarQueryParameter['controlCompareSubEnum'] = controlCompareSubEnum
+      }
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
      * @summary 获取出水口水质，实测值与优化模拟值得对比信息 Get online data and optimization model result data on outlet
      * @param {string} [startTime] 开始时刻 start time
      * @param {string} [endTime] 结束时刻 end time
@@ -806,6 +869,35 @@ export const OptimizationApiFp = function (configuration?: Configuration) {
     },
     /**
      *
+     * @summary 获取指定优化类型的实际值与优化值，包括时间序列与平均值 Get specify optimization point of real and optimized, including time-series data and average value
+     * @param {string} [startTime] 开始时刻 start time
+     * @param {string} [endTime] 结束时刻 end time
+     * @param {string} [modelName] 模板模型名称 template model name
+     * @param {string} [productLine] 工艺线编码 product line code
+     * @param {number} [controlCompareSubEnum] 对比的优化类型
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV2OptimizationGeneralCompareGet(
+      startTime?: string,
+      endTime?: string,
+      modelName?: string,
+      productLine?: string,
+      controlCompareSubEnum?: number,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<EnergyCostCompareData>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiV2OptimizationGeneralCompareGet(
+        startTime,
+        endTime,
+        modelName,
+        productLine,
+        controlCompareSubEnum,
+        options,
+      )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
      * @summary 获取出水口水质，实测值与优化模拟值得对比信息 Get online data and optimization model result data on outlet
      * @param {string} [startTime] 开始时刻 start time
      * @param {string} [endTime] 结束时刻 end time
@@ -1038,6 +1130,36 @@ export const OptimizationApiFactory = function (
     },
     /**
      *
+     * @summary 获取指定优化类型的实际值与优化值，包括时间序列与平均值 Get specify optimization point of real and optimized, including time-series data and average value
+     * @param {string} [startTime] 开始时刻 start time
+     * @param {string} [endTime] 结束时刻 end time
+     * @param {string} [modelName] 模板模型名称 template model name
+     * @param {string} [productLine] 工艺线编码 product line code
+     * @param {number} [controlCompareSubEnum] 对比的优化类型
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV2OptimizationGeneralCompareGet(
+      startTime?: string,
+      endTime?: string,
+      modelName?: string,
+      productLine?: string,
+      controlCompareSubEnum?: number,
+      options?: any,
+    ): AxiosPromise<EnergyCostCompareData> {
+      return localVarFp
+        .apiV2OptimizationGeneralCompareGet(
+          startTime,
+          endTime,
+          modelName,
+          productLine,
+          controlCompareSubEnum,
+          options,
+        )
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
      * @summary 获取出水口水质，实测值与优化模拟值得对比信息 Get online data and optimization model result data on outlet
      * @param {string} [startTime] 开始时刻 start time
      * @param {string} [endTime] 结束时刻 end time
@@ -1258,6 +1380,38 @@ export class OptimizationApi extends BaseAPI {
   ) {
     return OptimizationApiFp(this.configuration)
       .apiV2OptimizationExportExcelGet(startTime, endTime, modelName, productLine, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary 获取指定优化类型的实际值与优化值，包括时间序列与平均值 Get specify optimization point of real and optimized, including time-series data and average value
+   * @param {string} [startTime] 开始时刻 start time
+   * @param {string} [endTime] 结束时刻 end time
+   * @param {string} [modelName] 模板模型名称 template model name
+   * @param {string} [productLine] 工艺线编码 product line code
+   * @param {number} [controlCompareSubEnum] 对比的优化类型
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof OptimizationApi
+   */
+  public apiV2OptimizationGeneralCompareGet(
+    startTime?: string,
+    endTime?: string,
+    modelName?: string,
+    productLine?: string,
+    controlCompareSubEnum?: number,
+    options?: AxiosRequestConfig,
+  ) {
+    return OptimizationApiFp(this.configuration)
+      .apiV2OptimizationGeneralCompareGet(
+        startTime,
+        endTime,
+        modelName,
+        productLine,
+        controlCompareSubEnum,
+        options,
+      )
       .then((request) => request(this.axios, this.basePath))
   }
 
