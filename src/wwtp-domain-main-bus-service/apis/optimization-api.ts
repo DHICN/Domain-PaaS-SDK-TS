@@ -30,9 +30,13 @@ import {
 } from '../common'
 // @ts-ignore
 import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } from '../base' // @ts-ignore
+
+// @ts-ignore
 import { CompareOutput } from '../models'
 // @ts-ignore
 import { ControlSuggestionOutput } from '../models'
+// @ts-ignore
+import { CurrentCompareOutput } from '../models'
 // @ts-ignore
 import { EnergyCostCompareData } from '../models'
 // @ts-ignore
@@ -72,6 +76,64 @@ export const OptimizationApiAxiosParamCreator = function (configuration?: Config
 
       if (displayType !== undefined) {
         localVarQueryParameter['displayType'] = displayType
+      }
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 获取优化控制点位上，当前时刻的实测值与优化模拟值的对比信息 Get current online data and optimization model result data on control points
+     * @param {string} [time] 时间 time
+     * @param {string} [modelName] 模板模型名称 template model name
+     * @param {string} [productLine] 工艺线编码 product line code
+     * @param {number} [subType] 优化控制子类型
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV2OptimizationControlCompareCurrentGet: async (
+      time?: string,
+      modelName?: string,
+      productLine?: string,
+      subType?: number,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v2/optimization/control-compare-current`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      if (time !== undefined) {
+        localVarQueryParameter['time'] = time
+      }
+
+      if (modelName !== undefined) {
+        localVarQueryParameter['modelName'] = modelName
+      }
+
+      if (productLine !== undefined) {
+        localVarQueryParameter['productLine'] = productLine
+      }
+
+      if (subType !== undefined) {
+        localVarQueryParameter['subType'] = subType
       }
 
       setSearchParams(localVarUrlObj, localVarQueryParameter)
@@ -705,6 +767,35 @@ export const OptimizationApiFp = function (configuration?: Configuration) {
     },
     /**
      *
+     * @summary 获取优化控制点位上，当前时刻的实测值与优化模拟值的对比信息 Get current online data and optimization model result data on control points
+     * @param {string} [time] 时间 time
+     * @param {string} [modelName] 模板模型名称 template model name
+     * @param {string} [productLine] 工艺线编码 product line code
+     * @param {number} [subType] 优化控制子类型
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV2OptimizationControlCompareCurrentGet(
+      time?: string,
+      modelName?: string,
+      productLine?: string,
+      subType?: number,
+      options?: AxiosRequestConfig,
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<CurrentCompareOutput>>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiV2OptimizationControlCompareCurrentGet(
+          time,
+          modelName,
+          productLine,
+          subType,
+          options,
+        )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
      * @summary 获取优化控制点位上，实测值与优化模拟值的对比信息 Get online data and optimization model result data on control points
      * @param {string} [startTime] 开始时刻 start time
      * @param {string} [endTime] 结束时刻 end time
@@ -997,6 +1088,27 @@ export const OptimizationApiFactory = function (
     },
     /**
      *
+     * @summary 获取优化控制点位上，当前时刻的实测值与优化模拟值的对比信息 Get current online data and optimization model result data on control points
+     * @param {string} [time] 时间 time
+     * @param {string} [modelName] 模板模型名称 template model name
+     * @param {string} [productLine] 工艺线编码 product line code
+     * @param {number} [subType] 优化控制子类型
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV2OptimizationControlCompareCurrentGet(
+      time?: string,
+      modelName?: string,
+      productLine?: string,
+      subType?: number,
+      options?: any,
+    ): AxiosPromise<Array<CurrentCompareOutput>> {
+      return localVarFp
+        .apiV2OptimizationControlCompareCurrentGet(time, modelName, productLine, subType, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
      * @summary 获取优化控制点位上，实测值与优化模拟值的对比信息 Get online data and optimization model result data on control points
      * @param {string} [startTime] 开始时刻 start time
      * @param {string} [endTime] 结束时刻 end time
@@ -1236,6 +1348,29 @@ export class OptimizationApi extends BaseAPI {
   public apiV2OptimizationConfigGet(displayType?: number, options?: AxiosRequestConfig) {
     return OptimizationApiFp(this.configuration)
       .apiV2OptimizationConfigGet(displayType, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary 获取优化控制点位上，当前时刻的实测值与优化模拟值的对比信息 Get current online data and optimization model result data on control points
+   * @param {string} [time] 时间 time
+   * @param {string} [modelName] 模板模型名称 template model name
+   * @param {string} [productLine] 工艺线编码 product line code
+   * @param {number} [subType] 优化控制子类型
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof OptimizationApi
+   */
+  public apiV2OptimizationControlCompareCurrentGet(
+    time?: string,
+    modelName?: string,
+    productLine?: string,
+    subType?: number,
+    options?: AxiosRequestConfig,
+  ) {
+    return OptimizationApiFp(this.configuration)
+      .apiV2OptimizationControlCompareCurrentGet(time, modelName, productLine, subType, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
