@@ -33,7 +33,15 @@ import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } fr
 // @ts-ignore
 import { LatestTimeSeriesInput } from '../models'
 // @ts-ignore
+import { LatestTimeSeriesInputV2 } from '../models'
+// @ts-ignore
+import { LatestTimeSeriesInputV3 } from '../models'
+// @ts-ignore
 import { LatestTimeSeriesOutput } from '../models'
+// @ts-ignore
+import { LatestTimeSeriesOutputV2 } from '../models'
+// @ts-ignore
+import { LatestTimeSeriesOutputV3 } from '../models'
 // @ts-ignore
 import { SaveTelemetryDataInput } from '../models'
 // @ts-ignore
@@ -52,6 +60,135 @@ import { TimeseriesInput } from '../models'
  */
 export const TelemetryApiAxiosParamCreator = function (configuration?: Configuration) {
   return {
+    /**
+     *
+     * @summary /api/app/telemetry/save-telemetry-data-batch2
+     * @param {Array<SaveTelemetryDataInput>} [saveTelemetryDataInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiAppTelemetrySaveTelemetryDataBatch2Post: async (
+      saveTelemetryDataInput?: Array<SaveTelemetryDataInput>,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/app/telemetry/save-telemetry-data-batch2`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        saveTelemetryDataInput,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary /api/app/telemetry/timeseries-batch-for-processed
+     * @param {Array<TimeseriesBatchForV3Input>} [timeseriesBatchForV3Input]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiAppTelemetryTimeseriesBatchForProcessedPost: async (
+      timeseriesBatchForV3Input?: Array<TimeseriesBatchForV3Input>,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/app/telemetry/timeseries-batch-for-processed`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        timeseriesBatchForV3Input,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary /api/app/telemetry/timeseries-of-processed
+     * @param {Array<TimeseriesBatchForV3Input>} [timeseriesBatchForV3Input]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiAppTelemetryTimeseriesOfProcessedPost: async (
+      timeseriesBatchForV3Input?: Array<TimeseriesBatchForV3Input>,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/app/telemetry/timeseries-of-processed`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        timeseriesBatchForV3Input,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
     /**
      *
      * @summary 根据指标获取最新实测数据，要求指标编码再系统中是唯一的
@@ -393,7 +530,50 @@ export const TelemetryApiAxiosParamCreator = function (configuration?: Configura
       }
     },
     /**
-     * 批量查询多个设备指标在某个时间段内的时间序列数据，可按时间排序 Batch query time-series data of multiple device indicators by time and order by time.
+     *
+     * @summary 根据指标获取最新实测数据
+     * @param {Array<LatestTimeSeriesInputV2>} [latestTimeSeriesInputV2]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV2IotLatestTimeseriesPost: async (
+      latestTimeSeriesInputV2?: Array<LatestTimeSeriesInputV2>,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v2/iot/latest-timeseries`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        latestTimeSeriesInputV2,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     * 批量查询多个设备指标在某个时间段内的时间序列数据，可按时间排序,返回的tspair结构为：[{T,V},{T,V}]. Batch query time-series data of multiple device indicators by time and order by time,return data structure:[{T,V},{T,V}]
      * @summary 批量查询多个设备指标的时间序列数据，按时间排序 Batch query time-series data of device indicators order by time
      * @param {Array<TimeseriesInput>} [timeseriesInput]
      * @param {*} [options] Override http request option.
@@ -426,6 +606,49 @@ export const TelemetryApiAxiosParamCreator = function (configuration?: Configura
       }
       localVarRequestOptions.data = serializeDataIfNeeded(
         timeseriesInput,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 根据设备编码和指标名获取最新实测数据
+     * @param {Array<LatestTimeSeriesInputV3>} [latestTimeSeriesInputV3]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV3IotLatestTimeseriesPost: async (
+      latestTimeSeriesInputV3?: Array<LatestTimeSeriesInputV3>,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v3/iot/latest-timeseries`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        latestTimeSeriesInputV3,
         localVarRequestOptions,
         configuration,
       )
@@ -480,7 +703,7 @@ export const TelemetryApiAxiosParamCreator = function (configuration?: Configura
     },
     /**
      *
-     * @summary 根据指标获取实测时序数据，要求指标编码在系统中是唯一的
+     * @summary 根据指标获取实测时序数据,返回的tspair结构为：T[],V[]. Batch query time-series data of multiple device indicators by time and order by time,return data structure:T[],V[]
      * @param {Array<TimeseriesBatchForV3Input>} [timeseriesBatchForV3Input]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -531,6 +754,64 @@ export const TelemetryApiAxiosParamCreator = function (configuration?: Configura
 export const TelemetryApiFp = function (configuration?: Configuration) {
   const localVarAxiosParamCreator = TelemetryApiAxiosParamCreator(configuration)
   return {
+    /**
+     *
+     * @summary /api/app/telemetry/save-telemetry-data-batch2
+     * @param {Array<SaveTelemetryDataInput>} [saveTelemetryDataInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiAppTelemetrySaveTelemetryDataBatch2Post(
+      saveTelemetryDataInput?: Array<SaveTelemetryDataInput>,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiAppTelemetrySaveTelemetryDataBatch2Post(
+          saveTelemetryDataInput,
+          options,
+        )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
+     * @summary /api/app/telemetry/timeseries-batch-for-processed
+     * @param {Array<TimeseriesBatchForV3Input>} [timeseriesBatchForV3Input]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiAppTelemetryTimeseriesBatchForProcessedPost(
+      timeseriesBatchForV3Input?: Array<TimeseriesBatchForV3Input>,
+      options?: AxiosRequestConfig,
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<TimeseriesBatchForV3Output>>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiAppTelemetryTimeseriesBatchForProcessedPost(
+          timeseriesBatchForV3Input,
+          options,
+        )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
+     * @summary /api/app/telemetry/timeseries-of-processed
+     * @param {Array<TimeseriesBatchForV3Input>} [timeseriesBatchForV3Input]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiAppTelemetryTimeseriesOfProcessedPost(
+      timeseriesBatchForV3Input?: Array<TimeseriesBatchForV3Input>,
+      options?: AxiosRequestConfig,
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<TimeseriesBatchForV3Output>>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiAppTelemetryTimeseriesOfProcessedPost(
+          timeseriesBatchForV3Input,
+          options,
+        )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
     /**
      *
      * @summary 根据指标获取最新实测数据，要求指标编码再系统中是唯一的
@@ -682,7 +963,26 @@ export const TelemetryApiFp = function (configuration?: Configuration) {
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**
-     * 批量查询多个设备指标在某个时间段内的时间序列数据，可按时间排序 Batch query time-series data of multiple device indicators by time and order by time.
+     *
+     * @summary 根据指标获取最新实测数据
+     * @param {Array<LatestTimeSeriesInputV2>} [latestTimeSeriesInputV2]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV2IotLatestTimeseriesPost(
+      latestTimeSeriesInputV2?: Array<LatestTimeSeriesInputV2>,
+      options?: AxiosRequestConfig,
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<LatestTimeSeriesOutputV2>>
+    > {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiV2IotLatestTimeseriesPost(
+        latestTimeSeriesInputV2,
+        options,
+      )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     * 批量查询多个设备指标在某个时间段内的时间序列数据，可按时间排序,返回的tspair结构为：[{T,V},{T,V}]. Batch query time-series data of multiple device indicators by time and order by time,return data structure:[{T,V},{T,V}]
      * @summary 批量查询多个设备指标的时间序列数据，按时间排序 Batch query time-series data of device indicators order by time
      * @param {Array<TimeseriesInput>} [timeseriesInput]
      * @param {*} [options] Override http request option.
@@ -696,6 +996,25 @@ export const TelemetryApiFp = function (configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await localVarAxiosParamCreator.apiV2IotTimeseriesBatchPost(
         timeseriesInput,
+        options,
+      )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
+     * @summary 根据设备编码和指标名获取最新实测数据
+     * @param {Array<LatestTimeSeriesInputV3>} [latestTimeSeriesInputV3]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV3IotLatestTimeseriesPost(
+      latestTimeSeriesInputV3?: Array<LatestTimeSeriesInputV3>,
+      options?: AxiosRequestConfig,
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<LatestTimeSeriesOutputV3>>
+    > {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiV3IotLatestTimeseriesPost(
+        latestTimeSeriesInputV3,
         options,
       )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
@@ -719,7 +1038,7 @@ export const TelemetryApiFp = function (configuration?: Configuration) {
     },
     /**
      *
-     * @summary 根据指标获取实测时序数据，要求指标编码在系统中是唯一的
+     * @summary 根据指标获取实测时序数据,返回的tspair结构为：T[],V[]. Batch query time-series data of multiple device indicators by time and order by time,return data structure:T[],V[]
      * @param {Array<TimeseriesBatchForV3Input>} [timeseriesBatchForV3Input]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -750,6 +1069,51 @@ export const TelemetryApiFactory = function (
 ) {
   const localVarFp = TelemetryApiFp(configuration)
   return {
+    /**
+     *
+     * @summary /api/app/telemetry/save-telemetry-data-batch2
+     * @param {Array<SaveTelemetryDataInput>} [saveTelemetryDataInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiAppTelemetrySaveTelemetryDataBatch2Post(
+      saveTelemetryDataInput?: Array<SaveTelemetryDataInput>,
+      options?: any,
+    ): AxiosPromise<object> {
+      return localVarFp
+        .apiAppTelemetrySaveTelemetryDataBatch2Post(saveTelemetryDataInput, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @summary /api/app/telemetry/timeseries-batch-for-processed
+     * @param {Array<TimeseriesBatchForV3Input>} [timeseriesBatchForV3Input]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiAppTelemetryTimeseriesBatchForProcessedPost(
+      timeseriesBatchForV3Input?: Array<TimeseriesBatchForV3Input>,
+      options?: any,
+    ): AxiosPromise<Array<TimeseriesBatchForV3Output>> {
+      return localVarFp
+        .apiAppTelemetryTimeseriesBatchForProcessedPost(timeseriesBatchForV3Input, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @summary /api/app/telemetry/timeseries-of-processed
+     * @param {Array<TimeseriesBatchForV3Input>} [timeseriesBatchForV3Input]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiAppTelemetryTimeseriesOfProcessedPost(
+      timeseriesBatchForV3Input?: Array<TimeseriesBatchForV3Input>,
+      options?: any,
+    ): AxiosPromise<Array<TimeseriesBatchForV3Output>> {
+      return localVarFp
+        .apiAppTelemetryTimeseriesOfProcessedPost(timeseriesBatchForV3Input, options)
+        .then((request) => request(axios, basePath))
+    },
     /**
      *
      * @summary 根据指标获取最新实测数据，要求指标编码再系统中是唯一的
@@ -874,7 +1238,22 @@ export const TelemetryApiFactory = function (
         .then((request) => request(axios, basePath))
     },
     /**
-     * 批量查询多个设备指标在某个时间段内的时间序列数据，可按时间排序 Batch query time-series data of multiple device indicators by time and order by time.
+     *
+     * @summary 根据指标获取最新实测数据
+     * @param {Array<LatestTimeSeriesInputV2>} [latestTimeSeriesInputV2]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV2IotLatestTimeseriesPost(
+      latestTimeSeriesInputV2?: Array<LatestTimeSeriesInputV2>,
+      options?: any,
+    ): AxiosPromise<Array<LatestTimeSeriesOutputV2>> {
+      return localVarFp
+        .apiV2IotLatestTimeseriesPost(latestTimeSeriesInputV2, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     * 批量查询多个设备指标在某个时间段内的时间序列数据，可按时间排序,返回的tspair结构为：[{T,V},{T,V}]. Batch query time-series data of multiple device indicators by time and order by time,return data structure:[{T,V},{T,V}]
      * @summary 批量查询多个设备指标的时间序列数据，按时间排序 Batch query time-series data of device indicators order by time
      * @param {Array<TimeseriesInput>} [timeseriesInput]
      * @param {*} [options] Override http request option.
@@ -886,6 +1265,21 @@ export const TelemetryApiFactory = function (
     ): AxiosPromise<Array<TimeseriesBatchOutput>> {
       return localVarFp
         .apiV2IotTimeseriesBatchPost(timeseriesInput, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @summary 根据设备编码和指标名获取最新实测数据
+     * @param {Array<LatestTimeSeriesInputV3>} [latestTimeSeriesInputV3]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV3IotLatestTimeseriesPost(
+      latestTimeSeriesInputV3?: Array<LatestTimeSeriesInputV3>,
+      options?: any,
+    ): AxiosPromise<Array<LatestTimeSeriesOutputV3>> {
+      return localVarFp
+        .apiV3IotLatestTimeseriesPost(latestTimeSeriesInputV3, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -905,7 +1299,7 @@ export const TelemetryApiFactory = function (
     },
     /**
      *
-     * @summary 根据指标获取实测时序数据，要求指标编码在系统中是唯一的
+     * @summary 根据指标获取实测时序数据,返回的tspair结构为：T[],V[]. Batch query time-series data of multiple device indicators by time and order by time,return data structure:T[],V[]
      * @param {Array<TimeseriesBatchForV3Input>} [timeseriesBatchForV3Input]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -928,6 +1322,57 @@ export const TelemetryApiFactory = function (
  * @extends {BaseAPI}
  */
 export class TelemetryApi extends BaseAPI {
+  /**
+   *
+   * @summary /api/app/telemetry/save-telemetry-data-batch2
+   * @param {Array<SaveTelemetryDataInput>} [saveTelemetryDataInput]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof TelemetryApi
+   */
+  public apiAppTelemetrySaveTelemetryDataBatch2Post(
+    saveTelemetryDataInput?: Array<SaveTelemetryDataInput>,
+    options?: AxiosRequestConfig,
+  ) {
+    return TelemetryApiFp(this.configuration)
+      .apiAppTelemetrySaveTelemetryDataBatch2Post(saveTelemetryDataInput, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary /api/app/telemetry/timeseries-batch-for-processed
+   * @param {Array<TimeseriesBatchForV3Input>} [timeseriesBatchForV3Input]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof TelemetryApi
+   */
+  public apiAppTelemetryTimeseriesBatchForProcessedPost(
+    timeseriesBatchForV3Input?: Array<TimeseriesBatchForV3Input>,
+    options?: AxiosRequestConfig,
+  ) {
+    return TelemetryApiFp(this.configuration)
+      .apiAppTelemetryTimeseriesBatchForProcessedPost(timeseriesBatchForV3Input, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary /api/app/telemetry/timeseries-of-processed
+   * @param {Array<TimeseriesBatchForV3Input>} [timeseriesBatchForV3Input]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof TelemetryApi
+   */
+  public apiAppTelemetryTimeseriesOfProcessedPost(
+    timeseriesBatchForV3Input?: Array<TimeseriesBatchForV3Input>,
+    options?: AxiosRequestConfig,
+  ) {
+    return TelemetryApiFp(this.configuration)
+      .apiAppTelemetryTimeseriesOfProcessedPost(timeseriesBatchForV3Input, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
   /**
    *
    * @summary 根据指标获取最新实测数据，要求指标编码再系统中是唯一的
@@ -1064,7 +1509,24 @@ export class TelemetryApi extends BaseAPI {
   }
 
   /**
-   * 批量查询多个设备指标在某个时间段内的时间序列数据，可按时间排序 Batch query time-series data of multiple device indicators by time and order by time.
+   *
+   * @summary 根据指标获取最新实测数据
+   * @param {Array<LatestTimeSeriesInputV2>} [latestTimeSeriesInputV2]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof TelemetryApi
+   */
+  public apiV2IotLatestTimeseriesPost(
+    latestTimeSeriesInputV2?: Array<LatestTimeSeriesInputV2>,
+    options?: AxiosRequestConfig,
+  ) {
+    return TelemetryApiFp(this.configuration)
+      .apiV2IotLatestTimeseriesPost(latestTimeSeriesInputV2, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   * 批量查询多个设备指标在某个时间段内的时间序列数据，可按时间排序,返回的tspair结构为：[{T,V},{T,V}]. Batch query time-series data of multiple device indicators by time and order by time,return data structure:[{T,V},{T,V}]
    * @summary 批量查询多个设备指标的时间序列数据，按时间排序 Batch query time-series data of device indicators order by time
    * @param {Array<TimeseriesInput>} [timeseriesInput]
    * @param {*} [options] Override http request option.
@@ -1077,6 +1539,23 @@ export class TelemetryApi extends BaseAPI {
   ) {
     return TelemetryApiFp(this.configuration)
       .apiV2IotTimeseriesBatchPost(timeseriesInput, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary 根据设备编码和指标名获取最新实测数据
+   * @param {Array<LatestTimeSeriesInputV3>} [latestTimeSeriesInputV3]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof TelemetryApi
+   */
+  public apiV3IotLatestTimeseriesPost(
+    latestTimeSeriesInputV3?: Array<LatestTimeSeriesInputV3>,
+    options?: AxiosRequestConfig,
+  ) {
+    return TelemetryApiFp(this.configuration)
+      .apiV3IotLatestTimeseriesPost(latestTimeSeriesInputV3, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -1099,7 +1578,7 @@ export class TelemetryApi extends BaseAPI {
 
   /**
    *
-   * @summary 根据指标获取实测时序数据，要求指标编码在系统中是唯一的
+   * @summary 根据指标获取实测时序数据,返回的tspair结构为：T[],V[]. Batch query time-series data of multiple device indicators by time and order by time,return data structure:T[],V[]
    * @param {Array<TimeseriesBatchForV3Input>} [timeseriesBatchForV3Input]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
