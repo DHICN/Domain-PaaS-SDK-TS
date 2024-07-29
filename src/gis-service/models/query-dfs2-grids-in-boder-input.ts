@@ -17,20 +17,26 @@
 /**
  * 
  * @export
- * @interface GisOutput
+ * @interface QueryDfs2GridsInBoderInput
  */
-export interface GisOutput {
+export interface QueryDfs2GridsInBoderInput {
     /**
      * 
      * @type {string}
-     * @memberof GisOutput
+     * @memberof QueryDfs2GridsInBoderInput
      */
-    'layerType'?: string | null;
+    'scenarioId'?: string;
     /**
      * 
      * @type {string}
-     * @memberof GisOutput
+     * @memberof QueryDfs2GridsInBoderInput
      */
-    'gis'?: string | null;
+    'fromPorj'?: string | null;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof QueryDfs2GridsInBoderInput
+     */
+    'borders'?: Array<string> | null;
 }
 
