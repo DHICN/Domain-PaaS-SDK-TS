@@ -17,20 +17,14 @@
 /**
  * 
  * @export
- * @interface GisOutput
+ * @interface Paint
  */
-export interface GisOutput {
+export interface Paint {
     /**
      * 
      * @type {string}
-     * @memberof GisOutput
+     * @memberof Paint
      */
-    'layerType'?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof GisOutput
-     */
-    'gis'?: string | null;
+    'fillcolor'?: string | null;
 }
 
