@@ -53,8 +53,6 @@ import { GetTimeStatisticResultInput } from '../models'
 // @ts-ignore
 import { NetworkProfile } from '../models'
 // @ts-ignore
-import { RemoteServiceErrorResponse } from '../models'
-// @ts-ignore
 import { StatisticsModelIdResultDto } from '../models'
 // @ts-ignore
 import { StatisticsTimeResultDto } from '../models'
@@ -64,6 +62,8 @@ import { TraceWqClosePipeResult } from '../models'
 import { WdBatchStructureTimeseriesInput } from '../models'
 // @ts-ignore
 import { WdBatchTimeseriesInput } from '../models'
+// @ts-ignore
+import { WdDynamicModelResult } from '../models'
 // @ts-ignore
 import { WdHistoryModelInput } from '../models'
 // @ts-ignore
@@ -690,6 +690,48 @@ export const UrbanWdResultAnalysisApiAxiosParamCreator = function (configuration
     },
     /**
      *
+     * @summary 获取供水动态播放结果的描述信息（tileserver）
+     * @param {string} scenarioId 方案的ID scenario’s ID
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1ResultAnalysisUrbanWdDynamicGet: async (
+      scenarioId: string,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'scenarioId' is not null or undefined
+      assertParamExists('apiV1ResultAnalysisUrbanWdDynamicGet', 'scenarioId', scenarioId)
+      const localVarPath = `/api/v1/result-analysis/urban-wd/dynamic`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      if (scenarioId !== undefined) {
+        localVarQueryParameter['ScenarioId'] = scenarioId
+      }
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
      * @summary 按照筛选条件查询模型信息和模拟结果
      * @param {GetFilterModelResultInput} [getFilterModelResultInput]
      * @param {*} [options] Override http request option.
@@ -1120,7 +1162,7 @@ export const UrbanWdResultAnalysisApiAxiosParamCreator = function (configuration
     },
     /**
      *
-     * @summary 根据方案id获取全管网水头模拟结果值
+     * @summary 根据方案id获取全管网水损模拟结果值
      * @param {string} scenarioId 方案id
      * @param {number} [frequency] 抽样频率
      * @param {string} [startTime] 开始时间
@@ -2544,6 +2586,21 @@ export const UrbanWdResultAnalysisApiFp = function (configuration?: Configuratio
     },
     /**
      *
+     * @summary 获取供水动态播放结果的描述信息（tileserver）
+     * @param {string} scenarioId 方案的ID scenario’s ID
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1ResultAnalysisUrbanWdDynamicGet(
+      scenarioId: string,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<WdDynamicModelResult>> {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiV1ResultAnalysisUrbanWdDynamicGet(scenarioId, options)
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
      * @summary 按照筛选条件查询模型信息和模拟结果
      * @param {GetFilterModelResultInput} [getFilterModelResultInput]
      * @param {*} [options] Override http request option.
@@ -2740,7 +2797,7 @@ export const UrbanWdResultAnalysisApiFp = function (configuration?: Configuratio
     },
     /**
      *
-     * @summary 根据方案id获取全管网水头模拟结果值
+     * @summary 根据方案id获取全管网水损模拟结果值
      * @param {string} scenarioId 方案id
      * @param {number} [frequency] 抽样频率
      * @param {string} [startTime] 开始时间
@@ -3514,6 +3571,21 @@ export const UrbanWdResultAnalysisApiFactory = function (
     },
     /**
      *
+     * @summary 获取供水动态播放结果的描述信息（tileserver）
+     * @param {string} scenarioId 方案的ID scenario’s ID
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1ResultAnalysisUrbanWdDynamicGet(
+      scenarioId: string,
+      options?: any,
+    ): AxiosPromise<WdDynamicModelResult> {
+      return localVarFp
+        .apiV1ResultAnalysisUrbanWdDynamicGet(scenarioId, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
      * @summary 按照筛选条件查询模型信息和模拟结果
      * @param {GetFilterModelResultInput} [getFilterModelResultInput]
      * @param {*} [options] Override http request option.
@@ -3697,7 +3769,7 @@ export const UrbanWdResultAnalysisApiFactory = function (
     },
     /**
      *
-     * @summary 根据方案id获取全管网水头模拟结果值
+     * @summary 根据方案id获取全管网水损模拟结果值
      * @param {string} scenarioId 方案id
      * @param {number} [frequency] 抽样频率
      * @param {string} [startTime] 开始时间
@@ -4458,6 +4530,20 @@ export class UrbanWdResultAnalysisApi extends BaseAPI {
 
   /**
    *
+   * @summary 获取供水动态播放结果的描述信息（tileserver）
+   * @param {string} scenarioId 方案的ID scenario’s ID
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof UrbanWdResultAnalysisApi
+   */
+  public apiV1ResultAnalysisUrbanWdDynamicGet(scenarioId: string, options?: AxiosRequestConfig) {
+    return UrbanWdResultAnalysisApiFp(this.configuration)
+      .apiV1ResultAnalysisUrbanWdDynamicGet(scenarioId, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
    * @summary 按照筛选条件查询模型信息和模拟结果
    * @param {GetFilterModelResultInput} [getFilterModelResultInput]
    * @param {*} [options] Override http request option.
@@ -4645,7 +4731,7 @@ export class UrbanWdResultAnalysisApi extends BaseAPI {
 
   /**
    *
-   * @summary 根据方案id获取全管网水头模拟结果值
+   * @summary 根据方案id获取全管网水损模拟结果值
    * @param {string} scenarioId 方案id
    * @param {number} [frequency] 抽样频率
    * @param {string} [startTime] 开始时间
