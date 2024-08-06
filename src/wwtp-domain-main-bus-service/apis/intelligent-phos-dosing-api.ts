@@ -284,7 +284,7 @@ export const IntelligentPhosDosingApiAxiosParamCreator = function (configuration
     },
     /**
      *
-     * @summary 执行除磷剂加药plc控制，同时写入加药日志 Execute Phosphorus dosing plc control and write dosing logs
+     * @summary 定时执行除磷剂加药plc控制，同时写入加药日志 Execute Phosphorus dosing plc control and write dosing logs
      * @param {string} [currentTime] 当前时刻 current time
      * @param {string} [tenantId] 租户ID tenant id
      * @param {string} [username]
@@ -468,7 +468,7 @@ export const IntelligentPhosDosingApiFp = function (configuration?: Configuratio
     },
     /**
      *
-     * @summary 执行除磷剂加药plc控制，同时写入加药日志 Execute Phosphorus dosing plc control and write dosing logs
+     * @summary 定时执行除磷剂加药plc控制，同时写入加药日志 Execute Phosphorus dosing plc control and write dosing logs
      * @param {string} [currentTime] 当前时刻 current time
      * @param {string} [tenantId] 租户ID tenant id
      * @param {string} [username]
@@ -603,7 +603,7 @@ export const IntelligentPhosDosingApiFactory = function (
     },
     /**
      *
-     * @summary 执行除磷剂加药plc控制，同时写入加药日志 Execute Phosphorus dosing plc control and write dosing logs
+     * @summary 定时执行除磷剂加药plc控制，同时写入加药日志 Execute Phosphorus dosing plc control and write dosing logs
      * @param {string} [currentTime] 当前时刻 current time
      * @param {string} [tenantId] 租户ID tenant id
      * @param {string} [username]
@@ -744,7 +744,7 @@ export class IntelligentPhosDosingApi extends BaseAPI {
 
   /**
    *
-   * @summary 执行除磷剂加药plc控制，同时写入加药日志 Execute Phosphorus dosing plc control and write dosing logs
+   * @summary 定时执行除磷剂加药plc控制，同时写入加药日志 Execute Phosphorus dosing plc control and write dosing logs
    * @param {string} [currentTime] 当前时刻 current time
    * @param {string} [tenantId] 租户ID tenant id
    * @param {string} [username]
