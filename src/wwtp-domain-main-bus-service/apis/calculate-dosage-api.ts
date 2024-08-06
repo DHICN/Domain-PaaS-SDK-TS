@@ -176,9 +176,10 @@ export const CalculateDosageApiAxiosParamCreator = function (configuration?: Con
      * @summary 执行碳源加药plc控制，同时写入加药日志 Execute carbon source dosing plc control and write dosing logs
      * @param {string} [currentTime] 当前时间 current time
      * @param {string} [tenantId] 租户ID tenant id
-     * @param {string} [username]
-     * @param {string} [password]
-     * @param {number} [expirationTime]
+     * @param {string} [username] 用户名
+     * @param {string} [password] 密码
+     * @param {number} [expirationTime] 登录过期时间，小时
+     * @param {number} [additionType] 药剂投加类型，1：手动，2：自动
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -188,6 +189,7 @@ export const CalculateDosageApiAxiosParamCreator = function (configuration?: Con
       username?: string,
       password?: string,
       expirationTime?: number,
+      additionType?: number,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
       const localVarPath = `/api/CalculateDosage/ExcutePLC`
@@ -220,6 +222,10 @@ export const CalculateDosageApiAxiosParamCreator = function (configuration?: Con
 
       if (expirationTime !== undefined) {
         localVarQueryParameter['expirationTime'] = expirationTime
+      }
+
+      if (additionType !== undefined) {
+        localVarQueryParameter['additionType'] = additionType
       }
 
       setSearchParams(localVarUrlObj, localVarQueryParameter)
@@ -519,9 +525,10 @@ export const CalculateDosageApiFp = function (configuration?: Configuration) {
      * @summary 执行碳源加药plc控制，同时写入加药日志 Execute carbon source dosing plc control and write dosing logs
      * @param {string} [currentTime] 当前时间 current time
      * @param {string} [tenantId] 租户ID tenant id
-     * @param {string} [username]
-     * @param {string} [password]
-     * @param {number} [expirationTime]
+     * @param {string} [username] 用户名
+     * @param {string} [password] 密码
+     * @param {number} [expirationTime] 登录过期时间，小时
+     * @param {number} [additionType] 药剂投加类型，1：手动，2：自动
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -531,6 +538,7 @@ export const CalculateDosageApiFp = function (configuration?: Configuration) {
       username?: string,
       password?: string,
       expirationTime?: number,
+      additionType?: number,
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
       const localVarAxiosArgs = await localVarAxiosParamCreator.apiCalculateDosageExcutePLCGet(
@@ -539,6 +547,7 @@ export const CalculateDosageApiFp = function (configuration?: Configuration) {
         username,
         password,
         expirationTime,
+        additionType,
         options,
       )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
@@ -701,9 +710,10 @@ export const CalculateDosageApiFactory = function (
      * @summary 执行碳源加药plc控制，同时写入加药日志 Execute carbon source dosing plc control and write dosing logs
      * @param {string} [currentTime] 当前时间 current time
      * @param {string} [tenantId] 租户ID tenant id
-     * @param {string} [username]
-     * @param {string} [password]
-     * @param {number} [expirationTime]
+     * @param {string} [username] 用户名
+     * @param {string} [password] 密码
+     * @param {number} [expirationTime] 登录过期时间，小时
+     * @param {number} [additionType] 药剂投加类型，1：手动，2：自动
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -713,6 +723,7 @@ export const CalculateDosageApiFactory = function (
       username?: string,
       password?: string,
       expirationTime?: number,
+      additionType?: number,
       options?: any,
     ): AxiosPromise<object> {
       return localVarFp
@@ -722,6 +733,7 @@ export const CalculateDosageApiFactory = function (
           username,
           password,
           expirationTime,
+          additionType,
           options,
         )
         .then((request) => request(axios, basePath))
@@ -872,9 +884,10 @@ export class CalculateDosageApi extends BaseAPI {
    * @summary 执行碳源加药plc控制，同时写入加药日志 Execute carbon source dosing plc control and write dosing logs
    * @param {string} [currentTime] 当前时间 current time
    * @param {string} [tenantId] 租户ID tenant id
-   * @param {string} [username]
-   * @param {string} [password]
-   * @param {number} [expirationTime]
+   * @param {string} [username] 用户名
+   * @param {string} [password] 密码
+   * @param {number} [expirationTime] 登录过期时间，小时
+   * @param {number} [additionType] 药剂投加类型，1：手动，2：自动
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof CalculateDosageApi
@@ -885,6 +898,7 @@ export class CalculateDosageApi extends BaseAPI {
     username?: string,
     password?: string,
     expirationTime?: number,
+    additionType?: number,
     options?: AxiosRequestConfig,
   ) {
     return CalculateDosageApiFp(this.configuration)
@@ -894,6 +908,7 @@ export class CalculateDosageApi extends BaseAPI {
         username,
         password,
         expirationTime,
+        additionType,
         options,
       )
       .then((request) => request(this.axios, this.basePath))
