@@ -74,6 +74,8 @@ import { WdStatisticShutOffUserDto } from '../models'
 import { WdZoneModelResultInput } from '../models'
 // @ts-ignore
 import { WdZoneModelResultOutput } from '../models'
+// @ts-ignore
+import { WdZoneStatisticsEntity } from '../models'
 /**
  * UrbanWdResultAnalysisApi - axios parameter creator
  * @export
@@ -2305,6 +2307,46 @@ export const UrbanWdResultAnalysisApiAxiosParamCreator = function (configuration
         options: localVarRequestOptions,
       }
     },
+    /**
+     *
+     * @summary 根据方案id获取模型分区统计结果
+     * @param {string} [scenarioId]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1ResultAnalysisUrbanWdZoneStatisticsByScenarioidGet: async (
+      scenarioId?: string,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/result-analysis/urban-wd/zone-statistics-by-scenarioid`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      if (scenarioId !== undefined) {
+        localVarQueryParameter['scenarioId'] = scenarioId
+      }
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
   }
 }
 
@@ -3303,6 +3345,26 @@ export const UrbanWdResultAnalysisApiFp = function (configuration?: Configuratio
         )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
+    /**
+     *
+     * @summary 根据方案id获取模型分区统计结果
+     * @param {string} [scenarioId]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1ResultAnalysisUrbanWdZoneStatisticsByScenarioidGet(
+      scenarioId?: string,
+      options?: AxiosRequestConfig,
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<WdZoneStatisticsEntity>>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiV1ResultAnalysisUrbanWdZoneStatisticsByScenarioidGet(
+          scenarioId,
+          options,
+        )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
   }
 }
 
@@ -4242,6 +4304,21 @@ export const UrbanWdResultAnalysisApiFactory = function (
           endTime,
           options,
         )
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @summary 根据方案id获取模型分区统计结果
+     * @param {string} [scenarioId]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1ResultAnalysisUrbanWdZoneStatisticsByScenarioidGet(
+      scenarioId?: string,
+      options?: any,
+    ): AxiosPromise<Array<WdZoneStatisticsEntity>> {
+      return localVarFp
+        .apiV1ResultAnalysisUrbanWdZoneStatisticsByScenarioidGet(scenarioId, options)
         .then((request) => request(axios, basePath))
     },
   }
@@ -5243,6 +5320,23 @@ export class UrbanWdResultAnalysisApi extends BaseAPI {
         endTime,
         options,
       )
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary 根据方案id获取模型分区统计结果
+   * @param {string} [scenarioId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof UrbanWdResultAnalysisApi
+   */
+  public apiV1ResultAnalysisUrbanWdZoneStatisticsByScenarioidGet(
+    scenarioId?: string,
+    options?: AxiosRequestConfig,
+  ) {
+    return UrbanWdResultAnalysisApiFp(this.configuration)
+      .apiV1ResultAnalysisUrbanWdZoneStatisticsByScenarioidGet(scenarioId, options)
       .then((request) => request(this.axios, this.basePath))
   }
 }
