@@ -29,9 +29,7 @@ import {
   createRequestFunction,
 } from '../common'
 // @ts-ignore
-import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } from '../base' // @ts-ignore
-
-// @ts-ignore
+import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } from '../base' // @ts-ignore// @ts-ignore
 import { CompareOutput } from '../models'
 // @ts-ignore
 import { ControlSuggestionOutput } from '../models'
@@ -41,6 +39,8 @@ import { CurrentCompareOutput } from '../models'
 import { EnergyCostCompareData } from '../models'
 // @ts-ignore
 import { OptimizationConfig } from '../models'
+// @ts-ignore
+import { OptimizationExportExcelInput } from '../models'
 // @ts-ignore
 import { RemoteServiceErrorResponse } from '../models'
 // @ts-ignore
@@ -736,6 +736,49 @@ export const OptimizationApiAxiosParamCreator = function (configuration?: Config
         options: localVarRequestOptions,
       }
     },
+    /**
+     * 文件会被保存到分布式文件系统，接口会返回文件的url用于下载 Excel file will be stored to distributed file system, and url will be returned for the front-end to download the file
+     * @summary 将指定时间段内的优化对比的所有数据统一导出到一个excel文件中 Export optimization compare result data of a certain period to one excel file
+     * @param {OptimizationExportExcelInput} [optimizationExportExcelInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV3OptimizationExportExcelPost: async (
+      optimizationExportExcelInput?: OptimizationExportExcelInput,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v3/optimization/export-excel`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        optimizationExportExcelInput,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
   }
 }
 
@@ -1057,6 +1100,23 @@ export const OptimizationApiFp = function (configuration?: Configuration) {
         )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
+    /**
+     * 文件会被保存到分布式文件系统，接口会返回文件的url用于下载 Excel file will be stored to distributed file system, and url will be returned for the front-end to download the file
+     * @summary 将指定时间段内的优化对比的所有数据统一导出到一个excel文件中 Export optimization compare result data of a certain period to one excel file
+     * @param {OptimizationExportExcelInput} [optimizationExportExcelInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV3OptimizationExportExcelPost(
+      optimizationExportExcelInput?: OptimizationExportExcelInput,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<string>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiV3OptimizationExportExcelPost(
+        optimizationExportExcelInput,
+        options,
+      )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
   }
 }
 
@@ -1325,6 +1385,21 @@ export const OptimizationApiFactory = function (
     ): AxiosPromise<EnergyCostCompareData> {
       return localVarFp
         .apiV3OptimizationEnergyCostCompareGet(startTime, endTime, modelName, productLine, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     * 文件会被保存到分布式文件系统，接口会返回文件的url用于下载 Excel file will be stored to distributed file system, and url will be returned for the front-end to download the file
+     * @summary 将指定时间段内的优化对比的所有数据统一导出到一个excel文件中 Export optimization compare result data of a certain period to one excel file
+     * @param {OptimizationExportExcelInput} [optimizationExportExcelInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV3OptimizationExportExcelPost(
+      optimizationExportExcelInput?: OptimizationExportExcelInput,
+      options?: any,
+    ): AxiosPromise<string> {
+      return localVarFp
+        .apiV3OptimizationExportExcelPost(optimizationExportExcelInput, options)
         .then((request) => request(axios, basePath))
     },
   }
@@ -1610,6 +1685,23 @@ export class OptimizationApi extends BaseAPI {
   ) {
     return OptimizationApiFp(this.configuration)
       .apiV3OptimizationEnergyCostCompareGet(startTime, endTime, modelName, productLine, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   * 文件会被保存到分布式文件系统，接口会返回文件的url用于下载 Excel file will be stored to distributed file system, and url will be returned for the front-end to download the file
+   * @summary 将指定时间段内的优化对比的所有数据统一导出到一个excel文件中 Export optimization compare result data of a certain period to one excel file
+   * @param {OptimizationExportExcelInput} [optimizationExportExcelInput]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof OptimizationApi
+   */
+  public apiV3OptimizationExportExcelPost(
+    optimizationExportExcelInput?: OptimizationExportExcelInput,
+    options?: AxiosRequestConfig,
+  ) {
+    return OptimizationApiFp(this.configuration)
+      .apiV3OptimizationExportExcelPost(optimizationExportExcelInput, options)
       .then((request) => request(this.axios, this.basePath))
   }
 }
