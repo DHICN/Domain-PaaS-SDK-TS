@@ -18,31 +18,31 @@ import { BurstPipeValvesItem } from './burst-pipe-valves-item'
 /**
  *
  * @export
- * @interface FindBurstPipeValvesBatch
+ * @interface FindBurstPipeValvesBatchInput
  */
-export interface FindBurstPipeValvesBatch {
+export interface FindBurstPipeValvesBatchInput {
   /**
    * 方案Id
    * @type {string}
-   * @memberof FindBurstPipeValvesBatch
+   * @memberof FindBurstPipeValvesBatchInput
    */
   scenarioId?: string
   /**
    * 未使用的阀门
    * @type {Array<string>}
-   * @memberof FindBurstPipeValvesBatch
+   * @memberof FindBurstPipeValvesBatchInput
    */
   unuseValves?: Array<string> | null
   /**
    * 爆管项
    * @type {Array<BurstPipeValvesItem>}
-   * @memberof FindBurstPipeValvesBatch
+   * @memberof FindBurstPipeValvesBatchInput
    */
   items?: Array<BurstPipeValvesItem> | null
   /**
    *
    * @type {boolean}
-   * @memberof FindBurstPipeValvesBatch
+   * @memberof FindBurstPipeValvesBatchInput
    */
   bForceRefreshCache?: boolean
 }

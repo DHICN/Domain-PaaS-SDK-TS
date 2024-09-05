@@ -33,9 +33,11 @@ import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } fr
 // @ts-ignore
 import { CloseGisValveInfo } from '../models'
 // @ts-ignore
-import { FindBurstPipeValvesBatch } from '../models'
+import { FindBurstPipeValvesBatchInput } from '../models'
 // @ts-ignore
 import { FindBurstPipeValvesInput } from '../models'
+// @ts-ignore
+import { FindValvesByPipesInput } from '../models'
 // @ts-ignore
 import { GetValvesByPipeIdsInput } from '../models'
 // @ts-ignore
@@ -182,12 +184,12 @@ export const AccidentApiAxiosParamCreator = function (configuration?: Configurat
     /**
      *
      * @summary 寻找爆管阀门（支持同一个事件发生多个爆管）
-     * @param {FindBurstPipeValvesBatch} [findBurstPipeValvesBatch]
+     * @param {FindBurstPipeValvesBatchInput} [findBurstPipeValvesBatchInput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiV1DomainWdAccidentBurstPipeFindValvesPost: async (
-      findBurstPipeValvesBatch?: FindBurstPipeValvesBatch,
+      findBurstPipeValvesBatchInput?: FindBurstPipeValvesBatchInput,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
       const localVarPath = `/api/v1/domain-wd/accident/burst-pipe/find-valves`
@@ -212,7 +214,7 @@ export const AccidentApiAxiosParamCreator = function (configuration?: Configurat
         ...options.headers,
       }
       localVarRequestOptions.data = serializeDataIfNeeded(
-        findBurstPipeValvesBatch,
+        findBurstPipeValvesBatchInput,
         localVarRequestOptions,
         configuration,
       )
@@ -433,6 +435,49 @@ export const AccidentApiAxiosParamCreator = function (configuration?: Configurat
     },
     /**
      *
+     * @summary 寻找指定一个或多个管段周围（包含自身）的阀门
+     * @param {FindValvesByPipesInput} [findValvesByPipesInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1DomainWdAccidentFindValvesPost: async (
+      findValvesByPipesInput?: FindValvesByPipesInput,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/domain-wd/accident/find-valves`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        findValvesByPipesInput,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
      * @summary 获取阀门信息
      * @param {GetValvesByPipeIdsInput} [getValvesByPipeIdsInput]
      * @param {*} [options] Override http request option.
@@ -620,17 +665,17 @@ export const AccidentApiFp = function (configuration?: Configuration) {
     /**
      *
      * @summary 寻找爆管阀门（支持同一个事件发生多个爆管）
-     * @param {FindBurstPipeValvesBatch} [findBurstPipeValvesBatch]
+     * @param {FindBurstPipeValvesBatchInput} [findBurstPipeValvesBatchInput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async apiV1DomainWdAccidentBurstPipeFindValvesPost(
-      findBurstPipeValvesBatch?: FindBurstPipeValvesBatch,
+      findBurstPipeValvesBatchInput?: FindBurstPipeValvesBatchInput,
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<GisValveInfo>>> {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.apiV1DomainWdAccidentBurstPipeFindValvesPost(
-          findBurstPipeValvesBatch,
+          findBurstPipeValvesBatchInput,
           options,
         )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
@@ -722,6 +767,23 @@ export const AccidentApiFp = function (configuration?: Configuration) {
     > {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.apiV1DomainWdAccidentCloseValveListGet(scenarioId, options)
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
+     * @summary 寻找指定一个或多个管段周围（包含自身）的阀门
+     * @param {FindValvesByPipesInput} [findValvesByPipesInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1DomainWdAccidentFindValvesPost(
+      findValvesByPipesInput?: FindValvesByPipesInput,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<GisValveInfo>>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1DomainWdAccidentFindValvesPost(
+        findValvesByPipesInput,
+        options,
+      )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**
@@ -837,16 +899,16 @@ export const AccidentApiFactory = function (
     /**
      *
      * @summary 寻找爆管阀门（支持同一个事件发生多个爆管）
-     * @param {FindBurstPipeValvesBatch} [findBurstPipeValvesBatch]
+     * @param {FindBurstPipeValvesBatchInput} [findBurstPipeValvesBatchInput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiV1DomainWdAccidentBurstPipeFindValvesPost(
-      findBurstPipeValvesBatch?: FindBurstPipeValvesBatch,
+      findBurstPipeValvesBatchInput?: FindBurstPipeValvesBatchInput,
       options?: any,
     ): AxiosPromise<Array<GisValveInfo>> {
       return localVarFp
-        .apiV1DomainWdAccidentBurstPipeFindValvesPost(findBurstPipeValvesBatch, options)
+        .apiV1DomainWdAccidentBurstPipeFindValvesPost(findBurstPipeValvesBatchInput, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -922,6 +984,21 @@ export const AccidentApiFactory = function (
     ): AxiosPromise<Array<CloseGisValveInfo>> {
       return localVarFp
         .apiV1DomainWdAccidentCloseValveListGet(scenarioId, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @summary 寻找指定一个或多个管段周围（包含自身）的阀门
+     * @param {FindValvesByPipesInput} [findValvesByPipesInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1DomainWdAccidentFindValvesPost(
+      findValvesByPipesInput?: FindValvesByPipesInput,
+      options?: any,
+    ): AxiosPromise<Array<GisValveInfo>> {
+      return localVarFp
+        .apiV1DomainWdAccidentFindValvesPost(findValvesByPipesInput, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -1027,17 +1104,17 @@ export class AccidentApi extends BaseAPI {
   /**
    *
    * @summary 寻找爆管阀门（支持同一个事件发生多个爆管）
-   * @param {FindBurstPipeValvesBatch} [findBurstPipeValvesBatch]
+   * @param {FindBurstPipeValvesBatchInput} [findBurstPipeValvesBatchInput]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof AccidentApi
    */
   public apiV1DomainWdAccidentBurstPipeFindValvesPost(
-    findBurstPipeValvesBatch?: FindBurstPipeValvesBatch,
+    findBurstPipeValvesBatchInput?: FindBurstPipeValvesBatchInput,
     options?: AxiosRequestConfig,
   ) {
     return AccidentApiFp(this.configuration)
-      .apiV1DomainWdAccidentBurstPipeFindValvesPost(findBurstPipeValvesBatch, options)
+      .apiV1DomainWdAccidentBurstPipeFindValvesPost(findBurstPipeValvesBatchInput, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -1120,6 +1197,23 @@ export class AccidentApi extends BaseAPI {
   public apiV1DomainWdAccidentCloseValveListGet(scenarioId?: string, options?: AxiosRequestConfig) {
     return AccidentApiFp(this.configuration)
       .apiV1DomainWdAccidentCloseValveListGet(scenarioId, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary 寻找指定一个或多个管段周围（包含自身）的阀门
+   * @param {FindValvesByPipesInput} [findValvesByPipesInput]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof AccidentApi
+   */
+  public apiV1DomainWdAccidentFindValvesPost(
+    findValvesByPipesInput?: FindValvesByPipesInput,
+    options?: AxiosRequestConfig,
+  ) {
+    return AccidentApiFp(this.configuration)
+      .apiV1DomainWdAccidentFindValvesPost(findValvesByPipesInput, options)
       .then((request) => request(this.axios, this.basePath))
   }
 

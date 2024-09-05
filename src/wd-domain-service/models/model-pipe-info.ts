@@ -155,4 +155,16 @@ export interface ModelPipeInfo {
    * @memberof ModelPipeInfo
    */
   zoneID?: string | null
+  /**
+   *
+   * @type {number}
+   * @memberof ModelPipeInfo
+   */
+  x?: number
+  /**
+   *
+   * @type {number}
+   * @memberof ModelPipeInfo
+   */
+  y?: number
 }

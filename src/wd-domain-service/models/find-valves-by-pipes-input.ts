@@ -13,36 +13,36 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { BurstPipeValvesItem } from './burst-pipe-valves-item'
+import { PipeValvesItem } from './pipe-valves-item'
 
 /**
  *
  * @export
- * @interface FindBurstPipeValvesBatch
+ * @interface FindValvesByPipesInput
  */
-export interface FindBurstPipeValvesBatch {
+export interface FindValvesByPipesInput {
   /**
    * 方案Id
    * @type {string}
-   * @memberof FindBurstPipeValvesBatch
+   * @memberof FindValvesByPipesInput
    */
   scenarioId?: string
   /**
    * 未使用的阀门
    * @type {Array<string>}
-   * @memberof FindBurstPipeValvesBatch
+   * @memberof FindValvesByPipesInput
    */
   unuseValves?: Array<string> | null
   /**
    * 爆管项
-   * @type {Array<BurstPipeValvesItem>}
-   * @memberof FindBurstPipeValvesBatch
+   * @type {Array<PipeValvesItem>}
+   * @memberof FindValvesByPipesInput
    */
-  items?: Array<BurstPipeValvesItem> | null
+  items?: Array<PipeValvesItem> | null
   /**
    *
    * @type {boolean}
-   * @memberof FindBurstPipeValvesBatch
+   * @memberof FindValvesByPipesInput
    */
   bForceRefreshCache?: boolean
 }
