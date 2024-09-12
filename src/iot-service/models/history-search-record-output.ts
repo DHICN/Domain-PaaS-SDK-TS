@@ -47,4 +47,10 @@ export interface HistorySearchRecordOutput {
    * @memberof HistorySearchRecordOutput
    */
   isSearchOnline?: boolean
+  /**
+   * 搜索条件应用场景
+   * @type {string}
+   * @memberof HistorySearchRecordOutput
+   */
+  scene?: string | null
 }
