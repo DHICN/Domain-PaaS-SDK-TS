@@ -33,11 +33,15 @@ import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } fr
 // @ts-ignore
 import { HisDataSearchInput } from '../models'
 // @ts-ignore
+import { HisDataSearchLatestInput } from '../models'
+// @ts-ignore
 import { HistorySearchRecordOutput } from '../models'
 // @ts-ignore
 import { SaveHistorySearchRecordInput } from '../models'
 // @ts-ignore
 import { SearchCategoryOutput } from '../models'
+// @ts-ignore
+import { SearchLatestOutput } from '../models'
 // @ts-ignore
 import { SearchOutput } from '../models'
 /**
@@ -123,6 +127,49 @@ export const HistoricalDataSearchApiAxiosParamCreator = function (configuration?
         ...headersFromBaseOptions,
         ...options.headers,
       }
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 查询最新一条记录的数据 / historical latest data query
+     * @param {Array<HisDataSearchLatestInput>} [hisDataSearchLatestInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1HistoricalDataSearchLatestPost: async (
+      hisDataSearchLatestInput?: Array<HisDataSearchLatestInput>,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/historical-data/search-latest`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        hisDataSearchLatestInput,
+        localVarRequestOptions,
+        configuration,
+      )
 
       return {
         url: toPathString(localVarUrlObj),
@@ -341,6 +388,49 @@ export const HistoricalDataSearchApiAxiosParamCreator = function (configuration?
         options: localVarRequestOptions,
       }
     },
+    /**
+     *
+     * @summary 历史数据查询，基于分布式对象数据库查询模拟数据 / historical data query
+     * @param {Array<HisDataSearchInput>} [hisDataSearchInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV2HistoricalDataSearchPost: async (
+      hisDataSearchInput?: Array<HisDataSearchInput>,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v2/historical-data/search`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        hisDataSearchInput,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
   }
 }
 
@@ -383,6 +473,23 @@ export const HistoricalDataSearchApiFp = function (configuration?: Configuration
     > {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.apiV1HistoricalDataSearchConditionsGet(scene, options)
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
+     * @summary 查询最新一条记录的数据 / historical latest data query
+     * @param {Array<HisDataSearchLatestInput>} [hisDataSearchLatestInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1HistoricalDataSearchLatestPost(
+      hisDataSearchLatestInput?: Array<HisDataSearchLatestInput>,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<SearchLatestOutput>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1HistoricalDataSearchLatestPost(
+        hisDataSearchLatestInput,
+        options,
+      )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**
@@ -475,6 +582,23 @@ export const HistoricalDataSearchApiFp = function (configuration?: Configuration
         )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
+    /**
+     *
+     * @summary 历史数据查询，基于分布式对象数据库查询模拟数据 / historical data query
+     * @param {Array<HisDataSearchInput>} [hisDataSearchInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV2HistoricalDataSearchPost(
+      hisDataSearchInput?: Array<HisDataSearchInput>,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<SearchOutput>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiV2HistoricalDataSearchPost(
+        hisDataSearchInput,
+        options,
+      )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
   }
 }
 
@@ -517,6 +641,21 @@ export const HistoricalDataSearchApiFactory = function (
     ): AxiosPromise<Array<SearchCategoryOutput>> {
       return localVarFp
         .apiV1HistoricalDataSearchConditionsGet(scene, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @summary 查询最新一条记录的数据 / historical latest data query
+     * @param {Array<HisDataSearchLatestInput>} [hisDataSearchLatestInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1HistoricalDataSearchLatestPost(
+      hisDataSearchLatestInput?: Array<HisDataSearchLatestInput>,
+      options?: any,
+    ): AxiosPromise<SearchLatestOutput> {
+      return localVarFp
+        .apiV1HistoricalDataSearchLatestPost(hisDataSearchLatestInput, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -594,6 +733,21 @@ export const HistoricalDataSearchApiFactory = function (
         .apiV1HistoricalDataSearchRecordsSavePost(saveHistorySearchRecordInput, options)
         .then((request) => request(axios, basePath))
     },
+    /**
+     *
+     * @summary 历史数据查询，基于分布式对象数据库查询模拟数据 / historical data query
+     * @param {Array<HisDataSearchInput>} [hisDataSearchInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV2HistoricalDataSearchPost(
+      hisDataSearchInput?: Array<HisDataSearchInput>,
+      options?: any,
+    ): AxiosPromise<SearchOutput> {
+      return localVarFp
+        .apiV2HistoricalDataSearchPost(hisDataSearchInput, options)
+        .then((request) => request(axios, basePath))
+    },
   }
 }
 
@@ -632,6 +786,23 @@ export class HistoricalDataSearchApi extends BaseAPI {
   public apiV1HistoricalDataSearchConditionsGet(scene?: string, options?: AxiosRequestConfig) {
     return HistoricalDataSearchApiFp(this.configuration)
       .apiV1HistoricalDataSearchConditionsGet(scene, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary 查询最新一条记录的数据 / historical latest data query
+   * @param {Array<HisDataSearchLatestInput>} [hisDataSearchLatestInput]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof HistoricalDataSearchApi
+   */
+  public apiV1HistoricalDataSearchLatestPost(
+    hisDataSearchLatestInput?: Array<HisDataSearchLatestInput>,
+    options?: AxiosRequestConfig,
+  ) {
+    return HistoricalDataSearchApiFp(this.configuration)
+      .apiV1HistoricalDataSearchLatestPost(hisDataSearchLatestInput, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -714,6 +885,23 @@ export class HistoricalDataSearchApi extends BaseAPI {
   ) {
     return HistoricalDataSearchApiFp(this.configuration)
       .apiV1HistoricalDataSearchRecordsSavePost(saveHistorySearchRecordInput, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary 历史数据查询，基于分布式对象数据库查询模拟数据 / historical data query
+   * @param {Array<HisDataSearchInput>} [hisDataSearchInput]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof HistoricalDataSearchApi
+   */
+  public apiV2HistoricalDataSearchPost(
+    hisDataSearchInput?: Array<HisDataSearchInput>,
+    options?: AxiosRequestConfig,
+  ) {
+    return HistoricalDataSearchApiFp(this.configuration)
+      .apiV2HistoricalDataSearchPost(hisDataSearchInput, options)
       .then((request) => request(this.axios, this.basePath))
   }
 }
