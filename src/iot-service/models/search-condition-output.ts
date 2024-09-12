@@ -25,8 +25,20 @@ export interface SearchConditionOutput {
   deviceName?: string | null
   /**
    *
+   * @type {string}
+   * @memberof SearchConditionOutput
+   */
+  deviceCode?: string | null
+  /**
+   *
    * @type {Array<string>}
    * @memberof SearchConditionOutput
    */
   indicators?: Array<string> | null
+  /**
+   *
+   * @type {string}
+   * @memberof SearchConditionOutput
+   */
+  scene?: string | null
 }
