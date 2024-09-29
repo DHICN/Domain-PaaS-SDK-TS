@@ -752,14 +752,10 @@ export const OpcuaApiAxiosParamCreator = function (configuration?: Configuration
     /**
      *
      * @summary 检测opc心跳是否正常
-     * @param {ReadNodeInput} [readNodeInput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    apiV1OpcUaOpcHeartBeatPost: async (
-      readNodeInput?: ReadNodeInput,
-      options: AxiosRequestConfig = {},
-    ): Promise<RequestArgs> => {
+    apiV1OpcUaOpcHeartBeatPost: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
       const localVarPath = `/api/v1/opc-ua/opc-heart-beat`
       // use dummy base URL string because the URL constructor only accepts absolute URLs.
       const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
@@ -772,8 +768,6 @@ export const OpcuaApiAxiosParamCreator = function (configuration?: Configuration
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
 
-      localVarHeaderParameter['Content-Type'] = 'application/json'
-
       setSearchParams(localVarUrlObj, localVarQueryParameter)
       let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
       localVarRequestOptions.headers = {
@@ -781,11 +775,6 @@ export const OpcuaApiAxiosParamCreator = function (configuration?: Configuration
         ...headersFromBaseOptions,
         ...options.headers,
       }
-      localVarRequestOptions.data = serializeDataIfNeeded(
-        readNodeInput,
-        localVarRequestOptions,
-        configuration,
-      )
 
       return {
         url: toPathString(localVarUrlObj),
@@ -1007,12 +996,12 @@ export const OpcuaApiAxiosParamCreator = function (configuration?: Configuration
     /**
      *
      * @summary /api/v1/opc-ua/save-heart-to-redis
-     * @param {ReadNodeInput} [readNodeInput]
+     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiV1OpcUaSaveHeartToRedisPost: async (
-      readNodeInput?: ReadNodeInput,
+      tenantId?: string,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
       const localVarPath = `/api/v1/opc-ua/save-heart-to-redis`
@@ -1027,7 +1016,9 @@ export const OpcuaApiAxiosParamCreator = function (configuration?: Configuration
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
 
-      localVarHeaderParameter['Content-Type'] = 'application/json'
+      if (tenantId !== undefined) {
+        localVarQueryParameter['tenantId'] = tenantId
+      }
 
       setSearchParams(localVarUrlObj, localVarQueryParameter)
       let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
@@ -1036,11 +1027,6 @@ export const OpcuaApiAxiosParamCreator = function (configuration?: Configuration
         ...headersFromBaseOptions,
         ...options.headers,
       }
-      localVarRequestOptions.data = serializeDataIfNeeded(
-        readNodeInput,
-        localVarRequestOptions,
-        configuration,
-      )
 
       return {
         url: toPathString(localVarUrlObj),
@@ -1765,18 +1751,13 @@ export const OpcuaApiFp = function (configuration?: Configuration) {
     /**
      *
      * @summary 检测opc心跳是否正常
-     * @param {ReadNodeInput} [readNodeInput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async apiV1OpcUaOpcHeartBeatPost(
-      readNodeInput?: ReadNodeInput,
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<boolean>> {
-      const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1OpcUaOpcHeartBeatPost(
-        readNodeInput,
-        options,
-      )
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1OpcUaOpcHeartBeatPost(options)
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**
@@ -1869,16 +1850,16 @@ export const OpcuaApiFp = function (configuration?: Configuration) {
     /**
      *
      * @summary /api/v1/opc-ua/save-heart-to-redis
-     * @param {ReadNodeInput} [readNodeInput]
+     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async apiV1OpcUaSaveHeartToRedisPost(
-      readNodeInput?: ReadNodeInput,
+      tenantId?: string,
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<boolean>> {
       const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1OpcUaSaveHeartToRedisPost(
-        readNodeInput,
+        tenantId,
         options,
       )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
@@ -2307,16 +2288,12 @@ export const OpcuaApiFactory = function (
     /**
      *
      * @summary 检测opc心跳是否正常
-     * @param {ReadNodeInput} [readNodeInput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    apiV1OpcUaOpcHeartBeatPost(
-      readNodeInput?: ReadNodeInput,
-      options?: any,
-    ): AxiosPromise<boolean> {
+    apiV1OpcUaOpcHeartBeatPost(options?: any): AxiosPromise<boolean> {
       return localVarFp
-        .apiV1OpcUaOpcHeartBeatPost(readNodeInput, options)
+        .apiV1OpcUaOpcHeartBeatPost(options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -2391,16 +2368,13 @@ export const OpcuaApiFactory = function (
     /**
      *
      * @summary /api/v1/opc-ua/save-heart-to-redis
-     * @param {ReadNodeInput} [readNodeInput]
+     * @param {string} [tenantId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    apiV1OpcUaSaveHeartToRedisPost(
-      readNodeInput?: ReadNodeInput,
-      options?: any,
-    ): AxiosPromise<boolean> {
+    apiV1OpcUaSaveHeartToRedisPost(tenantId?: string, options?: any): AxiosPromise<boolean> {
       return localVarFp
-        .apiV1OpcUaSaveHeartToRedisPost(readNodeInput, options)
+        .apiV1OpcUaSaveHeartToRedisPost(tenantId, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -2822,14 +2796,13 @@ export class OpcuaApi extends BaseAPI {
   /**
    *
    * @summary 检测opc心跳是否正常
-   * @param {ReadNodeInput} [readNodeInput]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof OpcuaApi
    */
-  public apiV1OpcUaOpcHeartBeatPost(readNodeInput?: ReadNodeInput, options?: AxiosRequestConfig) {
+  public apiV1OpcUaOpcHeartBeatPost(options?: AxiosRequestConfig) {
     return OpcuaApiFp(this.configuration)
-      .apiV1OpcUaOpcHeartBeatPost(readNodeInput, options)
+      .apiV1OpcUaOpcHeartBeatPost(options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -2912,17 +2885,14 @@ export class OpcuaApi extends BaseAPI {
   /**
    *
    * @summary /api/v1/opc-ua/save-heart-to-redis
-   * @param {ReadNodeInput} [readNodeInput]
+   * @param {string} [tenantId]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof OpcuaApi
    */
-  public apiV1OpcUaSaveHeartToRedisPost(
-    readNodeInput?: ReadNodeInput,
-    options?: AxiosRequestConfig,
-  ) {
+  public apiV1OpcUaSaveHeartToRedisPost(tenantId?: string, options?: AxiosRequestConfig) {
     return OpcuaApiFp(this.configuration)
-      .apiV1OpcUaSaveHeartToRedisPost(readNodeInput, options)
+      .apiV1OpcUaSaveHeartToRedisPost(tenantId, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
