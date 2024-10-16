@@ -13,7 +13,7 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { Tjufmap } from './tjufmap'
+import { MapSource } from './map-source'
 
 /**
  *
@@ -23,8 +23,14 @@ import { Tjufmap } from './tjufmap'
 export interface Sources {
   /**
    *
-   * @type {Tjufmap}
+   * @type {MapSource}
    * @memberof Sources
    */
-  TJUFMap?: Tjufmap
+  TJUFMap?: MapSource
+  /**
+   *
+   * @type {MapSource}
+   * @memberof Sources
+   */
+  DefaultMap?: MapSource
 }

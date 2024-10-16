@@ -47,12 +47,6 @@ export interface Feature {
   type?: GeoJsonObjectType
   /**
    *
-   * @type {string}
-   * @memberof Feature
-   */
-  id?: string | null
-  /**
-   *
    * @type {IGeometryObject}
    * @memberof Feature
    */

@@ -13,7 +13,7 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { StatisticsTimeResult } from './statistics-time-result'
+import { StatisticsTimeResultV2 } from './statistics-time-result-v2'
 
 /**
  *
@@ -29,8 +29,8 @@ export interface ZoneStatistics {
   zone?: string | null
   /**
    *
-   * @type {Array<StatisticsTimeResult>}
+   * @type {Array<StatisticsTimeResultV2>}
    * @memberof ZoneStatistics
    */
-  statisticsTimeResults?: Array<StatisticsTimeResult> | null
+  statisticsTimeResults?: Array<StatisticsTimeResultV2> | null
 }

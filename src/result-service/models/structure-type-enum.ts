@@ -12,7 +12,7 @@
  */
 
 /**
- * 0-CS_Pump(管网泵) 1-CS_Valve(管网阀) 10-River_Pump(河网泵) 11-River_Gate(河网闸) 12-River_Weir(河网堰(坝))
+ * 0-CS_Pump(管网泵)  1-CS_Valve(管网阀)  10-River_Pump(河网泵)  11-River_Gate(河网闸)  12-River_Weir(河网堰(坝))
  * @export
  * @enum {string}
  */

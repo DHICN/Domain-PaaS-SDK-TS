@@ -57,6 +57,8 @@ import { GetTimeStatisticResultInput } from '../models'
 // @ts-ignore
 import { NetworkProfile } from '../models'
 // @ts-ignore
+import { PipeRiskCalInfoDto } from '../models'
+// @ts-ignore
 import { StatisticsModelIdResultDto } from '../models'
 // @ts-ignore
 import { StatisticsTimeResultDto } from '../models'
@@ -1211,6 +1213,52 @@ export const UrbanWdResultAnalysisApiAxiosParamCreator = function (configuration
 
       if (endTime !== undefined) {
         localVarQueryParameter['EndTime'] = endTime
+      }
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 获取管道风险评估信息
+     * @param {string} scenarioId 方案的ID scenario’s ID
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1ResultAnalysisUrbanWdPipeRiskAnalyseInfoGet: async (
+      scenarioId: string,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'scenarioId' is not null or undefined
+      assertParamExists(
+        'apiV1ResultAnalysisUrbanWdPipeRiskAnalyseInfoGet',
+        'scenarioId',
+        scenarioId,
+      )
+      const localVarPath = `/api/v1/result-analysis/urban-wd/pipe-risk-analyse-info`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      if (scenarioId !== undefined) {
+        localVarQueryParameter['ScenarioId'] = scenarioId
       }
 
       setSearchParams(localVarUrlObj, localVarQueryParameter)
@@ -2913,6 +2961,24 @@ export const UrbanWdResultAnalysisApiFp = function (configuration?: Configuratio
     },
     /**
      *
+     * @summary 获取管道风险评估信息
+     * @param {string} scenarioId 方案的ID scenario’s ID
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1ResultAnalysisUrbanWdPipeRiskAnalyseInfoGet(
+      scenarioId: string,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PipeRiskCalInfoDto>> {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiV1ResultAnalysisUrbanWdPipeRiskAnalyseInfoGet(
+          scenarioId,
+          options,
+        )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
      * @summary 根据方案id获取全管网压力模拟结果值,适用大模型结果读取
      * @param {string} scenarioId 方案id
      * @param {number} [frequency] 抽样频率
@@ -3925,6 +3991,21 @@ export const UrbanWdResultAnalysisApiFactory = function (
     },
     /**
      *
+     * @summary 获取管道风险评估信息
+     * @param {string} scenarioId 方案的ID scenario’s ID
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1ResultAnalysisUrbanWdPipeRiskAnalyseInfoGet(
+      scenarioId: string,
+      options?: any,
+    ): AxiosPromise<PipeRiskCalInfoDto> {
+      return localVarFp
+        .apiV1ResultAnalysisUrbanWdPipeRiskAnalyseInfoGet(scenarioId, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
      * @summary 根据方案id获取全管网压力模拟结果值,适用大模型结果读取
      * @param {string} scenarioId 方案id
      * @param {number} [frequency] 抽样频率
@@ -4914,6 +4995,23 @@ export class UrbanWdResultAnalysisApi extends BaseAPI {
         endTime,
         options,
       )
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary 获取管道风险评估信息
+   * @param {string} scenarioId 方案的ID scenario’s ID
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof UrbanWdResultAnalysisApi
+   */
+  public apiV1ResultAnalysisUrbanWdPipeRiskAnalyseInfoGet(
+    scenarioId: string,
+    options?: AxiosRequestConfig,
+  ) {
+    return UrbanWdResultAnalysisApiFp(this.configuration)
+      .apiV1ResultAnalysisUrbanWdPipeRiskAnalyseInfoGet(scenarioId, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
