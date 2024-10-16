@@ -12,7 +12,7 @@
  */
 
 /**
- * 0-Unspecified  1-Name  2-Link
+ * 0-Unspecified 1-Name 2-Link
  * @export
  * @enum {string}
  */

@@ -12,7 +12,7 @@
  */
 
 /**
- * 0-Point  1-MultiPoint  2-LineString  3-MultiLineString  4-Polygon  5-MultiPolygon  6-GeometryCollection  7-Feature  8-FeatureCollection
+ * 0-Point 1-MultiPoint 2-LineString 3-MultiLineString 4-Polygon 5-MultiPolygon 6-GeometryCollection 7-Feature 8-FeatureCollection
  * @export
  * @enum {string}
  */

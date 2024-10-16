@@ -19,6 +19,9 @@ import { FeatureCollection } from './feature-collection'
 import { SensitivePointItem } from './sensitive-point-item'
 // May contain unused imports in some cases
 // @ts-ignore
+import { StyleObject } from './style-object'
+// May contain unused imports in some cases
+// @ts-ignore
 import { TsPairs } from './ts-pairs'
 
 /**
@@ -32,7 +35,7 @@ export interface FloodRiskAssessmentDto {
    * @type {number}
    * @memberof FloodRiskAssessmentDto
    */
-  year?: number
+  year: number
   /**
    *
    * @type {string}
@@ -43,6 +46,7 @@ export interface FloodRiskAssessmentDto {
    * 易捞点列表
    * @type {Array<SensitivePointItem>}
    * @memberof FloodRiskAssessmentDto
+   * @deprecated
    */
   sensitivePoints?: Array<SensitivePointItem> | null
   /**
@@ -53,10 +57,10 @@ export interface FloodRiskAssessmentDto {
   rainfall?: TsPairs
   /**
    *
-   * @type {FeatureCollection}
+   * @type {StyleObject}
    * @memberof FloodRiskAssessmentDto
    */
-  floodArea?: FeatureCollection
+  floodAreaStyle?: StyleObject
   /**
    *
    * @type {FeatureCollection}
