@@ -43,7 +43,7 @@ import { FilterModelResultDtoV2 } from '../models'
 // @ts-ignore
 import { FilterModelResultRangeTimeDto } from '../models'
 // @ts-ignore
-import { FlushingResultEntity } from '../models'
+import { FlushingResultDto } from '../models'
 // @ts-ignore
 import { GetFilterModelResultInput } from '../models'
 // @ts-ignore
@@ -946,15 +946,17 @@ export const UrbanWdResultAnalysisApiAxiosParamCreator = function (configuration
     },
     /**
      *
-     * @summary 根据方案id获取管道冲洗结果
-     * @param {string} [scenarioId]
+     * @summary 管道冲洗结果
+     * @param {string} scenarioId 方案的ID scenario’s ID
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiV1ResultAnalysisUrbanWdFlushingResultGet: async (
-      scenarioId?: string,
+      scenarioId: string,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
+      // verify required parameter 'scenarioId' is not null or undefined
+      assertParamExists('apiV1ResultAnalysisUrbanWdFlushingResultGet', 'scenarioId', scenarioId)
       const localVarPath = `/api/v1/result-analysis/urban-wd/flushing-result`
       // use dummy base URL string because the URL constructor only accepts absolute URLs.
       const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
@@ -968,7 +970,7 @@ export const UrbanWdResultAnalysisApiAxiosParamCreator = function (configuration
       const localVarQueryParameter = {} as any
 
       if (scenarioId !== undefined) {
-        localVarQueryParameter['scenarioId'] = scenarioId
+        localVarQueryParameter['ScenarioId'] = scenarioId
       }
 
       setSearchParams(localVarUrlObj, localVarQueryParameter)
@@ -2835,15 +2837,15 @@ export const UrbanWdResultAnalysisApiFp = function (configuration?: Configuratio
     },
     /**
      *
-     * @summary 根据方案id获取管道冲洗结果
-     * @param {string} [scenarioId]
+     * @summary 管道冲洗结果
+     * @param {string} scenarioId 方案的ID scenario’s ID
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async apiV1ResultAnalysisUrbanWdFlushingResultGet(
-      scenarioId?: string,
+      scenarioId: string,
       options?: AxiosRequestConfig,
-    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FlushingResultEntity>> {
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FlushingResultDto>> {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.apiV1ResultAnalysisUrbanWdFlushingResultGet(
           scenarioId,
@@ -3868,15 +3870,15 @@ export const UrbanWdResultAnalysisApiFactory = function (
     },
     /**
      *
-     * @summary 根据方案id获取管道冲洗结果
-     * @param {string} [scenarioId]
+     * @summary 管道冲洗结果
+     * @param {string} scenarioId 方案的ID scenario’s ID
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiV1ResultAnalysisUrbanWdFlushingResultGet(
-      scenarioId?: string,
+      scenarioId: string,
       options?: any,
-    ): AxiosPromise<FlushingResultEntity> {
+    ): AxiosPromise<FlushingResultDto> {
       return localVarFp
         .apiV1ResultAnalysisUrbanWdFlushingResultGet(scenarioId, options)
         .then((request) => request(axios, basePath))
@@ -4873,14 +4875,14 @@ export class UrbanWdResultAnalysisApi extends BaseAPI {
 
   /**
    *
-   * @summary 根据方案id获取管道冲洗结果
-   * @param {string} [scenarioId]
+   * @summary 管道冲洗结果
+   * @param {string} scenarioId 方案的ID scenario’s ID
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof UrbanWdResultAnalysisApi
    */
   public apiV1ResultAnalysisUrbanWdFlushingResultGet(
-    scenarioId?: string,
+    scenarioId: string,
     options?: AxiosRequestConfig,
   ) {
     return UrbanWdResultAnalysisApiFp(this.configuration)
