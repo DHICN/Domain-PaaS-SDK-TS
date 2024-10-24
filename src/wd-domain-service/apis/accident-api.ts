@@ -39,6 +39,10 @@ import { FindBurstPipeValvesInput } from '../models'
 // @ts-ignore
 import { FindValvesByPipesInput } from '../models'
 // @ts-ignore
+import { FlushingBaseInfoDto } from '../models'
+// @ts-ignore
+import { FlushingBaseInfoInput } from '../models'
+// @ts-ignore
 import { GetValvesByPipeIdsInput } from '../models'
 // @ts-ignore
 import { GisValveInfo } from '../models'
@@ -478,6 +482,89 @@ export const AccidentApiAxiosParamCreator = function (configuration?: Configurat
     },
     /**
      *
+     * @summary 保存管道冲洗基本信息
+     * @param {FlushingBaseInfoInput} [flushingBaseInfoInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1DomainWdAccidentFlushingAddPost: async (
+      flushingBaseInfoInput?: FlushingBaseInfoInput,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/domain-wd/accident/flushing/add`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        flushingBaseInfoInput,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 获取管道冲洗基本信息
+     * @param {string} [scenarioId]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1DomainWdAccidentFlushingBaseInfoGet: async (
+      scenarioId?: string,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/domain-wd/accident/flushing/base-info`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      if (scenarioId !== undefined) {
+        localVarQueryParameter['scenarioId'] = scenarioId
+      }
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
      * @summary 获取阀门信息
      * @param {GetValvesByPipeIdsInput} [getValvesByPipeIdsInput]
      * @param {*} [options] Override http request option.
@@ -788,6 +875,42 @@ export const AccidentApiFp = function (configuration?: Configuration) {
     },
     /**
      *
+     * @summary 保存管道冲洗基本信息
+     * @param {FlushingBaseInfoInput} [flushingBaseInfoInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1DomainWdAccidentFlushingAddPost(
+      flushingBaseInfoInput?: FlushingBaseInfoInput,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiV1DomainWdAccidentFlushingAddPost(
+          flushingBaseInfoInput,
+          options,
+        )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
+     * @summary 获取管道冲洗基本信息
+     * @param {string} [scenarioId]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1DomainWdAccidentFlushingBaseInfoGet(
+      scenarioId?: string,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FlushingBaseInfoDto>> {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiV1DomainWdAccidentFlushingBaseInfoGet(
+          scenarioId,
+          options,
+        )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
      * @summary 获取阀门信息
      * @param {GetValvesByPipeIdsInput} [getValvesByPipeIdsInput]
      * @param {*} [options] Override http request option.
@@ -1003,6 +1126,36 @@ export const AccidentApiFactory = function (
     },
     /**
      *
+     * @summary 保存管道冲洗基本信息
+     * @param {FlushingBaseInfoInput} [flushingBaseInfoInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1DomainWdAccidentFlushingAddPost(
+      flushingBaseInfoInput?: FlushingBaseInfoInput,
+      options?: any,
+    ): AxiosPromise<object> {
+      return localVarFp
+        .apiV1DomainWdAccidentFlushingAddPost(flushingBaseInfoInput, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @summary 获取管道冲洗基本信息
+     * @param {string} [scenarioId]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1DomainWdAccidentFlushingBaseInfoGet(
+      scenarioId?: string,
+      options?: any,
+    ): AxiosPromise<FlushingBaseInfoDto> {
+      return localVarFp
+        .apiV1DomainWdAccidentFlushingBaseInfoGet(scenarioId, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
      * @summary 获取阀门信息
      * @param {GetValvesByPipeIdsInput} [getValvesByPipeIdsInput]
      * @param {*} [options] Override http request option.
@@ -1214,6 +1367,40 @@ export class AccidentApi extends BaseAPI {
   ) {
     return AccidentApiFp(this.configuration)
       .apiV1DomainWdAccidentFindValvesPost(findValvesByPipesInput, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary 保存管道冲洗基本信息
+   * @param {FlushingBaseInfoInput} [flushingBaseInfoInput]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof AccidentApi
+   */
+  public apiV1DomainWdAccidentFlushingAddPost(
+    flushingBaseInfoInput?: FlushingBaseInfoInput,
+    options?: AxiosRequestConfig,
+  ) {
+    return AccidentApiFp(this.configuration)
+      .apiV1DomainWdAccidentFlushingAddPost(flushingBaseInfoInput, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary 获取管道冲洗基本信息
+   * @param {string} [scenarioId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof AccidentApi
+   */
+  public apiV1DomainWdAccidentFlushingBaseInfoGet(
+    scenarioId?: string,
+    options?: AxiosRequestConfig,
+  ) {
+    return AccidentApiFp(this.configuration)
+      .apiV1DomainWdAccidentFlushingBaseInfoGet(scenarioId, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
