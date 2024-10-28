@@ -689,6 +689,46 @@ export const AccidentApiAxiosParamCreator = function (configuration?: Configurat
         options: localVarRequestOptions,
       }
     },
+    /**
+     *
+     * @summary 根据方案id 查询关阀信息
+     * @param {string} [scenarioId]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV2DomainWdAccidentCloseValveListGet: async (
+      scenarioId?: string,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v2/domain-wd/accident/close-valve/list`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      if (scenarioId !== undefined) {
+        localVarQueryParameter['scenarioId'] = scenarioId
+      }
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
   }
 }
 
@@ -960,6 +1000,23 @@ export const AccidentApiFp = function (configuration?: Configuration) {
         )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
+    /**
+     *
+     * @summary 根据方案id 查询关阀信息
+     * @param {string} [scenarioId]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV2DomainWdAccidentCloseValveListGet(
+      scenarioId?: string,
+      options?: AxiosRequestConfig,
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<CloseGisValveInfo>>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiV2DomainWdAccidentCloseValveListGet(scenarioId, options)
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
   }
 }
 
@@ -1197,6 +1254,21 @@ export const AccidentApiFactory = function (
     ): AxiosPromise<object> {
       return localVarFp
         .apiV1DomainWdAccidentWqAccidentAddPost(saveWqAccidentInfoInput, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @summary 根据方案id 查询关阀信息
+     * @param {string} [scenarioId]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV2DomainWdAccidentCloseValveListGet(
+      scenarioId?: string,
+      options?: any,
+    ): AxiosPromise<Array<CloseGisValveInfo>> {
+      return localVarFp
+        .apiV2DomainWdAccidentCloseValveListGet(scenarioId, options)
         .then((request) => request(axios, basePath))
     },
   }
@@ -1449,6 +1521,20 @@ export class AccidentApi extends BaseAPI {
   ) {
     return AccidentApiFp(this.configuration)
       .apiV1DomainWdAccidentWqAccidentAddPost(saveWqAccidentInfoInput, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary 根据方案id 查询关阀信息
+   * @param {string} [scenarioId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof AccidentApi
+   */
+  public apiV2DomainWdAccidentCloseValveListGet(scenarioId?: string, options?: AxiosRequestConfig) {
+    return AccidentApiFp(this.configuration)
+      .apiV2DomainWdAccidentCloseValveListGet(scenarioId, options)
       .then((request) => request(this.axios, this.basePath))
   }
 }
