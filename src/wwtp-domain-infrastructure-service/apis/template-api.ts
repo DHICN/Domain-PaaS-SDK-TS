@@ -296,9 +296,8 @@ export const TemplateApiFp = function (configuration?: Configuration) {
     async apiV2ModelConfigTemplateGetAllGet(
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<TemplateOutput>>> {
-      const localVarAxiosArgs = await localVarAxiosParamCreator.apiV2ModelConfigTemplateGetAllGet(
-        options,
-      )
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiV2ModelConfigTemplateGetAllGet(options)
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**

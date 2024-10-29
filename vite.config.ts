@@ -1,10 +1,9 @@
 import dts from 'vite-plugin-dts'
-import eslintPlugin from 'vite-plugin-eslint'
+import path from 'path'
+import { defineConfig } from 'vite'
 
-const path = require('path')
-const { defineConfig } = require('vite')
 // https://vitejs.dev/config/
-module.exports = defineConfig({
+export default defineConfig({
   build: {
     lib: {
       entry: {
@@ -46,10 +45,5 @@ module.exports = defineConfig({
     },
     sourcemap: true,
   },
-  plugins: [
-    dts(),
-    eslintPlugin({
-      include: ['src/**/*.ts', 'src/*.ts'],
-    }),
-  ],
+  plugins: [dts()],
 })

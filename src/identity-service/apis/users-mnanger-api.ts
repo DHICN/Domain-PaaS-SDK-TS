@@ -645,9 +645,8 @@ export const UsersMnangerApiFp = function (configuration?: Configuration) {
     async apiAppUsersMnangerUserPersGet(
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetUserPersOutput>> {
-      const localVarAxiosArgs = await localVarAxiosParamCreator.apiAppUsersMnangerUserPersGet(
-        options,
-      )
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiAppUsersMnangerUserPersGet(options)
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**

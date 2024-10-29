@@ -37,17 +37,19 @@ import { BaseTimeseriesBatchOutput } from '../models'
 // @ts-ignore
 import { BaseTimeseriesOutput } from '../models'
 // @ts-ignore
+import { BucketObjectInfo } from '../models'
+// @ts-ignore
 import { FilterModelResultDto } from '../models'
 // @ts-ignore
 import { FilterModelResultDtoV2 } from '../models'
+// @ts-ignore
+import { FilterModelResultInput } from '../models'
 // @ts-ignore
 import { FilterModelResultRangeTimeDto } from '../models'
 // @ts-ignore
 import { FlushingResultDto } from '../models'
 // @ts-ignore
 import { GetFilterModelResultInput } from '../models'
-// @ts-ignore
-import { GetFilterModelResultInputV2 } from '../models'
 // @ts-ignore
 import { GetFilterModelResultRangeTime } from '../models'
 // @ts-ignore
@@ -2404,12 +2406,55 @@ export const UrbanWdResultAnalysisApiAxiosParamCreator = function (configuration
     /**
      *
      * @summary 按照筛选条件查询模型信息和模拟结果
-     * @param {GetFilterModelResultInputV2} [getFilterModelResultInputV2]
+     * @param {FilterModelResultInput} [filterModelResultInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV2ResultAnalysisUrbanWdExportFilterModelResultPost: async (
+      filterModelResultInput?: FilterModelResultInput,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v2/result-analysis/urban-wd/export-filter-model-result`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        filterModelResultInput,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 按照筛选条件查询模型信息和模拟结果
+     * @param {FilterModelResultInput} [filterModelResultInput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiV2ResultAnalysisUrbanWdFilterModelResultPost: async (
-      getFilterModelResultInputV2?: GetFilterModelResultInputV2,
+      filterModelResultInput?: FilterModelResultInput,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
       const localVarPath = `/api/v2/result-analysis/urban-wd/filter-model-result`
@@ -2434,7 +2479,7 @@ export const UrbanWdResultAnalysisApiAxiosParamCreator = function (configuration
         ...options.headers,
       }
       localVarRequestOptions.data = serializeDataIfNeeded(
-        getFilterModelResultInputV2,
+        filterModelResultInput,
         localVarRequestOptions,
         configuration,
       )
@@ -3483,19 +3528,35 @@ export const UrbanWdResultAnalysisApiFp = function (configuration?: Configuratio
     /**
      *
      * @summary 按照筛选条件查询模型信息和模拟结果
-     * @param {GetFilterModelResultInputV2} [getFilterModelResultInputV2]
+     * @param {FilterModelResultInput} [filterModelResultInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV2ResultAnalysisUrbanWdExportFilterModelResultPost(
+      filterModelResultInput?: FilterModelResultInput,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<BucketObjectInfo>> {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiV2ResultAnalysisUrbanWdExportFilterModelResultPost(
+          filterModelResultInput,
+          options,
+        )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
+     * @summary 按照筛选条件查询模型信息和模拟结果
+     * @param {FilterModelResultInput} [filterModelResultInput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async apiV2ResultAnalysisUrbanWdFilterModelResultPost(
-      getFilterModelResultInputV2?: GetFilterModelResultInputV2,
+      filterModelResultInput?: FilterModelResultInput,
       options?: AxiosRequestConfig,
-    ): Promise<
-      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<FilterModelResultDtoV2>>
-    > {
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FilterModelResultDtoV2>> {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.apiV2ResultAnalysisUrbanWdFilterModelResultPost(
-          getFilterModelResultInputV2,
+          filterModelResultInput,
           options,
         )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
@@ -4474,16 +4535,31 @@ export const UrbanWdResultAnalysisApiFactory = function (
     /**
      *
      * @summary 按照筛选条件查询模型信息和模拟结果
-     * @param {GetFilterModelResultInputV2} [getFilterModelResultInputV2]
+     * @param {FilterModelResultInput} [filterModelResultInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV2ResultAnalysisUrbanWdExportFilterModelResultPost(
+      filterModelResultInput?: FilterModelResultInput,
+      options?: any,
+    ): AxiosPromise<BucketObjectInfo> {
+      return localVarFp
+        .apiV2ResultAnalysisUrbanWdExportFilterModelResultPost(filterModelResultInput, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @summary 按照筛选条件查询模型信息和模拟结果
+     * @param {FilterModelResultInput} [filterModelResultInput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiV2ResultAnalysisUrbanWdFilterModelResultPost(
-      getFilterModelResultInputV2?: GetFilterModelResultInputV2,
+      filterModelResultInput?: FilterModelResultInput,
       options?: any,
-    ): AxiosPromise<Array<FilterModelResultDtoV2>> {
+    ): AxiosPromise<FilterModelResultDtoV2> {
       return localVarFp
-        .apiV2ResultAnalysisUrbanWdFilterModelResultPost(getFilterModelResultInputV2, options)
+        .apiV2ResultAnalysisUrbanWdFilterModelResultPost(filterModelResultInput, options)
         .then((request) => request(axios, basePath))
     },
   }
@@ -5525,17 +5601,34 @@ export class UrbanWdResultAnalysisApi extends BaseAPI {
   /**
    *
    * @summary 按照筛选条件查询模型信息和模拟结果
-   * @param {GetFilterModelResultInputV2} [getFilterModelResultInputV2]
+   * @param {FilterModelResultInput} [filterModelResultInput]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof UrbanWdResultAnalysisApi
+   */
+  public apiV2ResultAnalysisUrbanWdExportFilterModelResultPost(
+    filterModelResultInput?: FilterModelResultInput,
+    options?: AxiosRequestConfig,
+  ) {
+    return UrbanWdResultAnalysisApiFp(this.configuration)
+      .apiV2ResultAnalysisUrbanWdExportFilterModelResultPost(filterModelResultInput, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary 按照筛选条件查询模型信息和模拟结果
+   * @param {FilterModelResultInput} [filterModelResultInput]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof UrbanWdResultAnalysisApi
    */
   public apiV2ResultAnalysisUrbanWdFilterModelResultPost(
-    getFilterModelResultInputV2?: GetFilterModelResultInputV2,
+    filterModelResultInput?: FilterModelResultInput,
     options?: AxiosRequestConfig,
   ) {
     return UrbanWdResultAnalysisApiFp(this.configuration)
-      .apiV2ResultAnalysisUrbanWdFilterModelResultPost(getFilterModelResultInputV2, options)
+      .apiV2ResultAnalysisUrbanWdFilterModelResultPost(filterModelResultInput, options)
       .then((request) => request(this.axios, this.basePath))
   }
 }
