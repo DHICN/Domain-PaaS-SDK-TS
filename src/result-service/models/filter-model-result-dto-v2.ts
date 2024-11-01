@@ -13,7 +13,13 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { Null } from './null'
+import { CustomQueryField } from './custom-query-field'
+// May contain unused imports in some cases
+// @ts-ignore
+import { FieldValue } from './field-value'
+// May contain unused imports in some cases
+// @ts-ignore
+import { RelatedUser } from './related-user'
 
 /**
  *
@@ -23,26 +29,20 @@ import { Null } from './null'
 export interface FilterModelResultDtoV2 {
   /**
    *
-   * @type {string}
+   * @type {Array<CustomQueryField>}
    * @memberof FilterModelResultDtoV2
    */
-  modelId?: string | null
+  customQueryFields?: Array<CustomQueryField> | null
   /**
    *
-   * @type {number}
+   * @type {Array<FieldValue>}
    * @memberof FilterModelResultDtoV2
    */
-  value?: number
+  fieldValues?: Array<FieldValue> | null
   /**
    *
-   * @type {string}
+   * @type {Array<RelatedUser>}
    * @memberof FilterModelResultDtoV2
    */
-  name?: string | null
-  /**
-   *
-   * @type {{ [key: string]: Null; }}
-   * @memberof FilterModelResultDtoV2
-   */
-  custtomFieldValues?: { [key: string]: Null } | null
+  relatedUsers?: Array<RelatedUser> | null
 }

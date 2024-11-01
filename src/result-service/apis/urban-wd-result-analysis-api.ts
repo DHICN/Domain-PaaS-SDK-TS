@@ -39,6 +39,8 @@ import { BaseTimeseriesOutput } from '../models'
 // @ts-ignore
 import { BucketObjectInfo } from '../models'
 // @ts-ignore
+import { ExportRelatedUserInput } from '../models'
+// @ts-ignore
 import { FilterModelResultDto } from '../models'
 // @ts-ignore
 import { FilterModelResultDtoV2 } from '../models'
@@ -2405,7 +2407,7 @@ export const UrbanWdResultAnalysisApiAxiosParamCreator = function (configuration
     },
     /**
      *
-     * @summary 按照筛选条件查询模型信息和模拟结果
+     * @summary 按照筛选条件导出模型信息和模拟结果
      * @param {FilterModelResultInput} [filterModelResultInput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -2437,6 +2439,49 @@ export const UrbanWdResultAnalysisApiAxiosParamCreator = function (configuration
       }
       localVarRequestOptions.data = serializeDataIfNeeded(
         filterModelResultInput,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 按照筛选条件导出关联用户
+     * @param {ExportRelatedUserInput} [exportRelatedUserInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV2ResultAnalysisUrbanWdExportRelatedUserPost: async (
+      exportRelatedUserInput?: ExportRelatedUserInput,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v2/result-analysis/urban-wd/export-related-user`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        exportRelatedUserInput,
         localVarRequestOptions,
         configuration,
       )
@@ -3527,7 +3572,7 @@ export const UrbanWdResultAnalysisApiFp = function (configuration?: Configuratio
     },
     /**
      *
-     * @summary 按照筛选条件查询模型信息和模拟结果
+     * @summary 按照筛选条件导出模型信息和模拟结果
      * @param {FilterModelResultInput} [filterModelResultInput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -3539,6 +3584,24 @@ export const UrbanWdResultAnalysisApiFp = function (configuration?: Configuratio
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.apiV2ResultAnalysisUrbanWdExportFilterModelResultPost(
           filterModelResultInput,
+          options,
+        )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
+     * @summary 按照筛选条件导出关联用户
+     * @param {ExportRelatedUserInput} [exportRelatedUserInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV2ResultAnalysisUrbanWdExportRelatedUserPost(
+      exportRelatedUserInput?: ExportRelatedUserInput,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<BucketObjectInfo>> {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiV2ResultAnalysisUrbanWdExportRelatedUserPost(
+          exportRelatedUserInput,
           options,
         )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
@@ -4534,7 +4597,7 @@ export const UrbanWdResultAnalysisApiFactory = function (
     },
     /**
      *
-     * @summary 按照筛选条件查询模型信息和模拟结果
+     * @summary 按照筛选条件导出模型信息和模拟结果
      * @param {FilterModelResultInput} [filterModelResultInput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -4545,6 +4608,21 @@ export const UrbanWdResultAnalysisApiFactory = function (
     ): AxiosPromise<BucketObjectInfo> {
       return localVarFp
         .apiV2ResultAnalysisUrbanWdExportFilterModelResultPost(filterModelResultInput, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @summary 按照筛选条件导出关联用户
+     * @param {ExportRelatedUserInput} [exportRelatedUserInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV2ResultAnalysisUrbanWdExportRelatedUserPost(
+      exportRelatedUserInput?: ExportRelatedUserInput,
+      options?: any,
+    ): AxiosPromise<BucketObjectInfo> {
+      return localVarFp
+        .apiV2ResultAnalysisUrbanWdExportRelatedUserPost(exportRelatedUserInput, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -5600,7 +5678,7 @@ export class UrbanWdResultAnalysisApi extends BaseAPI {
 
   /**
    *
-   * @summary 按照筛选条件查询模型信息和模拟结果
+   * @summary 按照筛选条件导出模型信息和模拟结果
    * @param {FilterModelResultInput} [filterModelResultInput]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
@@ -5612,6 +5690,23 @@ export class UrbanWdResultAnalysisApi extends BaseAPI {
   ) {
     return UrbanWdResultAnalysisApiFp(this.configuration)
       .apiV2ResultAnalysisUrbanWdExportFilterModelResultPost(filterModelResultInput, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary 按照筛选条件导出关联用户
+   * @param {ExportRelatedUserInput} [exportRelatedUserInput]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof UrbanWdResultAnalysisApi
+   */
+  public apiV2ResultAnalysisUrbanWdExportRelatedUserPost(
+    exportRelatedUserInput?: ExportRelatedUserInput,
+    options?: AxiosRequestConfig,
+  ) {
+    return UrbanWdResultAnalysisApiFp(this.configuration)
+      .apiV2ResultAnalysisUrbanWdExportRelatedUserPost(exportRelatedUserInput, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
