@@ -43,6 +43,8 @@ import { DeviceIndicatorPara } from '../models'
 // @ts-ignore
 import { GetAccuracyPara } from '../models'
 // @ts-ignore
+import { GetAccuracyParaV2 } from '../models'
+// @ts-ignore
 import { GetCurrentDataPara } from '../models'
 // @ts-ignore
 import { GetOnlineModelDataPara } from '../models'
@@ -85,6 +87,10 @@ export const OnlineApiAxiosParamCreator = function (configuration?: Configuratio
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
 
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
       setSearchParams(localVarUrlObj, localVarQueryParameter)
@@ -96,6 +102,147 @@ export const OnlineApiAxiosParamCreator = function (configuration?: Configuratio
       }
       localVarRequestOptions.data = serializeDataIfNeeded(
         getAccuracyPara,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 根据方案id和数据类型获取当前方案的模型精度
+     * @param {GetAccuracyPara} [getAccuracyPara]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1DomainWdOnlineGetAccuracyByScenarioidPost_1: async (
+      getAccuracyPara?: GetAccuracyPara,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/domain-wd/online/get-accuracy-by-scenarioid`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        getAccuracyPara,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 获取指定时间范围内的模型精度
+     * @param {GetAccuracyParaV2} [getAccuracyParaV2]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1DomainWdOnlineGetAccuracyPost: async (
+      getAccuracyParaV2?: GetAccuracyParaV2,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/domain-wd/online/get-accuracy`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        getAccuracyParaV2,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 获取指定时间范围内的模型精度
+     * @param {GetAccuracyParaV2} [getAccuracyParaV2]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1DomainWdOnlineGetAccuracyPost_2: async (
+      getAccuracyParaV2?: GetAccuracyParaV2,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/domain-wd/online/get-accuracy`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        getAccuracyParaV2,
         localVarRequestOptions,
         configuration,
       )
@@ -129,6 +276,60 @@ export const OnlineApiAxiosParamCreator = function (configuration?: Configuratio
       const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      if (templateId !== undefined) {
+        localVarQueryParameter['templateId'] = templateId
+      }
+
+      if (bForceRefreshCache !== undefined) {
+        localVarQueryParameter['bForceRefreshCache'] = bForceRefreshCache
+      }
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 获取所有设备详细信息（包含设备下的指标信息和对应的模型点位信息）
+     * @param {string} [templateId]
+     * @param {string} [bForceRefreshCache]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1DomainWdOnlineGetAllDeviceGet_3: async (
+      templateId?: string,
+      bForceRefreshCache?: string,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/domain-wd/online/get-all-device`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
       if (templateId !== undefined) {
         localVarQueryParameter['templateId'] = templateId
@@ -174,6 +375,57 @@ export const OnlineApiAxiosParamCreator = function (configuration?: Configuratio
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
 
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        deviceIndicatorPara,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 获取当前时刻测点的实测
+     * @param {Array<DeviceIndicatorPara>} [deviceIndicatorPara]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1DomainWdOnlineGetCurrentOnlineDataPost_4: async (
+      deviceIndicatorPara?: Array<DeviceIndicatorPara>,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/domain-wd/online/get-current-online-data`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
       setSearchParams(localVarUrlObj, localVarQueryParameter)
@@ -216,6 +468,57 @@ export const OnlineApiAxiosParamCreator = function (configuration?: Configuratio
       const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        deviceIndicatorPara,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 获取当前时刻测点的实测及对应的模拟值
+     * @param {Array<DeviceIndicatorPara>} [deviceIndicatorPara]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1DomainWdOnlineGetCurrentOnlineModelDataPost_5: async (
+      deviceIndicatorPara?: Array<DeviceIndicatorPara>,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/domain-wd/online/get-current-online-model-data`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
@@ -260,6 +563,54 @@ export const OnlineApiAxiosParamCreator = function (configuration?: Configuratio
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
 
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      if (groupId !== undefined) {
+        localVarQueryParameter['groupId'] = groupId
+      }
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 根据分组获取设备详细信息（包含设备下的指标信息和对应的模型点位信息）
+     * @param {string} [groupId]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1DomainWdOnlineGetDeviceByGroupidGet_6: async (
+      groupId?: string,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/domain-wd/online/get-device-by-groupid`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
       if (groupId !== undefined) {
         localVarQueryParameter['groupId'] = groupId
       }
@@ -299,6 +650,57 @@ export const OnlineApiAxiosParamCreator = function (configuration?: Configuratio
       const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        getOnlineModelDataPara,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 获取实测点位的时序值
+     * @param {GetOnlineModelDataPara} [getOnlineModelDataPara]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1DomainWdOnlineGetOnlineDataPost_7: async (
+      getOnlineModelDataPara?: GetOnlineModelDataPara,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/domain-wd/online/get-online-data`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
@@ -343,6 +745,57 @@ export const OnlineApiAxiosParamCreator = function (configuration?: Configuratio
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
 
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        getOnlineModelDataPara,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 获取实测和模拟点位的时序值
+     * @param {GetOnlineModelDataPara} [getOnlineModelDataPara]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1DomainWdOnlineGetOnlineModelDataPost_8: async (
+      getOnlineModelDataPara?: GetOnlineModelDataPara,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/domain-wd/online/get-online-model-data`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
       setSearchParams(localVarUrlObj, localVarQueryParameter)
@@ -384,6 +837,48 @@ export const OnlineApiAxiosParamCreator = function (configuration?: Configuratio
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
 
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 获取水池可调蓄量
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1DomainWdOnlineGetTankStoragePost_9: async (
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/domain-wd/online/get-tank-storage`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
       setSearchParams(localVarUrlObj, localVarQueryParameter)
       let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
       localVarRequestOptions.headers = {
@@ -419,6 +914,57 @@ export const OnlineApiAxiosParamCreator = function (configuration?: Configuratio
       const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        getCurrentDataPara,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 获取当前时刻测点的实测
+     * @param {GetCurrentDataPara} [getCurrentDataPara]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV2DomainWdOnlineGetCurrentOnlineDataPost_10: async (
+      getCurrentDataPara?: GetCurrentDataPara,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v2/domain-wd/online/get-current-online-data`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
@@ -462,6 +1008,57 @@ export const OnlineApiAxiosParamCreator = function (configuration?: Configuratio
       const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        getCurrentDataPara,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 获取当前时刻测点的实测及对应的模拟值
+     * @param {GetCurrentDataPara} [getCurrentDataPara]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV2DomainWdOnlineGetCurrentOnlineModelDataPost_11: async (
+      getCurrentDataPara?: GetCurrentDataPara,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v2/domain-wd/online/get-current-online-model-data`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
@@ -515,6 +1112,65 @@ export const OnlineApiFp = function (configuration?: Configuration) {
     },
     /**
      *
+     * @summary 根据方案id和数据类型获取当前方案的模型精度
+     * @param {GetAccuracyPara} [getAccuracyPara]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1DomainWdOnlineGetAccuracyByScenarioidPost_1(
+      getAccuracyPara?: GetAccuracyPara,
+      options?: AxiosRequestConfig,
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<OnlineAccuracyData>>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiV1DomainWdOnlineGetAccuracyByScenarioidPost_1(
+          getAccuracyPara,
+          options,
+        )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
+     * @summary 获取指定时间范围内的模型精度
+     * @param {GetAccuracyParaV2} [getAccuracyParaV2]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1DomainWdOnlineGetAccuracyPost(
+      getAccuracyParaV2?: GetAccuracyParaV2,
+      options?: AxiosRequestConfig,
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<OnlineAccuracyData>>
+    > {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1DomainWdOnlineGetAccuracyPost(
+        getAccuracyParaV2,
+        options,
+      )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
+     * @summary 获取指定时间范围内的模型精度
+     * @param {GetAccuracyParaV2} [getAccuracyParaV2]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1DomainWdOnlineGetAccuracyPost_2(
+      getAccuracyParaV2?: GetAccuracyParaV2,
+      options?: AxiosRequestConfig,
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<OnlineAccuracyData>>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiV1DomainWdOnlineGetAccuracyPost_2(
+          getAccuracyParaV2,
+          options,
+        )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
      * @summary 获取所有设备详细信息（包含设备下的指标信息和对应的模型点位信息）
      * @param {string} [templateId]
      * @param {string} [bForceRefreshCache]
@@ -537,6 +1193,29 @@ export const OnlineApiFp = function (configuration?: Configuration) {
     },
     /**
      *
+     * @summary 获取所有设备详细信息（包含设备下的指标信息和对应的模型点位信息）
+     * @param {string} [templateId]
+     * @param {string} [bForceRefreshCache]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1DomainWdOnlineGetAllDeviceGet_3(
+      templateId?: string,
+      bForceRefreshCache?: string,
+      options?: AxiosRequestConfig,
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<DeviceDetailInfo>>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiV1DomainWdOnlineGetAllDeviceGet_3(
+          templateId,
+          bForceRefreshCache,
+          options,
+        )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
      * @summary 获取当前时刻测点的实测
      * @param {Array<DeviceIndicatorPara>} [deviceIndicatorPara]
      * @param {*} [options] Override http request option.
@@ -550,6 +1229,26 @@ export const OnlineApiFp = function (configuration?: Configuration) {
     > {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.apiV1DomainWdOnlineGetCurrentOnlineDataPost(
+          deviceIndicatorPara,
+          options,
+        )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
+     * @summary 获取当前时刻测点的实测
+     * @param {Array<DeviceIndicatorPara>} [deviceIndicatorPara]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1DomainWdOnlineGetCurrentOnlineDataPost_4(
+      deviceIndicatorPara?: Array<DeviceIndicatorPara>,
+      options?: AxiosRequestConfig,
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<CurrentOnlineData>>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiV1DomainWdOnlineGetCurrentOnlineDataPost_4(
           deviceIndicatorPara,
           options,
         )
@@ -577,6 +1276,26 @@ export const OnlineApiFp = function (configuration?: Configuration) {
     },
     /**
      *
+     * @summary 获取当前时刻测点的实测及对应的模拟值
+     * @param {Array<DeviceIndicatorPara>} [deviceIndicatorPara]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1DomainWdOnlineGetCurrentOnlineModelDataPost_5(
+      deviceIndicatorPara?: Array<DeviceIndicatorPara>,
+      options?: AxiosRequestConfig,
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<CurrentOnlineModelData>>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiV1DomainWdOnlineGetCurrentOnlineModelDataPost_5(
+          deviceIndicatorPara,
+          options,
+        )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
      * @summary 根据分组获取设备详细信息（包含设备下的指标信息和对应的模型点位信息）
      * @param {string} [groupId]
      * @param {*} [options] Override http request option.
@@ -594,6 +1313,23 @@ export const OnlineApiFp = function (configuration?: Configuration) {
     },
     /**
      *
+     * @summary 根据分组获取设备详细信息（包含设备下的指标信息和对应的模型点位信息）
+     * @param {string} [groupId]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1DomainWdOnlineGetDeviceByGroupidGet_6(
+      groupId?: string,
+      options?: AxiosRequestConfig,
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<DeviceIndicatorInfo>>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiV1DomainWdOnlineGetDeviceByGroupidGet_6(groupId, options)
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
      * @summary 获取实测点位的时序值
      * @param {GetOnlineModelDataPara} [getOnlineModelDataPara]
      * @param {*} [options] Override http request option.
@@ -605,6 +1341,24 @@ export const OnlineApiFp = function (configuration?: Configuration) {
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<OnlineData>>> {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.apiV1DomainWdOnlineGetOnlineDataPost(
+          getOnlineModelDataPara,
+          options,
+        )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
+     * @summary 获取实测点位的时序值
+     * @param {GetOnlineModelDataPara} [getOnlineModelDataPara]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1DomainWdOnlineGetOnlineDataPost_7(
+      getOnlineModelDataPara?: GetOnlineModelDataPara,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<OnlineData>>> {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiV1DomainWdOnlineGetOnlineDataPost_7(
           getOnlineModelDataPara,
           options,
         )
@@ -630,6 +1384,24 @@ export const OnlineApiFp = function (configuration?: Configuration) {
     },
     /**
      *
+     * @summary 获取实测和模拟点位的时序值
+     * @param {GetOnlineModelDataPara} [getOnlineModelDataPara]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1DomainWdOnlineGetOnlineModelDataPost_8(
+      getOnlineModelDataPara?: GetOnlineModelDataPara,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<OnlineModelData>>> {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiV1DomainWdOnlineGetOnlineModelDataPost_8(
+          getOnlineModelDataPara,
+          options,
+        )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
      * @summary 获取水池可调蓄量
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -639,6 +1411,19 @@ export const OnlineApiFp = function (configuration?: Configuration) {
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<TankStorageData>>> {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.apiV1DomainWdOnlineGetTankStoragePost(options)
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
+     * @summary 获取水池可调蓄量
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1DomainWdOnlineGetTankStoragePost_9(
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<TankStorageData>>> {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiV1DomainWdOnlineGetTankStoragePost_9(options)
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**
@@ -663,6 +1448,26 @@ export const OnlineApiFp = function (configuration?: Configuration) {
     },
     /**
      *
+     * @summary 获取当前时刻测点的实测
+     * @param {GetCurrentDataPara} [getCurrentDataPara]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV2DomainWdOnlineGetCurrentOnlineDataPost_10(
+      getCurrentDataPara?: GetCurrentDataPara,
+      options?: AxiosRequestConfig,
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<CurrentOnlineData>>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiV2DomainWdOnlineGetCurrentOnlineDataPost_10(
+          getCurrentDataPara,
+          options,
+        )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
      * @summary 获取当前时刻测点的实测及对应的模拟值
      * @param {GetCurrentDataPara} [getCurrentDataPara]
      * @param {*} [options] Override http request option.
@@ -676,6 +1481,26 @@ export const OnlineApiFp = function (configuration?: Configuration) {
     > {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.apiV2DomainWdOnlineGetCurrentOnlineModelDataPost(
+          getCurrentDataPara,
+          options,
+        )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
+     * @summary 获取当前时刻测点的实测及对应的模拟值
+     * @param {GetCurrentDataPara} [getCurrentDataPara]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV2DomainWdOnlineGetCurrentOnlineModelDataPost_11(
+      getCurrentDataPara?: GetCurrentDataPara,
+      options?: AxiosRequestConfig,
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<CurrentOnlineModelData>>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiV2DomainWdOnlineGetCurrentOnlineModelDataPost_11(
           getCurrentDataPara,
           options,
         )
@@ -712,6 +1537,51 @@ export const OnlineApiFactory = function (
     },
     /**
      *
+     * @summary 根据方案id和数据类型获取当前方案的模型精度
+     * @param {GetAccuracyPara} [getAccuracyPara]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1DomainWdOnlineGetAccuracyByScenarioidPost_1(
+      getAccuracyPara?: GetAccuracyPara,
+      options?: any,
+    ): AxiosPromise<Array<OnlineAccuracyData>> {
+      return localVarFp
+        .apiV1DomainWdOnlineGetAccuracyByScenarioidPost_1(getAccuracyPara, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @summary 获取指定时间范围内的模型精度
+     * @param {GetAccuracyParaV2} [getAccuracyParaV2]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1DomainWdOnlineGetAccuracyPost(
+      getAccuracyParaV2?: GetAccuracyParaV2,
+      options?: any,
+    ): AxiosPromise<Array<OnlineAccuracyData>> {
+      return localVarFp
+        .apiV1DomainWdOnlineGetAccuracyPost(getAccuracyParaV2, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @summary 获取指定时间范围内的模型精度
+     * @param {GetAccuracyParaV2} [getAccuracyParaV2]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1DomainWdOnlineGetAccuracyPost_2(
+      getAccuracyParaV2?: GetAccuracyParaV2,
+      options?: any,
+    ): AxiosPromise<Array<OnlineAccuracyData>> {
+      return localVarFp
+        .apiV1DomainWdOnlineGetAccuracyPost_2(getAccuracyParaV2, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
      * @summary 获取所有设备详细信息（包含设备下的指标信息和对应的模型点位信息）
      * @param {string} [templateId]
      * @param {string} [bForceRefreshCache]
@@ -725,6 +1595,23 @@ export const OnlineApiFactory = function (
     ): AxiosPromise<Array<DeviceDetailInfo>> {
       return localVarFp
         .apiV1DomainWdOnlineGetAllDeviceGet(templateId, bForceRefreshCache, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @summary 获取所有设备详细信息（包含设备下的指标信息和对应的模型点位信息）
+     * @param {string} [templateId]
+     * @param {string} [bForceRefreshCache]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1DomainWdOnlineGetAllDeviceGet_3(
+      templateId?: string,
+      bForceRefreshCache?: string,
+      options?: any,
+    ): AxiosPromise<Array<DeviceDetailInfo>> {
+      return localVarFp
+        .apiV1DomainWdOnlineGetAllDeviceGet_3(templateId, bForceRefreshCache, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -744,6 +1631,21 @@ export const OnlineApiFactory = function (
     },
     /**
      *
+     * @summary 获取当前时刻测点的实测
+     * @param {Array<DeviceIndicatorPara>} [deviceIndicatorPara]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1DomainWdOnlineGetCurrentOnlineDataPost_4(
+      deviceIndicatorPara?: Array<DeviceIndicatorPara>,
+      options?: any,
+    ): AxiosPromise<Array<CurrentOnlineData>> {
+      return localVarFp
+        .apiV1DomainWdOnlineGetCurrentOnlineDataPost_4(deviceIndicatorPara, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
      * @summary 获取当前时刻测点的实测及对应的模拟值
      * @param {Array<DeviceIndicatorPara>} [deviceIndicatorPara]
      * @param {*} [options] Override http request option.
@@ -755,6 +1657,21 @@ export const OnlineApiFactory = function (
     ): AxiosPromise<Array<CurrentOnlineModelData>> {
       return localVarFp
         .apiV1DomainWdOnlineGetCurrentOnlineModelDataPost(deviceIndicatorPara, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @summary 获取当前时刻测点的实测及对应的模拟值
+     * @param {Array<DeviceIndicatorPara>} [deviceIndicatorPara]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1DomainWdOnlineGetCurrentOnlineModelDataPost_5(
+      deviceIndicatorPara?: Array<DeviceIndicatorPara>,
+      options?: any,
+    ): AxiosPromise<Array<CurrentOnlineModelData>> {
+      return localVarFp
+        .apiV1DomainWdOnlineGetCurrentOnlineModelDataPost_5(deviceIndicatorPara, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -774,6 +1691,21 @@ export const OnlineApiFactory = function (
     },
     /**
      *
+     * @summary 根据分组获取设备详细信息（包含设备下的指标信息和对应的模型点位信息）
+     * @param {string} [groupId]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1DomainWdOnlineGetDeviceByGroupidGet_6(
+      groupId?: string,
+      options?: any,
+    ): AxiosPromise<Array<DeviceIndicatorInfo>> {
+      return localVarFp
+        .apiV1DomainWdOnlineGetDeviceByGroupidGet_6(groupId, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
      * @summary 获取实测点位的时序值
      * @param {GetOnlineModelDataPara} [getOnlineModelDataPara]
      * @param {*} [options] Override http request option.
@@ -785,6 +1717,21 @@ export const OnlineApiFactory = function (
     ): AxiosPromise<Array<OnlineData>> {
       return localVarFp
         .apiV1DomainWdOnlineGetOnlineDataPost(getOnlineModelDataPara, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @summary 获取实测点位的时序值
+     * @param {GetOnlineModelDataPara} [getOnlineModelDataPara]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1DomainWdOnlineGetOnlineDataPost_7(
+      getOnlineModelDataPara?: GetOnlineModelDataPara,
+      options?: any,
+    ): AxiosPromise<Array<OnlineData>> {
+      return localVarFp
+        .apiV1DomainWdOnlineGetOnlineDataPost_7(getOnlineModelDataPara, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -804,6 +1751,21 @@ export const OnlineApiFactory = function (
     },
     /**
      *
+     * @summary 获取实测和模拟点位的时序值
+     * @param {GetOnlineModelDataPara} [getOnlineModelDataPara]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1DomainWdOnlineGetOnlineModelDataPost_8(
+      getOnlineModelDataPara?: GetOnlineModelDataPara,
+      options?: any,
+    ): AxiosPromise<Array<OnlineModelData>> {
+      return localVarFp
+        .apiV1DomainWdOnlineGetOnlineModelDataPost_8(getOnlineModelDataPara, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
      * @summary 获取水池可调蓄量
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -811,6 +1773,17 @@ export const OnlineApiFactory = function (
     apiV1DomainWdOnlineGetTankStoragePost(options?: any): AxiosPromise<Array<TankStorageData>> {
       return localVarFp
         .apiV1DomainWdOnlineGetTankStoragePost(options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @summary 获取水池可调蓄量
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1DomainWdOnlineGetTankStoragePost_9(options?: any): AxiosPromise<Array<TankStorageData>> {
+      return localVarFp
+        .apiV1DomainWdOnlineGetTankStoragePost_9(options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -830,6 +1803,21 @@ export const OnlineApiFactory = function (
     },
     /**
      *
+     * @summary 获取当前时刻测点的实测
+     * @param {GetCurrentDataPara} [getCurrentDataPara]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV2DomainWdOnlineGetCurrentOnlineDataPost_10(
+      getCurrentDataPara?: GetCurrentDataPara,
+      options?: any,
+    ): AxiosPromise<Array<CurrentOnlineData>> {
+      return localVarFp
+        .apiV2DomainWdOnlineGetCurrentOnlineDataPost_10(getCurrentDataPara, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
      * @summary 获取当前时刻测点的实测及对应的模拟值
      * @param {GetCurrentDataPara} [getCurrentDataPara]
      * @param {*} [options] Override http request option.
@@ -841,6 +1829,21 @@ export const OnlineApiFactory = function (
     ): AxiosPromise<Array<CurrentOnlineModelData>> {
       return localVarFp
         .apiV2DomainWdOnlineGetCurrentOnlineModelDataPost(getCurrentDataPara, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @summary 获取当前时刻测点的实测及对应的模拟值
+     * @param {GetCurrentDataPara} [getCurrentDataPara]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV2DomainWdOnlineGetCurrentOnlineModelDataPost_11(
+      getCurrentDataPara?: GetCurrentDataPara,
+      options?: any,
+    ): AxiosPromise<Array<CurrentOnlineModelData>> {
+      return localVarFp
+        .apiV2DomainWdOnlineGetCurrentOnlineModelDataPost_11(getCurrentDataPara, options)
         .then((request) => request(axios, basePath))
     },
   }
@@ -872,6 +1875,57 @@ export class OnlineApi extends BaseAPI {
 
   /**
    *
+   * @summary 根据方案id和数据类型获取当前方案的模型精度
+   * @param {GetAccuracyPara} [getAccuracyPara]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof OnlineApi
+   */
+  public apiV1DomainWdOnlineGetAccuracyByScenarioidPost_1(
+    getAccuracyPara?: GetAccuracyPara,
+    options?: AxiosRequestConfig,
+  ) {
+    return OnlineApiFp(this.configuration)
+      .apiV1DomainWdOnlineGetAccuracyByScenarioidPost_1(getAccuracyPara, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary 获取指定时间范围内的模型精度
+   * @param {GetAccuracyParaV2} [getAccuracyParaV2]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof OnlineApi
+   */
+  public apiV1DomainWdOnlineGetAccuracyPost(
+    getAccuracyParaV2?: GetAccuracyParaV2,
+    options?: AxiosRequestConfig,
+  ) {
+    return OnlineApiFp(this.configuration)
+      .apiV1DomainWdOnlineGetAccuracyPost(getAccuracyParaV2, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary 获取指定时间范围内的模型精度
+   * @param {GetAccuracyParaV2} [getAccuracyParaV2]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof OnlineApi
+   */
+  public apiV1DomainWdOnlineGetAccuracyPost_2(
+    getAccuracyParaV2?: GetAccuracyParaV2,
+    options?: AxiosRequestConfig,
+  ) {
+    return OnlineApiFp(this.configuration)
+      .apiV1DomainWdOnlineGetAccuracyPost_2(getAccuracyParaV2, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
    * @summary 获取所有设备详细信息（包含设备下的指标信息和对应的模型点位信息）
    * @param {string} [templateId]
    * @param {string} [bForceRefreshCache]
@@ -886,6 +1940,25 @@ export class OnlineApi extends BaseAPI {
   ) {
     return OnlineApiFp(this.configuration)
       .apiV1DomainWdOnlineGetAllDeviceGet(templateId, bForceRefreshCache, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary 获取所有设备详细信息（包含设备下的指标信息和对应的模型点位信息）
+   * @param {string} [templateId]
+   * @param {string} [bForceRefreshCache]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof OnlineApi
+   */
+  public apiV1DomainWdOnlineGetAllDeviceGet_3(
+    templateId?: string,
+    bForceRefreshCache?: string,
+    options?: AxiosRequestConfig,
+  ) {
+    return OnlineApiFp(this.configuration)
+      .apiV1DomainWdOnlineGetAllDeviceGet_3(templateId, bForceRefreshCache, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -908,6 +1981,23 @@ export class OnlineApi extends BaseAPI {
 
   /**
    *
+   * @summary 获取当前时刻测点的实测
+   * @param {Array<DeviceIndicatorPara>} [deviceIndicatorPara]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof OnlineApi
+   */
+  public apiV1DomainWdOnlineGetCurrentOnlineDataPost_4(
+    deviceIndicatorPara?: Array<DeviceIndicatorPara>,
+    options?: AxiosRequestConfig,
+  ) {
+    return OnlineApiFp(this.configuration)
+      .apiV1DomainWdOnlineGetCurrentOnlineDataPost_4(deviceIndicatorPara, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
    * @summary 获取当前时刻测点的实测及对应的模拟值
    * @param {Array<DeviceIndicatorPara>} [deviceIndicatorPara]
    * @param {*} [options] Override http request option.
@@ -925,6 +2015,23 @@ export class OnlineApi extends BaseAPI {
 
   /**
    *
+   * @summary 获取当前时刻测点的实测及对应的模拟值
+   * @param {Array<DeviceIndicatorPara>} [deviceIndicatorPara]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof OnlineApi
+   */
+  public apiV1DomainWdOnlineGetCurrentOnlineModelDataPost_5(
+    deviceIndicatorPara?: Array<DeviceIndicatorPara>,
+    options?: AxiosRequestConfig,
+  ) {
+    return OnlineApiFp(this.configuration)
+      .apiV1DomainWdOnlineGetCurrentOnlineModelDataPost_5(deviceIndicatorPara, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
    * @summary 根据分组获取设备详细信息（包含设备下的指标信息和对应的模型点位信息）
    * @param {string} [groupId]
    * @param {*} [options] Override http request option.
@@ -934,6 +2041,23 @@ export class OnlineApi extends BaseAPI {
   public apiV1DomainWdOnlineGetDeviceByGroupidGet(groupId?: string, options?: AxiosRequestConfig) {
     return OnlineApiFp(this.configuration)
       .apiV1DomainWdOnlineGetDeviceByGroupidGet(groupId, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary 根据分组获取设备详细信息（包含设备下的指标信息和对应的模型点位信息）
+   * @param {string} [groupId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof OnlineApi
+   */
+  public apiV1DomainWdOnlineGetDeviceByGroupidGet_6(
+    groupId?: string,
+    options?: AxiosRequestConfig,
+  ) {
+    return OnlineApiFp(this.configuration)
+      .apiV1DomainWdOnlineGetDeviceByGroupidGet_6(groupId, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -956,6 +2080,23 @@ export class OnlineApi extends BaseAPI {
 
   /**
    *
+   * @summary 获取实测点位的时序值
+   * @param {GetOnlineModelDataPara} [getOnlineModelDataPara]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof OnlineApi
+   */
+  public apiV1DomainWdOnlineGetOnlineDataPost_7(
+    getOnlineModelDataPara?: GetOnlineModelDataPara,
+    options?: AxiosRequestConfig,
+  ) {
+    return OnlineApiFp(this.configuration)
+      .apiV1DomainWdOnlineGetOnlineDataPost_7(getOnlineModelDataPara, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
    * @summary 获取实测和模拟点位的时序值
    * @param {GetOnlineModelDataPara} [getOnlineModelDataPara]
    * @param {*} [options] Override http request option.
@@ -973,6 +2114,23 @@ export class OnlineApi extends BaseAPI {
 
   /**
    *
+   * @summary 获取实测和模拟点位的时序值
+   * @param {GetOnlineModelDataPara} [getOnlineModelDataPara]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof OnlineApi
+   */
+  public apiV1DomainWdOnlineGetOnlineModelDataPost_8(
+    getOnlineModelDataPara?: GetOnlineModelDataPara,
+    options?: AxiosRequestConfig,
+  ) {
+    return OnlineApiFp(this.configuration)
+      .apiV1DomainWdOnlineGetOnlineModelDataPost_8(getOnlineModelDataPara, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
    * @summary 获取水池可调蓄量
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
@@ -981,6 +2139,19 @@ export class OnlineApi extends BaseAPI {
   public apiV1DomainWdOnlineGetTankStoragePost(options?: AxiosRequestConfig) {
     return OnlineApiFp(this.configuration)
       .apiV1DomainWdOnlineGetTankStoragePost(options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary 获取水池可调蓄量
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof OnlineApi
+   */
+  public apiV1DomainWdOnlineGetTankStoragePost_9(options?: AxiosRequestConfig) {
+    return OnlineApiFp(this.configuration)
+      .apiV1DomainWdOnlineGetTankStoragePost_9(options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -1003,6 +2174,23 @@ export class OnlineApi extends BaseAPI {
 
   /**
    *
+   * @summary 获取当前时刻测点的实测
+   * @param {GetCurrentDataPara} [getCurrentDataPara]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof OnlineApi
+   */
+  public apiV2DomainWdOnlineGetCurrentOnlineDataPost_10(
+    getCurrentDataPara?: GetCurrentDataPara,
+    options?: AxiosRequestConfig,
+  ) {
+    return OnlineApiFp(this.configuration)
+      .apiV2DomainWdOnlineGetCurrentOnlineDataPost_10(getCurrentDataPara, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
    * @summary 获取当前时刻测点的实测及对应的模拟值
    * @param {GetCurrentDataPara} [getCurrentDataPara]
    * @param {*} [options] Override http request option.
@@ -1015,6 +2203,23 @@ export class OnlineApi extends BaseAPI {
   ) {
     return OnlineApiFp(this.configuration)
       .apiV2DomainWdOnlineGetCurrentOnlineModelDataPost(getCurrentDataPara, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary 获取当前时刻测点的实测及对应的模拟值
+   * @param {GetCurrentDataPara} [getCurrentDataPara]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof OnlineApi
+   */
+  public apiV2DomainWdOnlineGetCurrentOnlineModelDataPost_11(
+    getCurrentDataPara?: GetCurrentDataPara,
+    options?: AxiosRequestConfig,
+  ) {
+    return OnlineApiFp(this.configuration)
+      .apiV2DomainWdOnlineGetCurrentOnlineModelDataPost_11(getCurrentDataPara, options)
       .then((request) => request(this.axios, this.basePath))
   }
 }
