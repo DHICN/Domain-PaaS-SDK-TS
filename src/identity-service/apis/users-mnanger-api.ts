@@ -83,6 +83,57 @@ export const UsersMnangerApiAxiosParamCreator = function (configuration?: Config
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
 
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        queryUsersInput,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 查询超级用户 Query super user
+     * @param {QueryUsersInput} [queryUsersInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiAppUsersMnangerQuerySuperUsersPost_1: async (
+      queryUsersInput?: QueryUsersInput,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/app/usersMnanger/querySuperUsers`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
       setSearchParams(localVarUrlObj, localVarQueryParameter)
@@ -125,6 +176,57 @@ export const UsersMnangerApiAxiosParamCreator = function (configuration?: Config
       const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        queryUsersInput,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 查询用户 Query user
+     * @param {QueryUsersInput} [queryUsersInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiAppUsersMnangerQueryUsersPost_2: async (
+      queryUsersInput?: QueryUsersInput,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/app/usersMnanger/queryUsers`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
@@ -169,6 +271,57 @@ export const UsersMnangerApiAxiosParamCreator = function (configuration?: Config
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
 
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        resetPasswordInput,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 重置密码 Reset password
+     * @param {ResetPasswordInput} [resetPasswordInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiAppUsersMnangerResetPasswordPost_3: async (
+      resetPasswordInput?: ResetPasswordInput,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/app/usersMnanger/resetPassword`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
       setSearchParams(localVarUrlObj, localVarQueryParameter)
@@ -211,6 +364,57 @@ export const UsersMnangerApiAxiosParamCreator = function (configuration?: Config
       const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        addSuperUserInput,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 添加超级用户 Add super user
+     * @param {AddSuperUserInput} [addSuperUserInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiAppUsersMnangerSuperUserPost_4: async (
+      addSuperUserInput?: AddSuperUserInput,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/app/usersMnanger/superUser`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
@@ -255,6 +459,57 @@ export const UsersMnangerApiAxiosParamCreator = function (configuration?: Config
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
 
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        updateSuperUserInput,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 更新超级用户 Update super user
+     * @param {UpdateSuperUserInput} [updateSuperUserInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiAppUsersMnangerSuperUserPut_5: async (
+      updateSuperUserInput?: UpdateSuperUserInput,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/app/usersMnanger/superUser`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
       setSearchParams(localVarUrlObj, localVarQueryParameter)
@@ -298,6 +553,57 @@ export const UsersMnangerApiAxiosParamCreator = function (configuration?: Config
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
 
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        userOperInput,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 启用/停用用户 Enable / Disable users
+     * @param {UserOperInput} [userOperInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiAppUsersMnangerUserOperPost_6: async (
+      userOperInput?: UserOperInput,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/app/usersMnanger/userOper`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
       setSearchParams(localVarUrlObj, localVarQueryParameter)
@@ -339,6 +645,48 @@ export const UsersMnangerApiAxiosParamCreator = function (configuration?: Config
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
 
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 通过Token获取登录用户-权限信息 Obtain login user permission information through token
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiAppUsersMnangerUserPersGet_7: async (
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/app/usersMnanger/userPers`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
       setSearchParams(localVarUrlObj, localVarQueryParameter)
       let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
       localVarRequestOptions.headers = {
@@ -374,6 +722,57 @@ export const UsersMnangerApiAxiosParamCreator = function (configuration?: Config
       const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        addUserInput,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 添加用户 Add user
+     * @param {AddUserInput} [addUserInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiAppUsersMnangerUserPost_8: async (
+      addUserInput?: AddUserInput,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/app/usersMnanger/user`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
@@ -417,6 +816,57 @@ export const UsersMnangerApiAxiosParamCreator = function (configuration?: Config
       const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        updateUserInput,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 更新用户 Update user
+     * @param {UpdateUserInput} [updateUserInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiAppUsersMnangerUserPut_9: async (
+      updateUserInput?: UpdateUserInput,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/app/usersMnanger/user`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
@@ -466,6 +916,55 @@ export const UsersMnangerApiAxiosParamCreator = function (configuration?: Config
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
 
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 通过用户id获取用户信息 get user information by userid
+     * @param {string} userId
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiAppUsersMnangerUserUserIdGet_10: async (
+      userId: string,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'userId' is not null or undefined
+      assertParamExists('apiAppUsersMnangerUserUserIdGet_10', 'userId', userId)
+      const localVarPath = `/api/app/usersMnanger/user/{userId}`.replace(
+        `{${'userId'}}`,
+        encodeURIComponent(String(userId)),
+      )
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
       setSearchParams(localVarUrlObj, localVarQueryParameter)
       let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
       localVarRequestOptions.headers = {
@@ -503,6 +1002,56 @@ export const UsersMnangerApiAxiosParamCreator = function (configuration?: Config
       const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      if (ids !== undefined) {
+        localVarQueryParameter['Ids'] = ids
+      }
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 删除用户 Delete user
+     * @param {Array<string>} ids ID列表 ids
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiAppUsersMnangerUsersDelete_11: async (
+      ids: Array<string>,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'ids' is not null or undefined
+      assertParamExists('apiAppUsersMnangerUsersDelete_11', 'ids', ids)
+      const localVarPath = `/api/app/usersMnanger/users`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
       if (ids !== undefined) {
         localVarQueryParameter['Ids'] = ids
@@ -553,6 +1102,26 @@ export const UsersMnangerApiFp = function (configuration?: Configuration) {
     },
     /**
      *
+     * @summary 查询超级用户 Query super user
+     * @param {QueryUsersInput} [queryUsersInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiAppUsersMnangerQuerySuperUsersPost_1(
+      queryUsersInput?: QueryUsersInput,
+      options?: AxiosRequestConfig,
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<QuerySuperUsersOutputPage>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiAppUsersMnangerQuerySuperUsersPost_1(
+          queryUsersInput,
+          options,
+        )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
      * @summary 查询用户 Query user
      * @param {QueryUsersInput} [queryUsersInput]
      * @param {*} [options] Override http request option.
@@ -563,6 +1132,23 @@ export const UsersMnangerApiFp = function (configuration?: Configuration) {
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<QueryUsersOutputPage>> {
       const localVarAxiosArgs = await localVarAxiosParamCreator.apiAppUsersMnangerQueryUsersPost(
+        queryUsersInput,
+        options,
+      )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
+     * @summary 查询用户 Query user
+     * @param {QueryUsersInput} [queryUsersInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiAppUsersMnangerQueryUsersPost_2(
+      queryUsersInput?: QueryUsersInput,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<QueryUsersOutputPage>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiAppUsersMnangerQueryUsersPost_2(
         queryUsersInput,
         options,
       )
@@ -587,6 +1173,24 @@ export const UsersMnangerApiFp = function (configuration?: Configuration) {
     },
     /**
      *
+     * @summary 重置密码 Reset password
+     * @param {ResetPasswordInput} [resetPasswordInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiAppUsersMnangerResetPasswordPost_3(
+      resetPasswordInput?: ResetPasswordInput,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiAppUsersMnangerResetPasswordPost_3(
+          resetPasswordInput,
+          options,
+        )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
      * @summary 添加超级用户 Add super user
      * @param {AddSuperUserInput} [addSuperUserInput]
      * @param {*} [options] Override http request option.
@@ -597,6 +1201,23 @@ export const UsersMnangerApiFp = function (configuration?: Configuration) {
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
       const localVarAxiosArgs = await localVarAxiosParamCreator.apiAppUsersMnangerSuperUserPost(
+        addSuperUserInput,
+        options,
+      )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
+     * @summary 添加超级用户 Add super user
+     * @param {AddSuperUserInput} [addSuperUserInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiAppUsersMnangerSuperUserPost_4(
+      addSuperUserInput?: AddSuperUserInput,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiAppUsersMnangerSuperUserPost_4(
         addSuperUserInput,
         options,
       )
@@ -621,6 +1242,23 @@ export const UsersMnangerApiFp = function (configuration?: Configuration) {
     },
     /**
      *
+     * @summary 更新超级用户 Update super user
+     * @param {UpdateSuperUserInput} [updateSuperUserInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiAppUsersMnangerSuperUserPut_5(
+      updateSuperUserInput?: UpdateSuperUserInput,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiAppUsersMnangerSuperUserPut_5(
+        updateSuperUserInput,
+        options,
+      )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
      * @summary 启用/停用用户 Enable / Disable users
      * @param {UserOperInput} [userOperInput]
      * @param {*} [options] Override http request option.
@@ -638,6 +1276,23 @@ export const UsersMnangerApiFp = function (configuration?: Configuration) {
     },
     /**
      *
+     * @summary 启用/停用用户 Enable / Disable users
+     * @param {UserOperInput} [userOperInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiAppUsersMnangerUserOperPost_6(
+      userOperInput?: UserOperInput,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiAppUsersMnangerUserOperPost_6(
+        userOperInput,
+        options,
+      )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
      * @summary 通过Token获取登录用户-权限信息 Obtain login user permission information through token
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -647,6 +1302,19 @@ export const UsersMnangerApiFp = function (configuration?: Configuration) {
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetUserPersOutput>> {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.apiAppUsersMnangerUserPersGet(options)
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
+     * @summary 通过Token获取登录用户-权限信息 Obtain login user permission information through token
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiAppUsersMnangerUserPersGet_7(
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetUserPersOutput>> {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiAppUsersMnangerUserPersGet_7(options)
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**
@@ -668,6 +1336,23 @@ export const UsersMnangerApiFp = function (configuration?: Configuration) {
     },
     /**
      *
+     * @summary 添加用户 Add user
+     * @param {AddUserInput} [addUserInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiAppUsersMnangerUserPost_8(
+      addUserInput?: AddUserInput,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiAppUsersMnangerUserPost_8(
+        addUserInput,
+        options,
+      )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
      * @summary 更新用户 Update user
      * @param {UpdateUserInput} [updateUserInput]
      * @param {*} [options] Override http request option.
@@ -678,6 +1363,23 @@ export const UsersMnangerApiFp = function (configuration?: Configuration) {
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
       const localVarAxiosArgs = await localVarAxiosParamCreator.apiAppUsersMnangerUserPut(
+        updateUserInput,
+        options,
+      )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
+     * @summary 更新用户 Update user
+     * @param {UpdateUserInput} [updateUserInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiAppUsersMnangerUserPut_9(
+      updateUserInput?: UpdateUserInput,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiAppUsersMnangerUserPut_9(
         updateUserInput,
         options,
       )
@@ -704,6 +1406,25 @@ export const UsersMnangerApiFp = function (configuration?: Configuration) {
     },
     /**
      *
+     * @summary 通过用户id获取用户信息 get user information by userid
+     * @param {string} userId
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiAppUsersMnangerUserUserIdGet_10(
+      userId: string,
+      options?: AxiosRequestConfig,
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<QueryUsersWithOrganziationOutput>
+    > {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiAppUsersMnangerUserUserIdGet_10(
+        userId,
+        options,
+      )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
      * @summary 删除用户 Delete user
      * @param {Array<string>} ids ID列表 ids
      * @param {*} [options] Override http request option.
@@ -714,6 +1435,23 @@ export const UsersMnangerApiFp = function (configuration?: Configuration) {
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
       const localVarAxiosArgs = await localVarAxiosParamCreator.apiAppUsersMnangerUsersDelete(
+        ids,
+        options,
+      )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
+     * @summary 删除用户 Delete user
+     * @param {Array<string>} ids ID列表 ids
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiAppUsersMnangerUsersDelete_11(
+      ids: Array<string>,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiAppUsersMnangerUsersDelete_11(
         ids,
         options,
       )
@@ -750,6 +1488,21 @@ export const UsersMnangerApiFactory = function (
     },
     /**
      *
+     * @summary 查询超级用户 Query super user
+     * @param {QueryUsersInput} [queryUsersInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiAppUsersMnangerQuerySuperUsersPost_1(
+      queryUsersInput?: QueryUsersInput,
+      options?: any,
+    ): AxiosPromise<QuerySuperUsersOutputPage> {
+      return localVarFp
+        .apiAppUsersMnangerQuerySuperUsersPost_1(queryUsersInput, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
      * @summary 查询用户 Query user
      * @param {QueryUsersInput} [queryUsersInput]
      * @param {*} [options] Override http request option.
@@ -761,6 +1514,21 @@ export const UsersMnangerApiFactory = function (
     ): AxiosPromise<QueryUsersOutputPage> {
       return localVarFp
         .apiAppUsersMnangerQueryUsersPost(queryUsersInput, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @summary 查询用户 Query user
+     * @param {QueryUsersInput} [queryUsersInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiAppUsersMnangerQueryUsersPost_2(
+      queryUsersInput?: QueryUsersInput,
+      options?: any,
+    ): AxiosPromise<QueryUsersOutputPage> {
+      return localVarFp
+        .apiAppUsersMnangerQueryUsersPost_2(queryUsersInput, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -780,6 +1548,21 @@ export const UsersMnangerApiFactory = function (
     },
     /**
      *
+     * @summary 重置密码 Reset password
+     * @param {ResetPasswordInput} [resetPasswordInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiAppUsersMnangerResetPasswordPost_3(
+      resetPasswordInput?: ResetPasswordInput,
+      options?: any,
+    ): AxiosPromise<object> {
+      return localVarFp
+        .apiAppUsersMnangerResetPasswordPost_3(resetPasswordInput, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
      * @summary 添加超级用户 Add super user
      * @param {AddSuperUserInput} [addSuperUserInput]
      * @param {*} [options] Override http request option.
@@ -791,6 +1574,21 @@ export const UsersMnangerApiFactory = function (
     ): AxiosPromise<object> {
       return localVarFp
         .apiAppUsersMnangerSuperUserPost(addSuperUserInput, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @summary 添加超级用户 Add super user
+     * @param {AddSuperUserInput} [addSuperUserInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiAppUsersMnangerSuperUserPost_4(
+      addSuperUserInput?: AddSuperUserInput,
+      options?: any,
+    ): AxiosPromise<object> {
+      return localVarFp
+        .apiAppUsersMnangerSuperUserPost_4(addSuperUserInput, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -810,6 +1608,21 @@ export const UsersMnangerApiFactory = function (
     },
     /**
      *
+     * @summary 更新超级用户 Update super user
+     * @param {UpdateSuperUserInput} [updateSuperUserInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiAppUsersMnangerSuperUserPut_5(
+      updateSuperUserInput?: UpdateSuperUserInput,
+      options?: any,
+    ): AxiosPromise<object> {
+      return localVarFp
+        .apiAppUsersMnangerSuperUserPut_5(updateSuperUserInput, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
      * @summary 启用/停用用户 Enable / Disable users
      * @param {UserOperInput} [userOperInput]
      * @param {*} [options] Override http request option.
@@ -825,6 +1638,21 @@ export const UsersMnangerApiFactory = function (
     },
     /**
      *
+     * @summary 启用/停用用户 Enable / Disable users
+     * @param {UserOperInput} [userOperInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiAppUsersMnangerUserOperPost_6(
+      userOperInput?: UserOperInput,
+      options?: any,
+    ): AxiosPromise<object> {
+      return localVarFp
+        .apiAppUsersMnangerUserOperPost_6(userOperInput, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
      * @summary 通过Token获取登录用户-权限信息 Obtain login user permission information through token
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -832,6 +1660,17 @@ export const UsersMnangerApiFactory = function (
     apiAppUsersMnangerUserPersGet(options?: any): AxiosPromise<GetUserPersOutput> {
       return localVarFp
         .apiAppUsersMnangerUserPersGet(options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @summary 通过Token获取登录用户-权限信息 Obtain login user permission information through token
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiAppUsersMnangerUserPersGet_7(options?: any): AxiosPromise<GetUserPersOutput> {
+      return localVarFp
+        .apiAppUsersMnangerUserPersGet_7(options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -844,6 +1683,18 @@ export const UsersMnangerApiFactory = function (
     apiAppUsersMnangerUserPost(addUserInput?: AddUserInput, options?: any): AxiosPromise<object> {
       return localVarFp
         .apiAppUsersMnangerUserPost(addUserInput, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @summary 添加用户 Add user
+     * @param {AddUserInput} [addUserInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiAppUsersMnangerUserPost_8(addUserInput?: AddUserInput, options?: any): AxiosPromise<object> {
+      return localVarFp
+        .apiAppUsersMnangerUserPost_8(addUserInput, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -863,6 +1714,21 @@ export const UsersMnangerApiFactory = function (
     },
     /**
      *
+     * @summary 更新用户 Update user
+     * @param {UpdateUserInput} [updateUserInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiAppUsersMnangerUserPut_9(
+      updateUserInput?: UpdateUserInput,
+      options?: any,
+    ): AxiosPromise<object> {
+      return localVarFp
+        .apiAppUsersMnangerUserPut_9(updateUserInput, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
      * @summary 通过用户id获取用户信息 get user information by userid
      * @param {string} userId
      * @param {*} [options] Override http request option.
@@ -878,6 +1744,21 @@ export const UsersMnangerApiFactory = function (
     },
     /**
      *
+     * @summary 通过用户id获取用户信息 get user information by userid
+     * @param {string} userId
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiAppUsersMnangerUserUserIdGet_10(
+      userId: string,
+      options?: any,
+    ): AxiosPromise<QueryUsersWithOrganziationOutput> {
+      return localVarFp
+        .apiAppUsersMnangerUserUserIdGet_10(userId, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
      * @summary 删除用户 Delete user
      * @param {Array<string>} ids ID列表 ids
      * @param {*} [options] Override http request option.
@@ -886,6 +1767,18 @@ export const UsersMnangerApiFactory = function (
     apiAppUsersMnangerUsersDelete(ids: Array<string>, options?: any): AxiosPromise<object> {
       return localVarFp
         .apiAppUsersMnangerUsersDelete(ids, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @summary 删除用户 Delete user
+     * @param {Array<string>} ids ID列表 ids
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiAppUsersMnangerUsersDelete_11(ids: Array<string>, options?: any): AxiosPromise<object> {
+      return localVarFp
+        .apiAppUsersMnangerUsersDelete_11(ids, options)
         .then((request) => request(axios, basePath))
     },
   }
@@ -917,6 +1810,23 @@ export class UsersMnangerApi extends BaseAPI {
 
   /**
    *
+   * @summary 查询超级用户 Query super user
+   * @param {QueryUsersInput} [queryUsersInput]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof UsersMnangerApi
+   */
+  public apiAppUsersMnangerQuerySuperUsersPost_1(
+    queryUsersInput?: QueryUsersInput,
+    options?: AxiosRequestConfig,
+  ) {
+    return UsersMnangerApiFp(this.configuration)
+      .apiAppUsersMnangerQuerySuperUsersPost_1(queryUsersInput, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
    * @summary 查询用户 Query user
    * @param {QueryUsersInput} [queryUsersInput]
    * @param {*} [options] Override http request option.
@@ -929,6 +1839,23 @@ export class UsersMnangerApi extends BaseAPI {
   ) {
     return UsersMnangerApiFp(this.configuration)
       .apiAppUsersMnangerQueryUsersPost(queryUsersInput, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary 查询用户 Query user
+   * @param {QueryUsersInput} [queryUsersInput]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof UsersMnangerApi
+   */
+  public apiAppUsersMnangerQueryUsersPost_2(
+    queryUsersInput?: QueryUsersInput,
+    options?: AxiosRequestConfig,
+  ) {
+    return UsersMnangerApiFp(this.configuration)
+      .apiAppUsersMnangerQueryUsersPost_2(queryUsersInput, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -951,6 +1878,23 @@ export class UsersMnangerApi extends BaseAPI {
 
   /**
    *
+   * @summary 重置密码 Reset password
+   * @param {ResetPasswordInput} [resetPasswordInput]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof UsersMnangerApi
+   */
+  public apiAppUsersMnangerResetPasswordPost_3(
+    resetPasswordInput?: ResetPasswordInput,
+    options?: AxiosRequestConfig,
+  ) {
+    return UsersMnangerApiFp(this.configuration)
+      .apiAppUsersMnangerResetPasswordPost_3(resetPasswordInput, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
    * @summary 添加超级用户 Add super user
    * @param {AddSuperUserInput} [addSuperUserInput]
    * @param {*} [options] Override http request option.
@@ -963,6 +1907,23 @@ export class UsersMnangerApi extends BaseAPI {
   ) {
     return UsersMnangerApiFp(this.configuration)
       .apiAppUsersMnangerSuperUserPost(addSuperUserInput, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary 添加超级用户 Add super user
+   * @param {AddSuperUserInput} [addSuperUserInput]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof UsersMnangerApi
+   */
+  public apiAppUsersMnangerSuperUserPost_4(
+    addSuperUserInput?: AddSuperUserInput,
+    options?: AxiosRequestConfig,
+  ) {
+    return UsersMnangerApiFp(this.configuration)
+      .apiAppUsersMnangerSuperUserPost_4(addSuperUserInput, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -985,6 +1946,23 @@ export class UsersMnangerApi extends BaseAPI {
 
   /**
    *
+   * @summary 更新超级用户 Update super user
+   * @param {UpdateSuperUserInput} [updateSuperUserInput]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof UsersMnangerApi
+   */
+  public apiAppUsersMnangerSuperUserPut_5(
+    updateSuperUserInput?: UpdateSuperUserInput,
+    options?: AxiosRequestConfig,
+  ) {
+    return UsersMnangerApiFp(this.configuration)
+      .apiAppUsersMnangerSuperUserPut_5(updateSuperUserInput, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
    * @summary 启用/停用用户 Enable / Disable users
    * @param {UserOperInput} [userOperInput]
    * @param {*} [options] Override http request option.
@@ -997,6 +1975,23 @@ export class UsersMnangerApi extends BaseAPI {
   ) {
     return UsersMnangerApiFp(this.configuration)
       .apiAppUsersMnangerUserOperPost(userOperInput, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary 启用/停用用户 Enable / Disable users
+   * @param {UserOperInput} [userOperInput]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof UsersMnangerApi
+   */
+  public apiAppUsersMnangerUserOperPost_6(
+    userOperInput?: UserOperInput,
+    options?: AxiosRequestConfig,
+  ) {
+    return UsersMnangerApiFp(this.configuration)
+      .apiAppUsersMnangerUserOperPost_6(userOperInput, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -1015,6 +2010,19 @@ export class UsersMnangerApi extends BaseAPI {
 
   /**
    *
+   * @summary 通过Token获取登录用户-权限信息 Obtain login user permission information through token
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof UsersMnangerApi
+   */
+  public apiAppUsersMnangerUserPersGet_7(options?: AxiosRequestConfig) {
+    return UsersMnangerApiFp(this.configuration)
+      .apiAppUsersMnangerUserPersGet_7(options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
    * @summary 添加用户 Add user
    * @param {AddUserInput} [addUserInput]
    * @param {*} [options] Override http request option.
@@ -1024,6 +2032,20 @@ export class UsersMnangerApi extends BaseAPI {
   public apiAppUsersMnangerUserPost(addUserInput?: AddUserInput, options?: AxiosRequestConfig) {
     return UsersMnangerApiFp(this.configuration)
       .apiAppUsersMnangerUserPost(addUserInput, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary 添加用户 Add user
+   * @param {AddUserInput} [addUserInput]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof UsersMnangerApi
+   */
+  public apiAppUsersMnangerUserPost_8(addUserInput?: AddUserInput, options?: AxiosRequestConfig) {
+    return UsersMnangerApiFp(this.configuration)
+      .apiAppUsersMnangerUserPost_8(addUserInput, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -1046,6 +2068,23 @@ export class UsersMnangerApi extends BaseAPI {
 
   /**
    *
+   * @summary 更新用户 Update user
+   * @param {UpdateUserInput} [updateUserInput]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof UsersMnangerApi
+   */
+  public apiAppUsersMnangerUserPut_9(
+    updateUserInput?: UpdateUserInput,
+    options?: AxiosRequestConfig,
+  ) {
+    return UsersMnangerApiFp(this.configuration)
+      .apiAppUsersMnangerUserPut_9(updateUserInput, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
    * @summary 通过用户id获取用户信息 get user information by userid
    * @param {string} userId
    * @param {*} [options] Override http request option.
@@ -1060,6 +2099,20 @@ export class UsersMnangerApi extends BaseAPI {
 
   /**
    *
+   * @summary 通过用户id获取用户信息 get user information by userid
+   * @param {string} userId
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof UsersMnangerApi
+   */
+  public apiAppUsersMnangerUserUserIdGet_10(userId: string, options?: AxiosRequestConfig) {
+    return UsersMnangerApiFp(this.configuration)
+      .apiAppUsersMnangerUserUserIdGet_10(userId, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
    * @summary 删除用户 Delete user
    * @param {Array<string>} ids ID列表 ids
    * @param {*} [options] Override http request option.
@@ -1069,6 +2122,20 @@ export class UsersMnangerApi extends BaseAPI {
   public apiAppUsersMnangerUsersDelete(ids: Array<string>, options?: AxiosRequestConfig) {
     return UsersMnangerApiFp(this.configuration)
       .apiAppUsersMnangerUsersDelete(ids, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary 删除用户 Delete user
+   * @param {Array<string>} ids ID列表 ids
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof UsersMnangerApi
+   */
+  public apiAppUsersMnangerUsersDelete_11(ids: Array<string>, options?: AxiosRequestConfig) {
+    return UsersMnangerApiFp(this.configuration)
+      .apiAppUsersMnangerUsersDelete_11(ids, options)
       .then((request) => request(this.axios, this.basePath))
   }
 }

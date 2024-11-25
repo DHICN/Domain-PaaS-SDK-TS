@@ -69,6 +69,48 @@ export const PersonalCenterApiAxiosParamCreator = function (configuration?: Conf
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
 
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 获取用户基本信息 Get user basic information
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiAppPersonalCenterBasicSettingsGet_1: async (
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/app/personalCenter/basicSettings`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
       setSearchParams(localVarUrlObj, localVarQueryParameter)
       let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
       localVarRequestOptions.headers = {
@@ -104,6 +146,57 @@ export const PersonalCenterApiAxiosParamCreator = function (configuration?: Conf
       const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        changePasswordInput,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 修改用户密码 Change user password
+     * @param {ChangePasswordInput} [changePasswordInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiAppPersonalCenterChangePasswordPost_2: async (
+      changePasswordInput?: ChangePasswordInput,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/app/personalCenter/changePassword`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
@@ -148,6 +241,57 @@ export const PersonalCenterApiAxiosParamCreator = function (configuration?: Conf
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
 
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        saveBasicSettingsInput,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 保存用户基本信息 Save user basic information
+     * @param {SaveBasicSettingsInput} [saveBasicSettingsInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiAppPersonalCenterSaveBasicSettingsPost_3: async (
+      saveBasicSettingsInput?: SaveBasicSettingsInput,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/app/personalCenter/saveBasicSettings`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
       setSearchParams(localVarUrlObj, localVarQueryParameter)
@@ -191,6 +335,57 @@ export const PersonalCenterApiAxiosParamCreator = function (configuration?: Conf
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
 
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        saveTenantPersonalizedInfoInput,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 保存租户登录界面个性化配置 Save personalized configuration of the tenant login interface
+     * @param {SaveTenantPersonalizedInfoInput} [saveTenantPersonalizedInfoInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiAppPersonalCenterSaveTenantPersonalizedInfoPost_4: async (
+      saveTenantPersonalizedInfoInput?: SaveTenantPersonalizedInfoInput,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/app/personalCenter/saveTenantPersonalizedInfo`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
       setSearchParams(localVarUrlObj, localVarQueryParameter)
@@ -232,6 +427,48 @@ export const PersonalCenterApiAxiosParamCreator = function (configuration?: Conf
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
 
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 获取租户登录界面个性化配置信息,用于更新 Get personalized configuration information of the tenant login interface for updating
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiAppPersonalCenterTenantPersonalizedInfoForUpdateGet_5: async (
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/app/personalCenter/tenantPersonalizedInfoForUpdate`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
       setSearchParams(localVarUrlObj, localVarQueryParameter)
       let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
       localVarRequestOptions.headers = {
@@ -270,6 +507,19 @@ export const PersonalCenterApiFp = function (configuration?: Configuration) {
     },
     /**
      *
+     * @summary 获取用户基本信息 Get user basic information
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiAppPersonalCenterBasicSettingsGet_1(
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetBasicSettingsOutput>> {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiAppPersonalCenterBasicSettingsGet_1(options)
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
      * @summary 修改用户密码 Change user password
      * @param {ChangePasswordInput} [changePasswordInput]
      * @param {*} [options] Override http request option.
@@ -281,6 +531,24 @@ export const PersonalCenterApiFp = function (configuration?: Configuration) {
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.apiAppPersonalCenterChangePasswordPost(
+          changePasswordInput,
+          options,
+        )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
+     * @summary 修改用户密码 Change user password
+     * @param {ChangePasswordInput} [changePasswordInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiAppPersonalCenterChangePasswordPost_2(
+      changePasswordInput?: ChangePasswordInput,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiAppPersonalCenterChangePasswordPost_2(
           changePasswordInput,
           options,
         )
@@ -306,6 +574,24 @@ export const PersonalCenterApiFp = function (configuration?: Configuration) {
     },
     /**
      *
+     * @summary 保存用户基本信息 Save user basic information
+     * @param {SaveBasicSettingsInput} [saveBasicSettingsInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiAppPersonalCenterSaveBasicSettingsPost_3(
+      saveBasicSettingsInput?: SaveBasicSettingsInput,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiAppPersonalCenterSaveBasicSettingsPost_3(
+          saveBasicSettingsInput,
+          options,
+        )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
      * @summary 保存租户登录界面个性化配置 Save personalized configuration of the tenant login interface
      * @param {SaveTenantPersonalizedInfoInput} [saveTenantPersonalizedInfoInput]
      * @param {*} [options] Override http request option.
@@ -324,6 +610,24 @@ export const PersonalCenterApiFp = function (configuration?: Configuration) {
     },
     /**
      *
+     * @summary 保存租户登录界面个性化配置 Save personalized configuration of the tenant login interface
+     * @param {SaveTenantPersonalizedInfoInput} [saveTenantPersonalizedInfoInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiAppPersonalCenterSaveTenantPersonalizedInfoPost_4(
+      saveTenantPersonalizedInfoInput?: SaveTenantPersonalizedInfoInput,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiAppPersonalCenterSaveTenantPersonalizedInfoPost_4(
+          saveTenantPersonalizedInfoInput,
+          options,
+        )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
      * @summary 获取租户登录界面个性化配置信息,用于更新 Get personalized configuration information of the tenant login interface for updating
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -335,6 +639,23 @@ export const PersonalCenterApiFp = function (configuration?: Configuration) {
     > {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.apiAppPersonalCenterTenantPersonalizedInfoForUpdateGet(
+          options,
+        )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
+     * @summary 获取租户登录界面个性化配置信息,用于更新 Get personalized configuration information of the tenant login interface for updating
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiAppPersonalCenterTenantPersonalizedInfoForUpdateGet_5(
+      options?: AxiosRequestConfig,
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetTenantPerInfoForUpdateOutput>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiAppPersonalCenterTenantPersonalizedInfoForUpdateGet_5(
           options,
         )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
@@ -366,6 +687,17 @@ export const PersonalCenterApiFactory = function (
     },
     /**
      *
+     * @summary 获取用户基本信息 Get user basic information
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiAppPersonalCenterBasicSettingsGet_1(options?: any): AxiosPromise<GetBasicSettingsOutput> {
+      return localVarFp
+        .apiAppPersonalCenterBasicSettingsGet_1(options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
      * @summary 修改用户密码 Change user password
      * @param {ChangePasswordInput} [changePasswordInput]
      * @param {*} [options] Override http request option.
@@ -381,6 +713,21 @@ export const PersonalCenterApiFactory = function (
     },
     /**
      *
+     * @summary 修改用户密码 Change user password
+     * @param {ChangePasswordInput} [changePasswordInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiAppPersonalCenterChangePasswordPost_2(
+      changePasswordInput?: ChangePasswordInput,
+      options?: any,
+    ): AxiosPromise<object> {
+      return localVarFp
+        .apiAppPersonalCenterChangePasswordPost_2(changePasswordInput, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
      * @summary 保存用户基本信息 Save user basic information
      * @param {SaveBasicSettingsInput} [saveBasicSettingsInput]
      * @param {*} [options] Override http request option.
@@ -392,6 +739,21 @@ export const PersonalCenterApiFactory = function (
     ): AxiosPromise<object> {
       return localVarFp
         .apiAppPersonalCenterSaveBasicSettingsPost(saveBasicSettingsInput, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @summary 保存用户基本信息 Save user basic information
+     * @param {SaveBasicSettingsInput} [saveBasicSettingsInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiAppPersonalCenterSaveBasicSettingsPost_3(
+      saveBasicSettingsInput?: SaveBasicSettingsInput,
+      options?: any,
+    ): AxiosPromise<object> {
+      return localVarFp
+        .apiAppPersonalCenterSaveBasicSettingsPost_3(saveBasicSettingsInput, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -414,6 +776,24 @@ export const PersonalCenterApiFactory = function (
     },
     /**
      *
+     * @summary 保存租户登录界面个性化配置 Save personalized configuration of the tenant login interface
+     * @param {SaveTenantPersonalizedInfoInput} [saveTenantPersonalizedInfoInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiAppPersonalCenterSaveTenantPersonalizedInfoPost_4(
+      saveTenantPersonalizedInfoInput?: SaveTenantPersonalizedInfoInput,
+      options?: any,
+    ): AxiosPromise<object> {
+      return localVarFp
+        .apiAppPersonalCenterSaveTenantPersonalizedInfoPost_4(
+          saveTenantPersonalizedInfoInput,
+          options,
+        )
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
      * @summary 获取租户登录界面个性化配置信息,用于更新 Get personalized configuration information of the tenant login interface for updating
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -423,6 +803,19 @@ export const PersonalCenterApiFactory = function (
     ): AxiosPromise<GetTenantPerInfoForUpdateOutput> {
       return localVarFp
         .apiAppPersonalCenterTenantPersonalizedInfoForUpdateGet(options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @summary 获取租户登录界面个性化配置信息,用于更新 Get personalized configuration information of the tenant login interface for updating
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiAppPersonalCenterTenantPersonalizedInfoForUpdateGet_5(
+      options?: any,
+    ): AxiosPromise<GetTenantPerInfoForUpdateOutput> {
+      return localVarFp
+        .apiAppPersonalCenterTenantPersonalizedInfoForUpdateGet_5(options)
         .then((request) => request(axios, basePath))
     },
   }
@@ -450,6 +843,19 @@ export class PersonalCenterApi extends BaseAPI {
 
   /**
    *
+   * @summary 获取用户基本信息 Get user basic information
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof PersonalCenterApi
+   */
+  public apiAppPersonalCenterBasicSettingsGet_1(options?: AxiosRequestConfig) {
+    return PersonalCenterApiFp(this.configuration)
+      .apiAppPersonalCenterBasicSettingsGet_1(options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
    * @summary 修改用户密码 Change user password
    * @param {ChangePasswordInput} [changePasswordInput]
    * @param {*} [options] Override http request option.
@@ -462,6 +868,23 @@ export class PersonalCenterApi extends BaseAPI {
   ) {
     return PersonalCenterApiFp(this.configuration)
       .apiAppPersonalCenterChangePasswordPost(changePasswordInput, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary 修改用户密码 Change user password
+   * @param {ChangePasswordInput} [changePasswordInput]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof PersonalCenterApi
+   */
+  public apiAppPersonalCenterChangePasswordPost_2(
+    changePasswordInput?: ChangePasswordInput,
+    options?: AxiosRequestConfig,
+  ) {
+    return PersonalCenterApiFp(this.configuration)
+      .apiAppPersonalCenterChangePasswordPost_2(changePasswordInput, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -484,6 +907,23 @@ export class PersonalCenterApi extends BaseAPI {
 
   /**
    *
+   * @summary 保存用户基本信息 Save user basic information
+   * @param {SaveBasicSettingsInput} [saveBasicSettingsInput]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof PersonalCenterApi
+   */
+  public apiAppPersonalCenterSaveBasicSettingsPost_3(
+    saveBasicSettingsInput?: SaveBasicSettingsInput,
+    options?: AxiosRequestConfig,
+  ) {
+    return PersonalCenterApiFp(this.configuration)
+      .apiAppPersonalCenterSaveBasicSettingsPost_3(saveBasicSettingsInput, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
    * @summary 保存租户登录界面个性化配置 Save personalized configuration of the tenant login interface
    * @param {SaveTenantPersonalizedInfoInput} [saveTenantPersonalizedInfoInput]
    * @param {*} [options] Override http request option.
@@ -501,6 +941,26 @@ export class PersonalCenterApi extends BaseAPI {
 
   /**
    *
+   * @summary 保存租户登录界面个性化配置 Save personalized configuration of the tenant login interface
+   * @param {SaveTenantPersonalizedInfoInput} [saveTenantPersonalizedInfoInput]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof PersonalCenterApi
+   */
+  public apiAppPersonalCenterSaveTenantPersonalizedInfoPost_4(
+    saveTenantPersonalizedInfoInput?: SaveTenantPersonalizedInfoInput,
+    options?: AxiosRequestConfig,
+  ) {
+    return PersonalCenterApiFp(this.configuration)
+      .apiAppPersonalCenterSaveTenantPersonalizedInfoPost_4(
+        saveTenantPersonalizedInfoInput,
+        options,
+      )
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
    * @summary 获取租户登录界面个性化配置信息,用于更新 Get personalized configuration information of the tenant login interface for updating
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
@@ -509,6 +969,19 @@ export class PersonalCenterApi extends BaseAPI {
   public apiAppPersonalCenterTenantPersonalizedInfoForUpdateGet(options?: AxiosRequestConfig) {
     return PersonalCenterApiFp(this.configuration)
       .apiAppPersonalCenterTenantPersonalizedInfoForUpdateGet(options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary 获取租户登录界面个性化配置信息,用于更新 Get personalized configuration information of the tenant login interface for updating
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof PersonalCenterApi
+   */
+  public apiAppPersonalCenterTenantPersonalizedInfoForUpdateGet_5(options?: AxiosRequestConfig) {
+    return PersonalCenterApiFp(this.configuration)
+      .apiAppPersonalCenterTenantPersonalizedInfoForUpdateGet_5(options)
       .then((request) => request(this.axios, this.basePath))
   }
 }

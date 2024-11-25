@@ -57,6 +57,46 @@ export const FilesApiAxiosParamCreator = function (configuration?: Configuration
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
 
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     * FormData的格式上传,参数为：file:stream;type:0，代表登录页文件资源上传 Upload in the format of formdata. The parameters are: File:stream;type:0, representing upload file resources on behalf of login page
+     * @summary 文件上传 File upload:
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiAppFilesUploadPost_1: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+      const localVarPath = `/api/app/files/upload`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
       setSearchParams(localVarUrlObj, localVarQueryParameter)
       let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
       localVarRequestOptions.headers = {
@@ -92,6 +132,18 @@ export const FilesApiFp = function (configuration?: Configuration) {
       const localVarAxiosArgs = await localVarAxiosParamCreator.apiAppFilesUploadPost(options)
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
+    /**
+     * FormData的格式上传,参数为：file:stream;type:0，代表登录页文件资源上传 Upload in the format of formdata. The parameters are: File:stream;type:0, representing upload file resources on behalf of login page
+     * @summary 文件上传 File upload:
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiAppFilesUploadPost_1(
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<string>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiAppFilesUploadPost_1(options)
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
   }
 }
 
@@ -115,6 +167,15 @@ export const FilesApiFactory = function (
     apiAppFilesUploadPost(options?: any): AxiosPromise<string> {
       return localVarFp.apiAppFilesUploadPost(options).then((request) => request(axios, basePath))
     },
+    /**
+     * FormData的格式上传,参数为：file:stream;type:0，代表登录页文件资源上传 Upload in the format of formdata. The parameters are: File:stream;type:0, representing upload file resources on behalf of login page
+     * @summary 文件上传 File upload:
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiAppFilesUploadPost_1(options?: any): AxiosPromise<string> {
+      return localVarFp.apiAppFilesUploadPost_1(options).then((request) => request(axios, basePath))
+    },
   }
 }
 
@@ -135,6 +196,19 @@ export class FilesApi extends BaseAPI {
   public apiAppFilesUploadPost(options?: AxiosRequestConfig) {
     return FilesApiFp(this.configuration)
       .apiAppFilesUploadPost(options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   * FormData的格式上传,参数为：file:stream;type:0，代表登录页文件资源上传 Upload in the format of formdata. The parameters are: File:stream;type:0, representing upload file resources on behalf of login page
+   * @summary 文件上传 File upload:
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof FilesApi
+   */
+  public apiAppFilesUploadPost_1(options?: AxiosRequestConfig) {
+    return FilesApiFp(this.configuration)
+      .apiAppFilesUploadPost_1(options)
       .then((request) => request(this.axios, this.basePath))
   }
 }

@@ -33,7 +33,13 @@ import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } fr
 // @ts-ignore
 import { AddFunctionInput } from '../models'
 // @ts-ignore
+import { FunctionConfig } from '../models'
+// @ts-ignore
 import { FunctionDto } from '../models'
+// @ts-ignore
+import { KeyInput } from '../models'
+// @ts-ignore
+import { KeysInput } from '../models'
 // @ts-ignore
 import { RemoteServiceErrorResponse } from '../models'
 // @ts-ignore
@@ -67,6 +73,10 @@ export const FunctionApiAxiosParamCreator = function (configuration?: Configurat
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
 
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
       setSearchParams(localVarUrlObj, localVarQueryParameter)
@@ -78,6 +88,335 @@ export const FunctionApiAxiosParamCreator = function (configuration?: Configurat
       }
       localVarRequestOptions.data = serializeDataIfNeeded(
         addFunctionInput,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 添加功能模块
+     * @param {AddFunctionInput} [addFunctionInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1FunctionAddPost_1: async (
+      addFunctionInput?: AddFunctionInput,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/function/add`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        addFunctionInput,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 删除功能模块
+     * @param {KeyInput} [keyInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1FunctionDeletePost: async (
+      keyInput?: KeyInput,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/function/delete`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        keyInput,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 删除功能模块
+     * @param {KeyInput} [keyInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1FunctionDeletePost_2: async (
+      keyInput?: KeyInput,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/function/delete`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        keyInput,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 下载功能配置文件
+     * @param {FunctionDto} [functionDto]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1FunctionDownloadConfigsPost: async (
+      functionDto?: FunctionDto,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/function/download-configs`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        functionDto,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 下载功能配置文件
+     * @param {FunctionDto} [functionDto]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1FunctionDownloadConfigsPost_3: async (
+      functionDto?: FunctionDto,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/function/download-configs`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        functionDto,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 获取功能配置信息
+     * @param {KeysInput} [keysInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1FunctionGetConfigsPost: async (
+      keysInput?: KeysInput,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/function/get-configs`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        keysInput,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 获取功能配置信息
+     * @param {KeysInput} [keysInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1FunctionGetConfigsPost_4: async (
+      keysInput?: KeysInput,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/function/get-configs`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        keysInput,
         localVarRequestOptions,
         configuration,
       )
@@ -105,6 +444,46 @@ export const FunctionApiAxiosParamCreator = function (configuration?: Configurat
       const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 获取所有的功能
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1FunctionListGet_5: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/function/list`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
       setSearchParams(localVarUrlObj, localVarQueryParameter)
       let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
@@ -141,6 +520,57 @@ export const FunctionApiAxiosParamCreator = function (configuration?: Configurat
       const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        updateFunctionInput,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 更新功能的name
+     * @param {UpdateFunctionInput} [updateFunctionInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1FunctionUpdatePost_6: async (
+      updateFunctionInput?: UpdateFunctionInput,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/function/update`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
@@ -191,6 +621,125 @@ export const FunctionApiFp = function (configuration?: Configuration) {
     },
     /**
      *
+     * @summary 添加功能模块
+     * @param {AddFunctionInput} [addFunctionInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1FunctionAddPost_1(
+      addFunctionInput?: AddFunctionInput,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FunctionDto>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1FunctionAddPost_1(
+        addFunctionInput,
+        options,
+      )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
+     * @summary 删除功能模块
+     * @param {KeyInput} [keyInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1FunctionDeletePost(
+      keyInput?: KeyInput,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1FunctionDeletePost(
+        keyInput,
+        options,
+      )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
+     * @summary 删除功能模块
+     * @param {KeyInput} [keyInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1FunctionDeletePost_2(
+      keyInput?: KeyInput,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1FunctionDeletePost_2(
+        keyInput,
+        options,
+      )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
+     * @summary 下载功能配置文件
+     * @param {FunctionDto} [functionDto]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1FunctionDownloadConfigsPost(
+      functionDto?: FunctionDto,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1FunctionDownloadConfigsPost(
+        functionDto,
+        options,
+      )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
+     * @summary 下载功能配置文件
+     * @param {FunctionDto} [functionDto]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1FunctionDownloadConfigsPost_3(
+      functionDto?: FunctionDto,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1FunctionDownloadConfigsPost_3(
+        functionDto,
+        options,
+      )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
+     * @summary 获取功能配置信息
+     * @param {KeysInput} [keysInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1FunctionGetConfigsPost(
+      keysInput?: KeysInput,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<FunctionConfig>>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1FunctionGetConfigsPost(
+        keysInput,
+        options,
+      )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
+     * @summary 获取功能配置信息
+     * @param {KeysInput} [keysInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1FunctionGetConfigsPost_4(
+      keysInput?: KeysInput,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<FunctionConfig>>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1FunctionGetConfigsPost_4(
+        keysInput,
+        options,
+      )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
      * @summary 获取所有的功能
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -199,6 +748,18 @@ export const FunctionApiFp = function (configuration?: Configuration) {
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<FunctionDto>>> {
       const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1FunctionListGet(options)
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
+     * @summary 获取所有的功能
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1FunctionListGet_5(
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<FunctionDto>>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1FunctionListGet_5(options)
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**
@@ -213,6 +774,23 @@ export const FunctionApiFp = function (configuration?: Configuration) {
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FunctionDto>> {
       const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1FunctionUpdatePost(
+        updateFunctionInput,
+        options,
+      )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
+     * @summary 更新功能的name
+     * @param {UpdateFunctionInput} [updateFunctionInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1FunctionUpdatePost_6(
+      updateFunctionInput?: UpdateFunctionInput,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FunctionDto>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1FunctionUpdatePost_6(
         updateFunctionInput,
         options,
       )
@@ -249,12 +827,117 @@ export const FunctionApiFactory = function (
     },
     /**
      *
+     * @summary 添加功能模块
+     * @param {AddFunctionInput} [addFunctionInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1FunctionAddPost_1(
+      addFunctionInput?: AddFunctionInput,
+      options?: any,
+    ): AxiosPromise<FunctionDto> {
+      return localVarFp
+        .apiV1FunctionAddPost_1(addFunctionInput, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @summary 删除功能模块
+     * @param {KeyInput} [keyInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1FunctionDeletePost(keyInput?: KeyInput, options?: any): AxiosPromise<object> {
+      return localVarFp
+        .apiV1FunctionDeletePost(keyInput, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @summary 删除功能模块
+     * @param {KeyInput} [keyInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1FunctionDeletePost_2(keyInput?: KeyInput, options?: any): AxiosPromise<object> {
+      return localVarFp
+        .apiV1FunctionDeletePost_2(keyInput, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @summary 下载功能配置文件
+     * @param {FunctionDto} [functionDto]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1FunctionDownloadConfigsPost(functionDto?: FunctionDto, options?: any): AxiosPromise<void> {
+      return localVarFp
+        .apiV1FunctionDownloadConfigsPost(functionDto, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @summary 下载功能配置文件
+     * @param {FunctionDto} [functionDto]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1FunctionDownloadConfigsPost_3(
+      functionDto?: FunctionDto,
+      options?: any,
+    ): AxiosPromise<void> {
+      return localVarFp
+        .apiV1FunctionDownloadConfigsPost_3(functionDto, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @summary 获取功能配置信息
+     * @param {KeysInput} [keysInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1FunctionGetConfigsPost(
+      keysInput?: KeysInput,
+      options?: any,
+    ): AxiosPromise<Array<FunctionConfig>> {
+      return localVarFp
+        .apiV1FunctionGetConfigsPost(keysInput, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @summary 获取功能配置信息
+     * @param {KeysInput} [keysInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1FunctionGetConfigsPost_4(
+      keysInput?: KeysInput,
+      options?: any,
+    ): AxiosPromise<Array<FunctionConfig>> {
+      return localVarFp
+        .apiV1FunctionGetConfigsPost_4(keysInput, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
      * @summary 获取所有的功能
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiV1FunctionListGet(options?: any): AxiosPromise<Array<FunctionDto>> {
       return localVarFp.apiV1FunctionListGet(options).then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @summary 获取所有的功能
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1FunctionListGet_5(options?: any): AxiosPromise<Array<FunctionDto>> {
+      return localVarFp.apiV1FunctionListGet_5(options).then((request) => request(axios, basePath))
     },
     /**
      *
@@ -269,6 +952,21 @@ export const FunctionApiFactory = function (
     ): AxiosPromise<FunctionDto> {
       return localVarFp
         .apiV1FunctionUpdatePost(updateFunctionInput, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @summary 更新功能的name
+     * @param {UpdateFunctionInput} [updateFunctionInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1FunctionUpdatePost_6(
+      updateFunctionInput?: UpdateFunctionInput,
+      options?: any,
+    ): AxiosPromise<FunctionDto> {
+      return localVarFp
+        .apiV1FunctionUpdatePost_6(updateFunctionInput, options)
         .then((request) => request(axios, basePath))
     },
   }
@@ -297,6 +995,107 @@ export class FunctionApi extends BaseAPI {
 
   /**
    *
+   * @summary 添加功能模块
+   * @param {AddFunctionInput} [addFunctionInput]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof FunctionApi
+   */
+  public apiV1FunctionAddPost_1(addFunctionInput?: AddFunctionInput, options?: AxiosRequestConfig) {
+    return FunctionApiFp(this.configuration)
+      .apiV1FunctionAddPost_1(addFunctionInput, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary 删除功能模块
+   * @param {KeyInput} [keyInput]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof FunctionApi
+   */
+  public apiV1FunctionDeletePost(keyInput?: KeyInput, options?: AxiosRequestConfig) {
+    return FunctionApiFp(this.configuration)
+      .apiV1FunctionDeletePost(keyInput, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary 删除功能模块
+   * @param {KeyInput} [keyInput]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof FunctionApi
+   */
+  public apiV1FunctionDeletePost_2(keyInput?: KeyInput, options?: AxiosRequestConfig) {
+    return FunctionApiFp(this.configuration)
+      .apiV1FunctionDeletePost_2(keyInput, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary 下载功能配置文件
+   * @param {FunctionDto} [functionDto]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof FunctionApi
+   */
+  public apiV1FunctionDownloadConfigsPost(functionDto?: FunctionDto, options?: AxiosRequestConfig) {
+    return FunctionApiFp(this.configuration)
+      .apiV1FunctionDownloadConfigsPost(functionDto, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary 下载功能配置文件
+   * @param {FunctionDto} [functionDto]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof FunctionApi
+   */
+  public apiV1FunctionDownloadConfigsPost_3(
+    functionDto?: FunctionDto,
+    options?: AxiosRequestConfig,
+  ) {
+    return FunctionApiFp(this.configuration)
+      .apiV1FunctionDownloadConfigsPost_3(functionDto, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary 获取功能配置信息
+   * @param {KeysInput} [keysInput]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof FunctionApi
+   */
+  public apiV1FunctionGetConfigsPost(keysInput?: KeysInput, options?: AxiosRequestConfig) {
+    return FunctionApiFp(this.configuration)
+      .apiV1FunctionGetConfigsPost(keysInput, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary 获取功能配置信息
+   * @param {KeysInput} [keysInput]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof FunctionApi
+   */
+  public apiV1FunctionGetConfigsPost_4(keysInput?: KeysInput, options?: AxiosRequestConfig) {
+    return FunctionApiFp(this.configuration)
+      .apiV1FunctionGetConfigsPost_4(keysInput, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
    * @summary 获取所有的功能
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
@@ -305,6 +1104,19 @@ export class FunctionApi extends BaseAPI {
   public apiV1FunctionListGet(options?: AxiosRequestConfig) {
     return FunctionApiFp(this.configuration)
       .apiV1FunctionListGet(options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary 获取所有的功能
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof FunctionApi
+   */
+  public apiV1FunctionListGet_5(options?: AxiosRequestConfig) {
+    return FunctionApiFp(this.configuration)
+      .apiV1FunctionListGet_5(options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -322,6 +1134,23 @@ export class FunctionApi extends BaseAPI {
   ) {
     return FunctionApiFp(this.configuration)
       .apiV1FunctionUpdatePost(updateFunctionInput, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary 更新功能的name
+   * @param {UpdateFunctionInput} [updateFunctionInput]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof FunctionApi
+   */
+  public apiV1FunctionUpdatePost_6(
+    updateFunctionInput?: UpdateFunctionInput,
+    options?: AxiosRequestConfig,
+  ) {
+    return FunctionApiFp(this.configuration)
+      .apiV1FunctionUpdatePost_6(updateFunctionInput, options)
       .then((request) => request(this.axios, this.basePath))
   }
 }

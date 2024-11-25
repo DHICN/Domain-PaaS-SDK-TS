@@ -78,6 +78,55 @@ export const MicroServicesManagerApiAxiosParamCreator = function (configuration?
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
 
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 通过微服务Id获取微服务 Get microservice through microservice ID
+     * @param {string} id 微服务ID micro service id
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiAppMicroServicesManagerIdMicroServiceByIdGet_1: async (
+      id: string,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'id' is not null or undefined
+      assertParamExists('apiAppMicroServicesManagerIdMicroServiceByIdGet_1', 'id', id)
+      const localVarPath = `/api/app/microServicesManager/{id}/microServiceById`.replace(
+        `{${'id'}}`,
+        encodeURIComponent(String(id)),
+      )
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
       setSearchParams(localVarUrlObj, localVarQueryParameter)
       let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
       localVarRequestOptions.headers = {
@@ -119,6 +168,55 @@ export const MicroServicesManagerApiAxiosParamCreator = function (configuration?
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
 
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 通过d获取角色权限 Get role permissions through ID
+     * @param {string} id 角色权限ID role permission id
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiAppMicroServicesManagerIdRolePermissionsByIdGet_2: async (
+      id: string,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'id' is not null or undefined
+      assertParamExists('apiAppMicroServicesManagerIdRolePermissionsByIdGet_2', 'id', id)
+      const localVarPath = `/api/app/microServicesManager/{id}/rolePermissionsById`.replace(
+        `{${'id'}}`,
+        encodeURIComponent(String(id)),
+      )
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
       setSearchParams(localVarUrlObj, localVarQueryParameter)
       let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
       localVarRequestOptions.headers = {
@@ -156,6 +254,56 @@ export const MicroServicesManagerApiAxiosParamCreator = function (configuration?
       const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      if (ids !== undefined) {
+        localVarQueryParameter['Ids'] = ids
+      }
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 删除微服务 Delete micro service
+     * @param {Array<string>} ids ID列表 ids
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiAppMicroServicesManagerMicroServiceDelete_3: async (
+      ids: Array<string>,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'ids' is not null or undefined
+      assertParamExists('apiAppMicroServicesManagerMicroServiceDelete_3', 'ids', ids)
+      const localVarPath = `/api/app/microServicesManager/microService`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
       if (ids !== undefined) {
         localVarQueryParameter['Ids'] = ids
@@ -196,6 +344,57 @@ export const MicroServicesManagerApiAxiosParamCreator = function (configuration?
       const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        addMicroServiceInput,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 添加微服务 Add microservices
+     * @param {AddMicroServiceInput} [addMicroServiceInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiAppMicroServicesManagerMicroServicePost_4: async (
+      addMicroServiceInput?: AddMicroServiceInput,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/app/microServicesManager/microService`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
@@ -240,6 +439,57 @@ export const MicroServicesManagerApiAxiosParamCreator = function (configuration?
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
 
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        updateMicroServiceInput,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 更新微服务 Update microservices
+     * @param {UpdateMicroServiceInput} [updateMicroServiceInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiAppMicroServicesManagerMicroServicePut_5: async (
+      updateMicroServiceInput?: UpdateMicroServiceInput,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/app/microServicesManager/microService`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
       setSearchParams(localVarUrlObj, localVarQueryParameter)
@@ -283,6 +533,54 @@ export const MicroServicesManagerApiAxiosParamCreator = function (configuration?
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
 
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      if (keywords !== undefined) {
+        localVarQueryParameter['Keywords'] = keywords
+      }
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 获取微服务 Get micro services
+     * @param {string} [keywords] 根据关键字检索 query key words
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiAppMicroServicesManagerMicroServicesGet_6: async (
+      keywords?: string,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/app/microServicesManager/microServices`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
       if (keywords !== undefined) {
         localVarQueryParameter['Keywords'] = keywords
       }
@@ -325,6 +623,56 @@ export const MicroServicesManagerApiAxiosParamCreator = function (configuration?
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
 
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      if (ids !== undefined) {
+        localVarQueryParameter['Ids'] = ids
+      }
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 删除角色权限 Delete role permissions
+     * @param {Array<string>} ids ID列表 ids
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiAppMicroServicesManagerRolePermissionsDelete_7: async (
+      ids: Array<string>,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'ids' is not null or undefined
+      assertParamExists('apiAppMicroServicesManagerRolePermissionsDelete_7', 'ids', ids)
+      const localVarPath = `/api/app/microServicesManager/rolePermissions`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
       if (ids !== undefined) {
         localVarQueryParameter['Ids'] = ids
       }
@@ -366,6 +714,60 @@ export const MicroServicesManagerApiAxiosParamCreator = function (configuration?
       const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      if (tenantId !== undefined) {
+        localVarQueryParameter['TenantId'] = tenantId
+      }
+
+      if (role !== undefined) {
+        localVarQueryParameter['Role'] = role
+      }
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 获取角色权限 Get role permissions
+     * @param {string} [tenantId] 租户Id tenant id
+     * @param {string} [role] 角色 role name
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiAppMicroServicesManagerRolePermissionsGet_8: async (
+      tenantId?: string,
+      role?: string,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/app/microServicesManager/rolePermissions`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
       if (tenantId !== undefined) {
         localVarQueryParameter['TenantId'] = tenantId
@@ -411,6 +813,57 @@ export const MicroServicesManagerApiAxiosParamCreator = function (configuration?
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
 
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        addRolePermissionsInput,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 添加角色权限 Add role permissions
+     * @param {AddRolePermissionsInput} [addRolePermissionsInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiAppMicroServicesManagerRolePermissionsPost_9: async (
+      addRolePermissionsInput?: AddRolePermissionsInput,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/app/microServicesManager/rolePermissions`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
       setSearchParams(localVarUrlObj, localVarQueryParameter)
@@ -453,6 +906,57 @@ export const MicroServicesManagerApiAxiosParamCreator = function (configuration?
       const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        updateRolePermissionsInput,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 更新角色权限 Update role permissions
+     * @param {UpdateRolePermissionsInput} [updateRolePermissionsInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiAppMicroServicesManagerRolePermissionsPut_10: async (
+      updateRolePermissionsInput?: UpdateRolePermissionsInput,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/app/microServicesManager/rolePermissions`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
@@ -501,6 +1005,24 @@ export const MicroServicesManagerApiFp = function (configuration?: Configuration
     },
     /**
      *
+     * @summary 通过微服务Id获取微服务 Get microservice through microservice ID
+     * @param {string} id 微服务ID micro service id
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiAppMicroServicesManagerIdMicroServiceByIdGet_1(
+      id: string,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MicroServiceOutput>> {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiAppMicroServicesManagerIdMicroServiceByIdGet_1(
+          id,
+          options,
+        )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
      * @summary 通过d获取角色权限 Get role permissions through ID
      * @param {string} id 角色权限ID role permission id
      * @param {*} [options] Override http request option.
@@ -514,6 +1036,26 @@ export const MicroServicesManagerApiFp = function (configuration?: Configuration
     > {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.apiAppMicroServicesManagerIdRolePermissionsByIdGet(
+          id,
+          options,
+        )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
+     * @summary 通过d获取角色权限 Get role permissions through ID
+     * @param {string} id 角色权限ID role permission id
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiAppMicroServicesManagerIdRolePermissionsByIdGet_2(
+      id: string,
+      options?: AxiosRequestConfig,
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetRolePermissionsOutput>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiAppMicroServicesManagerIdRolePermissionsByIdGet_2(
           id,
           options,
         )
@@ -536,6 +1078,21 @@ export const MicroServicesManagerApiFp = function (configuration?: Configuration
     },
     /**
      *
+     * @summary 删除微服务 Delete micro service
+     * @param {Array<string>} ids ID列表 ids
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiAppMicroServicesManagerMicroServiceDelete_3(
+      ids: Array<string>,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiAppMicroServicesManagerMicroServiceDelete_3(ids, options)
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
      * @summary 添加微服务 Add microservices
      * @param {AddMicroServiceInput} [addMicroServiceInput]
      * @param {*} [options] Override http request option.
@@ -554,6 +1111,24 @@ export const MicroServicesManagerApiFp = function (configuration?: Configuration
     },
     /**
      *
+     * @summary 添加微服务 Add microservices
+     * @param {AddMicroServiceInput} [addMicroServiceInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiAppMicroServicesManagerMicroServicePost_4(
+      addMicroServiceInput?: AddMicroServiceInput,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiAppMicroServicesManagerMicroServicePost_4(
+          addMicroServiceInput,
+          options,
+        )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
      * @summary 更新微服务 Update microservices
      * @param {UpdateMicroServiceInput} [updateMicroServiceInput]
      * @param {*} [options] Override http request option.
@@ -565,6 +1140,24 @@ export const MicroServicesManagerApiFp = function (configuration?: Configuration
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.apiAppMicroServicesManagerMicroServicePut(
+          updateMicroServiceInput,
+          options,
+        )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
+     * @summary 更新微服务 Update microservices
+     * @param {UpdateMicroServiceInput} [updateMicroServiceInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiAppMicroServicesManagerMicroServicePut_5(
+      updateMicroServiceInput?: UpdateMicroServiceInput,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiAppMicroServicesManagerMicroServicePut_5(
           updateMicroServiceInput,
           options,
         )
@@ -592,6 +1185,26 @@ export const MicroServicesManagerApiFp = function (configuration?: Configuration
     },
     /**
      *
+     * @summary 获取微服务 Get micro services
+     * @param {string} [keywords] 根据关键字检索 query key words
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiAppMicroServicesManagerMicroServicesGet_6(
+      keywords?: string,
+      options?: AxiosRequestConfig,
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<MicroServiceOutput>>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiAppMicroServicesManagerMicroServicesGet_6(
+          keywords,
+          options,
+        )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
      * @summary 删除角色权限 Delete role permissions
      * @param {Array<string>} ids ID列表 ids
      * @param {*} [options] Override http request option.
@@ -603,6 +1216,24 @@ export const MicroServicesManagerApiFp = function (configuration?: Configuration
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.apiAppMicroServicesManagerRolePermissionsDelete(
+          ids,
+          options,
+        )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
+     * @summary 删除角色权限 Delete role permissions
+     * @param {Array<string>} ids ID列表 ids
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiAppMicroServicesManagerRolePermissionsDelete_7(
+      ids: Array<string>,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiAppMicroServicesManagerRolePermissionsDelete_7(
           ids,
           options,
         )
@@ -633,6 +1264,29 @@ export const MicroServicesManagerApiFp = function (configuration?: Configuration
     },
     /**
      *
+     * @summary 获取角色权限 Get role permissions
+     * @param {string} [tenantId] 租户Id tenant id
+     * @param {string} [role] 角色 role name
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiAppMicroServicesManagerRolePermissionsGet_8(
+      tenantId?: string,
+      role?: string,
+      options?: AxiosRequestConfig,
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<GetRolePermissionsOutput>>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiAppMicroServicesManagerRolePermissionsGet_8(
+          tenantId,
+          role,
+          options,
+        )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
      * @summary 添加角色权限 Add role permissions
      * @param {AddRolePermissionsInput} [addRolePermissionsInput]
      * @param {*} [options] Override http request option.
@@ -651,6 +1305,24 @@ export const MicroServicesManagerApiFp = function (configuration?: Configuration
     },
     /**
      *
+     * @summary 添加角色权限 Add role permissions
+     * @param {AddRolePermissionsInput} [addRolePermissionsInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiAppMicroServicesManagerRolePermissionsPost_9(
+      addRolePermissionsInput?: AddRolePermissionsInput,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiAppMicroServicesManagerRolePermissionsPost_9(
+          addRolePermissionsInput,
+          options,
+        )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
      * @summary 更新角色权限 Update role permissions
      * @param {UpdateRolePermissionsInput} [updateRolePermissionsInput]
      * @param {*} [options] Override http request option.
@@ -662,6 +1334,24 @@ export const MicroServicesManagerApiFp = function (configuration?: Configuration
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.apiAppMicroServicesManagerRolePermissionsPut(
+          updateRolePermissionsInput,
+          options,
+        )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
+     * @summary 更新角色权限 Update role permissions
+     * @param {UpdateRolePermissionsInput} [updateRolePermissionsInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiAppMicroServicesManagerRolePermissionsPut_10(
+      updateRolePermissionsInput?: UpdateRolePermissionsInput,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiAppMicroServicesManagerRolePermissionsPut_10(
           updateRolePermissionsInput,
           options,
         )
@@ -698,6 +1388,21 @@ export const MicroServicesManagerApiFactory = function (
     },
     /**
      *
+     * @summary 通过微服务Id获取微服务 Get microservice through microservice ID
+     * @param {string} id 微服务ID micro service id
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiAppMicroServicesManagerIdMicroServiceByIdGet_1(
+      id: string,
+      options?: any,
+    ): AxiosPromise<MicroServiceOutput> {
+      return localVarFp
+        .apiAppMicroServicesManagerIdMicroServiceByIdGet_1(id, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
      * @summary 通过d获取角色权限 Get role permissions through ID
      * @param {string} id 角色权限ID role permission id
      * @param {*} [options] Override http request option.
@@ -709,6 +1414,21 @@ export const MicroServicesManagerApiFactory = function (
     ): AxiosPromise<GetRolePermissionsOutput> {
       return localVarFp
         .apiAppMicroServicesManagerIdRolePermissionsByIdGet(id, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @summary 通过d获取角色权限 Get role permissions through ID
+     * @param {string} id 角色权限ID role permission id
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiAppMicroServicesManagerIdRolePermissionsByIdGet_2(
+      id: string,
+      options?: any,
+    ): AxiosPromise<GetRolePermissionsOutput> {
+      return localVarFp
+        .apiAppMicroServicesManagerIdRolePermissionsByIdGet_2(id, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -728,6 +1448,21 @@ export const MicroServicesManagerApiFactory = function (
     },
     /**
      *
+     * @summary 删除微服务 Delete micro service
+     * @param {Array<string>} ids ID列表 ids
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiAppMicroServicesManagerMicroServiceDelete_3(
+      ids: Array<string>,
+      options?: any,
+    ): AxiosPromise<object> {
+      return localVarFp
+        .apiAppMicroServicesManagerMicroServiceDelete_3(ids, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
      * @summary 添加微服务 Add microservices
      * @param {AddMicroServiceInput} [addMicroServiceInput]
      * @param {*} [options] Override http request option.
@@ -739,6 +1474,21 @@ export const MicroServicesManagerApiFactory = function (
     ): AxiosPromise<object> {
       return localVarFp
         .apiAppMicroServicesManagerMicroServicePost(addMicroServiceInput, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @summary 添加微服务 Add microservices
+     * @param {AddMicroServiceInput} [addMicroServiceInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiAppMicroServicesManagerMicroServicePost_4(
+      addMicroServiceInput?: AddMicroServiceInput,
+      options?: any,
+    ): AxiosPromise<object> {
+      return localVarFp
+        .apiAppMicroServicesManagerMicroServicePost_4(addMicroServiceInput, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -758,6 +1508,21 @@ export const MicroServicesManagerApiFactory = function (
     },
     /**
      *
+     * @summary 更新微服务 Update microservices
+     * @param {UpdateMicroServiceInput} [updateMicroServiceInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiAppMicroServicesManagerMicroServicePut_5(
+      updateMicroServiceInput?: UpdateMicroServiceInput,
+      options?: any,
+    ): AxiosPromise<object> {
+      return localVarFp
+        .apiAppMicroServicesManagerMicroServicePut_5(updateMicroServiceInput, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
      * @summary 获取微服务 Get micro services
      * @param {string} [keywords] 根据关键字检索 query key words
      * @param {*} [options] Override http request option.
@@ -773,6 +1538,21 @@ export const MicroServicesManagerApiFactory = function (
     },
     /**
      *
+     * @summary 获取微服务 Get micro services
+     * @param {string} [keywords] 根据关键字检索 query key words
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiAppMicroServicesManagerMicroServicesGet_6(
+      keywords?: string,
+      options?: any,
+    ): AxiosPromise<Array<MicroServiceOutput>> {
+      return localVarFp
+        .apiAppMicroServicesManagerMicroServicesGet_6(keywords, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
      * @summary 删除角色权限 Delete role permissions
      * @param {Array<string>} ids ID列表 ids
      * @param {*} [options] Override http request option.
@@ -784,6 +1564,21 @@ export const MicroServicesManagerApiFactory = function (
     ): AxiosPromise<object> {
       return localVarFp
         .apiAppMicroServicesManagerRolePermissionsDelete(ids, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @summary 删除角色权限 Delete role permissions
+     * @param {Array<string>} ids ID列表 ids
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiAppMicroServicesManagerRolePermissionsDelete_7(
+      ids: Array<string>,
+      options?: any,
+    ): AxiosPromise<object> {
+      return localVarFp
+        .apiAppMicroServicesManagerRolePermissionsDelete_7(ids, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -805,6 +1600,23 @@ export const MicroServicesManagerApiFactory = function (
     },
     /**
      *
+     * @summary 获取角色权限 Get role permissions
+     * @param {string} [tenantId] 租户Id tenant id
+     * @param {string} [role] 角色 role name
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiAppMicroServicesManagerRolePermissionsGet_8(
+      tenantId?: string,
+      role?: string,
+      options?: any,
+    ): AxiosPromise<Array<GetRolePermissionsOutput>> {
+      return localVarFp
+        .apiAppMicroServicesManagerRolePermissionsGet_8(tenantId, role, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
      * @summary 添加角色权限 Add role permissions
      * @param {AddRolePermissionsInput} [addRolePermissionsInput]
      * @param {*} [options] Override http request option.
@@ -820,6 +1632,21 @@ export const MicroServicesManagerApiFactory = function (
     },
     /**
      *
+     * @summary 添加角色权限 Add role permissions
+     * @param {AddRolePermissionsInput} [addRolePermissionsInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiAppMicroServicesManagerRolePermissionsPost_9(
+      addRolePermissionsInput?: AddRolePermissionsInput,
+      options?: any,
+    ): AxiosPromise<object> {
+      return localVarFp
+        .apiAppMicroServicesManagerRolePermissionsPost_9(addRolePermissionsInput, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
      * @summary 更新角色权限 Update role permissions
      * @param {UpdateRolePermissionsInput} [updateRolePermissionsInput]
      * @param {*} [options] Override http request option.
@@ -831,6 +1658,21 @@ export const MicroServicesManagerApiFactory = function (
     ): AxiosPromise<object> {
       return localVarFp
         .apiAppMicroServicesManagerRolePermissionsPut(updateRolePermissionsInput, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @summary 更新角色权限 Update role permissions
+     * @param {UpdateRolePermissionsInput} [updateRolePermissionsInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiAppMicroServicesManagerRolePermissionsPut_10(
+      updateRolePermissionsInput?: UpdateRolePermissionsInput,
+      options?: any,
+    ): AxiosPromise<object> {
+      return localVarFp
+        .apiAppMicroServicesManagerRolePermissionsPut_10(updateRolePermissionsInput, options)
         .then((request) => request(axios, basePath))
     },
   }
@@ -859,6 +1701,23 @@ export class MicroServicesManagerApi extends BaseAPI {
 
   /**
    *
+   * @summary 通过微服务Id获取微服务 Get microservice through microservice ID
+   * @param {string} id 微服务ID micro service id
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof MicroServicesManagerApi
+   */
+  public apiAppMicroServicesManagerIdMicroServiceByIdGet_1(
+    id: string,
+    options?: AxiosRequestConfig,
+  ) {
+    return MicroServicesManagerApiFp(this.configuration)
+      .apiAppMicroServicesManagerIdMicroServiceByIdGet_1(id, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
    * @summary 通过d获取角色权限 Get role permissions through ID
    * @param {string} id 角色权限ID role permission id
    * @param {*} [options] Override http request option.
@@ -871,6 +1730,23 @@ export class MicroServicesManagerApi extends BaseAPI {
   ) {
     return MicroServicesManagerApiFp(this.configuration)
       .apiAppMicroServicesManagerIdRolePermissionsByIdGet(id, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary 通过d获取角色权限 Get role permissions through ID
+   * @param {string} id 角色权限ID role permission id
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof MicroServicesManagerApi
+   */
+  public apiAppMicroServicesManagerIdRolePermissionsByIdGet_2(
+    id: string,
+    options?: AxiosRequestConfig,
+  ) {
+    return MicroServicesManagerApiFp(this.configuration)
+      .apiAppMicroServicesManagerIdRolePermissionsByIdGet_2(id, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -893,6 +1769,23 @@ export class MicroServicesManagerApi extends BaseAPI {
 
   /**
    *
+   * @summary 删除微服务 Delete micro service
+   * @param {Array<string>} ids ID列表 ids
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof MicroServicesManagerApi
+   */
+  public apiAppMicroServicesManagerMicroServiceDelete_3(
+    ids: Array<string>,
+    options?: AxiosRequestConfig,
+  ) {
+    return MicroServicesManagerApiFp(this.configuration)
+      .apiAppMicroServicesManagerMicroServiceDelete_3(ids, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
    * @summary 添加微服务 Add microservices
    * @param {AddMicroServiceInput} [addMicroServiceInput]
    * @param {*} [options] Override http request option.
@@ -905,6 +1798,23 @@ export class MicroServicesManagerApi extends BaseAPI {
   ) {
     return MicroServicesManagerApiFp(this.configuration)
       .apiAppMicroServicesManagerMicroServicePost(addMicroServiceInput, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary 添加微服务 Add microservices
+   * @param {AddMicroServiceInput} [addMicroServiceInput]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof MicroServicesManagerApi
+   */
+  public apiAppMicroServicesManagerMicroServicePost_4(
+    addMicroServiceInput?: AddMicroServiceInput,
+    options?: AxiosRequestConfig,
+  ) {
+    return MicroServicesManagerApiFp(this.configuration)
+      .apiAppMicroServicesManagerMicroServicePost_4(addMicroServiceInput, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -927,6 +1837,23 @@ export class MicroServicesManagerApi extends BaseAPI {
 
   /**
    *
+   * @summary 更新微服务 Update microservices
+   * @param {UpdateMicroServiceInput} [updateMicroServiceInput]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof MicroServicesManagerApi
+   */
+  public apiAppMicroServicesManagerMicroServicePut_5(
+    updateMicroServiceInput?: UpdateMicroServiceInput,
+    options?: AxiosRequestConfig,
+  ) {
+    return MicroServicesManagerApiFp(this.configuration)
+      .apiAppMicroServicesManagerMicroServicePut_5(updateMicroServiceInput, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
    * @summary 获取微服务 Get micro services
    * @param {string} [keywords] 根据关键字检索 query key words
    * @param {*} [options] Override http request option.
@@ -944,6 +1871,23 @@ export class MicroServicesManagerApi extends BaseAPI {
 
   /**
    *
+   * @summary 获取微服务 Get micro services
+   * @param {string} [keywords] 根据关键字检索 query key words
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof MicroServicesManagerApi
+   */
+  public apiAppMicroServicesManagerMicroServicesGet_6(
+    keywords?: string,
+    options?: AxiosRequestConfig,
+  ) {
+    return MicroServicesManagerApiFp(this.configuration)
+      .apiAppMicroServicesManagerMicroServicesGet_6(keywords, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
    * @summary 删除角色权限 Delete role permissions
    * @param {Array<string>} ids ID列表 ids
    * @param {*} [options] Override http request option.
@@ -956,6 +1900,23 @@ export class MicroServicesManagerApi extends BaseAPI {
   ) {
     return MicroServicesManagerApiFp(this.configuration)
       .apiAppMicroServicesManagerRolePermissionsDelete(ids, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary 删除角色权限 Delete role permissions
+   * @param {Array<string>} ids ID列表 ids
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof MicroServicesManagerApi
+   */
+  public apiAppMicroServicesManagerRolePermissionsDelete_7(
+    ids: Array<string>,
+    options?: AxiosRequestConfig,
+  ) {
+    return MicroServicesManagerApiFp(this.configuration)
+      .apiAppMicroServicesManagerRolePermissionsDelete_7(ids, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -980,6 +1941,25 @@ export class MicroServicesManagerApi extends BaseAPI {
 
   /**
    *
+   * @summary 获取角色权限 Get role permissions
+   * @param {string} [tenantId] 租户Id tenant id
+   * @param {string} [role] 角色 role name
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof MicroServicesManagerApi
+   */
+  public apiAppMicroServicesManagerRolePermissionsGet_8(
+    tenantId?: string,
+    role?: string,
+    options?: AxiosRequestConfig,
+  ) {
+    return MicroServicesManagerApiFp(this.configuration)
+      .apiAppMicroServicesManagerRolePermissionsGet_8(tenantId, role, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
    * @summary 添加角色权限 Add role permissions
    * @param {AddRolePermissionsInput} [addRolePermissionsInput]
    * @param {*} [options] Override http request option.
@@ -997,6 +1977,23 @@ export class MicroServicesManagerApi extends BaseAPI {
 
   /**
    *
+   * @summary 添加角色权限 Add role permissions
+   * @param {AddRolePermissionsInput} [addRolePermissionsInput]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof MicroServicesManagerApi
+   */
+  public apiAppMicroServicesManagerRolePermissionsPost_9(
+    addRolePermissionsInput?: AddRolePermissionsInput,
+    options?: AxiosRequestConfig,
+  ) {
+    return MicroServicesManagerApiFp(this.configuration)
+      .apiAppMicroServicesManagerRolePermissionsPost_9(addRolePermissionsInput, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
    * @summary 更新角色权限 Update role permissions
    * @param {UpdateRolePermissionsInput} [updateRolePermissionsInput]
    * @param {*} [options] Override http request option.
@@ -1009,6 +2006,23 @@ export class MicroServicesManagerApi extends BaseAPI {
   ) {
     return MicroServicesManagerApiFp(this.configuration)
       .apiAppMicroServicesManagerRolePermissionsPut(updateRolePermissionsInput, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary 更新角色权限 Update role permissions
+   * @param {UpdateRolePermissionsInput} [updateRolePermissionsInput]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof MicroServicesManagerApi
+   */
+  public apiAppMicroServicesManagerRolePermissionsPut_10(
+    updateRolePermissionsInput?: UpdateRolePermissionsInput,
+    options?: AxiosRequestConfig,
+  ) {
+    return MicroServicesManagerApiFp(this.configuration)
+      .apiAppMicroServicesManagerRolePermissionsPut_10(updateRolePermissionsInput, options)
       .then((request) => request(this.axios, this.basePath))
   }
 }

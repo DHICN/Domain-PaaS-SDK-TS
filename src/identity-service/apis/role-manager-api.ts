@@ -71,6 +71,57 @@ export const RoleManagerApiAxiosParamCreator = function (configuration?: Configu
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
 
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        queryRolesInput,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 查询角色 Query role
+     * @param {QueryRolesInput} [queryRolesInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiAppRoleManagerQueryRolesPost_1: async (
+      queryRolesInput?: QueryRolesInput,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/app/roleManager/queryRoles`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
       setSearchParams(localVarUrlObj, localVarQueryParameter)
@@ -114,6 +165,57 @@ export const RoleManagerApiAxiosParamCreator = function (configuration?: Configu
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
 
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        addRoleInput,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 添加角色 Add role
+     * @param {AddRoleInput} [addRoleInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiAppRoleManagerRolePost_2: async (
+      addRoleInput?: AddRoleInput,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/app/roleManager/role`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
       setSearchParams(localVarUrlObj, localVarQueryParameter)
@@ -156,6 +258,57 @@ export const RoleManagerApiAxiosParamCreator = function (configuration?: Configu
       const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        updateRoleInput,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 更新角色 Update role
+     * @param {UpdateRoleInput} [updateRoleInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiAppRoleManagerRolePut_3: async (
+      updateRoleInput?: UpdateRoleInput,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/app/roleManager/role`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
@@ -202,6 +355,56 @@ export const RoleManagerApiAxiosParamCreator = function (configuration?: Configu
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
 
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      if (ids !== undefined) {
+        localVarQueryParameter['Ids'] = ids
+      }
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 删除角色 Delete role
+     * @param {Array<string>} ids ID列表 ids
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiAppRoleManagerRolesDelete_4: async (
+      ids: Array<string>,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'ids' is not null or undefined
+      assertParamExists('apiAppRoleManagerRolesDelete_4', 'ids', ids)
+      const localVarPath = `/api/app/roleManager/roles`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
       if (ids !== undefined) {
         localVarQueryParameter['Ids'] = ids
       }
@@ -237,6 +440,46 @@ export const RoleManagerApiAxiosParamCreator = function (configuration?: Configu
       const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 获取租户下的角色 Get roles under tenants
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiAppRoleManagerRolesGet_5: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+      const localVarPath = `/api/app/roleManager/roles`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
       setSearchParams(localVarUrlObj, localVarQueryParameter)
       let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
@@ -280,6 +523,23 @@ export const RoleManagerApiFp = function (configuration?: Configuration) {
     },
     /**
      *
+     * @summary 查询角色 Query role
+     * @param {QueryRolesInput} [queryRolesInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiAppRoleManagerQueryRolesPost_1(
+      queryRolesInput?: QueryRolesInput,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<RoleDto>>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiAppRoleManagerQueryRolesPost_1(
+        queryRolesInput,
+        options,
+      )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
      * @summary 添加角色 Add role
      * @param {AddRoleInput} [addRoleInput]
      * @param {*} [options] Override http request option.
@@ -290,6 +550,23 @@ export const RoleManagerApiFp = function (configuration?: Configuration) {
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
       const localVarAxiosArgs = await localVarAxiosParamCreator.apiAppRoleManagerRolePost(
+        addRoleInput,
+        options,
+      )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
+     * @summary 添加角色 Add role
+     * @param {AddRoleInput} [addRoleInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiAppRoleManagerRolePost_2(
+      addRoleInput?: AddRoleInput,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiAppRoleManagerRolePost_2(
         addRoleInput,
         options,
       )
@@ -314,6 +591,23 @@ export const RoleManagerApiFp = function (configuration?: Configuration) {
     },
     /**
      *
+     * @summary 更新角色 Update role
+     * @param {UpdateRoleInput} [updateRoleInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiAppRoleManagerRolePut_3(
+      updateRoleInput?: UpdateRoleInput,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiAppRoleManagerRolePut_3(
+        updateRoleInput,
+        options,
+      )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
      * @summary 删除角色 Delete role
      * @param {Array<string>} ids ID列表 ids
      * @param {*} [options] Override http request option.
@@ -331,6 +625,23 @@ export const RoleManagerApiFp = function (configuration?: Configuration) {
     },
     /**
      *
+     * @summary 删除角色 Delete role
+     * @param {Array<string>} ids ID列表 ids
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiAppRoleManagerRolesDelete_4(
+      ids: Array<string>,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiAppRoleManagerRolesDelete_4(
+        ids,
+        options,
+      )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
      * @summary 获取租户下的角色 Get roles under tenants
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -341,6 +652,20 @@ export const RoleManagerApiFp = function (configuration?: Configuration) {
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<GuidStringStringKeyValue>>
     > {
       const localVarAxiosArgs = await localVarAxiosParamCreator.apiAppRoleManagerRolesGet(options)
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
+     * @summary 获取租户下的角色 Get roles under tenants
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiAppRoleManagerRolesGet_5(
+      options?: AxiosRequestConfig,
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<GuidStringStringKeyValue>>
+    > {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiAppRoleManagerRolesGet_5(options)
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
   }
@@ -374,6 +699,21 @@ export const RoleManagerApiFactory = function (
     },
     /**
      *
+     * @summary 查询角色 Query role
+     * @param {QueryRolesInput} [queryRolesInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiAppRoleManagerQueryRolesPost_1(
+      queryRolesInput?: QueryRolesInput,
+      options?: any,
+    ): AxiosPromise<Array<RoleDto>> {
+      return localVarFp
+        .apiAppRoleManagerQueryRolesPost_1(queryRolesInput, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
      * @summary 添加角色 Add role
      * @param {AddRoleInput} [addRoleInput]
      * @param {*} [options] Override http request option.
@@ -382,6 +722,18 @@ export const RoleManagerApiFactory = function (
     apiAppRoleManagerRolePost(addRoleInput?: AddRoleInput, options?: any): AxiosPromise<object> {
       return localVarFp
         .apiAppRoleManagerRolePost(addRoleInput, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @summary 添加角色 Add role
+     * @param {AddRoleInput} [addRoleInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiAppRoleManagerRolePost_2(addRoleInput?: AddRoleInput, options?: any): AxiosPromise<object> {
+      return localVarFp
+        .apiAppRoleManagerRolePost_2(addRoleInput, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -401,6 +753,21 @@ export const RoleManagerApiFactory = function (
     },
     /**
      *
+     * @summary 更新角色 Update role
+     * @param {UpdateRoleInput} [updateRoleInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiAppRoleManagerRolePut_3(
+      updateRoleInput?: UpdateRoleInput,
+      options?: any,
+    ): AxiosPromise<object> {
+      return localVarFp
+        .apiAppRoleManagerRolePut_3(updateRoleInput, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
      * @summary 删除角色 Delete role
      * @param {Array<string>} ids ID列表 ids
      * @param {*} [options] Override http request option.
@@ -413,6 +780,18 @@ export const RoleManagerApiFactory = function (
     },
     /**
      *
+     * @summary 删除角色 Delete role
+     * @param {Array<string>} ids ID列表 ids
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiAppRoleManagerRolesDelete_4(ids: Array<string>, options?: any): AxiosPromise<object> {
+      return localVarFp
+        .apiAppRoleManagerRolesDelete_4(ids, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
      * @summary 获取租户下的角色 Get roles under tenants
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -420,6 +799,17 @@ export const RoleManagerApiFactory = function (
     apiAppRoleManagerRolesGet(options?: any): AxiosPromise<Array<GuidStringStringKeyValue>> {
       return localVarFp
         .apiAppRoleManagerRolesGet(options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @summary 获取租户下的角色 Get roles under tenants
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiAppRoleManagerRolesGet_5(options?: any): AxiosPromise<Array<GuidStringStringKeyValue>> {
+      return localVarFp
+        .apiAppRoleManagerRolesGet_5(options)
         .then((request) => request(axios, basePath))
     },
   }
@@ -451,6 +841,23 @@ export class RoleManagerApi extends BaseAPI {
 
   /**
    *
+   * @summary 查询角色 Query role
+   * @param {QueryRolesInput} [queryRolesInput]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof RoleManagerApi
+   */
+  public apiAppRoleManagerQueryRolesPost_1(
+    queryRolesInput?: QueryRolesInput,
+    options?: AxiosRequestConfig,
+  ) {
+    return RoleManagerApiFp(this.configuration)
+      .apiAppRoleManagerQueryRolesPost_1(queryRolesInput, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
    * @summary 添加角色 Add role
    * @param {AddRoleInput} [addRoleInput]
    * @param {*} [options] Override http request option.
@@ -460,6 +867,20 @@ export class RoleManagerApi extends BaseAPI {
   public apiAppRoleManagerRolePost(addRoleInput?: AddRoleInput, options?: AxiosRequestConfig) {
     return RoleManagerApiFp(this.configuration)
       .apiAppRoleManagerRolePost(addRoleInput, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary 添加角色 Add role
+   * @param {AddRoleInput} [addRoleInput]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof RoleManagerApi
+   */
+  public apiAppRoleManagerRolePost_2(addRoleInput?: AddRoleInput, options?: AxiosRequestConfig) {
+    return RoleManagerApiFp(this.configuration)
+      .apiAppRoleManagerRolePost_2(addRoleInput, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -479,6 +900,23 @@ export class RoleManagerApi extends BaseAPI {
 
   /**
    *
+   * @summary 更新角色 Update role
+   * @param {UpdateRoleInput} [updateRoleInput]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof RoleManagerApi
+   */
+  public apiAppRoleManagerRolePut_3(
+    updateRoleInput?: UpdateRoleInput,
+    options?: AxiosRequestConfig,
+  ) {
+    return RoleManagerApiFp(this.configuration)
+      .apiAppRoleManagerRolePut_3(updateRoleInput, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
    * @summary 删除角色 Delete role
    * @param {Array<string>} ids ID列表 ids
    * @param {*} [options] Override http request option.
@@ -493,6 +931,20 @@ export class RoleManagerApi extends BaseAPI {
 
   /**
    *
+   * @summary 删除角色 Delete role
+   * @param {Array<string>} ids ID列表 ids
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof RoleManagerApi
+   */
+  public apiAppRoleManagerRolesDelete_4(ids: Array<string>, options?: AxiosRequestConfig) {
+    return RoleManagerApiFp(this.configuration)
+      .apiAppRoleManagerRolesDelete_4(ids, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
    * @summary 获取租户下的角色 Get roles under tenants
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
@@ -501,6 +953,19 @@ export class RoleManagerApi extends BaseAPI {
   public apiAppRoleManagerRolesGet(options?: AxiosRequestConfig) {
     return RoleManagerApiFp(this.configuration)
       .apiAppRoleManagerRolesGet(options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary 获取租户下的角色 Get roles under tenants
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof RoleManagerApi
+   */
+  public apiAppRoleManagerRolesGet_5(options?: AxiosRequestConfig) {
+    return RoleManagerApiFp(this.configuration)
+      .apiAppRoleManagerRolesGet_5(options)
       .then((request) => request(this.axios, this.basePath))
   }
 }

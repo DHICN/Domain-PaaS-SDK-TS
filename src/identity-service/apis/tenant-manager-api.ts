@@ -35,9 +35,13 @@ import { AddCustomTenantInput } from '../models'
 // @ts-ignore
 import { AddTenantInput } from '../models'
 // @ts-ignore
+import { DownloadTenantConfigParam } from '../models'
+// @ts-ignore
 import { FunctionDto } from '../models'
 // @ts-ignore
 import { GetSystemsOutput } from '../models'
+// @ts-ignore
+import { GetTenantTempConfigOutput } from '../models'
 // @ts-ignore
 import { GetTenantsBySysOutput } from '../models'
 // @ts-ignore
@@ -81,6 +85,48 @@ export const TenantManagerApiAxiosParamCreator = function (configuration?: Confi
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
 
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary /api/app/tenantManager/initSuperAdmin
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiAppTenantManagerInitSuperAdminPost_1: async (
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/app/tenantManager/initSuperAdmin`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
       setSearchParams(localVarUrlObj, localVarQueryParameter)
       let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
       localVarRequestOptions.headers = {
@@ -116,6 +162,54 @@ export const TenantManagerApiAxiosParamCreator = function (configuration?: Confi
       const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      if (tenantNumber !== undefined) {
+        localVarQueryParameter['TenantNumber'] = tenantNumber
+      }
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 生成License数据 Generate licence data
+     * @param {number} [tenantNumber] 租户个数 tenant number
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiAppTenantManagerLicenseDatasGet_2: async (
+      tenantNumber?: number,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/app/tenantManager/licenseDatas`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
       if (tenantNumber !== undefined) {
         localVarQueryParameter['TenantNumber'] = tenantNumber
@@ -155,6 +249,48 @@ export const TenantManagerApiAxiosParamCreator = function (configuration?: Confi
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
 
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 刷新租户缓存 Refresh tenant cache
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiAppTenantManagerRefreshTenantGet_3: async (
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/app/tenantManager/refreshTenant`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
       setSearchParams(localVarUrlObj, localVarQueryParameter)
       let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
       localVarRequestOptions.headers = {
@@ -190,6 +326,49 @@ export const TenantManagerApiAxiosParamCreator = function (configuration?: Confi
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
 
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 获取所有的系统 Get all the systems
+     * @param {*} [options] Override http request option.
+     * @deprecated
+     * @throws {RequiredError}
+     */
+    apiAppTenantManagerSystemsGet_4: async (
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/app/tenantManager/systems`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
       setSearchParams(localVarUrlObj, localVarQueryParameter)
       let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
       localVarRequestOptions.headers = {
@@ -224,6 +403,49 @@ export const TenantManagerApiAxiosParamCreator = function (configuration?: Confi
       const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 获取所有的系统详细信息 Get all the systems detailed information
+     * @param {*} [options] Override http request option.
+     * @deprecated
+     * @throws {RequiredError}
+     */
+    apiAppTenantManagerSystemsWithTypeGet_5: async (
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/app/tenantManager/systemsWithType`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
       setSearchParams(localVarUrlObj, localVarQueryParameter)
       let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
@@ -262,6 +484,56 @@ export const TenantManagerApiAxiosParamCreator = function (configuration?: Confi
       const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      if (id !== undefined) {
+        localVarQueryParameter['Id'] = id
+      }
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 删除租户 Delete tenant
+     * @param {string} id ID id
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiAppTenantManagerTenantDelete_6: async (
+      id: string,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'id' is not null or undefined
+      assertParamExists('apiAppTenantManagerTenantDelete_6', 'id', id)
+      const localVarPath = `/api/app/tenantManager/tenant`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
       if (id !== undefined) {
         localVarQueryParameter['Id'] = id
@@ -312,6 +584,59 @@ export const TenantManagerApiAxiosParamCreator = function (configuration?: Confi
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
 
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 获取租户个性化信息 Get tenant personalized information
+     * @param {string} tenantId 租户ID tenant id
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiAppTenantManagerTenantPersonalizedinfoTenantIdGet_7: async (
+      tenantId: string,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'tenantId' is not null or undefined
+      assertParamExists(
+        'apiAppTenantManagerTenantPersonalizedinfoTenantIdGet_7',
+        'tenantId',
+        tenantId,
+      )
+      const localVarPath = `/api/app/tenantManager/tenantPersonalizedinfo/{tenantId}`.replace(
+        `{${'tenantId'}}`,
+        encodeURIComponent(String(tenantId)),
+      )
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
       setSearchParams(localVarUrlObj, localVarQueryParameter)
       let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
       localVarRequestOptions.headers = {
@@ -348,6 +673,58 @@ export const TenantManagerApiAxiosParamCreator = function (configuration?: Confi
       const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        addTenantInput,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 添加租户 Add tenant
+     * @param {AddTenantInput} [addTenantInput]
+     * @param {*} [options] Override http request option.
+     * @deprecated
+     * @throws {RequiredError}
+     */
+    apiAppTenantManagerTenantPost_8: async (
+      addTenantInput?: AddTenantInput,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/app/tenantManager/tenant`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
@@ -392,6 +769,58 @@ export const TenantManagerApiAxiosParamCreator = function (configuration?: Confi
       const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        updateTenantInput,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 修改租户信息 Update tenant information
+     * @param {UpdateTenantInput} [updateTenantInput]
+     * @param {*} [options] Override http request option.
+     * @deprecated
+     * @throws {RequiredError}
+     */
+    apiAppTenantManagerTenantPut_9: async (
+      updateTenantInput?: UpdateTenantInput,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/app/tenantManager/tenant`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
@@ -442,6 +871,56 @@ export const TenantManagerApiAxiosParamCreator = function (configuration?: Confi
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
 
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 获取系统下的租户 Get tenants by systerm id
+     * @param {string} systemId 系统ID system id
+     * @param {*} [options] Override http request option.
+     * @deprecated
+     * @throws {RequiredError}
+     */
+    apiAppTenantManagerTenantsBySystemIdSystemIdGet_10: async (
+      systemId: string,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'systemId' is not null or undefined
+      assertParamExists('apiAppTenantManagerTenantsBySystemIdSystemIdGet_10', 'systemId', systemId)
+      const localVarPath = `/api/app/tenantManager/tenantsBySystemId/{systemId}`.replace(
+        `{${'systemId'}}`,
+        encodeURIComponent(String(systemId)),
+      )
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
       setSearchParams(localVarUrlObj, localVarQueryParameter)
       let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
       localVarRequestOptions.headers = {
@@ -480,6 +959,61 @@ export const TenantManagerApiAxiosParamCreator = function (configuration?: Confi
       const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      if (name !== undefined) {
+        localVarQueryParameter['Name'] = name
+      }
+
+      if (systemId !== undefined) {
+        localVarQueryParameter['SystemId'] = systemId
+      }
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 查询租户列表 Query tenant list
+     * @param {string} [name] 租户名称 tenant name
+     * @param {string} [systemId] 系统ID system id
+     * @param {*} [options] Override http request option.
+     * @deprecated
+     * @throws {RequiredError}
+     */
+    apiAppTenantManagerTenantsGet_11: async (
+      name?: string,
+      systemId?: string,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/app/tenantManager/tenants`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
       if (name !== undefined) {
         localVarQueryParameter['Name'] = name
@@ -525,6 +1059,10 @@ export const TenantManagerApiAxiosParamCreator = function (configuration?: Confi
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
 
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
       setSearchParams(localVarUrlObj, localVarQueryParameter)
@@ -536,6 +1074,147 @@ export const TenantManagerApiAxiosParamCreator = function (configuration?: Confi
       }
       localVarRequestOptions.data = serializeDataIfNeeded(
         addCustomTenantInput,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary /api/v1/tenant/add-tenant
+     * @param {AddCustomTenantInput} [addCustomTenantInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1TenantAddTenantPost_12: async (
+      addCustomTenantInput?: AddCustomTenantInput,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/tenant/add-tenant`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        addCustomTenantInput,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 下载租户初始化配置项目
+     * @param {DownloadTenantConfigParam} [downloadTenantConfigParam]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1TenantDownloadConfigsPost: async (
+      downloadTenantConfigParam?: DownloadTenantConfigParam,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/tenant/download-configs`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        downloadTenantConfigParam,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 下载租户初始化配置项目
+     * @param {DownloadTenantConfigParam} [downloadTenantConfigParam]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1TenantDownloadConfigsPost_13: async (
+      downloadTenantConfigParam?: DownloadTenantConfigParam,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/tenant/download-configs`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        downloadTenantConfigParam,
         localVarRequestOptions,
         configuration,
       )
@@ -564,6 +1243,10 @@ export const TenantManagerApiAxiosParamCreator = function (configuration?: Confi
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
 
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
       setSearchParams(localVarUrlObj, localVarQueryParameter)
       let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
       localVarRequestOptions.headers = {
@@ -571,6 +1254,136 @@ export const TenantManagerApiAxiosParamCreator = function (configuration?: Confi
         ...headersFromBaseOptions,
         ...options.headers,
       }
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 获取租户下所有的有权限的系统功能 Get all functions
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1TenantFunctionsGet_14: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/tenant/functions`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 获取租户基于功能模板的临时初始化配置的minio bucket和objectname
+     * @param {DownloadTenantConfigParam} [downloadTenantConfigParam]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1TenantGetTempConfigsPost: async (
+      downloadTenantConfigParam?: DownloadTenantConfigParam,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/tenant/get-temp-configs`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        downloadTenantConfigParam,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 获取租户基于功能模板的临时初始化配置的minio bucket和objectname
+     * @param {DownloadTenantConfigParam} [downloadTenantConfigParam]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1TenantGetTempConfigsPost_15: async (
+      downloadTenantConfigParam?: DownloadTenantConfigParam,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/tenant/get-temp-configs`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        downloadTenantConfigParam,
+        localVarRequestOptions,
+        configuration,
+      )
 
       return {
         url: toPathString(localVarUrlObj),
@@ -599,6 +1412,54 @@ export const TenantManagerApiAxiosParamCreator = function (configuration?: Confi
       const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      if (customId !== undefined) {
+        localVarQueryParameter['customId'] = customId
+      }
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 获取客户下的租户 Get tenants by custom id
+     * @param {string} [customId] 系统ID system id
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1TenantListTenantsByCustomGet_16: async (
+      customId?: string,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/tenant/list-tenants/by-custom`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
       if (customId !== undefined) {
         localVarQueryParameter['customId'] = customId
@@ -641,6 +1502,60 @@ export const TenantManagerApiAxiosParamCreator = function (configuration?: Confi
       const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      if (name !== undefined) {
+        localVarQueryParameter['Name'] = name
+      }
+
+      if (customId !== undefined) {
+        localVarQueryParameter['CustomId'] = customId
+      }
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 查询租户列表 Query tenant list
+     * @param {string} [name] 租户名称 tenant name
+     * @param {string} [customId] 系统ID system id
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1TenantListTenantsGet_17: async (
+      name?: string,
+      customId?: string,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/tenant/list-tenants`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
       if (name !== undefined) {
         localVarQueryParameter['Name'] = name
@@ -685,6 +1600,57 @@ export const TenantManagerApiAxiosParamCreator = function (configuration?: Confi
       const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        updateCustomTenantInput,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary /api/v1/tenant/update-tenant
+     * @param {UpdateCustomTenantInput} [updateCustomTenantInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1TenantUpdateTenantPut_18: async (
+      updateCustomTenantInput?: UpdateCustomTenantInput,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/tenant/update-tenant`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
@@ -731,6 +1697,19 @@ export const TenantManagerApiFp = function (configuration?: Configuration) {
     },
     /**
      *
+     * @summary /api/app/tenantManager/initSuperAdmin
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiAppTenantManagerInitSuperAdminPost_1(
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiAppTenantManagerInitSuperAdminPost_1(options)
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
      * @summary 生成License数据 Generate licence data
      * @param {number} [tenantNumber] 租户个数 tenant number
      * @param {*} [options] Override http request option.
@@ -748,6 +1727,21 @@ export const TenantManagerApiFp = function (configuration?: Configuration) {
     },
     /**
      *
+     * @summary 生成License数据 Generate licence data
+     * @param {number} [tenantNumber] 租户个数 tenant number
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiAppTenantManagerLicenseDatasGet_2(
+      tenantNumber?: number,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<LicenseData>> {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiAppTenantManagerLicenseDatasGet_2(tenantNumber, options)
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
      * @summary 刷新租户缓存 Refresh tenant cache
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -757,6 +1751,19 @@ export const TenantManagerApiFp = function (configuration?: Configuration) {
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.apiAppTenantManagerRefreshTenantGet(options)
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
+     * @summary 刷新租户缓存 Refresh tenant cache
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiAppTenantManagerRefreshTenantGet_3(
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiAppTenantManagerRefreshTenantGet_3(options)
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**
@@ -777,6 +1784,22 @@ export const TenantManagerApiFp = function (configuration?: Configuration) {
     },
     /**
      *
+     * @summary 获取所有的系统 Get all the systems
+     * @param {*} [options] Override http request option.
+     * @deprecated
+     * @throws {RequiredError}
+     */
+    async apiAppTenantManagerSystemsGet_4(
+      options?: AxiosRequestConfig,
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<GuidStringKeyValue>>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiAppTenantManagerSystemsGet_4(options)
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
      * @summary 获取所有的系统详细信息 Get all the systems detailed information
      * @param {*} [options] Override http request option.
      * @deprecated
@@ -793,6 +1816,22 @@ export const TenantManagerApiFp = function (configuration?: Configuration) {
     },
     /**
      *
+     * @summary 获取所有的系统详细信息 Get all the systems detailed information
+     * @param {*} [options] Override http request option.
+     * @deprecated
+     * @throws {RequiredError}
+     */
+    async apiAppTenantManagerSystemsWithTypeGet_5(
+      options?: AxiosRequestConfig,
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<GetSystemsOutput>>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiAppTenantManagerSystemsWithTypeGet_5(options)
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
      * @summary 删除租户 Delete tenant
      * @param {string} id ID id
      * @param {*} [options] Override http request option.
@@ -803,6 +1842,23 @@ export const TenantManagerApiFp = function (configuration?: Configuration) {
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
       const localVarAxiosArgs = await localVarAxiosParamCreator.apiAppTenantManagerTenantDelete(
+        id,
+        options,
+      )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
+     * @summary 删除租户 Delete tenant
+     * @param {string} id ID id
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiAppTenantManagerTenantDelete_6(
+      id: string,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiAppTenantManagerTenantDelete_6(
         id,
         options,
       )
@@ -830,6 +1886,26 @@ export const TenantManagerApiFp = function (configuration?: Configuration) {
     },
     /**
      *
+     * @summary 获取租户个性化信息 Get tenant personalized information
+     * @param {string} tenantId 租户ID tenant id
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiAppTenantManagerTenantPersonalizedinfoTenantIdGet_7(
+      tenantId: string,
+      options?: AxiosRequestConfig,
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<TenantPersonalizedInfoDto>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiAppTenantManagerTenantPersonalizedinfoTenantIdGet_7(
+          tenantId,
+          options,
+        )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
      * @summary 添加租户 Add tenant
      * @param {AddTenantInput} [addTenantInput]
      * @param {*} [options] Override http request option.
@@ -841,6 +1917,24 @@ export const TenantManagerApiFp = function (configuration?: Configuration) {
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<string>> {
       const localVarAxiosArgs = await localVarAxiosParamCreator.apiAppTenantManagerTenantPost(
+        addTenantInput,
+        options,
+      )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
+     * @summary 添加租户 Add tenant
+     * @param {AddTenantInput} [addTenantInput]
+     * @param {*} [options] Override http request option.
+     * @deprecated
+     * @throws {RequiredError}
+     */
+    async apiAppTenantManagerTenantPost_8(
+      addTenantInput?: AddTenantInput,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<string>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiAppTenantManagerTenantPost_8(
         addTenantInput,
         options,
       )
@@ -866,6 +1960,24 @@ export const TenantManagerApiFp = function (configuration?: Configuration) {
     },
     /**
      *
+     * @summary 修改租户信息 Update tenant information
+     * @param {UpdateTenantInput} [updateTenantInput]
+     * @param {*} [options] Override http request option.
+     * @deprecated
+     * @throws {RequiredError}
+     */
+    async apiAppTenantManagerTenantPut_9(
+      updateTenantInput?: UpdateTenantInput,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiAppTenantManagerTenantPut_9(
+        updateTenantInput,
+        options,
+      )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
      * @summary 获取系统下的租户 Get tenants by systerm id
      * @param {string} systemId 系统ID system id
      * @param {*} [options] Override http request option.
@@ -880,6 +1992,27 @@ export const TenantManagerApiFp = function (configuration?: Configuration) {
     > {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.apiAppTenantManagerTenantsBySystemIdSystemIdGet(
+          systemId,
+          options,
+        )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
+     * @summary 获取系统下的租户 Get tenants by systerm id
+     * @param {string} systemId 系统ID system id
+     * @param {*} [options] Override http request option.
+     * @deprecated
+     * @throws {RequiredError}
+     */
+    async apiAppTenantManagerTenantsBySystemIdSystemIdGet_10(
+      systemId: string,
+      options?: AxiosRequestConfig,
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<GetTenantsBySysOutput>>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiAppTenantManagerTenantsBySystemIdSystemIdGet_10(
           systemId,
           options,
         )
@@ -910,6 +2043,29 @@ export const TenantManagerApiFp = function (configuration?: Configuration) {
     },
     /**
      *
+     * @summary 查询租户列表 Query tenant list
+     * @param {string} [name] 租户名称 tenant name
+     * @param {string} [systemId] 系统ID system id
+     * @param {*} [options] Override http request option.
+     * @deprecated
+     * @throws {RequiredError}
+     */
+    async apiAppTenantManagerTenantsGet_11(
+      name?: string,
+      systemId?: string,
+      options?: AxiosRequestConfig,
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<GetTenantsOutput>>
+    > {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiAppTenantManagerTenantsGet_11(
+        name,
+        systemId,
+        options,
+      )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
      * @summary /api/v1/tenant/add-tenant
      * @param {AddCustomTenantInput} [addCustomTenantInput]
      * @param {*} [options] Override http request option.
@@ -927,6 +2083,57 @@ export const TenantManagerApiFp = function (configuration?: Configuration) {
     },
     /**
      *
+     * @summary /api/v1/tenant/add-tenant
+     * @param {AddCustomTenantInput} [addCustomTenantInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1TenantAddTenantPost_12(
+      addCustomTenantInput?: AddCustomTenantInput,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<string>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1TenantAddTenantPost_12(
+        addCustomTenantInput,
+        options,
+      )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
+     * @summary 下载租户初始化配置项目
+     * @param {DownloadTenantConfigParam} [downloadTenantConfigParam]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1TenantDownloadConfigsPost(
+      downloadTenantConfigParam?: DownloadTenantConfigParam,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1TenantDownloadConfigsPost(
+        downloadTenantConfigParam,
+        options,
+      )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
+     * @summary 下载租户初始化配置项目
+     * @param {DownloadTenantConfigParam} [downloadTenantConfigParam]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1TenantDownloadConfigsPost_13(
+      downloadTenantConfigParam?: DownloadTenantConfigParam,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1TenantDownloadConfigsPost_13(
+        downloadTenantConfigParam,
+        options,
+      )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
      * @summary 获取租户下所有的有权限的系统功能 Get all functions
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -935,6 +2142,56 @@ export const TenantManagerApiFp = function (configuration?: Configuration) {
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<FunctionDto>>> {
       const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1TenantFunctionsGet(options)
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
+     * @summary 获取租户下所有的有权限的系统功能 Get all functions
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1TenantFunctionsGet_14(
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<FunctionDto>>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1TenantFunctionsGet_14(options)
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
+     * @summary 获取租户基于功能模板的临时初始化配置的minio bucket和objectname
+     * @param {DownloadTenantConfigParam} [downloadTenantConfigParam]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1TenantGetTempConfigsPost(
+      downloadTenantConfigParam?: DownloadTenantConfigParam,
+      options?: AxiosRequestConfig,
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetTenantTempConfigOutput>
+    > {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1TenantGetTempConfigsPost(
+        downloadTenantConfigParam,
+        options,
+      )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
+     * @summary 获取租户基于功能模板的临时初始化配置的minio bucket和objectname
+     * @param {DownloadTenantConfigParam} [downloadTenantConfigParam]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1TenantGetTempConfigsPost_15(
+      downloadTenantConfigParam?: DownloadTenantConfigParam,
+      options?: AxiosRequestConfig,
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetTenantTempConfigOutput>
+    > {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1TenantGetTempConfigsPost_15(
+        downloadTenantConfigParam,
+        options,
+      )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**
@@ -954,6 +2211,23 @@ export const TenantManagerApiFp = function (configuration?: Configuration) {
         customId,
         options,
       )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
+     * @summary 获取客户下的租户 Get tenants by custom id
+     * @param {string} [customId] 系统ID system id
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1TenantListTenantsByCustomGet_16(
+      customId?: string,
+      options?: AxiosRequestConfig,
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<GetTenantsOutput>>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiV1TenantListTenantsByCustomGet_16(customId, options)
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**
@@ -980,6 +2254,28 @@ export const TenantManagerApiFp = function (configuration?: Configuration) {
     },
     /**
      *
+     * @summary 查询租户列表 Query tenant list
+     * @param {string} [name] 租户名称 tenant name
+     * @param {string} [customId] 系统ID system id
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1TenantListTenantsGet_17(
+      name?: string,
+      customId?: string,
+      options?: AxiosRequestConfig,
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<GetTenantsOutput>>
+    > {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1TenantListTenantsGet_17(
+        name,
+        customId,
+        options,
+      )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
      * @summary /api/v1/tenant/update-tenant
      * @param {UpdateCustomTenantInput} [updateCustomTenantInput]
      * @param {*} [options] Override http request option.
@@ -990,6 +2286,23 @@ export const TenantManagerApiFp = function (configuration?: Configuration) {
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
       const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1TenantUpdateTenantPut(
+        updateCustomTenantInput,
+        options,
+      )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
+     * @summary /api/v1/tenant/update-tenant
+     * @param {UpdateCustomTenantInput} [updateCustomTenantInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1TenantUpdateTenantPut_18(
+      updateCustomTenantInput?: UpdateCustomTenantInput,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1TenantUpdateTenantPut_18(
         updateCustomTenantInput,
         options,
       )
@@ -1022,6 +2335,17 @@ export const TenantManagerApiFactory = function (
     },
     /**
      *
+     * @summary /api/app/tenantManager/initSuperAdmin
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiAppTenantManagerInitSuperAdminPost_1(options?: any): AxiosPromise<object> {
+      return localVarFp
+        .apiAppTenantManagerInitSuperAdminPost_1(options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
      * @summary 生成License数据 Generate licence data
      * @param {number} [tenantNumber] 租户个数 tenant number
      * @param {*} [options] Override http request option.
@@ -1037,6 +2361,21 @@ export const TenantManagerApiFactory = function (
     },
     /**
      *
+     * @summary 生成License数据 Generate licence data
+     * @param {number} [tenantNumber] 租户个数 tenant number
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiAppTenantManagerLicenseDatasGet_2(
+      tenantNumber?: number,
+      options?: any,
+    ): AxiosPromise<LicenseData> {
+      return localVarFp
+        .apiAppTenantManagerLicenseDatasGet_2(tenantNumber, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
      * @summary 刷新租户缓存 Refresh tenant cache
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -1044,6 +2383,17 @@ export const TenantManagerApiFactory = function (
     apiAppTenantManagerRefreshTenantGet(options?: any): AxiosPromise<object> {
       return localVarFp
         .apiAppTenantManagerRefreshTenantGet(options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @summary 刷新租户缓存 Refresh tenant cache
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiAppTenantManagerRefreshTenantGet_3(options?: any): AxiosPromise<object> {
+      return localVarFp
+        .apiAppTenantManagerRefreshTenantGet_3(options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -1060,6 +2410,18 @@ export const TenantManagerApiFactory = function (
     },
     /**
      *
+     * @summary 获取所有的系统 Get all the systems
+     * @param {*} [options] Override http request option.
+     * @deprecated
+     * @throws {RequiredError}
+     */
+    apiAppTenantManagerSystemsGet_4(options?: any): AxiosPromise<Array<GuidStringKeyValue>> {
+      return localVarFp
+        .apiAppTenantManagerSystemsGet_4(options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
      * @summary 获取所有的系统详细信息 Get all the systems detailed information
      * @param {*} [options] Override http request option.
      * @deprecated
@@ -1068,6 +2430,18 @@ export const TenantManagerApiFactory = function (
     apiAppTenantManagerSystemsWithTypeGet(options?: any): AxiosPromise<Array<GetSystemsOutput>> {
       return localVarFp
         .apiAppTenantManagerSystemsWithTypeGet(options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @summary 获取所有的系统详细信息 Get all the systems detailed information
+     * @param {*} [options] Override http request option.
+     * @deprecated
+     * @throws {RequiredError}
+     */
+    apiAppTenantManagerSystemsWithTypeGet_5(options?: any): AxiosPromise<Array<GetSystemsOutput>> {
+      return localVarFp
+        .apiAppTenantManagerSystemsWithTypeGet_5(options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -1084,6 +2458,18 @@ export const TenantManagerApiFactory = function (
     },
     /**
      *
+     * @summary 删除租户 Delete tenant
+     * @param {string} id ID id
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiAppTenantManagerTenantDelete_6(id: string, options?: any): AxiosPromise<object> {
+      return localVarFp
+        .apiAppTenantManagerTenantDelete_6(id, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
      * @summary 获取租户个性化信息 Get tenant personalized information
      * @param {string} tenantId 租户ID tenant id
      * @param {*} [options] Override http request option.
@@ -1095,6 +2481,21 @@ export const TenantManagerApiFactory = function (
     ): AxiosPromise<TenantPersonalizedInfoDto> {
       return localVarFp
         .apiAppTenantManagerTenantPersonalizedinfoTenantIdGet(tenantId, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @summary 获取租户个性化信息 Get tenant personalized information
+     * @param {string} tenantId 租户ID tenant id
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiAppTenantManagerTenantPersonalizedinfoTenantIdGet_7(
+      tenantId: string,
+      options?: any,
+    ): AxiosPromise<TenantPersonalizedInfoDto> {
+      return localVarFp
+        .apiAppTenantManagerTenantPersonalizedinfoTenantIdGet_7(tenantId, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -1115,6 +2516,22 @@ export const TenantManagerApiFactory = function (
     },
     /**
      *
+     * @summary 添加租户 Add tenant
+     * @param {AddTenantInput} [addTenantInput]
+     * @param {*} [options] Override http request option.
+     * @deprecated
+     * @throws {RequiredError}
+     */
+    apiAppTenantManagerTenantPost_8(
+      addTenantInput?: AddTenantInput,
+      options?: any,
+    ): AxiosPromise<string> {
+      return localVarFp
+        .apiAppTenantManagerTenantPost_8(addTenantInput, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
      * @summary 修改租户信息 Update tenant information
      * @param {UpdateTenantInput} [updateTenantInput]
      * @param {*} [options] Override http request option.
@@ -1131,6 +2548,22 @@ export const TenantManagerApiFactory = function (
     },
     /**
      *
+     * @summary 修改租户信息 Update tenant information
+     * @param {UpdateTenantInput} [updateTenantInput]
+     * @param {*} [options] Override http request option.
+     * @deprecated
+     * @throws {RequiredError}
+     */
+    apiAppTenantManagerTenantPut_9(
+      updateTenantInput?: UpdateTenantInput,
+      options?: any,
+    ): AxiosPromise<object> {
+      return localVarFp
+        .apiAppTenantManagerTenantPut_9(updateTenantInput, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
      * @summary 获取系统下的租户 Get tenants by systerm id
      * @param {string} systemId 系统ID system id
      * @param {*} [options] Override http request option.
@@ -1143,6 +2576,22 @@ export const TenantManagerApiFactory = function (
     ): AxiosPromise<Array<GetTenantsBySysOutput>> {
       return localVarFp
         .apiAppTenantManagerTenantsBySystemIdSystemIdGet(systemId, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @summary 获取系统下的租户 Get tenants by systerm id
+     * @param {string} systemId 系统ID system id
+     * @param {*} [options] Override http request option.
+     * @deprecated
+     * @throws {RequiredError}
+     */
+    apiAppTenantManagerTenantsBySystemIdSystemIdGet_10(
+      systemId: string,
+      options?: any,
+    ): AxiosPromise<Array<GetTenantsBySysOutput>> {
+      return localVarFp
+        .apiAppTenantManagerTenantsBySystemIdSystemIdGet_10(systemId, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -1165,6 +2614,24 @@ export const TenantManagerApiFactory = function (
     },
     /**
      *
+     * @summary 查询租户列表 Query tenant list
+     * @param {string} [name] 租户名称 tenant name
+     * @param {string} [systemId] 系统ID system id
+     * @param {*} [options] Override http request option.
+     * @deprecated
+     * @throws {RequiredError}
+     */
+    apiAppTenantManagerTenantsGet_11(
+      name?: string,
+      systemId?: string,
+      options?: any,
+    ): AxiosPromise<Array<GetTenantsOutput>> {
+      return localVarFp
+        .apiAppTenantManagerTenantsGet_11(name, systemId, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
      * @summary /api/v1/tenant/add-tenant
      * @param {AddCustomTenantInput} [addCustomTenantInput]
      * @param {*} [options] Override http request option.
@@ -1180,12 +2647,98 @@ export const TenantManagerApiFactory = function (
     },
     /**
      *
+     * @summary /api/v1/tenant/add-tenant
+     * @param {AddCustomTenantInput} [addCustomTenantInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1TenantAddTenantPost_12(
+      addCustomTenantInput?: AddCustomTenantInput,
+      options?: any,
+    ): AxiosPromise<string> {
+      return localVarFp
+        .apiV1TenantAddTenantPost_12(addCustomTenantInput, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @summary 下载租户初始化配置项目
+     * @param {DownloadTenantConfigParam} [downloadTenantConfigParam]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1TenantDownloadConfigsPost(
+      downloadTenantConfigParam?: DownloadTenantConfigParam,
+      options?: any,
+    ): AxiosPromise<void> {
+      return localVarFp
+        .apiV1TenantDownloadConfigsPost(downloadTenantConfigParam, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @summary 下载租户初始化配置项目
+     * @param {DownloadTenantConfigParam} [downloadTenantConfigParam]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1TenantDownloadConfigsPost_13(
+      downloadTenantConfigParam?: DownloadTenantConfigParam,
+      options?: any,
+    ): AxiosPromise<void> {
+      return localVarFp
+        .apiV1TenantDownloadConfigsPost_13(downloadTenantConfigParam, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
      * @summary 获取租户下所有的有权限的系统功能 Get all functions
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiV1TenantFunctionsGet(options?: any): AxiosPromise<Array<FunctionDto>> {
       return localVarFp.apiV1TenantFunctionsGet(options).then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @summary 获取租户下所有的有权限的系统功能 Get all functions
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1TenantFunctionsGet_14(options?: any): AxiosPromise<Array<FunctionDto>> {
+      return localVarFp
+        .apiV1TenantFunctionsGet_14(options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @summary 获取租户基于功能模板的临时初始化配置的minio bucket和objectname
+     * @param {DownloadTenantConfigParam} [downloadTenantConfigParam]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1TenantGetTempConfigsPost(
+      downloadTenantConfigParam?: DownloadTenantConfigParam,
+      options?: any,
+    ): AxiosPromise<GetTenantTempConfigOutput> {
+      return localVarFp
+        .apiV1TenantGetTempConfigsPost(downloadTenantConfigParam, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @summary 获取租户基于功能模板的临时初始化配置的minio bucket和objectname
+     * @param {DownloadTenantConfigParam} [downloadTenantConfigParam]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1TenantGetTempConfigsPost_15(
+      downloadTenantConfigParam?: DownloadTenantConfigParam,
+      options?: any,
+    ): AxiosPromise<GetTenantTempConfigOutput> {
+      return localVarFp
+        .apiV1TenantGetTempConfigsPost_15(downloadTenantConfigParam, options)
+        .then((request) => request(axios, basePath))
     },
     /**
      *
@@ -1200,6 +2753,21 @@ export const TenantManagerApiFactory = function (
     ): AxiosPromise<Array<GetTenantsOutput>> {
       return localVarFp
         .apiV1TenantListTenantsByCustomGet(customId, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @summary 获取客户下的租户 Get tenants by custom id
+     * @param {string} [customId] 系统ID system id
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1TenantListTenantsByCustomGet_16(
+      customId?: string,
+      options?: any,
+    ): AxiosPromise<Array<GetTenantsOutput>> {
+      return localVarFp
+        .apiV1TenantListTenantsByCustomGet_16(customId, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -1221,6 +2789,23 @@ export const TenantManagerApiFactory = function (
     },
     /**
      *
+     * @summary 查询租户列表 Query tenant list
+     * @param {string} [name] 租户名称 tenant name
+     * @param {string} [customId] 系统ID system id
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1TenantListTenantsGet_17(
+      name?: string,
+      customId?: string,
+      options?: any,
+    ): AxiosPromise<Array<GetTenantsOutput>> {
+      return localVarFp
+        .apiV1TenantListTenantsGet_17(name, customId, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
      * @summary /api/v1/tenant/update-tenant
      * @param {UpdateCustomTenantInput} [updateCustomTenantInput]
      * @param {*} [options] Override http request option.
@@ -1232,6 +2817,21 @@ export const TenantManagerApiFactory = function (
     ): AxiosPromise<object> {
       return localVarFp
         .apiV1TenantUpdateTenantPut(updateCustomTenantInput, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @summary /api/v1/tenant/update-tenant
+     * @param {UpdateCustomTenantInput} [updateCustomTenantInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1TenantUpdateTenantPut_18(
+      updateCustomTenantInput?: UpdateCustomTenantInput,
+      options?: any,
+    ): AxiosPromise<object> {
+      return localVarFp
+        .apiV1TenantUpdateTenantPut_18(updateCustomTenantInput, options)
         .then((request) => request(axios, basePath))
     },
   }
@@ -1259,6 +2859,19 @@ export class TenantManagerApi extends BaseAPI {
 
   /**
    *
+   * @summary /api/app/tenantManager/initSuperAdmin
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof TenantManagerApi
+   */
+  public apiAppTenantManagerInitSuperAdminPost_1(options?: AxiosRequestConfig) {
+    return TenantManagerApiFp(this.configuration)
+      .apiAppTenantManagerInitSuperAdminPost_1(options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
    * @summary 生成License数据 Generate licence data
    * @param {number} [tenantNumber] 租户个数 tenant number
    * @param {*} [options] Override http request option.
@@ -1273,6 +2886,20 @@ export class TenantManagerApi extends BaseAPI {
 
   /**
    *
+   * @summary 生成License数据 Generate licence data
+   * @param {number} [tenantNumber] 租户个数 tenant number
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof TenantManagerApi
+   */
+  public apiAppTenantManagerLicenseDatasGet_2(tenantNumber?: number, options?: AxiosRequestConfig) {
+    return TenantManagerApiFp(this.configuration)
+      .apiAppTenantManagerLicenseDatasGet_2(tenantNumber, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
    * @summary 刷新租户缓存 Refresh tenant cache
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
@@ -1281,6 +2908,19 @@ export class TenantManagerApi extends BaseAPI {
   public apiAppTenantManagerRefreshTenantGet(options?: AxiosRequestConfig) {
     return TenantManagerApiFp(this.configuration)
       .apiAppTenantManagerRefreshTenantGet(options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary 刷新租户缓存 Refresh tenant cache
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof TenantManagerApi
+   */
+  public apiAppTenantManagerRefreshTenantGet_3(options?: AxiosRequestConfig) {
+    return TenantManagerApiFp(this.configuration)
+      .apiAppTenantManagerRefreshTenantGet_3(options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -1300,6 +2940,20 @@ export class TenantManagerApi extends BaseAPI {
 
   /**
    *
+   * @summary 获取所有的系统 Get all the systems
+   * @param {*} [options] Override http request option.
+   * @deprecated
+   * @throws {RequiredError}
+   * @memberof TenantManagerApi
+   */
+  public apiAppTenantManagerSystemsGet_4(options?: AxiosRequestConfig) {
+    return TenantManagerApiFp(this.configuration)
+      .apiAppTenantManagerSystemsGet_4(options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
    * @summary 获取所有的系统详细信息 Get all the systems detailed information
    * @param {*} [options] Override http request option.
    * @deprecated
@@ -1309,6 +2963,20 @@ export class TenantManagerApi extends BaseAPI {
   public apiAppTenantManagerSystemsWithTypeGet(options?: AxiosRequestConfig) {
     return TenantManagerApiFp(this.configuration)
       .apiAppTenantManagerSystemsWithTypeGet(options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary 获取所有的系统详细信息 Get all the systems detailed information
+   * @param {*} [options] Override http request option.
+   * @deprecated
+   * @throws {RequiredError}
+   * @memberof TenantManagerApi
+   */
+  public apiAppTenantManagerSystemsWithTypeGet_5(options?: AxiosRequestConfig) {
+    return TenantManagerApiFp(this.configuration)
+      .apiAppTenantManagerSystemsWithTypeGet_5(options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -1328,6 +2996,20 @@ export class TenantManagerApi extends BaseAPI {
 
   /**
    *
+   * @summary 删除租户 Delete tenant
+   * @param {string} id ID id
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof TenantManagerApi
+   */
+  public apiAppTenantManagerTenantDelete_6(id: string, options?: AxiosRequestConfig) {
+    return TenantManagerApiFp(this.configuration)
+      .apiAppTenantManagerTenantDelete_6(id, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
    * @summary 获取租户个性化信息 Get tenant personalized information
    * @param {string} tenantId 租户ID tenant id
    * @param {*} [options] Override http request option.
@@ -1340,6 +3022,23 @@ export class TenantManagerApi extends BaseAPI {
   ) {
     return TenantManagerApiFp(this.configuration)
       .apiAppTenantManagerTenantPersonalizedinfoTenantIdGet(tenantId, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary 获取租户个性化信息 Get tenant personalized information
+   * @param {string} tenantId 租户ID tenant id
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof TenantManagerApi
+   */
+  public apiAppTenantManagerTenantPersonalizedinfoTenantIdGet_7(
+    tenantId: string,
+    options?: AxiosRequestConfig,
+  ) {
+    return TenantManagerApiFp(this.configuration)
+      .apiAppTenantManagerTenantPersonalizedinfoTenantIdGet_7(tenantId, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -1363,6 +3062,24 @@ export class TenantManagerApi extends BaseAPI {
 
   /**
    *
+   * @summary 添加租户 Add tenant
+   * @param {AddTenantInput} [addTenantInput]
+   * @param {*} [options] Override http request option.
+   * @deprecated
+   * @throws {RequiredError}
+   * @memberof TenantManagerApi
+   */
+  public apiAppTenantManagerTenantPost_8(
+    addTenantInput?: AddTenantInput,
+    options?: AxiosRequestConfig,
+  ) {
+    return TenantManagerApiFp(this.configuration)
+      .apiAppTenantManagerTenantPost_8(addTenantInput, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
    * @summary 修改租户信息 Update tenant information
    * @param {UpdateTenantInput} [updateTenantInput]
    * @param {*} [options] Override http request option.
@@ -1381,6 +3098,24 @@ export class TenantManagerApi extends BaseAPI {
 
   /**
    *
+   * @summary 修改租户信息 Update tenant information
+   * @param {UpdateTenantInput} [updateTenantInput]
+   * @param {*} [options] Override http request option.
+   * @deprecated
+   * @throws {RequiredError}
+   * @memberof TenantManagerApi
+   */
+  public apiAppTenantManagerTenantPut_9(
+    updateTenantInput?: UpdateTenantInput,
+    options?: AxiosRequestConfig,
+  ) {
+    return TenantManagerApiFp(this.configuration)
+      .apiAppTenantManagerTenantPut_9(updateTenantInput, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
    * @summary 获取系统下的租户 Get tenants by systerm id
    * @param {string} systemId 系统ID system id
    * @param {*} [options] Override http request option.
@@ -1394,6 +3129,24 @@ export class TenantManagerApi extends BaseAPI {
   ) {
     return TenantManagerApiFp(this.configuration)
       .apiAppTenantManagerTenantsBySystemIdSystemIdGet(systemId, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary 获取系统下的租户 Get tenants by systerm id
+   * @param {string} systemId 系统ID system id
+   * @param {*} [options] Override http request option.
+   * @deprecated
+   * @throws {RequiredError}
+   * @memberof TenantManagerApi
+   */
+  public apiAppTenantManagerTenantsBySystemIdSystemIdGet_10(
+    systemId: string,
+    options?: AxiosRequestConfig,
+  ) {
+    return TenantManagerApiFp(this.configuration)
+      .apiAppTenantManagerTenantsBySystemIdSystemIdGet_10(systemId, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -1419,6 +3172,26 @@ export class TenantManagerApi extends BaseAPI {
 
   /**
    *
+   * @summary 查询租户列表 Query tenant list
+   * @param {string} [name] 租户名称 tenant name
+   * @param {string} [systemId] 系统ID system id
+   * @param {*} [options] Override http request option.
+   * @deprecated
+   * @throws {RequiredError}
+   * @memberof TenantManagerApi
+   */
+  public apiAppTenantManagerTenantsGet_11(
+    name?: string,
+    systemId?: string,
+    options?: AxiosRequestConfig,
+  ) {
+    return TenantManagerApiFp(this.configuration)
+      .apiAppTenantManagerTenantsGet_11(name, systemId, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
    * @summary /api/v1/tenant/add-tenant
    * @param {AddCustomTenantInput} [addCustomTenantInput]
    * @param {*} [options] Override http request option.
@@ -1431,6 +3204,57 @@ export class TenantManagerApi extends BaseAPI {
   ) {
     return TenantManagerApiFp(this.configuration)
       .apiV1TenantAddTenantPost(addCustomTenantInput, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary /api/v1/tenant/add-tenant
+   * @param {AddCustomTenantInput} [addCustomTenantInput]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof TenantManagerApi
+   */
+  public apiV1TenantAddTenantPost_12(
+    addCustomTenantInput?: AddCustomTenantInput,
+    options?: AxiosRequestConfig,
+  ) {
+    return TenantManagerApiFp(this.configuration)
+      .apiV1TenantAddTenantPost_12(addCustomTenantInput, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary 下载租户初始化配置项目
+   * @param {DownloadTenantConfigParam} [downloadTenantConfigParam]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof TenantManagerApi
+   */
+  public apiV1TenantDownloadConfigsPost(
+    downloadTenantConfigParam?: DownloadTenantConfigParam,
+    options?: AxiosRequestConfig,
+  ) {
+    return TenantManagerApiFp(this.configuration)
+      .apiV1TenantDownloadConfigsPost(downloadTenantConfigParam, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary 下载租户初始化配置项目
+   * @param {DownloadTenantConfigParam} [downloadTenantConfigParam]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof TenantManagerApi
+   */
+  public apiV1TenantDownloadConfigsPost_13(
+    downloadTenantConfigParam?: DownloadTenantConfigParam,
+    options?: AxiosRequestConfig,
+  ) {
+    return TenantManagerApiFp(this.configuration)
+      .apiV1TenantDownloadConfigsPost_13(downloadTenantConfigParam, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -1449,6 +3273,53 @@ export class TenantManagerApi extends BaseAPI {
 
   /**
    *
+   * @summary 获取租户下所有的有权限的系统功能 Get all functions
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof TenantManagerApi
+   */
+  public apiV1TenantFunctionsGet_14(options?: AxiosRequestConfig) {
+    return TenantManagerApiFp(this.configuration)
+      .apiV1TenantFunctionsGet_14(options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary 获取租户基于功能模板的临时初始化配置的minio bucket和objectname
+   * @param {DownloadTenantConfigParam} [downloadTenantConfigParam]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof TenantManagerApi
+   */
+  public apiV1TenantGetTempConfigsPost(
+    downloadTenantConfigParam?: DownloadTenantConfigParam,
+    options?: AxiosRequestConfig,
+  ) {
+    return TenantManagerApiFp(this.configuration)
+      .apiV1TenantGetTempConfigsPost(downloadTenantConfigParam, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary 获取租户基于功能模板的临时初始化配置的minio bucket和objectname
+   * @param {DownloadTenantConfigParam} [downloadTenantConfigParam]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof TenantManagerApi
+   */
+  public apiV1TenantGetTempConfigsPost_15(
+    downloadTenantConfigParam?: DownloadTenantConfigParam,
+    options?: AxiosRequestConfig,
+  ) {
+    return TenantManagerApiFp(this.configuration)
+      .apiV1TenantGetTempConfigsPost_15(downloadTenantConfigParam, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
    * @summary 获取客户下的租户 Get tenants by custom id
    * @param {string} [customId] 系统ID system id
    * @param {*} [options] Override http request option.
@@ -1458,6 +3329,20 @@ export class TenantManagerApi extends BaseAPI {
   public apiV1TenantListTenantsByCustomGet(customId?: string, options?: AxiosRequestConfig) {
     return TenantManagerApiFp(this.configuration)
       .apiV1TenantListTenantsByCustomGet(customId, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary 获取客户下的租户 Get tenants by custom id
+   * @param {string} [customId] 系统ID system id
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof TenantManagerApi
+   */
+  public apiV1TenantListTenantsByCustomGet_16(customId?: string, options?: AxiosRequestConfig) {
+    return TenantManagerApiFp(this.configuration)
+      .apiV1TenantListTenantsByCustomGet_16(customId, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -1478,6 +3363,25 @@ export class TenantManagerApi extends BaseAPI {
 
   /**
    *
+   * @summary 查询租户列表 Query tenant list
+   * @param {string} [name] 租户名称 tenant name
+   * @param {string} [customId] 系统ID system id
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof TenantManagerApi
+   */
+  public apiV1TenantListTenantsGet_17(
+    name?: string,
+    customId?: string,
+    options?: AxiosRequestConfig,
+  ) {
+    return TenantManagerApiFp(this.configuration)
+      .apiV1TenantListTenantsGet_17(name, customId, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
    * @summary /api/v1/tenant/update-tenant
    * @param {UpdateCustomTenantInput} [updateCustomTenantInput]
    * @param {*} [options] Override http request option.
@@ -1490,6 +3394,23 @@ export class TenantManagerApi extends BaseAPI {
   ) {
     return TenantManagerApiFp(this.configuration)
       .apiV1TenantUpdateTenantPut(updateCustomTenantInput, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary /api/v1/tenant/update-tenant
+   * @param {UpdateCustomTenantInput} [updateCustomTenantInput]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof TenantManagerApi
+   */
+  public apiV1TenantUpdateTenantPut_18(
+    updateCustomTenantInput?: UpdateCustomTenantInput,
+    options?: AxiosRequestConfig,
+  ) {
+    return TenantManagerApiFp(this.configuration)
+      .apiV1TenantUpdateTenantPut_18(updateCustomTenantInput, options)
       .then((request) => request(this.axios, this.basePath))
   }
 }
