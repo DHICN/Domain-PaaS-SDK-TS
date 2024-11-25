@@ -88,6 +88,58 @@ export const MenuPerApiAxiosParamCreator = function (configuration?: Configurati
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
 
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        addButtonPerInput,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 添加按钮权限 Add button permissions
+     * @param {AddButtonPerInput} [addButtonPerInput]
+     * @param {*} [options] Override http request option.
+     * @deprecated
+     * @throws {RequiredError}
+     */
+    apiAppMenuPerButtonPerPost_1: async (
+      addButtonPerInput?: AddButtonPerInput,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/app/menuPer/buttonPer`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
       setSearchParams(localVarUrlObj, localVarQueryParameter)
@@ -130,6 +182,57 @@ export const MenuPerApiAxiosParamCreator = function (configuration?: Configurati
       const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        updateButtonPerInput,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 更新按钮权限 Update button permissions
+     * @param {UpdateButtonPerInput} [updateButtonPerInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiAppMenuPerButtonPerPut_2: async (
+      updateButtonPerInput?: UpdateButtonPerInput,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/app/menuPer/buttonPer`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
@@ -174,6 +277,57 @@ export const MenuPerApiAxiosParamCreator = function (configuration?: Configurati
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
 
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        buttonPerUnderRoleInput,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 角色所拥有的按钮权限 Button permissions of role
+     * @param {ButtonPerUnderRoleInput} [buttonPerUnderRoleInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiAppMenuPerButtonPerUnderRolePost_3: async (
+      buttonPerUnderRoleInput?: ButtonPerUnderRoleInput,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/app/menuPer/buttonPerUnderRole`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
       setSearchParams(localVarUrlObj, localVarQueryParameter)
@@ -216,6 +370,57 @@ export const MenuPerApiAxiosParamCreator = function (configuration?: Configurati
       const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        buttonPerUnderMenuInput,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 获取菜单下的按钮权限 Get button permissions under the menu
+     * @param {ButtonPerUnderMenuInput} [buttonPerUnderMenuInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiAppMenuPerButtonPersUnderMenuPost_4: async (
+      buttonPerUnderMenuInput?: ButtonPerUnderMenuInput,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/app/menuPer/buttonPersUnderMenu`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
@@ -260,6 +465,57 @@ export const MenuPerApiAxiosParamCreator = function (configuration?: Configurati
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
 
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        copyMenuInput,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary /api/app/menuPer/copyMenuPer
+     * @param {CopyMenuInput} [copyMenuInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiAppMenuPerCopyMenuPerPost_5: async (
+      copyMenuInput?: CopyMenuInput,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/app/menuPer/copyMenuPer`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
       setSearchParams(localVarUrlObj, localVarQueryParameter)
@@ -303,6 +559,58 @@ export const MenuPerApiAxiosParamCreator = function (configuration?: Configurati
       const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        grantPerInput,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     * 整体权限赋值,旧的会被新的全覆盖 old permission of the role will be overall overrided
+     * @summary 赋予角色权限 Grant role permissions
+     * @param {GrantPerInput} [grantPerInput]
+     * @param {*} [options] Override http request option.
+     * @deprecated
+     * @throws {RequiredError}
+     */
+    apiAppMenuPerGrantPerPost_6: async (
+      grantPerInput?: GrantPerInput,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/app/menuPer/grantPer`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
@@ -352,6 +660,55 @@ export const MenuPerApiAxiosParamCreator = function (configuration?: Configurati
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
 
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 获取权限详细信息 Get permission details
+     * @param {string} id 权限ID permission id
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiAppMenuPerIdPerDetailsGet_7: async (
+      id: string,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'id' is not null or undefined
+      assertParamExists('apiAppMenuPerIdPerDetailsGet_7', 'id', id)
+      const localVarPath = `/api/app/menuPer/{id}/perDetails`.replace(
+        `{${'id'}}`,
+        encodeURIComponent(String(id)),
+      )
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
       setSearchParams(localVarUrlObj, localVarQueryParameter)
       let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
       localVarRequestOptions.headers = {
@@ -388,6 +745,58 @@ export const MenuPerApiAxiosParamCreator = function (configuration?: Configurati
       const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        addMenuInput,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 添加菜单权限 Add menu permissions
+     * @param {AddMenuInput} [addMenuInput]
+     * @param {*} [options] Override http request option.
+     * @deprecated
+     * @throws {RequiredError}
+     */
+    apiAppMenuPerMenuPerPost_8: async (
+      addMenuInput?: AddMenuInput,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/app/menuPer/menuPer`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
@@ -431,6 +840,57 @@ export const MenuPerApiAxiosParamCreator = function (configuration?: Configurati
       const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        updateMenuInput,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 更新菜单权限 Update menu permissions
+     * @param {UpdateMenuInput} [updateMenuInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiAppMenuPerMenuPerPut_9: async (
+      updateMenuInput?: UpdateMenuInput,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/app/menuPer/menuPer`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
@@ -481,6 +941,56 @@ export const MenuPerApiAxiosParamCreator = function (configuration?: Configurati
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
 
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 获取系统的菜单权限树 Get the menu permission tree of the system
+     * @param {string} systemId 系统ID system id
+     * @param {*} [options] Override http request option.
+     * @deprecated
+     * @throws {RequiredError}
+     */
+    apiAppMenuPerMenuPersTreeSystemIdPost_10: async (
+      systemId: string,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'systemId' is not null or undefined
+      assertParamExists('apiAppMenuPerMenuPersTreeSystemIdPost_10', 'systemId', systemId)
+      const localVarPath = `/api/app/menuPer/menuPersTree/{systemId}`.replace(
+        `{${'systemId'}}`,
+        encodeURIComponent(String(systemId)),
+      )
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
       setSearchParams(localVarUrlObj, localVarQueryParameter)
       let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
       localVarRequestOptions.headers = {
@@ -523,6 +1033,56 @@ export const MenuPerApiAxiosParamCreator = function (configuration?: Configurati
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
 
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     * 已经拥有的菜单/按钮权限（IsCheck = true） already owned menu / button permissions (IsCheck = true)
+     * @summary 角色所拥有的菜单权限 Menu permissions of role
+     * @param {string} roleId 角色ID role id
+     * @param {*} [options] Override http request option.
+     * @deprecated
+     * @throws {RequiredError}
+     */
+    apiAppMenuPerMenuPersUnderRoleRoleIdPost_11: async (
+      roleId: string,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'roleId' is not null or undefined
+      assertParamExists('apiAppMenuPerMenuPersUnderRoleRoleIdPost_11', 'roleId', roleId)
+      const localVarPath = `/api/app/menuPer/menuPersUnderRole/{roleId}`.replace(
+        `{${'roleId'}}`,
+        encodeURIComponent(String(roleId)),
+      )
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
       setSearchParams(localVarUrlObj, localVarQueryParameter)
       let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
       localVarRequestOptions.headers = {
@@ -559,6 +1119,58 @@ export const MenuPerApiAxiosParamCreator = function (configuration?: Configurati
       const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        requestBody,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 角色拥有的权限明细
+     * @param {Array<string>} [requestBody]
+     * @param {*} [options] Override http request option.
+     * @deprecated
+     * @throws {RequiredError}
+     */
+    apiAppMenuPerPerDetailUnderRolePost_12: async (
+      requestBody?: Array<string>,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/app/menuPer/perDetailUnderRole`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
@@ -609,6 +1221,56 @@ export const MenuPerApiAxiosParamCreator = function (configuration?: Configurati
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
 
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 删除菜单/按钮权限 Delete menu / button permissions
+     * @param {string} perId 权限ID permission id
+     * @param {*} [options] Override http request option.
+     * @deprecated
+     * @throws {RequiredError}
+     */
+    apiAppMenuPerPerPerIdDelete_13: async (
+      perId: string,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'perId' is not null or undefined
+      assertParamExists('apiAppMenuPerPerPerIdDelete_13', 'perId', perId)
+      const localVarPath = `/api/app/menuPer/per/{perId}`.replace(
+        `{${'perId'}}`,
+        encodeURIComponent(String(perId)),
+      )
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
       setSearchParams(localVarUrlObj, localVarQueryParameter)
       let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
       localVarRequestOptions.headers = {
@@ -644,6 +1306,57 @@ export const MenuPerApiAxiosParamCreator = function (configuration?: Configurati
       const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        addButtonPerInput,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 添加按钮权限 Add button permissions
+     * @param {AddButtonPerInput} [addButtonPerInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1MenuPerTreeAddBtnPost_14: async (
+      addButtonPerInput?: AddButtonPerInput,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/menu-per-tree/add-btn`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
@@ -688,6 +1401,57 @@ export const MenuPerApiAxiosParamCreator = function (configuration?: Configurati
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
 
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        addMenuInput,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 添加菜单权限 Add menu permissions
+     * @param {AddMenuInput} [addMenuInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1MenuPerTreeAddMenuPost_15: async (
+      addMenuInput?: AddMenuInput,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/menu-per-tree/add-menu`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
       setSearchParams(localVarUrlObj, localVarQueryParameter)
@@ -731,6 +1495,54 @@ export const MenuPerApiAxiosParamCreator = function (configuration?: Configurati
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
 
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      if (functionId !== undefined) {
+        localVarQueryParameter['functionId'] = functionId
+      }
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 获取系统的菜单权限树 Get the menu permission tree of the function
+     * @param {string} [functionId] 功能模块ID function id
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1MenuPerTreeFunctionGet_16: async (
+      functionId?: string,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/menu-per-tree/function`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
       if (functionId !== undefined) {
         localVarQueryParameter['functionId'] = functionId
       }
@@ -770,6 +1582,57 @@ export const MenuPerApiAxiosParamCreator = function (configuration?: Configurati
       const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        grantPerInput,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     * 按功能模块整体权限赋值,旧的会被新的全覆盖 old permission of the role will be overall overrided
+     * @summary 赋予角色权限 Grant role permissions
+     * @param {GrantPerInput} [grantPerInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1MenuPerTreeGrantPerPost_17: async (
+      grantPerInput?: GrantPerInput,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/menu-per-tree/grant-per`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
@@ -814,6 +1677,54 @@ export const MenuPerApiAxiosParamCreator = function (configuration?: Configurati
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
 
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      if (perId !== undefined) {
+        localVarQueryParameter['perId'] = perId
+      }
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 删除菜单/按钮权限 Delete menu / button permissions
+     * @param {string} [perId] 权限ID permission id
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1MenuPerTreeRemovePerDelete_18: async (
+      perId?: string,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/menu-per-tree/remove-per`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
       if (perId !== undefined) {
         localVarQueryParameter['perId'] = perId
       }
@@ -853,6 +1764,57 @@ export const MenuPerApiAxiosParamCreator = function (configuration?: Configurati
       const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        requestBody,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 角色拥有的权限明细
+     * @param {Array<string>} [requestBody]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1MenuPerTreeRoleByCodePost_19: async (
+      requestBody?: Array<string>,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/menu-per-tree/role/by-code`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
@@ -898,6 +1860,60 @@ export const MenuPerApiAxiosParamCreator = function (configuration?: Configurati
       const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      if (roleId !== undefined) {
+        localVarQueryParameter['roleId'] = roleId
+      }
+
+      if (functionId !== undefined) {
+        localVarQueryParameter['functionId'] = functionId
+      }
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     * 已经拥有的菜单/按钮权限（IsCheck = true） already owned menu / button permissions (IsCheck = true)
+     * @summary 角色所拥有的菜单权限 Menu permissions of role
+     * @param {string} [roleId] 角色ID role id
+     * @param {string} [functionId] 可空，如果为空，则从header头中获取functionId
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1MenuPerTreeRoleGet_20: async (
+      roleId?: string,
+      functionId?: string,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/menu-per-tree/role`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
       if (roleId !== undefined) {
         localVarQueryParameter['roleId'] = roleId
@@ -950,6 +1966,24 @@ export const MenuPerApiFp = function (configuration?: Configuration) {
     },
     /**
      *
+     * @summary 添加按钮权限 Add button permissions
+     * @param {AddButtonPerInput} [addButtonPerInput]
+     * @param {*} [options] Override http request option.
+     * @deprecated
+     * @throws {RequiredError}
+     */
+    async apiAppMenuPerButtonPerPost_1(
+      addButtonPerInput?: AddButtonPerInput,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiAppMenuPerButtonPerPost_1(
+        addButtonPerInput,
+        options,
+      )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
      * @summary 更新按钮权限 Update button permissions
      * @param {UpdateButtonPerInput} [updateButtonPerInput]
      * @param {*} [options] Override http request option.
@@ -960,6 +1994,23 @@ export const MenuPerApiFp = function (configuration?: Configuration) {
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
       const localVarAxiosArgs = await localVarAxiosParamCreator.apiAppMenuPerButtonPerPut(
+        updateButtonPerInput,
+        options,
+      )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
+     * @summary 更新按钮权限 Update button permissions
+     * @param {UpdateButtonPerInput} [updateButtonPerInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiAppMenuPerButtonPerPut_2(
+      updateButtonPerInput?: UpdateButtonPerInput,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiAppMenuPerButtonPerPut_2(
         updateButtonPerInput,
         options,
       )
@@ -984,6 +2035,24 @@ export const MenuPerApiFp = function (configuration?: Configuration) {
     },
     /**
      *
+     * @summary 角色所拥有的按钮权限 Button permissions of role
+     * @param {ButtonPerUnderRoleInput} [buttonPerUnderRoleInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiAppMenuPerButtonPerUnderRolePost_3(
+      buttonPerUnderRoleInput?: ButtonPerUnderRoleInput,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<ButtonPer>>> {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiAppMenuPerButtonPerUnderRolePost_3(
+          buttonPerUnderRoleInput,
+          options,
+        )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
      * @summary 获取菜单下的按钮权限 Get button permissions under the menu
      * @param {ButtonPerUnderMenuInput} [buttonPerUnderMenuInput]
      * @param {*} [options] Override http request option.
@@ -1004,6 +2073,26 @@ export const MenuPerApiFp = function (configuration?: Configuration) {
     },
     /**
      *
+     * @summary 获取菜单下的按钮权限 Get button permissions under the menu
+     * @param {ButtonPerUnderMenuInput} [buttonPerUnderMenuInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiAppMenuPerButtonPersUnderMenuPost_4(
+      buttonPerUnderMenuInput?: ButtonPerUnderMenuInput,
+      options?: AxiosRequestConfig,
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<ButtonPerUnderMenuOutput>>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiAppMenuPerButtonPersUnderMenuPost_4(
+          buttonPerUnderMenuInput,
+          options,
+        )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
      * @summary /api/app/menuPer/copyMenuPer
      * @param {CopyMenuInput} [copyMenuInput]
      * @param {*} [options] Override http request option.
@@ -1014,6 +2103,23 @@ export const MenuPerApiFp = function (configuration?: Configuration) {
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
       const localVarAxiosArgs = await localVarAxiosParamCreator.apiAppMenuPerCopyMenuPerPost(
+        copyMenuInput,
+        options,
+      )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
+     * @summary /api/app/menuPer/copyMenuPer
+     * @param {CopyMenuInput} [copyMenuInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiAppMenuPerCopyMenuPerPost_5(
+      copyMenuInput?: CopyMenuInput,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiAppMenuPerCopyMenuPerPost_5(
         copyMenuInput,
         options,
       )
@@ -1038,6 +2144,24 @@ export const MenuPerApiFp = function (configuration?: Configuration) {
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**
+     * 整体权限赋值,旧的会被新的全覆盖 old permission of the role will be overall overrided
+     * @summary 赋予角色权限 Grant role permissions
+     * @param {GrantPerInput} [grantPerInput]
+     * @param {*} [options] Override http request option.
+     * @deprecated
+     * @throws {RequiredError}
+     */
+    async apiAppMenuPerGrantPerPost_6(
+      grantPerInput?: GrantPerInput,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiAppMenuPerGrantPerPost_6(
+        grantPerInput,
+        options,
+      )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
      *
      * @summary 获取权限详细信息 Get permission details
      * @param {string} id 权限ID permission id
@@ -1049,6 +2173,23 @@ export const MenuPerApiFp = function (configuration?: Configuration) {
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PerDetailsOutput>> {
       const localVarAxiosArgs = await localVarAxiosParamCreator.apiAppMenuPerIdPerDetailsGet(
+        id,
+        options,
+      )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
+     * @summary 获取权限详细信息 Get permission details
+     * @param {string} id 权限ID permission id
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiAppMenuPerIdPerDetailsGet_7(
+      id: string,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PerDetailsOutput>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiAppMenuPerIdPerDetailsGet_7(
         id,
         options,
       )
@@ -1074,6 +2215,24 @@ export const MenuPerApiFp = function (configuration?: Configuration) {
     },
     /**
      *
+     * @summary 添加菜单权限 Add menu permissions
+     * @param {AddMenuInput} [addMenuInput]
+     * @param {*} [options] Override http request option.
+     * @deprecated
+     * @throws {RequiredError}
+     */
+    async apiAppMenuPerMenuPerPost_8(
+      addMenuInput?: AddMenuInput,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiAppMenuPerMenuPerPost_8(
+        addMenuInput,
+        options,
+      )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
      * @summary 更新菜单权限 Update menu permissions
      * @param {UpdateMenuInput} [updateMenuInput]
      * @param {*} [options] Override http request option.
@@ -1084,6 +2243,23 @@ export const MenuPerApiFp = function (configuration?: Configuration) {
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
       const localVarAxiosArgs = await localVarAxiosParamCreator.apiAppMenuPerMenuPerPut(
+        updateMenuInput,
+        options,
+      )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
+     * @summary 更新菜单权限 Update menu permissions
+     * @param {UpdateMenuInput} [updateMenuInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiAppMenuPerMenuPerPut_9(
+      updateMenuInput?: UpdateMenuInput,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiAppMenuPerMenuPerPut_9(
         updateMenuInput,
         options,
       )
@@ -1106,6 +2282,22 @@ export const MenuPerApiFp = function (configuration?: Configuration) {
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**
+     *
+     * @summary 获取系统的菜单权限树 Get the menu permission tree of the system
+     * @param {string} systemId 系统ID system id
+     * @param {*} [options] Override http request option.
+     * @deprecated
+     * @throws {RequiredError}
+     */
+    async apiAppMenuPerMenuPersTreeSystemIdPost_10(
+      systemId: string,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<MenuPerTree>>> {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiAppMenuPerMenuPersTreeSystemIdPost_10(systemId, options)
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
      * 已经拥有的菜单/按钮权限（IsCheck = true） already owned menu / button permissions (IsCheck = true)
      * @summary 角色所拥有的菜单权限 Menu permissions of role
      * @param {string} roleId 角色ID role id
@@ -1119,6 +2311,22 @@ export const MenuPerApiFp = function (configuration?: Configuration) {
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<MenuPerTree>>> {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.apiAppMenuPerMenuPersUnderRoleRoleIdPost(roleId, options)
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     * 已经拥有的菜单/按钮权限（IsCheck = true） already owned menu / button permissions (IsCheck = true)
+     * @summary 角色所拥有的菜单权限 Menu permissions of role
+     * @param {string} roleId 角色ID role id
+     * @param {*} [options] Override http request option.
+     * @deprecated
+     * @throws {RequiredError}
+     */
+    async apiAppMenuPerMenuPersUnderRoleRoleIdPost_11(
+      roleId: string,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<MenuPerTree>>> {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiAppMenuPerMenuPersUnderRoleRoleIdPost_11(roleId, options)
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**
@@ -1141,6 +2349,22 @@ export const MenuPerApiFp = function (configuration?: Configuration) {
     },
     /**
      *
+     * @summary 角色拥有的权限明细
+     * @param {Array<string>} [requestBody]
+     * @param {*} [options] Override http request option.
+     * @deprecated
+     * @throws {RequiredError}
+     */
+    async apiAppMenuPerPerDetailUnderRolePost_12(
+      requestBody?: Array<string>,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<PermissionTree>>> {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiAppMenuPerPerDetailUnderRolePost_12(requestBody, options)
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
      * @summary 删除菜单/按钮权限 Delete menu / button permissions
      * @param {string} perId 权限ID permission id
      * @param {*} [options] Override http request option.
@@ -1152,6 +2376,24 @@ export const MenuPerApiFp = function (configuration?: Configuration) {
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
       const localVarAxiosArgs = await localVarAxiosParamCreator.apiAppMenuPerPerPerIdDelete(
+        perId,
+        options,
+      )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
+     * @summary 删除菜单/按钮权限 Delete menu / button permissions
+     * @param {string} perId 权限ID permission id
+     * @param {*} [options] Override http request option.
+     * @deprecated
+     * @throws {RequiredError}
+     */
+    async apiAppMenuPerPerPerIdDelete_13(
+      perId: string,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiAppMenuPerPerPerIdDelete_13(
         perId,
         options,
       )
@@ -1176,6 +2418,23 @@ export const MenuPerApiFp = function (configuration?: Configuration) {
     },
     /**
      *
+     * @summary 添加按钮权限 Add button permissions
+     * @param {AddButtonPerInput} [addButtonPerInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1MenuPerTreeAddBtnPost_14(
+      addButtonPerInput?: AddButtonPerInput,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1MenuPerTreeAddBtnPost_14(
+        addButtonPerInput,
+        options,
+      )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
      * @summary 添加菜单权限 Add menu permissions
      * @param {AddMenuInput} [addMenuInput]
      * @param {*} [options] Override http request option.
@@ -1186,6 +2445,23 @@ export const MenuPerApiFp = function (configuration?: Configuration) {
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
       const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1MenuPerTreeAddMenuPost(
+        addMenuInput,
+        options,
+      )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
+     * @summary 添加菜单权限 Add menu permissions
+     * @param {AddMenuInput} [addMenuInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1MenuPerTreeAddMenuPost_15(
+      addMenuInput?: AddMenuInput,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1MenuPerTreeAddMenuPost_15(
         addMenuInput,
         options,
       )
@@ -1209,6 +2485,23 @@ export const MenuPerApiFp = function (configuration?: Configuration) {
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**
+     *
+     * @summary 获取系统的菜单权限树 Get the menu permission tree of the function
+     * @param {string} [functionId] 功能模块ID function id
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1MenuPerTreeFunctionGet_16(
+      functionId?: string,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<MenuPerTree>>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1MenuPerTreeFunctionGet_16(
+        functionId,
+        options,
+      )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
      * 按功能模块整体权限赋值,旧的会被新的全覆盖 old permission of the role will be overall overrided
      * @summary 赋予角色权限 Grant role permissions
      * @param {GrantPerInput} [grantPerInput]
@@ -1220,6 +2513,23 @@ export const MenuPerApiFp = function (configuration?: Configuration) {
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
       const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1MenuPerTreeGrantPerPost(
+        grantPerInput,
+        options,
+      )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     * 按功能模块整体权限赋值,旧的会被新的全覆盖 old permission of the role will be overall overrided
+     * @summary 赋予角色权限 Grant role permissions
+     * @param {GrantPerInput} [grantPerInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1MenuPerTreeGrantPerPost_17(
+      grantPerInput?: GrantPerInput,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1MenuPerTreeGrantPerPost_17(
         grantPerInput,
         options,
       )
@@ -1244,6 +2554,23 @@ export const MenuPerApiFp = function (configuration?: Configuration) {
     },
     /**
      *
+     * @summary 删除菜单/按钮权限 Delete menu / button permissions
+     * @param {string} [perId] 权限ID permission id
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1MenuPerTreeRemovePerDelete_18(
+      perId?: string,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1MenuPerTreeRemovePerDelete_18(
+        perId,
+        options,
+      )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
      * @summary 角色拥有的权限明细
      * @param {Array<string>} [requestBody]
      * @param {*} [options] Override http request option.
@@ -1254,6 +2581,23 @@ export const MenuPerApiFp = function (configuration?: Configuration) {
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<PermissionTree>>> {
       const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1MenuPerTreeRoleByCodePost(
+        requestBody,
+        options,
+      )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
+     * @summary 角色拥有的权限明细
+     * @param {Array<string>} [requestBody]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1MenuPerTreeRoleByCodePost_19(
+      requestBody?: Array<string>,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<PermissionTree>>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1MenuPerTreeRoleByCodePost_19(
         requestBody,
         options,
       )
@@ -1273,6 +2617,26 @@ export const MenuPerApiFp = function (configuration?: Configuration) {
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<MenuPerTree>>> {
       const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1MenuPerTreeRoleGet(
+        roleId,
+        functionId,
+        options,
+      )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     * 已经拥有的菜单/按钮权限（IsCheck = true） already owned menu / button permissions (IsCheck = true)
+     * @summary 角色所拥有的菜单权限 Menu permissions of role
+     * @param {string} [roleId] 角色ID role id
+     * @param {string} [functionId] 可空，如果为空，则从header头中获取functionId
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1MenuPerTreeRoleGet_20(
+      roleId?: string,
+      functionId?: string,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<MenuPerTree>>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1MenuPerTreeRoleGet_20(
         roleId,
         functionId,
         options,
@@ -1311,6 +2675,22 @@ export const MenuPerApiFactory = function (
     },
     /**
      *
+     * @summary 添加按钮权限 Add button permissions
+     * @param {AddButtonPerInput} [addButtonPerInput]
+     * @param {*} [options] Override http request option.
+     * @deprecated
+     * @throws {RequiredError}
+     */
+    apiAppMenuPerButtonPerPost_1(
+      addButtonPerInput?: AddButtonPerInput,
+      options?: any,
+    ): AxiosPromise<object> {
+      return localVarFp
+        .apiAppMenuPerButtonPerPost_1(addButtonPerInput, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
      * @summary 更新按钮权限 Update button permissions
      * @param {UpdateButtonPerInput} [updateButtonPerInput]
      * @param {*} [options] Override http request option.
@@ -1322,6 +2702,21 @@ export const MenuPerApiFactory = function (
     ): AxiosPromise<object> {
       return localVarFp
         .apiAppMenuPerButtonPerPut(updateButtonPerInput, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @summary 更新按钮权限 Update button permissions
+     * @param {UpdateButtonPerInput} [updateButtonPerInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiAppMenuPerButtonPerPut_2(
+      updateButtonPerInput?: UpdateButtonPerInput,
+      options?: any,
+    ): AxiosPromise<object> {
+      return localVarFp
+        .apiAppMenuPerButtonPerPut_2(updateButtonPerInput, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -1341,6 +2736,21 @@ export const MenuPerApiFactory = function (
     },
     /**
      *
+     * @summary 角色所拥有的按钮权限 Button permissions of role
+     * @param {ButtonPerUnderRoleInput} [buttonPerUnderRoleInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiAppMenuPerButtonPerUnderRolePost_3(
+      buttonPerUnderRoleInput?: ButtonPerUnderRoleInput,
+      options?: any,
+    ): AxiosPromise<Array<ButtonPer>> {
+      return localVarFp
+        .apiAppMenuPerButtonPerUnderRolePost_3(buttonPerUnderRoleInput, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
      * @summary 获取菜单下的按钮权限 Get button permissions under the menu
      * @param {ButtonPerUnderMenuInput} [buttonPerUnderMenuInput]
      * @param {*} [options] Override http request option.
@@ -1352,6 +2762,21 @@ export const MenuPerApiFactory = function (
     ): AxiosPromise<Array<ButtonPerUnderMenuOutput>> {
       return localVarFp
         .apiAppMenuPerButtonPersUnderMenuPost(buttonPerUnderMenuInput, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @summary 获取菜单下的按钮权限 Get button permissions under the menu
+     * @param {ButtonPerUnderMenuInput} [buttonPerUnderMenuInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiAppMenuPerButtonPersUnderMenuPost_4(
+      buttonPerUnderMenuInput?: ButtonPerUnderMenuInput,
+      options?: any,
+    ): AxiosPromise<Array<ButtonPerUnderMenuOutput>> {
+      return localVarFp
+        .apiAppMenuPerButtonPersUnderMenuPost_4(buttonPerUnderMenuInput, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -1370,6 +2795,21 @@ export const MenuPerApiFactory = function (
         .then((request) => request(axios, basePath))
     },
     /**
+     *
+     * @summary /api/app/menuPer/copyMenuPer
+     * @param {CopyMenuInput} [copyMenuInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiAppMenuPerCopyMenuPerPost_5(
+      copyMenuInput?: CopyMenuInput,
+      options?: any,
+    ): AxiosPromise<object> {
+      return localVarFp
+        .apiAppMenuPerCopyMenuPerPost_5(copyMenuInput, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
      * 整体权限赋值,旧的会被新的全覆盖 old permission of the role will be overall overrided
      * @summary 赋予角色权限 Grant role permissions
      * @param {GrantPerInput} [grantPerInput]
@@ -1380,6 +2820,22 @@ export const MenuPerApiFactory = function (
     apiAppMenuPerGrantPerPost(grantPerInput?: GrantPerInput, options?: any): AxiosPromise<object> {
       return localVarFp
         .apiAppMenuPerGrantPerPost(grantPerInput, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     * 整体权限赋值,旧的会被新的全覆盖 old permission of the role will be overall overrided
+     * @summary 赋予角色权限 Grant role permissions
+     * @param {GrantPerInput} [grantPerInput]
+     * @param {*} [options] Override http request option.
+     * @deprecated
+     * @throws {RequiredError}
+     */
+    apiAppMenuPerGrantPerPost_6(
+      grantPerInput?: GrantPerInput,
+      options?: any,
+    ): AxiosPromise<object> {
+      return localVarFp
+        .apiAppMenuPerGrantPerPost_6(grantPerInput, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -1396,6 +2852,18 @@ export const MenuPerApiFactory = function (
     },
     /**
      *
+     * @summary 获取权限详细信息 Get permission details
+     * @param {string} id 权限ID permission id
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiAppMenuPerIdPerDetailsGet_7(id: string, options?: any): AxiosPromise<PerDetailsOutput> {
+      return localVarFp
+        .apiAppMenuPerIdPerDetailsGet_7(id, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
      * @summary 添加菜单权限 Add menu permissions
      * @param {AddMenuInput} [addMenuInput]
      * @param {*} [options] Override http request option.
@@ -1405,6 +2873,19 @@ export const MenuPerApiFactory = function (
     apiAppMenuPerMenuPerPost(addMenuInput?: AddMenuInput, options?: any): AxiosPromise<object> {
       return localVarFp
         .apiAppMenuPerMenuPerPost(addMenuInput, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @summary 添加菜单权限 Add menu permissions
+     * @param {AddMenuInput} [addMenuInput]
+     * @param {*} [options] Override http request option.
+     * @deprecated
+     * @throws {RequiredError}
+     */
+    apiAppMenuPerMenuPerPost_8(addMenuInput?: AddMenuInput, options?: any): AxiosPromise<object> {
+      return localVarFp
+        .apiAppMenuPerMenuPerPost_8(addMenuInput, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -1424,6 +2905,21 @@ export const MenuPerApiFactory = function (
     },
     /**
      *
+     * @summary 更新菜单权限 Update menu permissions
+     * @param {UpdateMenuInput} [updateMenuInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiAppMenuPerMenuPerPut_9(
+      updateMenuInput?: UpdateMenuInput,
+      options?: any,
+    ): AxiosPromise<object> {
+      return localVarFp
+        .apiAppMenuPerMenuPerPut_9(updateMenuInput, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
      * @summary 获取系统的菜单权限树 Get the menu permission tree of the system
      * @param {string} systemId 系统ID system id
      * @param {*} [options] Override http request option.
@@ -1436,6 +2932,22 @@ export const MenuPerApiFactory = function (
     ): AxiosPromise<Array<MenuPerTree>> {
       return localVarFp
         .apiAppMenuPerMenuPersTreeSystemIdPost(systemId, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @summary 获取系统的菜单权限树 Get the menu permission tree of the system
+     * @param {string} systemId 系统ID system id
+     * @param {*} [options] Override http request option.
+     * @deprecated
+     * @throws {RequiredError}
+     */
+    apiAppMenuPerMenuPersTreeSystemIdPost_10(
+      systemId: string,
+      options?: any,
+    ): AxiosPromise<Array<MenuPerTree>> {
+      return localVarFp
+        .apiAppMenuPerMenuPersTreeSystemIdPost_10(systemId, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -1452,6 +2964,22 @@ export const MenuPerApiFactory = function (
     ): AxiosPromise<Array<MenuPerTree>> {
       return localVarFp
         .apiAppMenuPerMenuPersUnderRoleRoleIdPost(roleId, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     * 已经拥有的菜单/按钮权限（IsCheck = true） already owned menu / button permissions (IsCheck = true)
+     * @summary 角色所拥有的菜单权限 Menu permissions of role
+     * @param {string} roleId 角色ID role id
+     * @param {*} [options] Override http request option.
+     * @deprecated
+     * @throws {RequiredError}
+     */
+    apiAppMenuPerMenuPersUnderRoleRoleIdPost_11(
+      roleId: string,
+      options?: any,
+    ): AxiosPromise<Array<MenuPerTree>> {
+      return localVarFp
+        .apiAppMenuPerMenuPersUnderRoleRoleIdPost_11(roleId, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -1472,6 +3000,22 @@ export const MenuPerApiFactory = function (
     },
     /**
      *
+     * @summary 角色拥有的权限明细
+     * @param {Array<string>} [requestBody]
+     * @param {*} [options] Override http request option.
+     * @deprecated
+     * @throws {RequiredError}
+     */
+    apiAppMenuPerPerDetailUnderRolePost_12(
+      requestBody?: Array<string>,
+      options?: any,
+    ): AxiosPromise<Array<PermissionTree>> {
+      return localVarFp
+        .apiAppMenuPerPerDetailUnderRolePost_12(requestBody, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
      * @summary 删除菜单/按钮权限 Delete menu / button permissions
      * @param {string} perId 权限ID permission id
      * @param {*} [options] Override http request option.
@@ -1481,6 +3025,19 @@ export const MenuPerApiFactory = function (
     apiAppMenuPerPerPerIdDelete(perId: string, options?: any): AxiosPromise<object> {
       return localVarFp
         .apiAppMenuPerPerPerIdDelete(perId, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @summary 删除菜单/按钮权限 Delete menu / button permissions
+     * @param {string} perId 权限ID permission id
+     * @param {*} [options] Override http request option.
+     * @deprecated
+     * @throws {RequiredError}
+     */
+    apiAppMenuPerPerPerIdDelete_13(perId: string, options?: any): AxiosPromise<object> {
+      return localVarFp
+        .apiAppMenuPerPerPerIdDelete_13(perId, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -1500,6 +3057,21 @@ export const MenuPerApiFactory = function (
     },
     /**
      *
+     * @summary 添加按钮权限 Add button permissions
+     * @param {AddButtonPerInput} [addButtonPerInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1MenuPerTreeAddBtnPost_14(
+      addButtonPerInput?: AddButtonPerInput,
+      options?: any,
+    ): AxiosPromise<object> {
+      return localVarFp
+        .apiV1MenuPerTreeAddBtnPost_14(addButtonPerInput, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
      * @summary 添加菜单权限 Add menu permissions
      * @param {AddMenuInput} [addMenuInput]
      * @param {*} [options] Override http request option.
@@ -1508,6 +3080,21 @@ export const MenuPerApiFactory = function (
     apiV1MenuPerTreeAddMenuPost(addMenuInput?: AddMenuInput, options?: any): AxiosPromise<object> {
       return localVarFp
         .apiV1MenuPerTreeAddMenuPost(addMenuInput, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @summary 添加菜单权限 Add menu permissions
+     * @param {AddMenuInput} [addMenuInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1MenuPerTreeAddMenuPost_15(
+      addMenuInput?: AddMenuInput,
+      options?: any,
+    ): AxiosPromise<object> {
+      return localVarFp
+        .apiV1MenuPerTreeAddMenuPost_15(addMenuInput, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -1526,6 +3113,21 @@ export const MenuPerApiFactory = function (
         .then((request) => request(axios, basePath))
     },
     /**
+     *
+     * @summary 获取系统的菜单权限树 Get the menu permission tree of the function
+     * @param {string} [functionId] 功能模块ID function id
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1MenuPerTreeFunctionGet_16(
+      functionId?: string,
+      options?: any,
+    ): AxiosPromise<Array<MenuPerTree>> {
+      return localVarFp
+        .apiV1MenuPerTreeFunctionGet_16(functionId, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
      * 按功能模块整体权限赋值,旧的会被新的全覆盖 old permission of the role will be overall overrided
      * @summary 赋予角色权限 Grant role permissions
      * @param {GrantPerInput} [grantPerInput]
@@ -1541,6 +3143,21 @@ export const MenuPerApiFactory = function (
         .then((request) => request(axios, basePath))
     },
     /**
+     * 按功能模块整体权限赋值,旧的会被新的全覆盖 old permission of the role will be overall overrided
+     * @summary 赋予角色权限 Grant role permissions
+     * @param {GrantPerInput} [grantPerInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1MenuPerTreeGrantPerPost_17(
+      grantPerInput?: GrantPerInput,
+      options?: any,
+    ): AxiosPromise<object> {
+      return localVarFp
+        .apiV1MenuPerTreeGrantPerPost_17(grantPerInput, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
      *
      * @summary 删除菜单/按钮权限 Delete menu / button permissions
      * @param {string} [perId] 权限ID permission id
@@ -1550,6 +3167,18 @@ export const MenuPerApiFactory = function (
     apiV1MenuPerTreeRemovePerDelete(perId?: string, options?: any): AxiosPromise<object> {
       return localVarFp
         .apiV1MenuPerTreeRemovePerDelete(perId, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @summary 删除菜单/按钮权限 Delete menu / button permissions
+     * @param {string} [perId] 权限ID permission id
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1MenuPerTreeRemovePerDelete_18(perId?: string, options?: any): AxiosPromise<object> {
+      return localVarFp
+        .apiV1MenuPerTreeRemovePerDelete_18(perId, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -1568,6 +3197,21 @@ export const MenuPerApiFactory = function (
         .then((request) => request(axios, basePath))
     },
     /**
+     *
+     * @summary 角色拥有的权限明细
+     * @param {Array<string>} [requestBody]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1MenuPerTreeRoleByCodePost_19(
+      requestBody?: Array<string>,
+      options?: any,
+    ): AxiosPromise<Array<PermissionTree>> {
+      return localVarFp
+        .apiV1MenuPerTreeRoleByCodePost_19(requestBody, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
      * 已经拥有的菜单/按钮权限（IsCheck = true） already owned menu / button permissions (IsCheck = true)
      * @summary 角色所拥有的菜单权限 Menu permissions of role
      * @param {string} [roleId] 角色ID role id
@@ -1582,6 +3226,23 @@ export const MenuPerApiFactory = function (
     ): AxiosPromise<Array<MenuPerTree>> {
       return localVarFp
         .apiV1MenuPerTreeRoleGet(roleId, functionId, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     * 已经拥有的菜单/按钮权限（IsCheck = true） already owned menu / button permissions (IsCheck = true)
+     * @summary 角色所拥有的菜单权限 Menu permissions of role
+     * @param {string} [roleId] 角色ID role id
+     * @param {string} [functionId] 可空，如果为空，则从header头中获取functionId
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1MenuPerTreeRoleGet_20(
+      roleId?: string,
+      functionId?: string,
+      options?: any,
+    ): AxiosPromise<Array<MenuPerTree>> {
+      return localVarFp
+        .apiV1MenuPerTreeRoleGet_20(roleId, functionId, options)
         .then((request) => request(axios, basePath))
     },
   }
@@ -1614,6 +3275,24 @@ export class MenuPerApi extends BaseAPI {
 
   /**
    *
+   * @summary 添加按钮权限 Add button permissions
+   * @param {AddButtonPerInput} [addButtonPerInput]
+   * @param {*} [options] Override http request option.
+   * @deprecated
+   * @throws {RequiredError}
+   * @memberof MenuPerApi
+   */
+  public apiAppMenuPerButtonPerPost_1(
+    addButtonPerInput?: AddButtonPerInput,
+    options?: AxiosRequestConfig,
+  ) {
+    return MenuPerApiFp(this.configuration)
+      .apiAppMenuPerButtonPerPost_1(addButtonPerInput, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
    * @summary 更新按钮权限 Update button permissions
    * @param {UpdateButtonPerInput} [updateButtonPerInput]
    * @param {*} [options] Override http request option.
@@ -1626,6 +3305,23 @@ export class MenuPerApi extends BaseAPI {
   ) {
     return MenuPerApiFp(this.configuration)
       .apiAppMenuPerButtonPerPut(updateButtonPerInput, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary 更新按钮权限 Update button permissions
+   * @param {UpdateButtonPerInput} [updateButtonPerInput]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof MenuPerApi
+   */
+  public apiAppMenuPerButtonPerPut_2(
+    updateButtonPerInput?: UpdateButtonPerInput,
+    options?: AxiosRequestConfig,
+  ) {
+    return MenuPerApiFp(this.configuration)
+      .apiAppMenuPerButtonPerPut_2(updateButtonPerInput, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -1648,6 +3344,23 @@ export class MenuPerApi extends BaseAPI {
 
   /**
    *
+   * @summary 角色所拥有的按钮权限 Button permissions of role
+   * @param {ButtonPerUnderRoleInput} [buttonPerUnderRoleInput]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof MenuPerApi
+   */
+  public apiAppMenuPerButtonPerUnderRolePost_3(
+    buttonPerUnderRoleInput?: ButtonPerUnderRoleInput,
+    options?: AxiosRequestConfig,
+  ) {
+    return MenuPerApiFp(this.configuration)
+      .apiAppMenuPerButtonPerUnderRolePost_3(buttonPerUnderRoleInput, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
    * @summary 获取菜单下的按钮权限 Get button permissions under the menu
    * @param {ButtonPerUnderMenuInput} [buttonPerUnderMenuInput]
    * @param {*} [options] Override http request option.
@@ -1665,6 +3378,23 @@ export class MenuPerApi extends BaseAPI {
 
   /**
    *
+   * @summary 获取菜单下的按钮权限 Get button permissions under the menu
+   * @param {ButtonPerUnderMenuInput} [buttonPerUnderMenuInput]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof MenuPerApi
+   */
+  public apiAppMenuPerButtonPersUnderMenuPost_4(
+    buttonPerUnderMenuInput?: ButtonPerUnderMenuInput,
+    options?: AxiosRequestConfig,
+  ) {
+    return MenuPerApiFp(this.configuration)
+      .apiAppMenuPerButtonPersUnderMenuPost_4(buttonPerUnderMenuInput, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
    * @summary /api/app/menuPer/copyMenuPer
    * @param {CopyMenuInput} [copyMenuInput]
    * @param {*} [options] Override http request option.
@@ -1674,6 +3404,23 @@ export class MenuPerApi extends BaseAPI {
   public apiAppMenuPerCopyMenuPerPost(copyMenuInput?: CopyMenuInput, options?: AxiosRequestConfig) {
     return MenuPerApiFp(this.configuration)
       .apiAppMenuPerCopyMenuPerPost(copyMenuInput, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary /api/app/menuPer/copyMenuPer
+   * @param {CopyMenuInput} [copyMenuInput]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof MenuPerApi
+   */
+  public apiAppMenuPerCopyMenuPerPost_5(
+    copyMenuInput?: CopyMenuInput,
+    options?: AxiosRequestConfig,
+  ) {
+    return MenuPerApiFp(this.configuration)
+      .apiAppMenuPerCopyMenuPerPost_5(copyMenuInput, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -1693,6 +3440,21 @@ export class MenuPerApi extends BaseAPI {
   }
 
   /**
+   * 整体权限赋值,旧的会被新的全覆盖 old permission of the role will be overall overrided
+   * @summary 赋予角色权限 Grant role permissions
+   * @param {GrantPerInput} [grantPerInput]
+   * @param {*} [options] Override http request option.
+   * @deprecated
+   * @throws {RequiredError}
+   * @memberof MenuPerApi
+   */
+  public apiAppMenuPerGrantPerPost_6(grantPerInput?: GrantPerInput, options?: AxiosRequestConfig) {
+    return MenuPerApiFp(this.configuration)
+      .apiAppMenuPerGrantPerPost_6(grantPerInput, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
    *
    * @summary 获取权限详细信息 Get permission details
    * @param {string} id 权限ID permission id
@@ -1703,6 +3465,20 @@ export class MenuPerApi extends BaseAPI {
   public apiAppMenuPerIdPerDetailsGet(id: string, options?: AxiosRequestConfig) {
     return MenuPerApiFp(this.configuration)
       .apiAppMenuPerIdPerDetailsGet(id, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary 获取权限详细信息 Get permission details
+   * @param {string} id 权限ID permission id
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof MenuPerApi
+   */
+  public apiAppMenuPerIdPerDetailsGet_7(id: string, options?: AxiosRequestConfig) {
+    return MenuPerApiFp(this.configuration)
+      .apiAppMenuPerIdPerDetailsGet_7(id, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -1723,6 +3499,21 @@ export class MenuPerApi extends BaseAPI {
 
   /**
    *
+   * @summary 添加菜单权限 Add menu permissions
+   * @param {AddMenuInput} [addMenuInput]
+   * @param {*} [options] Override http request option.
+   * @deprecated
+   * @throws {RequiredError}
+   * @memberof MenuPerApi
+   */
+  public apiAppMenuPerMenuPerPost_8(addMenuInput?: AddMenuInput, options?: AxiosRequestConfig) {
+    return MenuPerApiFp(this.configuration)
+      .apiAppMenuPerMenuPerPost_8(addMenuInput, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
    * @summary 更新菜单权限 Update menu permissions
    * @param {UpdateMenuInput} [updateMenuInput]
    * @param {*} [options] Override http request option.
@@ -1732,6 +3523,23 @@ export class MenuPerApi extends BaseAPI {
   public apiAppMenuPerMenuPerPut(updateMenuInput?: UpdateMenuInput, options?: AxiosRequestConfig) {
     return MenuPerApiFp(this.configuration)
       .apiAppMenuPerMenuPerPut(updateMenuInput, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary 更新菜单权限 Update menu permissions
+   * @param {UpdateMenuInput} [updateMenuInput]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof MenuPerApi
+   */
+  public apiAppMenuPerMenuPerPut_9(
+    updateMenuInput?: UpdateMenuInput,
+    options?: AxiosRequestConfig,
+  ) {
+    return MenuPerApiFp(this.configuration)
+      .apiAppMenuPerMenuPerPut_9(updateMenuInput, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -1751,6 +3559,21 @@ export class MenuPerApi extends BaseAPI {
   }
 
   /**
+   *
+   * @summary 获取系统的菜单权限树 Get the menu permission tree of the system
+   * @param {string} systemId 系统ID system id
+   * @param {*} [options] Override http request option.
+   * @deprecated
+   * @throws {RequiredError}
+   * @memberof MenuPerApi
+   */
+  public apiAppMenuPerMenuPersTreeSystemIdPost_10(systemId: string, options?: AxiosRequestConfig) {
+    return MenuPerApiFp(this.configuration)
+      .apiAppMenuPerMenuPersTreeSystemIdPost_10(systemId, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
    * 已经拥有的菜单/按钮权限（IsCheck = true） already owned menu / button permissions (IsCheck = true)
    * @summary 角色所拥有的菜单权限 Menu permissions of role
    * @param {string} roleId 角色ID role id
@@ -1762,6 +3585,21 @@ export class MenuPerApi extends BaseAPI {
   public apiAppMenuPerMenuPersUnderRoleRoleIdPost(roleId: string, options?: AxiosRequestConfig) {
     return MenuPerApiFp(this.configuration)
       .apiAppMenuPerMenuPersUnderRoleRoleIdPost(roleId, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   * 已经拥有的菜单/按钮权限（IsCheck = true） already owned menu / button permissions (IsCheck = true)
+   * @summary 角色所拥有的菜单权限 Menu permissions of role
+   * @param {string} roleId 角色ID role id
+   * @param {*} [options] Override http request option.
+   * @deprecated
+   * @throws {RequiredError}
+   * @memberof MenuPerApi
+   */
+  public apiAppMenuPerMenuPersUnderRoleRoleIdPost_11(roleId: string, options?: AxiosRequestConfig) {
+    return MenuPerApiFp(this.configuration)
+      .apiAppMenuPerMenuPersUnderRoleRoleIdPost_11(roleId, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -1785,6 +3623,24 @@ export class MenuPerApi extends BaseAPI {
 
   /**
    *
+   * @summary 角色拥有的权限明细
+   * @param {Array<string>} [requestBody]
+   * @param {*} [options] Override http request option.
+   * @deprecated
+   * @throws {RequiredError}
+   * @memberof MenuPerApi
+   */
+  public apiAppMenuPerPerDetailUnderRolePost_12(
+    requestBody?: Array<string>,
+    options?: AxiosRequestConfig,
+  ) {
+    return MenuPerApiFp(this.configuration)
+      .apiAppMenuPerPerDetailUnderRolePost_12(requestBody, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
    * @summary 删除菜单/按钮权限 Delete menu / button permissions
    * @param {string} perId 权限ID permission id
    * @param {*} [options] Override http request option.
@@ -1795,6 +3651,21 @@ export class MenuPerApi extends BaseAPI {
   public apiAppMenuPerPerPerIdDelete(perId: string, options?: AxiosRequestConfig) {
     return MenuPerApiFp(this.configuration)
       .apiAppMenuPerPerPerIdDelete(perId, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary 删除菜单/按钮权限 Delete menu / button permissions
+   * @param {string} perId 权限ID permission id
+   * @param {*} [options] Override http request option.
+   * @deprecated
+   * @throws {RequiredError}
+   * @memberof MenuPerApi
+   */
+  public apiAppMenuPerPerPerIdDelete_13(perId: string, options?: AxiosRequestConfig) {
+    return MenuPerApiFp(this.configuration)
+      .apiAppMenuPerPerPerIdDelete_13(perId, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -1817,6 +3688,23 @@ export class MenuPerApi extends BaseAPI {
 
   /**
    *
+   * @summary 添加按钮权限 Add button permissions
+   * @param {AddButtonPerInput} [addButtonPerInput]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof MenuPerApi
+   */
+  public apiV1MenuPerTreeAddBtnPost_14(
+    addButtonPerInput?: AddButtonPerInput,
+    options?: AxiosRequestConfig,
+  ) {
+    return MenuPerApiFp(this.configuration)
+      .apiV1MenuPerTreeAddBtnPost_14(addButtonPerInput, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
    * @summary 添加菜单权限 Add menu permissions
    * @param {AddMenuInput} [addMenuInput]
    * @param {*} [options] Override http request option.
@@ -1826,6 +3714,20 @@ export class MenuPerApi extends BaseAPI {
   public apiV1MenuPerTreeAddMenuPost(addMenuInput?: AddMenuInput, options?: AxiosRequestConfig) {
     return MenuPerApiFp(this.configuration)
       .apiV1MenuPerTreeAddMenuPost(addMenuInput, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary 添加菜单权限 Add menu permissions
+   * @param {AddMenuInput} [addMenuInput]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof MenuPerApi
+   */
+  public apiV1MenuPerTreeAddMenuPost_15(addMenuInput?: AddMenuInput, options?: AxiosRequestConfig) {
+    return MenuPerApiFp(this.configuration)
+      .apiV1MenuPerTreeAddMenuPost_15(addMenuInput, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -1844,6 +3746,20 @@ export class MenuPerApi extends BaseAPI {
   }
 
   /**
+   *
+   * @summary 获取系统的菜单权限树 Get the menu permission tree of the function
+   * @param {string} [functionId] 功能模块ID function id
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof MenuPerApi
+   */
+  public apiV1MenuPerTreeFunctionGet_16(functionId?: string, options?: AxiosRequestConfig) {
+    return MenuPerApiFp(this.configuration)
+      .apiV1MenuPerTreeFunctionGet_16(functionId, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
    * 按功能模块整体权限赋值,旧的会被新的全覆盖 old permission of the role will be overall overrided
    * @summary 赋予角色权限 Grant role permissions
    * @param {GrantPerInput} [grantPerInput]
@@ -1854,6 +3770,23 @@ export class MenuPerApi extends BaseAPI {
   public apiV1MenuPerTreeGrantPerPost(grantPerInput?: GrantPerInput, options?: AxiosRequestConfig) {
     return MenuPerApiFp(this.configuration)
       .apiV1MenuPerTreeGrantPerPost(grantPerInput, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   * 按功能模块整体权限赋值,旧的会被新的全覆盖 old permission of the role will be overall overrided
+   * @summary 赋予角色权限 Grant role permissions
+   * @param {GrantPerInput} [grantPerInput]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof MenuPerApi
+   */
+  public apiV1MenuPerTreeGrantPerPost_17(
+    grantPerInput?: GrantPerInput,
+    options?: AxiosRequestConfig,
+  ) {
+    return MenuPerApiFp(this.configuration)
+      .apiV1MenuPerTreeGrantPerPost_17(grantPerInput, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -1873,6 +3806,20 @@ export class MenuPerApi extends BaseAPI {
 
   /**
    *
+   * @summary 删除菜单/按钮权限 Delete menu / button permissions
+   * @param {string} [perId] 权限ID permission id
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof MenuPerApi
+   */
+  public apiV1MenuPerTreeRemovePerDelete_18(perId?: string, options?: AxiosRequestConfig) {
+    return MenuPerApiFp(this.configuration)
+      .apiV1MenuPerTreeRemovePerDelete_18(perId, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
    * @summary 角色拥有的权限明细
    * @param {Array<string>} [requestBody]
    * @param {*} [options] Override http request option.
@@ -1882,6 +3829,23 @@ export class MenuPerApi extends BaseAPI {
   public apiV1MenuPerTreeRoleByCodePost(requestBody?: Array<string>, options?: AxiosRequestConfig) {
     return MenuPerApiFp(this.configuration)
       .apiV1MenuPerTreeRoleByCodePost(requestBody, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary 角色拥有的权限明细
+   * @param {Array<string>} [requestBody]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof MenuPerApi
+   */
+  public apiV1MenuPerTreeRoleByCodePost_19(
+    requestBody?: Array<string>,
+    options?: AxiosRequestConfig,
+  ) {
+    return MenuPerApiFp(this.configuration)
+      .apiV1MenuPerTreeRoleByCodePost_19(requestBody, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -1901,6 +3865,25 @@ export class MenuPerApi extends BaseAPI {
   ) {
     return MenuPerApiFp(this.configuration)
       .apiV1MenuPerTreeRoleGet(roleId, functionId, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   * 已经拥有的菜单/按钮权限（IsCheck = true） already owned menu / button permissions (IsCheck = true)
+   * @summary 角色所拥有的菜单权限 Menu permissions of role
+   * @param {string} [roleId] 角色ID role id
+   * @param {string} [functionId] 可空，如果为空，则从header头中获取functionId
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof MenuPerApi
+   */
+  public apiV1MenuPerTreeRoleGet_20(
+    roleId?: string,
+    functionId?: string,
+    options?: AxiosRequestConfig,
+  ) {
+    return MenuPerApiFp(this.configuration)
+      .apiV1MenuPerTreeRoleGet_20(roleId, functionId, options)
       .then((request) => request(this.axios, this.basePath))
   }
 }

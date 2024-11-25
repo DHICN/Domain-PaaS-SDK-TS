@@ -35,6 +35,8 @@ import { AddCustomInput } from '../models'
 // @ts-ignore
 import { GetCustomOutput } from '../models'
 // @ts-ignore
+import { KeyInput } from '../models'
+// @ts-ignore
 import { RemoteServiceErrorResponse } from '../models'
 // @ts-ignore
 import { UpdateCustomInput } from '../models'
@@ -67,6 +69,10 @@ export const CustomManagerApiAxiosParamCreator = function (configuration?: Confi
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
 
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
       setSearchParams(localVarUrlObj, localVarQueryParameter)
@@ -78,6 +84,147 @@ export const CustomManagerApiAxiosParamCreator = function (configuration?: Confi
       }
       localVarRequestOptions.data = serializeDataIfNeeded(
         addCustomInput,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 添加客户
+     * @param {AddCustomInput} [addCustomInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1CustomAddPost_1: async (
+      addCustomInput?: AddCustomInput,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/custom/add`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        addCustomInput,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 删除客户
+     * @param {KeyInput} [keyInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1CustomDeletePost: async (
+      keyInput?: KeyInput,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/custom/delete`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        keyInput,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 删除客户
+     * @param {KeyInput} [keyInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1CustomDeletePost_2: async (
+      keyInput?: KeyInput,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/custom/delete`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        keyInput,
         localVarRequestOptions,
         configuration,
       )
@@ -105,6 +252,46 @@ export const CustomManagerApiAxiosParamCreator = function (configuration?: Confi
       const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 获取客户列表
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1CustomListGet_3: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/custom/list`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
       setSearchParams(localVarUrlObj, localVarQueryParameter)
       let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
@@ -141,6 +328,57 @@ export const CustomManagerApiAxiosParamCreator = function (configuration?: Confi
       const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        updateCustomInput,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 更新客户信息
+     * @param {UpdateCustomInput} [updateCustomInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1CustomUpdatePost_4: async (
+      updateCustomInput?: UpdateCustomInput,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/custom/update`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
@@ -191,6 +429,57 @@ export const CustomManagerApiFp = function (configuration?: Configuration) {
     },
     /**
      *
+     * @summary 添加客户
+     * @param {AddCustomInput} [addCustomInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1CustomAddPost_1(
+      addCustomInput?: AddCustomInput,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetCustomOutput>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1CustomAddPost_1(
+        addCustomInput,
+        options,
+      )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
+     * @summary 删除客户
+     * @param {KeyInput} [keyInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1CustomDeletePost(
+      keyInput?: KeyInput,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1CustomDeletePost(
+        keyInput,
+        options,
+      )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
+     * @summary 删除客户
+     * @param {KeyInput} [keyInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1CustomDeletePost_2(
+      keyInput?: KeyInput,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1CustomDeletePost_2(
+        keyInput,
+        options,
+      )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
      * @summary 获取客户列表
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -199,6 +488,18 @@ export const CustomManagerApiFp = function (configuration?: Configuration) {
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<GetCustomOutput>>> {
       const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1CustomListGet(options)
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
+     * @summary 获取客户列表
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1CustomListGet_3(
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<GetCustomOutput>>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1CustomListGet_3(options)
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**
@@ -213,6 +514,23 @@ export const CustomManagerApiFp = function (configuration?: Configuration) {
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetCustomOutput>> {
       const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1CustomUpdatePost(
+        updateCustomInput,
+        options,
+      )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
+     * @summary 更新客户信息
+     * @param {UpdateCustomInput} [updateCustomInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1CustomUpdatePost_4(
+      updateCustomInput?: UpdateCustomInput,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetCustomOutput>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1CustomUpdatePost_4(
         updateCustomInput,
         options,
       )
@@ -249,12 +567,60 @@ export const CustomManagerApiFactory = function (
     },
     /**
      *
+     * @summary 添加客户
+     * @param {AddCustomInput} [addCustomInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1CustomAddPost_1(
+      addCustomInput?: AddCustomInput,
+      options?: any,
+    ): AxiosPromise<GetCustomOutput> {
+      return localVarFp
+        .apiV1CustomAddPost_1(addCustomInput, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @summary 删除客户
+     * @param {KeyInput} [keyInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1CustomDeletePost(keyInput?: KeyInput, options?: any): AxiosPromise<object> {
+      return localVarFp
+        .apiV1CustomDeletePost(keyInput, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @summary 删除客户
+     * @param {KeyInput} [keyInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1CustomDeletePost_2(keyInput?: KeyInput, options?: any): AxiosPromise<object> {
+      return localVarFp
+        .apiV1CustomDeletePost_2(keyInput, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
      * @summary 获取客户列表
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiV1CustomListGet(options?: any): AxiosPromise<Array<GetCustomOutput>> {
       return localVarFp.apiV1CustomListGet(options).then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @summary 获取客户列表
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1CustomListGet_3(options?: any): AxiosPromise<Array<GetCustomOutput>> {
+      return localVarFp.apiV1CustomListGet_3(options).then((request) => request(axios, basePath))
     },
     /**
      *
@@ -269,6 +635,21 @@ export const CustomManagerApiFactory = function (
     ): AxiosPromise<GetCustomOutput> {
       return localVarFp
         .apiV1CustomUpdatePost(updateCustomInput, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @summary 更新客户信息
+     * @param {UpdateCustomInput} [updateCustomInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1CustomUpdatePost_4(
+      updateCustomInput?: UpdateCustomInput,
+      options?: any,
+    ): AxiosPromise<GetCustomOutput> {
+      return localVarFp
+        .apiV1CustomUpdatePost_4(updateCustomInput, options)
         .then((request) => request(axios, basePath))
     },
   }
@@ -297,6 +678,48 @@ export class CustomManagerApi extends BaseAPI {
 
   /**
    *
+   * @summary 添加客户
+   * @param {AddCustomInput} [addCustomInput]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof CustomManagerApi
+   */
+  public apiV1CustomAddPost_1(addCustomInput?: AddCustomInput, options?: AxiosRequestConfig) {
+    return CustomManagerApiFp(this.configuration)
+      .apiV1CustomAddPost_1(addCustomInput, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary 删除客户
+   * @param {KeyInput} [keyInput]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof CustomManagerApi
+   */
+  public apiV1CustomDeletePost(keyInput?: KeyInput, options?: AxiosRequestConfig) {
+    return CustomManagerApiFp(this.configuration)
+      .apiV1CustomDeletePost(keyInput, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary 删除客户
+   * @param {KeyInput} [keyInput]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof CustomManagerApi
+   */
+  public apiV1CustomDeletePost_2(keyInput?: KeyInput, options?: AxiosRequestConfig) {
+    return CustomManagerApiFp(this.configuration)
+      .apiV1CustomDeletePost_2(keyInput, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
    * @summary 获取客户列表
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
@@ -305,6 +728,19 @@ export class CustomManagerApi extends BaseAPI {
   public apiV1CustomListGet(options?: AxiosRequestConfig) {
     return CustomManagerApiFp(this.configuration)
       .apiV1CustomListGet(options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary 获取客户列表
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof CustomManagerApi
+   */
+  public apiV1CustomListGet_3(options?: AxiosRequestConfig) {
+    return CustomManagerApiFp(this.configuration)
+      .apiV1CustomListGet_3(options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -322,6 +758,23 @@ export class CustomManagerApi extends BaseAPI {
   ) {
     return CustomManagerApiFp(this.configuration)
       .apiV1CustomUpdatePost(updateCustomInput, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary 更新客户信息
+   * @param {UpdateCustomInput} [updateCustomInput]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof CustomManagerApi
+   */
+  public apiV1CustomUpdatePost_4(
+    updateCustomInput?: UpdateCustomInput,
+    options?: AxiosRequestConfig,
+  ) {
+    return CustomManagerApiFp(this.configuration)
+      .apiV1CustomUpdatePost_4(updateCustomInput, options)
       .then((request) => request(this.axios, this.basePath))
   }
 }

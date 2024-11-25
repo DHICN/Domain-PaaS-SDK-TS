@@ -69,6 +69,57 @@ export const LoginApiAxiosParamCreator = function (configuration?: Configuration
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
 
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        loginInput,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 获取用户下的租户列表,user绑定到了多个tenantid下的场景
+     * @param {LoginInput} [loginInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1LoginTenantsPost_1: async (
+      loginInput?: LoginInput,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/login/tenants`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
       setSearchParams(localVarUrlObj, localVarQueryParameter)
@@ -112,6 +163,57 @@ export const LoginApiAxiosParamCreator = function (configuration?: Configuration
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
 
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        connectLoginInput,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 获取Token,非明文传输,也支持没有租户Id场景的情况
+     * @param {ConnectLoginInput} [connectLoginInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1LoginTokenPlusPost_2: async (
+      connectLoginInput?: ConnectLoginInput,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/login/token/plus`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
       setSearchParams(localVarUrlObj, localVarQueryParameter)
@@ -154,6 +256,57 @@ export const LoginApiAxiosParamCreator = function (configuration?: Configuration
       const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        loginInput,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 获取Token,明文传输,支持没有租户Id场景的情况
+     * @param {LoginInput} [loginInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1LoginTokenPost_3: async (
+      loginInput?: LoginInput,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/login/token`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
@@ -206,6 +359,25 @@ export const LoginApiFp = function (configuration?: Configuration) {
     },
     /**
      *
+     * @summary 获取用户下的租户列表,user绑定到了多个tenantid下的场景
+     * @param {LoginInput} [loginInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1LoginTenantsPost_1(
+      loginInput?: LoginInput,
+      options?: AxiosRequestConfig,
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<GetTenantsBySysOutput>>
+    > {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1LoginTenantsPost_1(
+        loginInput,
+        options,
+      )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
      * @summary 获取Token,非明文传输,也支持没有租户Id场景的情况
      * @param {ConnectLoginInput} [connectLoginInput]
      * @param {*} [options] Override http request option.
@@ -223,6 +395,23 @@ export const LoginApiFp = function (configuration?: Configuration) {
     },
     /**
      *
+     * @summary 获取Token,非明文传输,也支持没有租户Id场景的情况
+     * @param {ConnectLoginInput} [connectLoginInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1LoginTokenPlusPost_2(
+      connectLoginInput?: ConnectLoginInput,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<TokenModelWithTenant>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1LoginTokenPlusPost_2(
+        connectLoginInput,
+        options,
+      )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
      * @summary 获取Token,明文传输,支持没有租户Id场景的情况
      * @param {LoginInput} [loginInput]
      * @param {*} [options] Override http request option.
@@ -233,6 +422,23 @@ export const LoginApiFp = function (configuration?: Configuration) {
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<TokenModelWithTenant>> {
       const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1LoginTokenPost(
+        loginInput,
+        options,
+      )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
+     * @summary 获取Token,明文传输,支持没有租户Id场景的情况
+     * @param {LoginInput} [loginInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1LoginTokenPost_3(
+      loginInput?: LoginInput,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<TokenModelWithTenant>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1LoginTokenPost_3(
         loginInput,
         options,
       )
@@ -269,6 +475,21 @@ export const LoginApiFactory = function (
     },
     /**
      *
+     * @summary 获取用户下的租户列表,user绑定到了多个tenantid下的场景
+     * @param {LoginInput} [loginInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1LoginTenantsPost_1(
+      loginInput?: LoginInput,
+      options?: any,
+    ): AxiosPromise<Array<GetTenantsBySysOutput>> {
+      return localVarFp
+        .apiV1LoginTenantsPost_1(loginInput, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
      * @summary 获取Token,非明文传输,也支持没有租户Id场景的情况
      * @param {ConnectLoginInput} [connectLoginInput]
      * @param {*} [options] Override http request option.
@@ -284,6 +505,21 @@ export const LoginApiFactory = function (
     },
     /**
      *
+     * @summary 获取Token,非明文传输,也支持没有租户Id场景的情况
+     * @param {ConnectLoginInput} [connectLoginInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1LoginTokenPlusPost_2(
+      connectLoginInput?: ConnectLoginInput,
+      options?: any,
+    ): AxiosPromise<TokenModelWithTenant> {
+      return localVarFp
+        .apiV1LoginTokenPlusPost_2(connectLoginInput, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
      * @summary 获取Token,明文传输,支持没有租户Id场景的情况
      * @param {LoginInput} [loginInput]
      * @param {*} [options] Override http request option.
@@ -295,6 +531,21 @@ export const LoginApiFactory = function (
     ): AxiosPromise<TokenModelWithTenant> {
       return localVarFp
         .apiV1LoginTokenPost(loginInput, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @summary 获取Token,明文传输,支持没有租户Id场景的情况
+     * @param {LoginInput} [loginInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1LoginTokenPost_3(
+      loginInput?: LoginInput,
+      options?: any,
+    ): AxiosPromise<TokenModelWithTenant> {
+      return localVarFp
+        .apiV1LoginTokenPost_3(loginInput, options)
         .then((request) => request(axios, basePath))
     },
   }
@@ -323,6 +574,20 @@ export class LoginApi extends BaseAPI {
 
   /**
    *
+   * @summary 获取用户下的租户列表,user绑定到了多个tenantid下的场景
+   * @param {LoginInput} [loginInput]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof LoginApi
+   */
+  public apiV1LoginTenantsPost_1(loginInput?: LoginInput, options?: AxiosRequestConfig) {
+    return LoginApiFp(this.configuration)
+      .apiV1LoginTenantsPost_1(loginInput, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
    * @summary 获取Token,非明文传输,也支持没有租户Id场景的情况
    * @param {ConnectLoginInput} [connectLoginInput]
    * @param {*} [options] Override http request option.
@@ -340,6 +605,23 @@ export class LoginApi extends BaseAPI {
 
   /**
    *
+   * @summary 获取Token,非明文传输,也支持没有租户Id场景的情况
+   * @param {ConnectLoginInput} [connectLoginInput]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof LoginApi
+   */
+  public apiV1LoginTokenPlusPost_2(
+    connectLoginInput?: ConnectLoginInput,
+    options?: AxiosRequestConfig,
+  ) {
+    return LoginApiFp(this.configuration)
+      .apiV1LoginTokenPlusPost_2(connectLoginInput, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
    * @summary 获取Token,明文传输,支持没有租户Id场景的情况
    * @param {LoginInput} [loginInput]
    * @param {*} [options] Override http request option.
@@ -349,6 +631,20 @@ export class LoginApi extends BaseAPI {
   public apiV1LoginTokenPost(loginInput?: LoginInput, options?: AxiosRequestConfig) {
     return LoginApiFp(this.configuration)
       .apiV1LoginTokenPost(loginInput, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary 获取Token,明文传输,支持没有租户Id场景的情况
+   * @param {LoginInput} [loginInput]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof LoginApi
+   */
+  public apiV1LoginTokenPost_3(loginInput?: LoginInput, options?: AxiosRequestConfig) {
+    return LoginApiFp(this.configuration)
+      .apiV1LoginTokenPost_3(loginInput, options)
       .then((request) => request(this.axios, this.basePath))
   }
 }

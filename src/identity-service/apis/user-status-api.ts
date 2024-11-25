@@ -61,6 +61,48 @@ export const UserStatusApiAxiosParamCreator = function (configuration?: Configur
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
 
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary /api/app/usersMnanger/status/get-all
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiAppUsersMnangerStatusGetAllGet_1: async (
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/app/usersMnanger/status/get-all`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
       setSearchParams(localVarUrlObj, localVarQueryParameter)
       let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
       localVarRequestOptions.headers = {
@@ -102,6 +144,24 @@ export const UserStatusApiFp = function (configuration?: Configuration) {
         await localVarAxiosParamCreator.apiAppUsersMnangerStatusGetAllGet(options)
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
+    /**
+     *
+     * @summary /api/app/usersMnanger/status/get-all
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiAppUsersMnangerStatusGetAllGet_1(
+      options?: AxiosRequestConfig,
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string,
+      ) => AxiosPromise<Array<OrganizationWithUserStatusInfo>>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiAppUsersMnangerStatusGetAllGet_1(options)
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
   }
 }
 
@@ -129,6 +189,19 @@ export const UserStatusApiFactory = function (
         .apiAppUsersMnangerStatusGetAllGet(options)
         .then((request) => request(axios, basePath))
     },
+    /**
+     *
+     * @summary /api/app/usersMnanger/status/get-all
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiAppUsersMnangerStatusGetAllGet_1(
+      options?: any,
+    ): AxiosPromise<Array<OrganizationWithUserStatusInfo>> {
+      return localVarFp
+        .apiAppUsersMnangerStatusGetAllGet_1(options)
+        .then((request) => request(axios, basePath))
+    },
   }
 }
 
@@ -149,6 +222,19 @@ export class UserStatusApi extends BaseAPI {
   public apiAppUsersMnangerStatusGetAllGet(options?: AxiosRequestConfig) {
     return UserStatusApiFp(this.configuration)
       .apiAppUsersMnangerStatusGetAllGet(options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary /api/app/usersMnanger/status/get-all
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof UserStatusApi
+   */
+  public apiAppUsersMnangerStatusGetAllGet_1(options?: AxiosRequestConfig) {
+    return UserStatusApiFp(this.configuration)
+      .apiAppUsersMnangerStatusGetAllGet_1(options)
       .then((request) => request(this.axios, this.basePath))
   }
 }

@@ -85,6 +85,57 @@ export const OrganizationManangerApiAxiosParamCreator = function (configuration?
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
 
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        addOrganizationInput,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 增加组织机构 | add organization
+     * @param {AddOrganizationInput} [addOrganizationInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1OrganizationAddPost_1: async (
+      addOrganizationInput?: AddOrganizationInput,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/organization/add`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
       setSearchParams(localVarUrlObj, localVarQueryParameter)
@@ -128,6 +179,57 @@ export const OrganizationManangerApiAxiosParamCreator = function (configuration?
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
 
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        keysInput,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 删除组织架构 | delete organization
+     * @param {KeysInput} [keysInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1OrganizationDeletePost_2: async (
+      keysInput?: KeysInput,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/organization/delete`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
       setSearchParams(localVarUrlObj, localVarQueryParameter)
@@ -167,6 +269,46 @@ export const OrganizationManangerApiAxiosParamCreator = function (configuration?
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
 
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 查询组织架构树 | query organization tree
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1OrganizationTreeGet_3: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/organization/tree`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
       setSearchParams(localVarUrlObj, localVarQueryParameter)
       let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
       localVarRequestOptions.headers = {
@@ -202,6 +344,57 @@ export const OrganizationManangerApiAxiosParamCreator = function (configuration?
       const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        updateOrganizationInput,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 修改组织架构 | update organization
+     * @param {UpdateOrganizationInput} [updateOrganizationInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1OrganizationUpdatePost_4: async (
+      updateOrganizationInput?: UpdateOrganizationInput,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/organization/update`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
@@ -246,6 +439,57 @@ export const OrganizationManangerApiAxiosParamCreator = function (configuration?
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
 
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        addOrganizationUserRelInput,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 增加组织架构-用户关系 | bind organization and user
+     * @param {Array<AddOrganizationUserRelInput>} [addOrganizationUserRelInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1OrganizationUserRelevanceAddPost_5: async (
+      addOrganizationUserRelInput?: Array<AddOrganizationUserRelInput>,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/organization-user-relevance/add`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
       setSearchParams(localVarUrlObj, localVarQueryParameter)
@@ -288,6 +532,57 @@ export const OrganizationManangerApiAxiosParamCreator = function (configuration?
       const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        deleteOrganizationUserRelInput,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 删除组织架构用户关联 | delete organization with user relevance
+     * @param {DeleteOrganizationUserRelInput} [deleteOrganizationUserRelInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1OrganizationUserRelevanceDeletePost_6: async (
+      deleteOrganizationUserRelInput?: DeleteOrganizationUserRelInput,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/organization-user-relevance/delete`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
@@ -332,6 +627,57 @@ export const OrganizationManangerApiAxiosParamCreator = function (configuration?
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
 
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        queryOrganizationWithUserInfoInput,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 查询组织架构树及所有人员，如果传入的组织架构ID为空，则返回所有组织架构 | query organization with user\'s detail information,if organization\'s id is null,we will return all organizations
+     * @param {QueryOrganizationWithUserInfoInput} [queryOrganizationWithUserInfoInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1OrganizationWithUserInfoTreePost_7: async (
+      queryOrganizationWithUserInfoInput?: QueryOrganizationWithUserInfoInput,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/organization-with-user-info/tree`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
       setSearchParams(localVarUrlObj, localVarQueryParameter)
@@ -375,6 +721,57 @@ export const OrganizationManangerApiAxiosParamCreator = function (configuration?
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
 
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        queryUserDetailsByUserInput,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 通过用户输入的关键字查询用户
+     * @param {QueryUserDetailsByUserInput} [queryUserDetailsByUserInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1UserDetailsQueryByKeywordPost_8: async (
+      queryUserDetailsByUserInput?: QueryUserDetailsByUserInput,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/user-details/query-by-keyword`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
       setSearchParams(localVarUrlObj, localVarQueryParameter)
@@ -417,6 +814,57 @@ export const OrganizationManangerApiAxiosParamCreator = function (configuration?
       const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        queryUserDetailsInput,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 查询用户详细信息 | query user\'s detail information
+     * @param {QueryUserDetailsInput} [queryUserDetailsInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1UserDetailsQueryByUserIdPost_9: async (
+      queryUserDetailsInput?: QueryUserDetailsInput,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/user-details/query-by-user-id`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
@@ -467,6 +915,23 @@ export const OrganizationManangerApiFp = function (configuration?: Configuration
     },
     /**
      *
+     * @summary 增加组织机构 | add organization
+     * @param {AddOrganizationInput} [addOrganizationInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1OrganizationAddPost_1(
+      addOrganizationInput?: AddOrganizationInput,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OrganizationEntity>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1OrganizationAddPost_1(
+        addOrganizationInput,
+        options,
+      )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
      * @summary 删除组织架构 | delete organization
      * @param {KeysInput} [keysInput]
      * @param {*} [options] Override http request option.
@@ -477,6 +942,23 @@ export const OrganizationManangerApiFp = function (configuration?: Configuration
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
       const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1OrganizationDeletePost(
+        keysInput,
+        options,
+      )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
+     * @summary 删除组织架构 | delete organization
+     * @param {KeysInput} [keysInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1OrganizationDeletePost_2(
+      keysInput?: KeysInput,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1OrganizationDeletePost_2(
         keysInput,
         options,
       )
@@ -498,6 +980,20 @@ export const OrganizationManangerApiFp = function (configuration?: Configuration
     },
     /**
      *
+     * @summary 查询组织架构树 | query organization tree
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1OrganizationTreeGet_3(
+      options?: AxiosRequestConfig,
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<QueryOrganizationOutput>>
+    > {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1OrganizationTreeGet_3(options)
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
      * @summary 修改组织架构 | update organization
      * @param {UpdateOrganizationInput} [updateOrganizationInput]
      * @param {*} [options] Override http request option.
@@ -510,6 +1006,25 @@ export const OrganizationManangerApiFp = function (configuration?: Configuration
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<OrganizationEntity>>
     > {
       const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1OrganizationUpdatePost(
+        updateOrganizationInput,
+        options,
+      )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
+     * @summary 修改组织架构 | update organization
+     * @param {UpdateOrganizationInput} [updateOrganizationInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1OrganizationUpdatePost_4(
+      updateOrganizationInput?: UpdateOrganizationInput,
+      options?: AxiosRequestConfig,
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<OrganizationEntity>>
+    > {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1OrganizationUpdatePost_4(
         updateOrganizationInput,
         options,
       )
@@ -535,6 +1050,24 @@ export const OrganizationManangerApiFp = function (configuration?: Configuration
     },
     /**
      *
+     * @summary 增加组织架构-用户关系 | bind organization and user
+     * @param {Array<AddOrganizationUserRelInput>} [addOrganizationUserRelInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1OrganizationUserRelevanceAddPost_5(
+      addOrganizationUserRelInput?: Array<AddOrganizationUserRelInput>,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiV1OrganizationUserRelevanceAddPost_5(
+          addOrganizationUserRelInput,
+          options,
+        )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
      * @summary 删除组织架构用户关联 | delete organization with user relevance
      * @param {DeleteOrganizationUserRelInput} [deleteOrganizationUserRelInput]
      * @param {*} [options] Override http request option.
@@ -546,6 +1079,24 @@ export const OrganizationManangerApiFp = function (configuration?: Configuration
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.apiV1OrganizationUserRelevanceDeletePost(
+          deleteOrganizationUserRelInput,
+          options,
+        )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
+     * @summary 删除组织架构用户关联 | delete organization with user relevance
+     * @param {DeleteOrganizationUserRelInput} [deleteOrganizationUserRelInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1OrganizationUserRelevanceDeletePost_6(
+      deleteOrganizationUserRelInput?: DeleteOrganizationUserRelInput,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiV1OrganizationUserRelevanceDeletePost_6(
           deleteOrganizationUserRelInput,
           options,
         )
@@ -576,6 +1127,29 @@ export const OrganizationManangerApiFp = function (configuration?: Configuration
     },
     /**
      *
+     * @summary 查询组织架构树及所有人员，如果传入的组织架构ID为空，则返回所有组织架构 | query organization with user\'s detail information,if organization\'s id is null,we will return all organizations
+     * @param {QueryOrganizationWithUserInfoInput} [queryOrganizationWithUserInfoInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1OrganizationWithUserInfoTreePost_7(
+      queryOrganizationWithUserInfoInput?: QueryOrganizationWithUserInfoInput,
+      options?: AxiosRequestConfig,
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string,
+      ) => AxiosPromise<Array<OrganizationWithUserInfoOutput>>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiV1OrganizationWithUserInfoTreePost_7(
+          queryOrganizationWithUserInfoInput,
+          options,
+        )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
      * @summary 通过用户输入的关键字查询用户
      * @param {QueryUserDetailsByUserInput} [queryUserDetailsByUserInput]
      * @param {*} [options] Override http request option.
@@ -595,6 +1169,26 @@ export const OrganizationManangerApiFp = function (configuration?: Configuration
     },
     /**
      *
+     * @summary 通过用户输入的关键字查询用户
+     * @param {QueryUserDetailsByUserInput} [queryUserDetailsByUserInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1UserDetailsQueryByKeywordPost_8(
+      queryUserDetailsByUserInput?: QueryUserDetailsByUserInput,
+      options?: AxiosRequestConfig,
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<QueryUserInformationOutput>>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiV1UserDetailsQueryByKeywordPost_8(
+          queryUserDetailsByUserInput,
+          options,
+        )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
      * @summary 查询用户详细信息 | query user\'s detail information
      * @param {QueryUserDetailsInput} [queryUserDetailsInput]
      * @param {*} [options] Override http request option.
@@ -607,6 +1201,25 @@ export const OrganizationManangerApiFp = function (configuration?: Configuration
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<QueryUserInformationOutput>>
     > {
       const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1UserDetailsQueryByUserIdPost(
+        queryUserDetailsInput,
+        options,
+      )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
+     * @summary 查询用户详细信息 | query user\'s detail information
+     * @param {QueryUserDetailsInput} [queryUserDetailsInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1UserDetailsQueryByUserIdPost_9(
+      queryUserDetailsInput?: QueryUserDetailsInput,
+      options?: AxiosRequestConfig,
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<QueryUserInformationOutput>>
+    > {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1UserDetailsQueryByUserIdPost_9(
         queryUserDetailsInput,
         options,
       )
@@ -643,6 +1256,21 @@ export const OrganizationManangerApiFactory = function (
     },
     /**
      *
+     * @summary 增加组织机构 | add organization
+     * @param {AddOrganizationInput} [addOrganizationInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1OrganizationAddPost_1(
+      addOrganizationInput?: AddOrganizationInput,
+      options?: any,
+    ): AxiosPromise<OrganizationEntity> {
+      return localVarFp
+        .apiV1OrganizationAddPost_1(addOrganizationInput, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
      * @summary 删除组织架构 | delete organization
      * @param {KeysInput} [keysInput]
      * @param {*} [options] Override http request option.
@@ -655,6 +1283,18 @@ export const OrganizationManangerApiFactory = function (
     },
     /**
      *
+     * @summary 删除组织架构 | delete organization
+     * @param {KeysInput} [keysInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1OrganizationDeletePost_2(keysInput?: KeysInput, options?: any): AxiosPromise<object> {
+      return localVarFp
+        .apiV1OrganizationDeletePost_2(keysInput, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
      * @summary 查询组织架构树 | query organization tree
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -662,6 +1302,17 @@ export const OrganizationManangerApiFactory = function (
     apiV1OrganizationTreeGet(options?: any): AxiosPromise<Array<QueryOrganizationOutput>> {
       return localVarFp
         .apiV1OrganizationTreeGet(options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @summary 查询组织架构树 | query organization tree
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1OrganizationTreeGet_3(options?: any): AxiosPromise<Array<QueryOrganizationOutput>> {
+      return localVarFp
+        .apiV1OrganizationTreeGet_3(options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -681,6 +1332,21 @@ export const OrganizationManangerApiFactory = function (
     },
     /**
      *
+     * @summary 修改组织架构 | update organization
+     * @param {UpdateOrganizationInput} [updateOrganizationInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1OrganizationUpdatePost_4(
+      updateOrganizationInput?: UpdateOrganizationInput,
+      options?: any,
+    ): AxiosPromise<Array<OrganizationEntity>> {
+      return localVarFp
+        .apiV1OrganizationUpdatePost_4(updateOrganizationInput, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
      * @summary 增加组织架构-用户关系 | bind organization and user
      * @param {Array<AddOrganizationUserRelInput>} [addOrganizationUserRelInput]
      * @param {*} [options] Override http request option.
@@ -692,6 +1358,21 @@ export const OrganizationManangerApiFactory = function (
     ): AxiosPromise<object> {
       return localVarFp
         .apiV1OrganizationUserRelevanceAddPost(addOrganizationUserRelInput, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @summary 增加组织架构-用户关系 | bind organization and user
+     * @param {Array<AddOrganizationUserRelInput>} [addOrganizationUserRelInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1OrganizationUserRelevanceAddPost_5(
+      addOrganizationUserRelInput?: Array<AddOrganizationUserRelInput>,
+      options?: any,
+    ): AxiosPromise<object> {
+      return localVarFp
+        .apiV1OrganizationUserRelevanceAddPost_5(addOrganizationUserRelInput, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -711,6 +1392,21 @@ export const OrganizationManangerApiFactory = function (
     },
     /**
      *
+     * @summary 删除组织架构用户关联 | delete organization with user relevance
+     * @param {DeleteOrganizationUserRelInput} [deleteOrganizationUserRelInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1OrganizationUserRelevanceDeletePost_6(
+      deleteOrganizationUserRelInput?: DeleteOrganizationUserRelInput,
+      options?: any,
+    ): AxiosPromise<object> {
+      return localVarFp
+        .apiV1OrganizationUserRelevanceDeletePost_6(deleteOrganizationUserRelInput, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
      * @summary 查询组织架构树及所有人员，如果传入的组织架构ID为空，则返回所有组织架构 | query organization with user\'s detail information,if organization\'s id is null,we will return all organizations
      * @param {QueryOrganizationWithUserInfoInput} [queryOrganizationWithUserInfoInput]
      * @param {*} [options] Override http request option.
@@ -722,6 +1418,21 @@ export const OrganizationManangerApiFactory = function (
     ): AxiosPromise<Array<OrganizationWithUserInfoOutput>> {
       return localVarFp
         .apiV1OrganizationWithUserInfoTreePost(queryOrganizationWithUserInfoInput, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @summary 查询组织架构树及所有人员，如果传入的组织架构ID为空，则返回所有组织架构 | query organization with user\'s detail information,if organization\'s id is null,we will return all organizations
+     * @param {QueryOrganizationWithUserInfoInput} [queryOrganizationWithUserInfoInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1OrganizationWithUserInfoTreePost_7(
+      queryOrganizationWithUserInfoInput?: QueryOrganizationWithUserInfoInput,
+      options?: any,
+    ): AxiosPromise<Array<OrganizationWithUserInfoOutput>> {
+      return localVarFp
+        .apiV1OrganizationWithUserInfoTreePost_7(queryOrganizationWithUserInfoInput, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -741,6 +1452,21 @@ export const OrganizationManangerApiFactory = function (
     },
     /**
      *
+     * @summary 通过用户输入的关键字查询用户
+     * @param {QueryUserDetailsByUserInput} [queryUserDetailsByUserInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1UserDetailsQueryByKeywordPost_8(
+      queryUserDetailsByUserInput?: QueryUserDetailsByUserInput,
+      options?: any,
+    ): AxiosPromise<Array<QueryUserInformationOutput>> {
+      return localVarFp
+        .apiV1UserDetailsQueryByKeywordPost_8(queryUserDetailsByUserInput, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
      * @summary 查询用户详细信息 | query user\'s detail information
      * @param {QueryUserDetailsInput} [queryUserDetailsInput]
      * @param {*} [options] Override http request option.
@@ -752,6 +1478,21 @@ export const OrganizationManangerApiFactory = function (
     ): AxiosPromise<Array<QueryUserInformationOutput>> {
       return localVarFp
         .apiV1UserDetailsQueryByUserIdPost(queryUserDetailsInput, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @summary 查询用户详细信息 | query user\'s detail information
+     * @param {QueryUserDetailsInput} [queryUserDetailsInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1UserDetailsQueryByUserIdPost_9(
+      queryUserDetailsInput?: QueryUserDetailsInput,
+      options?: any,
+    ): AxiosPromise<Array<QueryUserInformationOutput>> {
+      return localVarFp
+        .apiV1UserDetailsQueryByUserIdPost_9(queryUserDetailsInput, options)
         .then((request) => request(axios, basePath))
     },
   }
@@ -783,6 +1524,23 @@ export class OrganizationManangerApi extends BaseAPI {
 
   /**
    *
+   * @summary 增加组织机构 | add organization
+   * @param {AddOrganizationInput} [addOrganizationInput]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof OrganizationManangerApi
+   */
+  public apiV1OrganizationAddPost_1(
+    addOrganizationInput?: AddOrganizationInput,
+    options?: AxiosRequestConfig,
+  ) {
+    return OrganizationManangerApiFp(this.configuration)
+      .apiV1OrganizationAddPost_1(addOrganizationInput, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
    * @summary 删除组织架构 | delete organization
    * @param {KeysInput} [keysInput]
    * @param {*} [options] Override http request option.
@@ -797,6 +1555,20 @@ export class OrganizationManangerApi extends BaseAPI {
 
   /**
    *
+   * @summary 删除组织架构 | delete organization
+   * @param {KeysInput} [keysInput]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof OrganizationManangerApi
+   */
+  public apiV1OrganizationDeletePost_2(keysInput?: KeysInput, options?: AxiosRequestConfig) {
+    return OrganizationManangerApiFp(this.configuration)
+      .apiV1OrganizationDeletePost_2(keysInput, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
    * @summary 查询组织架构树 | query organization tree
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
@@ -805,6 +1577,19 @@ export class OrganizationManangerApi extends BaseAPI {
   public apiV1OrganizationTreeGet(options?: AxiosRequestConfig) {
     return OrganizationManangerApiFp(this.configuration)
       .apiV1OrganizationTreeGet(options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary 查询组织架构树 | query organization tree
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof OrganizationManangerApi
+   */
+  public apiV1OrganizationTreeGet_3(options?: AxiosRequestConfig) {
+    return OrganizationManangerApiFp(this.configuration)
+      .apiV1OrganizationTreeGet_3(options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -827,6 +1612,23 @@ export class OrganizationManangerApi extends BaseAPI {
 
   /**
    *
+   * @summary 修改组织架构 | update organization
+   * @param {UpdateOrganizationInput} [updateOrganizationInput]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof OrganizationManangerApi
+   */
+  public apiV1OrganizationUpdatePost_4(
+    updateOrganizationInput?: UpdateOrganizationInput,
+    options?: AxiosRequestConfig,
+  ) {
+    return OrganizationManangerApiFp(this.configuration)
+      .apiV1OrganizationUpdatePost_4(updateOrganizationInput, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
    * @summary 增加组织架构-用户关系 | bind organization and user
    * @param {Array<AddOrganizationUserRelInput>} [addOrganizationUserRelInput]
    * @param {*} [options] Override http request option.
@@ -839,6 +1641,23 @@ export class OrganizationManangerApi extends BaseAPI {
   ) {
     return OrganizationManangerApiFp(this.configuration)
       .apiV1OrganizationUserRelevanceAddPost(addOrganizationUserRelInput, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary 增加组织架构-用户关系 | bind organization and user
+   * @param {Array<AddOrganizationUserRelInput>} [addOrganizationUserRelInput]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof OrganizationManangerApi
+   */
+  public apiV1OrganizationUserRelevanceAddPost_5(
+    addOrganizationUserRelInput?: Array<AddOrganizationUserRelInput>,
+    options?: AxiosRequestConfig,
+  ) {
+    return OrganizationManangerApiFp(this.configuration)
+      .apiV1OrganizationUserRelevanceAddPost_5(addOrganizationUserRelInput, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -861,6 +1680,23 @@ export class OrganizationManangerApi extends BaseAPI {
 
   /**
    *
+   * @summary 删除组织架构用户关联 | delete organization with user relevance
+   * @param {DeleteOrganizationUserRelInput} [deleteOrganizationUserRelInput]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof OrganizationManangerApi
+   */
+  public apiV1OrganizationUserRelevanceDeletePost_6(
+    deleteOrganizationUserRelInput?: DeleteOrganizationUserRelInput,
+    options?: AxiosRequestConfig,
+  ) {
+    return OrganizationManangerApiFp(this.configuration)
+      .apiV1OrganizationUserRelevanceDeletePost_6(deleteOrganizationUserRelInput, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
    * @summary 查询组织架构树及所有人员，如果传入的组织架构ID为空，则返回所有组织架构 | query organization with user\'s detail information,if organization\'s id is null,we will return all organizations
    * @param {QueryOrganizationWithUserInfoInput} [queryOrganizationWithUserInfoInput]
    * @param {*} [options] Override http request option.
@@ -873,6 +1709,23 @@ export class OrganizationManangerApi extends BaseAPI {
   ) {
     return OrganizationManangerApiFp(this.configuration)
       .apiV1OrganizationWithUserInfoTreePost(queryOrganizationWithUserInfoInput, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary 查询组织架构树及所有人员，如果传入的组织架构ID为空，则返回所有组织架构 | query organization with user\'s detail information,if organization\'s id is null,we will return all organizations
+   * @param {QueryOrganizationWithUserInfoInput} [queryOrganizationWithUserInfoInput]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof OrganizationManangerApi
+   */
+  public apiV1OrganizationWithUserInfoTreePost_7(
+    queryOrganizationWithUserInfoInput?: QueryOrganizationWithUserInfoInput,
+    options?: AxiosRequestConfig,
+  ) {
+    return OrganizationManangerApiFp(this.configuration)
+      .apiV1OrganizationWithUserInfoTreePost_7(queryOrganizationWithUserInfoInput, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -895,6 +1748,23 @@ export class OrganizationManangerApi extends BaseAPI {
 
   /**
    *
+   * @summary 通过用户输入的关键字查询用户
+   * @param {QueryUserDetailsByUserInput} [queryUserDetailsByUserInput]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof OrganizationManangerApi
+   */
+  public apiV1UserDetailsQueryByKeywordPost_8(
+    queryUserDetailsByUserInput?: QueryUserDetailsByUserInput,
+    options?: AxiosRequestConfig,
+  ) {
+    return OrganizationManangerApiFp(this.configuration)
+      .apiV1UserDetailsQueryByKeywordPost_8(queryUserDetailsByUserInput, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
    * @summary 查询用户详细信息 | query user\'s detail information
    * @param {QueryUserDetailsInput} [queryUserDetailsInput]
    * @param {*} [options] Override http request option.
@@ -907,6 +1777,23 @@ export class OrganizationManangerApi extends BaseAPI {
   ) {
     return OrganizationManangerApiFp(this.configuration)
       .apiV1UserDetailsQueryByUserIdPost(queryUserDetailsInput, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary 查询用户详细信息 | query user\'s detail information
+   * @param {QueryUserDetailsInput} [queryUserDetailsInput]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof OrganizationManangerApi
+   */
+  public apiV1UserDetailsQueryByUserIdPost_9(
+    queryUserDetailsInput?: QueryUserDetailsInput,
+    options?: AxiosRequestConfig,
+  ) {
+    return OrganizationManangerApiFp(this.configuration)
+      .apiV1UserDetailsQueryByUserIdPost_9(queryUserDetailsInput, options)
       .then((request) => request(this.axios, this.basePath))
   }
 }

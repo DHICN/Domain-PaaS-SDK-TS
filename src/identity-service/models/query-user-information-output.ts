@@ -13,6 +13,9 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
+import { Null } from './null'
+// May contain unused imports in some cases
+// @ts-ignore
 import { OrganizationEntity } from './organization-entity'
 // May contain unused imports in some cases
 // @ts-ignore
@@ -54,6 +57,12 @@ export interface QueryUserInformationOutput {
    * @memberof QueryUserInformationOutput
    */
   email?: string | null
+  /**
+   *
+   * @type {{ [key: string]: Null; }}
+   * @memberof QueryUserInformationOutput
+   */
+  extraProperties?: { [key: string]: Null } | null
   /**
    *
    * @type {Array<RoleInfo>}
