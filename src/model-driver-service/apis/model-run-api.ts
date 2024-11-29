@@ -43,7 +43,7 @@ import { ModelOperationResult } from '../models'
 // @ts-ignore
 import { ModelTypePara } from '../models'
 // @ts-ignore
-import { ProjectScenario } from '../models'
+import { ResetResult } from '../models'
 // @ts-ignore
 import { ScenarioIds } from '../models'
 // @ts-ignore
@@ -71,6 +71,50 @@ export const ModelRunApiAxiosParamCreator = function (configuration?: Configurat
      * @throws {RequiredError}
      */
     modelRunCancelModelRunPost: async (
+      scenarioModelMessageInput?: ScenarioModelMessageInput,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/ModelRun/CancelModelRun`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        scenarioModelMessageInput,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     * 取消计算方案模型的任务 Cancel the task to run the model of a scenario.
+     * @summary 【废弃】取消模型计算 Cancel model run
+     * @param {ScenarioModelMessageInput} [scenarioModelMessageInput]
+     * @param {*} [options] Override http request option.
+     * @deprecated
+     * @throws {RequiredError}
+     */
+    modelRunCancelModelRunPost_1: async (
       scenarioModelMessageInput?: ScenarioModelMessageInput,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
@@ -150,6 +194,49 @@ export const ModelRunApiAxiosParamCreator = function (configuration?: Configurat
       }
     },
     /**
+     * 获取当前模型计算队列的长度 Get current model running queue length
+     * @summary 获取计算队列的长度 Get model running queue length
+     * @param {ModelTypePara} [modelTypePara]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    modelRunGetQueueMessageCountPost_2: async (
+      modelTypePara?: ModelTypePara,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/ModelRun/GetQueueMessageCount`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        modelTypePara,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
      *
      * @summary 查询正在计算的方案信息 Get scenario information which is running
      * @param {string} [projectName] 项目名称 project name
@@ -190,6 +277,46 @@ export const ModelRunApiAxiosParamCreator = function (configuration?: Configurat
       }
     },
     /**
+     *
+     * @summary 查询正在计算的方案信息 Get scenario information which is running
+     * @param {string} [projectName] 项目名称 project name
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    modelRunGetRuningScenarioGet_3: async (
+      projectName?: string,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/ModelRun/GetRuningScenario`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      if (projectName !== undefined) {
+        localVarQueryParameter['projectName'] = projectName
+      }
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
      * 批量获取方案的计算状态 Get scenarios’s model running status in batch mode
      * @summary 获取方案的状态 Get scenario’s status
      * @param {ScenarioIds} [scenarioIds]
@@ -197,6 +324,49 @@ export const ModelRunApiAxiosParamCreator = function (configuration?: Configurat
      * @throws {RequiredError}
      */
     modelRunGetScenarioesStatusPost: async (
+      scenarioIds?: ScenarioIds,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/ModelRun/GetScenarioesStatus`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        scenarioIds,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     * 批量获取方案的计算状态 Get scenarios’s model running status in batch mode
+     * @summary 获取方案的状态 Get scenario’s status
+     * @param {ScenarioIds} [scenarioIds]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    modelRunGetScenarioesStatusPost_4: async (
       scenarioIds?: ScenarioIds,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
@@ -276,14 +446,61 @@ export const ModelRunApiAxiosParamCreator = function (configuration?: Configurat
       }
     },
     /**
+     * 查询计算资源信息，返回可用的计算服务器个数，以及对应的队列长度 Get compute resource information, return available compute services’count and corresponding queue length
+     * @summary 查询计算资源信息 Query compute resource info
+     * @param {ModelTypePara} [modelTypePara]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    modelRunQueryComputeResourceInfoPost_5: async (
+      modelTypePara?: ModelTypePara,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/ModelRun/QueryComputeResourceInfo`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        modelTypePara,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
      * 查询方案模型计算状态（仅针对计算中的模型），所有状态都在枚举类型ModelState中 Get model running status of a scenario (only for model in running), all the status is listed in the Enum ModelState.
      * @summary 查询模型计算状态 Query model running status
-     * @param {ProjectScenario} [projectScenario]
+     * @param {string} [projectName] 项目名称 project name
+     * @param {string} [scenarioId] 方案ID scenario\&#39;s id
+     * @param {string} [serialNo] 序列ID serial no
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     modelRunQueryModelRunStatusGet: async (
-      projectScenario?: ProjectScenario,
+      projectName?: string,
+      scenarioId?: string,
+      serialNo?: string,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
       const localVarPath = `/ModelRun/QueryModelRunStatus`
@@ -298,7 +515,17 @@ export const ModelRunApiAxiosParamCreator = function (configuration?: Configurat
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
 
-      localVarHeaderParameter['Content-Type'] = 'application/json'
+      if (projectName !== undefined) {
+        localVarQueryParameter['ProjectName'] = projectName
+      }
+
+      if (scenarioId !== undefined) {
+        localVarQueryParameter['ScenarioId'] = scenarioId
+      }
+
+      if (serialNo !== undefined) {
+        localVarQueryParameter['SerialNo'] = serialNo
+      }
 
       setSearchParams(localVarUrlObj, localVarQueryParameter)
       let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
@@ -307,11 +534,58 @@ export const ModelRunApiAxiosParamCreator = function (configuration?: Configurat
         ...headersFromBaseOptions,
         ...options.headers,
       }
-      localVarRequestOptions.data = serializeDataIfNeeded(
-        projectScenario,
-        localVarRequestOptions,
-        configuration,
-      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     * 查询方案模型计算状态（仅针对计算中的模型），所有状态都在枚举类型ModelState中 Get model running status of a scenario (only for model in running), all the status is listed in the Enum ModelState.
+     * @summary 查询模型计算状态 Query model running status
+     * @param {string} [projectName] 项目名称 project name
+     * @param {string} [scenarioId] 方案ID scenario\&#39;s id
+     * @param {string} [serialNo] 序列ID serial no
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    modelRunQueryModelRunStatusGet_6: async (
+      projectName?: string,
+      scenarioId?: string,
+      serialNo?: string,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/ModelRun/QueryModelRunStatus`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      if (projectName !== undefined) {
+        localVarQueryParameter['ProjectName'] = projectName
+      }
+
+      if (scenarioId !== undefined) {
+        localVarQueryParameter['ScenarioId'] = scenarioId
+      }
+
+      if (serialNo !== undefined) {
+        localVarQueryParameter['SerialNo'] = serialNo
+      }
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
 
       return {
         url: toPathString(localVarUrlObj),
@@ -328,6 +602,58 @@ export const ModelRunApiAxiosParamCreator = function (configuration?: Configurat
      * @throws {RequiredError}
      */
     modelRunQueryQueuesGet: async (
+      projectName?: string,
+      scenarioId?: string,
+      modelType?: string,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/ModelRun/QueryQueues`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      if (projectName !== undefined) {
+        localVarQueryParameter['ProjectName'] = projectName
+      }
+
+      if (scenarioId !== undefined) {
+        localVarQueryParameter['ScenarioId'] = scenarioId
+      }
+
+      if (modelType !== undefined) {
+        localVarQueryParameter['ModelType'] = modelType
+      }
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 获取排队情况
+     * @param {string} [projectName] 项目名称 project name
+     * @param {string} [scenarioId] 方案Id
+     * @param {string} [modelType] 模型类型
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    modelRunQueryQueuesGet_7: async (
       projectName?: string,
       scenarioId?: string,
       modelType?: string,
@@ -414,6 +740,49 @@ export const ModelRunApiAxiosParamCreator = function (configuration?: Configurat
       }
     },
     /**
+     * 创建一个方案模型计算的任务，任务将被推送到一个队列中排队进行计算，能够同时执行计算任务的个数取决于计算服务器个数，以及MIKE狗的个数 Generate a task to run the model of a scenario, which will be put in a queue and wait for it’s turn to run. The number of tasks can be run simultaneously depends on the number of compute services and MIKE dongles.
+     * @summary [第一步]驱动计算 Start to run a model
+     * @param {ScenarioModelMessageInput} [scenarioModelMessageInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    modelRunRunModelPost_8: async (
+      scenarioModelMessageInput?: ScenarioModelMessageInput,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/ModelRun/RunModel`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        scenarioModelMessageInput,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
      *
      * @summary [第三步]获取方案计算日志
      * @param {string} [scenarioId]
@@ -455,12 +824,95 @@ export const ModelRunApiAxiosParamCreator = function (configuration?: Configurat
     },
     /**
      *
+     * @summary [第三步]获取方案计算日志
+     * @param {string} [scenarioId]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    modelRunV2CalculateLogsGet_9: async (
+      scenarioId?: string,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/ModelRun/v2/CalculateLogs`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      if (scenarioId !== undefined) {
+        localVarQueryParameter['scenarioId'] = scenarioId
+      }
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
      * @summary [第二步]获取方案计算状态（对于等待中的方案，返回其排队序号）
      * @param {Array<string>} [requestBody]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     modelRunV2CalculateStatusPost: async (
+      requestBody?: Array<string>,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/ModelRun/v2/CalculateStatus`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        requestBody,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary [第二步]获取方案计算状态（对于等待中的方案，返回其排队序号）
+     * @param {Array<string>} [requestBody]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    modelRunV2CalculateStatusPost_10: async (
       requestBody?: Array<string>,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
@@ -538,6 +990,47 @@ export const ModelRunApiAxiosParamCreator = function (configuration?: Configurat
       }
     },
     /**
+     * 取消计算通过queueId Cancelling the computation through queueId.
+     * @summary 取消计算通过queueId Cancel model run
+     * @param {string} [queueId]
+     * @param {*} [options] Override http request option.
+     * @deprecated
+     * @throws {RequiredError}
+     */
+    modelRunV2CancelModelRunGet_11: async (
+      queueId?: string,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/ModelRun/v2/CancelModelRun`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      if (queueId !== undefined) {
+        localVarQueryParameter['queueId'] = queueId
+      }
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
      * 取消计算通过scenarioId Cancelling the computation through queueId.
      * @summary 取消计算通过scenarioId Cancel model run
      * @param {Array<string>} [requestBody]
@@ -581,6 +1074,135 @@ export const ModelRunApiAxiosParamCreator = function (configuration?: Configurat
       }
     },
     /**
+     * 取消计算通过scenarioId Cancelling the computation through queueId.
+     * @summary 取消计算通过scenarioId Cancel model run
+     * @param {Array<string>} [requestBody]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    modelRunV2CancelModelRunThroughScenarioIdsPost_12: async (
+      requestBody?: Array<string>,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/ModelRun/v2/CancelModelRun/Through/ScenarioIds`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        requestBody,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 重置方案计算状态（只有对于已计算和已取消状态才有用）
+     * @param {Array<string>} [requestBody]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    modelRunV2ResetCalculateStatusPost: async (
+      requestBody?: Array<string>,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/ModelRun/v2/ResetCalculateStatus`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        requestBody,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 重置方案计算状态（只有对于已计算和已取消状态才有用）
+     * @param {Array<string>} [requestBody]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    modelRunV2ResetCalculateStatusPost_13: async (
+      requestBody?: Array<string>,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/ModelRun/v2/ResetCalculateStatus`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        requestBody,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
      *
      * @summary 通过方案ID来更新计算状态
      * @param {UpdateStatusInput} [updateStatusInput]
@@ -588,6 +1210,49 @@ export const ModelRunApiAxiosParamCreator = function (configuration?: Configurat
      * @throws {RequiredError}
      */
     modelRunV2UpdateCalculateStatusPost: async (
+      updateStatusInput?: UpdateStatusInput,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/ModelRun/v2/UpdateCalculateStatus`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        updateStatusInput,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 通过方案ID来更新计算状态
+     * @param {UpdateStatusInput} [updateStatusInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    modelRunV2UpdateCalculateStatusPost_14: async (
       updateStatusInput?: UpdateStatusInput,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
@@ -666,6 +1331,49 @@ export const ModelRunApiAxiosParamCreator = function (configuration?: Configurat
         options: localVarRequestOptions,
       }
     },
+    /**
+     *
+     * @summary 通过方案ID来更新minIO地址（后端内部调用）
+     * @param {UpdateRecordInput} [updateRecordInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    modelRunV2UpdateRecordPost_15: async (
+      updateRecordInput?: UpdateRecordInput,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/ModelRun/v2/UpdateRecord`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        updateRecordInput,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
   }
 }
 
@@ -695,6 +1403,24 @@ export const ModelRunApiFp = function (configuration?: Configuration) {
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**
+     * 取消计算方案模型的任务 Cancel the task to run the model of a scenario.
+     * @summary 【废弃】取消模型计算 Cancel model run
+     * @param {ScenarioModelMessageInput} [scenarioModelMessageInput]
+     * @param {*} [options] Override http request option.
+     * @deprecated
+     * @throws {RequiredError}
+     */
+    async modelRunCancelModelRunPost_1(
+      scenarioModelMessageInput?: ScenarioModelMessageInput,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ModelOperationResult>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.modelRunCancelModelRunPost_1(
+        scenarioModelMessageInput,
+        options,
+      )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
      * 获取当前模型计算队列的长度 Get current model running queue length
      * @summary 获取计算队列的长度 Get model running queue length
      * @param {ModelTypePara} [modelTypePara]
@@ -706,6 +1432,23 @@ export const ModelRunApiFp = function (configuration?: Configuration) {
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<number>> {
       const localVarAxiosArgs = await localVarAxiosParamCreator.modelRunGetQueueMessageCountPost(
+        modelTypePara,
+        options,
+      )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     * 获取当前模型计算队列的长度 Get current model running queue length
+     * @summary 获取计算队列的长度 Get model running queue length
+     * @param {ModelTypePara} [modelTypePara]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async modelRunGetQueueMessageCountPost_2(
+      modelTypePara?: ModelTypePara,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<number>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.modelRunGetQueueMessageCountPost_2(
         modelTypePara,
         options,
       )
@@ -731,6 +1474,25 @@ export const ModelRunApiFp = function (configuration?: Configuration) {
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**
+     *
+     * @summary 查询正在计算的方案信息 Get scenario information which is running
+     * @param {string} [projectName] 项目名称 project name
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async modelRunGetRuningScenarioGet_3(
+      projectName?: string,
+      options?: AxiosRequestConfig,
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<ScenarioModelMessage>>
+    > {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.modelRunGetRuningScenarioGet_3(
+        projectName,
+        options,
+      )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
      * 批量获取方案的计算状态 Get scenarios’s model running status in batch mode
      * @summary 获取方案的状态 Get scenario’s status
      * @param {ScenarioIds} [scenarioIds]
@@ -744,6 +1506,25 @@ export const ModelRunApiFp = function (configuration?: Configuration) {
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<ScenarioModelStatusMessage>>
     > {
       const localVarAxiosArgs = await localVarAxiosParamCreator.modelRunGetScenarioesStatusPost(
+        scenarioIds,
+        options,
+      )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     * 批量获取方案的计算状态 Get scenarios’s model running status in batch mode
+     * @summary 获取方案的状态 Get scenario’s status
+     * @param {ScenarioIds} [scenarioIds]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async modelRunGetScenarioesStatusPost_4(
+      scenarioIds?: ScenarioIds,
+      options?: AxiosRequestConfig,
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<ScenarioModelStatusMessage>>
+    > {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.modelRunGetScenarioesStatusPost_4(
         scenarioIds,
         options,
       )
@@ -767,20 +1548,71 @@ export const ModelRunApiFp = function (configuration?: Configuration) {
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**
+     * 查询计算资源信息，返回可用的计算服务器个数，以及对应的队列长度 Get compute resource information, return available compute services’count and corresponding queue length
+     * @summary 查询计算资源信息 Query compute resource info
+     * @param {ModelTypePara} [modelTypePara]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async modelRunQueryComputeResourceInfoPost_5(
+      modelTypePara?: ModelTypePara,
+      options?: AxiosRequestConfig,
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<{ [key: string]: string }>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.modelRunQueryComputeResourceInfoPost_5(
+          modelTypePara,
+          options,
+        )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
      * 查询方案模型计算状态（仅针对计算中的模型），所有状态都在枚举类型ModelState中 Get model running status of a scenario (only for model in running), all the status is listed in the Enum ModelState.
      * @summary 查询模型计算状态 Query model running status
-     * @param {ProjectScenario} [projectScenario]
+     * @param {string} [projectName] 项目名称 project name
+     * @param {string} [scenarioId] 方案ID scenario\&#39;s id
+     * @param {string} [serialNo] 序列ID serial no
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async modelRunQueryModelRunStatusGet(
-      projectScenario?: ProjectScenario,
+      projectName?: string,
+      scenarioId?: string,
+      serialNo?: string,
       options?: AxiosRequestConfig,
     ): Promise<
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<ScenarioModelStatusMessage>
     > {
       const localVarAxiosArgs = await localVarAxiosParamCreator.modelRunQueryModelRunStatusGet(
-        projectScenario,
+        projectName,
+        scenarioId,
+        serialNo,
+        options,
+      )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     * 查询方案模型计算状态（仅针对计算中的模型），所有状态都在枚举类型ModelState中 Get model running status of a scenario (only for model in running), all the status is listed in the Enum ModelState.
+     * @summary 查询模型计算状态 Query model running status
+     * @param {string} [projectName] 项目名称 project name
+     * @param {string} [scenarioId] 方案ID scenario\&#39;s id
+     * @param {string} [serialNo] 序列ID serial no
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async modelRunQueryModelRunStatusGet_6(
+      projectName?: string,
+      scenarioId?: string,
+      serialNo?: string,
+      options?: AxiosRequestConfig,
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<ScenarioModelStatusMessage>
+    > {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.modelRunQueryModelRunStatusGet_6(
+        projectName,
+        scenarioId,
+        serialNo,
         options,
       )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
@@ -809,6 +1641,29 @@ export const ModelRunApiFp = function (configuration?: Configuration) {
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**
+     *
+     * @summary 获取排队情况
+     * @param {string} [projectName] 项目名称 project name
+     * @param {string} [scenarioId] 方案Id
+     * @param {string} [modelType] 模型类型
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async modelRunQueryQueuesGet_7(
+      projectName?: string,
+      scenarioId?: string,
+      modelType?: string,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<ModelDriverDto>>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.modelRunQueryQueuesGet_7(
+        projectName,
+        scenarioId,
+        modelType,
+        options,
+      )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
      * 创建一个方案模型计算的任务，任务将被推送到一个队列中排队进行计算，能够同时执行计算任务的个数取决于计算服务器个数，以及MIKE狗的个数 Generate a task to run the model of a scenario, which will be put in a queue and wait for it’s turn to run. The number of tasks can be run simultaneously depends on the number of compute services and MIKE dongles.
      * @summary [第一步]驱动计算 Start to run a model
      * @param {ScenarioModelMessageInput} [scenarioModelMessageInput]
@@ -826,6 +1681,23 @@ export const ModelRunApiFp = function (configuration?: Configuration) {
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**
+     * 创建一个方案模型计算的任务，任务将被推送到一个队列中排队进行计算，能够同时执行计算任务的个数取决于计算服务器个数，以及MIKE狗的个数 Generate a task to run the model of a scenario, which will be put in a queue and wait for it’s turn to run. The number of tasks can be run simultaneously depends on the number of compute services and MIKE dongles.
+     * @summary [第一步]驱动计算 Start to run a model
+     * @param {ScenarioModelMessageInput} [scenarioModelMessageInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async modelRunRunModelPost_8(
+      scenarioModelMessageInput?: ScenarioModelMessageInput,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ModelOperationResult>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.modelRunRunModelPost_8(
+        scenarioModelMessageInput,
+        options,
+      )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
      *
      * @summary [第三步]获取方案计算日志
      * @param {string} [scenarioId]
@@ -837,6 +1709,23 @@ export const ModelRunApiFp = function (configuration?: Configuration) {
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CalculateLogsOutput>> {
       const localVarAxiosArgs = await localVarAxiosParamCreator.modelRunV2CalculateLogsGet(
+        scenarioId,
+        options,
+      )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
+     * @summary [第三步]获取方案计算日志
+     * @param {string} [scenarioId]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async modelRunV2CalculateLogsGet_9(
+      scenarioId?: string,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CalculateLogsOutput>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.modelRunV2CalculateLogsGet_9(
         scenarioId,
         options,
       )
@@ -862,6 +1751,25 @@ export const ModelRunApiFp = function (configuration?: Configuration) {
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**
+     *
+     * @summary [第二步]获取方案计算状态（对于等待中的方案，返回其排队序号）
+     * @param {Array<string>} [requestBody]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async modelRunV2CalculateStatusPost_10(
+      requestBody?: Array<string>,
+      options?: AxiosRequestConfig,
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<CalculateStatusOutput>>
+    > {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.modelRunV2CalculateStatusPost_10(
+        requestBody,
+        options,
+      )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
      * 取消计算通过queueId Cancelling the computation through queueId.
      * @summary 取消计算通过queueId Cancel model run
      * @param {string} [queueId]
@@ -874,6 +1782,24 @@ export const ModelRunApiFp = function (configuration?: Configuration) {
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ModelOperationResult>> {
       const localVarAxiosArgs = await localVarAxiosParamCreator.modelRunV2CancelModelRunGet(
+        queueId,
+        options,
+      )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     * 取消计算通过queueId Cancelling the computation through queueId.
+     * @summary 取消计算通过queueId Cancel model run
+     * @param {string} [queueId]
+     * @param {*} [options] Override http request option.
+     * @deprecated
+     * @throws {RequiredError}
+     */
+    async modelRunV2CancelModelRunGet_11(
+      queueId?: string,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ModelOperationResult>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.modelRunV2CancelModelRunGet_11(
         queueId,
         options,
       )
@@ -898,6 +1824,56 @@ export const ModelRunApiFp = function (configuration?: Configuration) {
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**
+     * 取消计算通过scenarioId Cancelling the computation through queueId.
+     * @summary 取消计算通过scenarioId Cancel model run
+     * @param {Array<string>} [requestBody]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async modelRunV2CancelModelRunThroughScenarioIdsPost_12(
+      requestBody?: Array<string>,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CancelResult>> {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.modelRunV2CancelModelRunThroughScenarioIdsPost_12(
+          requestBody,
+          options,
+        )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
+     * @summary 重置方案计算状态（只有对于已计算和已取消状态才有用）
+     * @param {Array<string>} [requestBody]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async modelRunV2ResetCalculateStatusPost(
+      requestBody?: Array<string>,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ResetResult>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.modelRunV2ResetCalculateStatusPost(
+        requestBody,
+        options,
+      )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
+     * @summary 重置方案计算状态（只有对于已计算和已取消状态才有用）
+     * @param {Array<string>} [requestBody]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async modelRunV2ResetCalculateStatusPost_13(
+      requestBody?: Array<string>,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ResetResult>> {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.modelRunV2ResetCalculateStatusPost_13(requestBody, options)
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
      *
      * @summary 通过方案ID来更新计算状态
      * @param {UpdateStatusInput} [updateStatusInput]
@@ -916,6 +1892,24 @@ export const ModelRunApiFp = function (configuration?: Configuration) {
     },
     /**
      *
+     * @summary 通过方案ID来更新计算状态
+     * @param {UpdateStatusInput} [updateStatusInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async modelRunV2UpdateCalculateStatusPost_14(
+      updateStatusInput?: UpdateStatusInput,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<boolean>> {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.modelRunV2UpdateCalculateStatusPost_14(
+          updateStatusInput,
+          options,
+        )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
      * @summary 通过方案ID来更新minIO地址（后端内部调用）
      * @param {UpdateRecordInput} [updateRecordInput]
      * @param {*} [options] Override http request option.
@@ -926,6 +1920,23 @@ export const ModelRunApiFp = function (configuration?: Configuration) {
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<boolean>> {
       const localVarAxiosArgs = await localVarAxiosParamCreator.modelRunV2UpdateRecordPost(
+        updateRecordInput,
+        options,
+      )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
+     * @summary 通过方案ID来更新minIO地址（后端内部调用）
+     * @param {UpdateRecordInput} [updateRecordInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async modelRunV2UpdateRecordPost_15(
+      updateRecordInput?: UpdateRecordInput,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<boolean>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.modelRunV2UpdateRecordPost_15(
         updateRecordInput,
         options,
       )
@@ -962,6 +1973,22 @@ export const ModelRunApiFactory = function (
         .then((request) => request(axios, basePath))
     },
     /**
+     * 取消计算方案模型的任务 Cancel the task to run the model of a scenario.
+     * @summary 【废弃】取消模型计算 Cancel model run
+     * @param {ScenarioModelMessageInput} [scenarioModelMessageInput]
+     * @param {*} [options] Override http request option.
+     * @deprecated
+     * @throws {RequiredError}
+     */
+    modelRunCancelModelRunPost_1(
+      scenarioModelMessageInput?: ScenarioModelMessageInput,
+      options?: any,
+    ): AxiosPromise<ModelOperationResult> {
+      return localVarFp
+        .modelRunCancelModelRunPost_1(scenarioModelMessageInput, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
      * 获取当前模型计算队列的长度 Get current model running queue length
      * @summary 获取计算队列的长度 Get model running queue length
      * @param {ModelTypePara} [modelTypePara]
@@ -974,6 +2001,21 @@ export const ModelRunApiFactory = function (
     ): AxiosPromise<number> {
       return localVarFp
         .modelRunGetQueueMessageCountPost(modelTypePara, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     * 获取当前模型计算队列的长度 Get current model running queue length
+     * @summary 获取计算队列的长度 Get model running queue length
+     * @param {ModelTypePara} [modelTypePara]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    modelRunGetQueueMessageCountPost_2(
+      modelTypePara?: ModelTypePara,
+      options?: any,
+    ): AxiosPromise<number> {
+      return localVarFp
+        .modelRunGetQueueMessageCountPost_2(modelTypePara, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -992,6 +2034,21 @@ export const ModelRunApiFactory = function (
         .then((request) => request(axios, basePath))
     },
     /**
+     *
+     * @summary 查询正在计算的方案信息 Get scenario information which is running
+     * @param {string} [projectName] 项目名称 project name
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    modelRunGetRuningScenarioGet_3(
+      projectName?: string,
+      options?: any,
+    ): AxiosPromise<Array<ScenarioModelMessage>> {
+      return localVarFp
+        .modelRunGetRuningScenarioGet_3(projectName, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
      * 批量获取方案的计算状态 Get scenarios’s model running status in batch mode
      * @summary 获取方案的状态 Get scenario’s status
      * @param {ScenarioIds} [scenarioIds]
@@ -1004,6 +2061,21 @@ export const ModelRunApiFactory = function (
     ): AxiosPromise<Array<ScenarioModelStatusMessage>> {
       return localVarFp
         .modelRunGetScenarioesStatusPost(scenarioIds, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     * 批量获取方案的计算状态 Get scenarios’s model running status in batch mode
+     * @summary 获取方案的状态 Get scenario’s status
+     * @param {ScenarioIds} [scenarioIds]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    modelRunGetScenarioesStatusPost_4(
+      scenarioIds?: ScenarioIds,
+      options?: any,
+    ): AxiosPromise<Array<ScenarioModelStatusMessage>> {
+      return localVarFp
+        .modelRunGetScenarioesStatusPost_4(scenarioIds, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -1022,18 +2094,56 @@ export const ModelRunApiFactory = function (
         .then((request) => request(axios, basePath))
     },
     /**
+     * 查询计算资源信息，返回可用的计算服务器个数，以及对应的队列长度 Get compute resource information, return available compute services’count and corresponding queue length
+     * @summary 查询计算资源信息 Query compute resource info
+     * @param {ModelTypePara} [modelTypePara]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    modelRunQueryComputeResourceInfoPost_5(
+      modelTypePara?: ModelTypePara,
+      options?: any,
+    ): AxiosPromise<{ [key: string]: string }> {
+      return localVarFp
+        .modelRunQueryComputeResourceInfoPost_5(modelTypePara, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
      * 查询方案模型计算状态（仅针对计算中的模型），所有状态都在枚举类型ModelState中 Get model running status of a scenario (only for model in running), all the status is listed in the Enum ModelState.
      * @summary 查询模型计算状态 Query model running status
-     * @param {ProjectScenario} [projectScenario]
+     * @param {string} [projectName] 项目名称 project name
+     * @param {string} [scenarioId] 方案ID scenario\&#39;s id
+     * @param {string} [serialNo] 序列ID serial no
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     modelRunQueryModelRunStatusGet(
-      projectScenario?: ProjectScenario,
+      projectName?: string,
+      scenarioId?: string,
+      serialNo?: string,
       options?: any,
     ): AxiosPromise<ScenarioModelStatusMessage> {
       return localVarFp
-        .modelRunQueryModelRunStatusGet(projectScenario, options)
+        .modelRunQueryModelRunStatusGet(projectName, scenarioId, serialNo, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     * 查询方案模型计算状态（仅针对计算中的模型），所有状态都在枚举类型ModelState中 Get model running status of a scenario (only for model in running), all the status is listed in the Enum ModelState.
+     * @summary 查询模型计算状态 Query model running status
+     * @param {string} [projectName] 项目名称 project name
+     * @param {string} [scenarioId] 方案ID scenario\&#39;s id
+     * @param {string} [serialNo] 序列ID serial no
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    modelRunQueryModelRunStatusGet_6(
+      projectName?: string,
+      scenarioId?: string,
+      serialNo?: string,
+      options?: any,
+    ): AxiosPromise<ScenarioModelStatusMessage> {
+      return localVarFp
+        .modelRunQueryModelRunStatusGet_6(projectName, scenarioId, serialNo, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -1056,6 +2166,25 @@ export const ModelRunApiFactory = function (
         .then((request) => request(axios, basePath))
     },
     /**
+     *
+     * @summary 获取排队情况
+     * @param {string} [projectName] 项目名称 project name
+     * @param {string} [scenarioId] 方案Id
+     * @param {string} [modelType] 模型类型
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    modelRunQueryQueuesGet_7(
+      projectName?: string,
+      scenarioId?: string,
+      modelType?: string,
+      options?: any,
+    ): AxiosPromise<Array<ModelDriverDto>> {
+      return localVarFp
+        .modelRunQueryQueuesGet_7(projectName, scenarioId, modelType, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
      * 创建一个方案模型计算的任务，任务将被推送到一个队列中排队进行计算，能够同时执行计算任务的个数取决于计算服务器个数，以及MIKE狗的个数 Generate a task to run the model of a scenario, which will be put in a queue and wait for it’s turn to run. The number of tasks can be run simultaneously depends on the number of compute services and MIKE dongles.
      * @summary [第一步]驱动计算 Start to run a model
      * @param {ScenarioModelMessageInput} [scenarioModelMessageInput]
@@ -1068,6 +2197,21 @@ export const ModelRunApiFactory = function (
     ): AxiosPromise<ModelOperationResult> {
       return localVarFp
         .modelRunRunModelPost(scenarioModelMessageInput, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     * 创建一个方案模型计算的任务，任务将被推送到一个队列中排队进行计算，能够同时执行计算任务的个数取决于计算服务器个数，以及MIKE狗的个数 Generate a task to run the model of a scenario, which will be put in a queue and wait for it’s turn to run. The number of tasks can be run simultaneously depends on the number of compute services and MIKE dongles.
+     * @summary [第一步]驱动计算 Start to run a model
+     * @param {ScenarioModelMessageInput} [scenarioModelMessageInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    modelRunRunModelPost_8(
+      scenarioModelMessageInput?: ScenarioModelMessageInput,
+      options?: any,
+    ): AxiosPromise<ModelOperationResult> {
+      return localVarFp
+        .modelRunRunModelPost_8(scenarioModelMessageInput, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -1087,6 +2231,21 @@ export const ModelRunApiFactory = function (
     },
     /**
      *
+     * @summary [第三步]获取方案计算日志
+     * @param {string} [scenarioId]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    modelRunV2CalculateLogsGet_9(
+      scenarioId?: string,
+      options?: any,
+    ): AxiosPromise<CalculateLogsOutput> {
+      return localVarFp
+        .modelRunV2CalculateLogsGet_9(scenarioId, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
      * @summary [第二步]获取方案计算状态（对于等待中的方案，返回其排队序号）
      * @param {Array<string>} [requestBody]
      * @param {*} [options] Override http request option.
@@ -1098,6 +2257,21 @@ export const ModelRunApiFactory = function (
     ): AxiosPromise<Array<CalculateStatusOutput>> {
       return localVarFp
         .modelRunV2CalculateStatusPost(requestBody, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @summary [第二步]获取方案计算状态（对于等待中的方案，返回其排队序号）
+     * @param {Array<string>} [requestBody]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    modelRunV2CalculateStatusPost_10(
+      requestBody?: Array<string>,
+      options?: any,
+    ): AxiosPromise<Array<CalculateStatusOutput>> {
+      return localVarFp
+        .modelRunV2CalculateStatusPost_10(requestBody, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -1117,6 +2291,22 @@ export const ModelRunApiFactory = function (
         .then((request) => request(axios, basePath))
     },
     /**
+     * 取消计算通过queueId Cancelling the computation through queueId.
+     * @summary 取消计算通过queueId Cancel model run
+     * @param {string} [queueId]
+     * @param {*} [options] Override http request option.
+     * @deprecated
+     * @throws {RequiredError}
+     */
+    modelRunV2CancelModelRunGet_11(
+      queueId?: string,
+      options?: any,
+    ): AxiosPromise<ModelOperationResult> {
+      return localVarFp
+        .modelRunV2CancelModelRunGet_11(queueId, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
      * 取消计算通过scenarioId Cancelling the computation through queueId.
      * @summary 取消计算通过scenarioId Cancel model run
      * @param {Array<string>} [requestBody]
@@ -1129,6 +2319,51 @@ export const ModelRunApiFactory = function (
     ): AxiosPromise<CancelResult> {
       return localVarFp
         .modelRunV2CancelModelRunThroughScenarioIdsPost(requestBody, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     * 取消计算通过scenarioId Cancelling the computation through queueId.
+     * @summary 取消计算通过scenarioId Cancel model run
+     * @param {Array<string>} [requestBody]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    modelRunV2CancelModelRunThroughScenarioIdsPost_12(
+      requestBody?: Array<string>,
+      options?: any,
+    ): AxiosPromise<CancelResult> {
+      return localVarFp
+        .modelRunV2CancelModelRunThroughScenarioIdsPost_12(requestBody, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @summary 重置方案计算状态（只有对于已计算和已取消状态才有用）
+     * @param {Array<string>} [requestBody]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    modelRunV2ResetCalculateStatusPost(
+      requestBody?: Array<string>,
+      options?: any,
+    ): AxiosPromise<ResetResult> {
+      return localVarFp
+        .modelRunV2ResetCalculateStatusPost(requestBody, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @summary 重置方案计算状态（只有对于已计算和已取消状态才有用）
+     * @param {Array<string>} [requestBody]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    modelRunV2ResetCalculateStatusPost_13(
+      requestBody?: Array<string>,
+      options?: any,
+    ): AxiosPromise<ResetResult> {
+      return localVarFp
+        .modelRunV2ResetCalculateStatusPost_13(requestBody, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -1148,6 +2383,21 @@ export const ModelRunApiFactory = function (
     },
     /**
      *
+     * @summary 通过方案ID来更新计算状态
+     * @param {UpdateStatusInput} [updateStatusInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    modelRunV2UpdateCalculateStatusPost_14(
+      updateStatusInput?: UpdateStatusInput,
+      options?: any,
+    ): AxiosPromise<boolean> {
+      return localVarFp
+        .modelRunV2UpdateCalculateStatusPost_14(updateStatusInput, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
      * @summary 通过方案ID来更新minIO地址（后端内部调用）
      * @param {UpdateRecordInput} [updateRecordInput]
      * @param {*} [options] Override http request option.
@@ -1159,6 +2409,21 @@ export const ModelRunApiFactory = function (
     ): AxiosPromise<boolean> {
       return localVarFp
         .modelRunV2UpdateRecordPost(updateRecordInput, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @summary 通过方案ID来更新minIO地址（后端内部调用）
+     * @param {UpdateRecordInput} [updateRecordInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    modelRunV2UpdateRecordPost_15(
+      updateRecordInput?: UpdateRecordInput,
+      options?: any,
+    ): AxiosPromise<boolean> {
+      return localVarFp
+        .modelRunV2UpdateRecordPost_15(updateRecordInput, options)
         .then((request) => request(axios, basePath))
     },
   }
@@ -1190,6 +2455,24 @@ export class ModelRunApi extends BaseAPI {
   }
 
   /**
+   * 取消计算方案模型的任务 Cancel the task to run the model of a scenario.
+   * @summary 【废弃】取消模型计算 Cancel model run
+   * @param {ScenarioModelMessageInput} [scenarioModelMessageInput]
+   * @param {*} [options] Override http request option.
+   * @deprecated
+   * @throws {RequiredError}
+   * @memberof ModelRunApi
+   */
+  public modelRunCancelModelRunPost_1(
+    scenarioModelMessageInput?: ScenarioModelMessageInput,
+    options?: AxiosRequestConfig,
+  ) {
+    return ModelRunApiFp(this.configuration)
+      .modelRunCancelModelRunPost_1(scenarioModelMessageInput, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
    * 获取当前模型计算队列的长度 Get current model running queue length
    * @summary 获取计算队列的长度 Get model running queue length
    * @param {ModelTypePara} [modelTypePara]
@@ -1203,6 +2486,23 @@ export class ModelRunApi extends BaseAPI {
   ) {
     return ModelRunApiFp(this.configuration)
       .modelRunGetQueueMessageCountPost(modelTypePara, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   * 获取当前模型计算队列的长度 Get current model running queue length
+   * @summary 获取计算队列的长度 Get model running queue length
+   * @param {ModelTypePara} [modelTypePara]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof ModelRunApi
+   */
+  public modelRunGetQueueMessageCountPost_2(
+    modelTypePara?: ModelTypePara,
+    options?: AxiosRequestConfig,
+  ) {
+    return ModelRunApiFp(this.configuration)
+      .modelRunGetQueueMessageCountPost_2(modelTypePara, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -1221,6 +2521,20 @@ export class ModelRunApi extends BaseAPI {
   }
 
   /**
+   *
+   * @summary 查询正在计算的方案信息 Get scenario information which is running
+   * @param {string} [projectName] 项目名称 project name
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof ModelRunApi
+   */
+  public modelRunGetRuningScenarioGet_3(projectName?: string, options?: AxiosRequestConfig) {
+    return ModelRunApiFp(this.configuration)
+      .modelRunGetRuningScenarioGet_3(projectName, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
    * 批量获取方案的计算状态 Get scenarios’s model running status in batch mode
    * @summary 获取方案的状态 Get scenario’s status
    * @param {ScenarioIds} [scenarioIds]
@@ -1231,6 +2545,23 @@ export class ModelRunApi extends BaseAPI {
   public modelRunGetScenarioesStatusPost(scenarioIds?: ScenarioIds, options?: AxiosRequestConfig) {
     return ModelRunApiFp(this.configuration)
       .modelRunGetScenarioesStatusPost(scenarioIds, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   * 批量获取方案的计算状态 Get scenarios’s model running status in batch mode
+   * @summary 获取方案的状态 Get scenario’s status
+   * @param {ScenarioIds} [scenarioIds]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof ModelRunApi
+   */
+  public modelRunGetScenarioesStatusPost_4(
+    scenarioIds?: ScenarioIds,
+    options?: AxiosRequestConfig,
+  ) {
+    return ModelRunApiFp(this.configuration)
+      .modelRunGetScenarioesStatusPost_4(scenarioIds, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -1252,19 +2583,61 @@ export class ModelRunApi extends BaseAPI {
   }
 
   /**
+   * 查询计算资源信息，返回可用的计算服务器个数，以及对应的队列长度 Get compute resource information, return available compute services’count and corresponding queue length
+   * @summary 查询计算资源信息 Query compute resource info
+   * @param {ModelTypePara} [modelTypePara]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof ModelRunApi
+   */
+  public modelRunQueryComputeResourceInfoPost_5(
+    modelTypePara?: ModelTypePara,
+    options?: AxiosRequestConfig,
+  ) {
+    return ModelRunApiFp(this.configuration)
+      .modelRunQueryComputeResourceInfoPost_5(modelTypePara, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
    * 查询方案模型计算状态（仅针对计算中的模型），所有状态都在枚举类型ModelState中 Get model running status of a scenario (only for model in running), all the status is listed in the Enum ModelState.
    * @summary 查询模型计算状态 Query model running status
-   * @param {ProjectScenario} [projectScenario]
+   * @param {string} [projectName] 项目名称 project name
+   * @param {string} [scenarioId] 方案ID scenario\&#39;s id
+   * @param {string} [serialNo] 序列ID serial no
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof ModelRunApi
    */
   public modelRunQueryModelRunStatusGet(
-    projectScenario?: ProjectScenario,
+    projectName?: string,
+    scenarioId?: string,
+    serialNo?: string,
     options?: AxiosRequestConfig,
   ) {
     return ModelRunApiFp(this.configuration)
-      .modelRunQueryModelRunStatusGet(projectScenario, options)
+      .modelRunQueryModelRunStatusGet(projectName, scenarioId, serialNo, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   * 查询方案模型计算状态（仅针对计算中的模型），所有状态都在枚举类型ModelState中 Get model running status of a scenario (only for model in running), all the status is listed in the Enum ModelState.
+   * @summary 查询模型计算状态 Query model running status
+   * @param {string} [projectName] 项目名称 project name
+   * @param {string} [scenarioId] 方案ID scenario\&#39;s id
+   * @param {string} [serialNo] 序列ID serial no
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof ModelRunApi
+   */
+  public modelRunQueryModelRunStatusGet_6(
+    projectName?: string,
+    scenarioId?: string,
+    serialNo?: string,
+    options?: AxiosRequestConfig,
+  ) {
+    return ModelRunApiFp(this.configuration)
+      .modelRunQueryModelRunStatusGet_6(projectName, scenarioId, serialNo, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -1290,6 +2663,27 @@ export class ModelRunApi extends BaseAPI {
   }
 
   /**
+   *
+   * @summary 获取排队情况
+   * @param {string} [projectName] 项目名称 project name
+   * @param {string} [scenarioId] 方案Id
+   * @param {string} [modelType] 模型类型
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof ModelRunApi
+   */
+  public modelRunQueryQueuesGet_7(
+    projectName?: string,
+    scenarioId?: string,
+    modelType?: string,
+    options?: AxiosRequestConfig,
+  ) {
+    return ModelRunApiFp(this.configuration)
+      .modelRunQueryQueuesGet_7(projectName, scenarioId, modelType, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
    * 创建一个方案模型计算的任务，任务将被推送到一个队列中排队进行计算，能够同时执行计算任务的个数取决于计算服务器个数，以及MIKE狗的个数 Generate a task to run the model of a scenario, which will be put in a queue and wait for it’s turn to run. The number of tasks can be run simultaneously depends on the number of compute services and MIKE dongles.
    * @summary [第一步]驱动计算 Start to run a model
    * @param {ScenarioModelMessageInput} [scenarioModelMessageInput]
@@ -1303,6 +2697,23 @@ export class ModelRunApi extends BaseAPI {
   ) {
     return ModelRunApiFp(this.configuration)
       .modelRunRunModelPost(scenarioModelMessageInput, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   * 创建一个方案模型计算的任务，任务将被推送到一个队列中排队进行计算，能够同时执行计算任务的个数取决于计算服务器个数，以及MIKE狗的个数 Generate a task to run the model of a scenario, which will be put in a queue and wait for it’s turn to run. The number of tasks can be run simultaneously depends on the number of compute services and MIKE dongles.
+   * @summary [第一步]驱动计算 Start to run a model
+   * @param {ScenarioModelMessageInput} [scenarioModelMessageInput]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof ModelRunApi
+   */
+  public modelRunRunModelPost_8(
+    scenarioModelMessageInput?: ScenarioModelMessageInput,
+    options?: AxiosRequestConfig,
+  ) {
+    return ModelRunApiFp(this.configuration)
+      .modelRunRunModelPost_8(scenarioModelMessageInput, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -1322,6 +2733,20 @@ export class ModelRunApi extends BaseAPI {
 
   /**
    *
+   * @summary [第三步]获取方案计算日志
+   * @param {string} [scenarioId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof ModelRunApi
+   */
+  public modelRunV2CalculateLogsGet_9(scenarioId?: string, options?: AxiosRequestConfig) {
+    return ModelRunApiFp(this.configuration)
+      .modelRunV2CalculateLogsGet_9(scenarioId, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
    * @summary [第二步]获取方案计算状态（对于等待中的方案，返回其排队序号）
    * @param {Array<string>} [requestBody]
    * @param {*} [options] Override http request option.
@@ -1331,6 +2756,23 @@ export class ModelRunApi extends BaseAPI {
   public modelRunV2CalculateStatusPost(requestBody?: Array<string>, options?: AxiosRequestConfig) {
     return ModelRunApiFp(this.configuration)
       .modelRunV2CalculateStatusPost(requestBody, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary [第二步]获取方案计算状态（对于等待中的方案，返回其排队序号）
+   * @param {Array<string>} [requestBody]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof ModelRunApi
+   */
+  public modelRunV2CalculateStatusPost_10(
+    requestBody?: Array<string>,
+    options?: AxiosRequestConfig,
+  ) {
+    return ModelRunApiFp(this.configuration)
+      .modelRunV2CalculateStatusPost_10(requestBody, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -1350,6 +2792,21 @@ export class ModelRunApi extends BaseAPI {
   }
 
   /**
+   * 取消计算通过queueId Cancelling the computation through queueId.
+   * @summary 取消计算通过queueId Cancel model run
+   * @param {string} [queueId]
+   * @param {*} [options] Override http request option.
+   * @deprecated
+   * @throws {RequiredError}
+   * @memberof ModelRunApi
+   */
+  public modelRunV2CancelModelRunGet_11(queueId?: string, options?: AxiosRequestConfig) {
+    return ModelRunApiFp(this.configuration)
+      .modelRunV2CancelModelRunGet_11(queueId, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
    * 取消计算通过scenarioId Cancelling the computation through queueId.
    * @summary 取消计算通过scenarioId Cancel model run
    * @param {Array<string>} [requestBody]
@@ -1363,6 +2820,57 @@ export class ModelRunApi extends BaseAPI {
   ) {
     return ModelRunApiFp(this.configuration)
       .modelRunV2CancelModelRunThroughScenarioIdsPost(requestBody, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   * 取消计算通过scenarioId Cancelling the computation through queueId.
+   * @summary 取消计算通过scenarioId Cancel model run
+   * @param {Array<string>} [requestBody]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof ModelRunApi
+   */
+  public modelRunV2CancelModelRunThroughScenarioIdsPost_12(
+    requestBody?: Array<string>,
+    options?: AxiosRequestConfig,
+  ) {
+    return ModelRunApiFp(this.configuration)
+      .modelRunV2CancelModelRunThroughScenarioIdsPost_12(requestBody, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary 重置方案计算状态（只有对于已计算和已取消状态才有用）
+   * @param {Array<string>} [requestBody]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof ModelRunApi
+   */
+  public modelRunV2ResetCalculateStatusPost(
+    requestBody?: Array<string>,
+    options?: AxiosRequestConfig,
+  ) {
+    return ModelRunApiFp(this.configuration)
+      .modelRunV2ResetCalculateStatusPost(requestBody, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary 重置方案计算状态（只有对于已计算和已取消状态才有用）
+   * @param {Array<string>} [requestBody]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof ModelRunApi
+   */
+  public modelRunV2ResetCalculateStatusPost_13(
+    requestBody?: Array<string>,
+    options?: AxiosRequestConfig,
+  ) {
+    return ModelRunApiFp(this.configuration)
+      .modelRunV2ResetCalculateStatusPost_13(requestBody, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -1385,6 +2893,23 @@ export class ModelRunApi extends BaseAPI {
 
   /**
    *
+   * @summary 通过方案ID来更新计算状态
+   * @param {UpdateStatusInput} [updateStatusInput]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof ModelRunApi
+   */
+  public modelRunV2UpdateCalculateStatusPost_14(
+    updateStatusInput?: UpdateStatusInput,
+    options?: AxiosRequestConfig,
+  ) {
+    return ModelRunApiFp(this.configuration)
+      .modelRunV2UpdateCalculateStatusPost_14(updateStatusInput, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
    * @summary 通过方案ID来更新minIO地址（后端内部调用）
    * @param {UpdateRecordInput} [updateRecordInput]
    * @param {*} [options] Override http request option.
@@ -1397,6 +2922,23 @@ export class ModelRunApi extends BaseAPI {
   ) {
     return ModelRunApiFp(this.configuration)
       .modelRunV2UpdateRecordPost(updateRecordInput, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary 通过方案ID来更新minIO地址（后端内部调用）
+   * @param {UpdateRecordInput} [updateRecordInput]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof ModelRunApi
+   */
+  public modelRunV2UpdateRecordPost_15(
+    updateRecordInput?: UpdateRecordInput,
+    options?: AxiosRequestConfig,
+  ) {
+    return ModelRunApiFp(this.configuration)
+      .modelRunV2UpdateRecordPost_15(updateRecordInput, options)
       .then((request) => request(this.axios, this.basePath))
   }
 }
