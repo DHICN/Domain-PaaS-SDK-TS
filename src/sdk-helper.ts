@@ -155,8 +155,10 @@ export class ApiHelper {
       this.changeTenantId(tenantId)
       this.token = rep.data
       this.setAuth(rep.data)
+      return this.token
     } catch (error) {
       console.error('logIn :>> ', error)
+      return Promise.reject(error)
     }
   }
 
