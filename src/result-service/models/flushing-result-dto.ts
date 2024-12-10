@@ -40,11 +40,23 @@ export interface FlushingResultDto {
    */
   startNode?: string | null
   /**
+   * 起点水头值
+   * @type {number}
+   * @memberof FlushingResultDto
+   */
+  startNodeHead?: number
+  /**
    * 终点
    * @type {string}
    * @memberof FlushingResultDto
    */
   endNode?: string | null
+  /**
+   * 终点水头值
+   * @type {number}
+   * @memberof FlushingResultDto
+   */
+  endNodeHead?: number
   /**
    * 冲洗时刻
    * @type {string}
@@ -57,6 +69,12 @@ export interface FlushingResultDto {
    * @memberof FlushingResultDto
    */
   totalDuration?: number
+  /**
+   * 冲洗流量
+   * @type {number}
+   * @memberof FlushingResultDto
+   */
+  flushingFlow?: number
   /**
    *
    * @type {Array<FlushingResultItemDto>}
