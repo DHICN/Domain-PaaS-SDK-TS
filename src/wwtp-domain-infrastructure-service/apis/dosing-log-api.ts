@@ -359,8 +359,9 @@ export const DosingLogApiFp = function (configuration?: Configuration) {
     async apiDosingLogGetAllDosingLogsGet(
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<DosingLogDto>>> {
-      const localVarAxiosArgs =
-        await localVarAxiosParamCreator.apiDosingLogGetAllDosingLogsGet(options)
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiDosingLogGetAllDosingLogsGet(
+        options,
+      )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**

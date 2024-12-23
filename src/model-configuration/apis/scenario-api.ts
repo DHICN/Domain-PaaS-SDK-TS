@@ -29,8 +29,7 @@ import {
   createRequestFunction,
 } from '../common'
 // @ts-ignore
-import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } from '../base'
-// @ts-ignore
+import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } from '../base' // @ts-ignore
 import { CreateTemplateScenarioOutput } from '../models'
 // @ts-ignore
 import { InitLibraryInput } from '../models'
@@ -40,6 +39,8 @@ import { LibraryInfo } from '../models'
 import { RemoteServiceErrorResponse } from '../models'
 // @ts-ignore
 import { TemplateScenarioLogOutput } from '../models'
+// @ts-ignore
+import { UpdateTemplateScenarioInput } from '../models'
 /**
  * ScenarioApi - axios parameter creator
  * @export
@@ -844,6 +845,49 @@ export const ScenarioApiAxiosParamCreator = function (configuration?: Configurat
         options: localVarRequestOptions,
       }
     },
+    /**
+     * 更新模板方案，如果勾选了导出，则进行异步导出
+     * @summary 更新模板方案，更新模板方案的基本信息
+     * @param {UpdateTemplateScenarioInput} [updateTemplateScenarioInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV3ModelConfigurationScenarioUpdateTemplateScenarioPost: async (
+      updateTemplateScenarioInput?: UpdateTemplateScenarioInput,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v3/model-configuration/scenario/update-template-scenario`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        updateTemplateScenarioInput,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
   }
 }
 
@@ -1220,6 +1264,24 @@ export const ScenarioApiFp = function (configuration?: Configuration) {
         )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
+    /**
+     * 更新模板方案，如果勾选了导出，则进行异步导出
+     * @summary 更新模板方案，更新模板方案的基本信息
+     * @param {UpdateTemplateScenarioInput} [updateTemplateScenarioInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV3ModelConfigurationScenarioUpdateTemplateScenarioPost(
+      updateTemplateScenarioInput?: UpdateTemplateScenarioInput,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiV3ModelConfigurationScenarioUpdateTemplateScenarioPost(
+          updateTemplateScenarioInput,
+          options,
+        )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
   }
 }
 
@@ -1547,6 +1609,24 @@ export const ScenarioApiFactory = function (
     ): AxiosPromise<Array<TemplateScenarioLogOutput>> {
       return localVarFp
         .apiV3ModelConfigurationScenarioScenarioConfigLogGet(scenarioId, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     * 更新模板方案，如果勾选了导出，则进行异步导出
+     * @summary 更新模板方案，更新模板方案的基本信息
+     * @param {UpdateTemplateScenarioInput} [updateTemplateScenarioInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV3ModelConfigurationScenarioUpdateTemplateScenarioPost(
+      updateTemplateScenarioInput?: UpdateTemplateScenarioInput,
+      options?: any,
+    ): AxiosPromise<object> {
+      return localVarFp
+        .apiV3ModelConfigurationScenarioUpdateTemplateScenarioPost(
+          updateTemplateScenarioInput,
+          options,
+        )
         .then((request) => request(axios, basePath))
     },
   }
@@ -1901,6 +1981,26 @@ export class ScenarioApi extends BaseAPI {
   ) {
     return ScenarioApiFp(this.configuration)
       .apiV3ModelConfigurationScenarioScenarioConfigLogGet(scenarioId, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   * 更新模板方案，如果勾选了导出，则进行异步导出
+   * @summary 更新模板方案，更新模板方案的基本信息
+   * @param {UpdateTemplateScenarioInput} [updateTemplateScenarioInput]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof ScenarioApi
+   */
+  public apiV3ModelConfigurationScenarioUpdateTemplateScenarioPost(
+    updateTemplateScenarioInput?: UpdateTemplateScenarioInput,
+    options?: AxiosRequestConfig,
+  ) {
+    return ScenarioApiFp(this.configuration)
+      .apiV3ModelConfigurationScenarioUpdateTemplateScenarioPost(
+        updateTemplateScenarioInput,
+        options,
+      )
       .then((request) => request(this.axios, this.basePath))
   }
 }
