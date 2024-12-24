@@ -31,8 +31,6 @@ import {
 // @ts-ignore
 import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } from '../base'
 // @ts-ignore
-import { BaseDynamicOutput } from '../models'
-// @ts-ignore
 import { DeleteScenarioInput } from '../models'
 // @ts-ignore
 import { EntireProcessWqOut } from '../models'
@@ -60,6 +58,8 @@ import { SaveInletDataInput } from '../models'
 import { SaveParamInput } from '../models'
 // @ts-ignore
 import { SimResultsOutupt } from '../models'
+// @ts-ignore
+import { WwtpDynamicOutput } from '../models'
 /**
  * ProNumSimLabApi - axios parameter creator
  * @export
@@ -1306,7 +1306,7 @@ export const ProNumSimLabApiFp = function (configuration?: Configuration) {
       scenarioId?: string,
       subType?: number,
       options?: AxiosRequestConfig,
-    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<BaseDynamicOutput>> {
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<WwtpDynamicOutput>> {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.apiV2SimulationLabScenarioScenarioResultGet(
           scenarioId,
@@ -1648,7 +1648,7 @@ export const ProNumSimLabApiFactory = function (
       scenarioId?: string,
       subType?: number,
       options?: any,
-    ): AxiosPromise<BaseDynamicOutput> {
+    ): AxiosPromise<WwtpDynamicOutput> {
       return localVarFp
         .apiV2SimulationLabScenarioScenarioResultGet(scenarioId, subType, options)
         .then((request) => request(axios, basePath))
