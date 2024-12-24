@@ -31,11 +31,15 @@ import {
 // @ts-ignore
 import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } from '../base'
 // @ts-ignore
+import { BaseDynamicOutput } from '../models'
+// @ts-ignore
 import { DeleteScenarioInput } from '../models'
 // @ts-ignore
 import { EntireProcessWqOut } from '../models'
 // @ts-ignore
 import { ModelParam } from '../models'
+// @ts-ignore
+import { OptimizationConfig } from '../models'
 // @ts-ignore
 import { QueryBiochemicaltanksOutput } from '../models'
 // @ts-ignore
@@ -62,6 +66,46 @@ import { SimResultsOutupt } from '../models'
  */
 export const ProNumSimLabApiAxiosParamCreator = function (configuration?: Configuration) {
   return {
+    /**
+     *
+     * @summary /api/app/pro-num-sim-lab/optimization-config-by-type
+     * @param {number} [displayType]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiAppProNumSimLabOptimizationConfigByTypeGet: async (
+      displayType?: number,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/app/pro-num-sim-lab/optimization-config-by-type`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      if (displayType !== undefined) {
+        localVarQueryParameter['displayType'] = displayType
+      }
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
     /**
      *
      * @summary 获取方案的出水水质结果数据 Get outlet water quality time-series result of a scenario
@@ -794,6 +838,52 @@ export const ProNumSimLabApiAxiosParamCreator = function (configuration?: Config
       }
     },
     /**
+     * 获取单个预案模拟结果
+     * @summary 获取方案的生化区电耗或碳足迹信息
+     * @param {string} [scenarioId] 方案ID scenario id
+     * @param {number} [subType] 结果类型
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV2SimulationLabScenarioScenarioResultGet: async (
+      scenarioId?: string,
+      subType?: number,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v2/simulation-lab/scenario/scenario-result`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      if (scenarioId !== undefined) {
+        localVarQueryParameter['scenarioId'] = scenarioId
+      }
+
+      if (subType !== undefined) {
+        localVarQueryParameter['subType'] = subType
+      }
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
      * 能够进行对比的方案需满足两个条件，分别是时间范围一致和结果配置一致 scenarios that can be compared must have consistent time period and result setting
      * @summary 查询与指定方案的结果配置一样的方案列表 Get scenarios which can be compared with the specified scenario
      * @param {string} [scenarioId] 方案ID scenario id
@@ -843,6 +933,26 @@ export const ProNumSimLabApiAxiosParamCreator = function (configuration?: Config
 export const ProNumSimLabApiFp = function (configuration?: Configuration) {
   const localVarAxiosParamCreator = ProNumSimLabApiAxiosParamCreator(configuration)
   return {
+    /**
+     *
+     * @summary /api/app/pro-num-sim-lab/optimization-config-by-type
+     * @param {number} [displayType]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiAppProNumSimLabOptimizationConfigByTypeGet(
+      displayType?: number,
+      options?: AxiosRequestConfig,
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<OptimizationConfig>>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiAppProNumSimLabOptimizationConfigByTypeGet(
+          displayType,
+          options,
+        )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
     /**
      *
      * @summary 获取方案的出水水质结果数据 Get outlet water quality time-series result of a scenario
@@ -1185,6 +1295,27 @@ export const ProNumSimLabApiFp = function (configuration?: Configuration) {
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**
+     * 获取单个预案模拟结果
+     * @summary 获取方案的生化区电耗或碳足迹信息
+     * @param {string} [scenarioId] 方案ID scenario id
+     * @param {number} [subType] 结果类型
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV2SimulationLabScenarioScenarioResultGet(
+      scenarioId?: string,
+      subType?: number,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<BaseDynamicOutput>> {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiV2SimulationLabScenarioScenarioResultGet(
+          scenarioId,
+          subType,
+          options,
+        )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
      * 能够进行对比的方案需满足两个条件，分别是时间范围一致和结果配置一致 scenarios that can be compared must have consistent time period and result setting
      * @summary 查询与指定方案的结果配置一样的方案列表 Get scenarios which can be compared with the specified scenario
      * @param {string} [scenarioId] 方案ID scenario id
@@ -1216,6 +1347,21 @@ export const ProNumSimLabApiFactory = function (
 ) {
   const localVarFp = ProNumSimLabApiFp(configuration)
   return {
+    /**
+     *
+     * @summary /api/app/pro-num-sim-lab/optimization-config-by-type
+     * @param {number} [displayType]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiAppProNumSimLabOptimizationConfigByTypeGet(
+      displayType?: number,
+      options?: any,
+    ): AxiosPromise<Array<OptimizationConfig>> {
+      return localVarFp
+        .apiAppProNumSimLabOptimizationConfigByTypeGet(displayType, options)
+        .then((request) => request(axios, basePath))
+    },
     /**
      *
      * @summary 获取方案的出水水质结果数据 Get outlet water quality time-series result of a scenario
@@ -1491,6 +1637,23 @@ export const ProNumSimLabApiFactory = function (
         .then((request) => request(axios, basePath))
     },
     /**
+     * 获取单个预案模拟结果
+     * @summary 获取方案的生化区电耗或碳足迹信息
+     * @param {string} [scenarioId] 方案ID scenario id
+     * @param {number} [subType] 结果类型
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV2SimulationLabScenarioScenarioResultGet(
+      scenarioId?: string,
+      subType?: number,
+      options?: any,
+    ): AxiosPromise<BaseDynamicOutput> {
+      return localVarFp
+        .apiV2SimulationLabScenarioScenarioResultGet(scenarioId, subType, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
      * 能够进行对比的方案需满足两个条件，分别是时间范围一致和结果配置一致 scenarios that can be compared must have consistent time period and result setting
      * @summary 查询与指定方案的结果配置一样的方案列表 Get scenarios which can be compared with the specified scenario
      * @param {string} [scenarioId] 方案ID scenario id
@@ -1515,6 +1678,23 @@ export const ProNumSimLabApiFactory = function (
  * @extends {BaseAPI}
  */
 export class ProNumSimLabApi extends BaseAPI {
+  /**
+   *
+   * @summary /api/app/pro-num-sim-lab/optimization-config-by-type
+   * @param {number} [displayType]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof ProNumSimLabApi
+   */
+  public apiAppProNumSimLabOptimizationConfigByTypeGet(
+    displayType?: number,
+    options?: AxiosRequestConfig,
+  ) {
+    return ProNumSimLabApiFp(this.configuration)
+      .apiAppProNumSimLabOptimizationConfigByTypeGet(displayType, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
   /**
    *
    * @summary 获取方案的出水水质结果数据 Get outlet water quality time-series result of a scenario
@@ -1809,6 +1989,25 @@ export class ProNumSimLabApi extends BaseAPI {
   ) {
     return ProNumSimLabApiFp(this.configuration)
       .apiV2SimulationLabScenarioResultSettingSavePost(resultParam, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   * 获取单个预案模拟结果
+   * @summary 获取方案的生化区电耗或碳足迹信息
+   * @param {string} [scenarioId] 方案ID scenario id
+   * @param {number} [subType] 结果类型
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof ProNumSimLabApi
+   */
+  public apiV2SimulationLabScenarioScenarioResultGet(
+    scenarioId?: string,
+    subType?: number,
+    options?: AxiosRequestConfig,
+  ) {
+    return ProNumSimLabApiFp(this.configuration)
+      .apiV2SimulationLabScenarioScenarioResultGet(scenarioId, subType, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
