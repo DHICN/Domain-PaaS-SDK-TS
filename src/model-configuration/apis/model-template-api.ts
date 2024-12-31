@@ -31,6 +31,8 @@ import {
 // @ts-ignore
 import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } from '../base'
 // @ts-ignore
+import { BusinessTypeEnum } from '../models'
+// @ts-ignore
 import { CreateTemplateFileInput } from '../models'
 // @ts-ignore
 import { CreateTemplateFileInputV2 } from '../models'
@@ -38,6 +40,10 @@ import { CreateTemplateFileInputV2 } from '../models'
 import { CreateTemplateFileInputV3 } from '../models'
 // @ts-ignore
 import { DownloadFileInput } from '../models'
+// @ts-ignore
+import { LibraryTypeEnum } from '../models'
+// @ts-ignore
+import { ModelTypeEnum } from '../models'
 // @ts-ignore
 import { QueryTemplateListOutput } from '../models'
 // @ts-ignore
@@ -70,6 +76,57 @@ export const ModelTemplateApiAxiosParamCreator = function (configuration?: Confi
       const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        createTemplateFileInput,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     * 把上传的模板模型文件标记为可作为模板方案的模型 Mark a template file as model file that can be used to create a template scenario
+     * @summary 标记模板模型文件（用于内涝） Mark a template file for urban flooding
+     * @param {CreateTemplateFileInput} [createTemplateFileInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1ModelConfigurationTemplateCreateModelTemplatePost_1: async (
+      createTemplateFileInput?: CreateTemplateFileInput,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/model-configuration/template/create-model-template`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
@@ -114,6 +171,57 @@ export const ModelTemplateApiAxiosParamCreator = function (configuration?: Confi
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
 
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        requestBody,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     * 根据文件ID删除若干个模板模型文件 Delete template files with template file ids
+     * @summary 删除模板模型文件 Delete template files
+     * @param {Array<string>} [requestBody]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1ModelConfigurationTemplateDeletePost_2: async (
+      requestBody?: Array<string>,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/model-configuration/template/delete`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
       setSearchParams(localVarUrlObj, localVarQueryParameter)
@@ -157,6 +265,57 @@ export const ModelTemplateApiAxiosParamCreator = function (configuration?: Confi
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
 
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        downloadFileInput,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     * 根据文件名下载模板模型文件 Download model template files with fileName
+     * @summary 下载模板模型文件 Download template files
+     * @param {DownloadFileInput} [downloadFileInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1ModelConfigurationTemplateDownloadModelTempaltePost_3: async (
+      downloadFileInput?: DownloadFileInput,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/model-configuration/template/download-model-tempalte`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
       setSearchParams(localVarUrlObj, localVarQueryParameter)
@@ -198,6 +357,48 @@ export const ModelTemplateApiAxiosParamCreator = function (configuration?: Confi
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
 
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     * 获取所有的模板模型文件列表 Get all the model template files list
+     * @summary 获取模板模型文件列表 Get template files list
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1ModelConfigurationTemplateModelTempalteListGet_4: async (
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/model-configuration/template/model-tempalte-list`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
       setSearchParams(localVarUrlObj, localVarQueryParameter)
       let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
       localVarRequestOptions.headers = {
@@ -234,6 +435,54 @@ export const ModelTemplateApiAxiosParamCreator = function (configuration?: Confi
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
 
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      if (muppName !== undefined) {
+        localVarQueryParameter['muppName'] = muppName
+      }
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     * 上传模型模板文件，支持以.zip或者.7z格式来压缩一个完整的模型 Upload a template file, which can be a .zip or .7z file containing a complete model.
+     * @summary 上传模型模板文件 Upload a template file
+     * @param {string} [muppName] 模型文件名称 model file name without path
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1ModelConfigurationTemplateUploadModelTemplatePost_5: async (
+      muppName?: string,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/model-configuration/template/upload-model-template`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
       if (muppName !== undefined) {
         localVarQueryParameter['muppName'] = muppName
       }
@@ -256,6 +505,7 @@ export const ModelTemplateApiAxiosParamCreator = function (configuration?: Confi
      * @summary 标记模板模型文件 Mark a template file
      * @param {CreateTemplateFileInputV2} [createTemplateFileInputV2]
      * @param {*} [options] Override http request option.
+     * @deprecated
      * @throws {RequiredError}
      */
     apiV2ModelConfigurationTemplateCreateModelTemplatePost: async (
@@ -273,6 +523,58 @@ export const ModelTemplateApiAxiosParamCreator = function (configuration?: Confi
       const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        createTemplateFileInputV2,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     * 把上传的模板模型文件标记为可作为模板方案的模型 Mark a template file as model file that can be used to create a template scenario
+     * @summary 标记模板模型文件 Mark a template file
+     * @param {CreateTemplateFileInputV2} [createTemplateFileInputV2]
+     * @param {*} [options] Override http request option.
+     * @deprecated
+     * @throws {RequiredError}
+     */
+    apiV2ModelConfigurationTemplateCreateModelTemplatePost_6: async (
+      createTemplateFileInputV2?: CreateTemplateFileInputV2,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v2/model-configuration/template/create-model-template`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
@@ -317,6 +619,57 @@ export const ModelTemplateApiAxiosParamCreator = function (configuration?: Confi
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
 
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        requestBody,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     * 根据文件ID删除若干个模板模型文件 Delete template files with template file ids
+     * @summary 删除模板模型文件 Delete template files
+     * @param {Array<string>} [requestBody]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV2ModelConfigurationTemplateDeletePost_7: async (
+      requestBody?: Array<string>,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v2/model-configuration/template/delete`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
       setSearchParams(localVarUrlObj, localVarQueryParameter)
@@ -360,6 +713,57 @@ export const ModelTemplateApiAxiosParamCreator = function (configuration?: Confi
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
 
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        downloadFileInput,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     * 根据文件名下载模板模型文件 Download model template files with fileName
+     * @summary 下载模板模型文件 Download template files
+     * @param {DownloadFileInput} [downloadFileInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV2ModelConfigurationTemplateDownloadModelTempaltePost_8: async (
+      downloadFileInput?: DownloadFileInput,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v2/model-configuration/template/download-model-tempalte`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
       setSearchParams(localVarUrlObj, localVarQueryParameter)
@@ -401,6 +805,48 @@ export const ModelTemplateApiAxiosParamCreator = function (configuration?: Confi
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
 
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     * 获取所有的模板模型文件列表 Get all the model template files list
+     * @summary 获取模板模型文件列表 Get template files list
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV2ModelConfigurationTemplateModelTempalteListGet_9: async (
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v2/model-configuration/template/model-tempalte-list`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
       setSearchParams(localVarUrlObj, localVarQueryParameter)
       let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
       localVarRequestOptions.headers = {
@@ -419,18 +865,18 @@ export const ModelTemplateApiAxiosParamCreator = function (configuration?: Confi
      * @summary 上传模型模板文件，同时检查模型文件 Upload a template file, meanwhile check the file
      * @param {string} [muppName] 模型文件名称 model file name without path
      * @param {string} [systemId] 系统ID system id
-     * @param {string} [libraryType] 库类型 library type
-     * @param {string} [businessType] 业务类型 business type
-     * @param {string} [modelType] 模型类型 model type
+     * @param {LibraryTypeEnum} [libraryType] 库类型 library type
+     * @param {BusinessTypeEnum} [businessType] 业务类型 business type
+     * @param {ModelTypeEnum} [modelType] 模型类型 model type
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiV2ModelConfigurationTemplateUploadModelTemplatePost: async (
       muppName?: string,
       systemId?: string,
-      libraryType?: string,
-      businessType?: string,
-      modelType?: string,
+      libraryType?: LibraryTypeEnum,
+      businessType?: BusinessTypeEnum,
+      modelType?: ModelTypeEnum,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
       const localVarPath = `/api/v2/model-configuration/template/upload-model-template`
@@ -444,6 +890,78 @@ export const ModelTemplateApiAxiosParamCreator = function (configuration?: Confi
       const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      if (muppName !== undefined) {
+        localVarQueryParameter['muppName'] = muppName
+      }
+
+      if (systemId !== undefined) {
+        localVarQueryParameter['systemId'] = systemId
+      }
+
+      if (libraryType !== undefined) {
+        localVarQueryParameter['libraryType'] = libraryType
+      }
+
+      if (businessType !== undefined) {
+        localVarQueryParameter['businessType'] = businessType
+      }
+
+      if (modelType !== undefined) {
+        localVarQueryParameter['modelType'] = modelType
+      }
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     * 上传模型模板文件，支持以.zip或者.7z格式来压缩一个完整的模型，同时会后台异步检查模型文件，如果模型文件符合要求，将被标记为可用于创建模板方案 Upload a template file, which can be a .zip or .7z file containing a complete model. Meanwhile the model files will be checked asynchronously, and marked as model file that can be used to create a template scenario if it meet the necessary requirements.
+     * @summary 上传模型模板文件，同时检查模型文件 Upload a template file, meanwhile check the file
+     * @param {string} [muppName] 模型文件名称 model file name without path
+     * @param {string} [systemId] 系统ID system id
+     * @param {LibraryTypeEnum} [libraryType] 库类型 library type
+     * @param {BusinessTypeEnum} [businessType] 业务类型 business type
+     * @param {ModelTypeEnum} [modelType] 模型类型 model type
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV2ModelConfigurationTemplateUploadModelTemplatePost_10: async (
+      muppName?: string,
+      systemId?: string,
+      libraryType?: LibraryTypeEnum,
+      businessType?: BusinessTypeEnum,
+      modelType?: ModelTypeEnum,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v2/model-configuration/template/upload-model-template`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
       if (muppName !== undefined) {
         localVarQueryParameter['muppName'] = muppName
@@ -501,6 +1019,57 @@ export const ModelTemplateApiAxiosParamCreator = function (configuration?: Confi
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
 
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        createTemplateFileInputV3,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     * 把上传的模板模型文件标记为可作为模板方案的模型 Mark a template file as model file that can be used to create a template scenario
+     * @summary 标记模板模型文件 Mark a template file
+     * @param {CreateTemplateFileInputV3} [createTemplateFileInputV3]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV3ModelConfigurationTemplateCreateModelTemplatePost_11: async (
+      createTemplateFileInputV3?: CreateTemplateFileInputV3,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v3/model-configuration/template/create-model-template`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
       setSearchParams(localVarUrlObj, localVarQueryParameter)
@@ -543,6 +1112,57 @@ export const ModelTemplateApiAxiosParamCreator = function (configuration?: Confi
       const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        requestBody,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     * 根据文件ID删除若干个模板模型文件 Delete template files with template file ids
+     * @summary 删除模板模型文件 Delete template files
+     * @param {Array<string>} [requestBody]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV3ModelConfigurationTemplateDeletePost_12: async (
+      requestBody?: Array<string>,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v3/model-configuration/template/delete`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
@@ -587,6 +1207,10 @@ export const ModelTemplateApiAxiosParamCreator = function (configuration?: Confi
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
 
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
       setSearchParams(localVarUrlObj, localVarQueryParameter)
@@ -610,6 +1234,53 @@ export const ModelTemplateApiAxiosParamCreator = function (configuration?: Confi
     /**
      * 根据文件名下载模板模型文件 Download model template files with fileName
      * @summary 下载模板模型文件 Download template files
+     * @param {DownloadFileInput} [downloadFileInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV3ModelConfigurationTemplateDownloadModelTempaltePost_13: async (
+      downloadFileInput?: DownloadFileInput,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v3/model-configuration/template/download-model-tempalte`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        downloadFileInput,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     * 根据id下载模板模型文件 Download model template file with model template id
+     * @summary 下载模板模型文件 Download template files
      * @param {string} [id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -630,6 +1301,10 @@ export const ModelTemplateApiAxiosParamCreator = function (configuration?: Confi
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
 
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
       if (id !== undefined) {
         localVarQueryParameter['id'] = id
       }
@@ -648,8 +1323,52 @@ export const ModelTemplateApiAxiosParamCreator = function (configuration?: Confi
       }
     },
     /**
-     * 根据文件名下载模板模型文件 Download model template files with fileName
-     * @summary 获取模板模型信息 get template file info
+     * 根据id下载模板模型文件 Download model template file with model template id
+     * @summary 下载模板模型文件 Download template files
+     * @param {string} [id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV3ModelConfigurationTemplateDownloadModelTemplatePost_14: async (
+      id?: string,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v3/model-configuration/template/download-model-template`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      if (id !== undefined) {
+        localVarQueryParameter['id'] = id
+      }
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     * 根据Id获取模板模型文件 get model template file with id
+     * @summary 查询建模文件 query template file info
      * @param {string} [id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -669,6 +1388,54 @@ export const ModelTemplateApiAxiosParamCreator = function (configuration?: Confi
       const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      if (id !== undefined) {
+        localVarQueryParameter['id'] = id
+      }
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     * 根据Id获取模板模型文件 get model template file with id
+     * @summary 查询建模文件 query template file info
+     * @param {string} [id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV3ModelConfigurationTemplateGetModelTemplateGet_15: async (
+      id?: string,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v3/model-configuration/template/get-model-template`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
       if (id !== undefined) {
         localVarQueryParameter['id'] = id
@@ -707,6 +1474,48 @@ export const ModelTemplateApiAxiosParamCreator = function (configuration?: Confi
       const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     * 获取所有的模板模型文件列表 Get all the model template files list
+     * @summary 获取模板模型文件列表 Get template files list
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV3ModelConfigurationTemplateModelTempalteListGet_16: async (
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v3/model-configuration/template/model-tempalte-list`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
       setSearchParams(localVarUrlObj, localVarQueryParameter)
       let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
@@ -750,6 +1559,24 @@ export const ModelTemplateApiFp = function (configuration?: Configuration) {
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**
+     * 把上传的模板模型文件标记为可作为模板方案的模型 Mark a template file as model file that can be used to create a template scenario
+     * @summary 标记模板模型文件（用于内涝） Mark a template file for urban flooding
+     * @param {CreateTemplateFileInput} [createTemplateFileInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1ModelConfigurationTemplateCreateModelTemplatePost_1(
+      createTemplateFileInput?: CreateTemplateFileInput,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<string>> {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiV1ModelConfigurationTemplateCreateModelTemplatePost_1(
+          createTemplateFileInput,
+          options,
+        )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
      * 根据文件ID删除若干个模板模型文件 Delete template files with template file ids
      * @summary 删除模板模型文件 Delete template files
      * @param {Array<string>} [requestBody]
@@ -762,6 +1589,24 @@ export const ModelTemplateApiFp = function (configuration?: Configuration) {
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<boolean>> {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.apiV1ModelConfigurationTemplateDeletePost(
+          requestBody,
+          options,
+        )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     * 根据文件ID删除若干个模板模型文件 Delete template files with template file ids
+     * @summary 删除模板模型文件 Delete template files
+     * @param {Array<string>} [requestBody]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1ModelConfigurationTemplateDeletePost_2(
+      requestBody?: Array<string>,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<boolean>> {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiV1ModelConfigurationTemplateDeletePost_2(
           requestBody,
           options,
         )
@@ -786,6 +1631,24 @@ export const ModelTemplateApiFp = function (configuration?: Configuration) {
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**
+     * 根据文件名下载模板模型文件 Download model template files with fileName
+     * @summary 下载模板模型文件 Download template files
+     * @param {DownloadFileInput} [downloadFileInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1ModelConfigurationTemplateDownloadModelTempaltePost_3(
+      downloadFileInput?: DownloadFileInput,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<string>> {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiV1ModelConfigurationTemplateDownloadModelTempaltePost_3(
+          downloadFileInput,
+          options,
+        )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
      * 获取所有的模板模型文件列表 Get all the model template files list
      * @summary 获取模板模型文件列表 Get template files list
      * @param {*} [options] Override http request option.
@@ -798,6 +1661,23 @@ export const ModelTemplateApiFp = function (configuration?: Configuration) {
     > {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.apiV1ModelConfigurationTemplateModelTempalteListGet(options)
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     * 获取所有的模板模型文件列表 Get all the model template files list
+     * @summary 获取模板模型文件列表 Get template files list
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1ModelConfigurationTemplateModelTempalteListGet_4(
+      options?: AxiosRequestConfig,
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<QueryTemplateListOutput>>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiV1ModelConfigurationTemplateModelTempalteListGet_4(
+          options,
+        )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**
@@ -819,10 +1699,29 @@ export const ModelTemplateApiFp = function (configuration?: Configuration) {
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**
+     * 上传模型模板文件，支持以.zip或者.7z格式来压缩一个完整的模型 Upload a template file, which can be a .zip or .7z file containing a complete model.
+     * @summary 上传模型模板文件 Upload a template file
+     * @param {string} [muppName] 模型文件名称 model file name without path
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1ModelConfigurationTemplateUploadModelTemplatePost_5(
+      muppName?: string,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<string>> {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiV1ModelConfigurationTemplateUploadModelTemplatePost_5(
+          muppName,
+          options,
+        )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
      * 把上传的模板模型文件标记为可作为模板方案的模型 Mark a template file as model file that can be used to create a template scenario
      * @summary 标记模板模型文件 Mark a template file
      * @param {CreateTemplateFileInputV2} [createTemplateFileInputV2]
      * @param {*} [options] Override http request option.
+     * @deprecated
      * @throws {RequiredError}
      */
     async apiV2ModelConfigurationTemplateCreateModelTemplatePost(
@@ -831,6 +1730,25 @@ export const ModelTemplateApiFp = function (configuration?: Configuration) {
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<string>> {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.apiV2ModelConfigurationTemplateCreateModelTemplatePost(
+          createTemplateFileInputV2,
+          options,
+        )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     * 把上传的模板模型文件标记为可作为模板方案的模型 Mark a template file as model file that can be used to create a template scenario
+     * @summary 标记模板模型文件 Mark a template file
+     * @param {CreateTemplateFileInputV2} [createTemplateFileInputV2]
+     * @param {*} [options] Override http request option.
+     * @deprecated
+     * @throws {RequiredError}
+     */
+    async apiV2ModelConfigurationTemplateCreateModelTemplatePost_6(
+      createTemplateFileInputV2?: CreateTemplateFileInputV2,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<string>> {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiV2ModelConfigurationTemplateCreateModelTemplatePost_6(
           createTemplateFileInputV2,
           options,
         )
@@ -855,6 +1773,24 @@ export const ModelTemplateApiFp = function (configuration?: Configuration) {
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**
+     * 根据文件ID删除若干个模板模型文件 Delete template files with template file ids
+     * @summary 删除模板模型文件 Delete template files
+     * @param {Array<string>} [requestBody]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV2ModelConfigurationTemplateDeletePost_7(
+      requestBody?: Array<string>,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<boolean>> {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiV2ModelConfigurationTemplateDeletePost_7(
+          requestBody,
+          options,
+        )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
      * 根据文件名下载模板模型文件 Download model template files with fileName
      * @summary 下载模板模型文件 Download template files
      * @param {DownloadFileInput} [downloadFileInput]
@@ -867,6 +1803,24 @@ export const ModelTemplateApiFp = function (configuration?: Configuration) {
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<string>> {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.apiV2ModelConfigurationTemplateDownloadModelTempaltePost(
+          downloadFileInput,
+          options,
+        )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     * 根据文件名下载模板模型文件 Download model template files with fileName
+     * @summary 下载模板模型文件 Download template files
+     * @param {DownloadFileInput} [downloadFileInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV2ModelConfigurationTemplateDownloadModelTempaltePost_8(
+      downloadFileInput?: DownloadFileInput,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<string>> {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiV2ModelConfigurationTemplateDownloadModelTempaltePost_8(
           downloadFileInput,
           options,
         )
@@ -888,26 +1842,73 @@ export const ModelTemplateApiFp = function (configuration?: Configuration) {
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**
+     * 获取所有的模板模型文件列表 Get all the model template files list
+     * @summary 获取模板模型文件列表 Get template files list
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV2ModelConfigurationTemplateModelTempalteListGet_9(
+      options?: AxiosRequestConfig,
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<QueryTemplateListOutput>>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiV2ModelConfigurationTemplateModelTempalteListGet_9(
+          options,
+        )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
      * 上传模型模板文件，支持以.zip或者.7z格式来压缩一个完整的模型，同时会后台异步检查模型文件，如果模型文件符合要求，将被标记为可用于创建模板方案 Upload a template file, which can be a .zip or .7z file containing a complete model. Meanwhile the model files will be checked asynchronously, and marked as model file that can be used to create a template scenario if it meet the necessary requirements.
      * @summary 上传模型模板文件，同时检查模型文件 Upload a template file, meanwhile check the file
      * @param {string} [muppName] 模型文件名称 model file name without path
      * @param {string} [systemId] 系统ID system id
-     * @param {string} [libraryType] 库类型 library type
-     * @param {string} [businessType] 业务类型 business type
-     * @param {string} [modelType] 模型类型 model type
+     * @param {LibraryTypeEnum} [libraryType] 库类型 library type
+     * @param {BusinessTypeEnum} [businessType] 业务类型 business type
+     * @param {ModelTypeEnum} [modelType] 模型类型 model type
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async apiV2ModelConfigurationTemplateUploadModelTemplatePost(
       muppName?: string,
       systemId?: string,
-      libraryType?: string,
-      businessType?: string,
-      modelType?: string,
+      libraryType?: LibraryTypeEnum,
+      businessType?: BusinessTypeEnum,
+      modelType?: ModelTypeEnum,
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<string>> {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.apiV2ModelConfigurationTemplateUploadModelTemplatePost(
+          muppName,
+          systemId,
+          libraryType,
+          businessType,
+          modelType,
+          options,
+        )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     * 上传模型模板文件，支持以.zip或者.7z格式来压缩一个完整的模型，同时会后台异步检查模型文件，如果模型文件符合要求，将被标记为可用于创建模板方案 Upload a template file, which can be a .zip or .7z file containing a complete model. Meanwhile the model files will be checked asynchronously, and marked as model file that can be used to create a template scenario if it meet the necessary requirements.
+     * @summary 上传模型模板文件，同时检查模型文件 Upload a template file, meanwhile check the file
+     * @param {string} [muppName] 模型文件名称 model file name without path
+     * @param {string} [systemId] 系统ID system id
+     * @param {LibraryTypeEnum} [libraryType] 库类型 library type
+     * @param {BusinessTypeEnum} [businessType] 业务类型 business type
+     * @param {ModelTypeEnum} [modelType] 模型类型 model type
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV2ModelConfigurationTemplateUploadModelTemplatePost_10(
+      muppName?: string,
+      systemId?: string,
+      libraryType?: LibraryTypeEnum,
+      businessType?: BusinessTypeEnum,
+      modelType?: ModelTypeEnum,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<string>> {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiV2ModelConfigurationTemplateUploadModelTemplatePost_10(
           muppName,
           systemId,
           libraryType,
@@ -936,6 +1937,24 @@ export const ModelTemplateApiFp = function (configuration?: Configuration) {
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**
+     * 把上传的模板模型文件标记为可作为模板方案的模型 Mark a template file as model file that can be used to create a template scenario
+     * @summary 标记模板模型文件 Mark a template file
+     * @param {CreateTemplateFileInputV3} [createTemplateFileInputV3]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV3ModelConfigurationTemplateCreateModelTemplatePost_11(
+      createTemplateFileInputV3?: CreateTemplateFileInputV3,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<string>> {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiV3ModelConfigurationTemplateCreateModelTemplatePost_11(
+          createTemplateFileInputV3,
+          options,
+        )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
      * 根据文件ID删除若干个模板模型文件 Delete template files with template file ids
      * @summary 删除模板模型文件 Delete template files
      * @param {Array<string>} [requestBody]
@@ -948,6 +1967,24 @@ export const ModelTemplateApiFp = function (configuration?: Configuration) {
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<boolean>> {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.apiV3ModelConfigurationTemplateDeletePost(
+          requestBody,
+          options,
+        )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     * 根据文件ID删除若干个模板模型文件 Delete template files with template file ids
+     * @summary 删除模板模型文件 Delete template files
+     * @param {Array<string>} [requestBody]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV3ModelConfigurationTemplateDeletePost_12(
+      requestBody?: Array<string>,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<boolean>> {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiV3ModelConfigurationTemplateDeletePost_12(
           requestBody,
           options,
         )
@@ -974,6 +2011,24 @@ export const ModelTemplateApiFp = function (configuration?: Configuration) {
     /**
      * 根据文件名下载模板模型文件 Download model template files with fileName
      * @summary 下载模板模型文件 Download template files
+     * @param {DownloadFileInput} [downloadFileInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV3ModelConfigurationTemplateDownloadModelTempaltePost_13(
+      downloadFileInput?: DownloadFileInput,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<string>> {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiV3ModelConfigurationTemplateDownloadModelTempaltePost_13(
+          downloadFileInput,
+          options,
+        )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     * 根据id下载模板模型文件 Download model template file with model template id
+     * @summary 下载模板模型文件 Download template files
      * @param {string} [id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -990,8 +2045,26 @@ export const ModelTemplateApiFp = function (configuration?: Configuration) {
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**
-     * 根据文件名下载模板模型文件 Download model template files with fileName
-     * @summary 获取模板模型信息 get template file info
+     * 根据id下载模板模型文件 Download model template file with model template id
+     * @summary 下载模板模型文件 Download template files
+     * @param {string} [id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV3ModelConfigurationTemplateDownloadModelTemplatePost_14(
+      id?: string,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<string>> {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiV3ModelConfigurationTemplateDownloadModelTemplatePost_14(
+          id,
+          options,
+        )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     * 根据Id获取模板模型文件 get model template file with id
+     * @summary 查询建模文件 query template file info
      * @param {string} [id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -1010,6 +2083,26 @@ export const ModelTemplateApiFp = function (configuration?: Configuration) {
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**
+     * 根据Id获取模板模型文件 get model template file with id
+     * @summary 查询建模文件 query template file info
+     * @param {string} [id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV3ModelConfigurationTemplateGetModelTemplateGet_15(
+      id?: string,
+      options?: AxiosRequestConfig,
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<QueryTemplateListOutput>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiV3ModelConfigurationTemplateGetModelTemplateGet_15(
+          id,
+          options,
+        )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
      * 获取所有的模板模型文件列表 Get all the model template files list
      * @summary 获取模板模型文件列表 Get template files list
      * @param {*} [options] Override http request option.
@@ -1022,6 +2115,23 @@ export const ModelTemplateApiFp = function (configuration?: Configuration) {
     > {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.apiV3ModelConfigurationTemplateModelTempalteListGet(options)
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     * 获取所有的模板模型文件列表 Get all the model template files list
+     * @summary 获取模板模型文件列表 Get template files list
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV3ModelConfigurationTemplateModelTempalteListGet_16(
+      options?: AxiosRequestConfig,
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<QueryTemplateListOutput>>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiV3ModelConfigurationTemplateModelTempalteListGet_16(
+          options,
+        )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
   }
@@ -1054,6 +2164,21 @@ export const ModelTemplateApiFactory = function (
         .then((request) => request(axios, basePath))
     },
     /**
+     * 把上传的模板模型文件标记为可作为模板方案的模型 Mark a template file as model file that can be used to create a template scenario
+     * @summary 标记模板模型文件（用于内涝） Mark a template file for urban flooding
+     * @param {CreateTemplateFileInput} [createTemplateFileInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1ModelConfigurationTemplateCreateModelTemplatePost_1(
+      createTemplateFileInput?: CreateTemplateFileInput,
+      options?: any,
+    ): AxiosPromise<string> {
+      return localVarFp
+        .apiV1ModelConfigurationTemplateCreateModelTemplatePost_1(createTemplateFileInput, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
      * 根据文件ID删除若干个模板模型文件 Delete template files with template file ids
      * @summary 删除模板模型文件 Delete template files
      * @param {Array<string>} [requestBody]
@@ -1066,6 +2191,21 @@ export const ModelTemplateApiFactory = function (
     ): AxiosPromise<boolean> {
       return localVarFp
         .apiV1ModelConfigurationTemplateDeletePost(requestBody, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     * 根据文件ID删除若干个模板模型文件 Delete template files with template file ids
+     * @summary 删除模板模型文件 Delete template files
+     * @param {Array<string>} [requestBody]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1ModelConfigurationTemplateDeletePost_2(
+      requestBody?: Array<string>,
+      options?: any,
+    ): AxiosPromise<boolean> {
+      return localVarFp
+        .apiV1ModelConfigurationTemplateDeletePost_2(requestBody, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -1084,6 +2224,21 @@ export const ModelTemplateApiFactory = function (
         .then((request) => request(axios, basePath))
     },
     /**
+     * 根据文件名下载模板模型文件 Download model template files with fileName
+     * @summary 下载模板模型文件 Download template files
+     * @param {DownloadFileInput} [downloadFileInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1ModelConfigurationTemplateDownloadModelTempaltePost_3(
+      downloadFileInput?: DownloadFileInput,
+      options?: any,
+    ): AxiosPromise<string> {
+      return localVarFp
+        .apiV1ModelConfigurationTemplateDownloadModelTempaltePost_3(downloadFileInput, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
      * 获取所有的模板模型文件列表 Get all the model template files list
      * @summary 获取模板模型文件列表 Get template files list
      * @param {*} [options] Override http request option.
@@ -1094,6 +2249,19 @@ export const ModelTemplateApiFactory = function (
     ): AxiosPromise<Array<QueryTemplateListOutput>> {
       return localVarFp
         .apiV1ModelConfigurationTemplateModelTempalteListGet(options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     * 获取所有的模板模型文件列表 Get all the model template files list
+     * @summary 获取模板模型文件列表 Get template files list
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1ModelConfigurationTemplateModelTempalteListGet_4(
+      options?: any,
+    ): AxiosPromise<Array<QueryTemplateListOutput>> {
+      return localVarFp
+        .apiV1ModelConfigurationTemplateModelTempalteListGet_4(options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -1112,10 +2280,26 @@ export const ModelTemplateApiFactory = function (
         .then((request) => request(axios, basePath))
     },
     /**
+     * 上传模型模板文件，支持以.zip或者.7z格式来压缩一个完整的模型 Upload a template file, which can be a .zip or .7z file containing a complete model.
+     * @summary 上传模型模板文件 Upload a template file
+     * @param {string} [muppName] 模型文件名称 model file name without path
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1ModelConfigurationTemplateUploadModelTemplatePost_5(
+      muppName?: string,
+      options?: any,
+    ): AxiosPromise<string> {
+      return localVarFp
+        .apiV1ModelConfigurationTemplateUploadModelTemplatePost_5(muppName, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
      * 把上传的模板模型文件标记为可作为模板方案的模型 Mark a template file as model file that can be used to create a template scenario
      * @summary 标记模板模型文件 Mark a template file
      * @param {CreateTemplateFileInputV2} [createTemplateFileInputV2]
      * @param {*} [options] Override http request option.
+     * @deprecated
      * @throws {RequiredError}
      */
     apiV2ModelConfigurationTemplateCreateModelTemplatePost(
@@ -1124,6 +2308,25 @@ export const ModelTemplateApiFactory = function (
     ): AxiosPromise<string> {
       return localVarFp
         .apiV2ModelConfigurationTemplateCreateModelTemplatePost(createTemplateFileInputV2, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     * 把上传的模板模型文件标记为可作为模板方案的模型 Mark a template file as model file that can be used to create a template scenario
+     * @summary 标记模板模型文件 Mark a template file
+     * @param {CreateTemplateFileInputV2} [createTemplateFileInputV2]
+     * @param {*} [options] Override http request option.
+     * @deprecated
+     * @throws {RequiredError}
+     */
+    apiV2ModelConfigurationTemplateCreateModelTemplatePost_6(
+      createTemplateFileInputV2?: CreateTemplateFileInputV2,
+      options?: any,
+    ): AxiosPromise<string> {
+      return localVarFp
+        .apiV2ModelConfigurationTemplateCreateModelTemplatePost_6(
+          createTemplateFileInputV2,
+          options,
+        )
         .then((request) => request(axios, basePath))
     },
     /**
@@ -1142,6 +2345,21 @@ export const ModelTemplateApiFactory = function (
         .then((request) => request(axios, basePath))
     },
     /**
+     * 根据文件ID删除若干个模板模型文件 Delete template files with template file ids
+     * @summary 删除模板模型文件 Delete template files
+     * @param {Array<string>} [requestBody]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV2ModelConfigurationTemplateDeletePost_7(
+      requestBody?: Array<string>,
+      options?: any,
+    ): AxiosPromise<boolean> {
+      return localVarFp
+        .apiV2ModelConfigurationTemplateDeletePost_7(requestBody, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
      * 根据文件名下载模板模型文件 Download model template files with fileName
      * @summary 下载模板模型文件 Download template files
      * @param {DownloadFileInput} [downloadFileInput]
@@ -1154,6 +2372,21 @@ export const ModelTemplateApiFactory = function (
     ): AxiosPromise<string> {
       return localVarFp
         .apiV2ModelConfigurationTemplateDownloadModelTempaltePost(downloadFileInput, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     * 根据文件名下载模板模型文件 Download model template files with fileName
+     * @summary 下载模板模型文件 Download template files
+     * @param {DownloadFileInput} [downloadFileInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV2ModelConfigurationTemplateDownloadModelTempaltePost_8(
+      downloadFileInput?: DownloadFileInput,
+      options?: any,
+    ): AxiosPromise<string> {
+      return localVarFp
+        .apiV2ModelConfigurationTemplateDownloadModelTempaltePost_8(downloadFileInput, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -1170,26 +2403,69 @@ export const ModelTemplateApiFactory = function (
         .then((request) => request(axios, basePath))
     },
     /**
+     * 获取所有的模板模型文件列表 Get all the model template files list
+     * @summary 获取模板模型文件列表 Get template files list
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV2ModelConfigurationTemplateModelTempalteListGet_9(
+      options?: any,
+    ): AxiosPromise<Array<QueryTemplateListOutput>> {
+      return localVarFp
+        .apiV2ModelConfigurationTemplateModelTempalteListGet_9(options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
      * 上传模型模板文件，支持以.zip或者.7z格式来压缩一个完整的模型，同时会后台异步检查模型文件，如果模型文件符合要求，将被标记为可用于创建模板方案 Upload a template file, which can be a .zip or .7z file containing a complete model. Meanwhile the model files will be checked asynchronously, and marked as model file that can be used to create a template scenario if it meet the necessary requirements.
      * @summary 上传模型模板文件，同时检查模型文件 Upload a template file, meanwhile check the file
      * @param {string} [muppName] 模型文件名称 model file name without path
      * @param {string} [systemId] 系统ID system id
-     * @param {string} [libraryType] 库类型 library type
-     * @param {string} [businessType] 业务类型 business type
-     * @param {string} [modelType] 模型类型 model type
+     * @param {LibraryTypeEnum} [libraryType] 库类型 library type
+     * @param {BusinessTypeEnum} [businessType] 业务类型 business type
+     * @param {ModelTypeEnum} [modelType] 模型类型 model type
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiV2ModelConfigurationTemplateUploadModelTemplatePost(
       muppName?: string,
       systemId?: string,
-      libraryType?: string,
-      businessType?: string,
-      modelType?: string,
+      libraryType?: LibraryTypeEnum,
+      businessType?: BusinessTypeEnum,
+      modelType?: ModelTypeEnum,
       options?: any,
     ): AxiosPromise<string> {
       return localVarFp
         .apiV2ModelConfigurationTemplateUploadModelTemplatePost(
+          muppName,
+          systemId,
+          libraryType,
+          businessType,
+          modelType,
+          options,
+        )
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     * 上传模型模板文件，支持以.zip或者.7z格式来压缩一个完整的模型，同时会后台异步检查模型文件，如果模型文件符合要求，将被标记为可用于创建模板方案 Upload a template file, which can be a .zip or .7z file containing a complete model. Meanwhile the model files will be checked asynchronously, and marked as model file that can be used to create a template scenario if it meet the necessary requirements.
+     * @summary 上传模型模板文件，同时检查模型文件 Upload a template file, meanwhile check the file
+     * @param {string} [muppName] 模型文件名称 model file name without path
+     * @param {string} [systemId] 系统ID system id
+     * @param {LibraryTypeEnum} [libraryType] 库类型 library type
+     * @param {BusinessTypeEnum} [businessType] 业务类型 business type
+     * @param {ModelTypeEnum} [modelType] 模型类型 model type
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV2ModelConfigurationTemplateUploadModelTemplatePost_10(
+      muppName?: string,
+      systemId?: string,
+      libraryType?: LibraryTypeEnum,
+      businessType?: BusinessTypeEnum,
+      modelType?: ModelTypeEnum,
+      options?: any,
+    ): AxiosPromise<string> {
+      return localVarFp
+        .apiV2ModelConfigurationTemplateUploadModelTemplatePost_10(
           muppName,
           systemId,
           libraryType,
@@ -1215,6 +2491,24 @@ export const ModelTemplateApiFactory = function (
         .then((request) => request(axios, basePath))
     },
     /**
+     * 把上传的模板模型文件标记为可作为模板方案的模型 Mark a template file as model file that can be used to create a template scenario
+     * @summary 标记模板模型文件 Mark a template file
+     * @param {CreateTemplateFileInputV3} [createTemplateFileInputV3]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV3ModelConfigurationTemplateCreateModelTemplatePost_11(
+      createTemplateFileInputV3?: CreateTemplateFileInputV3,
+      options?: any,
+    ): AxiosPromise<string> {
+      return localVarFp
+        .apiV3ModelConfigurationTemplateCreateModelTemplatePost_11(
+          createTemplateFileInputV3,
+          options,
+        )
+        .then((request) => request(axios, basePath))
+    },
+    /**
      * 根据文件ID删除若干个模板模型文件 Delete template files with template file ids
      * @summary 删除模板模型文件 Delete template files
      * @param {Array<string>} [requestBody]
@@ -1227,6 +2521,21 @@ export const ModelTemplateApiFactory = function (
     ): AxiosPromise<boolean> {
       return localVarFp
         .apiV3ModelConfigurationTemplateDeletePost(requestBody, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     * 根据文件ID删除若干个模板模型文件 Delete template files with template file ids
+     * @summary 删除模板模型文件 Delete template files
+     * @param {Array<string>} [requestBody]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV3ModelConfigurationTemplateDeletePost_12(
+      requestBody?: Array<string>,
+      options?: any,
+    ): AxiosPromise<boolean> {
+      return localVarFp
+        .apiV3ModelConfigurationTemplateDeletePost_12(requestBody, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -1247,6 +2556,21 @@ export const ModelTemplateApiFactory = function (
     /**
      * 根据文件名下载模板模型文件 Download model template files with fileName
      * @summary 下载模板模型文件 Download template files
+     * @param {DownloadFileInput} [downloadFileInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV3ModelConfigurationTemplateDownloadModelTempaltePost_13(
+      downloadFileInput?: DownloadFileInput,
+      options?: any,
+    ): AxiosPromise<string> {
+      return localVarFp
+        .apiV3ModelConfigurationTemplateDownloadModelTempaltePost_13(downloadFileInput, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     * 根据id下载模板模型文件 Download model template file with model template id
+     * @summary 下载模板模型文件 Download template files
      * @param {string} [id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -1260,8 +2584,23 @@ export const ModelTemplateApiFactory = function (
         .then((request) => request(axios, basePath))
     },
     /**
-     * 根据文件名下载模板模型文件 Download model template files with fileName
-     * @summary 获取模板模型信息 get template file info
+     * 根据id下载模板模型文件 Download model template file with model template id
+     * @summary 下载模板模型文件 Download template files
+     * @param {string} [id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV3ModelConfigurationTemplateDownloadModelTemplatePost_14(
+      id?: string,
+      options?: any,
+    ): AxiosPromise<string> {
+      return localVarFp
+        .apiV3ModelConfigurationTemplateDownloadModelTemplatePost_14(id, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     * 根据Id获取模板模型文件 get model template file with id
+     * @summary 查询建模文件 query template file info
      * @param {string} [id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -1275,6 +2614,21 @@ export const ModelTemplateApiFactory = function (
         .then((request) => request(axios, basePath))
     },
     /**
+     * 根据Id获取模板模型文件 get model template file with id
+     * @summary 查询建模文件 query template file info
+     * @param {string} [id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV3ModelConfigurationTemplateGetModelTemplateGet_15(
+      id?: string,
+      options?: any,
+    ): AxiosPromise<QueryTemplateListOutput> {
+      return localVarFp
+        .apiV3ModelConfigurationTemplateGetModelTemplateGet_15(id, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
      * 获取所有的模板模型文件列表 Get all the model template files list
      * @summary 获取模板模型文件列表 Get template files list
      * @param {*} [options] Override http request option.
@@ -1285,6 +2639,19 @@ export const ModelTemplateApiFactory = function (
     ): AxiosPromise<Array<QueryTemplateListOutput>> {
       return localVarFp
         .apiV3ModelConfigurationTemplateModelTempalteListGet(options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     * 获取所有的模板模型文件列表 Get all the model template files list
+     * @summary 获取模板模型文件列表 Get template files list
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV3ModelConfigurationTemplateModelTempalteListGet_16(
+      options?: any,
+    ): AxiosPromise<Array<QueryTemplateListOutput>> {
+      return localVarFp
+        .apiV3ModelConfigurationTemplateModelTempalteListGet_16(options)
         .then((request) => request(axios, basePath))
     },
   }
@@ -1315,6 +2682,23 @@ export class ModelTemplateApi extends BaseAPI {
   }
 
   /**
+   * 把上传的模板模型文件标记为可作为模板方案的模型 Mark a template file as model file that can be used to create a template scenario
+   * @summary 标记模板模型文件（用于内涝） Mark a template file for urban flooding
+   * @param {CreateTemplateFileInput} [createTemplateFileInput]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof ModelTemplateApi
+   */
+  public apiV1ModelConfigurationTemplateCreateModelTemplatePost_1(
+    createTemplateFileInput?: CreateTemplateFileInput,
+    options?: AxiosRequestConfig,
+  ) {
+    return ModelTemplateApiFp(this.configuration)
+      .apiV1ModelConfigurationTemplateCreateModelTemplatePost_1(createTemplateFileInput, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
    * 根据文件ID删除若干个模板模型文件 Delete template files with template file ids
    * @summary 删除模板模型文件 Delete template files
    * @param {Array<string>} [requestBody]
@@ -1328,6 +2712,23 @@ export class ModelTemplateApi extends BaseAPI {
   ) {
     return ModelTemplateApiFp(this.configuration)
       .apiV1ModelConfigurationTemplateDeletePost(requestBody, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   * 根据文件ID删除若干个模板模型文件 Delete template files with template file ids
+   * @summary 删除模板模型文件 Delete template files
+   * @param {Array<string>} [requestBody]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof ModelTemplateApi
+   */
+  public apiV1ModelConfigurationTemplateDeletePost_2(
+    requestBody?: Array<string>,
+    options?: AxiosRequestConfig,
+  ) {
+    return ModelTemplateApiFp(this.configuration)
+      .apiV1ModelConfigurationTemplateDeletePost_2(requestBody, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -1349,6 +2750,23 @@ export class ModelTemplateApi extends BaseAPI {
   }
 
   /**
+   * 根据文件名下载模板模型文件 Download model template files with fileName
+   * @summary 下载模板模型文件 Download template files
+   * @param {DownloadFileInput} [downloadFileInput]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof ModelTemplateApi
+   */
+  public apiV1ModelConfigurationTemplateDownloadModelTempaltePost_3(
+    downloadFileInput?: DownloadFileInput,
+    options?: AxiosRequestConfig,
+  ) {
+    return ModelTemplateApiFp(this.configuration)
+      .apiV1ModelConfigurationTemplateDownloadModelTempaltePost_3(downloadFileInput, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
    * 获取所有的模板模型文件列表 Get all the model template files list
    * @summary 获取模板模型文件列表 Get template files list
    * @param {*} [options] Override http request option.
@@ -1358,6 +2776,19 @@ export class ModelTemplateApi extends BaseAPI {
   public apiV1ModelConfigurationTemplateModelTempalteListGet(options?: AxiosRequestConfig) {
     return ModelTemplateApiFp(this.configuration)
       .apiV1ModelConfigurationTemplateModelTempalteListGet(options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   * 获取所有的模板模型文件列表 Get all the model template files list
+   * @summary 获取模板模型文件列表 Get template files list
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof ModelTemplateApi
+   */
+  public apiV1ModelConfigurationTemplateModelTempalteListGet_4(options?: AxiosRequestConfig) {
+    return ModelTemplateApiFp(this.configuration)
+      .apiV1ModelConfigurationTemplateModelTempalteListGet_4(options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -1379,10 +2810,28 @@ export class ModelTemplateApi extends BaseAPI {
   }
 
   /**
+   * 上传模型模板文件，支持以.zip或者.7z格式来压缩一个完整的模型 Upload a template file, which can be a .zip or .7z file containing a complete model.
+   * @summary 上传模型模板文件 Upload a template file
+   * @param {string} [muppName] 模型文件名称 model file name without path
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof ModelTemplateApi
+   */
+  public apiV1ModelConfigurationTemplateUploadModelTemplatePost_5(
+    muppName?: string,
+    options?: AxiosRequestConfig,
+  ) {
+    return ModelTemplateApiFp(this.configuration)
+      .apiV1ModelConfigurationTemplateUploadModelTemplatePost_5(muppName, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
    * 把上传的模板模型文件标记为可作为模板方案的模型 Mark a template file as model file that can be used to create a template scenario
    * @summary 标记模板模型文件 Mark a template file
    * @param {CreateTemplateFileInputV2} [createTemplateFileInputV2]
    * @param {*} [options] Override http request option.
+   * @deprecated
    * @throws {RequiredError}
    * @memberof ModelTemplateApi
    */
@@ -1392,6 +2841,24 @@ export class ModelTemplateApi extends BaseAPI {
   ) {
     return ModelTemplateApiFp(this.configuration)
       .apiV2ModelConfigurationTemplateCreateModelTemplatePost(createTemplateFileInputV2, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   * 把上传的模板模型文件标记为可作为模板方案的模型 Mark a template file as model file that can be used to create a template scenario
+   * @summary 标记模板模型文件 Mark a template file
+   * @param {CreateTemplateFileInputV2} [createTemplateFileInputV2]
+   * @param {*} [options] Override http request option.
+   * @deprecated
+   * @throws {RequiredError}
+   * @memberof ModelTemplateApi
+   */
+  public apiV2ModelConfigurationTemplateCreateModelTemplatePost_6(
+    createTemplateFileInputV2?: CreateTemplateFileInputV2,
+    options?: AxiosRequestConfig,
+  ) {
+    return ModelTemplateApiFp(this.configuration)
+      .apiV2ModelConfigurationTemplateCreateModelTemplatePost_6(createTemplateFileInputV2, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -1413,6 +2880,23 @@ export class ModelTemplateApi extends BaseAPI {
   }
 
   /**
+   * 根据文件ID删除若干个模板模型文件 Delete template files with template file ids
+   * @summary 删除模板模型文件 Delete template files
+   * @param {Array<string>} [requestBody]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof ModelTemplateApi
+   */
+  public apiV2ModelConfigurationTemplateDeletePost_7(
+    requestBody?: Array<string>,
+    options?: AxiosRequestConfig,
+  ) {
+    return ModelTemplateApiFp(this.configuration)
+      .apiV2ModelConfigurationTemplateDeletePost_7(requestBody, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
    * 根据文件名下载模板模型文件 Download model template files with fileName
    * @summary 下载模板模型文件 Download template files
    * @param {DownloadFileInput} [downloadFileInput]
@@ -1430,6 +2914,23 @@ export class ModelTemplateApi extends BaseAPI {
   }
 
   /**
+   * 根据文件名下载模板模型文件 Download model template files with fileName
+   * @summary 下载模板模型文件 Download template files
+   * @param {DownloadFileInput} [downloadFileInput]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof ModelTemplateApi
+   */
+  public apiV2ModelConfigurationTemplateDownloadModelTempaltePost_8(
+    downloadFileInput?: DownloadFileInput,
+    options?: AxiosRequestConfig,
+  ) {
+    return ModelTemplateApiFp(this.configuration)
+      .apiV2ModelConfigurationTemplateDownloadModelTempaltePost_8(downloadFileInput, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
    * 获取所有的模板模型文件列表 Get all the model template files list
    * @summary 获取模板模型文件列表 Get template files list
    * @param {*} [options] Override http request option.
@@ -1443,13 +2944,26 @@ export class ModelTemplateApi extends BaseAPI {
   }
 
   /**
+   * 获取所有的模板模型文件列表 Get all the model template files list
+   * @summary 获取模板模型文件列表 Get template files list
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof ModelTemplateApi
+   */
+  public apiV2ModelConfigurationTemplateModelTempalteListGet_9(options?: AxiosRequestConfig) {
+    return ModelTemplateApiFp(this.configuration)
+      .apiV2ModelConfigurationTemplateModelTempalteListGet_9(options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
    * 上传模型模板文件，支持以.zip或者.7z格式来压缩一个完整的模型，同时会后台异步检查模型文件，如果模型文件符合要求，将被标记为可用于创建模板方案 Upload a template file, which can be a .zip or .7z file containing a complete model. Meanwhile the model files will be checked asynchronously, and marked as model file that can be used to create a template scenario if it meet the necessary requirements.
    * @summary 上传模型模板文件，同时检查模型文件 Upload a template file, meanwhile check the file
    * @param {string} [muppName] 模型文件名称 model file name without path
    * @param {string} [systemId] 系统ID system id
-   * @param {string} [libraryType] 库类型 library type
-   * @param {string} [businessType] 业务类型 business type
-   * @param {string} [modelType] 模型类型 model type
+   * @param {LibraryTypeEnum} [libraryType] 库类型 library type
+   * @param {BusinessTypeEnum} [businessType] 业务类型 business type
+   * @param {ModelTypeEnum} [modelType] 模型类型 model type
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof ModelTemplateApi
@@ -1457,13 +2971,45 @@ export class ModelTemplateApi extends BaseAPI {
   public apiV2ModelConfigurationTemplateUploadModelTemplatePost(
     muppName?: string,
     systemId?: string,
-    libraryType?: string,
-    businessType?: string,
-    modelType?: string,
+    libraryType?: LibraryTypeEnum,
+    businessType?: BusinessTypeEnum,
+    modelType?: ModelTypeEnum,
     options?: AxiosRequestConfig,
   ) {
     return ModelTemplateApiFp(this.configuration)
       .apiV2ModelConfigurationTemplateUploadModelTemplatePost(
+        muppName,
+        systemId,
+        libraryType,
+        businessType,
+        modelType,
+        options,
+      )
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   * 上传模型模板文件，支持以.zip或者.7z格式来压缩一个完整的模型，同时会后台异步检查模型文件，如果模型文件符合要求，将被标记为可用于创建模板方案 Upload a template file, which can be a .zip or .7z file containing a complete model. Meanwhile the model files will be checked asynchronously, and marked as model file that can be used to create a template scenario if it meet the necessary requirements.
+   * @summary 上传模型模板文件，同时检查模型文件 Upload a template file, meanwhile check the file
+   * @param {string} [muppName] 模型文件名称 model file name without path
+   * @param {string} [systemId] 系统ID system id
+   * @param {LibraryTypeEnum} [libraryType] 库类型 library type
+   * @param {BusinessTypeEnum} [businessType] 业务类型 business type
+   * @param {ModelTypeEnum} [modelType] 模型类型 model type
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof ModelTemplateApi
+   */
+  public apiV2ModelConfigurationTemplateUploadModelTemplatePost_10(
+    muppName?: string,
+    systemId?: string,
+    libraryType?: LibraryTypeEnum,
+    businessType?: BusinessTypeEnum,
+    modelType?: ModelTypeEnum,
+    options?: AxiosRequestConfig,
+  ) {
+    return ModelTemplateApiFp(this.configuration)
+      .apiV2ModelConfigurationTemplateUploadModelTemplatePost_10(
         muppName,
         systemId,
         libraryType,
@@ -1492,6 +3038,23 @@ export class ModelTemplateApi extends BaseAPI {
   }
 
   /**
+   * 把上传的模板模型文件标记为可作为模板方案的模型 Mark a template file as model file that can be used to create a template scenario
+   * @summary 标记模板模型文件 Mark a template file
+   * @param {CreateTemplateFileInputV3} [createTemplateFileInputV3]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof ModelTemplateApi
+   */
+  public apiV3ModelConfigurationTemplateCreateModelTemplatePost_11(
+    createTemplateFileInputV3?: CreateTemplateFileInputV3,
+    options?: AxiosRequestConfig,
+  ) {
+    return ModelTemplateApiFp(this.configuration)
+      .apiV3ModelConfigurationTemplateCreateModelTemplatePost_11(createTemplateFileInputV3, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
    * 根据文件ID删除若干个模板模型文件 Delete template files with template file ids
    * @summary 删除模板模型文件 Delete template files
    * @param {Array<string>} [requestBody]
@@ -1505,6 +3068,23 @@ export class ModelTemplateApi extends BaseAPI {
   ) {
     return ModelTemplateApiFp(this.configuration)
       .apiV3ModelConfigurationTemplateDeletePost(requestBody, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   * 根据文件ID删除若干个模板模型文件 Delete template files with template file ids
+   * @summary 删除模板模型文件 Delete template files
+   * @param {Array<string>} [requestBody]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof ModelTemplateApi
+   */
+  public apiV3ModelConfigurationTemplateDeletePost_12(
+    requestBody?: Array<string>,
+    options?: AxiosRequestConfig,
+  ) {
+    return ModelTemplateApiFp(this.configuration)
+      .apiV3ModelConfigurationTemplateDeletePost_12(requestBody, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -1528,6 +3108,23 @@ export class ModelTemplateApi extends BaseAPI {
   /**
    * 根据文件名下载模板模型文件 Download model template files with fileName
    * @summary 下载模板模型文件 Download template files
+   * @param {DownloadFileInput} [downloadFileInput]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof ModelTemplateApi
+   */
+  public apiV3ModelConfigurationTemplateDownloadModelTempaltePost_13(
+    downloadFileInput?: DownloadFileInput,
+    options?: AxiosRequestConfig,
+  ) {
+    return ModelTemplateApiFp(this.configuration)
+      .apiV3ModelConfigurationTemplateDownloadModelTempaltePost_13(downloadFileInput, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   * 根据id下载模板模型文件 Download model template file with model template id
+   * @summary 下载模板模型文件 Download template files
    * @param {string} [id]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
@@ -1543,8 +3140,25 @@ export class ModelTemplateApi extends BaseAPI {
   }
 
   /**
-   * 根据文件名下载模板模型文件 Download model template files with fileName
-   * @summary 获取模板模型信息 get template file info
+   * 根据id下载模板模型文件 Download model template file with model template id
+   * @summary 下载模板模型文件 Download template files
+   * @param {string} [id]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof ModelTemplateApi
+   */
+  public apiV3ModelConfigurationTemplateDownloadModelTemplatePost_14(
+    id?: string,
+    options?: AxiosRequestConfig,
+  ) {
+    return ModelTemplateApiFp(this.configuration)
+      .apiV3ModelConfigurationTemplateDownloadModelTemplatePost_14(id, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   * 根据Id获取模板模型文件 get model template file with id
+   * @summary 查询建模文件 query template file info
    * @param {string} [id]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
@@ -1560,6 +3174,23 @@ export class ModelTemplateApi extends BaseAPI {
   }
 
   /**
+   * 根据Id获取模板模型文件 get model template file with id
+   * @summary 查询建模文件 query template file info
+   * @param {string} [id]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof ModelTemplateApi
+   */
+  public apiV3ModelConfigurationTemplateGetModelTemplateGet_15(
+    id?: string,
+    options?: AxiosRequestConfig,
+  ) {
+    return ModelTemplateApiFp(this.configuration)
+      .apiV3ModelConfigurationTemplateGetModelTemplateGet_15(id, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
    * 获取所有的模板模型文件列表 Get all the model template files list
    * @summary 获取模板模型文件列表 Get template files list
    * @param {*} [options] Override http request option.
@@ -1569,6 +3200,19 @@ export class ModelTemplateApi extends BaseAPI {
   public apiV3ModelConfigurationTemplateModelTempalteListGet(options?: AxiosRequestConfig) {
     return ModelTemplateApiFp(this.configuration)
       .apiV3ModelConfigurationTemplateModelTempalteListGet(options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   * 获取所有的模板模型文件列表 Get all the model template files list
+   * @summary 获取模板模型文件列表 Get template files list
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof ModelTemplateApi
+   */
+  public apiV3ModelConfigurationTemplateModelTempalteListGet_16(options?: AxiosRequestConfig) {
+    return ModelTemplateApiFp(this.configuration)
+      .apiV3ModelConfigurationTemplateModelTempalteListGet_16(options)
       .then((request) => request(this.axios, this.basePath))
   }
 }
