@@ -315,9 +315,8 @@ export const BaseApiFp = function (configuration?: Configuration) {
     ): Promise<
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<BaseProductLineInOut>>
     > {
-      const localVarAxiosArgs = await localVarAxiosParamCreator.apiBaseGetAllBaseProductLineGet(
-        options,
-      )
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiBaseGetAllBaseProductLineGet(options)
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**

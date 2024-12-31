@@ -671,9 +671,8 @@ export const IotGroupApiFp = function (configuration?: Configuration) {
     ): Promise<
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<IotGroupConfigOutput>>
     > {
-      const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1IotGroupGetRootGroupGet(
-        options,
-      )
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiV1IotGroupGetRootGroupGet(options)
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**
