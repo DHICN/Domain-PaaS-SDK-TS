@@ -30,6 +30,7 @@ import {
 } from '../common'
 // @ts-ignore
 import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } from '../base' // @ts-ignore// @ts-ignore
+// @ts-ignore
 import { CompareOutput } from '../models'
 // @ts-ignore
 import { ControlSuggestionOutput } from '../models'
@@ -51,6 +52,49 @@ import { SwitchControlInput } from '../models'
  */
 export const OptimizationApiAxiosParamCreator = function (configuration?: Configuration) {
   return {
+    /**
+     *
+     * @summary 数据下发到opc
+     * @param {Array<CurrentCompareOutput>} [currentCompareOutput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1ControlDevicesIssuedPost: async (
+      currentCompareOutput?: Array<CurrentCompareOutput>,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/control/devices/issued`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        currentCompareOutput,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
     /**
      *
      * @summary 根据类型获取优化配置 Get Optimization config by type
@@ -791,6 +835,23 @@ export const OptimizationApiFp = function (configuration?: Configuration) {
   return {
     /**
      *
+     * @summary 数据下发到opc
+     * @param {Array<CurrentCompareOutput>} [currentCompareOutput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1ControlDevicesIssuedPost(
+      currentCompareOutput?: Array<CurrentCompareOutput>,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<boolean>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1ControlDevicesIssuedPost(
+        currentCompareOutput,
+        options,
+      )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
      * @summary 根据类型获取优化配置 Get Optimization config by type
      * @param {number} [displayType] 类型 type
      * @param {*} [options] Override http request option.
@@ -1133,6 +1194,21 @@ export const OptimizationApiFactory = function (
   return {
     /**
      *
+     * @summary 数据下发到opc
+     * @param {Array<CurrentCompareOutput>} [currentCompareOutput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1ControlDevicesIssuedPost(
+      currentCompareOutput?: Array<CurrentCompareOutput>,
+      options?: any,
+    ): AxiosPromise<boolean> {
+      return localVarFp
+        .apiV1ControlDevicesIssuedPost(currentCompareOutput, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
      * @summary 根据类型获取优化配置 Get Optimization config by type
      * @param {number} [displayType] 类型 type
      * @param {*} [options] Override http request option.
@@ -1412,6 +1488,23 @@ export const OptimizationApiFactory = function (
  * @extends {BaseAPI}
  */
 export class OptimizationApi extends BaseAPI {
+  /**
+   *
+   * @summary 数据下发到opc
+   * @param {Array<CurrentCompareOutput>} [currentCompareOutput]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof OptimizationApi
+   */
+  public apiV1ControlDevicesIssuedPost(
+    currentCompareOutput?: Array<CurrentCompareOutput>,
+    options?: AxiosRequestConfig,
+  ) {
+    return OptimizationApiFp(this.configuration)
+      .apiV1ControlDevicesIssuedPost(currentCompareOutput, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
   /**
    *
    * @summary 根据类型获取优化配置 Get Optimization config by type

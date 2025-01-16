@@ -125,8 +125,9 @@ export const RpcOperApiFp = function (configuration?: Configuration) {
     async apiAppRpcOperRefreshRolePersPost(
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<boolean>> {
-      const localVarAxiosArgs =
-        await localVarAxiosParamCreator.apiAppRpcOperRefreshRolePersPost(options)
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiAppRpcOperRefreshRolePersPost(
+        options,
+      )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**
@@ -138,8 +139,9 @@ export const RpcOperApiFp = function (configuration?: Configuration) {
     async apiAppRpcOperRefreshServicesPost(
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<boolean>> {
-      const localVarAxiosArgs =
-        await localVarAxiosParamCreator.apiAppRpcOperRefreshServicesPost(options)
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiAppRpcOperRefreshServicesPost(
+        options,
+      )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
   }
