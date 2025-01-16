@@ -245,8 +245,9 @@ export const AccuracyConfigApiFp = function (configuration?: Configuration) {
     ): Promise<
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<AccuracyConfigDto>>
     > {
-      const localVarAxiosArgs =
-        await localVarAxiosParamCreator.apiV1DomainWdConfigAccuracyAllGet(options)
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1DomainWdConfigAccuracyAllGet(
+        options,
+      )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**

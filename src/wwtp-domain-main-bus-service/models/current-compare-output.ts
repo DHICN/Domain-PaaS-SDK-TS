@@ -47,4 +47,10 @@ export interface CurrentCompareOutput {
    * @memberof CurrentCompareOutput
    */
   modelData?: number
+  /**
+   * 是否开启自动模式
+   * @type {boolean}
+   * @memberof CurrentCompareOutput
+   */
+  isAutoControl?: boolean
 }

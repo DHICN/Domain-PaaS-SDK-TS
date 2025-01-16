@@ -350,8 +350,9 @@ export const ModelConfigApiFp = function (configuration?: Configuration) {
     ): Promise<
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<ModelParameterConfigOutput>>
     > {
-      const localVarAxiosArgs =
-        await localVarAxiosParamCreator.apiV2CodeConfigModelParaGetAllGet(options)
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiV2CodeConfigModelParaGetAllGet(
+        options,
+      )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**
