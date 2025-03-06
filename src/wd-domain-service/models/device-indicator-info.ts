@@ -14,9 +14,6 @@
 // May contain unused imports in some cases
 // @ts-ignore
 import { ModelMapAssemblyInfo } from './model-map-assembly-info'
-// May contain unused imports in some cases
-// @ts-ignore
-import { WdIndicatorAttr } from './wd-indicator-attr'
 
 /**
  *
@@ -80,10 +77,10 @@ export interface DeviceIndicatorInfo {
   maxValue?: number
   /**
    *
-   * @type {WdIndicatorAttr}
+   * @type {object}
    * @memberof DeviceIndicatorInfo
    */
-  wdIndicatorAttr?: WdIndicatorAttr
+  wdIndicatorAttr?: object
   /**
    * 测点对应的模型组装信息
    * @type {Array<ModelMapAssemblyInfo>}
