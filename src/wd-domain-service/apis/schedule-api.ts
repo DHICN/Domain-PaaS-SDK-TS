@@ -31,6 +31,8 @@ import {
 // @ts-ignore
 import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } from '../base'
 // @ts-ignore
+import { CalcucateValveOpeningDegreeInput } from '../models'
+// @ts-ignore
 import { ControlTsInfo } from '../models'
 // @ts-ignore
 import { CurveInfo } from '../models'
@@ -42,6 +44,8 @@ import { PatternInfo } from '../models'
 import { PatternTsInfo } from '../models'
 // @ts-ignore
 import { PumpInfo } from '../models'
+// @ts-ignore
+import { QueryPatternListInput } from '../models'
 // @ts-ignore
 import { RemoteServiceErrorResponse } from '../models'
 // @ts-ignore
@@ -61,13 +65,41 @@ export const ScheduleApiAxiosParamCreator = function (configuration?: Configurat
     /**
      *
      * @summary 获取curve 的列表
-     * @param {Array<string>} itemTypes
+     * @param {Array<1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18 | 31 | 32 | 33 | 34 | 35 | 36 | 37 | 38 | -1>} itemTypes
      * @param {string} scenarioId
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiV1DomainWdScheduleCurveListGet: async (
-      itemTypes: Array<string>,
+      itemTypes: Array<
+        | 1
+        | 2
+        | 3
+        | 4
+        | 5
+        | 6
+        | 7
+        | 8
+        | 9
+        | 10
+        | 11
+        | 12
+        | 13
+        | 14
+        | 15
+        | 16
+        | 17
+        | 18
+        | 31
+        | 32
+        | 33
+        | 34
+        | 35
+        | 36
+        | 37
+        | 38
+        | -1
+      >,
       scenarioId: string,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
@@ -86,6 +118,10 @@ export const ScheduleApiAxiosParamCreator = function (configuration?: Configurat
       const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
       if (itemTypes !== undefined) {
         localVarQueryParameter['ItemTypes'] = itemTypes
@@ -141,6 +177,10 @@ export const ScheduleApiAxiosParamCreator = function (configuration?: Configurat
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
 
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
       if (modelFeatureId !== undefined) {
         localVarQueryParameter['ModelFeatureId'] = modelFeatureId
       }
@@ -150,11 +190,13 @@ export const ScheduleApiAxiosParamCreator = function (configuration?: Configurat
       }
 
       if (startTime !== undefined) {
-        localVarQueryParameter['StartTime'] = startTime
+        localVarQueryParameter['StartTime'] =
+          (startTime as any) instanceof Date ? (startTime as any).toISOString() : startTime
       }
 
       if (endTime !== undefined) {
-        localVarQueryParameter['EndTime'] = endTime
+        localVarQueryParameter['EndTime'] =
+          (endTime as any) instanceof Date ? (endTime as any).toISOString() : endTime
       }
 
       setSearchParams(localVarUrlObj, localVarQueryParameter)
@@ -193,6 +235,10 @@ export const ScheduleApiAxiosParamCreator = function (configuration?: Configurat
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
 
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
       setSearchParams(localVarUrlObj, localVarQueryParameter)
@@ -215,14 +261,61 @@ export const ScheduleApiAxiosParamCreator = function (configuration?: Configurat
     },
     /**
      *
+     * @summary 根据流量、压力、系数、口径计算阀门开度
+     * @param {CalcucateValveOpeningDegreeInput} [calcucateValveOpeningDegreeInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1DomainWdScheduleGetValveOpeningDegreePost: async (
+      calcucateValveOpeningDegreeInput?: CalcucateValveOpeningDegreeInput,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/domain-wd/schedule/get-valve-opening-degree`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        calcucateValveOpeningDegreeInput,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
      * @summary 获取Pattern 的列表
-     * @param {Array<string>} itemTypes
+     * @param {Array<0 | 1 | 2 | 3 | 4>} itemTypes
      * @param {string} scenarioId
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiV1DomainWdSchedulePatternListGet: async (
-      itemTypes: Array<string>,
+      itemTypes: Array<0 | 1 | 2 | 3 | 4>,
       scenarioId: string,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
@@ -242,6 +335,10 @@ export const ScheduleApiAxiosParamCreator = function (configuration?: Configurat
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
 
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
       if (itemTypes !== undefined) {
         localVarQueryParameter['ItemTypes'] = itemTypes
       }
@@ -257,6 +354,53 @@ export const ScheduleApiAxiosParamCreator = function (configuration?: Configurat
         ...headersFromBaseOptions,
         ...options.headers,
       }
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 获取Pattern 的列表
+     * @param {QueryPatternListInput} [queryPatternListInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1DomainWdSchedulePatternListPost: async (
+      queryPatternListInput?: QueryPatternListInput,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/domain-wd/schedule/pattern/list`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        queryPatternListInput,
+        localVarRequestOptions,
+        configuration,
+      )
 
       return {
         url: toPathString(localVarUrlObj),
@@ -300,6 +444,10 @@ export const ScheduleApiAxiosParamCreator = function (configuration?: Configurat
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
 
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
       if (modelFeatureId !== undefined) {
         localVarQueryParameter['ModelFeatureId'] = modelFeatureId
       }
@@ -309,11 +457,13 @@ export const ScheduleApiAxiosParamCreator = function (configuration?: Configurat
       }
 
       if (startTime !== undefined) {
-        localVarQueryParameter['StartTime'] = startTime
+        localVarQueryParameter['StartTime'] =
+          (startTime as any) instanceof Date ? (startTime as any).toISOString() : startTime
       }
 
       if (endTime !== undefined) {
-        localVarQueryParameter['EndTime'] = endTime
+        localVarQueryParameter['EndTime'] =
+          (endTime as any) instanceof Date ? (endTime as any).toISOString() : endTime
       }
 
       setSearchParams(localVarUrlObj, localVarQueryParameter)
@@ -351,6 +501,10 @@ export const ScheduleApiAxiosParamCreator = function (configuration?: Configurat
       const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
@@ -396,6 +550,10 @@ export const ScheduleApiAxiosParamCreator = function (configuration?: Configurat
       const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
       if (scenarioId !== undefined) {
         localVarQueryParameter['ScenarioId'] = scenarioId
@@ -447,6 +605,10 @@ export const ScheduleApiAxiosParamCreator = function (configuration?: Configurat
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
 
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
       if (modelFeatureId !== undefined) {
         localVarQueryParameter['ModelFeatureId'] = modelFeatureId
       }
@@ -456,11 +618,13 @@ export const ScheduleApiAxiosParamCreator = function (configuration?: Configurat
       }
 
       if (startTime !== undefined) {
-        localVarQueryParameter['StartTime'] = startTime
+        localVarQueryParameter['StartTime'] =
+          (startTime as any) instanceof Date ? (startTime as any).toISOString() : startTime
       }
 
       if (endTime !== undefined) {
-        localVarQueryParameter['EndTime'] = endTime
+        localVarQueryParameter['EndTime'] =
+          (endTime as any) instanceof Date ? (endTime as any).toISOString() : endTime
       }
 
       setSearchParams(localVarUrlObj, localVarQueryParameter)
@@ -498,6 +662,10 @@ export const ScheduleApiAxiosParamCreator = function (configuration?: Configurat
       const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
@@ -543,6 +711,10 @@ export const ScheduleApiAxiosParamCreator = function (configuration?: Configurat
       const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
       if (scenarioId !== undefined) {
         localVarQueryParameter['ScenarioId'] = scenarioId
@@ -594,6 +766,10 @@ export const ScheduleApiAxiosParamCreator = function (configuration?: Configurat
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
 
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
       if (modelFeatureId !== undefined) {
         localVarQueryParameter['ModelFeatureId'] = modelFeatureId
       }
@@ -603,11 +779,13 @@ export const ScheduleApiAxiosParamCreator = function (configuration?: Configurat
       }
 
       if (startTime !== undefined) {
-        localVarQueryParameter['StartTime'] = startTime
+        localVarQueryParameter['StartTime'] =
+          (startTime as any) instanceof Date ? (startTime as any).toISOString() : startTime
       }
 
       if (endTime !== undefined) {
-        localVarQueryParameter['EndTime'] = endTime
+        localVarQueryParameter['EndTime'] =
+          (endTime as any) instanceof Date ? (endTime as any).toISOString() : endTime
       }
 
       setSearchParams(localVarUrlObj, localVarQueryParameter)
@@ -646,6 +824,10 @@ export const ScheduleApiAxiosParamCreator = function (configuration?: Configurat
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
 
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
       setSearchParams(localVarUrlObj, localVarQueryParameter)
@@ -679,13 +861,41 @@ export const ScheduleApiFp = function (configuration?: Configuration) {
     /**
      *
      * @summary 获取curve 的列表
-     * @param {Array<string>} itemTypes
+     * @param {Array<1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18 | 31 | 32 | 33 | 34 | 35 | 36 | 37 | 38 | -1>} itemTypes
      * @param {string} scenarioId
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async apiV1DomainWdScheduleCurveListGet(
-      itemTypes: Array<string>,
+      itemTypes: Array<
+        | 1
+        | 2
+        | 3
+        | 4
+        | 5
+        | 6
+        | 7
+        | 8
+        | 9
+        | 10
+        | 11
+        | 12
+        | 13
+        | 14
+        | 15
+        | 16
+        | 17
+        | 18
+        | 31
+        | 32
+        | 33
+        | 34
+        | 35
+        | 36
+        | 37
+        | 38
+        | -1
+      >,
       scenarioId: string,
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<CurveInfo>>> {
@@ -743,14 +953,32 @@ export const ScheduleApiFp = function (configuration?: Configuration) {
     },
     /**
      *
+     * @summary 根据流量、压力、系数、口径计算阀门开度
+     * @param {CalcucateValveOpeningDegreeInput} [calcucateValveOpeningDegreeInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1DomainWdScheduleGetValveOpeningDegreePost(
+      calcucateValveOpeningDegreeInput?: CalcucateValveOpeningDegreeInput,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<number>> {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiV1DomainWdScheduleGetValveOpeningDegreePost(
+          calcucateValveOpeningDegreeInput,
+          options,
+        )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
      * @summary 获取Pattern 的列表
-     * @param {Array<string>} itemTypes
+     * @param {Array<0 | 1 | 2 | 3 | 4>} itemTypes
      * @param {string} scenarioId
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async apiV1DomainWdSchedulePatternListGet(
-      itemTypes: Array<string>,
+      itemTypes: Array<0 | 1 | 2 | 3 | 4>,
       scenarioId: string,
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<PatternInfo>>> {
@@ -759,6 +987,24 @@ export const ScheduleApiFp = function (configuration?: Configuration) {
         scenarioId,
         options,
       )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
+     * @summary 获取Pattern 的列表
+     * @param {QueryPatternListInput} [queryPatternListInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1DomainWdSchedulePatternListPost(
+      queryPatternListInput?: QueryPatternListInput,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<PatternInfo>>> {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiV1DomainWdSchedulePatternListPost(
+          queryPatternListInput,
+          options,
+        )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**
@@ -947,13 +1193,41 @@ export const ScheduleApiFactory = function (
     /**
      *
      * @summary 获取curve 的列表
-     * @param {Array<string>} itemTypes
+     * @param {Array<1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18 | 31 | 32 | 33 | 34 | 35 | 36 | 37 | 38 | -1>} itemTypes
      * @param {string} scenarioId
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiV1DomainWdScheduleCurveListGet(
-      itemTypes: Array<string>,
+      itemTypes: Array<
+        | 1
+        | 2
+        | 3
+        | 4
+        | 5
+        | 6
+        | 7
+        | 8
+        | 9
+        | 10
+        | 11
+        | 12
+        | 13
+        | 14
+        | 15
+        | 16
+        | 17
+        | 18
+        | 31
+        | 32
+        | 33
+        | 34
+        | 35
+        | 36
+        | 37
+        | 38
+        | -1
+      >,
       scenarioId: string,
       options?: any,
     ): AxiosPromise<Array<CurveInfo>> {
@@ -1005,19 +1279,49 @@ export const ScheduleApiFactory = function (
     },
     /**
      *
+     * @summary 根据流量、压力、系数、口径计算阀门开度
+     * @param {CalcucateValveOpeningDegreeInput} [calcucateValveOpeningDegreeInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1DomainWdScheduleGetValveOpeningDegreePost(
+      calcucateValveOpeningDegreeInput?: CalcucateValveOpeningDegreeInput,
+      options?: any,
+    ): AxiosPromise<number> {
+      return localVarFp
+        .apiV1DomainWdScheduleGetValveOpeningDegreePost(calcucateValveOpeningDegreeInput, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
      * @summary 获取Pattern 的列表
-     * @param {Array<string>} itemTypes
+     * @param {Array<0 | 1 | 2 | 3 | 4>} itemTypes
      * @param {string} scenarioId
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiV1DomainWdSchedulePatternListGet(
-      itemTypes: Array<string>,
+      itemTypes: Array<0 | 1 | 2 | 3 | 4>,
       scenarioId: string,
       options?: any,
     ): AxiosPromise<Array<PatternInfo>> {
       return localVarFp
         .apiV1DomainWdSchedulePatternListGet(itemTypes, scenarioId, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @summary 获取Pattern 的列表
+     * @param {QueryPatternListInput} [queryPatternListInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1DomainWdSchedulePatternListPost(
+      queryPatternListInput?: QueryPatternListInput,
+      options?: any,
+    ): AxiosPromise<Array<PatternInfo>> {
+      return localVarFp
+        .apiV1DomainWdSchedulePatternListPost(queryPatternListInput, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -1189,14 +1493,42 @@ export class ScheduleApi extends BaseAPI {
   /**
    *
    * @summary 获取curve 的列表
-   * @param {Array<string>} itemTypes
+   * @param {Array<1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18 | 31 | 32 | 33 | 34 | 35 | 36 | 37 | 38 | -1>} itemTypes
    * @param {string} scenarioId
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof ScheduleApi
    */
   public apiV1DomainWdScheduleCurveListGet(
-    itemTypes: Array<string>,
+    itemTypes: Array<
+      | 1
+      | 2
+      | 3
+      | 4
+      | 5
+      | 6
+      | 7
+      | 8
+      | 9
+      | 10
+      | 11
+      | 12
+      | 13
+      | 14
+      | 15
+      | 16
+      | 17
+      | 18
+      | 31
+      | 32
+      | 33
+      | 34
+      | 35
+      | 36
+      | 37
+      | 38
+      | -1
+    >,
     scenarioId: string,
     options?: AxiosRequestConfig,
   ) {
@@ -1253,20 +1585,54 @@ export class ScheduleApi extends BaseAPI {
 
   /**
    *
+   * @summary 根据流量、压力、系数、口径计算阀门开度
+   * @param {CalcucateValveOpeningDegreeInput} [calcucateValveOpeningDegreeInput]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof ScheduleApi
+   */
+  public apiV1DomainWdScheduleGetValveOpeningDegreePost(
+    calcucateValveOpeningDegreeInput?: CalcucateValveOpeningDegreeInput,
+    options?: AxiosRequestConfig,
+  ) {
+    return ScheduleApiFp(this.configuration)
+      .apiV1DomainWdScheduleGetValveOpeningDegreePost(calcucateValveOpeningDegreeInput, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
    * @summary 获取Pattern 的列表
-   * @param {Array<string>} itemTypes
+   * @param {Array<0 | 1 | 2 | 3 | 4>} itemTypes
    * @param {string} scenarioId
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof ScheduleApi
    */
   public apiV1DomainWdSchedulePatternListGet(
-    itemTypes: Array<string>,
+    itemTypes: Array<0 | 1 | 2 | 3 | 4>,
     scenarioId: string,
     options?: AxiosRequestConfig,
   ) {
     return ScheduleApiFp(this.configuration)
       .apiV1DomainWdSchedulePatternListGet(itemTypes, scenarioId, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary 获取Pattern 的列表
+   * @param {QueryPatternListInput} [queryPatternListInput]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof ScheduleApi
+   */
+  public apiV1DomainWdSchedulePatternListPost(
+    queryPatternListInput?: QueryPatternListInput,
+    options?: AxiosRequestConfig,
+  ) {
+    return ScheduleApiFp(this.configuration)
+      .apiV1DomainWdSchedulePatternListPost(queryPatternListInput, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
