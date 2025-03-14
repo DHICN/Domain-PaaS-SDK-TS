@@ -40,8 +40,6 @@ import { AlarmConfigDto } from '../models'
 import { DeleteAlarmConfigInput } from '../models'
 // @ts-ignore
 import { RemoteServiceErrorResponse } from '../models'
-// @ts-ignore
-import { SaveAlarmConfigByTypeInput } from '../models'
 /**
  * AlarmConfigApi - axios parameter creator
  * @export
@@ -70,6 +68,10 @@ export const AlarmConfigApiAxiosParamCreator = function (configuration?: Configu
       const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
@@ -112,6 +114,10 @@ export const AlarmConfigApiAxiosParamCreator = function (configuration?: Configu
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
 
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
       setSearchParams(localVarUrlObj, localVarQueryParameter)
       let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
       localVarRequestOptions.headers = {
@@ -148,6 +154,10 @@ export const AlarmConfigApiAxiosParamCreator = function (configuration?: Configu
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
 
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
       setSearchParams(localVarUrlObj, localVarQueryParameter)
@@ -171,12 +181,12 @@ export const AlarmConfigApiAxiosParamCreator = function (configuration?: Configu
     /**
      *
      * @summary 根据类型获取报警配置
-     * @param {number} [alarmDataType]
+     * @param {0 | 1 | 2 | 3 | 4 | 5} [alarmDataType]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiV1DomainWdConfigAlarmGetByTypeGet: async (
-      alarmDataType?: number,
+      alarmDataType?: 0 | 1 | 2 | 3 | 4 | 5,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
       const localVarPath = `/api/v1/domain-wd/config/alarm/get-by-type`
@@ -190,6 +200,10 @@ export const AlarmConfigApiAxiosParamCreator = function (configuration?: Configu
       const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
       if (alarmDataType !== undefined) {
         localVarQueryParameter['alarmDataType'] = alarmDataType
@@ -231,6 +245,10 @@ export const AlarmConfigApiAxiosParamCreator = function (configuration?: Configu
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
 
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
       setSearchParams(localVarUrlObj, localVarQueryParameter)
@@ -254,12 +272,12 @@ export const AlarmConfigApiAxiosParamCreator = function (configuration?: Configu
     /**
      *
      * @summary 按照类型保存报警配置，会从indicator表中读取指定类型的所有指标进行批量保存
-     * @param {Array<SaveAlarmConfigByTypeInput>} [saveAlarmConfigByTypeInput]
+     * @param {Array<object>} [requestBody]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiV1DomainWdConfigAlarmSaveByTypePost: async (
-      saveAlarmConfigByTypeInput?: Array<SaveAlarmConfigByTypeInput>,
+      requestBody?: Array<object>,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
       const localVarPath = `/api/v1/domain-wd/config/alarm/save-by-type`
@@ -274,6 +292,10 @@ export const AlarmConfigApiAxiosParamCreator = function (configuration?: Configu
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
 
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
       setSearchParams(localVarUrlObj, localVarQueryParameter)
@@ -284,7 +306,7 @@ export const AlarmConfigApiAxiosParamCreator = function (configuration?: Configu
         ...options.headers,
       }
       localVarRequestOptions.data = serializeDataIfNeeded(
-        saveAlarmConfigByTypeInput,
+        requestBody,
         localVarRequestOptions,
         configuration,
       )
@@ -316,6 +338,10 @@ export const AlarmConfigApiAxiosParamCreator = function (configuration?: Configu
       const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
@@ -360,6 +386,10 @@ export const AlarmConfigApiAxiosParamCreator = function (configuration?: Configu
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
 
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
       setSearchParams(localVarUrlObj, localVarQueryParameter)
@@ -371,6 +401,53 @@ export const AlarmConfigApiAxiosParamCreator = function (configuration?: Configu
       }
       localVarRequestOptions.data = serializeDataIfNeeded(
         alarmConfigDto,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 根据报警类型批量新增报警配置
+     * @param {Array<AddListAlarmConfigInput>} [addListAlarmConfigInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV2DomainWdConfigAlarmListAddPost: async (
+      addListAlarmConfigInput?: Array<AddListAlarmConfigInput>,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v2/domain-wd/config/alarm/list-add`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        addListAlarmConfigInput,
         localVarRequestOptions,
         configuration,
       )
@@ -400,7 +477,7 @@ export const AlarmConfigApiFp = function (configuration?: Configuration) {
     async apiV1DomainWdConfigAlarmAddPost(
       addAlarmConfigInput?: Array<AddAlarmConfigInput>,
       options?: AxiosRequestConfig,
-    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
       const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1DomainWdConfigAlarmAddPost(
         addAlarmConfigInput,
         options,
@@ -430,7 +507,7 @@ export const AlarmConfigApiFp = function (configuration?: Configuration) {
     async apiV1DomainWdConfigAlarmDeletePost(
       deleteAlarmConfigInput?: DeleteAlarmConfigInput,
       options?: AxiosRequestConfig,
-    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
       const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1DomainWdConfigAlarmDeletePost(
         deleteAlarmConfigInput,
         options,
@@ -440,12 +517,12 @@ export const AlarmConfigApiFp = function (configuration?: Configuration) {
     /**
      *
      * @summary 根据类型获取报警配置
-     * @param {number} [alarmDataType]
+     * @param {0 | 1 | 2 | 3 | 4 | 5} [alarmDataType]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async apiV1DomainWdConfigAlarmGetByTypeGet(
-      alarmDataType?: number,
+      alarmDataType?: 0 | 1 | 2 | 3 | 4 | 5,
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<AlarmConfigDto>>> {
       const localVarAxiosArgs =
@@ -462,7 +539,7 @@ export const AlarmConfigApiFp = function (configuration?: Configuration) {
     async apiV1DomainWdConfigAlarmListAddPost(
       addListAlarmConfigInput?: Array<AddListAlarmConfigInput>,
       options?: AxiosRequestConfig,
-    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
       const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1DomainWdConfigAlarmListAddPost(
         addListAlarmConfigInput,
         options,
@@ -472,19 +549,16 @@ export const AlarmConfigApiFp = function (configuration?: Configuration) {
     /**
      *
      * @summary 按照类型保存报警配置，会从indicator表中读取指定类型的所有指标进行批量保存
-     * @param {Array<SaveAlarmConfigByTypeInput>} [saveAlarmConfigByTypeInput]
+     * @param {Array<object>} [requestBody]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async apiV1DomainWdConfigAlarmSaveByTypePost(
-      saveAlarmConfigByTypeInput?: Array<SaveAlarmConfigByTypeInput>,
+      requestBody?: Array<object>,
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
       const localVarAxiosArgs =
-        await localVarAxiosParamCreator.apiV1DomainWdConfigAlarmSaveByTypePost(
-          saveAlarmConfigByTypeInput,
-          options,
-        )
+        await localVarAxiosParamCreator.apiV1DomainWdConfigAlarmSaveByTypePost(requestBody, options)
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**
@@ -497,7 +571,7 @@ export const AlarmConfigApiFp = function (configuration?: Configuration) {
     async apiV1DomainWdConfigAlarmSavePost(
       addAlarmConfigInput?: Array<AddAlarmConfigInput>,
       options?: AxiosRequestConfig,
-    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
       const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1DomainWdConfigAlarmSavePost(
         addAlarmConfigInput,
         options,
@@ -514,9 +588,26 @@ export const AlarmConfigApiFp = function (configuration?: Configuration) {
     async apiV1DomainWdConfigAlarmUpdatePost(
       alarmConfigDto?: Array<AlarmConfigDto>,
       options?: AxiosRequestConfig,
-    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
       const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1DomainWdConfigAlarmUpdatePost(
         alarmConfigDto,
+        options,
+      )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
+     * @summary 根据报警类型批量新增报警配置
+     * @param {Array<AddListAlarmConfigInput>} [addListAlarmConfigInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV2DomainWdConfigAlarmListAddPost(
+      addListAlarmConfigInput?: Array<AddListAlarmConfigInput>,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiV2DomainWdConfigAlarmListAddPost(
+        addListAlarmConfigInput,
         options,
       )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
@@ -545,7 +636,7 @@ export const AlarmConfigApiFactory = function (
     apiV1DomainWdConfigAlarmAddPost(
       addAlarmConfigInput?: Array<AddAlarmConfigInput>,
       options?: any,
-    ): AxiosPromise<object> {
+    ): AxiosPromise<void> {
       return localVarFp
         .apiV1DomainWdConfigAlarmAddPost(addAlarmConfigInput, options)
         .then((request) => request(axios, basePath))
@@ -571,7 +662,7 @@ export const AlarmConfigApiFactory = function (
     apiV1DomainWdConfigAlarmDeletePost(
       deleteAlarmConfigInput?: DeleteAlarmConfigInput,
       options?: any,
-    ): AxiosPromise<object> {
+    ): AxiosPromise<void> {
       return localVarFp
         .apiV1DomainWdConfigAlarmDeletePost(deleteAlarmConfigInput, options)
         .then((request) => request(axios, basePath))
@@ -579,12 +670,12 @@ export const AlarmConfigApiFactory = function (
     /**
      *
      * @summary 根据类型获取报警配置
-     * @param {number} [alarmDataType]
+     * @param {0 | 1 | 2 | 3 | 4 | 5} [alarmDataType]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiV1DomainWdConfigAlarmGetByTypeGet(
-      alarmDataType?: number,
+      alarmDataType?: 0 | 1 | 2 | 3 | 4 | 5,
       options?: any,
     ): AxiosPromise<Array<AlarmConfigDto>> {
       return localVarFp
@@ -601,7 +692,7 @@ export const AlarmConfigApiFactory = function (
     apiV1DomainWdConfigAlarmListAddPost(
       addListAlarmConfigInput?: Array<AddListAlarmConfigInput>,
       options?: any,
-    ): AxiosPromise<object> {
+    ): AxiosPromise<void> {
       return localVarFp
         .apiV1DomainWdConfigAlarmListAddPost(addListAlarmConfigInput, options)
         .then((request) => request(axios, basePath))
@@ -609,16 +700,16 @@ export const AlarmConfigApiFactory = function (
     /**
      *
      * @summary 按照类型保存报警配置，会从indicator表中读取指定类型的所有指标进行批量保存
-     * @param {Array<SaveAlarmConfigByTypeInput>} [saveAlarmConfigByTypeInput]
+     * @param {Array<object>} [requestBody]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiV1DomainWdConfigAlarmSaveByTypePost(
-      saveAlarmConfigByTypeInput?: Array<SaveAlarmConfigByTypeInput>,
+      requestBody?: Array<object>,
       options?: any,
     ): AxiosPromise<object> {
       return localVarFp
-        .apiV1DomainWdConfigAlarmSaveByTypePost(saveAlarmConfigByTypeInput, options)
+        .apiV1DomainWdConfigAlarmSaveByTypePost(requestBody, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -631,7 +722,7 @@ export const AlarmConfigApiFactory = function (
     apiV1DomainWdConfigAlarmSavePost(
       addAlarmConfigInput?: Array<AddAlarmConfigInput>,
       options?: any,
-    ): AxiosPromise<object> {
+    ): AxiosPromise<void> {
       return localVarFp
         .apiV1DomainWdConfigAlarmSavePost(addAlarmConfigInput, options)
         .then((request) => request(axios, basePath))
@@ -646,9 +737,24 @@ export const AlarmConfigApiFactory = function (
     apiV1DomainWdConfigAlarmUpdatePost(
       alarmConfigDto?: Array<AlarmConfigDto>,
       options?: any,
-    ): AxiosPromise<object> {
+    ): AxiosPromise<void> {
       return localVarFp
         .apiV1DomainWdConfigAlarmUpdatePost(alarmConfigDto, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @summary 根据报警类型批量新增报警配置
+     * @param {Array<AddListAlarmConfigInput>} [addListAlarmConfigInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV2DomainWdConfigAlarmListAddPost(
+      addListAlarmConfigInput?: Array<AddListAlarmConfigInput>,
+      options?: any,
+    ): AxiosPromise<void> {
+      return localVarFp
+        .apiV2DomainWdConfigAlarmListAddPost(addListAlarmConfigInput, options)
         .then((request) => request(axios, basePath))
     },
   }
@@ -711,13 +817,13 @@ export class AlarmConfigApi extends BaseAPI {
   /**
    *
    * @summary 根据类型获取报警配置
-   * @param {number} [alarmDataType]
+   * @param {0 | 1 | 2 | 3 | 4 | 5} [alarmDataType]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof AlarmConfigApi
    */
   public apiV1DomainWdConfigAlarmGetByTypeGet(
-    alarmDataType?: number,
+    alarmDataType?: 0 | 1 | 2 | 3 | 4 | 5,
     options?: AxiosRequestConfig,
   ) {
     return AlarmConfigApiFp(this.configuration)
@@ -745,17 +851,17 @@ export class AlarmConfigApi extends BaseAPI {
   /**
    *
    * @summary 按照类型保存报警配置，会从indicator表中读取指定类型的所有指标进行批量保存
-   * @param {Array<SaveAlarmConfigByTypeInput>} [saveAlarmConfigByTypeInput]
+   * @param {Array<object>} [requestBody]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof AlarmConfigApi
    */
   public apiV1DomainWdConfigAlarmSaveByTypePost(
-    saveAlarmConfigByTypeInput?: Array<SaveAlarmConfigByTypeInput>,
+    requestBody?: Array<object>,
     options?: AxiosRequestConfig,
   ) {
     return AlarmConfigApiFp(this.configuration)
-      .apiV1DomainWdConfigAlarmSaveByTypePost(saveAlarmConfigByTypeInput, options)
+      .apiV1DomainWdConfigAlarmSaveByTypePost(requestBody, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -790,6 +896,23 @@ export class AlarmConfigApi extends BaseAPI {
   ) {
     return AlarmConfigApiFp(this.configuration)
       .apiV1DomainWdConfigAlarmUpdatePost(alarmConfigDto, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary 根据报警类型批量新增报警配置
+   * @param {Array<AddListAlarmConfigInput>} [addListAlarmConfigInput]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof AlarmConfigApi
+   */
+  public apiV2DomainWdConfigAlarmListAddPost(
+    addListAlarmConfigInput?: Array<AddListAlarmConfigInput>,
+    options?: AxiosRequestConfig,
+  ) {
+    return AlarmConfigApiFp(this.configuration)
+      .apiV2DomainWdConfigAlarmListAddPost(addListAlarmConfigInput, options)
       .then((request) => request(this.axios, this.basePath))
   }
 }

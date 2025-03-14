@@ -72,6 +72,12 @@ export interface AlarmConfigDto {
    */
   remark?: string | null
   /**
+   * 告警等级 低风险/中风险/高风险---> 1/2/3
+   * @type {number}
+   * @memberof AlarmConfigDto
+   */
+  grade?: number
+  /**
    *
    * @type {string}
    * @memberof AlarmConfigDto
