@@ -579,8 +579,9 @@ export const CalculateDosageApiFp = function (configuration?: Configuration) {
     async apiCalculateDosageJudgeDosagePost(
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
-      const localVarAxiosArgs =
-        await localVarAxiosParamCreator.apiCalculateDosageJudgeDosagePost(options)
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiCalculateDosageJudgeDosagePost(
+        options,
+      )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**

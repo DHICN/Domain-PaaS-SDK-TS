@@ -698,8 +698,9 @@ export const ScriptApiFp = function (configuration?: Configuration) {
     async apiV1GetAlgorithmTemplateGet(
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
-      const localVarAxiosArgs =
-        await localVarAxiosParamCreator.apiV1GetAlgorithmTemplateGet(options)
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1GetAlgorithmTemplateGet(
+        options,
+      )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**
