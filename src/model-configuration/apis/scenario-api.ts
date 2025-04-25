@@ -289,8 +289,7 @@ export const ScenarioApiAxiosParamCreator = function (configuration?: Configurat
      * @param {string} [templateFileId] 模板文件id
      * @param {string} [scenarioName] 方案名称
      * @param {string} [subType] 方案子类型
-     * @param {string} [operAppId] 导出服务的app标识
-     * @param {boolean} [bCheckAndExportModelData] 是否导出模型信息
+     * @param {string} [bCheckAndExportModelData] 是否导出模型信息
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -298,8 +297,7 @@ export const ScenarioApiAxiosParamCreator = function (configuration?: Configurat
       templateFileId?: string,
       scenarioName?: string,
       subType?: string,
-      operAppId?: string,
-      bCheckAndExportModelData?: boolean,
+      bCheckAndExportModelData?: string,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
       const localVarPath = `/api/v4/model-configuration/scenario/create-template-scenario`
@@ -324,10 +322,6 @@ export const ScenarioApiAxiosParamCreator = function (configuration?: Configurat
 
       if (subType !== undefined) {
         localVarQueryParameter['subType'] = subType
-      }
-
-      if (operAppId !== undefined) {
-        localVarQueryParameter['operAppId'] = operAppId
       }
 
       if (bCheckAndExportModelData !== undefined) {
@@ -518,8 +512,7 @@ export const ScenarioApiFp = function (configuration?: Configuration) {
      * @param {string} [templateFileId] 模板文件id
      * @param {string} [scenarioName] 方案名称
      * @param {string} [subType] 方案子类型
-     * @param {string} [operAppId] 导出服务的app标识
-     * @param {boolean} [bCheckAndExportModelData] 是否导出模型信息
+     * @param {string} [bCheckAndExportModelData] 是否导出模型信息
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -527,8 +520,7 @@ export const ScenarioApiFp = function (configuration?: Configuration) {
       templateFileId?: string,
       scenarioName?: string,
       subType?: string,
-      operAppId?: string,
-      bCheckAndExportModelData?: boolean,
+      bCheckAndExportModelData?: string,
       options?: AxiosRequestConfig,
     ): Promise<
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<CreateTemplateScenarioOutput>
@@ -538,7 +530,6 @@ export const ScenarioApiFp = function (configuration?: Configuration) {
           templateFileId,
           scenarioName,
           subType,
-          operAppId,
           bCheckAndExportModelData,
           options,
         )
@@ -685,8 +676,7 @@ export const ScenarioApiFactory = function (
      * @param {string} [templateFileId] 模板文件id
      * @param {string} [scenarioName] 方案名称
      * @param {string} [subType] 方案子类型
-     * @param {string} [operAppId] 导出服务的app标识
-     * @param {boolean} [bCheckAndExportModelData] 是否导出模型信息
+     * @param {string} [bCheckAndExportModelData] 是否导出模型信息
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -694,8 +684,7 @@ export const ScenarioApiFactory = function (
       templateFileId?: string,
       scenarioName?: string,
       subType?: string,
-      operAppId?: string,
-      bCheckAndExportModelData?: boolean,
+      bCheckAndExportModelData?: string,
       options?: any,
     ): AxiosPromise<CreateTemplateScenarioOutput> {
       return localVarFp
@@ -703,7 +692,6 @@ export const ScenarioApiFactory = function (
           templateFileId,
           scenarioName,
           subType,
-          operAppId,
           bCheckAndExportModelData,
           options,
         )
@@ -854,8 +842,7 @@ export class ScenarioApi extends BaseAPI {
    * @param {string} [templateFileId] 模板文件id
    * @param {string} [scenarioName] 方案名称
    * @param {string} [subType] 方案子类型
-   * @param {string} [operAppId] 导出服务的app标识
-   * @param {boolean} [bCheckAndExportModelData] 是否导出模型信息
+   * @param {string} [bCheckAndExportModelData] 是否导出模型信息
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof ScenarioApi
@@ -864,8 +851,7 @@ export class ScenarioApi extends BaseAPI {
     templateFileId?: string,
     scenarioName?: string,
     subType?: string,
-    operAppId?: string,
-    bCheckAndExportModelData?: boolean,
+    bCheckAndExportModelData?: string,
     options?: AxiosRequestConfig,
   ) {
     return ScenarioApiFp(this.configuration)
@@ -873,7 +859,6 @@ export class ScenarioApi extends BaseAPI {
         templateFileId,
         scenarioName,
         subType,
-        operAppId,
         bCheckAndExportModelData,
         options,
       )
