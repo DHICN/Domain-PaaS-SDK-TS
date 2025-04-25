@@ -37,8 +37,6 @@ import { MergeFileInput } from '../models'
 // @ts-ignore
 import { MergeFileOutput } from '../models'
 // @ts-ignore
-import { RemoteServiceErrorResponse } from '../models'
-// @ts-ignore
 import { UploadFileOutput } from '../models'
 /**
  * FileApi - axios parameter creator
@@ -47,8 +45,48 @@ import { UploadFileOutput } from '../models'
 export const FileApiAxiosParamCreator = function (configuration?: Configuration) {
   return {
     /**
-     * 获取所有上传的文件列表，包括已融合的和未融合的 Get all the uploaded file list, including merged and not merged files
-     * @summary 获取所有上传的文件列表 Get all the uploaded file list
+     * 关键词：      删除、上传的文件  使用场景：      根据ID删除上传的文件，可先通过接口：api/v1/model-configuration/file-manager/getlist获取已上传的信息在进行删除  相关背景：      创建模板方案前会先上传模板文件，生成fileId，通过fileId创建模板方案，来绑定对应的模板文件
+     * @summary 根据ID删除上传的文件
+     * @param {string} [id] 文件ID
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1ModelConfigurationFileManagerDeletePost: async (
+      id?: string,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/model-configuration/file-manager/delete`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      if (id !== undefined) {
+        localVarQueryParameter['id'] = id
+      }
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     * 关键词：      获取、上传的文件列表  使用场景：      获取所有上传的文件列表，包括已融合的和未融合的，为解决文件过大，会进行分片上传后在融合的方式  相关背景：      创建模板方案前会先上传模板文件，生成fileId，通过fileId创建模板方案，来绑定对应的模板文件
+     * @summary 获取所有上传的文件列表
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -67,10 +105,6 @@ export const FileApiAxiosParamCreator = function (configuration?: Configuration)
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
 
-      // authentication bearer required
-      // http bearer authentication required
-      await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
       setSearchParams(localVarUrlObj, localVarQueryParameter)
       let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
       localVarRequestOptions.headers = {
@@ -85,46 +119,8 @@ export const FileApiAxiosParamCreator = function (configuration?: Configuration)
       }
     },
     /**
-     * 获取所有上传的文件列表，包括已融合的和未融合的 Get all the uploaded file list, including merged and not merged files
-     * @summary 获取所有上传的文件列表 Get all the uploaded file list
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    apiV1ModelConfigurationFileManagerGetlistGet_1: async (
-      options: AxiosRequestConfig = {},
-    ): Promise<RequestArgs> => {
-      const localVarPath = `/api/v1/model-configuration/file-manager/getlist`
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
-      let baseOptions
-      if (configuration) {
-        baseOptions = configuration.baseOptions
-      }
-
-      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
-      const localVarHeaderParameter = {} as any
-      const localVarQueryParameter = {} as any
-
-      // authentication bearer required
-      // http bearer authentication required
-      await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-      setSearchParams(localVarUrlObj, localVarQueryParameter)
-      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      }
-
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      }
-    },
-    /**
-     * 将文件块融合成一个完成的文件，如果文件已经合成，则会返回错误信息 Merge all the chunks into a complete file，if the file has already been merged, a failure will be returned.
-     * @summary 融合上传的文件块 Merge uploaded files
+     * 关键词：      融合、上传的文件块  使用场景：      将文件块融合成一个完成的文件，如果文件已经合成，则会返回错误信息；为解决模板文件过大，会进行分片上传后在融合的方式  相关背景：      创建模板方案前会先上传模板文件，生成fileId，通过fileId创建模板方案，来绑定对应的模板文件
+     * @summary 融合上传的文件块
      * @param {MergeFileInput} [mergeFileInput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -145,10 +141,6 @@ export const FileApiAxiosParamCreator = function (configuration?: Configuration)
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
 
-      // authentication bearer required
-      // http bearer authentication required
-      await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
       setSearchParams(localVarUrlObj, localVarQueryParameter)
@@ -170,73 +162,24 @@ export const FileApiAxiosParamCreator = function (configuration?: Configuration)
       }
     },
     /**
-     * 将文件块融合成一个完成的文件，如果文件已经合成，则会返回错误信息 Merge all the chunks into a complete file，if the file has already been merged, a failure will be returned.
-     * @summary 融合上传的文件块 Merge uploaded files
-     * @param {MergeFileInput} [mergeFileInput]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    apiV1ModelConfigurationFileManagerMergeFilePost_2: async (
-      mergeFileInput?: MergeFileInput,
-      options: AxiosRequestConfig = {},
-    ): Promise<RequestArgs> => {
-      const localVarPath = `/api/v1/model-configuration/file-manager/merge-file`
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
-      let baseOptions
-      if (configuration) {
-        baseOptions = configuration.baseOptions
-      }
-
-      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
-      const localVarHeaderParameter = {} as any
-      const localVarQueryParameter = {} as any
-
-      // authentication bearer required
-      // http bearer authentication required
-      await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-      localVarHeaderParameter['Content-Type'] = 'application/json'
-
-      setSearchParams(localVarUrlObj, localVarQueryParameter)
-      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      }
-      localVarRequestOptions.data = serializeDataIfNeeded(
-        mergeFileInput,
-        localVarRequestOptions,
-        configuration,
-      )
-
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      }
-    },
-    /**
-     *
-     * @summary 上传文件或文件块 Upload file or chunk
-     * @param {boolean} [chunked] 是否分块，默认分块 whether to chunk
-     * @param {number} [chunk] 分块序号 chunk number
-     * @param {number} [totalChunks] 总的分块个数 total chunk numbers
-     * @param {number} [totalSize] 总的文件大小 file size
-     * @param {string} [identifer] 文件ID，同一个文件的所有文件块具有相同的ID file id, all the chunks of one file should have a same identifer
-     * @param {string} [fileName] 文件名称 file name
-     * @param {any} [file] 分块后的文件
+     * 关键词：      上传文件块、上传文件  使用场景：      上传模板文件，为解决模板文件过大，会进行分片上传后在融合的方式；根据参数Chunked来判断是否分片，若没有分片则直接上传完整文件  相关背景：      创建模板方案前会先上传模板文件，生成fileId，通过fileId创建模板方案，来绑定对应的模板文件
+     * @summary 上传文件或文件块
+     * @param {string} [chunked] 是否分块，默认分块，如：true
+     * @param {number} [chunk] 分块序号 如：1
+     * @param {number} [totalChunks] 总的分块个数 如：2
+     * @param {number} [totalSize] 总的文件大小 如：11235342
+     * @param {string} [identifer] 文件ID，同一个文件的所有文件块具有相同的ID ，如：87cbffa6-9202-7859-8042-c031258f15a3
+     * @param {string} [fileName] 文件名称 如：Model_BYJC_YS.zip
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiV1ModelConfigurationFileManagerUploadFilePost: async (
-      chunked?: boolean,
+      chunked?: string,
       chunk?: number,
       totalChunks?: number,
       totalSize?: number,
       identifer?: string,
       fileName?: string,
-      file?: any,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
       const localVarPath = `/api/v1/model-configuration/file-manager/upload-file`
@@ -251,10 +194,6 @@ export const FileApiAxiosParamCreator = function (configuration?: Configuration)
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
       const localVarFormParams = new ((configuration && configuration.formDataCtor) || FormData)()
-
-      // authentication bearer required
-      // http bearer authentication required
-      await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
       if (chunked !== undefined) {
         localVarFormParams.append('Chunked', chunked as any)
@@ -278,97 +217,6 @@ export const FileApiAxiosParamCreator = function (configuration?: Configuration)
 
       if (fileName !== undefined) {
         localVarFormParams.append('FileName', fileName as any)
-      }
-
-      if (file !== undefined) {
-        localVarFormParams.append('file', file as any)
-      }
-
-      localVarHeaderParameter['Content-Type'] = 'multipart/form-data'
-
-      setSearchParams(localVarUrlObj, localVarQueryParameter)
-      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      }
-      localVarRequestOptions.data = localVarFormParams
-
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      }
-    },
-    /**
-     *
-     * @summary 上传文件或文件块 Upload file or chunk
-     * @param {boolean} [chunked] 是否分块，默认分块 whether to chunk
-     * @param {number} [chunk] 分块序号 chunk number
-     * @param {number} [totalChunks] 总的分块个数 total chunk numbers
-     * @param {number} [totalSize] 总的文件大小 file size
-     * @param {string} [identifer] 文件ID，同一个文件的所有文件块具有相同的ID file id, all the chunks of one file should have a same identifer
-     * @param {string} [fileName] 文件名称 file name
-     * @param {any} [file] 分块后的文件
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    apiV1ModelConfigurationFileManagerUploadFilePost_3: async (
-      chunked?: boolean,
-      chunk?: number,
-      totalChunks?: number,
-      totalSize?: number,
-      identifer?: string,
-      fileName?: string,
-      file?: any,
-      options: AxiosRequestConfig = {},
-    ): Promise<RequestArgs> => {
-      const localVarPath = `/api/v1/model-configuration/file-manager/upload-file`
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
-      let baseOptions
-      if (configuration) {
-        baseOptions = configuration.baseOptions
-      }
-
-      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
-      const localVarHeaderParameter = {} as any
-      const localVarQueryParameter = {} as any
-      const localVarFormParams = new ((configuration && configuration.formDataCtor) || FormData)()
-
-      // authentication bearer required
-      // http bearer authentication required
-      await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-      if (chunked !== undefined) {
-        localVarFormParams.append('Chunked', chunked as any)
-      }
-
-      if (chunk !== undefined) {
-        localVarFormParams.append('Chunk', chunk as any)
-      }
-
-      if (totalChunks !== undefined) {
-        localVarFormParams.append('TotalChunks', totalChunks as any)
-      }
-
-      if (totalSize !== undefined) {
-        localVarFormParams.append('TotalSize', totalSize as any)
-      }
-
-      if (identifer !== undefined) {
-        localVarFormParams.append(
-          'Identifer',
-          new Blob([JSON.stringify(identifer)], { type: 'application/json' }),
-        )
-      }
-
-      if (fileName !== undefined) {
-        localVarFormParams.append('FileName', fileName as any)
-      }
-
-      if (file !== undefined) {
-        localVarFormParams.append('file', file as any)
       }
 
       localVarHeaderParameter['Content-Type'] = 'multipart/form-data'
@@ -398,8 +246,23 @@ export const FileApiFp = function (configuration?: Configuration) {
   const localVarAxiosParamCreator = FileApiAxiosParamCreator(configuration)
   return {
     /**
-     * 获取所有上传的文件列表，包括已融合的和未融合的 Get all the uploaded file list, including merged and not merged files
-     * @summary 获取所有上传的文件列表 Get all the uploaded file list
+     * 关键词：      删除、上传的文件  使用场景：      根据ID删除上传的文件，可先通过接口：api/v1/model-configuration/file-manager/getlist获取已上传的信息在进行删除  相关背景：      创建模板方案前会先上传模板文件，生成fileId，通过fileId创建模板方案，来绑定对应的模板文件
+     * @summary 根据ID删除上传的文件
+     * @param {string} [id] 文件ID
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1ModelConfigurationFileManagerDeletePost(
+      id?: string,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<boolean>> {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiV1ModelConfigurationFileManagerDeletePost(id, options)
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     * 关键词：      获取、上传的文件列表  使用场景：      获取所有上传的文件列表，包括已融合的和未融合的，为解决文件过大，会进行分片上传后在融合的方式  相关背景：      创建模板方案前会先上传模板文件，生成fileId，通过fileId创建模板方案，来绑定对应的模板文件
+     * @summary 获取所有上传的文件列表
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -411,21 +274,8 @@ export const FileApiFp = function (configuration?: Configuration) {
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**
-     * 获取所有上传的文件列表，包括已融合的和未融合的 Get all the uploaded file list, including merged and not merged files
-     * @summary 获取所有上传的文件列表 Get all the uploaded file list
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    async apiV1ModelConfigurationFileManagerGetlistGet_1(
-      options?: AxiosRequestConfig,
-    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<FileItemInfo>>> {
-      const localVarAxiosArgs =
-        await localVarAxiosParamCreator.apiV1ModelConfigurationFileManagerGetlistGet_1(options)
-      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
-    },
-    /**
-     * 将文件块融合成一个完成的文件，如果文件已经合成，则会返回错误信息 Merge all the chunks into a complete file，if the file has already been merged, a failure will be returned.
-     * @summary 融合上传的文件块 Merge uploaded files
+     * 关键词：      融合、上传的文件块  使用场景：      将文件块融合成一个完成的文件，如果文件已经合成，则会返回错误信息；为解决模板文件过大，会进行分片上传后在融合的方式  相关背景：      创建模板方案前会先上传模板文件，生成fileId，通过fileId创建模板方案，来绑定对应的模板文件
+     * @summary 融合上传的文件块
      * @param {MergeFileInput} [mergeFileInput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -442,44 +292,24 @@ export const FileApiFp = function (configuration?: Configuration) {
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**
-     * 将文件块融合成一个完成的文件，如果文件已经合成，则会返回错误信息 Merge all the chunks into a complete file，if the file has already been merged, a failure will be returned.
-     * @summary 融合上传的文件块 Merge uploaded files
-     * @param {MergeFileInput} [mergeFileInput]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    async apiV1ModelConfigurationFileManagerMergeFilePost_2(
-      mergeFileInput?: MergeFileInput,
-      options?: AxiosRequestConfig,
-    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MergeFileOutput>> {
-      const localVarAxiosArgs =
-        await localVarAxiosParamCreator.apiV1ModelConfigurationFileManagerMergeFilePost_2(
-          mergeFileInput,
-          options,
-        )
-      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
-    },
-    /**
-     *
-     * @summary 上传文件或文件块 Upload file or chunk
-     * @param {boolean} [chunked] 是否分块，默认分块 whether to chunk
-     * @param {number} [chunk] 分块序号 chunk number
-     * @param {number} [totalChunks] 总的分块个数 total chunk numbers
-     * @param {number} [totalSize] 总的文件大小 file size
-     * @param {string} [identifer] 文件ID，同一个文件的所有文件块具有相同的ID file id, all the chunks of one file should have a same identifer
-     * @param {string} [fileName] 文件名称 file name
-     * @param {any} [file] 分块后的文件
+     * 关键词：      上传文件块、上传文件  使用场景：      上传模板文件，为解决模板文件过大，会进行分片上传后在融合的方式；根据参数Chunked来判断是否分片，若没有分片则直接上传完整文件  相关背景：      创建模板方案前会先上传模板文件，生成fileId，通过fileId创建模板方案，来绑定对应的模板文件
+     * @summary 上传文件或文件块
+     * @param {string} [chunked] 是否分块，默认分块，如：true
+     * @param {number} [chunk] 分块序号 如：1
+     * @param {number} [totalChunks] 总的分块个数 如：2
+     * @param {number} [totalSize] 总的文件大小 如：11235342
+     * @param {string} [identifer] 文件ID，同一个文件的所有文件块具有相同的ID ，如：87cbffa6-9202-7859-8042-c031258f15a3
+     * @param {string} [fileName] 文件名称 如：Model_BYJC_YS.zip
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async apiV1ModelConfigurationFileManagerUploadFilePost(
-      chunked?: boolean,
+      chunked?: string,
       chunk?: number,
       totalChunks?: number,
       totalSize?: number,
       identifer?: string,
       fileName?: string,
-      file?: any,
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UploadFileOutput>> {
       const localVarAxiosArgs =
@@ -490,43 +320,6 @@ export const FileApiFp = function (configuration?: Configuration) {
           totalSize,
           identifer,
           fileName,
-          file,
-          options,
-        )
-      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
-    },
-    /**
-     *
-     * @summary 上传文件或文件块 Upload file or chunk
-     * @param {boolean} [chunked] 是否分块，默认分块 whether to chunk
-     * @param {number} [chunk] 分块序号 chunk number
-     * @param {number} [totalChunks] 总的分块个数 total chunk numbers
-     * @param {number} [totalSize] 总的文件大小 file size
-     * @param {string} [identifer] 文件ID，同一个文件的所有文件块具有相同的ID file id, all the chunks of one file should have a same identifer
-     * @param {string} [fileName] 文件名称 file name
-     * @param {any} [file] 分块后的文件
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    async apiV1ModelConfigurationFileManagerUploadFilePost_3(
-      chunked?: boolean,
-      chunk?: number,
-      totalChunks?: number,
-      totalSize?: number,
-      identifer?: string,
-      fileName?: string,
-      file?: any,
-      options?: AxiosRequestConfig,
-    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UploadFileOutput>> {
-      const localVarAxiosArgs =
-        await localVarAxiosParamCreator.apiV1ModelConfigurationFileManagerUploadFilePost_3(
-          chunked,
-          chunk,
-          totalChunks,
-          totalSize,
-          identifer,
-          fileName,
-          file,
           options,
         )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
@@ -546,8 +339,23 @@ export const FileApiFactory = function (
   const localVarFp = FileApiFp(configuration)
   return {
     /**
-     * 获取所有上传的文件列表，包括已融合的和未融合的 Get all the uploaded file list, including merged and not merged files
-     * @summary 获取所有上传的文件列表 Get all the uploaded file list
+     * 关键词：      删除、上传的文件  使用场景：      根据ID删除上传的文件，可先通过接口：api/v1/model-configuration/file-manager/getlist获取已上传的信息在进行删除  相关背景：      创建模板方案前会先上传模板文件，生成fileId，通过fileId创建模板方案，来绑定对应的模板文件
+     * @summary 根据ID删除上传的文件
+     * @param {string} [id] 文件ID
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1ModelConfigurationFileManagerDeletePost(
+      id?: string,
+      options?: any,
+    ): AxiosPromise<boolean> {
+      return localVarFp
+        .apiV1ModelConfigurationFileManagerDeletePost(id, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     * 关键词：      获取、上传的文件列表  使用场景：      获取所有上传的文件列表，包括已融合的和未融合的，为解决文件过大，会进行分片上传后在融合的方式  相关背景：      创建模板方案前会先上传模板文件，生成fileId，通过fileId创建模板方案，来绑定对应的模板文件
+     * @summary 获取所有上传的文件列表
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -557,21 +365,8 @@ export const FileApiFactory = function (
         .then((request) => request(axios, basePath))
     },
     /**
-     * 获取所有上传的文件列表，包括已融合的和未融合的 Get all the uploaded file list, including merged and not merged files
-     * @summary 获取所有上传的文件列表 Get all the uploaded file list
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    apiV1ModelConfigurationFileManagerGetlistGet_1(
-      options?: any,
-    ): AxiosPromise<Array<FileItemInfo>> {
-      return localVarFp
-        .apiV1ModelConfigurationFileManagerGetlistGet_1(options)
-        .then((request) => request(axios, basePath))
-    },
-    /**
-     * 将文件块融合成一个完成的文件，如果文件已经合成，则会返回错误信息 Merge all the chunks into a complete file，if the file has already been merged, a failure will be returned.
-     * @summary 融合上传的文件块 Merge uploaded files
+     * 关键词：      融合、上传的文件块  使用场景：      将文件块融合成一个完成的文件，如果文件已经合成，则会返回错误信息；为解决模板文件过大，会进行分片上传后在融合的方式  相关背景：      创建模板方案前会先上传模板文件，生成fileId，通过fileId创建模板方案，来绑定对应的模板文件
+     * @summary 融合上传的文件块
      * @param {MergeFileInput} [mergeFileInput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -585,41 +380,24 @@ export const FileApiFactory = function (
         .then((request) => request(axios, basePath))
     },
     /**
-     * 将文件块融合成一个完成的文件，如果文件已经合成，则会返回错误信息 Merge all the chunks into a complete file，if the file has already been merged, a failure will be returned.
-     * @summary 融合上传的文件块 Merge uploaded files
-     * @param {MergeFileInput} [mergeFileInput]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    apiV1ModelConfigurationFileManagerMergeFilePost_2(
-      mergeFileInput?: MergeFileInput,
-      options?: any,
-    ): AxiosPromise<MergeFileOutput> {
-      return localVarFp
-        .apiV1ModelConfigurationFileManagerMergeFilePost_2(mergeFileInput, options)
-        .then((request) => request(axios, basePath))
-    },
-    /**
-     *
-     * @summary 上传文件或文件块 Upload file or chunk
-     * @param {boolean} [chunked] 是否分块，默认分块 whether to chunk
-     * @param {number} [chunk] 分块序号 chunk number
-     * @param {number} [totalChunks] 总的分块个数 total chunk numbers
-     * @param {number} [totalSize] 总的文件大小 file size
-     * @param {string} [identifer] 文件ID，同一个文件的所有文件块具有相同的ID file id, all the chunks of one file should have a same identifer
-     * @param {string} [fileName] 文件名称 file name
-     * @param {any} [file] 分块后的文件
+     * 关键词：      上传文件块、上传文件  使用场景：      上传模板文件，为解决模板文件过大，会进行分片上传后在融合的方式；根据参数Chunked来判断是否分片，若没有分片则直接上传完整文件  相关背景：      创建模板方案前会先上传模板文件，生成fileId，通过fileId创建模板方案，来绑定对应的模板文件
+     * @summary 上传文件或文件块
+     * @param {string} [chunked] 是否分块，默认分块，如：true
+     * @param {number} [chunk] 分块序号 如：1
+     * @param {number} [totalChunks] 总的分块个数 如：2
+     * @param {number} [totalSize] 总的文件大小 如：11235342
+     * @param {string} [identifer] 文件ID，同一个文件的所有文件块具有相同的ID ，如：87cbffa6-9202-7859-8042-c031258f15a3
+     * @param {string} [fileName] 文件名称 如：Model_BYJC_YS.zip
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiV1ModelConfigurationFileManagerUploadFilePost(
-      chunked?: boolean,
+      chunked?: string,
       chunk?: number,
       totalChunks?: number,
       totalSize?: number,
       identifer?: string,
       fileName?: string,
-      file?: any,
       options?: any,
     ): AxiosPromise<UploadFileOutput> {
       return localVarFp
@@ -630,43 +408,6 @@ export const FileApiFactory = function (
           totalSize,
           identifer,
           fileName,
-          file,
-          options,
-        )
-        .then((request) => request(axios, basePath))
-    },
-    /**
-     *
-     * @summary 上传文件或文件块 Upload file or chunk
-     * @param {boolean} [chunked] 是否分块，默认分块 whether to chunk
-     * @param {number} [chunk] 分块序号 chunk number
-     * @param {number} [totalChunks] 总的分块个数 total chunk numbers
-     * @param {number} [totalSize] 总的文件大小 file size
-     * @param {string} [identifer] 文件ID，同一个文件的所有文件块具有相同的ID file id, all the chunks of one file should have a same identifer
-     * @param {string} [fileName] 文件名称 file name
-     * @param {any} [file] 分块后的文件
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    apiV1ModelConfigurationFileManagerUploadFilePost_3(
-      chunked?: boolean,
-      chunk?: number,
-      totalChunks?: number,
-      totalSize?: number,
-      identifer?: string,
-      fileName?: string,
-      file?: any,
-      options?: any,
-    ): AxiosPromise<UploadFileOutput> {
-      return localVarFp
-        .apiV1ModelConfigurationFileManagerUploadFilePost_3(
-          chunked,
-          chunk,
-          totalChunks,
-          totalSize,
-          identifer,
-          fileName,
-          file,
           options,
         )
         .then((request) => request(axios, basePath))
@@ -682,8 +423,22 @@ export const FileApiFactory = function (
  */
 export class FileApi extends BaseAPI {
   /**
-   * 获取所有上传的文件列表，包括已融合的和未融合的 Get all the uploaded file list, including merged and not merged files
-   * @summary 获取所有上传的文件列表 Get all the uploaded file list
+   * 关键词：      删除、上传的文件  使用场景：      根据ID删除上传的文件，可先通过接口：api/v1/model-configuration/file-manager/getlist获取已上传的信息在进行删除  相关背景：      创建模板方案前会先上传模板文件，生成fileId，通过fileId创建模板方案，来绑定对应的模板文件
+   * @summary 根据ID删除上传的文件
+   * @param {string} [id] 文件ID
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof FileApi
+   */
+  public apiV1ModelConfigurationFileManagerDeletePost(id?: string, options?: AxiosRequestConfig) {
+    return FileApiFp(this.configuration)
+      .apiV1ModelConfigurationFileManagerDeletePost(id, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   * 关键词：      获取、上传的文件列表  使用场景：      获取所有上传的文件列表，包括已融合的和未融合的，为解决文件过大，会进行分片上传后在融合的方式  相关背景：      创建模板方案前会先上传模板文件，生成fileId，通过fileId创建模板方案，来绑定对应的模板文件
+   * @summary 获取所有上传的文件列表
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof FileApi
@@ -695,21 +450,8 @@ export class FileApi extends BaseAPI {
   }
 
   /**
-   * 获取所有上传的文件列表，包括已融合的和未融合的 Get all the uploaded file list, including merged and not merged files
-   * @summary 获取所有上传的文件列表 Get all the uploaded file list
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof FileApi
-   */
-  public apiV1ModelConfigurationFileManagerGetlistGet_1(options?: AxiosRequestConfig) {
-    return FileApiFp(this.configuration)
-      .apiV1ModelConfigurationFileManagerGetlistGet_1(options)
-      .then((request) => request(this.axios, this.basePath))
-  }
-
-  /**
-   * 将文件块融合成一个完成的文件，如果文件已经合成，则会返回错误信息 Merge all the chunks into a complete file，if the file has already been merged, a failure will be returned.
-   * @summary 融合上传的文件块 Merge uploaded files
+   * 关键词：      融合、上传的文件块  使用场景：      将文件块融合成一个完成的文件，如果文件已经合成，则会返回错误信息；为解决模板文件过大，会进行分片上传后在融合的方式  相关背景：      创建模板方案前会先上传模板文件，生成fileId，通过fileId创建模板方案，来绑定对应的模板文件
+   * @summary 融合上传的文件块
    * @param {MergeFileInput} [mergeFileInput]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
@@ -725,44 +467,25 @@ export class FileApi extends BaseAPI {
   }
 
   /**
-   * 将文件块融合成一个完成的文件，如果文件已经合成，则会返回错误信息 Merge all the chunks into a complete file，if the file has already been merged, a failure will be returned.
-   * @summary 融合上传的文件块 Merge uploaded files
-   * @param {MergeFileInput} [mergeFileInput]
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof FileApi
-   */
-  public apiV1ModelConfigurationFileManagerMergeFilePost_2(
-    mergeFileInput?: MergeFileInput,
-    options?: AxiosRequestConfig,
-  ) {
-    return FileApiFp(this.configuration)
-      .apiV1ModelConfigurationFileManagerMergeFilePost_2(mergeFileInput, options)
-      .then((request) => request(this.axios, this.basePath))
-  }
-
-  /**
-   *
-   * @summary 上传文件或文件块 Upload file or chunk
-   * @param {boolean} [chunked] 是否分块，默认分块 whether to chunk
-   * @param {number} [chunk] 分块序号 chunk number
-   * @param {number} [totalChunks] 总的分块个数 total chunk numbers
-   * @param {number} [totalSize] 总的文件大小 file size
-   * @param {string} [identifer] 文件ID，同一个文件的所有文件块具有相同的ID file id, all the chunks of one file should have a same identifer
-   * @param {string} [fileName] 文件名称 file name
-   * @param {any} [file] 分块后的文件
+   * 关键词：      上传文件块、上传文件  使用场景：      上传模板文件，为解决模板文件过大，会进行分片上传后在融合的方式；根据参数Chunked来判断是否分片，若没有分片则直接上传完整文件  相关背景：      创建模板方案前会先上传模板文件，生成fileId，通过fileId创建模板方案，来绑定对应的模板文件
+   * @summary 上传文件或文件块
+   * @param {string} [chunked] 是否分块，默认分块，如：true
+   * @param {number} [chunk] 分块序号 如：1
+   * @param {number} [totalChunks] 总的分块个数 如：2
+   * @param {number} [totalSize] 总的文件大小 如：11235342
+   * @param {string} [identifer] 文件ID，同一个文件的所有文件块具有相同的ID ，如：87cbffa6-9202-7859-8042-c031258f15a3
+   * @param {string} [fileName] 文件名称 如：Model_BYJC_YS.zip
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof FileApi
    */
   public apiV1ModelConfigurationFileManagerUploadFilePost(
-    chunked?: boolean,
+    chunked?: string,
     chunk?: number,
     totalChunks?: number,
     totalSize?: number,
     identifer?: string,
     fileName?: string,
-    file?: any,
     options?: AxiosRequestConfig,
   ) {
     return FileApiFp(this.configuration)
@@ -773,45 +496,6 @@ export class FileApi extends BaseAPI {
         totalSize,
         identifer,
         fileName,
-        file,
-        options,
-      )
-      .then((request) => request(this.axios, this.basePath))
-  }
-
-  /**
-   *
-   * @summary 上传文件或文件块 Upload file or chunk
-   * @param {boolean} [chunked] 是否分块，默认分块 whether to chunk
-   * @param {number} [chunk] 分块序号 chunk number
-   * @param {number} [totalChunks] 总的分块个数 total chunk numbers
-   * @param {number} [totalSize] 总的文件大小 file size
-   * @param {string} [identifer] 文件ID，同一个文件的所有文件块具有相同的ID file id, all the chunks of one file should have a same identifer
-   * @param {string} [fileName] 文件名称 file name
-   * @param {any} [file] 分块后的文件
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof FileApi
-   */
-  public apiV1ModelConfigurationFileManagerUploadFilePost_3(
-    chunked?: boolean,
-    chunk?: number,
-    totalChunks?: number,
-    totalSize?: number,
-    identifer?: string,
-    fileName?: string,
-    file?: any,
-    options?: AxiosRequestConfig,
-  ) {
-    return FileApiFp(this.configuration)
-      .apiV1ModelConfigurationFileManagerUploadFilePost_3(
-        chunked,
-        chunk,
-        totalChunks,
-        totalSize,
-        identifer,
-        fileName,
-        file,
         options,
       )
       .then((request) => request(this.axios, this.basePath))

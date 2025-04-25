@@ -22,13 +22,13 @@ import { ScenarioInfo } from './scenario-info'
  */
 export interface UpdateTemplateScenarioInputV4 {
   /**
-   *
+   * 模板文件Id，如果有
    * @type {string}
    * @memberof UpdateTemplateScenarioInputV4
    */
   templateFileId?: string | null
   /**
-   *
+   * 是否导出模型的文件信息，
    * @type {boolean}
    * @memberof UpdateTemplateScenarioInputV4
    */
@@ -39,10 +39,4 @@ export interface UpdateTemplateScenarioInputV4 {
    * @memberof UpdateTemplateScenarioInputV4
    */
   scenario?: ScenarioInfo
-  /**
-   *
-   * @type {string}
-   * @memberof UpdateTemplateScenarioInputV4
-   */
-  operAppId?: string | null
 }

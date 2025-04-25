@@ -2,7 +2,7 @@
   "name": "@dhicn/domain-paas-sdk-ts",
   "license": "MIT",
   "private": false,
-  "version": "4.2.20",
+  "version": "4.2.21",
   "type": "module",
   "scripts": {
     "dev": "vite",
