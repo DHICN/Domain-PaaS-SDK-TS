@@ -65,16 +65,12 @@ export const DataApiAxiosParamCreator = function (configuration?: Configuration)
     /**
      * 注：此接口未在污水基础服务、污水领域服务、清洗算法使用，因此暂不做升级，若后续发现有使用，则可升级，否则可直接废弃
      * @summary 添加清洗数据信息 Add online processed data
-     * @param {string} [tenantId]
-     * @param {string} [debugHeaderSign]
      * @param {Array<TsDataInputOutput>} [tsDataInputOutput]
      * @param {*} [options] Override http request option.
      * @deprecated
      * @throws {RequiredError}
      */
     apiDataAddOnlineProcessedDatasPost: async (
-      tenantId?: string,
-      debugHeaderSign?: string,
       tsDataInputOutput?: Array<TsDataInputOutput>,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
@@ -89,18 +85,6 @@ export const DataApiAxiosParamCreator = function (configuration?: Configuration)
       const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
-
-      // authentication bearer required
-      // http bearer authentication required
-      await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-      if (tenantId != null) {
-        localVarHeaderParameter['tenantId'] = String(tenantId)
-      }
-
-      if (debugHeaderSign != null) {
-        localVarHeaderParameter['debug-header-sign'] = String(debugHeaderSign)
-      }
 
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
@@ -125,16 +109,12 @@ export const DataApiAxiosParamCreator = function (configuration?: Configuration)
     /**
      *
      * @summary 保存清洗数据
-     * @param {string} [tenantId]
-     * @param {string} [debugHeaderSign]
      * @param {Array<SaveOnlineProcessedData>} [saveOnlineProcessedData]
      * @param {*} [options] Override http request option.
      * @deprecated
      * @throws {RequiredError}
      */
     apiDataAddOnlineSourceDatasPost: async (
-      tenantId?: string,
-      debugHeaderSign?: string,
       saveOnlineProcessedData?: Array<SaveOnlineProcessedData>,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
@@ -149,18 +129,6 @@ export const DataApiAxiosParamCreator = function (configuration?: Configuration)
       const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
-
-      // authentication bearer required
-      // http bearer authentication required
-      await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-      if (tenantId != null) {
-        localVarHeaderParameter['tenantId'] = String(tenantId)
-      }
-
-      if (debugHeaderSign != null) {
-        localVarHeaderParameter['debug-header-sign'] = String(debugHeaderSign)
-      }
 
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
@@ -185,16 +153,12 @@ export const DataApiAxiosParamCreator = function (configuration?: Configuration)
     /**
      *
      * @summary 添加或更新清洗数据信息-目前仅提供给清洗算法使用，升级后改为调用Save接口
-     * @param {string} [tenantId]
-     * @param {string} [debugHeaderSign]
      * @param {AddOrUpdateOnlineDatasInput} [addOrUpdateOnlineDatasInput]
      * @param {*} [options] Override http request option.
      * @deprecated
      * @throws {RequiredError}
      */
     apiDataAddOrUpdateOnlineProcessedDatasPost: async (
-      tenantId?: string,
-      debugHeaderSign?: string,
       addOrUpdateOnlineDatasInput?: AddOrUpdateOnlineDatasInput,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
@@ -209,18 +173,6 @@ export const DataApiAxiosParamCreator = function (configuration?: Configuration)
       const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
-
-      // authentication bearer required
-      // http bearer authentication required
-      await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-      if (tenantId != null) {
-        localVarHeaderParameter['tenantId'] = String(tenantId)
-      }
-
-      if (debugHeaderSign != null) {
-        localVarHeaderParameter['debug-header-sign'] = String(debugHeaderSign)
-      }
 
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
@@ -246,21 +198,17 @@ export const DataApiAxiosParamCreator = function (configuration?: Configuration)
      *
      * @summary 缓存清洗数据和源数据
      * @param {string} [tenantId]
-     * @param {object} [absoluteExpirationRelativeToNow] 缓存的数据时间长度
-     * @param {object} [getTimeSpan] 每次新增的待缓存的时间范围，比如5分钟一条的数据就设置05:00
+     * @param {string} [absoluteExpirationRelativeToNow] 缓存的数据时间长度
+     * @param {string} [getTimeSpan] 每次新增的待缓存的时间范围，比如5分钟一条的数据就设置05:00
      * @param {string} [now] 补充指定时间的缓存数据，主要用于开发时期可写入任意时刻数据的测试，接口稳定后可删除
-     * @param {string} [tenantId2]
-     * @param {string} [debugHeaderSign]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiDataCacheTelemetryGet: async (
       tenantId?: string,
-      absoluteExpirationRelativeToNow?: object,
-      getTimeSpan?: object,
+      absoluteExpirationRelativeToNow?: string,
+      getTimeSpan?: string,
       now?: string,
-      tenantId2?: string,
-      debugHeaderSign?: string,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
       const localVarPath = `/api/Data/CacheTelemetry`
@@ -275,10 +223,6 @@ export const DataApiAxiosParamCreator = function (configuration?: Configuration)
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
 
-      // authentication bearer required
-      // http bearer authentication required
-      await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
       if (tenantId !== undefined) {
         localVarQueryParameter['tenantId'] = tenantId
       }
@@ -292,16 +236,7 @@ export const DataApiAxiosParamCreator = function (configuration?: Configuration)
       }
 
       if (now !== undefined) {
-        localVarQueryParameter['now'] =
-          (now as any) instanceof Date ? (now as any).toISOString() : now
-      }
-
-      if (tenantId2 != null) {
-        localVarHeaderParameter['tenantId'] = String(tenantId2)
-      }
-
-      if (debugHeaderSign != null) {
-        localVarHeaderParameter['debug-header-sign'] = String(debugHeaderSign)
+        localVarQueryParameter['now'] = now
       }
 
       setSearchParams(localVarUrlObj, localVarQueryParameter)
@@ -320,16 +255,12 @@ export const DataApiAxiosParamCreator = function (configuration?: Configuration)
     /**
      * 关键字：清洗数据、数据查询  使用场景：通过时间范围、点位代码、清洗标签来获取清洗后数据。如果点位代码为空，则返回所有点位的清洗数据；如果清洗标签为空，则返回所有标签的清洗数据。数据将清洗的时间顺序排列。
      * @summary 清洗数据查询
-     * @param {string} [tenantId]
-     * @param {string} [debugHeaderSign]
      * @param {GetOnlineTsDataInput} [getOnlineTsDataInput]
      * @param {*} [options] Override http request option.
      * @deprecated
      * @throws {RequiredError}
      */
     apiDataGetOnlineProcessedDatasByConditionsPost: async (
-      tenantId?: string,
-      debugHeaderSign?: string,
       getOnlineTsDataInput?: GetOnlineTsDataInput,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
@@ -344,18 +275,6 @@ export const DataApiAxiosParamCreator = function (configuration?: Configuration)
       const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
-
-      // authentication bearer required
-      // http bearer authentication required
-      await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-      if (tenantId != null) {
-        localVarHeaderParameter['tenantId'] = String(tenantId)
-      }
-
-      if (debugHeaderSign != null) {
-        localVarHeaderParameter['debug-header-sign'] = String(debugHeaderSign)
-      }
 
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
@@ -380,15 +299,11 @@ export const DataApiAxiosParamCreator = function (configuration?: Configuration)
     /**
      * 获取缓存中的Opc配置信息，主要为了提高数据的查询效率，系统会在启动时把所有的配置信息加载到缓存中，后续会在opc心跳的接口用用到，频繁去查询opc配置
      * @summary [内部接口]获取reids中存储的opc相关表信息
-     * @param {string} [tenantId]
-     * @param {string} [debugHeaderSign]
      * @param {Array<string>} [requestBody]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiDataGetOpcConfigDataPost: async (
-      tenantId?: string,
-      debugHeaderSign?: string,
       requestBody?: Array<string>,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
@@ -403,18 +318,6 @@ export const DataApiAxiosParamCreator = function (configuration?: Configuration)
       const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
-
-      // authentication bearer required
-      // http bearer authentication required
-      await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-      if (tenantId != null) {
-        localVarHeaderParameter['tenantId'] = String(tenantId)
-      }
-
-      if (debugHeaderSign != null) {
-        localVarHeaderParameter['debug-header-sign'] = String(debugHeaderSign)
-      }
 
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
@@ -443,9 +346,7 @@ export const DataApiAxiosParamCreator = function (configuration?: Configuration)
      * @param {boolean} [onlineProcessed]
      * @param {string} [beginTime]
      * @param {string} [endTime]
-     * @param {object} [timeSpan]
-     * @param {string} [tenantId2]
-     * @param {string} [debugHeaderSign]
+     * @param {string} [timeSpan]
      * @param {*} [options] Override http request option.
      * @deprecated
      * @throws {RequiredError}
@@ -455,9 +356,7 @@ export const DataApiAxiosParamCreator = function (configuration?: Configuration)
       onlineProcessed?: boolean,
       beginTime?: string,
       endTime?: string,
-      timeSpan?: object,
-      tenantId2?: string,
-      debugHeaderSign?: string,
+      timeSpan?: string,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
       const localVarPath = `/api/Data/MockOnlineSourceDatas`
@@ -472,10 +371,6 @@ export const DataApiAxiosParamCreator = function (configuration?: Configuration)
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
 
-      // authentication bearer required
-      // http bearer authentication required
-      await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
       if (tenantId !== undefined) {
         localVarQueryParameter['tenantId'] = tenantId
       }
@@ -485,25 +380,15 @@ export const DataApiAxiosParamCreator = function (configuration?: Configuration)
       }
 
       if (beginTime !== undefined) {
-        localVarQueryParameter['beginTime'] =
-          (beginTime as any) instanceof Date ? (beginTime as any).toISOString() : beginTime
+        localVarQueryParameter['beginTime'] = beginTime
       }
 
       if (endTime !== undefined) {
-        localVarQueryParameter['endTime'] =
-          (endTime as any) instanceof Date ? (endTime as any).toISOString() : endTime
+        localVarQueryParameter['endTime'] = endTime
       }
 
       if (timeSpan !== undefined) {
         localVarQueryParameter['timeSpan'] = timeSpan
-      }
-
-      if (tenantId2 != null) {
-        localVarHeaderParameter['tenantId'] = String(tenantId2)
-      }
-
-      if (debugHeaderSign != null) {
-        localVarHeaderParameter['debug-header-sign'] = String(debugHeaderSign)
       }
 
       setSearchParams(localVarUrlObj, localVarQueryParameter)
@@ -522,16 +407,12 @@ export const DataApiAxiosParamCreator = function (configuration?: Configuration)
     /**
      *
      * @summary 修改清洗数据-目前仅提供给清洗算法使用，升级后改为调用Save接口
-     * @param {string} [tenantId]
-     * @param {string} [debugHeaderSign]
      * @param {Array<ModifyOnlineProcessedDatasInput>} [modifyOnlineProcessedDatasInput]
      * @param {*} [options] Override http request option.
      * @deprecated
      * @throws {RequiredError}
      */
     apiDataModifyOnlineProcessedDatasPost: async (
-      tenantId?: string,
-      debugHeaderSign?: string,
       modifyOnlineProcessedDatasInput?: Array<ModifyOnlineProcessedDatasInput>,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
@@ -546,18 +427,6 @@ export const DataApiAxiosParamCreator = function (configuration?: Configuration)
       const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
-
-      // authentication bearer required
-      // http bearer authentication required
-      await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-      if (tenantId != null) {
-        localVarHeaderParameter['tenantId'] = String(tenantId)
-      }
-
-      if (debugHeaderSign != null) {
-        localVarHeaderParameter['debug-header-sign'] = String(debugHeaderSign)
-      }
 
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
@@ -582,16 +451,12 @@ export const DataApiAxiosParamCreator = function (configuration?: Configuration)
     /**
      * 关键字：数据清洗、  应用场景：保存清洗数据，由清洗算法调用。调用时，需要指定清洗的设备、清洗的点位(指标)、清洗的时间、清洗后的值、清洗的数据标签，清洗的时间格式为\'yyyy-MM-ddTHH:mm:sszzz\'。本接口中数据的Tag 为字符串格式，内部调用的数据同步接口仍为`/api/v1/iot/save-telemetry-data`， 而`/api/v1/iot/save-telemetry-data`接口已过时，后续会考虑废弃此接口或做版本升级。升级后，将不再支持字符串类型的Tag值，可以考虑改为数值类型（枚举）, 废弃后，考虑使用`/api/v3/iot/save-telemetry-data-batch` 来做数据同步。调用V3时，需要自行追加清洗指标标签、清洗之后的值的后缀，如原始指标为 Indicator_A，则清洗后的数据可保存为Indicator_A_CLEAN、清洗后的标签为 Indicator_A_TAG; 如果不做指标重命名，将覆盖指标Indicator_A的原始数据。对于调用V3接口保存清洗数据时，不强制使用\"_CLEAN\"和\"_TAG\"后缀，只需查询和录入是指标code保持一致即可。
      * @summary [内部接口]保存清洗数据到iot  注：此接口为升级后的保存清洗数据接口
-     * @param {string} [tenantId]
-     * @param {string} [debugHeaderSign]
      * @param {Array<SaveOnlineProcessedData>} [saveOnlineProcessedData]
      * @param {*} [options] Override http request option.
      * @deprecated
      * @throws {RequiredError}
      */
     apiDataOnlineProcessedDatasSavePost: async (
-      tenantId?: string,
-      debugHeaderSign?: string,
       saveOnlineProcessedData?: Array<SaveOnlineProcessedData>,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
@@ -606,18 +471,6 @@ export const DataApiAxiosParamCreator = function (configuration?: Configuration)
       const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
-
-      // authentication bearer required
-      // http bearer authentication required
-      await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-      if (tenantId != null) {
-        localVarHeaderParameter['tenantId'] = String(tenantId)
-      }
-
-      if (debugHeaderSign != null) {
-        localVarHeaderParameter['debug-header-sign'] = String(debugHeaderSign)
-      }
 
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
@@ -640,17 +493,13 @@ export const DataApiAxiosParamCreator = function (configuration?: Configuration)
       }
     },
     /**
-     * 关键字：缓存、最新数据  保存最新时刻的数据到Redis缓存中，数据不写入数据库，主要为了提高数据的查询效率。其中，redis 上的键为 `TenantId:DeviceCode|Indicator`, 暂不考虑对外开放，  redis上缓存的值的格式为{\"DeviceCode\":\"xxx\",\"Indicator\":\"xxx\",\"T\":123,\"V\":\"xxx\"}, 其中T为unix时间戳，V为对应最新的数据
-     * @summary [内部接口]保存实时数据到redis
-     * @param {string} [tenantId]
-     * @param {string} [debugHeaderSign]
+     * 关键字：缓存、最新数据 从Redis缓存中获取最新时刻的数据，主要为了提高数据的查询效率。其中，redis 上的键为 `TenantId:DeviceCode|Indicator`, 暂不考虑对外开放， redis上缓存的值的格式为{\"DeviceCode\":\"xxx\",\"Indicator\":\"xxx\",\"T\":123,\"V\":\"xxx\"}, 其中T为unix时间戳，V为对应最新的数据
+     * @summary [内部接口]从Redis中获取最新的实测数据
      * @param {RealTimeDataInput} [realTimeDataInput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiDataRealTimeDataPost: async (
-      tenantId?: string,
-      debugHeaderSign?: string,
       realTimeDataInput?: RealTimeDataInput,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
@@ -665,18 +514,6 @@ export const DataApiAxiosParamCreator = function (configuration?: Configuration)
       const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
-
-      // authentication bearer required
-      // http bearer authentication required
-      await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-      if (tenantId != null) {
-        localVarHeaderParameter['tenantId'] = String(tenantId)
-      }
-
-      if (debugHeaderSign != null) {
-        localVarHeaderParameter['debug-header-sign'] = String(debugHeaderSign)
-      }
 
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
@@ -701,15 +538,11 @@ export const DataApiAxiosParamCreator = function (configuration?: Configuration)
     /**
      * 向redis中缓存Opc配置，主要涉及3张表，OpcUaPubSubNotify、OpcUaPubSub 、OpcUaCommunication， 表的数据全量缓存。
      * @summary [内部接口]表名OpcUaPubSubNotify、OpcUaPubSub、OpcUaCommunication添加redis
-     * @param {string} [tenantId]
-     * @param {string} [debugHeaderSign]
      * @param {{ [key: string]: string; }} [requestBody]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiDataSetOpcConfigDataPost: async (
-      tenantId?: string,
-      debugHeaderSign?: string,
       requestBody?: { [key: string]: string },
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
@@ -724,18 +557,6 @@ export const DataApiAxiosParamCreator = function (configuration?: Configuration)
       const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
-
-      // authentication bearer required
-      // http bearer authentication required
-      await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-      if (tenantId != null) {
-        localVarHeaderParameter['tenantId'] = String(tenantId)
-      }
-
-      if (debugHeaderSign != null) {
-        localVarHeaderParameter['debug-header-sign'] = String(debugHeaderSign)
-      }
 
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
@@ -760,16 +581,12 @@ export const DataApiAxiosParamCreator = function (configuration?: Configuration)
     /**
      * 保存最新时刻的数据到Redis缓存中，数据不写入数据库，主要为了提高数据的查询效率。其中，redis 上的键为 `TenantId:DeviceCode|Indicator`, 暂不考虑对外开放，  redis上缓存的值的格式为{\"T\":123,\"V\":\"xxx\"}, 其中T为unix时间戳，V为对应最新的数据
      * @summary [内部接口]保存实测数据
-     * @param {string} [tenantId]
-     * @param {string} [debugHeaderSign]
      * @param {Array<SaveRealTimeData>} [saveRealTimeData]
      * @param {*} [options] Override http request option.
      * @deprecated
      * @throws {RequiredError}
      */
     apiDataSetRealTimeDataBatchPost: async (
-      tenantId?: string,
-      debugHeaderSign?: string,
       saveRealTimeData?: Array<SaveRealTimeData>,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
@@ -784,18 +601,6 @@ export const DataApiAxiosParamCreator = function (configuration?: Configuration)
       const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
-
-      // authentication bearer required
-      // http bearer authentication required
-      await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-      if (tenantId != null) {
-        localVarHeaderParameter['tenantId'] = String(tenantId)
-      }
-
-      if (debugHeaderSign != null) {
-        localVarHeaderParameter['debug-header-sign'] = String(debugHeaderSign)
-      }
 
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
@@ -820,16 +625,12 @@ export const DataApiAxiosParamCreator = function (configuration?: Configuration)
     /**
      * 保存最新时刻的数据到Redis缓存中，数据不写入数据库，主要为了提高数据的查询效率。其中，redis 上的键为 `TenantId:DeviceCode|Indicator`, 暂不考虑对外开放，  redis上缓存的值的格式为{\"T\":123,\"V\":\"xxx\"}, 其中T为unix时间戳，V为对应最新的数据
      * @summary [内部接口]保存实测数据
-     * @param {string} [tenantId]
-     * @param {string} [debugHeaderSign]
      * @param {SaveRealTimeData} [saveRealTimeData]
      * @param {*} [options] Override http request option.
      * @deprecated
      * @throws {RequiredError}
      */
     apiDataSetRealTimeDataPost: async (
-      tenantId?: string,
-      debugHeaderSign?: string,
       saveRealTimeData?: SaveRealTimeData,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
@@ -844,18 +645,6 @@ export const DataApiAxiosParamCreator = function (configuration?: Configuration)
       const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
-
-      // authentication bearer required
-      // http bearer authentication required
-      await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-      if (tenantId != null) {
-        localVarHeaderParameter['tenantId'] = String(tenantId)
-      }
-
-      if (debugHeaderSign != null) {
-        localVarHeaderParameter['debug-header-sign'] = String(debugHeaderSign)
-      }
 
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
@@ -880,16 +669,12 @@ export const DataApiAxiosParamCreator = function (configuration?: Configuration)
     /**
      *
      * @summary 修改最新的Tag
-     * @param {string} [tenantId]
-     * @param {string} [debugHeaderSign]
      * @param {Array<UpdateLatestTagInputV1>} [updateLatestTagInputV1]
      * @param {*} [options] Override http request option.
      * @deprecated
      * @throws {RequiredError}
      */
     apiDataUpdateLatestTagPost: async (
-      tenantId?: string,
-      debugHeaderSign?: string,
       updateLatestTagInputV1?: Array<UpdateLatestTagInputV1>,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
@@ -904,18 +689,6 @@ export const DataApiAxiosParamCreator = function (configuration?: Configuration)
       const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
-
-      // authentication bearer required
-      // http bearer authentication required
-      await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-      if (tenantId != null) {
-        localVarHeaderParameter['tenantId'] = String(tenantId)
-      }
-
-      if (debugHeaderSign != null) {
-        localVarHeaderParameter['debug-header-sign'] = String(debugHeaderSign)
-      }
 
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
@@ -940,16 +713,12 @@ export const DataApiAxiosParamCreator = function (configuration?: Configuration)
     /**
      *
      * @summary 更新清洗数据信息  注：升级后改为调用OnlineProcessedDatas/Save接口
-     * @param {string} [tenantId]
-     * @param {string} [debugHeaderSign]
      * @param {Array<TsDataInputOutput>} [tsDataInputOutput]
      * @param {*} [options] Override http request option.
      * @deprecated
      * @throws {RequiredError}
      */
     apiDataUpdateOnlineProcessedDatasPost: async (
-      tenantId?: string,
-      debugHeaderSign?: string,
       tsDataInputOutput?: Array<TsDataInputOutput>,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
@@ -964,18 +733,6 @@ export const DataApiAxiosParamCreator = function (configuration?: Configuration)
       const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
-
-      // authentication bearer required
-      // http bearer authentication required
-      await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-      if (tenantId != null) {
-        localVarHeaderParameter['tenantId'] = String(tenantId)
-      }
-
-      if (debugHeaderSign != null) {
-        localVarHeaderParameter['debug-header-sign'] = String(debugHeaderSign)
-      }
 
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
@@ -1000,16 +757,12 @@ export const DataApiAxiosParamCreator = function (configuration?: Configuration)
     /**
      * 此接口主要用于兼容已有的污水项目，接口参数结构和返回数据结构增加了DeviceCode，PointCode改为Indicator，待前端和清洗算法都改为调用v3接口后，此接口便可废弃
      * @summary 获取清洗数据
-     * @param {string} [tenantId]
-     * @param {string} [debugHeaderSign]
      * @param {GetOnlineTsDataInputV2} [getOnlineTsDataInputV2]
      * @param {*} [options] Override http request option.
      * @deprecated
      * @throws {RequiredError}
      */
     apiDataV2GetOnlineProcessedDatasByConditionsPost: async (
-      tenantId?: string,
-      debugHeaderSign?: string,
       getOnlineTsDataInputV2?: GetOnlineTsDataInputV2,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
@@ -1024,18 +777,6 @@ export const DataApiAxiosParamCreator = function (configuration?: Configuration)
       const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
-
-      // authentication bearer required
-      // http bearer authentication required
-      await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-      if (tenantId != null) {
-        localVarHeaderParameter['tenantId'] = String(tenantId)
-      }
-
-      if (debugHeaderSign != null) {
-        localVarHeaderParameter['debug-header-sign'] = String(debugHeaderSign)
-      }
 
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
@@ -1064,9 +805,7 @@ export const DataApiAxiosParamCreator = function (configuration?: Configuration)
      * @param {boolean} [onlineProcessed]
      * @param {string} [beginTime]
      * @param {string} [endTime]
-     * @param {object} [timeSpan]
-     * @param {string} [tenantId2]
-     * @param {string} [debugHeaderSign]
+     * @param {string} [timeSpan]
      * @param {*} [options] Override http request option.
      * @deprecated
      * @throws {RequiredError}
@@ -1076,9 +815,7 @@ export const DataApiAxiosParamCreator = function (configuration?: Configuration)
       onlineProcessed?: boolean,
       beginTime?: string,
       endTime?: string,
-      timeSpan?: object,
-      tenantId2?: string,
-      debugHeaderSign?: string,
+      timeSpan?: string,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
       const localVarPath = `/api/Data/v2/MockOnlineSourceDatas`
@@ -1093,10 +830,6 @@ export const DataApiAxiosParamCreator = function (configuration?: Configuration)
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
 
-      // authentication bearer required
-      // http bearer authentication required
-      await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
       if (tenantId !== undefined) {
         localVarQueryParameter['tenantId'] = tenantId
       }
@@ -1106,25 +839,15 @@ export const DataApiAxiosParamCreator = function (configuration?: Configuration)
       }
 
       if (beginTime !== undefined) {
-        localVarQueryParameter['beginTime'] =
-          (beginTime as any) instanceof Date ? (beginTime as any).toISOString() : beginTime
+        localVarQueryParameter['beginTime'] = beginTime
       }
 
       if (endTime !== undefined) {
-        localVarQueryParameter['endTime'] =
-          (endTime as any) instanceof Date ? (endTime as any).toISOString() : endTime
+        localVarQueryParameter['endTime'] = endTime
       }
 
       if (timeSpan !== undefined) {
         localVarQueryParameter['timeSpan'] = timeSpan
-      }
-
-      if (tenantId2 != null) {
-        localVarHeaderParameter['tenantId'] = String(tenantId2)
-      }
-
-      if (debugHeaderSign != null) {
-        localVarHeaderParameter['debug-header-sign'] = String(debugHeaderSign)
       }
 
       setSearchParams(localVarUrlObj, localVarQueryParameter)
@@ -1143,15 +866,11 @@ export const DataApiAxiosParamCreator = function (configuration?: Configuration)
     /**
      * 关键字：最新时刻、数据标签、所有指标  应用场景：更新设备的清洗数据标签，如果一个设备下有多个清洗点位，则在调用本接口进行更新时，会将所有点位的清洗标签统一更新为指定的值，更新时，只会更新后一个时刻的清洗标签值。
      * @summary 更新设备的数据清洗标签
-     * @param {string} [tenantId]
-     * @param {string} [debugHeaderSign]
      * @param {Array<UpdateLatestTagInput>} [updateLatestTagInput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiDataV2UpdateLatestTagPost: async (
-      tenantId?: string,
-      debugHeaderSign?: string,
       updateLatestTagInput?: Array<UpdateLatestTagInput>,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
@@ -1166,18 +885,6 @@ export const DataApiAxiosParamCreator = function (configuration?: Configuration)
       const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
-
-      // authentication bearer required
-      // http bearer authentication required
-      await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-      if (tenantId != null) {
-        localVarHeaderParameter['tenantId'] = String(tenantId)
-      }
-
-      if (debugHeaderSign != null) {
-        localVarHeaderParameter['debug-header-sign'] = String(debugHeaderSign)
-      }
 
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
@@ -1202,15 +909,11 @@ export const DataApiAxiosParamCreator = function (configuration?: Configuration)
     /**
      * 关键字：数据清洗、数据查询  应用场景：通过时间范围、清洗点位、指标来查询清洗后的数据。查询将根据指定的时间范围来查询IoT中的清洗数据，返回值的时间为字符串类型的数组，时间格式为标准的ISO格式时间串（\'yyyy-MM-ddTHH:mm:sszzz\'）,各个时刻的值按double类型数组返回，清洗的数据标签在Tag字段中返回，T、V、Tags 三个数据数组的长度将保持一致，三个数组下标相同的为一组数据。
      * @summary 查询清洗数据
-     * @param {string} [tenantId]
-     * @param {string} [debugHeaderSign]
      * @param {Array<TimeseriesBatchForV3Input>} [timeseriesBatchForV3Input]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiDataV3GetOnlineProcessedDatasByConditionsPost: async (
-      tenantId?: string,
-      debugHeaderSign?: string,
       timeseriesBatchForV3Input?: Array<TimeseriesBatchForV3Input>,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
@@ -1225,18 +928,6 @@ export const DataApiAxiosParamCreator = function (configuration?: Configuration)
       const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
-
-      // authentication bearer required
-      // http bearer authentication required
-      await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-      if (tenantId != null) {
-        localVarHeaderParameter['tenantId'] = String(tenantId)
-      }
-
-      if (debugHeaderSign != null) {
-        localVarHeaderParameter['debug-header-sign'] = String(debugHeaderSign)
-      }
 
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
@@ -1271,22 +962,16 @@ export const DataApiFp = function (configuration?: Configuration) {
     /**
      * 注：此接口未在污水基础服务、污水领域服务、清洗算法使用，因此暂不做升级，若后续发现有使用，则可升级，否则可直接废弃
      * @summary 添加清洗数据信息 Add online processed data
-     * @param {string} [tenantId]
-     * @param {string} [debugHeaderSign]
      * @param {Array<TsDataInputOutput>} [tsDataInputOutput]
      * @param {*} [options] Override http request option.
      * @deprecated
      * @throws {RequiredError}
      */
     async apiDataAddOnlineProcessedDatasPost(
-      tenantId?: string,
-      debugHeaderSign?: string,
       tsDataInputOutput?: Array<TsDataInputOutput>,
       options?: AxiosRequestConfig,
-    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
       const localVarAxiosArgs = await localVarAxiosParamCreator.apiDataAddOnlineProcessedDatasPost(
-        tenantId,
-        debugHeaderSign,
         tsDataInputOutput,
         options,
       )
@@ -1295,22 +980,16 @@ export const DataApiFp = function (configuration?: Configuration) {
     /**
      *
      * @summary 保存清洗数据
-     * @param {string} [tenantId]
-     * @param {string} [debugHeaderSign]
      * @param {Array<SaveOnlineProcessedData>} [saveOnlineProcessedData]
      * @param {*} [options] Override http request option.
      * @deprecated
      * @throws {RequiredError}
      */
     async apiDataAddOnlineSourceDatasPost(
-      tenantId?: string,
-      debugHeaderSign?: string,
       saveOnlineProcessedData?: Array<SaveOnlineProcessedData>,
       options?: AxiosRequestConfig,
-    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
       const localVarAxiosArgs = await localVarAxiosParamCreator.apiDataAddOnlineSourceDatasPost(
-        tenantId,
-        debugHeaderSign,
         saveOnlineProcessedData,
         options,
       )
@@ -1319,23 +998,17 @@ export const DataApiFp = function (configuration?: Configuration) {
     /**
      *
      * @summary 添加或更新清洗数据信息-目前仅提供给清洗算法使用，升级后改为调用Save接口
-     * @param {string} [tenantId]
-     * @param {string} [debugHeaderSign]
      * @param {AddOrUpdateOnlineDatasInput} [addOrUpdateOnlineDatasInput]
      * @param {*} [options] Override http request option.
      * @deprecated
      * @throws {RequiredError}
      */
     async apiDataAddOrUpdateOnlineProcessedDatasPost(
-      tenantId?: string,
-      debugHeaderSign?: string,
       addOrUpdateOnlineDatasInput?: AddOrUpdateOnlineDatasInput,
       options?: AxiosRequestConfig,
-    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.apiDataAddOrUpdateOnlineProcessedDatasPost(
-          tenantId,
-          debugHeaderSign,
           addOrUpdateOnlineDatasInput,
           options,
         )
@@ -1345,30 +1018,24 @@ export const DataApiFp = function (configuration?: Configuration) {
      *
      * @summary 缓存清洗数据和源数据
      * @param {string} [tenantId]
-     * @param {object} [absoluteExpirationRelativeToNow] 缓存的数据时间长度
-     * @param {object} [getTimeSpan] 每次新增的待缓存的时间范围，比如5分钟一条的数据就设置05:00
+     * @param {string} [absoluteExpirationRelativeToNow] 缓存的数据时间长度
+     * @param {string} [getTimeSpan] 每次新增的待缓存的时间范围，比如5分钟一条的数据就设置05:00
      * @param {string} [now] 补充指定时间的缓存数据，主要用于开发时期可写入任意时刻数据的测试，接口稳定后可删除
-     * @param {string} [tenantId2]
-     * @param {string} [debugHeaderSign]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async apiDataCacheTelemetryGet(
       tenantId?: string,
-      absoluteExpirationRelativeToNow?: object,
-      getTimeSpan?: object,
+      absoluteExpirationRelativeToNow?: string,
+      getTimeSpan?: string,
       now?: string,
-      tenantId2?: string,
-      debugHeaderSign?: string,
       options?: AxiosRequestConfig,
-    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
       const localVarAxiosArgs = await localVarAxiosParamCreator.apiDataCacheTelemetryGet(
         tenantId,
         absoluteExpirationRelativeToNow,
         getTimeSpan,
         now,
-        tenantId2,
-        debugHeaderSign,
         options,
       )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
@@ -1376,16 +1043,12 @@ export const DataApiFp = function (configuration?: Configuration) {
     /**
      * 关键字：清洗数据、数据查询  使用场景：通过时间范围、点位代码、清洗标签来获取清洗后数据。如果点位代码为空，则返回所有点位的清洗数据；如果清洗标签为空，则返回所有标签的清洗数据。数据将清洗的时间顺序排列。
      * @summary 清洗数据查询
-     * @param {string} [tenantId]
-     * @param {string} [debugHeaderSign]
      * @param {GetOnlineTsDataInput} [getOnlineTsDataInput]
      * @param {*} [options] Override http request option.
      * @deprecated
      * @throws {RequiredError}
      */
     async apiDataGetOnlineProcessedDatasByConditionsPost(
-      tenantId?: string,
-      debugHeaderSign?: string,
       getOnlineTsDataInput?: GetOnlineTsDataInput,
       options?: AxiosRequestConfig,
     ): Promise<
@@ -1393,8 +1056,6 @@ export const DataApiFp = function (configuration?: Configuration) {
     > {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.apiDataGetOnlineProcessedDatasByConditionsPost(
-          tenantId,
-          debugHeaderSign,
           getOnlineTsDataInput,
           options,
         )
@@ -1403,23 +1064,17 @@ export const DataApiFp = function (configuration?: Configuration) {
     /**
      * 获取缓存中的Opc配置信息，主要为了提高数据的查询效率，系统会在启动时把所有的配置信息加载到缓存中，后续会在opc心跳的接口用用到，频繁去查询opc配置
      * @summary [内部接口]获取reids中存储的opc相关表信息
-     * @param {string} [tenantId]
-     * @param {string} [debugHeaderSign]
      * @param {Array<string>} [requestBody]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async apiDataGetOpcConfigDataPost(
-      tenantId?: string,
-      debugHeaderSign?: string,
       requestBody?: Array<string>,
       options?: AxiosRequestConfig,
     ): Promise<
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<{ [key: string]: string }>
     > {
       const localVarAxiosArgs = await localVarAxiosParamCreator.apiDataGetOpcConfigDataPost(
-        tenantId,
-        debugHeaderSign,
         requestBody,
         options,
       )
@@ -1432,9 +1087,7 @@ export const DataApiFp = function (configuration?: Configuration) {
      * @param {boolean} [onlineProcessed]
      * @param {string} [beginTime]
      * @param {string} [endTime]
-     * @param {object} [timeSpan]
-     * @param {string} [tenantId2]
-     * @param {string} [debugHeaderSign]
+     * @param {string} [timeSpan]
      * @param {*} [options] Override http request option.
      * @deprecated
      * @throws {RequiredError}
@@ -1444,19 +1097,15 @@ export const DataApiFp = function (configuration?: Configuration) {
       onlineProcessed?: boolean,
       beginTime?: string,
       endTime?: string,
-      timeSpan?: object,
-      tenantId2?: string,
-      debugHeaderSign?: string,
+      timeSpan?: string,
       options?: AxiosRequestConfig,
-    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
       const localVarAxiosArgs = await localVarAxiosParamCreator.apiDataMockOnlineSourceDatasGet(
         tenantId,
         onlineProcessed,
         beginTime,
         endTime,
         timeSpan,
-        tenantId2,
-        debugHeaderSign,
         options,
       )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
@@ -1464,23 +1113,17 @@ export const DataApiFp = function (configuration?: Configuration) {
     /**
      *
      * @summary 修改清洗数据-目前仅提供给清洗算法使用，升级后改为调用Save接口
-     * @param {string} [tenantId]
-     * @param {string} [debugHeaderSign]
      * @param {Array<ModifyOnlineProcessedDatasInput>} [modifyOnlineProcessedDatasInput]
      * @param {*} [options] Override http request option.
      * @deprecated
      * @throws {RequiredError}
      */
     async apiDataModifyOnlineProcessedDatasPost(
-      tenantId?: string,
-      debugHeaderSign?: string,
       modifyOnlineProcessedDatasInput?: Array<ModifyOnlineProcessedDatasInput>,
       options?: AxiosRequestConfig,
-    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.apiDataModifyOnlineProcessedDatasPost(
-          tenantId,
-          debugHeaderSign,
           modifyOnlineProcessedDatasInput,
           options,
         )
@@ -1489,47 +1132,35 @@ export const DataApiFp = function (configuration?: Configuration) {
     /**
      * 关键字：数据清洗、  应用场景：保存清洗数据，由清洗算法调用。调用时，需要指定清洗的设备、清洗的点位(指标)、清洗的时间、清洗后的值、清洗的数据标签，清洗的时间格式为\'yyyy-MM-ddTHH:mm:sszzz\'。本接口中数据的Tag 为字符串格式，内部调用的数据同步接口仍为`/api/v1/iot/save-telemetry-data`， 而`/api/v1/iot/save-telemetry-data`接口已过时，后续会考虑废弃此接口或做版本升级。升级后，将不再支持字符串类型的Tag值，可以考虑改为数值类型（枚举）, 废弃后，考虑使用`/api/v3/iot/save-telemetry-data-batch` 来做数据同步。调用V3时，需要自行追加清洗指标标签、清洗之后的值的后缀，如原始指标为 Indicator_A，则清洗后的数据可保存为Indicator_A_CLEAN、清洗后的标签为 Indicator_A_TAG; 如果不做指标重命名，将覆盖指标Indicator_A的原始数据。对于调用V3接口保存清洗数据时，不强制使用\"_CLEAN\"和\"_TAG\"后缀，只需查询和录入是指标code保持一致即可。
      * @summary [内部接口]保存清洗数据到iot  注：此接口为升级后的保存清洗数据接口
-     * @param {string} [tenantId]
-     * @param {string} [debugHeaderSign]
      * @param {Array<SaveOnlineProcessedData>} [saveOnlineProcessedData]
      * @param {*} [options] Override http request option.
      * @deprecated
      * @throws {RequiredError}
      */
     async apiDataOnlineProcessedDatasSavePost(
-      tenantId?: string,
-      debugHeaderSign?: string,
       saveOnlineProcessedData?: Array<SaveOnlineProcessedData>,
       options?: AxiosRequestConfig,
-    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
       const localVarAxiosArgs = await localVarAxiosParamCreator.apiDataOnlineProcessedDatasSavePost(
-        tenantId,
-        debugHeaderSign,
         saveOnlineProcessedData,
         options,
       )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**
-     * 关键字：缓存、最新数据  保存最新时刻的数据到Redis缓存中，数据不写入数据库，主要为了提高数据的查询效率。其中，redis 上的键为 `TenantId:DeviceCode|Indicator`, 暂不考虑对外开放，  redis上缓存的值的格式为{\"DeviceCode\":\"xxx\",\"Indicator\":\"xxx\",\"T\":123,\"V\":\"xxx\"}, 其中T为unix时间戳，V为对应最新的数据
-     * @summary [内部接口]保存实时数据到redis
-     * @param {string} [tenantId]
-     * @param {string} [debugHeaderSign]
+     * 关键字：缓存、最新数据 从Redis缓存中获取最新时刻的数据，主要为了提高数据的查询效率。其中，redis 上的键为 `TenantId:DeviceCode|Indicator`, 暂不考虑对外开放， redis上缓存的值的格式为{\"DeviceCode\":\"xxx\",\"Indicator\":\"xxx\",\"T\":123,\"V\":\"xxx\"}, 其中T为unix时间戳，V为对应最新的数据
+     * @summary [内部接口]从Redis中获取最新的实测数据
      * @param {RealTimeDataInput} [realTimeDataInput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async apiDataRealTimeDataPost(
-      tenantId?: string,
-      debugHeaderSign?: string,
       realTimeDataInput?: RealTimeDataInput,
       options?: AxiosRequestConfig,
     ): Promise<
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<LatestTimeSeries>>
     > {
       const localVarAxiosArgs = await localVarAxiosParamCreator.apiDataRealTimeDataPost(
-        tenantId,
-        debugHeaderSign,
         realTimeDataInput,
         options,
       )
@@ -1538,21 +1169,15 @@ export const DataApiFp = function (configuration?: Configuration) {
     /**
      * 向redis中缓存Opc配置，主要涉及3张表，OpcUaPubSubNotify、OpcUaPubSub 、OpcUaCommunication， 表的数据全量缓存。
      * @summary [内部接口]表名OpcUaPubSubNotify、OpcUaPubSub、OpcUaCommunication添加redis
-     * @param {string} [tenantId]
-     * @param {string} [debugHeaderSign]
      * @param {{ [key: string]: string; }} [requestBody]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async apiDataSetOpcConfigDataPost(
-      tenantId?: string,
-      debugHeaderSign?: string,
       requestBody?: { [key: string]: string },
       options?: AxiosRequestConfig,
-    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
       const localVarAxiosArgs = await localVarAxiosParamCreator.apiDataSetOpcConfigDataPost(
-        tenantId,
-        debugHeaderSign,
         requestBody,
         options,
       )
@@ -1561,22 +1186,16 @@ export const DataApiFp = function (configuration?: Configuration) {
     /**
      * 保存最新时刻的数据到Redis缓存中，数据不写入数据库，主要为了提高数据的查询效率。其中，redis 上的键为 `TenantId:DeviceCode|Indicator`, 暂不考虑对外开放，  redis上缓存的值的格式为{\"T\":123,\"V\":\"xxx\"}, 其中T为unix时间戳，V为对应最新的数据
      * @summary [内部接口]保存实测数据
-     * @param {string} [tenantId]
-     * @param {string} [debugHeaderSign]
      * @param {Array<SaveRealTimeData>} [saveRealTimeData]
      * @param {*} [options] Override http request option.
      * @deprecated
      * @throws {RequiredError}
      */
     async apiDataSetRealTimeDataBatchPost(
-      tenantId?: string,
-      debugHeaderSign?: string,
       saveRealTimeData?: Array<SaveRealTimeData>,
       options?: AxiosRequestConfig,
-    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
       const localVarAxiosArgs = await localVarAxiosParamCreator.apiDataSetRealTimeDataBatchPost(
-        tenantId,
-        debugHeaderSign,
         saveRealTimeData,
         options,
       )
@@ -1585,22 +1204,16 @@ export const DataApiFp = function (configuration?: Configuration) {
     /**
      * 保存最新时刻的数据到Redis缓存中，数据不写入数据库，主要为了提高数据的查询效率。其中，redis 上的键为 `TenantId:DeviceCode|Indicator`, 暂不考虑对外开放，  redis上缓存的值的格式为{\"T\":123,\"V\":\"xxx\"}, 其中T为unix时间戳，V为对应最新的数据
      * @summary [内部接口]保存实测数据
-     * @param {string} [tenantId]
-     * @param {string} [debugHeaderSign]
      * @param {SaveRealTimeData} [saveRealTimeData]
      * @param {*} [options] Override http request option.
      * @deprecated
      * @throws {RequiredError}
      */
     async apiDataSetRealTimeDataPost(
-      tenantId?: string,
-      debugHeaderSign?: string,
       saveRealTimeData?: SaveRealTimeData,
       options?: AxiosRequestConfig,
-    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
       const localVarAxiosArgs = await localVarAxiosParamCreator.apiDataSetRealTimeDataPost(
-        tenantId,
-        debugHeaderSign,
         saveRealTimeData,
         options,
       )
@@ -1609,22 +1222,16 @@ export const DataApiFp = function (configuration?: Configuration) {
     /**
      *
      * @summary 修改最新的Tag
-     * @param {string} [tenantId]
-     * @param {string} [debugHeaderSign]
      * @param {Array<UpdateLatestTagInputV1>} [updateLatestTagInputV1]
      * @param {*} [options] Override http request option.
      * @deprecated
      * @throws {RequiredError}
      */
     async apiDataUpdateLatestTagPost(
-      tenantId?: string,
-      debugHeaderSign?: string,
       updateLatestTagInputV1?: Array<UpdateLatestTagInputV1>,
       options?: AxiosRequestConfig,
-    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
       const localVarAxiosArgs = await localVarAxiosParamCreator.apiDataUpdateLatestTagPost(
-        tenantId,
-        debugHeaderSign,
         updateLatestTagInputV1,
         options,
       )
@@ -1633,23 +1240,17 @@ export const DataApiFp = function (configuration?: Configuration) {
     /**
      *
      * @summary 更新清洗数据信息  注：升级后改为调用OnlineProcessedDatas/Save接口
-     * @param {string} [tenantId]
-     * @param {string} [debugHeaderSign]
      * @param {Array<TsDataInputOutput>} [tsDataInputOutput]
      * @param {*} [options] Override http request option.
      * @deprecated
      * @throws {RequiredError}
      */
     async apiDataUpdateOnlineProcessedDatasPost(
-      tenantId?: string,
-      debugHeaderSign?: string,
       tsDataInputOutput?: Array<TsDataInputOutput>,
       options?: AxiosRequestConfig,
-    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.apiDataUpdateOnlineProcessedDatasPost(
-          tenantId,
-          debugHeaderSign,
           tsDataInputOutput,
           options,
         )
@@ -1658,16 +1259,12 @@ export const DataApiFp = function (configuration?: Configuration) {
     /**
      * 此接口主要用于兼容已有的污水项目，接口参数结构和返回数据结构增加了DeviceCode，PointCode改为Indicator，待前端和清洗算法都改为调用v3接口后，此接口便可废弃
      * @summary 获取清洗数据
-     * @param {string} [tenantId]
-     * @param {string} [debugHeaderSign]
      * @param {GetOnlineTsDataInputV2} [getOnlineTsDataInputV2]
      * @param {*} [options] Override http request option.
      * @deprecated
      * @throws {RequiredError}
      */
     async apiDataV2GetOnlineProcessedDatasByConditionsPost(
-      tenantId?: string,
-      debugHeaderSign?: string,
       getOnlineTsDataInputV2?: GetOnlineTsDataInputV2,
       options?: AxiosRequestConfig,
     ): Promise<
@@ -1675,8 +1272,6 @@ export const DataApiFp = function (configuration?: Configuration) {
     > {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.apiDataV2GetOnlineProcessedDatasByConditionsPost(
-          tenantId,
-          debugHeaderSign,
           getOnlineTsDataInputV2,
           options,
         )
@@ -1689,9 +1284,7 @@ export const DataApiFp = function (configuration?: Configuration) {
      * @param {boolean} [onlineProcessed]
      * @param {string} [beginTime]
      * @param {string} [endTime]
-     * @param {object} [timeSpan]
-     * @param {string} [tenantId2]
-     * @param {string} [debugHeaderSign]
+     * @param {string} [timeSpan]
      * @param {*} [options] Override http request option.
      * @deprecated
      * @throws {RequiredError}
@@ -1701,19 +1294,15 @@ export const DataApiFp = function (configuration?: Configuration) {
       onlineProcessed?: boolean,
       beginTime?: string,
       endTime?: string,
-      timeSpan?: object,
-      tenantId2?: string,
-      debugHeaderSign?: string,
+      timeSpan?: string,
       options?: AxiosRequestConfig,
-    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
       const localVarAxiosArgs = await localVarAxiosParamCreator.apiDataV2MockOnlineSourceDatasGet(
         tenantId,
         onlineProcessed,
         beginTime,
         endTime,
         timeSpan,
-        tenantId2,
-        debugHeaderSign,
         options,
       )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
@@ -1721,21 +1310,15 @@ export const DataApiFp = function (configuration?: Configuration) {
     /**
      * 关键字：最新时刻、数据标签、所有指标  应用场景：更新设备的清洗数据标签，如果一个设备下有多个清洗点位，则在调用本接口进行更新时，会将所有点位的清洗标签统一更新为指定的值，更新时，只会更新后一个时刻的清洗标签值。
      * @summary 更新设备的数据清洗标签
-     * @param {string} [tenantId]
-     * @param {string} [debugHeaderSign]
      * @param {Array<UpdateLatestTagInput>} [updateLatestTagInput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async apiDataV2UpdateLatestTagPost(
-      tenantId?: string,
-      debugHeaderSign?: string,
       updateLatestTagInput?: Array<UpdateLatestTagInput>,
       options?: AxiosRequestConfig,
-    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
       const localVarAxiosArgs = await localVarAxiosParamCreator.apiDataV2UpdateLatestTagPost(
-        tenantId,
-        debugHeaderSign,
         updateLatestTagInput,
         options,
       )
@@ -1744,15 +1327,11 @@ export const DataApiFp = function (configuration?: Configuration) {
     /**
      * 关键字：数据清洗、数据查询  应用场景：通过时间范围、清洗点位、指标来查询清洗后的数据。查询将根据指定的时间范围来查询IoT中的清洗数据，返回值的时间为字符串类型的数组，时间格式为标准的ISO格式时间串（\'yyyy-MM-ddTHH:mm:sszzz\'）,各个时刻的值按double类型数组返回，清洗的数据标签在Tag字段中返回，T、V、Tags 三个数据数组的长度将保持一致，三个数组下标相同的为一组数据。
      * @summary 查询清洗数据
-     * @param {string} [tenantId]
-     * @param {string} [debugHeaderSign]
      * @param {Array<TimeseriesBatchForV3Input>} [timeseriesBatchForV3Input]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async apiDataV3GetOnlineProcessedDatasByConditionsPost(
-      tenantId?: string,
-      debugHeaderSign?: string,
       timeseriesBatchForV3Input?: Array<TimeseriesBatchForV3Input>,
       options?: AxiosRequestConfig,
     ): Promise<
@@ -1760,8 +1339,6 @@ export const DataApiFp = function (configuration?: Configuration) {
     > {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.apiDataV3GetOnlineProcessedDatasByConditionsPost(
-          tenantId,
-          debugHeaderSign,
           timeseriesBatchForV3Input,
           options,
         )
@@ -1784,102 +1361,74 @@ export const DataApiFactory = function (
     /**
      * 注：此接口未在污水基础服务、污水领域服务、清洗算法使用，因此暂不做升级，若后续发现有使用，则可升级，否则可直接废弃
      * @summary 添加清洗数据信息 Add online processed data
-     * @param {string} [tenantId]
-     * @param {string} [debugHeaderSign]
      * @param {Array<TsDataInputOutput>} [tsDataInputOutput]
      * @param {*} [options] Override http request option.
      * @deprecated
      * @throws {RequiredError}
      */
     apiDataAddOnlineProcessedDatasPost(
-      tenantId?: string,
-      debugHeaderSign?: string,
       tsDataInputOutput?: Array<TsDataInputOutput>,
       options?: any,
-    ): AxiosPromise<void> {
+    ): AxiosPromise<object> {
       return localVarFp
-        .apiDataAddOnlineProcessedDatasPost(tenantId, debugHeaderSign, tsDataInputOutput, options)
+        .apiDataAddOnlineProcessedDatasPost(tsDataInputOutput, options)
         .then((request) => request(axios, basePath))
     },
     /**
      *
      * @summary 保存清洗数据
-     * @param {string} [tenantId]
-     * @param {string} [debugHeaderSign]
      * @param {Array<SaveOnlineProcessedData>} [saveOnlineProcessedData]
      * @param {*} [options] Override http request option.
      * @deprecated
      * @throws {RequiredError}
      */
     apiDataAddOnlineSourceDatasPost(
-      tenantId?: string,
-      debugHeaderSign?: string,
       saveOnlineProcessedData?: Array<SaveOnlineProcessedData>,
       options?: any,
-    ): AxiosPromise<void> {
+    ): AxiosPromise<object> {
       return localVarFp
-        .apiDataAddOnlineSourceDatasPost(
-          tenantId,
-          debugHeaderSign,
-          saveOnlineProcessedData,
-          options,
-        )
+        .apiDataAddOnlineSourceDatasPost(saveOnlineProcessedData, options)
         .then((request) => request(axios, basePath))
     },
     /**
      *
      * @summary 添加或更新清洗数据信息-目前仅提供给清洗算法使用，升级后改为调用Save接口
-     * @param {string} [tenantId]
-     * @param {string} [debugHeaderSign]
      * @param {AddOrUpdateOnlineDatasInput} [addOrUpdateOnlineDatasInput]
      * @param {*} [options] Override http request option.
      * @deprecated
      * @throws {RequiredError}
      */
     apiDataAddOrUpdateOnlineProcessedDatasPost(
-      tenantId?: string,
-      debugHeaderSign?: string,
       addOrUpdateOnlineDatasInput?: AddOrUpdateOnlineDatasInput,
       options?: any,
-    ): AxiosPromise<void> {
+    ): AxiosPromise<object> {
       return localVarFp
-        .apiDataAddOrUpdateOnlineProcessedDatasPost(
-          tenantId,
-          debugHeaderSign,
-          addOrUpdateOnlineDatasInput,
-          options,
-        )
+        .apiDataAddOrUpdateOnlineProcessedDatasPost(addOrUpdateOnlineDatasInput, options)
         .then((request) => request(axios, basePath))
     },
     /**
      *
      * @summary 缓存清洗数据和源数据
      * @param {string} [tenantId]
-     * @param {object} [absoluteExpirationRelativeToNow] 缓存的数据时间长度
-     * @param {object} [getTimeSpan] 每次新增的待缓存的时间范围，比如5分钟一条的数据就设置05:00
+     * @param {string} [absoluteExpirationRelativeToNow] 缓存的数据时间长度
+     * @param {string} [getTimeSpan] 每次新增的待缓存的时间范围，比如5分钟一条的数据就设置05:00
      * @param {string} [now] 补充指定时间的缓存数据，主要用于开发时期可写入任意时刻数据的测试，接口稳定后可删除
-     * @param {string} [tenantId2]
-     * @param {string} [debugHeaderSign]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiDataCacheTelemetryGet(
       tenantId?: string,
-      absoluteExpirationRelativeToNow?: object,
-      getTimeSpan?: object,
+      absoluteExpirationRelativeToNow?: string,
+      getTimeSpan?: string,
       now?: string,
-      tenantId2?: string,
-      debugHeaderSign?: string,
       options?: any,
-    ): AxiosPromise<void> {
+    ): AxiosPromise<object> {
       return localVarFp
         .apiDataCacheTelemetryGet(
           tenantId,
           absoluteExpirationRelativeToNow,
           getTimeSpan,
           now,
-          tenantId2,
-          debugHeaderSign,
           options,
         )
         .then((request) => request(axios, basePath))
@@ -1887,45 +1436,32 @@ export const DataApiFactory = function (
     /**
      * 关键字：清洗数据、数据查询  使用场景：通过时间范围、点位代码、清洗标签来获取清洗后数据。如果点位代码为空，则返回所有点位的清洗数据；如果清洗标签为空，则返回所有标签的清洗数据。数据将清洗的时间顺序排列。
      * @summary 清洗数据查询
-     * @param {string} [tenantId]
-     * @param {string} [debugHeaderSign]
      * @param {GetOnlineTsDataInput} [getOnlineTsDataInput]
      * @param {*} [options] Override http request option.
      * @deprecated
      * @throws {RequiredError}
      */
     apiDataGetOnlineProcessedDatasByConditionsPost(
-      tenantId?: string,
-      debugHeaderSign?: string,
       getOnlineTsDataInput?: GetOnlineTsDataInput,
       options?: any,
     ): AxiosPromise<Array<TsDataInputOutput>> {
       return localVarFp
-        .apiDataGetOnlineProcessedDatasByConditionsPost(
-          tenantId,
-          debugHeaderSign,
-          getOnlineTsDataInput,
-          options,
-        )
+        .apiDataGetOnlineProcessedDatasByConditionsPost(getOnlineTsDataInput, options)
         .then((request) => request(axios, basePath))
     },
     /**
      * 获取缓存中的Opc配置信息，主要为了提高数据的查询效率，系统会在启动时把所有的配置信息加载到缓存中，后续会在opc心跳的接口用用到，频繁去查询opc配置
      * @summary [内部接口]获取reids中存储的opc相关表信息
-     * @param {string} [tenantId]
-     * @param {string} [debugHeaderSign]
      * @param {Array<string>} [requestBody]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiDataGetOpcConfigDataPost(
-      tenantId?: string,
-      debugHeaderSign?: string,
       requestBody?: Array<string>,
       options?: any,
     ): AxiosPromise<{ [key: string]: string }> {
       return localVarFp
-        .apiDataGetOpcConfigDataPost(tenantId, debugHeaderSign, requestBody, options)
+        .apiDataGetOpcConfigDataPost(requestBody, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -1935,9 +1471,7 @@ export const DataApiFactory = function (
      * @param {boolean} [onlineProcessed]
      * @param {string} [beginTime]
      * @param {string} [endTime]
-     * @param {object} [timeSpan]
-     * @param {string} [tenantId2]
-     * @param {string} [debugHeaderSign]
+     * @param {string} [timeSpan]
      * @param {*} [options] Override http request option.
      * @deprecated
      * @throws {RequiredError}
@@ -1947,11 +1481,9 @@ export const DataApiFactory = function (
       onlineProcessed?: boolean,
       beginTime?: string,
       endTime?: string,
-      timeSpan?: object,
-      tenantId2?: string,
-      debugHeaderSign?: string,
+      timeSpan?: string,
       options?: any,
-    ): AxiosPromise<void> {
+    ): AxiosPromise<object> {
       return localVarFp
         .apiDataMockOnlineSourceDatasGet(
           tenantId,
@@ -1959,8 +1491,6 @@ export const DataApiFactory = function (
           beginTime,
           endTime,
           timeSpan,
-          tenantId2,
-          debugHeaderSign,
           options,
         )
         .then((request) => request(axios, basePath))
@@ -1968,199 +1498,143 @@ export const DataApiFactory = function (
     /**
      *
      * @summary 修改清洗数据-目前仅提供给清洗算法使用，升级后改为调用Save接口
-     * @param {string} [tenantId]
-     * @param {string} [debugHeaderSign]
      * @param {Array<ModifyOnlineProcessedDatasInput>} [modifyOnlineProcessedDatasInput]
      * @param {*} [options] Override http request option.
      * @deprecated
      * @throws {RequiredError}
      */
     apiDataModifyOnlineProcessedDatasPost(
-      tenantId?: string,
-      debugHeaderSign?: string,
       modifyOnlineProcessedDatasInput?: Array<ModifyOnlineProcessedDatasInput>,
       options?: any,
-    ): AxiosPromise<void> {
+    ): AxiosPromise<object> {
       return localVarFp
-        .apiDataModifyOnlineProcessedDatasPost(
-          tenantId,
-          debugHeaderSign,
-          modifyOnlineProcessedDatasInput,
-          options,
-        )
+        .apiDataModifyOnlineProcessedDatasPost(modifyOnlineProcessedDatasInput, options)
         .then((request) => request(axios, basePath))
     },
     /**
      * 关键字：数据清洗、  应用场景：保存清洗数据，由清洗算法调用。调用时，需要指定清洗的设备、清洗的点位(指标)、清洗的时间、清洗后的值、清洗的数据标签，清洗的时间格式为\'yyyy-MM-ddTHH:mm:sszzz\'。本接口中数据的Tag 为字符串格式，内部调用的数据同步接口仍为`/api/v1/iot/save-telemetry-data`， 而`/api/v1/iot/save-telemetry-data`接口已过时，后续会考虑废弃此接口或做版本升级。升级后，将不再支持字符串类型的Tag值，可以考虑改为数值类型（枚举）, 废弃后，考虑使用`/api/v3/iot/save-telemetry-data-batch` 来做数据同步。调用V3时，需要自行追加清洗指标标签、清洗之后的值的后缀，如原始指标为 Indicator_A，则清洗后的数据可保存为Indicator_A_CLEAN、清洗后的标签为 Indicator_A_TAG; 如果不做指标重命名，将覆盖指标Indicator_A的原始数据。对于调用V3接口保存清洗数据时，不强制使用\"_CLEAN\"和\"_TAG\"后缀，只需查询和录入是指标code保持一致即可。
      * @summary [内部接口]保存清洗数据到iot  注：此接口为升级后的保存清洗数据接口
-     * @param {string} [tenantId]
-     * @param {string} [debugHeaderSign]
      * @param {Array<SaveOnlineProcessedData>} [saveOnlineProcessedData]
      * @param {*} [options] Override http request option.
      * @deprecated
      * @throws {RequiredError}
      */
     apiDataOnlineProcessedDatasSavePost(
-      tenantId?: string,
-      debugHeaderSign?: string,
       saveOnlineProcessedData?: Array<SaveOnlineProcessedData>,
       options?: any,
-    ): AxiosPromise<void> {
+    ): AxiosPromise<object> {
       return localVarFp
-        .apiDataOnlineProcessedDatasSavePost(
-          tenantId,
-          debugHeaderSign,
-          saveOnlineProcessedData,
-          options,
-        )
+        .apiDataOnlineProcessedDatasSavePost(saveOnlineProcessedData, options)
         .then((request) => request(axios, basePath))
     },
     /**
-     * 关键字：缓存、最新数据  保存最新时刻的数据到Redis缓存中，数据不写入数据库，主要为了提高数据的查询效率。其中，redis 上的键为 `TenantId:DeviceCode|Indicator`, 暂不考虑对外开放，  redis上缓存的值的格式为{\"DeviceCode\":\"xxx\",\"Indicator\":\"xxx\",\"T\":123,\"V\":\"xxx\"}, 其中T为unix时间戳，V为对应最新的数据
-     * @summary [内部接口]保存实时数据到redis
-     * @param {string} [tenantId]
-     * @param {string} [debugHeaderSign]
+     * 关键字：缓存、最新数据 从Redis缓存中获取最新时刻的数据，主要为了提高数据的查询效率。其中，redis 上的键为 `TenantId:DeviceCode|Indicator`, 暂不考虑对外开放， redis上缓存的值的格式为{\"DeviceCode\":\"xxx\",\"Indicator\":\"xxx\",\"T\":123,\"V\":\"xxx\"}, 其中T为unix时间戳，V为对应最新的数据
+     * @summary [内部接口]从Redis中获取最新的实测数据
      * @param {RealTimeDataInput} [realTimeDataInput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiDataRealTimeDataPost(
-      tenantId?: string,
-      debugHeaderSign?: string,
       realTimeDataInput?: RealTimeDataInput,
       options?: any,
     ): AxiosPromise<Array<LatestTimeSeries>> {
       return localVarFp
-        .apiDataRealTimeDataPost(tenantId, debugHeaderSign, realTimeDataInput, options)
+        .apiDataRealTimeDataPost(realTimeDataInput, options)
         .then((request) => request(axios, basePath))
     },
     /**
      * 向redis中缓存Opc配置，主要涉及3张表，OpcUaPubSubNotify、OpcUaPubSub 、OpcUaCommunication， 表的数据全量缓存。
      * @summary [内部接口]表名OpcUaPubSubNotify、OpcUaPubSub、OpcUaCommunication添加redis
-     * @param {string} [tenantId]
-     * @param {string} [debugHeaderSign]
      * @param {{ [key: string]: string; }} [requestBody]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiDataSetOpcConfigDataPost(
-      tenantId?: string,
-      debugHeaderSign?: string,
       requestBody?: { [key: string]: string },
       options?: any,
-    ): AxiosPromise<void> {
+    ): AxiosPromise<object> {
       return localVarFp
-        .apiDataSetOpcConfigDataPost(tenantId, debugHeaderSign, requestBody, options)
+        .apiDataSetOpcConfigDataPost(requestBody, options)
         .then((request) => request(axios, basePath))
     },
     /**
      * 保存最新时刻的数据到Redis缓存中，数据不写入数据库，主要为了提高数据的查询效率。其中，redis 上的键为 `TenantId:DeviceCode|Indicator`, 暂不考虑对外开放，  redis上缓存的值的格式为{\"T\":123,\"V\":\"xxx\"}, 其中T为unix时间戳，V为对应最新的数据
      * @summary [内部接口]保存实测数据
-     * @param {string} [tenantId]
-     * @param {string} [debugHeaderSign]
      * @param {Array<SaveRealTimeData>} [saveRealTimeData]
      * @param {*} [options] Override http request option.
      * @deprecated
      * @throws {RequiredError}
      */
     apiDataSetRealTimeDataBatchPost(
-      tenantId?: string,
-      debugHeaderSign?: string,
       saveRealTimeData?: Array<SaveRealTimeData>,
       options?: any,
-    ): AxiosPromise<void> {
+    ): AxiosPromise<object> {
       return localVarFp
-        .apiDataSetRealTimeDataBatchPost(tenantId, debugHeaderSign, saveRealTimeData, options)
+        .apiDataSetRealTimeDataBatchPost(saveRealTimeData, options)
         .then((request) => request(axios, basePath))
     },
     /**
      * 保存最新时刻的数据到Redis缓存中，数据不写入数据库，主要为了提高数据的查询效率。其中，redis 上的键为 `TenantId:DeviceCode|Indicator`, 暂不考虑对外开放，  redis上缓存的值的格式为{\"T\":123,\"V\":\"xxx\"}, 其中T为unix时间戳，V为对应最新的数据
      * @summary [内部接口]保存实测数据
-     * @param {string} [tenantId]
-     * @param {string} [debugHeaderSign]
      * @param {SaveRealTimeData} [saveRealTimeData]
      * @param {*} [options] Override http request option.
      * @deprecated
      * @throws {RequiredError}
      */
     apiDataSetRealTimeDataPost(
-      tenantId?: string,
-      debugHeaderSign?: string,
       saveRealTimeData?: SaveRealTimeData,
       options?: any,
-    ): AxiosPromise<void> {
+    ): AxiosPromise<object> {
       return localVarFp
-        .apiDataSetRealTimeDataPost(tenantId, debugHeaderSign, saveRealTimeData, options)
+        .apiDataSetRealTimeDataPost(saveRealTimeData, options)
         .then((request) => request(axios, basePath))
     },
     /**
      *
      * @summary 修改最新的Tag
-     * @param {string} [tenantId]
-     * @param {string} [debugHeaderSign]
      * @param {Array<UpdateLatestTagInputV1>} [updateLatestTagInputV1]
      * @param {*} [options] Override http request option.
      * @deprecated
      * @throws {RequiredError}
      */
     apiDataUpdateLatestTagPost(
-      tenantId?: string,
-      debugHeaderSign?: string,
       updateLatestTagInputV1?: Array<UpdateLatestTagInputV1>,
       options?: any,
-    ): AxiosPromise<void> {
+    ): AxiosPromise<object> {
       return localVarFp
-        .apiDataUpdateLatestTagPost(tenantId, debugHeaderSign, updateLatestTagInputV1, options)
+        .apiDataUpdateLatestTagPost(updateLatestTagInputV1, options)
         .then((request) => request(axios, basePath))
     },
     /**
      *
      * @summary 更新清洗数据信息  注：升级后改为调用OnlineProcessedDatas/Save接口
-     * @param {string} [tenantId]
-     * @param {string} [debugHeaderSign]
      * @param {Array<TsDataInputOutput>} [tsDataInputOutput]
      * @param {*} [options] Override http request option.
      * @deprecated
      * @throws {RequiredError}
      */
     apiDataUpdateOnlineProcessedDatasPost(
-      tenantId?: string,
-      debugHeaderSign?: string,
       tsDataInputOutput?: Array<TsDataInputOutput>,
       options?: any,
-    ): AxiosPromise<void> {
+    ): AxiosPromise<object> {
       return localVarFp
-        .apiDataUpdateOnlineProcessedDatasPost(
-          tenantId,
-          debugHeaderSign,
-          tsDataInputOutput,
-          options,
-        )
+        .apiDataUpdateOnlineProcessedDatasPost(tsDataInputOutput, options)
         .then((request) => request(axios, basePath))
     },
     /**
      * 此接口主要用于兼容已有的污水项目，接口参数结构和返回数据结构增加了DeviceCode，PointCode改为Indicator，待前端和清洗算法都改为调用v3接口后，此接口便可废弃
      * @summary 获取清洗数据
-     * @param {string} [tenantId]
-     * @param {string} [debugHeaderSign]
      * @param {GetOnlineTsDataInputV2} [getOnlineTsDataInputV2]
      * @param {*} [options] Override http request option.
      * @deprecated
      * @throws {RequiredError}
      */
     apiDataV2GetOnlineProcessedDatasByConditionsPost(
-      tenantId?: string,
-      debugHeaderSign?: string,
       getOnlineTsDataInputV2?: GetOnlineTsDataInputV2,
       options?: any,
     ): AxiosPromise<Array<SaveOnlineProcessedData>> {
       return localVarFp
-        .apiDataV2GetOnlineProcessedDatasByConditionsPost(
-          tenantId,
-          debugHeaderSign,
-          getOnlineTsDataInputV2,
-          options,
-        )
+        .apiDataV2GetOnlineProcessedDatasByConditionsPost(getOnlineTsDataInputV2, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -2170,9 +1644,7 @@ export const DataApiFactory = function (
      * @param {boolean} [onlineProcessed]
      * @param {string} [beginTime]
      * @param {string} [endTime]
-     * @param {object} [timeSpan]
-     * @param {string} [tenantId2]
-     * @param {string} [debugHeaderSign]
+     * @param {string} [timeSpan]
      * @param {*} [options] Override http request option.
      * @deprecated
      * @throws {RequiredError}
@@ -2182,11 +1654,9 @@ export const DataApiFactory = function (
       onlineProcessed?: boolean,
       beginTime?: string,
       endTime?: string,
-      timeSpan?: object,
-      tenantId2?: string,
-      debugHeaderSign?: string,
+      timeSpan?: string,
       options?: any,
-    ): AxiosPromise<void> {
+    ): AxiosPromise<object> {
       return localVarFp
         .apiDataV2MockOnlineSourceDatasGet(
           tenantId,
@@ -2194,8 +1664,6 @@ export const DataApiFactory = function (
           beginTime,
           endTime,
           timeSpan,
-          tenantId2,
-          debugHeaderSign,
           options,
         )
         .then((request) => request(axios, basePath))
@@ -2203,44 +1671,31 @@ export const DataApiFactory = function (
     /**
      * 关键字：最新时刻、数据标签、所有指标  应用场景：更新设备的清洗数据标签，如果一个设备下有多个清洗点位，则在调用本接口进行更新时，会将所有点位的清洗标签统一更新为指定的值，更新时，只会更新后一个时刻的清洗标签值。
      * @summary 更新设备的数据清洗标签
-     * @param {string} [tenantId]
-     * @param {string} [debugHeaderSign]
      * @param {Array<UpdateLatestTagInput>} [updateLatestTagInput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiDataV2UpdateLatestTagPost(
-      tenantId?: string,
-      debugHeaderSign?: string,
       updateLatestTagInput?: Array<UpdateLatestTagInput>,
       options?: any,
-    ): AxiosPromise<void> {
+    ): AxiosPromise<object> {
       return localVarFp
-        .apiDataV2UpdateLatestTagPost(tenantId, debugHeaderSign, updateLatestTagInput, options)
+        .apiDataV2UpdateLatestTagPost(updateLatestTagInput, options)
         .then((request) => request(axios, basePath))
     },
     /**
      * 关键字：数据清洗、数据查询  应用场景：通过时间范围、清洗点位、指标来查询清洗后的数据。查询将根据指定的时间范围来查询IoT中的清洗数据，返回值的时间为字符串类型的数组，时间格式为标准的ISO格式时间串（\'yyyy-MM-ddTHH:mm:sszzz\'）,各个时刻的值按double类型数组返回，清洗的数据标签在Tag字段中返回，T、V、Tags 三个数据数组的长度将保持一致，三个数组下标相同的为一组数据。
      * @summary 查询清洗数据
-     * @param {string} [tenantId]
-     * @param {string} [debugHeaderSign]
      * @param {Array<TimeseriesBatchForV3Input>} [timeseriesBatchForV3Input]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiDataV3GetOnlineProcessedDatasByConditionsPost(
-      tenantId?: string,
-      debugHeaderSign?: string,
       timeseriesBatchForV3Input?: Array<TimeseriesBatchForV3Input>,
       options?: any,
     ): AxiosPromise<Array<TsDataInputOutputV3>> {
       return localVarFp
-        .apiDataV3GetOnlineProcessedDatasByConditionsPost(
-          tenantId,
-          debugHeaderSign,
-          timeseriesBatchForV3Input,
-          options,
-        )
+        .apiDataV3GetOnlineProcessedDatasByConditionsPost(timeseriesBatchForV3Input, options)
         .then((request) => request(axios, basePath))
     },
   }
@@ -2256,8 +1711,6 @@ export class DataApi extends BaseAPI {
   /**
    * 注：此接口未在污水基础服务、污水领域服务、清洗算法使用，因此暂不做升级，若后续发现有使用，则可升级，否则可直接废弃
    * @summary 添加清洗数据信息 Add online processed data
-   * @param {string} [tenantId]
-   * @param {string} [debugHeaderSign]
    * @param {Array<TsDataInputOutput>} [tsDataInputOutput]
    * @param {*} [options] Override http request option.
    * @deprecated
@@ -2265,21 +1718,17 @@ export class DataApi extends BaseAPI {
    * @memberof DataApi
    */
   public apiDataAddOnlineProcessedDatasPost(
-    tenantId?: string,
-    debugHeaderSign?: string,
     tsDataInputOutput?: Array<TsDataInputOutput>,
     options?: AxiosRequestConfig,
   ) {
     return DataApiFp(this.configuration)
-      .apiDataAddOnlineProcessedDatasPost(tenantId, debugHeaderSign, tsDataInputOutput, options)
+      .apiDataAddOnlineProcessedDatasPost(tsDataInputOutput, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
   /**
    *
    * @summary 保存清洗数据
-   * @param {string} [tenantId]
-   * @param {string} [debugHeaderSign]
    * @param {Array<SaveOnlineProcessedData>} [saveOnlineProcessedData]
    * @param {*} [options] Override http request option.
    * @deprecated
@@ -2287,21 +1736,17 @@ export class DataApi extends BaseAPI {
    * @memberof DataApi
    */
   public apiDataAddOnlineSourceDatasPost(
-    tenantId?: string,
-    debugHeaderSign?: string,
     saveOnlineProcessedData?: Array<SaveOnlineProcessedData>,
     options?: AxiosRequestConfig,
   ) {
     return DataApiFp(this.configuration)
-      .apiDataAddOnlineSourceDatasPost(tenantId, debugHeaderSign, saveOnlineProcessedData, options)
+      .apiDataAddOnlineSourceDatasPost(saveOnlineProcessedData, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
   /**
    *
    * @summary 添加或更新清洗数据信息-目前仅提供给清洗算法使用，升级后改为调用Save接口
-   * @param {string} [tenantId]
-   * @param {string} [debugHeaderSign]
    * @param {AddOrUpdateOnlineDatasInput} [addOrUpdateOnlineDatasInput]
    * @param {*} [options] Override http request option.
    * @deprecated
@@ -2309,18 +1754,11 @@ export class DataApi extends BaseAPI {
    * @memberof DataApi
    */
   public apiDataAddOrUpdateOnlineProcessedDatasPost(
-    tenantId?: string,
-    debugHeaderSign?: string,
     addOrUpdateOnlineDatasInput?: AddOrUpdateOnlineDatasInput,
     options?: AxiosRequestConfig,
   ) {
     return DataApiFp(this.configuration)
-      .apiDataAddOrUpdateOnlineProcessedDatasPost(
-        tenantId,
-        debugHeaderSign,
-        addOrUpdateOnlineDatasInput,
-        options,
-      )
+      .apiDataAddOrUpdateOnlineProcessedDatasPost(addOrUpdateOnlineDatasInput, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -2328,22 +1766,18 @@ export class DataApi extends BaseAPI {
    *
    * @summary 缓存清洗数据和源数据
    * @param {string} [tenantId]
-   * @param {object} [absoluteExpirationRelativeToNow] 缓存的数据时间长度
-   * @param {object} [getTimeSpan] 每次新增的待缓存的时间范围，比如5分钟一条的数据就设置05:00
+   * @param {string} [absoluteExpirationRelativeToNow] 缓存的数据时间长度
+   * @param {string} [getTimeSpan] 每次新增的待缓存的时间范围，比如5分钟一条的数据就设置05:00
    * @param {string} [now] 补充指定时间的缓存数据，主要用于开发时期可写入任意时刻数据的测试，接口稳定后可删除
-   * @param {string} [tenantId2]
-   * @param {string} [debugHeaderSign]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof DataApi
    */
   public apiDataCacheTelemetryGet(
     tenantId?: string,
-    absoluteExpirationRelativeToNow?: object,
-    getTimeSpan?: object,
+    absoluteExpirationRelativeToNow?: string,
+    getTimeSpan?: string,
     now?: string,
-    tenantId2?: string,
-    debugHeaderSign?: string,
     options?: AxiosRequestConfig,
   ) {
     return DataApiFp(this.configuration)
@@ -2352,8 +1786,6 @@ export class DataApi extends BaseAPI {
         absoluteExpirationRelativeToNow,
         getTimeSpan,
         now,
-        tenantId2,
-        debugHeaderSign,
         options,
       )
       .then((request) => request(this.axios, this.basePath))
@@ -2362,8 +1794,6 @@ export class DataApi extends BaseAPI {
   /**
    * 关键字：清洗数据、数据查询  使用场景：通过时间范围、点位代码、清洗标签来获取清洗后数据。如果点位代码为空，则返回所有点位的清洗数据；如果清洗标签为空，则返回所有标签的清洗数据。数据将清洗的时间顺序排列。
    * @summary 清洗数据查询
-   * @param {string} [tenantId]
-   * @param {string} [debugHeaderSign]
    * @param {GetOnlineTsDataInput} [getOnlineTsDataInput]
    * @param {*} [options] Override http request option.
    * @deprecated
@@ -2371,39 +1801,25 @@ export class DataApi extends BaseAPI {
    * @memberof DataApi
    */
   public apiDataGetOnlineProcessedDatasByConditionsPost(
-    tenantId?: string,
-    debugHeaderSign?: string,
     getOnlineTsDataInput?: GetOnlineTsDataInput,
     options?: AxiosRequestConfig,
   ) {
     return DataApiFp(this.configuration)
-      .apiDataGetOnlineProcessedDatasByConditionsPost(
-        tenantId,
-        debugHeaderSign,
-        getOnlineTsDataInput,
-        options,
-      )
+      .apiDataGetOnlineProcessedDatasByConditionsPost(getOnlineTsDataInput, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
   /**
    * 获取缓存中的Opc配置信息，主要为了提高数据的查询效率，系统会在启动时把所有的配置信息加载到缓存中，后续会在opc心跳的接口用用到，频繁去查询opc配置
    * @summary [内部接口]获取reids中存储的opc相关表信息
-   * @param {string} [tenantId]
-   * @param {string} [debugHeaderSign]
    * @param {Array<string>} [requestBody]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof DataApi
    */
-  public apiDataGetOpcConfigDataPost(
-    tenantId?: string,
-    debugHeaderSign?: string,
-    requestBody?: Array<string>,
-    options?: AxiosRequestConfig,
-  ) {
+  public apiDataGetOpcConfigDataPost(requestBody?: Array<string>, options?: AxiosRequestConfig) {
     return DataApiFp(this.configuration)
-      .apiDataGetOpcConfigDataPost(tenantId, debugHeaderSign, requestBody, options)
+      .apiDataGetOpcConfigDataPost(requestBody, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -2414,9 +1830,7 @@ export class DataApi extends BaseAPI {
    * @param {boolean} [onlineProcessed]
    * @param {string} [beginTime]
    * @param {string} [endTime]
-   * @param {object} [timeSpan]
-   * @param {string} [tenantId2]
-   * @param {string} [debugHeaderSign]
+   * @param {string} [timeSpan]
    * @param {*} [options] Override http request option.
    * @deprecated
    * @throws {RequiredError}
@@ -2427,9 +1841,7 @@ export class DataApi extends BaseAPI {
     onlineProcessed?: boolean,
     beginTime?: string,
     endTime?: string,
-    timeSpan?: object,
-    tenantId2?: string,
-    debugHeaderSign?: string,
+    timeSpan?: string,
     options?: AxiosRequestConfig,
   ) {
     return DataApiFp(this.configuration)
@@ -2439,8 +1851,6 @@ export class DataApi extends BaseAPI {
         beginTime,
         endTime,
         timeSpan,
-        tenantId2,
-        debugHeaderSign,
         options,
       )
       .then((request) => request(this.axios, this.basePath))
@@ -2449,8 +1859,6 @@ export class DataApi extends BaseAPI {
   /**
    *
    * @summary 修改清洗数据-目前仅提供给清洗算法使用，升级后改为调用Save接口
-   * @param {string} [tenantId]
-   * @param {string} [debugHeaderSign]
    * @param {Array<ModifyOnlineProcessedDatasInput>} [modifyOnlineProcessedDatasInput]
    * @param {*} [options] Override http request option.
    * @deprecated
@@ -2458,26 +1866,17 @@ export class DataApi extends BaseAPI {
    * @memberof DataApi
    */
   public apiDataModifyOnlineProcessedDatasPost(
-    tenantId?: string,
-    debugHeaderSign?: string,
     modifyOnlineProcessedDatasInput?: Array<ModifyOnlineProcessedDatasInput>,
     options?: AxiosRequestConfig,
   ) {
     return DataApiFp(this.configuration)
-      .apiDataModifyOnlineProcessedDatasPost(
-        tenantId,
-        debugHeaderSign,
-        modifyOnlineProcessedDatasInput,
-        options,
-      )
+      .apiDataModifyOnlineProcessedDatasPost(modifyOnlineProcessedDatasInput, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
   /**
    * 关键字：数据清洗、  应用场景：保存清洗数据，由清洗算法调用。调用时，需要指定清洗的设备、清洗的点位(指标)、清洗的时间、清洗后的值、清洗的数据标签，清洗的时间格式为\'yyyy-MM-ddTHH:mm:sszzz\'。本接口中数据的Tag 为字符串格式，内部调用的数据同步接口仍为`/api/v1/iot/save-telemetry-data`， 而`/api/v1/iot/save-telemetry-data`接口已过时，后续会考虑废弃此接口或做版本升级。升级后，将不再支持字符串类型的Tag值，可以考虑改为数值类型（枚举）, 废弃后，考虑使用`/api/v3/iot/save-telemetry-data-batch` 来做数据同步。调用V3时，需要自行追加清洗指标标签、清洗之后的值的后缀，如原始指标为 Indicator_A，则清洗后的数据可保存为Indicator_A_CLEAN、清洗后的标签为 Indicator_A_TAG; 如果不做指标重命名，将覆盖指标Indicator_A的原始数据。对于调用V3接口保存清洗数据时，不强制使用\"_CLEAN\"和\"_TAG\"后缀，只需查询和录入是指标code保持一致即可。
    * @summary [内部接口]保存清洗数据到iot  注：此接口为升级后的保存清洗数据接口
-   * @param {string} [tenantId]
-   * @param {string} [debugHeaderSign]
    * @param {Array<SaveOnlineProcessedData>} [saveOnlineProcessedData]
    * @param {*} [options] Override http request option.
    * @deprecated
@@ -2485,68 +1884,51 @@ export class DataApi extends BaseAPI {
    * @memberof DataApi
    */
   public apiDataOnlineProcessedDatasSavePost(
-    tenantId?: string,
-    debugHeaderSign?: string,
     saveOnlineProcessedData?: Array<SaveOnlineProcessedData>,
     options?: AxiosRequestConfig,
   ) {
     return DataApiFp(this.configuration)
-      .apiDataOnlineProcessedDatasSavePost(
-        tenantId,
-        debugHeaderSign,
-        saveOnlineProcessedData,
-        options,
-      )
+      .apiDataOnlineProcessedDatasSavePost(saveOnlineProcessedData, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
   /**
-   * 关键字：缓存、最新数据  保存最新时刻的数据到Redis缓存中，数据不写入数据库，主要为了提高数据的查询效率。其中，redis 上的键为 `TenantId:DeviceCode|Indicator`, 暂不考虑对外开放，  redis上缓存的值的格式为{\"DeviceCode\":\"xxx\",\"Indicator\":\"xxx\",\"T\":123,\"V\":\"xxx\"}, 其中T为unix时间戳，V为对应最新的数据
-   * @summary [内部接口]保存实时数据到redis
-   * @param {string} [tenantId]
-   * @param {string} [debugHeaderSign]
+   * 关键字：缓存、最新数据 从Redis缓存中获取最新时刻的数据，主要为了提高数据的查询效率。其中，redis 上的键为 `TenantId:DeviceCode|Indicator`, 暂不考虑对外开放， redis上缓存的值的格式为{\"DeviceCode\":\"xxx\",\"Indicator\":\"xxx\",\"T\":123,\"V\":\"xxx\"}, 其中T为unix时间戳，V为对应最新的数据
+   * @summary [内部接口]从Redis中获取最新的实测数据
    * @param {RealTimeDataInput} [realTimeDataInput]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof DataApi
    */
   public apiDataRealTimeDataPost(
-    tenantId?: string,
-    debugHeaderSign?: string,
     realTimeDataInput?: RealTimeDataInput,
     options?: AxiosRequestConfig,
   ) {
     return DataApiFp(this.configuration)
-      .apiDataRealTimeDataPost(tenantId, debugHeaderSign, realTimeDataInput, options)
+      .apiDataRealTimeDataPost(realTimeDataInput, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
   /**
    * 向redis中缓存Opc配置，主要涉及3张表，OpcUaPubSubNotify、OpcUaPubSub 、OpcUaCommunication， 表的数据全量缓存。
    * @summary [内部接口]表名OpcUaPubSubNotify、OpcUaPubSub、OpcUaCommunication添加redis
-   * @param {string} [tenantId]
-   * @param {string} [debugHeaderSign]
    * @param {{ [key: string]: string; }} [requestBody]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof DataApi
    */
   public apiDataSetOpcConfigDataPost(
-    tenantId?: string,
-    debugHeaderSign?: string,
     requestBody?: { [key: string]: string },
     options?: AxiosRequestConfig,
   ) {
     return DataApiFp(this.configuration)
-      .apiDataSetOpcConfigDataPost(tenantId, debugHeaderSign, requestBody, options)
+      .apiDataSetOpcConfigDataPost(requestBody, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
   /**
    * 保存最新时刻的数据到Redis缓存中，数据不写入数据库，主要为了提高数据的查询效率。其中，redis 上的键为 `TenantId:DeviceCode|Indicator`, 暂不考虑对外开放，  redis上缓存的值的格式为{\"T\":123,\"V\":\"xxx\"}, 其中T为unix时间戳，V为对应最新的数据
    * @summary [内部接口]保存实测数据
-   * @param {string} [tenantId]
-   * @param {string} [debugHeaderSign]
    * @param {Array<SaveRealTimeData>} [saveRealTimeData]
    * @param {*} [options] Override http request option.
    * @deprecated
@@ -2554,21 +1936,17 @@ export class DataApi extends BaseAPI {
    * @memberof DataApi
    */
   public apiDataSetRealTimeDataBatchPost(
-    tenantId?: string,
-    debugHeaderSign?: string,
     saveRealTimeData?: Array<SaveRealTimeData>,
     options?: AxiosRequestConfig,
   ) {
     return DataApiFp(this.configuration)
-      .apiDataSetRealTimeDataBatchPost(tenantId, debugHeaderSign, saveRealTimeData, options)
+      .apiDataSetRealTimeDataBatchPost(saveRealTimeData, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
   /**
    * 保存最新时刻的数据到Redis缓存中，数据不写入数据库，主要为了提高数据的查询效率。其中，redis 上的键为 `TenantId:DeviceCode|Indicator`, 暂不考虑对外开放，  redis上缓存的值的格式为{\"T\":123,\"V\":\"xxx\"}, 其中T为unix时间戳，V为对应最新的数据
    * @summary [内部接口]保存实测数据
-   * @param {string} [tenantId]
-   * @param {string} [debugHeaderSign]
    * @param {SaveRealTimeData} [saveRealTimeData]
    * @param {*} [options] Override http request option.
    * @deprecated
@@ -2576,21 +1954,17 @@ export class DataApi extends BaseAPI {
    * @memberof DataApi
    */
   public apiDataSetRealTimeDataPost(
-    tenantId?: string,
-    debugHeaderSign?: string,
     saveRealTimeData?: SaveRealTimeData,
     options?: AxiosRequestConfig,
   ) {
     return DataApiFp(this.configuration)
-      .apiDataSetRealTimeDataPost(tenantId, debugHeaderSign, saveRealTimeData, options)
+      .apiDataSetRealTimeDataPost(saveRealTimeData, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
   /**
    *
    * @summary 修改最新的Tag
-   * @param {string} [tenantId]
-   * @param {string} [debugHeaderSign]
    * @param {Array<UpdateLatestTagInputV1>} [updateLatestTagInputV1]
    * @param {*} [options] Override http request option.
    * @deprecated
@@ -2598,21 +1972,17 @@ export class DataApi extends BaseAPI {
    * @memberof DataApi
    */
   public apiDataUpdateLatestTagPost(
-    tenantId?: string,
-    debugHeaderSign?: string,
     updateLatestTagInputV1?: Array<UpdateLatestTagInputV1>,
     options?: AxiosRequestConfig,
   ) {
     return DataApiFp(this.configuration)
-      .apiDataUpdateLatestTagPost(tenantId, debugHeaderSign, updateLatestTagInputV1, options)
+      .apiDataUpdateLatestTagPost(updateLatestTagInputV1, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
   /**
    *
    * @summary 更新清洗数据信息  注：升级后改为调用OnlineProcessedDatas/Save接口
-   * @param {string} [tenantId]
-   * @param {string} [debugHeaderSign]
    * @param {Array<TsDataInputOutput>} [tsDataInputOutput]
    * @param {*} [options] Override http request option.
    * @deprecated
@@ -2620,21 +1990,17 @@ export class DataApi extends BaseAPI {
    * @memberof DataApi
    */
   public apiDataUpdateOnlineProcessedDatasPost(
-    tenantId?: string,
-    debugHeaderSign?: string,
     tsDataInputOutput?: Array<TsDataInputOutput>,
     options?: AxiosRequestConfig,
   ) {
     return DataApiFp(this.configuration)
-      .apiDataUpdateOnlineProcessedDatasPost(tenantId, debugHeaderSign, tsDataInputOutput, options)
+      .apiDataUpdateOnlineProcessedDatasPost(tsDataInputOutput, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
   /**
    * 此接口主要用于兼容已有的污水项目，接口参数结构和返回数据结构增加了DeviceCode，PointCode改为Indicator，待前端和清洗算法都改为调用v3接口后，此接口便可废弃
    * @summary 获取清洗数据
-   * @param {string} [tenantId]
-   * @param {string} [debugHeaderSign]
    * @param {GetOnlineTsDataInputV2} [getOnlineTsDataInputV2]
    * @param {*} [options] Override http request option.
    * @deprecated
@@ -2642,18 +2008,11 @@ export class DataApi extends BaseAPI {
    * @memberof DataApi
    */
   public apiDataV2GetOnlineProcessedDatasByConditionsPost(
-    tenantId?: string,
-    debugHeaderSign?: string,
     getOnlineTsDataInputV2?: GetOnlineTsDataInputV2,
     options?: AxiosRequestConfig,
   ) {
     return DataApiFp(this.configuration)
-      .apiDataV2GetOnlineProcessedDatasByConditionsPost(
-        tenantId,
-        debugHeaderSign,
-        getOnlineTsDataInputV2,
-        options,
-      )
+      .apiDataV2GetOnlineProcessedDatasByConditionsPost(getOnlineTsDataInputV2, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -2664,9 +2023,7 @@ export class DataApi extends BaseAPI {
    * @param {boolean} [onlineProcessed]
    * @param {string} [beginTime]
    * @param {string} [endTime]
-   * @param {object} [timeSpan]
-   * @param {string} [tenantId2]
-   * @param {string} [debugHeaderSign]
+   * @param {string} [timeSpan]
    * @param {*} [options] Override http request option.
    * @deprecated
    * @throws {RequiredError}
@@ -2677,9 +2034,7 @@ export class DataApi extends BaseAPI {
     onlineProcessed?: boolean,
     beginTime?: string,
     endTime?: string,
-    timeSpan?: object,
-    tenantId2?: string,
-    debugHeaderSign?: string,
+    timeSpan?: string,
     options?: AxiosRequestConfig,
   ) {
     return DataApiFp(this.configuration)
@@ -2689,8 +2044,6 @@ export class DataApi extends BaseAPI {
         beginTime,
         endTime,
         timeSpan,
-        tenantId2,
-        debugHeaderSign,
         options,
       )
       .then((request) => request(this.axios, this.basePath))
@@ -2699,47 +2052,34 @@ export class DataApi extends BaseAPI {
   /**
    * 关键字：最新时刻、数据标签、所有指标  应用场景：更新设备的清洗数据标签，如果一个设备下有多个清洗点位，则在调用本接口进行更新时，会将所有点位的清洗标签统一更新为指定的值，更新时，只会更新后一个时刻的清洗标签值。
    * @summary 更新设备的数据清洗标签
-   * @param {string} [tenantId]
-   * @param {string} [debugHeaderSign]
    * @param {Array<UpdateLatestTagInput>} [updateLatestTagInput]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof DataApi
    */
   public apiDataV2UpdateLatestTagPost(
-    tenantId?: string,
-    debugHeaderSign?: string,
     updateLatestTagInput?: Array<UpdateLatestTagInput>,
     options?: AxiosRequestConfig,
   ) {
     return DataApiFp(this.configuration)
-      .apiDataV2UpdateLatestTagPost(tenantId, debugHeaderSign, updateLatestTagInput, options)
+      .apiDataV2UpdateLatestTagPost(updateLatestTagInput, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
   /**
    * 关键字：数据清洗、数据查询  应用场景：通过时间范围、清洗点位、指标来查询清洗后的数据。查询将根据指定的时间范围来查询IoT中的清洗数据，返回值的时间为字符串类型的数组，时间格式为标准的ISO格式时间串（\'yyyy-MM-ddTHH:mm:sszzz\'）,各个时刻的值按double类型数组返回，清洗的数据标签在Tag字段中返回，T、V、Tags 三个数据数组的长度将保持一致，三个数组下标相同的为一组数据。
    * @summary 查询清洗数据
-   * @param {string} [tenantId]
-   * @param {string} [debugHeaderSign]
    * @param {Array<TimeseriesBatchForV3Input>} [timeseriesBatchForV3Input]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof DataApi
    */
   public apiDataV3GetOnlineProcessedDatasByConditionsPost(
-    tenantId?: string,
-    debugHeaderSign?: string,
     timeseriesBatchForV3Input?: Array<TimeseriesBatchForV3Input>,
     options?: AxiosRequestConfig,
   ) {
     return DataApiFp(this.configuration)
-      .apiDataV3GetOnlineProcessedDatasByConditionsPost(
-        tenantId,
-        debugHeaderSign,
-        timeseriesBatchForV3Input,
-        options,
-      )
+      .apiDataV3GetOnlineProcessedDatasByConditionsPost(timeseriesBatchForV3Input, options)
       .then((request) => request(this.axios, this.basePath))
   }
 }
