@@ -12,19 +12,19 @@
  */
 
 /**
- *
+ * 设备指标
  * @export
  * @interface DeviceIndicator
  */
 export interface DeviceIndicator {
   /**
-   *
+   * 设备编码
    * @type {string}
    * @memberof DeviceIndicator
    */
   deviceCode?: string | null
   /**
-   *
+   * 指标代码
    * @type {string}
    * @memberof DeviceIndicator
    */

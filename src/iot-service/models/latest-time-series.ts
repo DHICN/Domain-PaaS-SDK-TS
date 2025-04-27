@@ -12,31 +12,31 @@
  */
 
 /**
- *
+ * 设备指标时序数据值
  * @export
  * @interface LatestTimeSeries
  */
 export interface LatestTimeSeries {
   /**
-   *
+   * 设备编码、设备名称
    * @type {string}
    * @memberof LatestTimeSeries
    */
   deviceCode: string
   /**
-   *
+   * 指标
    * @type {string}
    * @memberof LatestTimeSeries
    */
   indicator?: string | null
   /**
-   *
+   * 时间,字符串格式为\'yyyy-MM-ddTHH:mm:sszzz\'
    * @type {string}
    * @memberof LatestTimeSeries
    */
   t?: string | null
   /**
-   *
+   * 指标在T时刻对应的值
    * @type {string}
    * @memberof LatestTimeSeries
    */

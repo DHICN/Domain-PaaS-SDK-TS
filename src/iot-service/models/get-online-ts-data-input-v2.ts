@@ -16,31 +16,31 @@
 import { DeviceIndicator } from './device-indicator'
 
 /**
- *
+ * 在线数据查询
  * @export
  * @interface GetOnlineTsDataInputV2
  */
 export interface GetOnlineTsDataInputV2 {
   /**
-   * 开始时间 start time
+   * 开始时间
    * @type {string}
    * @memberof GetOnlineTsDataInputV2
    */
   startTime?: string
   /**
-   * 结束时间 end time
+   * 结束时间
    * @type {string}
    * @memberof GetOnlineTsDataInputV2
    */
   endTime?: string
   /**
-   * 设备指标信息 device code
+   * 设备指标信息
    * @type {Array<DeviceIndicator>}
    * @memberof GetOnlineTsDataInputV2
    */
   codes?: Array<DeviceIndicator> | null
   /**
-   * 数据清洗标签 clean tag
+   * 数据清洗标签
    * @type {string}
    * @memberof GetOnlineTsDataInputV2
    */

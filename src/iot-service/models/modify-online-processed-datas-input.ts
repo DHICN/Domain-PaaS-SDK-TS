@@ -18,31 +18,31 @@
  */
 export interface ModifyOnlineProcessedDatasInput {
   /**
-   * 时间 time
+   * 时间
    * @type {string}
    * @memberof ModifyOnlineProcessedDatasInput
    */
   time: string
   /**
-   * 在线点位代码 online point code
+   * 在线点位代码
    * @type {string}
    * @memberof ModifyOnlineProcessedDatasInput
    */
   pointCode: string
   /**
-   * 清洗后的值 cleaned value
+   * 清洗之后的数据值
    * @type {number}
    * @memberof ModifyOnlineProcessedDatasInput
    */
   value: number
   /**
-   * 清洗标签 clean tag
+   * 清洗之后的数据标签，反应数据情况，比如：数据缺失、超出范围等，具体依业务情况来定
    * @type {string}
    * @memberof ModifyOnlineProcessedDatasInput
    */
   tag?: string | null
   /**
-   * 租户ID tenant id
+   * 租户Id
    * @type {string}
    * @memberof ModifyOnlineProcessedDatasInput
    */

@@ -168,9 +168,8 @@ export const ControlDeviceApiFp = function (configuration?: Configuration) {
     async apiV1ControlDevicesDeleteAllPost(
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<boolean>> {
-      const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1ControlDevicesDeleteAllPost(
-        options,
-      )
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiV1ControlDevicesDeleteAllPost(options)
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**
