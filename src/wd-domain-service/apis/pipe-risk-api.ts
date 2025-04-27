@@ -2098,9 +2098,8 @@ export const PipeRiskApiFp = function (configuration?: Configuration) {
     ): Promise<
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<PipeRiskWeightOutput>>
     > {
-      const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1DomainWdPipeRiskWeightAllGet(
-        options,
-      )
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiV1DomainWdPipeRiskWeightAllGet(options)
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**

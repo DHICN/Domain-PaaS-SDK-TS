@@ -14,19 +14,19 @@
 /**
  *
  * @export
- * @interface UpdateLatestTagInput
+ * @interface UpdateLatestTagInputV1
  */
-export interface UpdateLatestTagInput {
+export interface UpdateLatestTagInputV1 {
   /**
-   * 设备编码、设备名
+   * 在线点位代码
    * @type {string}
-   * @memberof UpdateLatestTagInput
+   * @memberof UpdateLatestTagInputV1
    */
-  deviceCode?: string | null
+  pointCode?: string | null
   /**
    * 清洗标签
    * @type {string}
-   * @memberof UpdateLatestTagInput
+   * @memberof UpdateLatestTagInputV1
    */
   tag?: string | null
 }

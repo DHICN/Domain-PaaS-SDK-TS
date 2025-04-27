@@ -16,19 +16,19 @@
 import { LatestTimeSeries } from './latest-time-series'
 
 /**
- *
+ * 保存实测数据
  * @export
  * @interface SaveRealTimeData
  */
 export interface SaveRealTimeData {
   /**
-   *
+   * 租户Id
    * @type {string}
    * @memberof SaveRealTimeData
    */
   tenantId?: string
   /**
-   *
+   * 实时数据
    * @type {Array<LatestTimeSeries>}
    * @memberof SaveRealTimeData
    */

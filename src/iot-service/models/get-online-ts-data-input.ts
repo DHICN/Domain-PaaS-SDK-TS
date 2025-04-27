@@ -12,31 +12,31 @@
  */
 
 /**
- *
+ * 在线数据查询
  * @export
  * @interface GetOnlineTsDataInput
  */
 export interface GetOnlineTsDataInput {
   /**
-   * 开始时间 start time
+   * 开始时间
    * @type {string}
    * @memberof GetOnlineTsDataInput
    */
   startTime?: string
   /**
-   * 结束时间 end time
+   * 结束时间
    * @type {string}
    * @memberof GetOnlineTsDataInput
    */
   endTime?: string
   /**
-   * 在线点位代码或者模型点位代码 online point code or model node code
+   * 在线点位代码或者模型点位代码
    * @type {Array<string>}
    * @memberof GetOnlineTsDataInput
    */
   codes?: Array<string> | null
   /**
-   * 数据清洗标签 clean tag
+   * 数据清洗标签
    * @type {string}
    * @memberof GetOnlineTsDataInput
    */

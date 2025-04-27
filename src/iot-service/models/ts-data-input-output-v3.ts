@@ -12,7 +12,7 @@
  */
 
 /**
- *
+ * 时序数据输出
  * @export
  * @interface TsDataInputOutputV3
  */
@@ -42,7 +42,7 @@ export interface TsDataInputOutputV3 {
    */
   indicator?: string | null
   /**
-   * 清洗标签
+   * 清洗标签，数组的长度应当和时间、数值保持一致。T、V、Tags 三个数组下标相同的为一组数据。
    * @type {Array<string>}
    * @memberof TsDataInputOutputV3
    */

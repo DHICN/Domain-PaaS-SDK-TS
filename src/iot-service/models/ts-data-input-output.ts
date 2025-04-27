@@ -18,31 +18,31 @@
  */
 export interface TsDataInputOutput {
   /**
-   * 时间 time
+   * 时间
    * @type {string}
    * @memberof TsDataInputOutput
    */
   time?: string
   /**
-   * 在线点位代码或者模型点位代码 online point code or model node code
+   * 在线点位代码或者模型点位代码
    * @type {string}
    * @memberof TsDataInputOutput
    */
   pointCode: string
   /**
-   * 数值 value
+   * 时间点对应的数值
    * @type {number}
    * @memberof TsDataInputOutput
    */
   value?: number
   /**
-   * 数据清洗标签 clean tag
+   * 数据标签，反应数据的情况，如数据的质量、清洗的标记等，具体依业务而定
    * @type {string}
    * @memberof TsDataInputOutput
    */
   tag?: string | null
   /**
-   * 租户ID tenant id
+   * 租户Id
    * @type {string}
    * @memberof TsDataInputOutput
    */

@@ -18,31 +18,31 @@
  */
 export interface TimeseriesBatchForV3Input {
   /**
-   * 设备编码,若当前项目下Indicator有重复,设备编码必传
+   * 设备编码,若当前项目下Indicator有重复
    * @type {string}
    * @memberof TimeseriesBatchForV3Input
    */
   deviceCode?: string | null
   /**
-   * 指标 indicator
+   * 指标名称，如：ceshi_1_shuichang_flow
    * @type {string}
    * @memberof TimeseriesBatchForV3Input
    */
   indicator: string
   /**
-   * 查询开始时间 start time
+   * 查询开始时间
    * @type {string}
    * @memberof TimeseriesBatchForV3Input
    */
   startTs: string
   /**
-   * 查询结束时间 end time
+   * 查询结束时间
    * @type {string}
    * @memberof TimeseriesBatchForV3Input
    */
   endTs: string
   /**
-   * 排序方式，ASC (升序)，DESC (降序) sort order, ASC (ASCENDING) or DESC (DESCENDING);默认是降序DESC
+   * 排序方式，ASC (升序)，DESC (降序) 默认是降序DESC
    * @type {string}
    * @memberof TimeseriesBatchForV3Input
    */

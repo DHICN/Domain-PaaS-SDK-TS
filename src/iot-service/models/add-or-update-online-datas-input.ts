@@ -16,7 +16,7 @@
 import { TsDataInputOutput } from './ts-data-input-output'
 
 /**
- *
+ * 更新
  * @export
  * @interface AddOrUpdateOnlineDatasInput
  */
@@ -28,7 +28,7 @@ export interface AddOrUpdateOnlineDatasInput {
    */
   operType?: AddOrUpdateOnlineDatasInputOperTypeEnum
   /**
-   * 更新或新增的数据 data to be added or updated
+   * 要保存的数据
    * @type {Array<TsDataInputOutput>}
    * @memberof AddOrUpdateOnlineDatasInput
    */
