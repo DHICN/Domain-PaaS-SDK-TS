@@ -539,8 +539,9 @@ export const TenantManagerApiFp = function (configuration?: Configuration) {
     async apiAppTenantManagerRefreshTenantGet(
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
-      const localVarAxiosArgs =
-        await localVarAxiosParamCreator.apiAppTenantManagerRefreshTenantGet(options)
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiAppTenantManagerRefreshTenantGet(
+        options,
+      )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**
@@ -554,8 +555,9 @@ export const TenantManagerApiFp = function (configuration?: Configuration) {
     ): Promise<
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<GuidStringKeyValue>>
     > {
-      const localVarAxiosArgs =
-        await localVarAxiosParamCreator.apiAppTenantManagerSystemsGet(options)
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiAppTenantManagerSystemsGet(
+        options,
+      )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**

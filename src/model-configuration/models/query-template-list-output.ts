@@ -18,35 +18,47 @@
  */
 export interface QueryTemplateListOutput {
   /**
-   * 模板文件ID template file Id
+   * 模板文件ID
    * @type {string}
    * @memberof QueryTemplateListOutput
    */
   id?: string
   /**
-   * 模板文件名称 template file name
+   * 模板的名称，一般来说为通俗易懂的备注名
+   * @type {string}
+   * @memberof QueryTemplateListOutput
+   */
+  templateName?: string | null
+  /**
+   * 模板文件名称
    * @type {string}
    * @memberof QueryTemplateListOutput
    */
   fileName?: string | null
   /**
-   * 是否可用于创建模板方案 if it can be used to create template scenario
+   * 是否可用于创建模板方案
    * @type {boolean}
    * @memberof QueryTemplateListOutput
    */
   enable?: boolean
   /**
-   * 模板文件备注 template file remark
+   * 模板文件备注
    * @type {string}
    * @memberof QueryTemplateListOutput
    */
   remark?: string | null
   /**
-   * 模板文件版本 template file version
+   * 模板文件版本
    * @type {number}
    * @memberof QueryTemplateListOutput
    */
   version?: number
+  /**
+   * 对应的服务版本
+   * @type {string}
+   * @memberof QueryTemplateListOutput
+   */
+  operAppId?: string | null
   /**
    * 库类型
    * @type {string}
@@ -65,4 +77,10 @@ export interface QueryTemplateListOutput {
    * @memberof QueryTemplateListOutput
    */
   modelType?: string | null
+  /**
+   * minio上的路径
+   * @type {string}
+   * @memberof QueryTemplateListOutput
+   */
+  filePath?: string | null
 }
