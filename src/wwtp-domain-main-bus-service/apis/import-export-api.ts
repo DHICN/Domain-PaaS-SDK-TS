@@ -151,8 +151,9 @@ export const ImportExportApiFp = function (configuration?: Configuration) {
     async apiV2ConfigExportConfigExcelGet(
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
-      const localVarAxiosArgs =
-        await localVarAxiosParamCreator.apiV2ConfigExportConfigExcelGet(options)
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiV2ConfigExportConfigExcelGet(
+        options,
+      )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**

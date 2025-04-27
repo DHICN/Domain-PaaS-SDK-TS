@@ -736,8 +736,9 @@ export const NetRequestApiFp = function (configuration?: Configuration) {
     ): Promise<
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<DeviceIndicatorOutput>>
     > {
-      const localVarAxiosArgs =
-        await localVarAxiosParamCreator.apiAppNetRequestDeviceIndicatorsGet(options)
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiAppNetRequestDeviceIndicatorsGet(
+        options,
+      )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**

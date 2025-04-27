@@ -1482,8 +1482,9 @@ export const OpcuaApiFp = function (configuration?: Configuration) {
     async apiAppOpcuaALLSubscriptionPut(
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
-      const localVarAxiosArgs =
-        await localVarAxiosParamCreator.apiAppOpcuaALLSubscriptionPut(options)
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiAppOpcuaALLSubscriptionPut(
+        options,
+      )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**
@@ -1592,8 +1593,9 @@ export const OpcuaApiFp = function (configuration?: Configuration) {
     async apiV1OpcUaAddPubSubRedisPost(
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<boolean>> {
-      const localVarAxiosArgs =
-        await localVarAxiosParamCreator.apiV1OpcUaAddPubSubRedisPost(options)
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1OpcUaAddPubSubRedisPost(
+        options,
+      )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**
@@ -1673,8 +1675,9 @@ export const OpcuaApiFp = function (configuration?: Configuration) {
     async apiV1OpcUaExportOpcuaConfigPost(
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
-      const localVarAxiosArgs =
-        await localVarAxiosParamCreator.apiV1OpcUaExportOpcuaConfigPost(options)
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1OpcUaExportOpcuaConfigPost(
+        options,
+      )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**
@@ -2032,8 +2035,9 @@ export const OpcuaApiFp = function (configuration?: Configuration) {
     ): Promise<
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<OpcUaComAssemblyInfo>>
     > {
-      const localVarAxiosArgs =
-        await localVarAxiosParamCreator.apiV2OpcUaQueryCommunicationPost(options)
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiV2OpcUaQueryCommunicationPost(
+        options,
+      )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
   }

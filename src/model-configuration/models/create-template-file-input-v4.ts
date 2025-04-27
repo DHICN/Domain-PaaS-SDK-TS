@@ -58,6 +58,12 @@ export interface CreateTemplateFileInputV4 {
    */
   modelType: ModelTypeEnum
   /**
+   * 模型文件名称，用于区分由同一个文件多次转为模型文件的情况
+   * @type {string}
+   * @memberof CreateTemplateFileInputV4
+   */
+  templateName?: string | null
+  /**
    * 模型操作版本
    * @type {string}
    * @memberof CreateTemplateFileInputV4

@@ -1142,8 +1142,9 @@ export const CodeConfigApiFp = function (configuration?: Configuration) {
         basePath?: string,
       ) => AxiosPromise<Array<OnlinePointConfigInputOutput>>
     > {
-      const localVarAxiosArgs =
-        await localVarAxiosParamCreator.apiCodeConfigGetAllOnlinePointsGet(options)
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiCodeConfigGetAllOnlinePointsGet(
+        options,
+      )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**

@@ -347,8 +347,9 @@ export const ToxicityMonitorApiFp = function (configuration?: Configuration) {
     async apiV2ToxicityMonitorRealTimeGet(
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<RealTimeOutput>>> {
-      const localVarAxiosArgs =
-        await localVarAxiosParamCreator.apiV2ToxicityMonitorRealTimeGet(options)
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiV2ToxicityMonitorRealTimeGet(
+        options,
+      )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
   }

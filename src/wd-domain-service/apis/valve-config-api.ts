@@ -136,8 +136,9 @@ export const ValveConfigApiFp = function (configuration?: Configuration) {
     async apiV1DomainWdConfigValveAllGet(
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<GisValveInfo>>> {
-      const localVarAxiosArgs =
-        await localVarAxiosParamCreator.apiV1DomainWdConfigValveAllGet(options)
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1DomainWdConfigValveAllGet(
+        options,
+      )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**

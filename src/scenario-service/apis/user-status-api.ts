@@ -98,8 +98,9 @@ export const UserStatusApiFp = function (configuration?: Configuration) {
         basePath?: string,
       ) => AxiosPromise<Array<OrganizationWithUserStatusInfo>>
     > {
-      const localVarAxiosArgs =
-        await localVarAxiosParamCreator.apiAppUsersMnangerStatusGetAllGet(options)
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiAppUsersMnangerStatusGetAllGet(
+        options,
+      )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
   }
