@@ -170,6 +170,7 @@ export const FileApiAxiosParamCreator = function (configuration?: Configuration)
      * @param {number} [totalSize] 总的文件大小 如：11235342
      * @param {string} [identifer] 文件ID，同一个文件的所有文件块具有相同的ID ，如：87cbffa6-9202-7859-8042-c031258f15a3
      * @param {string} [fileName] 文件名称 如：Model_BYJC_YS.zip
+     * @param {any} [file] 文件块
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -180,6 +181,7 @@ export const FileApiAxiosParamCreator = function (configuration?: Configuration)
       totalSize?: number,
       identifer?: string,
       fileName?: string,
+      file?: any,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
       const localVarPath = `/api/v1/model-configuration/file-manager/upload-file`
@@ -217,6 +219,10 @@ export const FileApiAxiosParamCreator = function (configuration?: Configuration)
 
       if (fileName !== undefined) {
         localVarFormParams.append('FileName', fileName as any)
+      }
+
+      if (file !== undefined) {
+        localVarFormParams.append('File', file as any)
       }
 
       localVarHeaderParameter['Content-Type'] = 'multipart/form-data'
@@ -300,6 +306,7 @@ export const FileApiFp = function (configuration?: Configuration) {
      * @param {number} [totalSize] 总的文件大小 如：11235342
      * @param {string} [identifer] 文件ID，同一个文件的所有文件块具有相同的ID ，如：87cbffa6-9202-7859-8042-c031258f15a3
      * @param {string} [fileName] 文件名称 如：Model_BYJC_YS.zip
+     * @param {any} [file] 文件块
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -310,6 +317,7 @@ export const FileApiFp = function (configuration?: Configuration) {
       totalSize?: number,
       identifer?: string,
       fileName?: string,
+      file?: any,
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UploadFileOutput>> {
       const localVarAxiosArgs =
@@ -320,6 +328,7 @@ export const FileApiFp = function (configuration?: Configuration) {
           totalSize,
           identifer,
           fileName,
+          file,
           options,
         )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
@@ -388,6 +397,7 @@ export const FileApiFactory = function (
      * @param {number} [totalSize] 总的文件大小 如：11235342
      * @param {string} [identifer] 文件ID，同一个文件的所有文件块具有相同的ID ，如：87cbffa6-9202-7859-8042-c031258f15a3
      * @param {string} [fileName] 文件名称 如：Model_BYJC_YS.zip
+     * @param {any} [file] 文件块
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -398,6 +408,7 @@ export const FileApiFactory = function (
       totalSize?: number,
       identifer?: string,
       fileName?: string,
+      file?: any,
       options?: any,
     ): AxiosPromise<UploadFileOutput> {
       return localVarFp
@@ -408,6 +419,7 @@ export const FileApiFactory = function (
           totalSize,
           identifer,
           fileName,
+          file,
           options,
         )
         .then((request) => request(axios, basePath))
@@ -475,6 +487,7 @@ export class FileApi extends BaseAPI {
    * @param {number} [totalSize] 总的文件大小 如：11235342
    * @param {string} [identifer] 文件ID，同一个文件的所有文件块具有相同的ID ，如：87cbffa6-9202-7859-8042-c031258f15a3
    * @param {string} [fileName] 文件名称 如：Model_BYJC_YS.zip
+   * @param {any} [file] 文件块
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof FileApi
@@ -486,6 +499,7 @@ export class FileApi extends BaseAPI {
     totalSize?: number,
     identifer?: string,
     fileName?: string,
+    file?: any,
     options?: AxiosRequestConfig,
   ) {
     return FileApiFp(this.configuration)
@@ -496,6 +510,7 @@ export class FileApi extends BaseAPI {
         totalSize,
         identifer,
         fileName,
+        file,
         options,
       )
       .then((request) => request(this.axios, this.basePath))
