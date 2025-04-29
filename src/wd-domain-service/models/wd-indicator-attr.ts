@@ -18,7 +18,7 @@
  */
 export interface WdIndicatorAttr {
   /**
-   * 指标
+   * 指标编码
    * @type {string}
    * @memberof WdIndicatorAttr
    */
@@ -36,9 +36,15 @@ export interface WdIndicatorAttr {
    */
   maxClean?: number
   /**
-   * 是否参与精度计算
+   * 该指标是否参与精度计算，获取精度参考接口：/api/v2/domain-wd/online/get-accuracy
    * @type {boolean}
    * @memberof WdIndicatorAttr
    */
   accuracyCheck?: boolean
+  /**
+   * 该指标是否参与报警判断，在新增报警日志接口中会进行报警判断：/api/v3/domain-wd/log/alarm/add
+   * @type {boolean}
+   * @memberof WdIndicatorAttr
+   */
+  alarmCheck?: boolean
 }
