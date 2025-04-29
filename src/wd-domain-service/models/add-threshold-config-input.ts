@@ -18,7 +18,7 @@
  */
 export interface AddThresholdConfigInput {
   /**
-   * 阈值类型
+   * 1-Accuracy 2-AffectedPipe
    * @type {number}
    * @memberof AddThresholdConfigInput
    */
@@ -62,8 +62,8 @@ export interface AddThresholdConfigInput {
 }
 
 export const AddThresholdConfigInputThresholdTypeEnum = {
-  '0': 0 as number,
-  '1': 1 as number,
+  NUMBER_1: 1,
+  NUMBER_2: 2,
 } as const
 
 export type AddThresholdConfigInputThresholdTypeEnum =

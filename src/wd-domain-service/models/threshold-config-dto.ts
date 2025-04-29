@@ -18,7 +18,7 @@
  */
 export interface ThresholdConfigDto {
   /**
-   * 阈值类型
+   * 1-Accuracy 2-AffectedPipe
    * @type {number}
    * @memberof ThresholdConfigDto
    */
@@ -60,7 +60,7 @@ export interface ThresholdConfigDto {
    */
   remark?: string | null
   /**
-   *
+   * 阈值配置表的主键id
    * @type {string}
    * @memberof ThresholdConfigDto
    */
@@ -68,8 +68,8 @@ export interface ThresholdConfigDto {
 }
 
 export const ThresholdConfigDtoThresholdTypeEnum = {
-  '0': 0 as number,
-  '1': 1 as number,
+  NUMBER_1: 1,
+  NUMBER_2: 2,
 } as const
 
 export type ThresholdConfigDtoThresholdTypeEnum =
