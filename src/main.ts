@@ -6,6 +6,7 @@ export type AxiosResponseType = AxiosResponse
 
 export * as IdentityServiceApi from './identity-service/index'
 export * as ScenarioServiceApi from './scenario-service/index'
+export * as ScenarioCalculateApi from './scenario-calculate/index'
 export * as ModelConfigurationApi from './model-configuration/index'
 export * as ResultServiceApi from './result-service/index'
 export * as IoTServiceApi from './iot-service/index'

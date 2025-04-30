@@ -11,6 +11,7 @@ export default defineConfig({
         'sdk-helper': path.resolve(__dirname, 'src/sdk-helper.ts'),
         'identity-service': path.resolve(__dirname, 'src/identity-service/index.ts'),
         'scenario-service': path.resolve(__dirname, 'src/scenario-service/index.ts'),
+        'scenario-calculate': path.resolve(__dirname, 'src/scenario-calculate/index.ts'),
         'model-configuration': path.resolve(__dirname, 'src/model-configuration/index.ts'),
         'model-information': path.resolve(__dirname, 'src/model-information/index.ts'),
         'result-service': path.resolve(__dirname, 'src/result-service/index.ts'),
