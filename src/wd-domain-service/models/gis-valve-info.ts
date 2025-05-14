@@ -60,19 +60,19 @@ export interface GisValveInfo {
    */
   diameter?: number
   /**
-   * 管道号
+   * 模型管道id
    * @type {string}
    * @memberof GisValveInfo
    */
   pipeId?: string | null
   /**
-   * 位置
+   * 阀门位置
    * @type {string}
    * @memberof GisValveInfo
    */
   address?: string | null
   /**
-   * 能否关闭
+   * 能否关闭，默认为true，当为true时，能够参与阀门寻找，否则，在寻找时会过滤掉该阀门。
    * @type {boolean}
    * @memberof GisValveInfo
    */

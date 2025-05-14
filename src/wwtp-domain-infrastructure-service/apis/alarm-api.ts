@@ -704,9 +704,8 @@ export const AlarmApiFp = function (configuration?: Configuration) {
     ): Promise<
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<AlarmConfigInOut>>
     > {
-      const localVarAxiosArgs = await localVarAxiosParamCreator.apiAlarmGetAllAlarmConfigsGet(
-        options,
-      )
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiAlarmGetAllAlarmConfigsGet(options)
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**

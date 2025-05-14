@@ -37,7 +37,7 @@ export interface SavePipeBurstInfoInput {
    */
   scenarioId?: string
   /**
-   * 爆管事件列表
+   * 爆管或关阀事件列表，同一个事故下面可能会有多个事件，例如：一个爆管事故通常会包含一个爆管泄水事件和关阀事件
    * @type {Array<WdEventDetailInput>}
    * @memberof SavePipeBurstInfoInput
    */

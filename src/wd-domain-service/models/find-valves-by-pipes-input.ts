@@ -22,25 +22,25 @@ import { PipeValvesItem } from './pipe-valves-item'
  */
 export interface FindValvesByPipesInput {
   /**
-   * 方案Id
+   * 方案Id，如果默认值，则查找阀门时基于当前已启用的模板方案的数据进行查找，否则，基于方案关联的模板方案的数据进行查找
    * @type {string}
    * @memberof FindValvesByPipesInput
    */
   scenarioId?: string
   /**
-   * 未使用的阀门
+   * 未使用的阀门，指定后，在寻找阀门时会过滤掉列表中的阀门，通常用于二次阀门寻找，即第一次寻找得到阀门列表后，通过该字段设置一些过滤的阀门，再次寻找。
    * @type {Array<string>}
    * @memberof FindValvesByPipesInput
    */
   unuseValves?: Array<string> | null
   /**
-   * 爆管项
+   * 管道列表
    * @type {Array<PipeValvesItem>}
    * @memberof FindValvesByPipesInput
    */
   items?: Array<PipeValvesItem> | null
   /**
-   *
+   * 是否强制刷新缓存，默认为false，使用缓存获取模型点位信息，仅当调试时置true
    * @type {boolean}
    * @memberof FindValvesByPipesInput
    */

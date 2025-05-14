@@ -14,19 +14,19 @@
 /**
  *
  * @export
- * @interface GetValvesByPipeIdsInput
+ * @interface AddAlarmLogAsyncV3Input
  */
-export interface GetValvesByPipeIdsInput {
+export interface AddAlarmLogAsyncV3Input {
   /**
-   * 方案Id
+   * 起始时间
    * @type {string}
-   * @memberof GetValvesByPipeIdsInput
+   * @memberof AddAlarmLogAsyncV3Input
    */
-  scenarioId?: string
+  startTime?: string
   /**
-   * 模型管道id
-   * @type {Array<string>}
-   * @memberof GetValvesByPipeIdsInput
+   * 结束时间
+   * @type {string}
+   * @memberof AddAlarmLogAsyncV3Input
    */
-  pipeIds?: Array<string> | null
+  endTime?: string
 }
