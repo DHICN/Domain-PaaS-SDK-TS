@@ -14,19 +14,25 @@
 /**
  *
  * @export
- * @interface GetValvesByPipeIdsInput
+ * @interface SyncRepairEventResult
  */
-export interface GetValvesByPipeIdsInput {
+export interface SyncRepairEventResult {
   /**
-   * 方案Id
+   * 同步成功的数量
+   * @type {number}
+   * @memberof SyncRepairEventResult
+   */
+  successCount?: number
+  /**
+   * 同步失败的数量
+   * @type {number}
+   * @memberof SyncRepairEventResult
+   */
+  failedCount?: number
+  /**
+   * 错误消息
    * @type {string}
-   * @memberof GetValvesByPipeIdsInput
+   * @memberof SyncRepairEventResult
    */
-  scenarioId?: string
-  /**
-   * 模型管道id
-   * @type {Array<string>}
-   * @memberof GetValvesByPipeIdsInput
-   */
-  pipeIds?: Array<string> | null
+  failedMsg?: string | null
 }

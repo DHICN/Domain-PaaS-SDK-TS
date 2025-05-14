@@ -14,19 +14,19 @@
 /**
  *
  * @export
- * @interface GetValvesByPipeIdsInput
+ * @interface UpdateValveEnableStatusInput
  */
-export interface GetValvesByPipeIdsInput {
+export interface UpdateValveEnableStatusInput {
   /**
-   * 方案Id
+   * 阀门唯一编号，通常由第三方提供
    * @type {string}
-   * @memberof GetValvesByPipeIdsInput
+   * @memberof UpdateValveEnableStatusInput
    */
-  scenarioId?: string
+  gisId?: string | null
   /**
-   * 模型管道id
-   * @type {Array<string>}
-   * @memberof GetValvesByPipeIdsInput
+   * 阀门是否能够关闭，true：能关闭，false：不能关闭
+   * @type {boolean}
+   * @memberof UpdateValveEnableStatusInput
    */
-  pipeIds?: Array<string> | null
+  closeEnable?: boolean
 }

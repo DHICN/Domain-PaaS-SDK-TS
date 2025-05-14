@@ -31,12 +31,6 @@ import {
 // @ts-ignore
 import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } from '../base'
 // @ts-ignore
-import { CloseGisValveInfo } from '../models'
-// @ts-ignore
-import { FindBurstPipeValvesBatchInput } from '../models'
-// @ts-ignore
-import { FindBurstPipeValvesInput } from '../models'
-// @ts-ignore
 import { FindValvesByPipesInput } from '../models'
 // @ts-ignore
 import { FlushingBaseInfoDto } from '../models'
@@ -47,15 +41,15 @@ import { GetValvesByPipeIdsInput } from '../models'
 // @ts-ignore
 import { GisValveInfo } from '../models'
 // @ts-ignore
-import { RemoteServiceErrorResponse } from '../models'
-// @ts-ignore
-import { SaveCloseGisValveInput } from '../models'
-// @ts-ignore
 import { SavePipeBurstInfoInput } from '../models'
+// @ts-ignore
+import { SavePipeBurstInfoInputV2 } from '../models'
 // @ts-ignore
 import { SaveWqAccidentInfoInput } from '../models'
 // @ts-ignore
 import { SceneDetailInfo } from '../models'
+// @ts-ignore
+import { ValveDto } from '../models'
 /**
  * AccidentApi - axios parameter creator
  * @export
@@ -63,47 +57,7 @@ import { SceneDetailInfo } from '../models'
 export const AccidentApiAxiosParamCreator = function (configuration?: Configuration) {
   return {
     /**
-     *
-     * @summary 删除事故基本信息
-     * @param {string} [scenarioId]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    apiV1DomainWdAccidentBaseInfoDeleteGet: async (
-      scenarioId?: string,
-      options: AxiosRequestConfig = {},
-    ): Promise<RequestArgs> => {
-      const localVarPath = `/api/v1/domain-wd/accident/base-info/delete`
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
-      let baseOptions
-      if (configuration) {
-        baseOptions = configuration.baseOptions
-      }
-
-      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
-      const localVarHeaderParameter = {} as any
-      const localVarQueryParameter = {} as any
-
-      if (scenarioId !== undefined) {
-        localVarQueryParameter['scenarioId'] = scenarioId
-      }
-
-      setSearchParams(localVarUrlObj, localVarQueryParameter)
-      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      }
-
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      }
-    },
-    /**
-     *
+     * 关键词：      供水、事故  使用场景：      获取一个方案已编辑的事故信息，包括爆管关阀、日常关阀、水质污染事故  相关背景：      需要先对方案编辑后进行保存（参考接口：/api/v1/domain-wd/accident/burst-pipe/add或/api/v1/domain-wd/accident/wq-accident/add），才有返回值  输出：     如果没有值，则返回null
      * @summary 获取事故基本信息
      * @param {string} [scenarioId]
      * @param {*} [options] Override http request option.
@@ -125,6 +79,10 @@ export const AccidentApiAxiosParamCreator = function (configuration?: Configurat
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
 
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
       if (scenarioId !== undefined) {
         localVarQueryParameter['scenarioId'] = scenarioId
       }
@@ -143,8 +101,52 @@ export const AccidentApiAxiosParamCreator = function (configuration?: Configurat
       }
     },
     /**
-     *
-     * @summary 保存爆管事故信息
+     * 关键词：      供水、事故  使用场景：      获取一个方案已编辑的事故信息，包括爆管关阀、日常关阀、水质污染事故  相关背景：      需要先对方案编辑后进行保存（参考接口：/api/v1/domain-wd/accident/burst-pipe/add或/api/v1/domain-wd/accident/wq-accident/add），才有返回值  输出：     如果没有值，则返回null
+     * @summary 获取事故基本信息
+     * @param {string} [scenarioId]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1DomainWdAccidentBaseInfoGet_1: async (
+      scenarioId?: string,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/domain-wd/accident/base-info`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      if (scenarioId !== undefined) {
+        localVarQueryParameter['scenarioId'] = scenarioId
+      }
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     * 关键词：      供水、爆管关阀事故  使用场景：      保存编辑的爆管关阀事故信息  相关背景：      对于爆管或关阀事故，通常在编辑界面会指定时间范围，选择爆管管道，以及寻找需要关闭的阀门，并将这些信息保存起来并在计算时更新到模型中，在之后查看或编辑该方案时，再获取已编辑的内容。  输入：      对于爆管事故库下的方案，参数PipeBurstEvents应该包含两个事件，分别是EventType=0和EventType=1的事件，对于关阀库的方案，参数PipeBurstEvents仅包含EventType=1的事件即可      参数GisValveInfoList是由接口：/api/v1/domain-wd/accident/find-valves返回的阀门列表
+     * @summary 保存爆管关阀事故信息
      * @param {SavePipeBurstInfoInput} [savePipeBurstInfoInput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -164,6 +166,10 @@ export const AccidentApiAxiosParamCreator = function (configuration?: Configurat
       const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
@@ -186,17 +192,17 @@ export const AccidentApiAxiosParamCreator = function (configuration?: Configurat
       }
     },
     /**
-     *
-     * @summary 寻找爆管阀门（支持同一个事件发生多个爆管）
-     * @param {FindBurstPipeValvesBatchInput} [findBurstPipeValvesBatchInput]
+     * 关键词：      供水、爆管关阀事故  使用场景：      保存编辑的爆管关阀事故信息  相关背景：      对于爆管或关阀事故，通常在编辑界面会指定时间范围，选择爆管管道，以及寻找需要关闭的阀门，并将这些信息保存起来并在计算时更新到模型中，在之后查看或编辑该方案时，再获取已编辑的内容。  输入：      对于爆管事故库下的方案，参数PipeBurstEvents应该包含两个事件，分别是EventType=0和EventType=1的事件，对于关阀库的方案，参数PipeBurstEvents仅包含EventType=1的事件即可      参数GisValveInfoList是由接口：/api/v1/domain-wd/accident/find-valves返回的阀门列表
+     * @summary 保存爆管关阀事故信息
+     * @param {SavePipeBurstInfoInput} [savePipeBurstInfoInput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    apiV1DomainWdAccidentBurstPipeFindValvesPost: async (
-      findBurstPipeValvesBatchInput?: FindBurstPipeValvesBatchInput,
+    apiV1DomainWdAccidentBurstPipeAddPost_2: async (
+      savePipeBurstInfoInput?: SavePipeBurstInfoInput,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
-      const localVarPath = `/api/v1/domain-wd/accident/burst-pipe/find-valves`
+      const localVarPath = `/api/v1/domain-wd/accident/burst-pipe/add`
       // use dummy base URL string because the URL constructor only accepts absolute URLs.
       const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
       let baseOptions
@@ -207,6 +213,10 @@ export const AccidentApiAxiosParamCreator = function (configuration?: Configurat
       const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
@@ -218,7 +228,7 @@ export const AccidentApiAxiosParamCreator = function (configuration?: Configurat
         ...options.headers,
       }
       localVarRequestOptions.data = serializeDataIfNeeded(
-        findBurstPipeValvesBatchInput,
+        savePipeBurstInfoInput,
         localVarRequestOptions,
         configuration,
       )
@@ -229,216 +239,7 @@ export const AccidentApiAxiosParamCreator = function (configuration?: Configurat
       }
     },
     /**
-     *
-     * @summary 寻找爆管阀门
-     * @param {FindBurstPipeValvesInput} [findBurstPipeValvesInput]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    apiV1DomainWdAccidentBurstPipeValvesListPost: async (
-      findBurstPipeValvesInput?: FindBurstPipeValvesInput,
-      options: AxiosRequestConfig = {},
-    ): Promise<RequestArgs> => {
-      const localVarPath = `/api/v1/domain-wd/accident/burst-pipe/valves/list`
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
-      let baseOptions
-      if (configuration) {
-        baseOptions = configuration.baseOptions
-      }
-
-      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
-      const localVarHeaderParameter = {} as any
-      const localVarQueryParameter = {} as any
-
-      localVarHeaderParameter['Content-Type'] = 'application/json'
-
-      setSearchParams(localVarUrlObj, localVarQueryParameter)
-      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      }
-      localVarRequestOptions.data = serializeDataIfNeeded(
-        findBurstPipeValvesInput,
-        localVarRequestOptions,
-        configuration,
-      )
-
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      }
-    },
-    /**
-     *
-     * @summary 保存关阀信息
-     * @param {SaveCloseGisValveInput} [saveCloseGisValveInput]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    apiV1DomainWdAccidentCloseValveAddPost: async (
-      saveCloseGisValveInput?: SaveCloseGisValveInput,
-      options: AxiosRequestConfig = {},
-    ): Promise<RequestArgs> => {
-      const localVarPath = `/api/v1/domain-wd/accident/close-valve/add`
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
-      let baseOptions
-      if (configuration) {
-        baseOptions = configuration.baseOptions
-      }
-
-      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
-      const localVarHeaderParameter = {} as any
-      const localVarQueryParameter = {} as any
-
-      localVarHeaderParameter['Content-Type'] = 'application/json'
-
-      setSearchParams(localVarUrlObj, localVarQueryParameter)
-      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      }
-      localVarRequestOptions.data = serializeDataIfNeeded(
-        saveCloseGisValveInput,
-        localVarRequestOptions,
-        configuration,
-      )
-
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      }
-    },
-    /**
-     *
-     * @summary 根据方案id删除阀门
-     * @param {string} [scenarioId]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    apiV1DomainWdAccidentCloseValveDeleteByScenarioPost: async (
-      scenarioId?: string,
-      options: AxiosRequestConfig = {},
-    ): Promise<RequestArgs> => {
-      const localVarPath = `/api/v1/domain-wd/accident/close-valve/delete-by-scenario`
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
-      let baseOptions
-      if (configuration) {
-        baseOptions = configuration.baseOptions
-      }
-
-      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
-      const localVarHeaderParameter = {} as any
-      const localVarQueryParameter = {} as any
-
-      if (scenarioId !== undefined) {
-        localVarQueryParameter['scenarioId'] = scenarioId
-      }
-
-      setSearchParams(localVarUrlObj, localVarQueryParameter)
-      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      }
-
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      }
-    },
-    /**
-     *
-     * @summary 删除阀门
-     * @param {Array<string>} [requestBody]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    apiV1DomainWdAccidentCloseValveDeletePost: async (
-      requestBody?: Array<string>,
-      options: AxiosRequestConfig = {},
-    ): Promise<RequestArgs> => {
-      const localVarPath = `/api/v1/domain-wd/accident/close-valve/delete`
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
-      let baseOptions
-      if (configuration) {
-        baseOptions = configuration.baseOptions
-      }
-
-      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
-      const localVarHeaderParameter = {} as any
-      const localVarQueryParameter = {} as any
-
-      localVarHeaderParameter['Content-Type'] = 'application/json'
-
-      setSearchParams(localVarUrlObj, localVarQueryParameter)
-      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      }
-      localVarRequestOptions.data = serializeDataIfNeeded(
-        requestBody,
-        localVarRequestOptions,
-        configuration,
-      )
-
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      }
-    },
-    /**
-     *
-     * @summary 根据方案id 查询关阀信息
-     * @param {string} [scenarioId]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    apiV1DomainWdAccidentCloseValveListGet: async (
-      scenarioId?: string,
-      options: AxiosRequestConfig = {},
-    ): Promise<RequestArgs> => {
-      const localVarPath = `/api/v1/domain-wd/accident/close-valve/list`
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
-      let baseOptions
-      if (configuration) {
-        baseOptions = configuration.baseOptions
-      }
-
-      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
-      const localVarHeaderParameter = {} as any
-      const localVarQueryParameter = {} as any
-
-      if (scenarioId !== undefined) {
-        localVarQueryParameter['scenarioId'] = scenarioId
-      }
-
-      setSearchParams(localVarUrlObj, localVarQueryParameter)
-      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      }
-
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      }
-    },
-    /**
-     *
+     * 关键词：      供水、寻找阀门  使用场景：      主要用于在爆管关阀、日常关阀以及管道冲洗方案编辑中，通过地图点选一个或者多个管道，寻找需要关闭的阀门  相关背景：      阀门寻找结果的准确度取决于阀门导入时是否能准确关联到正确的管道上，因此阀门的坐标准确度直接影响到阀门寻找的准确性。
      * @summary 寻找指定一个或多个管段周围（包含自身）的阀门
      * @param {FindValvesByPipesInput} [findValvesByPipesInput]
      * @param {*} [options] Override http request option.
@@ -459,6 +260,10 @@ export const AccidentApiAxiosParamCreator = function (configuration?: Configurat
       const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
@@ -481,7 +286,54 @@ export const AccidentApiAxiosParamCreator = function (configuration?: Configurat
       }
     },
     /**
-     *
+     * 关键词：      供水、寻找阀门  使用场景：      主要用于在爆管关阀、日常关阀以及管道冲洗方案编辑中，通过地图点选一个或者多个管道，寻找需要关闭的阀门  相关背景：      阀门寻找结果的准确度取决于阀门导入时是否能准确关联到正确的管道上，因此阀门的坐标准确度直接影响到阀门寻找的准确性。
+     * @summary 寻找指定一个或多个管段周围（包含自身）的阀门
+     * @param {FindValvesByPipesInput} [findValvesByPipesInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1DomainWdAccidentFindValvesPost_3: async (
+      findValvesByPipesInput?: FindValvesByPipesInput,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/domain-wd/accident/find-valves`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        findValvesByPipesInput,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     * 关键词：      供水、管道冲洗  使用场景：      管道冲洗库下的方案编辑完成后，调用此接口保存编辑的管道冲洗信息  相关背景：      对于管道冲洗，通常会在地图上选择要冲洗的一段管道（由多个管道组成），通过在地图上标记两个节点，调用接口：/api/gis/v1/path-planning/shortest-path-info来获得节点之间的管道列表。      冲洗次数决定了模型执行管道冲洗模拟的次数  输入：      参数PipeBurstEvents需要设置一个EventType=1的关阀事件，Location字段保存管道信息。
      * @summary 保存管道冲洗基本信息
      * @param {FlushingBaseInfoInput} [flushingBaseInfoInput]
      * @param {*} [options] Override http request option.
@@ -502,6 +354,10 @@ export const AccidentApiAxiosParamCreator = function (configuration?: Configurat
       const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
@@ -524,7 +380,54 @@ export const AccidentApiAxiosParamCreator = function (configuration?: Configurat
       }
     },
     /**
-     *
+     * 关键词：      供水、管道冲洗  使用场景：      管道冲洗库下的方案编辑完成后，调用此接口保存编辑的管道冲洗信息  相关背景：      对于管道冲洗，通常会在地图上选择要冲洗的一段管道（由多个管道组成），通过在地图上标记两个节点，调用接口：/api/gis/v1/path-planning/shortest-path-info来获得节点之间的管道列表。      冲洗次数决定了模型执行管道冲洗模拟的次数  输入：      参数PipeBurstEvents需要设置一个EventType=1的关阀事件，Location字段保存管道信息。
+     * @summary 保存管道冲洗基本信息
+     * @param {FlushingBaseInfoInput} [flushingBaseInfoInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1DomainWdAccidentFlushingAddPost_4: async (
+      flushingBaseInfoInput?: FlushingBaseInfoInput,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/domain-wd/accident/flushing/add`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        flushingBaseInfoInput,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     * 关键词：      供水、管道冲洗  使用场景：        获取一个管道冲洗库下的方案已编辑的管道冲洗信息  相关背景：      需要先对方案编辑后进行保存（参考接口：/api/v1/domain-wd/accident/flushing/add），才有返回值  输出：     如果没有值，则返回null
      * @summary 获取管道冲洗基本信息
      * @param {string} [scenarioId]
      * @param {*} [options] Override http request option.
@@ -546,6 +449,10 @@ export const AccidentApiAxiosParamCreator = function (configuration?: Configurat
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
 
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
       if (scenarioId !== undefined) {
         localVarQueryParameter['scenarioId'] = scenarioId
       }
@@ -564,8 +471,52 @@ export const AccidentApiAxiosParamCreator = function (configuration?: Configurat
       }
     },
     /**
-     *
-     * @summary 获取阀门信息
+     * 关键词：      供水、管道冲洗  使用场景：        获取一个管道冲洗库下的方案已编辑的管道冲洗信息  相关背景：      需要先对方案编辑后进行保存（参考接口：/api/v1/domain-wd/accident/flushing/add），才有返回值  输出：     如果没有值，则返回null
+     * @summary 获取管道冲洗基本信息
+     * @param {string} [scenarioId]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1DomainWdAccidentFlushingBaseInfoGet_5: async (
+      scenarioId?: string,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/domain-wd/accident/flushing/base-info`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      if (scenarioId !== undefined) {
+        localVarQueryParameter['scenarioId'] = scenarioId
+      }
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     * 关键词：      供水、获取阀门  使用场景：      当需要知道管道关联了哪些阀门时，调用该接口
+     * @summary 根据模型管道id获取关联的阀门列表
      * @param {GetValvesByPipeIdsInput} [getValvesByPipeIdsInput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -585,6 +536,10 @@ export const AccidentApiAxiosParamCreator = function (configuration?: Configurat
       const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
@@ -607,17 +562,17 @@ export const AccidentApiAxiosParamCreator = function (configuration?: Configurat
       }
     },
     /**
-     *
-     * @summary 删除事故方案，包括事故基本信息和关联的阀门信息
-     * @param {string} [scenarioId]
+     * 关键词：      供水、获取阀门  使用场景：      当需要知道管道关联了哪些阀门时，调用该接口
+     * @summary 根据模型管道id获取关联的阀门列表
+     * @param {GetValvesByPipeIdsInput} [getValvesByPipeIdsInput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    apiV1DomainWdAccidentScenarioDeleteGet: async (
-      scenarioId?: string,
+    apiV1DomainWdAccidentPipeValvesListPost_6: async (
+      getValvesByPipeIdsInput?: GetValvesByPipeIdsInput,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
-      const localVarPath = `/api/v1/domain-wd/accident/scenario/delete`
+      const localVarPath = `/api/v1/domain-wd/accident/pipe/valves/list`
       // use dummy base URL string because the URL constructor only accepts absolute URLs.
       const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
       let baseOptions
@@ -625,13 +580,15 @@ export const AccidentApiAxiosParamCreator = function (configuration?: Configurat
         baseOptions = configuration.baseOptions
       }
 
-      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
 
-      if (scenarioId !== undefined) {
-        localVarQueryParameter['scenarioId'] = scenarioId
-      }
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
 
       setSearchParams(localVarUrlObj, localVarQueryParameter)
       let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
@@ -640,6 +597,11 @@ export const AccidentApiAxiosParamCreator = function (configuration?: Configurat
         ...headersFromBaseOptions,
         ...options.headers,
       }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        getValvesByPipeIdsInput,
+        localVarRequestOptions,
+        configuration,
+      )
 
       return {
         url: toPathString(localVarUrlObj),
@@ -647,7 +609,7 @@ export const AccidentApiAxiosParamCreator = function (configuration?: Configurat
       }
     },
     /**
-     *
+     * 关键词：      供水、水质事故  使用场景：      保存编辑的水质事故信息  相关背景：      对于水质事故，通常在编辑界面会指定时间范围，选择污染点，以及设置污染物浓度，并将这些信息保存起来并在计算时更新到模型中，在之后查看或编辑该方案时，再获取已编辑的内容。  输入：      对于水质追踪库下的方案，参数WQEvents应包含一个EventType=2的事件
      * @summary 保存水质事故信息
      * @param {SaveWqAccidentInfoInput} [saveWqAccidentInfoInput]
      * @param {*} [options] Override http request option.
@@ -668,6 +630,10 @@ export const AccidentApiAxiosParamCreator = function (configuration?: Configurat
       const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
@@ -690,8 +656,149 @@ export const AccidentApiAxiosParamCreator = function (configuration?: Configurat
       }
     },
     /**
-     *
-     * @summary 根据方案id 查询关阀信息
+     * 关键词：      供水、水质事故  使用场景：      保存编辑的水质事故信息  相关背景：      对于水质事故，通常在编辑界面会指定时间范围，选择污染点，以及设置污染物浓度，并将这些信息保存起来并在计算时更新到模型中，在之后查看或编辑该方案时，再获取已编辑的内容。  输入：      对于水质追踪库下的方案，参数WQEvents应包含一个EventType=2的事件
+     * @summary 保存水质事故信息
+     * @param {SaveWqAccidentInfoInput} [saveWqAccidentInfoInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1DomainWdAccidentWqAccidentAddPost_7: async (
+      saveWqAccidentInfoInput?: SaveWqAccidentInfoInput,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/domain-wd/accident/wq-accident/add`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        saveWqAccidentInfoInput,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     * 关键词：      供水、爆管关阀事故  使用场景：      保存编辑的爆管关阀事故信息  相关背景：      对于爆管或关阀事故，通常在编辑界面会指定时间范围，选择爆管管道，以及寻找需要关闭的阀门，并将这些信息保存起来并在计算时更新到模型中，在之后查看或编辑该方案时，再获取已编辑的内容。  输入：      对于爆管事故库下的方案，参数PipeBurstEvents应该包含两个事件，分别是EventType=0和EventType=1的事件，对于关阀库的方案，参数PipeBurstEvents仅包含EventType=1的事件即可      参数CloseValveList是由接口：/api/v2/domain-wd/accident/find-valves返回的阀门列表
+     * @summary 保存爆管关阀事故信息
+     * @param {SavePipeBurstInfoInputV2} [savePipeBurstInfoInputV2]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV2DomainWdAccidentBurstPipeAddPost: async (
+      savePipeBurstInfoInputV2?: SavePipeBurstInfoInputV2,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v2/domain-wd/accident/burst-pipe/add`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        savePipeBurstInfoInputV2,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     * 关键词：      供水、爆管关阀事故  使用场景：      保存编辑的爆管关阀事故信息  相关背景：      对于爆管或关阀事故，通常在编辑界面会指定时间范围，选择爆管管道，以及寻找需要关闭的阀门，并将这些信息保存起来并在计算时更新到模型中，在之后查看或编辑该方案时，再获取已编辑的内容。  输入：      对于爆管事故库下的方案，参数PipeBurstEvents应该包含两个事件，分别是EventType=0和EventType=1的事件，对于关阀库的方案，参数PipeBurstEvents仅包含EventType=1的事件即可      参数CloseValveList是由接口：/api/v2/domain-wd/accident/find-valves返回的阀门列表
+     * @summary 保存爆管关阀事故信息
+     * @param {SavePipeBurstInfoInputV2} [savePipeBurstInfoInputV2]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV2DomainWdAccidentBurstPipeAddPost_8: async (
+      savePipeBurstInfoInputV2?: SavePipeBurstInfoInputV2,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v2/domain-wd/accident/burst-pipe/add`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        savePipeBurstInfoInputV2,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     * 关键词：      供水、寻找阀门  使用场景：      通常用于获取方案已编辑保存好的关阀列表  相关背景：      只有在方案进行的关阀寻找（参考接口：/api/v2/domain-wd/accident/burst-pipe/find-valves）      和事件信息保存后（参考接口：/api/v1/domain-wd/accident/burst-pipe/add或/api/v2/domain-wd/accident/flushing/add），才能获取到数据。
+     * @summary 根据方案id查询关阀信息
      * @param {string} [scenarioId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -712,6 +819,10 @@ export const AccidentApiAxiosParamCreator = function (configuration?: Configurat
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
 
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
       if (scenarioId !== undefined) {
         localVarQueryParameter['scenarioId'] = scenarioId
       }
@@ -729,6 +840,144 @@ export const AccidentApiAxiosParamCreator = function (configuration?: Configurat
         options: localVarRequestOptions,
       }
     },
+    /**
+     * 关键词：      供水、寻找阀门  使用场景：      通常用于获取方案已编辑保存好的关阀列表  相关背景：      只有在方案进行的关阀寻找（参考接口：/api/v2/domain-wd/accident/burst-pipe/find-valves）      和事件信息保存后（参考接口：/api/v1/domain-wd/accident/burst-pipe/add或/api/v2/domain-wd/accident/flushing/add），才能获取到数据。
+     * @summary 根据方案id查询关阀信息
+     * @param {string} [scenarioId]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV2DomainWdAccidentCloseValveListGet_9: async (
+      scenarioId?: string,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v2/domain-wd/accident/close-valve/list`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      if (scenarioId !== undefined) {
+        localVarQueryParameter['scenarioId'] = scenarioId
+      }
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     * 关键词：      供水、寻找阀门  使用场景：      主要用于在爆管关阀、日常关阀以及管道冲洗方案编辑中，通过地图点选一个或者多个管道，寻找需要关闭的阀门  相关背景：      V2接口的查询逻辑是基于模型中的阀门要素来进行查找的，V1则是通过shp文件导入的方式来自动建立阀门与管道的关联关系
+     * @summary 寻找指定一个或多个管段周围（包含自身）的阀门
+     * @param {FindValvesByPipesInput} [findValvesByPipesInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV2DomainWdAccidentFindValvesPost: async (
+      findValvesByPipesInput?: FindValvesByPipesInput,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v2/domain-wd/accident/find-valves`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        findValvesByPipesInput,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     * 关键词：      供水、寻找阀门  使用场景：      主要用于在爆管关阀、日常关阀以及管道冲洗方案编辑中，通过地图点选一个或者多个管道，寻找需要关闭的阀门  相关背景：      V2接口的查询逻辑是基于模型中的阀门要素来进行查找的，V1则是通过shp文件导入的方式来自动建立阀门与管道的关联关系
+     * @summary 寻找指定一个或多个管段周围（包含自身）的阀门
+     * @param {FindValvesByPipesInput} [findValvesByPipesInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV2DomainWdAccidentFindValvesPost_10: async (
+      findValvesByPipesInput?: FindValvesByPipesInput,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v2/domain-wd/accident/find-valves`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        findValvesByPipesInput,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
   }
 }
 
@@ -740,22 +989,7 @@ export const AccidentApiFp = function (configuration?: Configuration) {
   const localVarAxiosParamCreator = AccidentApiAxiosParamCreator(configuration)
   return {
     /**
-     *
-     * @summary 删除事故基本信息
-     * @param {string} [scenarioId]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    async apiV1DomainWdAccidentBaseInfoDeleteGet(
-      scenarioId?: string,
-      options?: AxiosRequestConfig,
-    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<boolean>> {
-      const localVarAxiosArgs =
-        await localVarAxiosParamCreator.apiV1DomainWdAccidentBaseInfoDeleteGet(scenarioId, options)
-      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
-    },
-    /**
-     *
+     * 关键词：      供水、事故  使用场景：      获取一个方案已编辑的事故信息，包括爆管关阀、日常关阀、水质污染事故  相关背景：      需要先对方案编辑后进行保存（参考接口：/api/v1/domain-wd/accident/burst-pipe/add或/api/v1/domain-wd/accident/wq-accident/add），才有返回值  输出：     如果没有值，则返回null
      * @summary 获取事故基本信息
      * @param {string} [scenarioId]
      * @param {*} [options] Override http request option.
@@ -772,8 +1006,25 @@ export const AccidentApiFp = function (configuration?: Configuration) {
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**
-     *
-     * @summary 保存爆管事故信息
+     * 关键词：      供水、事故  使用场景：      获取一个方案已编辑的事故信息，包括爆管关阀、日常关阀、水质污染事故  相关背景：      需要先对方案编辑后进行保存（参考接口：/api/v1/domain-wd/accident/burst-pipe/add或/api/v1/domain-wd/accident/wq-accident/add），才有返回值  输出：     如果没有值，则返回null
+     * @summary 获取事故基本信息
+     * @param {string} [scenarioId]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1DomainWdAccidentBaseInfoGet_1(
+      scenarioId?: string,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<SceneDetailInfo>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1DomainWdAccidentBaseInfoGet_1(
+        scenarioId,
+        options,
+      )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     * 关键词：      供水、爆管关阀事故  使用场景：      保存编辑的爆管关阀事故信息  相关背景：      对于爆管或关阀事故，通常在编辑界面会指定时间范围，选择爆管管道，以及寻找需要关闭的阀门，并将这些信息保存起来并在计算时更新到模型中，在之后查看或编辑该方案时，再获取已编辑的内容。  输入：      对于爆管事故库下的方案，参数PipeBurstEvents应该包含两个事件，分别是EventType=0和EventType=1的事件，对于关阀库的方案，参数PipeBurstEvents仅包含EventType=1的事件即可      参数GisValveInfoList是由接口：/api/v1/domain-wd/accident/find-valves返回的阀门列表
+     * @summary 保存爆管关阀事故信息
      * @param {SavePipeBurstInfoInput} [savePipeBurstInfoInput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -781,7 +1032,7 @@ export const AccidentApiFp = function (configuration?: Configuration) {
     async apiV1DomainWdAccidentBurstPipeAddPost(
       savePipeBurstInfoInput?: SavePipeBurstInfoInput,
       options?: AxiosRequestConfig,
-    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.apiV1DomainWdAccidentBurstPipeAddPost(
           savePipeBurstInfoInput,
@@ -790,114 +1041,25 @@ export const AccidentApiFp = function (configuration?: Configuration) {
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**
-     *
-     * @summary 寻找爆管阀门（支持同一个事件发生多个爆管）
-     * @param {FindBurstPipeValvesBatchInput} [findBurstPipeValvesBatchInput]
+     * 关键词：      供水、爆管关阀事故  使用场景：      保存编辑的爆管关阀事故信息  相关背景：      对于爆管或关阀事故，通常在编辑界面会指定时间范围，选择爆管管道，以及寻找需要关闭的阀门，并将这些信息保存起来并在计算时更新到模型中，在之后查看或编辑该方案时，再获取已编辑的内容。  输入：      对于爆管事故库下的方案，参数PipeBurstEvents应该包含两个事件，分别是EventType=0和EventType=1的事件，对于关阀库的方案，参数PipeBurstEvents仅包含EventType=1的事件即可      参数GisValveInfoList是由接口：/api/v1/domain-wd/accident/find-valves返回的阀门列表
+     * @summary 保存爆管关阀事故信息
+     * @param {SavePipeBurstInfoInput} [savePipeBurstInfoInput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async apiV1DomainWdAccidentBurstPipeFindValvesPost(
-      findBurstPipeValvesBatchInput?: FindBurstPipeValvesBatchInput,
+    async apiV1DomainWdAccidentBurstPipeAddPost_2(
+      savePipeBurstInfoInput?: SavePipeBurstInfoInput,
       options?: AxiosRequestConfig,
-    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<GisValveInfo>>> {
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
       const localVarAxiosArgs =
-        await localVarAxiosParamCreator.apiV1DomainWdAccidentBurstPipeFindValvesPost(
-          findBurstPipeValvesBatchInput,
+        await localVarAxiosParamCreator.apiV1DomainWdAccidentBurstPipeAddPost_2(
+          savePipeBurstInfoInput,
           options,
         )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**
-     *
-     * @summary 寻找爆管阀门
-     * @param {FindBurstPipeValvesInput} [findBurstPipeValvesInput]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    async apiV1DomainWdAccidentBurstPipeValvesListPost(
-      findBurstPipeValvesInput?: FindBurstPipeValvesInput,
-      options?: AxiosRequestConfig,
-    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<GisValveInfo>>> {
-      const localVarAxiosArgs =
-        await localVarAxiosParamCreator.apiV1DomainWdAccidentBurstPipeValvesListPost(
-          findBurstPipeValvesInput,
-          options,
-        )
-      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
-    },
-    /**
-     *
-     * @summary 保存关阀信息
-     * @param {SaveCloseGisValveInput} [saveCloseGisValveInput]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    async apiV1DomainWdAccidentCloseValveAddPost(
-      saveCloseGisValveInput?: SaveCloseGisValveInput,
-      options?: AxiosRequestConfig,
-    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<number>> {
-      const localVarAxiosArgs =
-        await localVarAxiosParamCreator.apiV1DomainWdAccidentCloseValveAddPost(
-          saveCloseGisValveInput,
-          options,
-        )
-      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
-    },
-    /**
-     *
-     * @summary 根据方案id删除阀门
-     * @param {string} [scenarioId]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    async apiV1DomainWdAccidentCloseValveDeleteByScenarioPost(
-      scenarioId?: string,
-      options?: AxiosRequestConfig,
-    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<boolean>> {
-      const localVarAxiosArgs =
-        await localVarAxiosParamCreator.apiV1DomainWdAccidentCloseValveDeleteByScenarioPost(
-          scenarioId,
-          options,
-        )
-      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
-    },
-    /**
-     *
-     * @summary 删除阀门
-     * @param {Array<string>} [requestBody]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    async apiV1DomainWdAccidentCloseValveDeletePost(
-      requestBody?: Array<string>,
-      options?: AxiosRequestConfig,
-    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<number>> {
-      const localVarAxiosArgs =
-        await localVarAxiosParamCreator.apiV1DomainWdAccidentCloseValveDeletePost(
-          requestBody,
-          options,
-        )
-      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
-    },
-    /**
-     *
-     * @summary 根据方案id 查询关阀信息
-     * @param {string} [scenarioId]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    async apiV1DomainWdAccidentCloseValveListGet(
-      scenarioId?: string,
-      options?: AxiosRequestConfig,
-    ): Promise<
-      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<CloseGisValveInfo>>
-    > {
-      const localVarAxiosArgs =
-        await localVarAxiosParamCreator.apiV1DomainWdAccidentCloseValveListGet(scenarioId, options)
-      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
-    },
-    /**
-     *
+     * 关键词：      供水、寻找阀门  使用场景：      主要用于在爆管关阀、日常关阀以及管道冲洗方案编辑中，通过地图点选一个或者多个管道，寻找需要关闭的阀门  相关背景：      阀门寻找结果的准确度取决于阀门导入时是否能准确关联到正确的管道上，因此阀门的坐标准确度直接影响到阀门寻找的准确性。
      * @summary 寻找指定一个或多个管段周围（包含自身）的阀门
      * @param {FindValvesByPipesInput} [findValvesByPipesInput]
      * @param {*} [options] Override http request option.
@@ -914,7 +1076,25 @@ export const AccidentApiFp = function (configuration?: Configuration) {
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**
-     *
+     * 关键词：      供水、寻找阀门  使用场景：      主要用于在爆管关阀、日常关阀以及管道冲洗方案编辑中，通过地图点选一个或者多个管道，寻找需要关闭的阀门  相关背景：      阀门寻找结果的准确度取决于阀门导入时是否能准确关联到正确的管道上，因此阀门的坐标准确度直接影响到阀门寻找的准确性。
+     * @summary 寻找指定一个或多个管段周围（包含自身）的阀门
+     * @param {FindValvesByPipesInput} [findValvesByPipesInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1DomainWdAccidentFindValvesPost_3(
+      findValvesByPipesInput?: FindValvesByPipesInput,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<GisValveInfo>>> {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiV1DomainWdAccidentFindValvesPost_3(
+          findValvesByPipesInput,
+          options,
+        )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     * 关键词：      供水、管道冲洗  使用场景：      管道冲洗库下的方案编辑完成后，调用此接口保存编辑的管道冲洗信息  相关背景：      对于管道冲洗，通常会在地图上选择要冲洗的一段管道（由多个管道组成），通过在地图上标记两个节点，调用接口：/api/gis/v1/path-planning/shortest-path-info来获得节点之间的管道列表。      冲洗次数决定了模型执行管道冲洗模拟的次数  输入：      参数PipeBurstEvents需要设置一个EventType=1的关阀事件，Location字段保存管道信息。
      * @summary 保存管道冲洗基本信息
      * @param {FlushingBaseInfoInput} [flushingBaseInfoInput]
      * @param {*} [options] Override http request option.
@@ -923,7 +1103,7 @@ export const AccidentApiFp = function (configuration?: Configuration) {
     async apiV1DomainWdAccidentFlushingAddPost(
       flushingBaseInfoInput?: FlushingBaseInfoInput,
       options?: AxiosRequestConfig,
-    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.apiV1DomainWdAccidentFlushingAddPost(
           flushingBaseInfoInput,
@@ -932,7 +1112,25 @@ export const AccidentApiFp = function (configuration?: Configuration) {
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**
-     *
+     * 关键词：      供水、管道冲洗  使用场景：      管道冲洗库下的方案编辑完成后，调用此接口保存编辑的管道冲洗信息  相关背景：      对于管道冲洗，通常会在地图上选择要冲洗的一段管道（由多个管道组成），通过在地图上标记两个节点，调用接口：/api/gis/v1/path-planning/shortest-path-info来获得节点之间的管道列表。      冲洗次数决定了模型执行管道冲洗模拟的次数  输入：      参数PipeBurstEvents需要设置一个EventType=1的关阀事件，Location字段保存管道信息。
+     * @summary 保存管道冲洗基本信息
+     * @param {FlushingBaseInfoInput} [flushingBaseInfoInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1DomainWdAccidentFlushingAddPost_4(
+      flushingBaseInfoInput?: FlushingBaseInfoInput,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiV1DomainWdAccidentFlushingAddPost_4(
+          flushingBaseInfoInput,
+          options,
+        )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     * 关键词：      供水、管道冲洗  使用场景：        获取一个管道冲洗库下的方案已编辑的管道冲洗信息  相关背景：      需要先对方案编辑后进行保存（参考接口：/api/v1/domain-wd/accident/flushing/add），才有返回值  输出：     如果没有值，则返回null
      * @summary 获取管道冲洗基本信息
      * @param {string} [scenarioId]
      * @param {*} [options] Override http request option.
@@ -950,8 +1148,26 @@ export const AccidentApiFp = function (configuration?: Configuration) {
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**
-     *
-     * @summary 获取阀门信息
+     * 关键词：      供水、管道冲洗  使用场景：        获取一个管道冲洗库下的方案已编辑的管道冲洗信息  相关背景：      需要先对方案编辑后进行保存（参考接口：/api/v1/domain-wd/accident/flushing/add），才有返回值  输出：     如果没有值，则返回null
+     * @summary 获取管道冲洗基本信息
+     * @param {string} [scenarioId]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1DomainWdAccidentFlushingBaseInfoGet_5(
+      scenarioId?: string,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FlushingBaseInfoDto>> {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiV1DomainWdAccidentFlushingBaseInfoGet_5(
+          scenarioId,
+          options,
+        )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     * 关键词：      供水、获取阀门  使用场景：      当需要知道管道关联了哪些阀门时，调用该接口
+     * @summary 根据模型管道id获取关联的阀门列表
      * @param {GetValvesByPipeIdsInput} [getValvesByPipeIdsInput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -968,22 +1184,25 @@ export const AccidentApiFp = function (configuration?: Configuration) {
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**
-     *
-     * @summary 删除事故方案，包括事故基本信息和关联的阀门信息
-     * @param {string} [scenarioId]
+     * 关键词：      供水、获取阀门  使用场景：      当需要知道管道关联了哪些阀门时，调用该接口
+     * @summary 根据模型管道id获取关联的阀门列表
+     * @param {GetValvesByPipeIdsInput} [getValvesByPipeIdsInput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async apiV1DomainWdAccidentScenarioDeleteGet(
-      scenarioId?: string,
+    async apiV1DomainWdAccidentPipeValvesListPost_6(
+      getValvesByPipeIdsInput?: GetValvesByPipeIdsInput,
       options?: AxiosRequestConfig,
-    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<GisValveInfo>>> {
       const localVarAxiosArgs =
-        await localVarAxiosParamCreator.apiV1DomainWdAccidentScenarioDeleteGet(scenarioId, options)
+        await localVarAxiosParamCreator.apiV1DomainWdAccidentPipeValvesListPost_6(
+          getValvesByPipeIdsInput,
+          options,
+        )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**
-     *
+     * 关键词：      供水、水质事故  使用场景：      保存编辑的水质事故信息  相关背景：      对于水质事故，通常在编辑界面会指定时间范围，选择污染点，以及设置污染物浓度，并将这些信息保存起来并在计算时更新到模型中，在之后查看或编辑该方案时，再获取已编辑的内容。  输入：      对于水质追踪库下的方案，参数WQEvents应包含一个EventType=2的事件
      * @summary 保存水质事故信息
      * @param {SaveWqAccidentInfoInput} [saveWqAccidentInfoInput]
      * @param {*} [options] Override http request option.
@@ -992,7 +1211,7 @@ export const AccidentApiFp = function (configuration?: Configuration) {
     async apiV1DomainWdAccidentWqAccidentAddPost(
       saveWqAccidentInfoInput?: SaveWqAccidentInfoInput,
       options?: AxiosRequestConfig,
-    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.apiV1DomainWdAccidentWqAccidentAddPost(
           saveWqAccidentInfoInput,
@@ -1001,8 +1220,62 @@ export const AccidentApiFp = function (configuration?: Configuration) {
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**
-     *
-     * @summary 根据方案id 查询关阀信息
+     * 关键词：      供水、水质事故  使用场景：      保存编辑的水质事故信息  相关背景：      对于水质事故，通常在编辑界面会指定时间范围，选择污染点，以及设置污染物浓度，并将这些信息保存起来并在计算时更新到模型中，在之后查看或编辑该方案时，再获取已编辑的内容。  输入：      对于水质追踪库下的方案，参数WQEvents应包含一个EventType=2的事件
+     * @summary 保存水质事故信息
+     * @param {SaveWqAccidentInfoInput} [saveWqAccidentInfoInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1DomainWdAccidentWqAccidentAddPost_7(
+      saveWqAccidentInfoInput?: SaveWqAccidentInfoInput,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiV1DomainWdAccidentWqAccidentAddPost_7(
+          saveWqAccidentInfoInput,
+          options,
+        )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     * 关键词：      供水、爆管关阀事故  使用场景：      保存编辑的爆管关阀事故信息  相关背景：      对于爆管或关阀事故，通常在编辑界面会指定时间范围，选择爆管管道，以及寻找需要关闭的阀门，并将这些信息保存起来并在计算时更新到模型中，在之后查看或编辑该方案时，再获取已编辑的内容。  输入：      对于爆管事故库下的方案，参数PipeBurstEvents应该包含两个事件，分别是EventType=0和EventType=1的事件，对于关阀库的方案，参数PipeBurstEvents仅包含EventType=1的事件即可      参数CloseValveList是由接口：/api/v2/domain-wd/accident/find-valves返回的阀门列表
+     * @summary 保存爆管关阀事故信息
+     * @param {SavePipeBurstInfoInputV2} [savePipeBurstInfoInputV2]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV2DomainWdAccidentBurstPipeAddPost(
+      savePipeBurstInfoInputV2?: SavePipeBurstInfoInputV2,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiV2DomainWdAccidentBurstPipeAddPost(
+          savePipeBurstInfoInputV2,
+          options,
+        )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     * 关键词：      供水、爆管关阀事故  使用场景：      保存编辑的爆管关阀事故信息  相关背景：      对于爆管或关阀事故，通常在编辑界面会指定时间范围，选择爆管管道，以及寻找需要关闭的阀门，并将这些信息保存起来并在计算时更新到模型中，在之后查看或编辑该方案时，再获取已编辑的内容。  输入：      对于爆管事故库下的方案，参数PipeBurstEvents应该包含两个事件，分别是EventType=0和EventType=1的事件，对于关阀库的方案，参数PipeBurstEvents仅包含EventType=1的事件即可      参数CloseValveList是由接口：/api/v2/domain-wd/accident/find-valves返回的阀门列表
+     * @summary 保存爆管关阀事故信息
+     * @param {SavePipeBurstInfoInputV2} [savePipeBurstInfoInputV2]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV2DomainWdAccidentBurstPipeAddPost_8(
+      savePipeBurstInfoInputV2?: SavePipeBurstInfoInputV2,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiV2DomainWdAccidentBurstPipeAddPost_8(
+          savePipeBurstInfoInputV2,
+          options,
+        )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     * 关键词：      供水、寻找阀门  使用场景：      通常用于获取方案已编辑保存好的关阀列表  相关背景：      只有在方案进行的关阀寻找（参考接口：/api/v2/domain-wd/accident/burst-pipe/find-valves）      和事件信息保存后（参考接口：/api/v1/domain-wd/accident/burst-pipe/add或/api/v2/domain-wd/accident/flushing/add），才能获取到数据。
+     * @summary 根据方案id查询关阀信息
      * @param {string} [scenarioId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -1010,11 +1283,62 @@ export const AccidentApiFp = function (configuration?: Configuration) {
     async apiV2DomainWdAccidentCloseValveListGet(
       scenarioId?: string,
       options?: AxiosRequestConfig,
-    ): Promise<
-      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<CloseGisValveInfo>>
-    > {
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<ValveDto>>> {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.apiV2DomainWdAccidentCloseValveListGet(scenarioId, options)
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     * 关键词：      供水、寻找阀门  使用场景：      通常用于获取方案已编辑保存好的关阀列表  相关背景：      只有在方案进行的关阀寻找（参考接口：/api/v2/domain-wd/accident/burst-pipe/find-valves）      和事件信息保存后（参考接口：/api/v1/domain-wd/accident/burst-pipe/add或/api/v2/domain-wd/accident/flushing/add），才能获取到数据。
+     * @summary 根据方案id查询关阀信息
+     * @param {string} [scenarioId]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV2DomainWdAccidentCloseValveListGet_9(
+      scenarioId?: string,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<ValveDto>>> {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiV2DomainWdAccidentCloseValveListGet_9(
+          scenarioId,
+          options,
+        )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     * 关键词：      供水、寻找阀门  使用场景：      主要用于在爆管关阀、日常关阀以及管道冲洗方案编辑中，通过地图点选一个或者多个管道，寻找需要关闭的阀门  相关背景：      V2接口的查询逻辑是基于模型中的阀门要素来进行查找的，V1则是通过shp文件导入的方式来自动建立阀门与管道的关联关系
+     * @summary 寻找指定一个或多个管段周围（包含自身）的阀门
+     * @param {FindValvesByPipesInput} [findValvesByPipesInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV2DomainWdAccidentFindValvesPost(
+      findValvesByPipesInput?: FindValvesByPipesInput,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<ValveDto>>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiV2DomainWdAccidentFindValvesPost(
+        findValvesByPipesInput,
+        options,
+      )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     * 关键词：      供水、寻找阀门  使用场景：      主要用于在爆管关阀、日常关阀以及管道冲洗方案编辑中，通过地图点选一个或者多个管道，寻找需要关闭的阀门  相关背景：      V2接口的查询逻辑是基于模型中的阀门要素来进行查找的，V1则是通过shp文件导入的方式来自动建立阀门与管道的关联关系
+     * @summary 寻找指定一个或多个管段周围（包含自身）的阀门
+     * @param {FindValvesByPipesInput} [findValvesByPipesInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV2DomainWdAccidentFindValvesPost_10(
+      findValvesByPipesInput?: FindValvesByPipesInput,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<ValveDto>>> {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiV2DomainWdAccidentFindValvesPost_10(
+          findValvesByPipesInput,
+          options,
+        )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
   }
@@ -1032,22 +1356,7 @@ export const AccidentApiFactory = function (
   const localVarFp = AccidentApiFp(configuration)
   return {
     /**
-     *
-     * @summary 删除事故基本信息
-     * @param {string} [scenarioId]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    apiV1DomainWdAccidentBaseInfoDeleteGet(
-      scenarioId?: string,
-      options?: any,
-    ): AxiosPromise<boolean> {
-      return localVarFp
-        .apiV1DomainWdAccidentBaseInfoDeleteGet(scenarioId, options)
-        .then((request) => request(axios, basePath))
-    },
-    /**
-     *
+     * 关键词：      供水、事故  使用场景：      获取一个方案已编辑的事故信息，包括爆管关阀、日常关阀、水质污染事故  相关背景：      需要先对方案编辑后进行保存（参考接口：/api/v1/domain-wd/accident/burst-pipe/add或/api/v1/domain-wd/accident/wq-accident/add），才有返回值  输出：     如果没有值，则返回null
      * @summary 获取事故基本信息
      * @param {string} [scenarioId]
      * @param {*} [options] Override http request option.
@@ -1062,8 +1371,23 @@ export const AccidentApiFactory = function (
         .then((request) => request(axios, basePath))
     },
     /**
-     *
-     * @summary 保存爆管事故信息
+     * 关键词：      供水、事故  使用场景：      获取一个方案已编辑的事故信息，包括爆管关阀、日常关阀、水质污染事故  相关背景：      需要先对方案编辑后进行保存（参考接口：/api/v1/domain-wd/accident/burst-pipe/add或/api/v1/domain-wd/accident/wq-accident/add），才有返回值  输出：     如果没有值，则返回null
+     * @summary 获取事故基本信息
+     * @param {string} [scenarioId]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1DomainWdAccidentBaseInfoGet_1(
+      scenarioId?: string,
+      options?: any,
+    ): AxiosPromise<SceneDetailInfo> {
+      return localVarFp
+        .apiV1DomainWdAccidentBaseInfoGet_1(scenarioId, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     * 关键词：      供水、爆管关阀事故  使用场景：      保存编辑的爆管关阀事故信息  相关背景：      对于爆管或关阀事故，通常在编辑界面会指定时间范围，选择爆管管道，以及寻找需要关闭的阀门，并将这些信息保存起来并在计算时更新到模型中，在之后查看或编辑该方案时，再获取已编辑的内容。  输入：      对于爆管事故库下的方案，参数PipeBurstEvents应该包含两个事件，分别是EventType=0和EventType=1的事件，对于关阀库的方案，参数PipeBurstEvents仅包含EventType=1的事件即可      参数GisValveInfoList是由接口：/api/v1/domain-wd/accident/find-valves返回的阀门列表
+     * @summary 保存爆管关阀事故信息
      * @param {SavePipeBurstInfoInput} [savePipeBurstInfoInput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -1071,103 +1395,28 @@ export const AccidentApiFactory = function (
     apiV1DomainWdAccidentBurstPipeAddPost(
       savePipeBurstInfoInput?: SavePipeBurstInfoInput,
       options?: any,
-    ): AxiosPromise<object> {
+    ): AxiosPromise<void> {
       return localVarFp
         .apiV1DomainWdAccidentBurstPipeAddPost(savePipeBurstInfoInput, options)
         .then((request) => request(axios, basePath))
     },
     /**
-     *
-     * @summary 寻找爆管阀门（支持同一个事件发生多个爆管）
-     * @param {FindBurstPipeValvesBatchInput} [findBurstPipeValvesBatchInput]
+     * 关键词：      供水、爆管关阀事故  使用场景：      保存编辑的爆管关阀事故信息  相关背景：      对于爆管或关阀事故，通常在编辑界面会指定时间范围，选择爆管管道，以及寻找需要关闭的阀门，并将这些信息保存起来并在计算时更新到模型中，在之后查看或编辑该方案时，再获取已编辑的内容。  输入：      对于爆管事故库下的方案，参数PipeBurstEvents应该包含两个事件，分别是EventType=0和EventType=1的事件，对于关阀库的方案，参数PipeBurstEvents仅包含EventType=1的事件即可      参数GisValveInfoList是由接口：/api/v1/domain-wd/accident/find-valves返回的阀门列表
+     * @summary 保存爆管关阀事故信息
+     * @param {SavePipeBurstInfoInput} [savePipeBurstInfoInput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    apiV1DomainWdAccidentBurstPipeFindValvesPost(
-      findBurstPipeValvesBatchInput?: FindBurstPipeValvesBatchInput,
+    apiV1DomainWdAccidentBurstPipeAddPost_2(
+      savePipeBurstInfoInput?: SavePipeBurstInfoInput,
       options?: any,
-    ): AxiosPromise<Array<GisValveInfo>> {
+    ): AxiosPromise<void> {
       return localVarFp
-        .apiV1DomainWdAccidentBurstPipeFindValvesPost(findBurstPipeValvesBatchInput, options)
+        .apiV1DomainWdAccidentBurstPipeAddPost_2(savePipeBurstInfoInput, options)
         .then((request) => request(axios, basePath))
     },
     /**
-     *
-     * @summary 寻找爆管阀门
-     * @param {FindBurstPipeValvesInput} [findBurstPipeValvesInput]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    apiV1DomainWdAccidentBurstPipeValvesListPost(
-      findBurstPipeValvesInput?: FindBurstPipeValvesInput,
-      options?: any,
-    ): AxiosPromise<Array<GisValveInfo>> {
-      return localVarFp
-        .apiV1DomainWdAccidentBurstPipeValvesListPost(findBurstPipeValvesInput, options)
-        .then((request) => request(axios, basePath))
-    },
-    /**
-     *
-     * @summary 保存关阀信息
-     * @param {SaveCloseGisValveInput} [saveCloseGisValveInput]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    apiV1DomainWdAccidentCloseValveAddPost(
-      saveCloseGisValveInput?: SaveCloseGisValveInput,
-      options?: any,
-    ): AxiosPromise<number> {
-      return localVarFp
-        .apiV1DomainWdAccidentCloseValveAddPost(saveCloseGisValveInput, options)
-        .then((request) => request(axios, basePath))
-    },
-    /**
-     *
-     * @summary 根据方案id删除阀门
-     * @param {string} [scenarioId]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    apiV1DomainWdAccidentCloseValveDeleteByScenarioPost(
-      scenarioId?: string,
-      options?: any,
-    ): AxiosPromise<boolean> {
-      return localVarFp
-        .apiV1DomainWdAccidentCloseValveDeleteByScenarioPost(scenarioId, options)
-        .then((request) => request(axios, basePath))
-    },
-    /**
-     *
-     * @summary 删除阀门
-     * @param {Array<string>} [requestBody]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    apiV1DomainWdAccidentCloseValveDeletePost(
-      requestBody?: Array<string>,
-      options?: any,
-    ): AxiosPromise<number> {
-      return localVarFp
-        .apiV1DomainWdAccidentCloseValveDeletePost(requestBody, options)
-        .then((request) => request(axios, basePath))
-    },
-    /**
-     *
-     * @summary 根据方案id 查询关阀信息
-     * @param {string} [scenarioId]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    apiV1DomainWdAccidentCloseValveListGet(
-      scenarioId?: string,
-      options?: any,
-    ): AxiosPromise<Array<CloseGisValveInfo>> {
-      return localVarFp
-        .apiV1DomainWdAccidentCloseValveListGet(scenarioId, options)
-        .then((request) => request(axios, basePath))
-    },
-    /**
-     *
+     * 关键词：      供水、寻找阀门  使用场景：      主要用于在爆管关阀、日常关阀以及管道冲洗方案编辑中，通过地图点选一个或者多个管道，寻找需要关闭的阀门  相关背景：      阀门寻找结果的准确度取决于阀门导入时是否能准确关联到正确的管道上，因此阀门的坐标准确度直接影响到阀门寻找的准确性。
      * @summary 寻找指定一个或多个管段周围（包含自身）的阀门
      * @param {FindValvesByPipesInput} [findValvesByPipesInput]
      * @param {*} [options] Override http request option.
@@ -1182,7 +1431,22 @@ export const AccidentApiFactory = function (
         .then((request) => request(axios, basePath))
     },
     /**
-     *
+     * 关键词：      供水、寻找阀门  使用场景：      主要用于在爆管关阀、日常关阀以及管道冲洗方案编辑中，通过地图点选一个或者多个管道，寻找需要关闭的阀门  相关背景：      阀门寻找结果的准确度取决于阀门导入时是否能准确关联到正确的管道上，因此阀门的坐标准确度直接影响到阀门寻找的准确性。
+     * @summary 寻找指定一个或多个管段周围（包含自身）的阀门
+     * @param {FindValvesByPipesInput} [findValvesByPipesInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1DomainWdAccidentFindValvesPost_3(
+      findValvesByPipesInput?: FindValvesByPipesInput,
+      options?: any,
+    ): AxiosPromise<Array<GisValveInfo>> {
+      return localVarFp
+        .apiV1DomainWdAccidentFindValvesPost_3(findValvesByPipesInput, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     * 关键词：      供水、管道冲洗  使用场景：      管道冲洗库下的方案编辑完成后，调用此接口保存编辑的管道冲洗信息  相关背景：      对于管道冲洗，通常会在地图上选择要冲洗的一段管道（由多个管道组成），通过在地图上标记两个节点，调用接口：/api/gis/v1/path-planning/shortest-path-info来获得节点之间的管道列表。      冲洗次数决定了模型执行管道冲洗模拟的次数  输入：      参数PipeBurstEvents需要设置一个EventType=1的关阀事件，Location字段保存管道信息。
      * @summary 保存管道冲洗基本信息
      * @param {FlushingBaseInfoInput} [flushingBaseInfoInput]
      * @param {*} [options] Override http request option.
@@ -1191,13 +1455,28 @@ export const AccidentApiFactory = function (
     apiV1DomainWdAccidentFlushingAddPost(
       flushingBaseInfoInput?: FlushingBaseInfoInput,
       options?: any,
-    ): AxiosPromise<object> {
+    ): AxiosPromise<void> {
       return localVarFp
         .apiV1DomainWdAccidentFlushingAddPost(flushingBaseInfoInput, options)
         .then((request) => request(axios, basePath))
     },
     /**
-     *
+     * 关键词：      供水、管道冲洗  使用场景：      管道冲洗库下的方案编辑完成后，调用此接口保存编辑的管道冲洗信息  相关背景：      对于管道冲洗，通常会在地图上选择要冲洗的一段管道（由多个管道组成），通过在地图上标记两个节点，调用接口：/api/gis/v1/path-planning/shortest-path-info来获得节点之间的管道列表。      冲洗次数决定了模型执行管道冲洗模拟的次数  输入：      参数PipeBurstEvents需要设置一个EventType=1的关阀事件，Location字段保存管道信息。
+     * @summary 保存管道冲洗基本信息
+     * @param {FlushingBaseInfoInput} [flushingBaseInfoInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1DomainWdAccidentFlushingAddPost_4(
+      flushingBaseInfoInput?: FlushingBaseInfoInput,
+      options?: any,
+    ): AxiosPromise<void> {
+      return localVarFp
+        .apiV1DomainWdAccidentFlushingAddPost_4(flushingBaseInfoInput, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     * 关键词：      供水、管道冲洗  使用场景：        获取一个管道冲洗库下的方案已编辑的管道冲洗信息  相关背景：      需要先对方案编辑后进行保存（参考接口：/api/v1/domain-wd/accident/flushing/add），才有返回值  输出：     如果没有值，则返回null
      * @summary 获取管道冲洗基本信息
      * @param {string} [scenarioId]
      * @param {*} [options] Override http request option.
@@ -1212,8 +1491,23 @@ export const AccidentApiFactory = function (
         .then((request) => request(axios, basePath))
     },
     /**
-     *
-     * @summary 获取阀门信息
+     * 关键词：      供水、管道冲洗  使用场景：        获取一个管道冲洗库下的方案已编辑的管道冲洗信息  相关背景：      需要先对方案编辑后进行保存（参考接口：/api/v1/domain-wd/accident/flushing/add），才有返回值  输出：     如果没有值，则返回null
+     * @summary 获取管道冲洗基本信息
+     * @param {string} [scenarioId]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1DomainWdAccidentFlushingBaseInfoGet_5(
+      scenarioId?: string,
+      options?: any,
+    ): AxiosPromise<FlushingBaseInfoDto> {
+      return localVarFp
+        .apiV1DomainWdAccidentFlushingBaseInfoGet_5(scenarioId, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     * 关键词：      供水、获取阀门  使用场景：      当需要知道管道关联了哪些阀门时，调用该接口
+     * @summary 根据模型管道id获取关联的阀门列表
      * @param {GetValvesByPipeIdsInput} [getValvesByPipeIdsInput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -1227,22 +1521,22 @@ export const AccidentApiFactory = function (
         .then((request) => request(axios, basePath))
     },
     /**
-     *
-     * @summary 删除事故方案，包括事故基本信息和关联的阀门信息
-     * @param {string} [scenarioId]
+     * 关键词：      供水、获取阀门  使用场景：      当需要知道管道关联了哪些阀门时，调用该接口
+     * @summary 根据模型管道id获取关联的阀门列表
+     * @param {GetValvesByPipeIdsInput} [getValvesByPipeIdsInput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    apiV1DomainWdAccidentScenarioDeleteGet(
-      scenarioId?: string,
+    apiV1DomainWdAccidentPipeValvesListPost_6(
+      getValvesByPipeIdsInput?: GetValvesByPipeIdsInput,
       options?: any,
-    ): AxiosPromise<object> {
+    ): AxiosPromise<Array<GisValveInfo>> {
       return localVarFp
-        .apiV1DomainWdAccidentScenarioDeleteGet(scenarioId, options)
+        .apiV1DomainWdAccidentPipeValvesListPost_6(getValvesByPipeIdsInput, options)
         .then((request) => request(axios, basePath))
     },
     /**
-     *
+     * 关键词：      供水、水质事故  使用场景：      保存编辑的水质事故信息  相关背景：      对于水质事故，通常在编辑界面会指定时间范围，选择污染点，以及设置污染物浓度，并将这些信息保存起来并在计算时更新到模型中，在之后查看或编辑该方案时，再获取已编辑的内容。  输入：      对于水质追踪库下的方案，参数WQEvents应包含一个EventType=2的事件
      * @summary 保存水质事故信息
      * @param {SaveWqAccidentInfoInput} [saveWqAccidentInfoInput]
      * @param {*} [options] Override http request option.
@@ -1251,14 +1545,59 @@ export const AccidentApiFactory = function (
     apiV1DomainWdAccidentWqAccidentAddPost(
       saveWqAccidentInfoInput?: SaveWqAccidentInfoInput,
       options?: any,
-    ): AxiosPromise<object> {
+    ): AxiosPromise<void> {
       return localVarFp
         .apiV1DomainWdAccidentWqAccidentAddPost(saveWqAccidentInfoInput, options)
         .then((request) => request(axios, basePath))
     },
     /**
-     *
-     * @summary 根据方案id 查询关阀信息
+     * 关键词：      供水、水质事故  使用场景：      保存编辑的水质事故信息  相关背景：      对于水质事故，通常在编辑界面会指定时间范围，选择污染点，以及设置污染物浓度，并将这些信息保存起来并在计算时更新到模型中，在之后查看或编辑该方案时，再获取已编辑的内容。  输入：      对于水质追踪库下的方案，参数WQEvents应包含一个EventType=2的事件
+     * @summary 保存水质事故信息
+     * @param {SaveWqAccidentInfoInput} [saveWqAccidentInfoInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1DomainWdAccidentWqAccidentAddPost_7(
+      saveWqAccidentInfoInput?: SaveWqAccidentInfoInput,
+      options?: any,
+    ): AxiosPromise<void> {
+      return localVarFp
+        .apiV1DomainWdAccidentWqAccidentAddPost_7(saveWqAccidentInfoInput, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     * 关键词：      供水、爆管关阀事故  使用场景：      保存编辑的爆管关阀事故信息  相关背景：      对于爆管或关阀事故，通常在编辑界面会指定时间范围，选择爆管管道，以及寻找需要关闭的阀门，并将这些信息保存起来并在计算时更新到模型中，在之后查看或编辑该方案时，再获取已编辑的内容。  输入：      对于爆管事故库下的方案，参数PipeBurstEvents应该包含两个事件，分别是EventType=0和EventType=1的事件，对于关阀库的方案，参数PipeBurstEvents仅包含EventType=1的事件即可      参数CloseValveList是由接口：/api/v2/domain-wd/accident/find-valves返回的阀门列表
+     * @summary 保存爆管关阀事故信息
+     * @param {SavePipeBurstInfoInputV2} [savePipeBurstInfoInputV2]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV2DomainWdAccidentBurstPipeAddPost(
+      savePipeBurstInfoInputV2?: SavePipeBurstInfoInputV2,
+      options?: any,
+    ): AxiosPromise<void> {
+      return localVarFp
+        .apiV2DomainWdAccidentBurstPipeAddPost(savePipeBurstInfoInputV2, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     * 关键词：      供水、爆管关阀事故  使用场景：      保存编辑的爆管关阀事故信息  相关背景：      对于爆管或关阀事故，通常在编辑界面会指定时间范围，选择爆管管道，以及寻找需要关闭的阀门，并将这些信息保存起来并在计算时更新到模型中，在之后查看或编辑该方案时，再获取已编辑的内容。  输入：      对于爆管事故库下的方案，参数PipeBurstEvents应该包含两个事件，分别是EventType=0和EventType=1的事件，对于关阀库的方案，参数PipeBurstEvents仅包含EventType=1的事件即可      参数CloseValveList是由接口：/api/v2/domain-wd/accident/find-valves返回的阀门列表
+     * @summary 保存爆管关阀事故信息
+     * @param {SavePipeBurstInfoInputV2} [savePipeBurstInfoInputV2]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV2DomainWdAccidentBurstPipeAddPost_8(
+      savePipeBurstInfoInputV2?: SavePipeBurstInfoInputV2,
+      options?: any,
+    ): AxiosPromise<void> {
+      return localVarFp
+        .apiV2DomainWdAccidentBurstPipeAddPost_8(savePipeBurstInfoInputV2, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     * 关键词：      供水、寻找阀门  使用场景：      通常用于获取方案已编辑保存好的关阀列表  相关背景：      只有在方案进行的关阀寻找（参考接口：/api/v2/domain-wd/accident/burst-pipe/find-valves）      和事件信息保存后（参考接口：/api/v1/domain-wd/accident/burst-pipe/add或/api/v2/domain-wd/accident/flushing/add），才能获取到数据。
+     * @summary 根据方案id查询关阀信息
      * @param {string} [scenarioId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -1266,9 +1605,54 @@ export const AccidentApiFactory = function (
     apiV2DomainWdAccidentCloseValveListGet(
       scenarioId?: string,
       options?: any,
-    ): AxiosPromise<Array<CloseGisValveInfo>> {
+    ): AxiosPromise<Array<ValveDto>> {
       return localVarFp
         .apiV2DomainWdAccidentCloseValveListGet(scenarioId, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     * 关键词：      供水、寻找阀门  使用场景：      通常用于获取方案已编辑保存好的关阀列表  相关背景：      只有在方案进行的关阀寻找（参考接口：/api/v2/domain-wd/accident/burst-pipe/find-valves）      和事件信息保存后（参考接口：/api/v1/domain-wd/accident/burst-pipe/add或/api/v2/domain-wd/accident/flushing/add），才能获取到数据。
+     * @summary 根据方案id查询关阀信息
+     * @param {string} [scenarioId]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV2DomainWdAccidentCloseValveListGet_9(
+      scenarioId?: string,
+      options?: any,
+    ): AxiosPromise<Array<ValveDto>> {
+      return localVarFp
+        .apiV2DomainWdAccidentCloseValveListGet_9(scenarioId, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     * 关键词：      供水、寻找阀门  使用场景：      主要用于在爆管关阀、日常关阀以及管道冲洗方案编辑中，通过地图点选一个或者多个管道，寻找需要关闭的阀门  相关背景：      V2接口的查询逻辑是基于模型中的阀门要素来进行查找的，V1则是通过shp文件导入的方式来自动建立阀门与管道的关联关系
+     * @summary 寻找指定一个或多个管段周围（包含自身）的阀门
+     * @param {FindValvesByPipesInput} [findValvesByPipesInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV2DomainWdAccidentFindValvesPost(
+      findValvesByPipesInput?: FindValvesByPipesInput,
+      options?: any,
+    ): AxiosPromise<Array<ValveDto>> {
+      return localVarFp
+        .apiV2DomainWdAccidentFindValvesPost(findValvesByPipesInput, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     * 关键词：      供水、寻找阀门  使用场景：      主要用于在爆管关阀、日常关阀以及管道冲洗方案编辑中，通过地图点选一个或者多个管道，寻找需要关闭的阀门  相关背景：      V2接口的查询逻辑是基于模型中的阀门要素来进行查找的，V1则是通过shp文件导入的方式来自动建立阀门与管道的关联关系
+     * @summary 寻找指定一个或多个管段周围（包含自身）的阀门
+     * @param {FindValvesByPipesInput} [findValvesByPipesInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV2DomainWdAccidentFindValvesPost_10(
+      findValvesByPipesInput?: FindValvesByPipesInput,
+      options?: any,
+    ): AxiosPromise<Array<ValveDto>> {
+      return localVarFp
+        .apiV2DomainWdAccidentFindValvesPost_10(findValvesByPipesInput, options)
         .then((request) => request(axios, basePath))
     },
   }
@@ -1282,21 +1666,7 @@ export const AccidentApiFactory = function (
  */
 export class AccidentApi extends BaseAPI {
   /**
-   *
-   * @summary 删除事故基本信息
-   * @param {string} [scenarioId]
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof AccidentApi
-   */
-  public apiV1DomainWdAccidentBaseInfoDeleteGet(scenarioId?: string, options?: AxiosRequestConfig) {
-    return AccidentApiFp(this.configuration)
-      .apiV1DomainWdAccidentBaseInfoDeleteGet(scenarioId, options)
-      .then((request) => request(this.axios, this.basePath))
-  }
-
-  /**
-   *
+   * 关键词：      供水、事故  使用场景：      获取一个方案已编辑的事故信息，包括爆管关阀、日常关阀、水质污染事故  相关背景：      需要先对方案编辑后进行保存（参考接口：/api/v1/domain-wd/accident/burst-pipe/add或/api/v1/domain-wd/accident/wq-accident/add），才有返回值  输出：     如果没有值，则返回null
    * @summary 获取事故基本信息
    * @param {string} [scenarioId]
    * @param {*} [options] Override http request option.
@@ -1310,8 +1680,22 @@ export class AccidentApi extends BaseAPI {
   }
 
   /**
-   *
-   * @summary 保存爆管事故信息
+   * 关键词：      供水、事故  使用场景：      获取一个方案已编辑的事故信息，包括爆管关阀、日常关阀、水质污染事故  相关背景：      需要先对方案编辑后进行保存（参考接口：/api/v1/domain-wd/accident/burst-pipe/add或/api/v1/domain-wd/accident/wq-accident/add），才有返回值  输出：     如果没有值，则返回null
+   * @summary 获取事故基本信息
+   * @param {string} [scenarioId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof AccidentApi
+   */
+  public apiV1DomainWdAccidentBaseInfoGet_1(scenarioId?: string, options?: AxiosRequestConfig) {
+    return AccidentApiFp(this.configuration)
+      .apiV1DomainWdAccidentBaseInfoGet_1(scenarioId, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   * 关键词：      供水、爆管关阀事故  使用场景：      保存编辑的爆管关阀事故信息  相关背景：      对于爆管或关阀事故，通常在编辑界面会指定时间范围，选择爆管管道，以及寻找需要关闭的阀门，并将这些信息保存起来并在计算时更新到模型中，在之后查看或编辑该方案时，再获取已编辑的内容。  输入：      对于爆管事故库下的方案，参数PipeBurstEvents应该包含两个事件，分别是EventType=0和EventType=1的事件，对于关阀库的方案，参数PipeBurstEvents仅包含EventType=1的事件即可      参数GisValveInfoList是由接口：/api/v1/domain-wd/accident/find-valves返回的阀门列表
+   * @summary 保存爆管关阀事故信息
    * @param {SavePipeBurstInfoInput} [savePipeBurstInfoInput]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
@@ -1327,106 +1711,24 @@ export class AccidentApi extends BaseAPI {
   }
 
   /**
-   *
-   * @summary 寻找爆管阀门（支持同一个事件发生多个爆管）
-   * @param {FindBurstPipeValvesBatchInput} [findBurstPipeValvesBatchInput]
+   * 关键词：      供水、爆管关阀事故  使用场景：      保存编辑的爆管关阀事故信息  相关背景：      对于爆管或关阀事故，通常在编辑界面会指定时间范围，选择爆管管道，以及寻找需要关闭的阀门，并将这些信息保存起来并在计算时更新到模型中，在之后查看或编辑该方案时，再获取已编辑的内容。  输入：      对于爆管事故库下的方案，参数PipeBurstEvents应该包含两个事件，分别是EventType=0和EventType=1的事件，对于关阀库的方案，参数PipeBurstEvents仅包含EventType=1的事件即可      参数GisValveInfoList是由接口：/api/v1/domain-wd/accident/find-valves返回的阀门列表
+   * @summary 保存爆管关阀事故信息
+   * @param {SavePipeBurstInfoInput} [savePipeBurstInfoInput]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof AccidentApi
    */
-  public apiV1DomainWdAccidentBurstPipeFindValvesPost(
-    findBurstPipeValvesBatchInput?: FindBurstPipeValvesBatchInput,
+  public apiV1DomainWdAccidentBurstPipeAddPost_2(
+    savePipeBurstInfoInput?: SavePipeBurstInfoInput,
     options?: AxiosRequestConfig,
   ) {
     return AccidentApiFp(this.configuration)
-      .apiV1DomainWdAccidentBurstPipeFindValvesPost(findBurstPipeValvesBatchInput, options)
+      .apiV1DomainWdAccidentBurstPipeAddPost_2(savePipeBurstInfoInput, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
   /**
-   *
-   * @summary 寻找爆管阀门
-   * @param {FindBurstPipeValvesInput} [findBurstPipeValvesInput]
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof AccidentApi
-   */
-  public apiV1DomainWdAccidentBurstPipeValvesListPost(
-    findBurstPipeValvesInput?: FindBurstPipeValvesInput,
-    options?: AxiosRequestConfig,
-  ) {
-    return AccidentApiFp(this.configuration)
-      .apiV1DomainWdAccidentBurstPipeValvesListPost(findBurstPipeValvesInput, options)
-      .then((request) => request(this.axios, this.basePath))
-  }
-
-  /**
-   *
-   * @summary 保存关阀信息
-   * @param {SaveCloseGisValveInput} [saveCloseGisValveInput]
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof AccidentApi
-   */
-  public apiV1DomainWdAccidentCloseValveAddPost(
-    saveCloseGisValveInput?: SaveCloseGisValveInput,
-    options?: AxiosRequestConfig,
-  ) {
-    return AccidentApiFp(this.configuration)
-      .apiV1DomainWdAccidentCloseValveAddPost(saveCloseGisValveInput, options)
-      .then((request) => request(this.axios, this.basePath))
-  }
-
-  /**
-   *
-   * @summary 根据方案id删除阀门
-   * @param {string} [scenarioId]
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof AccidentApi
-   */
-  public apiV1DomainWdAccidentCloseValveDeleteByScenarioPost(
-    scenarioId?: string,
-    options?: AxiosRequestConfig,
-  ) {
-    return AccidentApiFp(this.configuration)
-      .apiV1DomainWdAccidentCloseValveDeleteByScenarioPost(scenarioId, options)
-      .then((request) => request(this.axios, this.basePath))
-  }
-
-  /**
-   *
-   * @summary 删除阀门
-   * @param {Array<string>} [requestBody]
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof AccidentApi
-   */
-  public apiV1DomainWdAccidentCloseValveDeletePost(
-    requestBody?: Array<string>,
-    options?: AxiosRequestConfig,
-  ) {
-    return AccidentApiFp(this.configuration)
-      .apiV1DomainWdAccidentCloseValveDeletePost(requestBody, options)
-      .then((request) => request(this.axios, this.basePath))
-  }
-
-  /**
-   *
-   * @summary 根据方案id 查询关阀信息
-   * @param {string} [scenarioId]
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof AccidentApi
-   */
-  public apiV1DomainWdAccidentCloseValveListGet(scenarioId?: string, options?: AxiosRequestConfig) {
-    return AccidentApiFp(this.configuration)
-      .apiV1DomainWdAccidentCloseValveListGet(scenarioId, options)
-      .then((request) => request(this.axios, this.basePath))
-  }
-
-  /**
-   *
+   * 关键词：      供水、寻找阀门  使用场景：      主要用于在爆管关阀、日常关阀以及管道冲洗方案编辑中，通过地图点选一个或者多个管道，寻找需要关闭的阀门  相关背景：      阀门寻找结果的准确度取决于阀门导入时是否能准确关联到正确的管道上，因此阀门的坐标准确度直接影响到阀门寻找的准确性。
    * @summary 寻找指定一个或多个管段周围（包含自身）的阀门
    * @param {FindValvesByPipesInput} [findValvesByPipesInput]
    * @param {*} [options] Override http request option.
@@ -1443,7 +1745,24 @@ export class AccidentApi extends BaseAPI {
   }
 
   /**
-   *
+   * 关键词：      供水、寻找阀门  使用场景：      主要用于在爆管关阀、日常关阀以及管道冲洗方案编辑中，通过地图点选一个或者多个管道，寻找需要关闭的阀门  相关背景：      阀门寻找结果的准确度取决于阀门导入时是否能准确关联到正确的管道上，因此阀门的坐标准确度直接影响到阀门寻找的准确性。
+   * @summary 寻找指定一个或多个管段周围（包含自身）的阀门
+   * @param {FindValvesByPipesInput} [findValvesByPipesInput]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof AccidentApi
+   */
+  public apiV1DomainWdAccidentFindValvesPost_3(
+    findValvesByPipesInput?: FindValvesByPipesInput,
+    options?: AxiosRequestConfig,
+  ) {
+    return AccidentApiFp(this.configuration)
+      .apiV1DomainWdAccidentFindValvesPost_3(findValvesByPipesInput, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   * 关键词：      供水、管道冲洗  使用场景：      管道冲洗库下的方案编辑完成后，调用此接口保存编辑的管道冲洗信息  相关背景：      对于管道冲洗，通常会在地图上选择要冲洗的一段管道（由多个管道组成），通过在地图上标记两个节点，调用接口：/api/gis/v1/path-planning/shortest-path-info来获得节点之间的管道列表。      冲洗次数决定了模型执行管道冲洗模拟的次数  输入：      参数PipeBurstEvents需要设置一个EventType=1的关阀事件，Location字段保存管道信息。
    * @summary 保存管道冲洗基本信息
    * @param {FlushingBaseInfoInput} [flushingBaseInfoInput]
    * @param {*} [options] Override http request option.
@@ -1460,7 +1779,24 @@ export class AccidentApi extends BaseAPI {
   }
 
   /**
-   *
+   * 关键词：      供水、管道冲洗  使用场景：      管道冲洗库下的方案编辑完成后，调用此接口保存编辑的管道冲洗信息  相关背景：      对于管道冲洗，通常会在地图上选择要冲洗的一段管道（由多个管道组成），通过在地图上标记两个节点，调用接口：/api/gis/v1/path-planning/shortest-path-info来获得节点之间的管道列表。      冲洗次数决定了模型执行管道冲洗模拟的次数  输入：      参数PipeBurstEvents需要设置一个EventType=1的关阀事件，Location字段保存管道信息。
+   * @summary 保存管道冲洗基本信息
+   * @param {FlushingBaseInfoInput} [flushingBaseInfoInput]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof AccidentApi
+   */
+  public apiV1DomainWdAccidentFlushingAddPost_4(
+    flushingBaseInfoInput?: FlushingBaseInfoInput,
+    options?: AxiosRequestConfig,
+  ) {
+    return AccidentApiFp(this.configuration)
+      .apiV1DomainWdAccidentFlushingAddPost_4(flushingBaseInfoInput, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   * 关键词：      供水、管道冲洗  使用场景：        获取一个管道冲洗库下的方案已编辑的管道冲洗信息  相关背景：      需要先对方案编辑后进行保存（参考接口：/api/v1/domain-wd/accident/flushing/add），才有返回值  输出：     如果没有值，则返回null
    * @summary 获取管道冲洗基本信息
    * @param {string} [scenarioId]
    * @param {*} [options] Override http request option.
@@ -1477,8 +1813,25 @@ export class AccidentApi extends BaseAPI {
   }
 
   /**
-   *
-   * @summary 获取阀门信息
+   * 关键词：      供水、管道冲洗  使用场景：        获取一个管道冲洗库下的方案已编辑的管道冲洗信息  相关背景：      需要先对方案编辑后进行保存（参考接口：/api/v1/domain-wd/accident/flushing/add），才有返回值  输出：     如果没有值，则返回null
+   * @summary 获取管道冲洗基本信息
+   * @param {string} [scenarioId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof AccidentApi
+   */
+  public apiV1DomainWdAccidentFlushingBaseInfoGet_5(
+    scenarioId?: string,
+    options?: AxiosRequestConfig,
+  ) {
+    return AccidentApiFp(this.configuration)
+      .apiV1DomainWdAccidentFlushingBaseInfoGet_5(scenarioId, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   * 关键词：      供水、获取阀门  使用场景：      当需要知道管道关联了哪些阀门时，调用该接口
+   * @summary 根据模型管道id获取关联的阀门列表
    * @param {GetValvesByPipeIdsInput} [getValvesByPipeIdsInput]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
@@ -1494,21 +1847,24 @@ export class AccidentApi extends BaseAPI {
   }
 
   /**
-   *
-   * @summary 删除事故方案，包括事故基本信息和关联的阀门信息
-   * @param {string} [scenarioId]
+   * 关键词：      供水、获取阀门  使用场景：      当需要知道管道关联了哪些阀门时，调用该接口
+   * @summary 根据模型管道id获取关联的阀门列表
+   * @param {GetValvesByPipeIdsInput} [getValvesByPipeIdsInput]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof AccidentApi
    */
-  public apiV1DomainWdAccidentScenarioDeleteGet(scenarioId?: string, options?: AxiosRequestConfig) {
+  public apiV1DomainWdAccidentPipeValvesListPost_6(
+    getValvesByPipeIdsInput?: GetValvesByPipeIdsInput,
+    options?: AxiosRequestConfig,
+  ) {
     return AccidentApiFp(this.configuration)
-      .apiV1DomainWdAccidentScenarioDeleteGet(scenarioId, options)
+      .apiV1DomainWdAccidentPipeValvesListPost_6(getValvesByPipeIdsInput, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
   /**
-   *
+   * 关键词：      供水、水质事故  使用场景：      保存编辑的水质事故信息  相关背景：      对于水质事故，通常在编辑界面会指定时间范围，选择污染点，以及设置污染物浓度，并将这些信息保存起来并在计算时更新到模型中，在之后查看或编辑该方案时，再获取已编辑的内容。  输入：      对于水质追踪库下的方案，参数WQEvents应包含一个EventType=2的事件
    * @summary 保存水质事故信息
    * @param {SaveWqAccidentInfoInput} [saveWqAccidentInfoInput]
    * @param {*} [options] Override http request option.
@@ -1525,8 +1881,59 @@ export class AccidentApi extends BaseAPI {
   }
 
   /**
-   *
-   * @summary 根据方案id 查询关阀信息
+   * 关键词：      供水、水质事故  使用场景：      保存编辑的水质事故信息  相关背景：      对于水质事故，通常在编辑界面会指定时间范围，选择污染点，以及设置污染物浓度，并将这些信息保存起来并在计算时更新到模型中，在之后查看或编辑该方案时，再获取已编辑的内容。  输入：      对于水质追踪库下的方案，参数WQEvents应包含一个EventType=2的事件
+   * @summary 保存水质事故信息
+   * @param {SaveWqAccidentInfoInput} [saveWqAccidentInfoInput]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof AccidentApi
+   */
+  public apiV1DomainWdAccidentWqAccidentAddPost_7(
+    saveWqAccidentInfoInput?: SaveWqAccidentInfoInput,
+    options?: AxiosRequestConfig,
+  ) {
+    return AccidentApiFp(this.configuration)
+      .apiV1DomainWdAccidentWqAccidentAddPost_7(saveWqAccidentInfoInput, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   * 关键词：      供水、爆管关阀事故  使用场景：      保存编辑的爆管关阀事故信息  相关背景：      对于爆管或关阀事故，通常在编辑界面会指定时间范围，选择爆管管道，以及寻找需要关闭的阀门，并将这些信息保存起来并在计算时更新到模型中，在之后查看或编辑该方案时，再获取已编辑的内容。  输入：      对于爆管事故库下的方案，参数PipeBurstEvents应该包含两个事件，分别是EventType=0和EventType=1的事件，对于关阀库的方案，参数PipeBurstEvents仅包含EventType=1的事件即可      参数CloseValveList是由接口：/api/v2/domain-wd/accident/find-valves返回的阀门列表
+   * @summary 保存爆管关阀事故信息
+   * @param {SavePipeBurstInfoInputV2} [savePipeBurstInfoInputV2]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof AccidentApi
+   */
+  public apiV2DomainWdAccidentBurstPipeAddPost(
+    savePipeBurstInfoInputV2?: SavePipeBurstInfoInputV2,
+    options?: AxiosRequestConfig,
+  ) {
+    return AccidentApiFp(this.configuration)
+      .apiV2DomainWdAccidentBurstPipeAddPost(savePipeBurstInfoInputV2, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   * 关键词：      供水、爆管关阀事故  使用场景：      保存编辑的爆管关阀事故信息  相关背景：      对于爆管或关阀事故，通常在编辑界面会指定时间范围，选择爆管管道，以及寻找需要关闭的阀门，并将这些信息保存起来并在计算时更新到模型中，在之后查看或编辑该方案时，再获取已编辑的内容。  输入：      对于爆管事故库下的方案，参数PipeBurstEvents应该包含两个事件，分别是EventType=0和EventType=1的事件，对于关阀库的方案，参数PipeBurstEvents仅包含EventType=1的事件即可      参数CloseValveList是由接口：/api/v2/domain-wd/accident/find-valves返回的阀门列表
+   * @summary 保存爆管关阀事故信息
+   * @param {SavePipeBurstInfoInputV2} [savePipeBurstInfoInputV2]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof AccidentApi
+   */
+  public apiV2DomainWdAccidentBurstPipeAddPost_8(
+    savePipeBurstInfoInputV2?: SavePipeBurstInfoInputV2,
+    options?: AxiosRequestConfig,
+  ) {
+    return AccidentApiFp(this.configuration)
+      .apiV2DomainWdAccidentBurstPipeAddPost_8(savePipeBurstInfoInputV2, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   * 关键词：      供水、寻找阀门  使用场景：      通常用于获取方案已编辑保存好的关阀列表  相关背景：      只有在方案进行的关阀寻找（参考接口：/api/v2/domain-wd/accident/burst-pipe/find-valves）      和事件信息保存后（参考接口：/api/v1/domain-wd/accident/burst-pipe/add或/api/v2/domain-wd/accident/flushing/add），才能获取到数据。
+   * @summary 根据方案id查询关阀信息
    * @param {string} [scenarioId]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
@@ -1535,6 +1942,57 @@ export class AccidentApi extends BaseAPI {
   public apiV2DomainWdAccidentCloseValveListGet(scenarioId?: string, options?: AxiosRequestConfig) {
     return AccidentApiFp(this.configuration)
       .apiV2DomainWdAccidentCloseValveListGet(scenarioId, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   * 关键词：      供水、寻找阀门  使用场景：      通常用于获取方案已编辑保存好的关阀列表  相关背景：      只有在方案进行的关阀寻找（参考接口：/api/v2/domain-wd/accident/burst-pipe/find-valves）      和事件信息保存后（参考接口：/api/v1/domain-wd/accident/burst-pipe/add或/api/v2/domain-wd/accident/flushing/add），才能获取到数据。
+   * @summary 根据方案id查询关阀信息
+   * @param {string} [scenarioId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof AccidentApi
+   */
+  public apiV2DomainWdAccidentCloseValveListGet_9(
+    scenarioId?: string,
+    options?: AxiosRequestConfig,
+  ) {
+    return AccidentApiFp(this.configuration)
+      .apiV2DomainWdAccidentCloseValveListGet_9(scenarioId, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   * 关键词：      供水、寻找阀门  使用场景：      主要用于在爆管关阀、日常关阀以及管道冲洗方案编辑中，通过地图点选一个或者多个管道，寻找需要关闭的阀门  相关背景：      V2接口的查询逻辑是基于模型中的阀门要素来进行查找的，V1则是通过shp文件导入的方式来自动建立阀门与管道的关联关系
+   * @summary 寻找指定一个或多个管段周围（包含自身）的阀门
+   * @param {FindValvesByPipesInput} [findValvesByPipesInput]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof AccidentApi
+   */
+  public apiV2DomainWdAccidentFindValvesPost(
+    findValvesByPipesInput?: FindValvesByPipesInput,
+    options?: AxiosRequestConfig,
+  ) {
+    return AccidentApiFp(this.configuration)
+      .apiV2DomainWdAccidentFindValvesPost(findValvesByPipesInput, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   * 关键词：      供水、寻找阀门  使用场景：      主要用于在爆管关阀、日常关阀以及管道冲洗方案编辑中，通过地图点选一个或者多个管道，寻找需要关闭的阀门  相关背景：      V2接口的查询逻辑是基于模型中的阀门要素来进行查找的，V1则是通过shp文件导入的方式来自动建立阀门与管道的关联关系
+   * @summary 寻找指定一个或多个管段周围（包含自身）的阀门
+   * @param {FindValvesByPipesInput} [findValvesByPipesInput]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof AccidentApi
+   */
+  public apiV2DomainWdAccidentFindValvesPost_10(
+    findValvesByPipesInput?: FindValvesByPipesInput,
+    options?: AxiosRequestConfig,
+  ) {
+    return AccidentApiFp(this.configuration)
+      .apiV2DomainWdAccidentFindValvesPost_10(findValvesByPipesInput, options)
       .then((request) => request(this.axios, this.basePath))
   }
 }

@@ -46,7 +46,10 @@ export interface RequestArgs {
  */
 export class BaseAPI {
   protected configuration: Configuration | undefined
-  constructor(protected basePath: string = '', protected axios: AxiosInstance = globalAxios) {
+  constructor(
+    protected basePath: string = '',
+    protected axios: AxiosInstance = globalAxios,
+  ) {
     this.basePath = basePath
   }
 }
@@ -59,7 +62,10 @@ export class BaseAPI {
  */
 export class RequiredError extends Error {
   name: 'RequiredError' = 'RequiredError'
-  constructor(public field: string, msg?: string) {
+  constructor(
+    public field: string,
+    msg?: string,
+  ) {
     super(msg)
   }
 }
