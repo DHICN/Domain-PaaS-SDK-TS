@@ -1,3 +1,4 @@
+/* tslint:disable */
 /* eslint-disable */
 /**
  * 方案管理服务
@@ -18,7 +19,7 @@
  */
 export interface DeleteLibrariesPara {
   /**
-   * 库的ID列表 library\'s Ids
+   * 待删除的方案库的ID列表
    * @type {Array<string>}
    * @memberof DeleteLibrariesPara
    */
