@@ -15,19 +15,19 @@
 /**
  *
  * @export
- * @interface TurnOnTemplatePara
+ * @interface UpdateLibraryConfigInfo
  */
-export interface TurnOnTemplatePara {
+export interface UpdateLibraryConfigInfo {
   /**
-   * 方案库的ID，唯一性标识
+   * 方案库Id
    * @type {string}
-   * @memberof TurnOnTemplatePara
+   * @memberof UpdateLibraryConfigInfo
    */
-  libraryId?: string
+  libraryId: string
   /**
-   * 需要启用的模板方案的ID
-   * @type {string}
-   * @memberof TurnOnTemplatePara
+   * 方案过期时间, 单位为天
+   * @type {number}
+   * @memberof UpdateLibraryConfigInfo
    */
-  templateId?: string
+  scenarioExpireTime: number
 }

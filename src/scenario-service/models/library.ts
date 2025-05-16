@@ -1,3 +1,4 @@
+/* tslint:disable */
 /* eslint-disable */
 /**
  * 方案管理服务
@@ -18,73 +19,73 @@
  */
 export interface Library {
   /**
-   * 库的ID library Id
+   * 方案库的ID，唯一性标识
    * @type {string}
    * @memberof Library
    */
   id: string
   /**
-   * 租户ID tenant Id
+   * 租户ID
    * @type {string}
    * @memberof Library
    */
   tenantId?: string | null
   /**
-   * 对应的方案组ID scenario group Id
+   * 方案库所关联的方案组ID
    * @type {string}
    * @memberof Library
    */
   scenariogroup: string
   /**
-   * 库的名称 library name
+   * 方案库的名称
    * @type {string}
    * @memberof Library
    */
   name: string
   /**
-   * 库的类型 library type:  0-Undefined  1-AutoForecast  2-ManualForecast  3-Forecast  4-Schedule  5-Experience  6-ScenarioSimulation  7-WQAccident  8-OnlineHD  9-WaterHammer  10-Filling  11-PipeBurst  12-WQResponse  13-Planning  14-Flushing  15-OnlineWQAccident  16-CloseValve  17-WWTP  18-WWTPOptim  19-WWTPMLab
+   * 方案库的类型，枚举参考LibraryTypeEnum，目前已存在0-19种定义，包括0：未定义；1：自动预报库；2：人工预报库；3：预报库；4：调度库；5：经验库；6：情景模拟库；7：突发水污染事故库；8：在线水动力库（供水）；9：水锤库（供水）；10：管道充满度库；11：爆管库（供水）；12：污染事故响应库；13：规划库；14：管道冲洗库（供水）；15：污染事故库（供水）；16：关阀库（供水）；17：在线滚动预报库（污水厂）；18：在线滚动优化库（污水厂）；19：模拟实验室库（污水厂）
    * @type {number}
    * @memberof Library
    */
   type?: number
   /**
-   * 库的业务类型 business type:  0-Undefined  1-WaterEnvironmnet  2-UrbanFlooding  3-WaterDistribution  4-RiverFlood  5-WWTP
+   * 方案库的业务类型，枚举参考BusinessTypeEnum，目前已存在0-6种定义，包括0：未定义；1：水环境；2：内涝；3：供水；4：流域洪水；5：污水厂；6：排水
    * @type {number}
    * @memberof Library
    */
   businessType?: number
   /**
-   * 0代表可读写，1代表只读 0 for not readonly, 1 for readonly
+   * 是否只读，0代表可读写，1代表只读
    * @type {number}
    * @memberof Library
    */
   readonly?: number
   /**
-   * 1表示库直接绑定一个模板方案，0表示不绑定 1 for bind a template directly, 0 for not
+   * 是否直接绑定模板方案，1表示该方案库直接绑定一个模板方案，0表示不直接绑定，而是采用BindType和BindBusinessType所对应的那个方案库下的模板方案，属于间接绑定
    * @type {number}
    * @memberof Library
    */
   bindTemplate?: number
   /**
-   * 当BindTemplate为0，此项表示其绑定的库的类型 Bind library type for a template, in case of BindTemplate is 0:  0-Undefined  1-AutoForecast  2-ManualForecast  3-Forecast  4-Schedule  5-Experience  6-ScenarioSimulation  7-WQAccident  8-OnlineHD  9-WaterHammer  10-Filling  11-PipeBurst  12-WQResponse  13-Planning  14-Flushing
+   * 当BindTemplate为0，此项表示该方案库采用的模板方案所对应的方案库的类型，枚举参考LibraryTypeEnum
    * @type {number}
    * @memberof Library
    */
   bindType?: number
   /**
-   * 当BindTemplate为0，此项表示其绑定的库的业务类型 Bind business type for a template, in case of BindTemplate is 0:  0-Undefined  1-WaterEnvironmnet  2-UrbanFlooding  3-WaterDistribution  4-RiverFlood
+   * 当BindTemplate为0，此项表示该方案库采用的模板方案所对应的方案库的业务类型，枚举参考BusinessTypeEnum
    * @type {number}
    * @memberof Library
    */
   bindBusinessType?: number
   /**
-   * 0表示只能绑定单个模板方案，1表示可以绑定多个模板方案 0 for single template which is the default option, 1 for multiple templates
+   * 是否支持绑定多个启用的模板方案，0表示只能绑定单个启用的模板方案，1表示可以绑定多个启用的模板方案
    * @type {number}
    * @memberof Library
    */
   enableMultiTemplate?: number | null
   /**
-   * 库的描述 description
+   * 方案库的描述信息
    * @type {string}
    * @memberof Library
    */

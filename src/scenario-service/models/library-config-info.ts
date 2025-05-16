@@ -1,3 +1,4 @@
+/* tslint:disable */
 /* eslint-disable */
 /**
  * 方案管理服务
@@ -14,67 +15,85 @@
 /**
  *
  * @export
- * @interface AddLibrariesPara
+ * @interface LibraryConfigInfo
  */
-export interface AddLibrariesPara {
+export interface LibraryConfigInfo {
   /**
-   * 方案库所关联的方案组ID，如果传空Guid，代表方案库所关联的方案组由系统自动创建
+   * 方案库的ID，唯一性标识
    * @type {string}
-   * @memberof AddLibrariesPara
+   * @memberof LibraryConfigInfo
    */
-  scenariogroup?: string
+  id: string
+  /**
+   * 租户ID
+   * @type {string}
+   * @memberof LibraryConfigInfo
+   */
+  tenantId?: string | null
+  /**
+   * 方案库所关联的方案组ID
+   * @type {string}
+   * @memberof LibraryConfigInfo
+   */
+  scenariogroup: string
   /**
    * 方案库的名称
    * @type {string}
-   * @memberof AddLibrariesPara
+   * @memberof LibraryConfigInfo
    */
-  name?: string | null
+  name: string
   /**
    * 方案库的类型，枚举参考LibraryTypeEnum，目前已存在0-19种定义，包括0：未定义；1：自动预报库；2：人工预报库；3：预报库；4：调度库；5：经验库；6：情景模拟库；7：突发水污染事故库；8：在线水动力库（供水）；9：水锤库（供水）；10：管道充满度库；11：爆管库（供水）；12：污染事故响应库；13：规划库；14：管道冲洗库（供水）；15：污染事故库（供水）；16：关阀库（供水）；17：在线滚动预报库（污水厂）；18：在线滚动优化库（污水厂）；19：模拟实验室库（污水厂）
    * @type {number}
-   * @memberof AddLibrariesPara
+   * @memberof LibraryConfigInfo
    */
   type?: number
   /**
    * 方案库的业务类型，枚举参考BusinessTypeEnum，目前已存在0-6种定义，包括0：未定义；1：水环境；2：内涝；3：供水；4：流域洪水；5：污水厂；6：排水
    * @type {number}
-   * @memberof AddLibrariesPara
+   * @memberof LibraryConfigInfo
    */
   businessType?: number
   /**
    * 是否只读，0代表可读写，1代表只读
    * @type {number}
-   * @memberof AddLibrariesPara
+   * @memberof LibraryConfigInfo
    */
   readonly?: number
   /**
    * 是否直接绑定模板方案，1表示该方案库直接绑定一个模板方案，0表示不直接绑定，而是采用BindType和BindBusinessType所对应的那个方案库下的模板方案，属于间接绑定
    * @type {number}
-   * @memberof AddLibrariesPara
+   * @memberof LibraryConfigInfo
    */
   bindTemplate?: number
   /**
    * 当BindTemplate为0，此项表示该方案库采用的模板方案所对应的方案库的类型，枚举参考LibraryTypeEnum
    * @type {number}
-   * @memberof AddLibrariesPara
+   * @memberof LibraryConfigInfo
    */
   bindType?: number
   /**
    * 当BindTemplate为0，此项表示该方案库采用的模板方案所对应的方案库的业务类型，枚举参考BusinessTypeEnum
    * @type {number}
-   * @memberof AddLibrariesPara
+   * @memberof LibraryConfigInfo
    */
   bindBusinessType?: number
   /**
    * 是否支持绑定多个启用的模板方案，0表示只能绑定单个启用的模板方案，1表示可以绑定多个启用的模板方案
    * @type {number}
-   * @memberof AddLibrariesPara
+   * @memberof LibraryConfigInfo
    */
   enableMultiTemplate?: number | null
   /**
    * 方案库的描述信息
    * @type {string}
-   * @memberof AddLibrariesPara
+   * @memberof LibraryConfigInfo
    */
   description?: string | null
+  /**
+   * 方案过期时间：单位为天
+   * @type {number}
+   * @memberof LibraryConfigInfo
+   */
+  scenarioExpireTime?: number
 }
