@@ -191,7 +191,7 @@ export const ConnectApiAxiosParamCreator = function (configuration?: Configurati
       const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
-      const localVarFormParams = new ((configuration && configuration.formDataCtor) || FormData)()
+      const localVarFormParams = new URLSearchParams()
 
       if (tenantId != null) {
         localVarHeaderParameter['TenantId'] = String(tenantId)
@@ -217,7 +217,7 @@ export const ConnectApiAxiosParamCreator = function (configuration?: Configurati
         localVarFormParams.append('password', password as any)
       }
 
-      localVarHeaderParameter['Content-Type'] = 'multipart/form-data'
+      localVarHeaderParameter['Content-Type'] = 'application/x-www-form-urlencoded'
 
       setSearchParams(localVarUrlObj, localVarQueryParameter)
       let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
