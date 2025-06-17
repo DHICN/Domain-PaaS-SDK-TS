@@ -114,7 +114,7 @@ export const DomainServiceUrlMap = {
  */
 export class ApiHelper {
   protected axiosInstance: AxiosInstance
-  protected token: { token_type: string; access_token: string }
+  protected token: { token_type: string; access_token: string; refresh_token: string }
   connectApi: ConnectApi
   constructor(baseURL = '', timeout = 500000) {
     this.axiosInstance = axios.create({
@@ -125,11 +125,52 @@ export class ApiHelper {
     this.token = {
       token_type: '',
       access_token: '',
+      refresh_token: '',
     }
   }
 
   get apiToken() {
     return this.token
+  }
+
+  async refreshToken(
+    tenantid: string,
+    clientId: string,
+    clientSecret: string,
+    grantType: string,
+    refreshToken: string,
+    scope?: string,
+    redirectUri?: string,
+    code?: string,
+    codeVerifier?: string,
+    username?: string,
+    password?: string,
+    acrValues?: string,
+    deviceCode?: string,
+  ) {
+    try {
+      const rep = await this.connectApi.connectTokenPost(
+        tenantid,
+        clientId,
+        clientSecret,
+        grantType,
+        scope,
+        redirectUri,
+        code,
+        codeVerifier,
+        username,
+        password,
+        acrValues,
+        refreshToken,
+        deviceCode,
+      )
+      this.token = rep.data as { token_type: string; access_token: string; refresh_token: string }
+      this.setAuth(this.token)
+      return this.token
+    } catch (error) {
+      console.error('refreshToken :>> ', error)
+      return Promise.reject(error)
+    }
   }
 
   /**
@@ -146,15 +187,19 @@ export class ApiHelper {
     try {
       const rep = await this.connectApi.connectTokenPost(
         tenantId,
-        clientId,
-        grantType,
-        clientSecret,
+        clientId ?? '',
+        clientSecret ?? '',
+        grantType ?? '',
+        undefined,
+        undefined,
+        undefined,
+        undefined,
         username,
         password,
       )
       this.changeTenantId(tenantId)
-      this.token = rep.data
-      this.setAuth(rep.data)
+      this.token = rep.data as { token_type: string; access_token: string; refresh_token: string }
+      this.setAuth(this.token)
       return this.token
     } catch (error) {
       console.error('logIn :>> ', error)
