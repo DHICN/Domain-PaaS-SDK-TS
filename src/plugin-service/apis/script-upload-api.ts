@@ -46,6 +46,7 @@ export const ScriptUploadApiAxiosParamCreator = function (configuration?: Config
      * @param {string} [ip]
      * @param {string} [algorithmCode]
      * @param {string} [remark]
+     * @param {string} [pythonVersion]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -57,6 +58,7 @@ export const ScriptUploadApiAxiosParamCreator = function (configuration?: Config
       ip?: string,
       algorithmCode?: string,
       remark?: string,
+      pythonVersion?: string,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
       // verify required parameter 'scriptName' is not null or undefined
@@ -106,6 +108,10 @@ export const ScriptUploadApiAxiosParamCreator = function (configuration?: Config
         localVarQueryParameter['remark'] = remark
       }
 
+      if (pythonVersion !== undefined) {
+        localVarQueryParameter['pythonVersion'] = pythonVersion
+      }
+
       if (file !== undefined) {
         localVarFormParams.append('file', file as any)
       }
@@ -146,6 +152,7 @@ export const ScriptUploadApiFp = function (configuration?: Configuration) {
      * @param {string} [ip]
      * @param {string} [algorithmCode]
      * @param {string} [remark]
+     * @param {string} [pythonVersion]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -157,6 +164,7 @@ export const ScriptUploadApiFp = function (configuration?: Configuration) {
       ip?: string,
       algorithmCode?: string,
       remark?: string,
+      pythonVersion?: string,
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
       const localVarAxiosArgs = await localVarAxiosParamCreator.uploadPost(
@@ -167,6 +175,7 @@ export const ScriptUploadApiFp = function (configuration?: Configuration) {
         ip,
         algorithmCode,
         remark,
+        pythonVersion,
         options,
       )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
@@ -195,6 +204,7 @@ export const ScriptUploadApiFactory = function (
      * @param {string} [ip]
      * @param {string} [algorithmCode]
      * @param {string} [remark]
+     * @param {string} [pythonVersion]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -206,10 +216,21 @@ export const ScriptUploadApiFactory = function (
       ip?: string,
       algorithmCode?: string,
       remark?: string,
+      pythonVersion?: string,
       options?: any,
     ): AxiosPromise<object> {
       return localVarFp
-        .uploadPost(scriptName, algorithmName, file, port, ip, algorithmCode, remark, options)
+        .uploadPost(
+          scriptName,
+          algorithmName,
+          file,
+          port,
+          ip,
+          algorithmCode,
+          remark,
+          pythonVersion,
+          options,
+        )
         .then((request) => request(axios, basePath))
     },
   }
@@ -232,6 +253,7 @@ export class ScriptUploadApi extends BaseAPI {
    * @param {string} [ip]
    * @param {string} [algorithmCode]
    * @param {string} [remark]
+   * @param {string} [pythonVersion]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof ScriptUploadApi
@@ -244,10 +266,21 @@ export class ScriptUploadApi extends BaseAPI {
     ip?: string,
     algorithmCode?: string,
     remark?: string,
+    pythonVersion?: string,
     options?: AxiosRequestConfig,
   ) {
     return ScriptUploadApiFp(this.configuration)
-      .uploadPost(scriptName, algorithmName, file, port, ip, algorithmCode, remark, options)
+      .uploadPost(
+        scriptName,
+        algorithmName,
+        file,
+        port,
+        ip,
+        algorithmCode,
+        remark,
+        pythonVersion,
+        options,
+      )
       .then((request) => request(this.axios, this.basePath))
   }
 }
