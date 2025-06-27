@@ -2,7 +2,7 @@
   "name": "@dhicn/domain-paas-sdk-ts",
   "llicense": "MIT",
   "private": false,
-  "version": "3.0.4",
+  "version": "3.0.5",
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",
@@ -35,7 +35,8 @@
     "typescript": "^5.1.6",
     "vite": "^4.3.2",
     "vite-plugin-dts": "^2.3.0",
-    "vite-plugin-eslint": "^1.8.1"
+    "vite-plugin-eslint": "^1.8.1",
+    "vue-tsc": "^2.2.10"
   },
   "peerDependencies": {
     "typescript": "^5.1.6"
