@@ -146,15 +146,19 @@ export class ApiHelper {
     try {
       const rep = await this.connectApi.connectTokenPost(
         tenantId,
-        clientId,
-        grantType,
-        clientSecret,
+        clientId ?? '',
+        clientSecret ?? '',
+        grantType ?? '',
+        undefined,
+        undefined,
+        undefined,
+        undefined,
         username,
         password,
       )
       this.changeTenantId(tenantId)
-      this.token = rep.data
-      this.setAuth(rep.data)
+      this.token = rep.data as { token_type: string; access_token: string }
+      this.setAuth(this.token)
     } catch (error) {
       console.error('logIn :>> ', error)
     }

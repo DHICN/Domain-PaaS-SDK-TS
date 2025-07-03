@@ -34,10 +34,6 @@ import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } fr
 import { AuthByQrCodeInput } from '../models'
 // @ts-ignore
 import { AuthResultOutput } from '../models'
-// @ts-ignore
-import { InlineResponse200 } from '../models'
-// @ts-ignore
-import { RemoteServiceErrorResponse } from '../models'
 /**
  * ConnectApi - axios parameter creator
  * @export
@@ -45,8 +41,8 @@ import { RemoteServiceErrorResponse } from '../models'
 export const ConnectApiAxiosParamCreator = function (configuration?: Configuration) {
   return {
     /**
-     * 仅返回操作是否成功，具体授权的结果调用auth-result查看
-     * @summary 授权
+     * 应用场景：      适用于有移动端App的场景，移动端登录后，在桌面端再次登录时，可以选择扫描二维码登录免密登录。登录时，应先调用`get/qrcode`接口来临时获取临时二维码，      扫描二维码后，确认登录需要调用此接口，此接口执行具体授权动作，但该接口不返回具体的授权结果，授权结果调用`auth-result`接口查看。
+     * @summary 移动端二维码进行授权
      * @param {AuthByQrCodeInput} [authByQrCodeInput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -66,6 +62,10 @@ export const ConnectApiAxiosParamCreator = function (configuration?: Configurati
       const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
@@ -88,9 +88,9 @@ export const ConnectApiAxiosParamCreator = function (configuration?: Configurati
       }
     },
     /**
-     *
-     * @summary 授权结果
-     * @param {string} [key]
+     * 应用场景：      需要和`auth-by-mobile`、`get/qrcode`接口配合使用，界面在请求到二维码后，需要轮询调用该接口来查询授权结果。      若授权成功，则返回对应的Token信息，否则应继续轮询接口，直到接口返回授权成功或授权失败为止。接口授权错误、二维码失效等异常情况，都将判断授权失败。
+     * @summary 获取移动端授权的结果
+     * @param {string} [key] 授权的二维码信息，二维码编号
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -110,6 +110,10 @@ export const ConnectApiAxiosParamCreator = function (configuration?: Configurati
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
 
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
       if (key !== undefined) {
         localVarQueryParameter['key'] = key
       }
@@ -128,8 +132,8 @@ export const ConnectApiAxiosParamCreator = function (configuration?: Configurati
       }
     },
     /**
-     *
-     * @summary 获取授权二维码
+     * 应用场景：      获取免密登录的二维码，用于移动端进行授权，需要与`auth-by-mobile`、`get/auth-result`接口配合使用，该接口会返回一个有唯一编码的临时的二维码，有效期为120秒。      二维码以文件流的形式返回，格式为\'image/png\'，内容为\'[baseDomain]/#/qr-code?type=auth&key={key}\',baseDomain为当前请求的域名；      返回的文件名既为生成的二维码的唯一标识，也可以解析二维码的内容来获该唯一标识；      该二维码标识可用于后续的授权、查询授权结果操作。
+     * @summary 获取授权的二维码
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -160,26 +164,48 @@ export const ConnectApiAxiosParamCreator = function (configuration?: Configurati
       }
     },
     /**
-     *
-     * @summary 授权-网页
-     * @param {string} [tenantId]
-     * @param {string} [clientId]
-     * @param {string} [grantType]
-     * @param {string} [clientSecret]
-     * @param {string} [username]
-     * @param {string} [password]
+     * 多种形式的登录验证，并获取Token。
+     * @summary 获取Token
+     * @param {string} tenantid
+     * @param {string} clientId 客户端标识符
+     * @param {string} clientSecret 客户端密钥
+     * @param {string} grantType 授权类型，可以是以下之一： authorization_code、client_credentials、password、refresh_token、urn:ietf:params:oauth:grant-type:device_code 或自定义类型。
+     * @param {string} [scope] 一个或多个已注册的作用域（权限范围）。如果没有指定，则会颁发涵盖所有已明确允许的作用域的令牌。
+     * @param {string} [redirectUri] 对于 authorization_code 授权类型来说是必填的。
+     * @param {string} [code] 授权码，对于 authorization_code 授权类型来说是必填的。
+     * @param {string} [codeVerifier] PKCE 证明密钥。
+     * @param {string} [username] 资源拥有者的用户名，对于 password 授权类型来说是必填的。
+     * @param {string} [password] 资源拥有者的密码，对于 password 授权类型来说是必填的。
+     * @param {string} [acrValues] 用于为 password 授权类型传递额外的身份验证相关信息。IdentityServer 对以下专有的 acr_values 做了特殊处理： idp:name_of_idp：跳过登录/领域选择界面，并将用户直接转发到选定的身份提供者（如果客户端配置允许）。 tenant:name_of_tenant：可用于向令牌端点传递一个租户名称。
+     * @param {string} [refreshToken] 刷新令牌，对于 refresh_token 授权类型来说是必填的。
+     * @param {string} [deviceCode] 设备代码，对于 urn:ietf:params:oauth:grant-type:device_code 授权类型来说是必填的。
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     connectTokenPost: async (
-      tenantId?: string,
-      clientId?: string,
-      grantType?: string,
-      clientSecret?: string,
+      tenantid: string,
+      clientId: string,
+      clientSecret: string,
+      grantType: string,
+      scope?: string,
+      redirectUri?: string,
+      code?: string,
+      codeVerifier?: string,
       username?: string,
       password?: string,
+      acrValues?: string,
+      refreshToken?: string,
+      deviceCode?: string,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
+      // verify required parameter 'tenantid' is not null or undefined
+      assertParamExists('connectTokenPost', 'tenantid', tenantid)
+      // verify required parameter 'clientId' is not null or undefined
+      assertParamExists('connectTokenPost', 'clientId', clientId)
+      // verify required parameter 'clientSecret' is not null or undefined
+      assertParamExists('connectTokenPost', 'clientSecret', clientSecret)
+      // verify required parameter 'grantType' is not null or undefined
+      assertParamExists('connectTokenPost', 'grantType', grantType)
       const localVarPath = `/connect/token`
       // use dummy base URL string because the URL constructor only accepts absolute URLs.
       const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
@@ -191,33 +217,65 @@ export const ConnectApiAxiosParamCreator = function (configuration?: Configurati
       const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
-      const localVarFormParams = new ((configuration && configuration.formDataCtor) || FormData)()
+      const localVarFormParams = new URLSearchParams()
 
-      if (tenantId != null) {
-        localVarHeaderParameter['TenantId'] = String(tenantId)
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      if (tenantid != null) {
+        localVarHeaderParameter['Tenantid'] = String(tenantid)
       }
 
       if (clientId !== undefined) {
-        localVarFormParams.append('client_id', clientId as any)
-      }
-
-      if (grantType !== undefined) {
-        localVarFormParams.append('grant_type', grantType as any)
+        localVarFormParams.set('client_id', clientId as any)
       }
 
       if (clientSecret !== undefined) {
-        localVarFormParams.append('client_secret', clientSecret as any)
+        localVarFormParams.set('client_secret', clientSecret as any)
+      }
+
+      if (grantType !== undefined) {
+        localVarFormParams.set('grant_type', grantType as any)
+      }
+
+      if (scope !== undefined) {
+        localVarFormParams.set('scope', scope as any)
+      }
+
+      if (redirectUri !== undefined) {
+        localVarFormParams.set('redirect_uri', redirectUri as any)
+      }
+
+      if (code !== undefined) {
+        localVarFormParams.set('code', code as any)
+      }
+
+      if (codeVerifier !== undefined) {
+        localVarFormParams.set('code_verifier', codeVerifier as any)
       }
 
       if (username !== undefined) {
-        localVarFormParams.append('username', username as any)
+        localVarFormParams.set('username', username as any)
       }
 
       if (password !== undefined) {
-        localVarFormParams.append('password', password as any)
+        localVarFormParams.set('password', password as any)
       }
 
-      localVarHeaderParameter['Content-Type'] = 'multipart/form-data'
+      if (acrValues !== undefined) {
+        localVarFormParams.set('acr_values', acrValues as any)
+      }
+
+      if (refreshToken !== undefined) {
+        localVarFormParams.set('refresh_token', refreshToken as any)
+      }
+
+      if (deviceCode !== undefined) {
+        localVarFormParams.set('device_code', deviceCode as any)
+      }
+
+      localVarHeaderParameter['Content-Type'] = 'application/x-www-form-urlencoded'
 
       setSearchParams(localVarUrlObj, localVarQueryParameter)
       let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
@@ -226,7 +284,7 @@ export const ConnectApiAxiosParamCreator = function (configuration?: Configurati
         ...headersFromBaseOptions,
         ...options.headers,
       }
-      localVarRequestOptions.data = localVarFormParams
+      localVarRequestOptions.data = localVarFormParams.toString()
 
       return {
         url: toPathString(localVarUrlObj),
@@ -244,8 +302,8 @@ export const ConnectApiFp = function (configuration?: Configuration) {
   const localVarAxiosParamCreator = ConnectApiAxiosParamCreator(configuration)
   return {
     /**
-     * 仅返回操作是否成功，具体授权的结果调用auth-result查看
-     * @summary 授权
+     * 应用场景：      适用于有移动端App的场景，移动端登录后，在桌面端再次登录时，可以选择扫描二维码登录免密登录。登录时，应先调用`get/qrcode`接口来临时获取临时二维码，      扫描二维码后，确认登录需要调用此接口，此接口执行具体授权动作，但该接口不返回具体的授权结果，授权结果调用`auth-result`接口查看。
+     * @summary 移动端二维码进行授权
      * @param {AuthByQrCodeInput} [authByQrCodeInput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -261,9 +319,9 @@ export const ConnectApiFp = function (configuration?: Configuration) {
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**
-     *
-     * @summary 授权结果
-     * @param {string} [key]
+     * 应用场景：      需要和`auth-by-mobile`、`get/qrcode`接口配合使用，界面在请求到二维码后，需要轮询调用该接口来查询授权结果。      若授权成功，则返回对应的Token信息，否则应继续轮询接口，直到接口返回授权成功或授权失败为止。接口授权错误、二维码失效等异常情况，都将判断授权失败。
+     * @summary 获取移动端授权的结果
+     * @param {string} [key] 授权的二维码信息，二维码编号
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -278,45 +336,66 @@ export const ConnectApiFp = function (configuration?: Configuration) {
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**
-     *
-     * @summary 获取授权二维码
+     * 应用场景：      获取免密登录的二维码，用于移动端进行授权，需要与`auth-by-mobile`、`get/auth-result`接口配合使用，该接口会返回一个有唯一编码的临时的二维码，有效期为120秒。      二维码以文件流的形式返回，格式为\'image/png\'，内容为\'[baseDomain]/#/qr-code?type=auth&key={key}\',baseDomain为当前请求的域名；      返回的文件名既为生成的二维码的唯一标识，也可以解析二维码的内容来获该唯一标识；      该二维码标识可用于后续的授权、查询授权结果操作。
+     * @summary 获取授权的二维码
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async apiV1ConnectQrcodeGet(
       options?: AxiosRequestConfig,
-    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
       const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1ConnectQrcodeGet(options)
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**
-     *
-     * @summary 授权-网页
-     * @param {string} [tenantId]
-     * @param {string} [clientId]
-     * @param {string} [grantType]
-     * @param {string} [clientSecret]
-     * @param {string} [username]
-     * @param {string} [password]
+     * 多种形式的登录验证，并获取Token。
+     * @summary 获取Token
+     * @param {string} tenantid
+     * @param {string} clientId 客户端标识符
+     * @param {string} clientSecret 客户端密钥
+     * @param {string} grantType 授权类型，可以是以下之一： authorization_code、client_credentials、password、refresh_token、urn:ietf:params:oauth:grant-type:device_code 或自定义类型。
+     * @param {string} [scope] 一个或多个已注册的作用域（权限范围）。如果没有指定，则会颁发涵盖所有已明确允许的作用域的令牌。
+     * @param {string} [redirectUri] 对于 authorization_code 授权类型来说是必填的。
+     * @param {string} [code] 授权码，对于 authorization_code 授权类型来说是必填的。
+     * @param {string} [codeVerifier] PKCE 证明密钥。
+     * @param {string} [username] 资源拥有者的用户名，对于 password 授权类型来说是必填的。
+     * @param {string} [password] 资源拥有者的密码，对于 password 授权类型来说是必填的。
+     * @param {string} [acrValues] 用于为 password 授权类型传递额外的身份验证相关信息。IdentityServer 对以下专有的 acr_values 做了特殊处理： idp:name_of_idp：跳过登录/领域选择界面，并将用户直接转发到选定的身份提供者（如果客户端配置允许）。 tenant:name_of_tenant：可用于向令牌端点传递一个租户名称。
+     * @param {string} [refreshToken] 刷新令牌，对于 refresh_token 授权类型来说是必填的。
+     * @param {string} [deviceCode] 设备代码，对于 urn:ietf:params:oauth:grant-type:device_code 授权类型来说是必填的。
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async connectTokenPost(
-      tenantId?: string,
-      clientId?: string,
-      grantType?: string,
-      clientSecret?: string,
+      tenantid: string,
+      clientId: string,
+      clientSecret: string,
+      grantType: string,
+      scope?: string,
+      redirectUri?: string,
+      code?: string,
+      codeVerifier?: string,
       username?: string,
       password?: string,
+      acrValues?: string,
+      refreshToken?: string,
+      deviceCode?: string,
       options?: AxiosRequestConfig,
-    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse200>> {
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
       const localVarAxiosArgs = await localVarAxiosParamCreator.connectTokenPost(
-        tenantId,
+        tenantid,
         clientId,
-        grantType,
         clientSecret,
+        grantType,
+        scope,
+        redirectUri,
+        code,
+        codeVerifier,
         username,
         password,
+        acrValues,
+        refreshToken,
+        deviceCode,
         options,
       )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
@@ -336,8 +415,8 @@ export const ConnectApiFactory = function (
   const localVarFp = ConnectApiFp(configuration)
   return {
     /**
-     * 仅返回操作是否成功，具体授权的结果调用auth-result查看
-     * @summary 授权
+     * 应用场景：      适用于有移动端App的场景，移动端登录后，在桌面端再次登录时，可以选择扫描二维码登录免密登录。登录时，应先调用`get/qrcode`接口来临时获取临时二维码，      扫描二维码后，确认登录需要调用此接口，此接口执行具体授权动作，但该接口不返回具体的授权结果，授权结果调用`auth-result`接口查看。
+     * @summary 移动端二维码进行授权
      * @param {AuthByQrCodeInput} [authByQrCodeInput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -351,9 +430,9 @@ export const ConnectApiFactory = function (
         .then((request) => request(axios, basePath))
     },
     /**
-     *
-     * @summary 授权结果
-     * @param {string} [key]
+     * 应用场景：      需要和`auth-by-mobile`、`get/qrcode`接口配合使用，界面在请求到二维码后，需要轮询调用该接口来查询授权结果。      若授权成功，则返回对应的Token信息，否则应继续轮询接口，直到接口返回授权成功或授权失败为止。接口授权错误、二维码失效等异常情况，都将判断授权失败。
+     * @summary 获取移动端授权的结果
+     * @param {string} [key] 授权的二维码信息，二维码编号
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -363,37 +442,66 @@ export const ConnectApiFactory = function (
         .then((request) => request(axios, basePath))
     },
     /**
-     *
-     * @summary 获取授权二维码
+     * 应用场景：      获取免密登录的二维码，用于移动端进行授权，需要与`auth-by-mobile`、`get/auth-result`接口配合使用，该接口会返回一个有唯一编码的临时的二维码，有效期为120秒。      二维码以文件流的形式返回，格式为\'image/png\'，内容为\'[baseDomain]/#/qr-code?type=auth&key={key}\',baseDomain为当前请求的域名；      返回的文件名既为生成的二维码的唯一标识，也可以解析二维码的内容来获该唯一标识；      该二维码标识可用于后续的授权、查询授权结果操作。
+     * @summary 获取授权的二维码
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    apiV1ConnectQrcodeGet(options?: any): AxiosPromise<void> {
+    apiV1ConnectQrcodeGet(options?: any): AxiosPromise<object> {
       return localVarFp.apiV1ConnectQrcodeGet(options).then((request) => request(axios, basePath))
     },
     /**
-     *
-     * @summary 授权-网页
-     * @param {string} [tenantId]
-     * @param {string} [clientId]
-     * @param {string} [grantType]
-     * @param {string} [clientSecret]
-     * @param {string} [username]
-     * @param {string} [password]
+     * 多种形式的登录验证，并获取Token。
+     * @summary 获取Token
+     * @param {string} tenantid
+     * @param {string} clientId 客户端标识符
+     * @param {string} clientSecret 客户端密钥
+     * @param {string} grantType 授权类型，可以是以下之一： authorization_code、client_credentials、password、refresh_token、urn:ietf:params:oauth:grant-type:device_code 或自定义类型。
+     * @param {string} [scope] 一个或多个已注册的作用域（权限范围）。如果没有指定，则会颁发涵盖所有已明确允许的作用域的令牌。
+     * @param {string} [redirectUri] 对于 authorization_code 授权类型来说是必填的。
+     * @param {string} [code] 授权码，对于 authorization_code 授权类型来说是必填的。
+     * @param {string} [codeVerifier] PKCE 证明密钥。
+     * @param {string} [username] 资源拥有者的用户名，对于 password 授权类型来说是必填的。
+     * @param {string} [password] 资源拥有者的密码，对于 password 授权类型来说是必填的。
+     * @param {string} [acrValues] 用于为 password 授权类型传递额外的身份验证相关信息。IdentityServer 对以下专有的 acr_values 做了特殊处理： idp:name_of_idp：跳过登录/领域选择界面，并将用户直接转发到选定的身份提供者（如果客户端配置允许）。 tenant:name_of_tenant：可用于向令牌端点传递一个租户名称。
+     * @param {string} [refreshToken] 刷新令牌，对于 refresh_token 授权类型来说是必填的。
+     * @param {string} [deviceCode] 设备代码，对于 urn:ietf:params:oauth:grant-type:device_code 授权类型来说是必填的。
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     connectTokenPost(
-      tenantId?: string,
-      clientId?: string,
-      grantType?: string,
-      clientSecret?: string,
+      tenantid: string,
+      clientId: string,
+      clientSecret: string,
+      grantType: string,
+      scope?: string,
+      redirectUri?: string,
+      code?: string,
+      codeVerifier?: string,
       username?: string,
       password?: string,
+      acrValues?: string,
+      refreshToken?: string,
+      deviceCode?: string,
       options?: any,
-    ): AxiosPromise<InlineResponse200> {
+    ): AxiosPromise<object> {
       return localVarFp
-        .connectTokenPost(tenantId, clientId, grantType, clientSecret, username, password, options)
+        .connectTokenPost(
+          tenantid,
+          clientId,
+          clientSecret,
+          grantType,
+          scope,
+          redirectUri,
+          code,
+          codeVerifier,
+          username,
+          password,
+          acrValues,
+          refreshToken,
+          deviceCode,
+          options,
+        )
         .then((request) => request(axios, basePath))
     },
   }
@@ -407,8 +515,8 @@ export const ConnectApiFactory = function (
  */
 export class ConnectApi extends BaseAPI {
   /**
-   * 仅返回操作是否成功，具体授权的结果调用auth-result查看
-   * @summary 授权
+   * 应用场景：      适用于有移动端App的场景，移动端登录后，在桌面端再次登录时，可以选择扫描二维码登录免密登录。登录时，应先调用`get/qrcode`接口来临时获取临时二维码，      扫描二维码后，确认登录需要调用此接口，此接口执行具体授权动作，但该接口不返回具体的授权结果，授权结果调用`auth-result`接口查看。
+   * @summary 移动端二维码进行授权
    * @param {AuthByQrCodeInput} [authByQrCodeInput]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
@@ -424,9 +532,9 @@ export class ConnectApi extends BaseAPI {
   }
 
   /**
-   *
-   * @summary 授权结果
-   * @param {string} [key]
+   * 应用场景：      需要和`auth-by-mobile`、`get/qrcode`接口配合使用，界面在请求到二维码后，需要轮询调用该接口来查询授权结果。      若授权成功，则返回对应的Token信息，否则应继续轮询接口，直到接口返回授权成功或授权失败为止。接口授权错误、二维码失效等异常情况，都将判断授权失败。
+   * @summary 获取移动端授权的结果
+   * @param {string} [key] 授权的二维码信息，二维码编号
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof ConnectApi
@@ -438,8 +546,8 @@ export class ConnectApi extends BaseAPI {
   }
 
   /**
-   *
-   * @summary 获取授权二维码
+   * 应用场景：      获取免密登录的二维码，用于移动端进行授权，需要与`auth-by-mobile`、`get/auth-result`接口配合使用，该接口会返回一个有唯一编码的临时的二维码，有效期为120秒。      二维码以文件流的形式返回，格式为\'image/png\'，内容为\'[baseDomain]/#/qr-code?type=auth&key={key}\',baseDomain为当前请求的域名；      返回的文件名既为生成的二维码的唯一标识，也可以解析二维码的内容来获该唯一标识；      该二维码标识可用于后续的授权、查询授权结果操作。
+   * @summary 获取授权的二维码
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof ConnectApi
@@ -451,29 +559,58 @@ export class ConnectApi extends BaseAPI {
   }
 
   /**
-   *
-   * @summary 授权-网页
-   * @param {string} [tenantId]
-   * @param {string} [clientId]
-   * @param {string} [grantType]
-   * @param {string} [clientSecret]
-   * @param {string} [username]
-   * @param {string} [password]
+   * 多种形式的登录验证，并获取Token。
+   * @summary 获取Token
+   * @param {string} tenantid
+   * @param {string} clientId 客户端标识符
+   * @param {string} clientSecret 客户端密钥
+   * @param {string} grantType 授权类型，可以是以下之一： authorization_code、client_credentials、password、refresh_token、urn:ietf:params:oauth:grant-type:device_code 或自定义类型。
+   * @param {string} [scope] 一个或多个已注册的作用域（权限范围）。如果没有指定，则会颁发涵盖所有已明确允许的作用域的令牌。
+   * @param {string} [redirectUri] 对于 authorization_code 授权类型来说是必填的。
+   * @param {string} [code] 授权码，对于 authorization_code 授权类型来说是必填的。
+   * @param {string} [codeVerifier] PKCE 证明密钥。
+   * @param {string} [username] 资源拥有者的用户名，对于 password 授权类型来说是必填的。
+   * @param {string} [password] 资源拥有者的密码，对于 password 授权类型来说是必填的。
+   * @param {string} [acrValues] 用于为 password 授权类型传递额外的身份验证相关信息。IdentityServer 对以下专有的 acr_values 做了特殊处理： idp:name_of_idp：跳过登录/领域选择界面，并将用户直接转发到选定的身份提供者（如果客户端配置允许）。 tenant:name_of_tenant：可用于向令牌端点传递一个租户名称。
+   * @param {string} [refreshToken] 刷新令牌，对于 refresh_token 授权类型来说是必填的。
+   * @param {string} [deviceCode] 设备代码，对于 urn:ietf:params:oauth:grant-type:device_code 授权类型来说是必填的。
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof ConnectApi
    */
   public connectTokenPost(
-    tenantId?: string,
-    clientId?: string,
-    grantType?: string,
-    clientSecret?: string,
+    tenantid: string,
+    clientId: string,
+    clientSecret: string,
+    grantType: string,
+    scope?: string,
+    redirectUri?: string,
+    code?: string,
+    codeVerifier?: string,
     username?: string,
     password?: string,
+    acrValues?: string,
+    refreshToken?: string,
+    deviceCode?: string,
     options?: AxiosRequestConfig,
   ) {
     return ConnectApiFp(this.configuration)
-      .connectTokenPost(tenantId, clientId, grantType, clientSecret, username, password, options)
+      .connectTokenPost(
+        tenantid,
+        clientId,
+        clientSecret,
+        grantType,
+        scope,
+        redirectUri,
+        code,
+        codeVerifier,
+        username,
+        password,
+        acrValues,
+        refreshToken,
+        deviceCode,
+        options,
+      )
       .then((request) => request(this.axios, this.basePath))
   }
 }
