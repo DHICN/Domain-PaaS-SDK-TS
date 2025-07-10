@@ -38,6 +38,8 @@ import { CreateTemplateFileInputV4 } from '../models'
 import { DownloadFileInput } from '../models'
 // @ts-ignore
 import { QueryTemplateListOutput } from '../models'
+// @ts-ignore
+import { UpdateModelTemplateFile } from '../models'
 /**
  * ModelTemplateApi - axios parameter creator
  * @export
@@ -66,6 +68,10 @@ export const ModelTemplateApiAxiosParamCreator = function (configuration?: Confi
       const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
@@ -108,6 +114,10 @@ export const ModelTemplateApiAxiosParamCreator = function (configuration?: Confi
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
 
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
       setSearchParams(localVarUrlObj, localVarQueryParameter)
       let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
       localVarRequestOptions.headers = {
@@ -115,6 +125,53 @@ export const ModelTemplateApiAxiosParamCreator = function (configuration?: Confi
         ...headersFromBaseOptions,
         ...options.headers,
       }
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     * 更新模板文件的信息
+     * @summary 更新模板文件的信息
+     * @param {UpdateModelTemplateFile} [updateModelTemplateFile]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1ModelConfigurationTemplateUpdateModelTemplatePost: async (
+      updateModelTemplateFile?: UpdateModelTemplateFile,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/model-configuration/template/update-model-template`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        updateModelTemplateFile,
+        localVarRequestOptions,
+        configuration,
+      )
 
       return {
         url: toPathString(localVarUrlObj),
@@ -143,6 +200,10 @@ export const ModelTemplateApiAxiosParamCreator = function (configuration?: Confi
       const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
@@ -187,6 +248,10 @@ export const ModelTemplateApiAxiosParamCreator = function (configuration?: Confi
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
 
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
       setSearchParams(localVarUrlObj, localVarQueryParameter)
@@ -228,6 +293,10 @@ export const ModelTemplateApiAxiosParamCreator = function (configuration?: Confi
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
 
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
       setSearchParams(localVarUrlObj, localVarQueryParameter)
       let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
       localVarRequestOptions.headers = {
@@ -263,6 +332,10 @@ export const ModelTemplateApiAxiosParamCreator = function (configuration?: Confi
       const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
@@ -307,6 +380,10 @@ export const ModelTemplateApiAxiosParamCreator = function (configuration?: Confi
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
 
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
       setSearchParams(localVarUrlObj, localVarQueryParameter)
@@ -350,6 +427,10 @@ export const ModelTemplateApiAxiosParamCreator = function (configuration?: Confi
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
 
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
       if (id !== undefined) {
         localVarQueryParameter['id'] = id
       }
@@ -390,6 +471,10 @@ export const ModelTemplateApiAxiosParamCreator = function (configuration?: Confi
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
 
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
       if (id !== undefined) {
         localVarQueryParameter['id'] = id
       }
@@ -428,6 +513,10 @@ export const ModelTemplateApiAxiosParamCreator = function (configuration?: Confi
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
 
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
       setSearchParams(localVarUrlObj, localVarQueryParameter)
       let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
       localVarRequestOptions.headers = {
@@ -463,6 +552,10 @@ export const ModelTemplateApiAxiosParamCreator = function (configuration?: Confi
       const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
@@ -507,6 +600,10 @@ export const ModelTemplateApiAxiosParamCreator = function (configuration?: Confi
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
 
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
       setSearchParams(localVarUrlObj, localVarQueryParameter)
@@ -547,6 +644,10 @@ export const ModelTemplateApiAxiosParamCreator = function (configuration?: Confi
       const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
       setSearchParams(localVarUrlObj, localVarQueryParameter)
       let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
@@ -602,6 +703,24 @@ export const ModelTemplateApiFp = function (configuration?: Configuration) {
     > {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.apiV1ModelConfigurationTemplateModelTempalteListGet(options)
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     * 更新模板文件的信息
+     * @summary 更新模板文件的信息
+     * @param {UpdateModelTemplateFile} [updateModelTemplateFile]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1ModelConfigurationTemplateUpdateModelTemplatePost(
+      updateModelTemplateFile?: UpdateModelTemplateFile,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiV1ModelConfigurationTemplateUpdateModelTemplatePost(
+          updateModelTemplateFile,
+          options,
+        )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**
@@ -838,6 +957,21 @@ export const ModelTemplateApiFactory = function (
         .then((request) => request(axios, basePath))
     },
     /**
+     * 更新模板文件的信息
+     * @summary 更新模板文件的信息
+     * @param {UpdateModelTemplateFile} [updateModelTemplateFile]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1ModelConfigurationTemplateUpdateModelTemplatePost(
+      updateModelTemplateFile?: UpdateModelTemplateFile,
+      options?: any,
+    ): AxiosPromise<void> {
+      return localVarFp
+        .apiV1ModelConfigurationTemplateUpdateModelTemplatePost(updateModelTemplateFile, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
      * 关键词：      模型模板  使用场景：      根据文件ID删除若干个模板模型文件  相关背景：      模板文件存储在中台的分布式文件管理服务中
      * @summary 删除模板模型文件
      * @param {Array<string>} [requestBody]
@@ -1033,6 +1167,23 @@ export class ModelTemplateApi extends BaseAPI {
   public apiV1ModelConfigurationTemplateModelTempalteListGet(options?: AxiosRequestConfig) {
     return ModelTemplateApiFp(this.configuration)
       .apiV1ModelConfigurationTemplateModelTempalteListGet(options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   * 更新模板文件的信息
+   * @summary 更新模板文件的信息
+   * @param {UpdateModelTemplateFile} [updateModelTemplateFile]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof ModelTemplateApi
+   */
+  public apiV1ModelConfigurationTemplateUpdateModelTemplatePost(
+    updateModelTemplateFile?: UpdateModelTemplateFile,
+    options?: AxiosRequestConfig,
+  ) {
+    return ModelTemplateApiFp(this.configuration)
+      .apiV1ModelConfigurationTemplateUpdateModelTemplatePost(updateModelTemplateFile, options)
       .then((request) => request(this.axios, this.basePath))
   }
 

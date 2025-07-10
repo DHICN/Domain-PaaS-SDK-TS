@@ -18,51 +18,57 @@
  */
 export interface FileItemInfo {
   /**
-   * 文件ID file id
+   * 文件ID
    * @type {string}
    * @memberof FileItemInfo
    */
   id?: string
   /**
-   * 租户ID tenant Id
+   * 租户ID
    * @type {string}
    * @memberof FileItemInfo
    */
   tenantId?: string | null
   /**
-   * 文件名称 file name
+   * 文件名称,如：Model_BYJC_YS.zip
    * @type {string}
    * @memberof FileItemInfo
    */
   fileName?: string | null
   /**
-   * 文件后缀名 file extension
+   * 文件后缀名，如：.zip
    * @type {string}
    * @memberof FileItemInfo
    */
   extension?: string | null
   /**
-   * 文件大小 file size
+   * 文件大小，如：11235342
    * @type {number}
    * @memberof FileItemInfo
    */
   fileSize?: number
   /**
-   * 是否已经合成 whether the files have been merged
+   * 是否已经合成
    * @type {boolean}
    * @memberof FileItemInfo
    */
   merged?: boolean
   /**
-   * 上传时间 upload time
+   * 上传时间
    * @type {string}
    * @memberof FileItemInfo
    */
   creationTime?: string
   /**
-   * 文件融合时间 file merge time
+   * 文件融合时间
    * @type {string}
    * @memberof FileItemInfo
    */
   lastModificationTime?: string | null
+  /**
+   * 备注、描述
+   * @type {string}
+   * @memberof FileItemInfo
+   */
+  remark?: string | null
 }

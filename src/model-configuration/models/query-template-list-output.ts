@@ -1,3 +1,4 @@
+/* tslint:disable */
 /* eslint-disable */
 /**
  * 模型配置服务
@@ -83,4 +84,10 @@ export interface QueryTemplateListOutput {
    * @memberof QueryTemplateListOutput
    */
   filePath?: string | null
+  /**
+   * 错误信息
+   * @type {string}
+   * @memberof QueryTemplateListOutput
+   */
+  errorMsg?: string | null
 }
