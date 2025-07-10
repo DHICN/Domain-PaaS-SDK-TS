@@ -83,4 +83,10 @@ export interface QueryTemplateListOutput {
    * @memberof QueryTemplateListOutput
    */
   filePath?: string | null
+  /**
+   * 错误信息
+   * @type {string}
+   * @memberof QueryTemplateListOutput
+   */
+  errorMsg?: string | null
 }

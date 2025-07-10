@@ -285,8 +285,9 @@ export const ThresholdConfigApiFp = function (configuration?: Configuration) {
     ): Promise<
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<ThresholdConfigDto>>
     > {
-      const localVarAxiosArgs =
-        await localVarAxiosParamCreator.apiV2DomainWdConfigThresholdAllGet(options)
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiV2DomainWdConfigThresholdAllGet(
+        options,
+      )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**
