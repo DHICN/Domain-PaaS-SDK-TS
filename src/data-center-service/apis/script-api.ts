@@ -1449,9 +1449,8 @@ export const ScriptApiFp = function (configuration?: Configuration) {
     async apiV1GetAvaliablePythonVersionGet(
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<string>>> {
-      const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1GetAvaliablePythonVersionGet(
-        options,
-      )
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiV1GetAvaliablePythonVersionGet(options)
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**
@@ -1463,9 +1462,8 @@ export const ScriptApiFp = function (configuration?: Configuration) {
     async apiV1GetAvaliablePythonVersionGet_9(
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<string>>> {
-      const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1GetAvaliablePythonVersionGet_9(
-        options,
-      )
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiV1GetAvaliablePythonVersionGet_9(options)
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**
