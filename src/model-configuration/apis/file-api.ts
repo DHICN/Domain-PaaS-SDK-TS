@@ -281,10 +281,7 @@ export const FileApiAxiosParamCreator = function (configuration?: Configuration)
       }
 
       if (identifer !== undefined) {
-        localVarFormParams.append(
-          'Identifer',
-          new Blob([JSON.stringify(identifer)], { type: 'application/json' }),
-        )
+        localVarFormParams.append('Identifer', identifer as any)
       }
 
       if (fileName !== undefined) {
