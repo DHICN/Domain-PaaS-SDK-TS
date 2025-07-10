@@ -1466,6 +1466,7 @@ export const ScriptApiFp = function (configuration?: Configuration) {
       const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1GetAvaliablePythonVersionGet_9(
         options,
       )
+
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**
