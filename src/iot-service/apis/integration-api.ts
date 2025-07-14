@@ -33,7 +33,7 @@ import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } fr
 // @ts-ignore
 import { InPointMap } from '../models'
 // @ts-ignore
-import { PointMapAssemblyInfo } from '../models'
+import { PointMapInfo } from '../models'
 // @ts-ignore
 import { SaveOutPointMapInput } from '../models'
 // @ts-ignore
@@ -47,10 +47,10 @@ import { StringListResult } from '../models'
 export const IntegrationApiAxiosParamCreator = function (configuration?: Configuration) {
   return {
     /**
-     *
+     * 关键词：删除输入点位映射  使用场景：删除模板方案中指定ID的映射信息，该ID可通过接口/api/v2/iot/integration/search/get-inout-point-map-info或接口/api/v2/iot/integration/get-inout-point-map-info先查询后删除  输入：模板方案Id、点位映射关系Id  输出：无
      * @summary 删除输入点位映射关系
-     * @param {string} [templateId]
-     * @param {string} [inPointMapId]
+     * @param {string} [templateId] 模板方案id
+     * @param {string} [inPointMapId] 点位映射关系id
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -70,6 +70,10 @@ export const IntegrationApiAxiosParamCreator = function (configuration?: Configu
       const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
       if (templateId !== undefined) {
         localVarQueryParameter['templateId'] = templateId
@@ -93,8 +97,58 @@ export const IntegrationApiAxiosParamCreator = function (configuration?: Configu
       }
     },
     /**
-     *
-     * @summary 导出资产设备指标excel
+     * 关键词：删除输入点位映射  使用场景：删除模板方案中指定ID的映射信息，该ID可通过接口/api/v2/iot/integration/search/get-inout-point-map-info或接口/api/v2/iot/integration/get-inout-point-map-info先查询后删除  输入：模板方案Id、点位映射关系Id  输出：无
+     * @summary 删除输入点位映射关系
+     * @param {string} [templateId] 模板方案id
+     * @param {string} [inPointMapId] 点位映射关系id
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1IotIntegrationDeleteInPointMapGet_1: async (
+      templateId?: string,
+      inPointMapId?: string,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/iot/integration/delete-in-point-map`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      if (templateId !== undefined) {
+        localVarQueryParameter['templateId'] = templateId
+      }
+
+      if (inPointMapId !== undefined) {
+        localVarQueryParameter['InPointMapId'] = inPointMapId
+      }
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     * 关键词：资产、设备、指标、导出  使用场景：查看所有已经配置的监测点信息，可将系统中已添加的资产信息、设备信息、指标信息等配置信息查询并导出成excel文件；  想要修改配置信息可导出文件后在文件中修改指定信息后保存，并通过接口/api/v1/iot/integration/import-iot-config-excel上传。      输入：模板方案id  输出：导入成功或失败的消息信息
+     * @summary 导出资产设备指标excel文件
      * @param {string} [templateId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -115,6 +169,10 @@ export const IntegrationApiAxiosParamCreator = function (configuration?: Configu
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
 
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
       if (templateId !== undefined) {
         localVarQueryParameter['templateId'] = templateId
       }
@@ -133,114 +191,17 @@ export const IntegrationApiAxiosParamCreator = function (configuration?: Configu
       }
     },
     /**
-     *
-     * @summary 获取输入输出点位映射信息
+     * 关键词：资产、设备、指标、导出  使用场景：查看所有已经配置的监测点信息，可将系统中已添加的资产信息、设备信息、指标信息等配置信息查询并导出成excel文件；  想要修改配置信息可导出文件后在文件中修改指定信息后保存，并通过接口/api/v1/iot/integration/import-iot-config-excel上传。      输入：模板方案id  输出：导入成功或失败的消息信息
+     * @summary 导出资产设备指标excel文件
      * @param {string} [templateId]
-     * @param {Array<string>} [assets] 资产列表
-     * @param {Array<string>} [devices] 设备列表
-     * @param {Array<string>} [deviceIndicators] 设备指标列表
-     * @param {Array<string>} [modelPointDataTypes] 模型点位数据类型列表,即: DeviceIndicatorId与ModelPointId、ModelDataType、TemplateId的关联关系
-     * @param {Array<string>} [modelBoundaryConfigs] 模型边界列表
-     * @param {Array<string>} [templateIds] 模板Id列表
-     * @param {Array<string>} [modelPoints] 模型点位信息列表
-     * @param {Array<string>} [libraries] 项目所有方案类库列表
-     * @param {Array<string>} [templateScenarios] 类库下的所有模板方案
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    apiV1IotIntegrationGetInoutPointMapInfoGet: async (
+    apiV1IotIntegrationExportIotConfigExcelPost_2: async (
       templateId?: string,
-      assets?: Array<string>,
-      devices?: Array<string>,
-      deviceIndicators?: Array<string>,
-      modelPointDataTypes?: Array<string>,
-      modelBoundaryConfigs?: Array<string>,
-      templateIds?: Array<string>,
-      modelPoints?: Array<string>,
-      libraries?: Array<string>,
-      templateScenarios?: Array<string>,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
-      const localVarPath = `/api/v1/iot/integration/get-inout-point-map-info`
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
-      let baseOptions
-      if (configuration) {
-        baseOptions = configuration.baseOptions
-      }
-
-      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
-      const localVarHeaderParameter = {} as any
-      const localVarQueryParameter = {} as any
-
-      if (templateId !== undefined) {
-        localVarQueryParameter['templateId'] = templateId
-      }
-
-      if (assets !== undefined) {
-        localVarQueryParameter['Assets'] = assets
-      }
-
-      if (devices !== undefined) {
-        localVarQueryParameter['Devices'] = devices
-      }
-
-      if (deviceIndicators !== undefined) {
-        localVarQueryParameter['DeviceIndicators'] = deviceIndicators
-      }
-
-      if (modelPointDataTypes !== undefined) {
-        localVarQueryParameter['ModelPointDataTypes'] = modelPointDataTypes
-      }
-
-      if (modelBoundaryConfigs !== undefined) {
-        localVarQueryParameter['ModelBoundaryConfigs'] = modelBoundaryConfigs
-      }
-
-      if (templateIds !== undefined) {
-        localVarQueryParameter['TemplateIds'] = templateIds
-      }
-
-      if (modelPoints !== undefined) {
-        localVarQueryParameter['ModelPoints'] = modelPoints
-      }
-
-      if (libraries !== undefined) {
-        localVarQueryParameter['Libraries'] = libraries
-      }
-
-      if (templateScenarios !== undefined) {
-        localVarQueryParameter['TemplateScenarios'] = templateScenarios
-      }
-
-      setSearchParams(localVarUrlObj, localVarQueryParameter)
-      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      }
-
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      }
-    },
-    /**
-     *
-     * @summary 批量导入边界映射excel
-     * @param {string} [templateId]
-     * @param {any} [excelFile]
-     * @param {*} [options] Override http request option.
-     * @deprecated
-     * @throws {RequiredError}
-     */
-    apiV1IotIntegrationImportBoundarymapConfigExcelPost: async (
-      templateId?: string,
-      excelFile?: any,
-      options: AxiosRequestConfig = {},
-    ): Promise<RequestArgs> => {
-      const localVarPath = `/api/v1/iot/integration/import-boundarymap-config-excel`
+      const localVarPath = `/api/v1/iot/integration/export-iot-config-excel`
       // use dummy base URL string because the URL constructor only accepts absolute URLs.
       const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
       let baseOptions
@@ -251,17 +212,14 @@ export const IntegrationApiAxiosParamCreator = function (configuration?: Configu
       const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
-      const localVarFormParams = new ((configuration && configuration.formDataCtor) || FormData)()
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
       if (templateId !== undefined) {
         localVarQueryParameter['templateId'] = templateId
       }
-
-      if (excelFile !== undefined) {
-        localVarFormParams.append('excelFile', excelFile as any)
-      }
-
-      localVarHeaderParameter['Content-Type'] = 'multipart/form-data'
 
       setSearchParams(localVarUrlObj, localVarQueryParameter)
       let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
@@ -270,7 +228,6 @@ export const IntegrationApiAxiosParamCreator = function (configuration?: Configu
         ...headersFromBaseOptions,
         ...options.headers,
       }
-      localVarRequestOptions.data = localVarFormParams
 
       return {
         url: toPathString(localVarUrlObj),
@@ -278,9 +235,9 @@ export const IntegrationApiAxiosParamCreator = function (configuration?: Configu
       }
     },
     /**
-     *
-     * @summary 批量导入资产设备指标excel
-     * @param {string} [templateId]
+     * 关键词：资产、设备、指标、导入  使用场景：根据提供的模板excel，根据模板模型以及应用场景将资产信息、设备信息、指标信息补充完整，调用接口则可以保存配置信息到指定的模板方案下，通常在创建模板方案并启用后调用该接口；  若之前已上传过资产设备指标配置信息，则可先调用接口/api/v1/iot/integration/export-iot-config-excel将数据导出后，进行数据修改或补充，在调用接口上传。  输入：资产设备指标excel文件、模板方案id  输出：导入成功或失败的消息信息
+     * @summary 批量导入资产设备指标excel文件,用于初始化指定模板方案的资产设备指标等系统配置信息，需提前根据实际模板模型将表格补充完整
+     * @param {string} [templateId] 模板方案id
      * @param {any} [excelFile]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -303,6 +260,10 @@ export const IntegrationApiAxiosParamCreator = function (configuration?: Configu
       const localVarQueryParameter = {} as any
       const localVarFormParams = new ((configuration && configuration.formDataCtor) || FormData)()
 
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
       if (templateId !== undefined) {
         localVarQueryParameter['templateId'] = templateId
       }
@@ -328,20 +289,19 @@ export const IntegrationApiAxiosParamCreator = function (configuration?: Configu
       }
     },
     /**
-     *
-     * @summary 批量导入点位映射excel
-     * @param {string} [templateId]
+     * 关键词：资产、设备、指标、导入  使用场景：根据提供的模板excel，根据模板模型以及应用场景将资产信息、设备信息、指标信息补充完整，调用接口则可以保存配置信息到指定的模板方案下，通常在创建模板方案并启用后调用该接口；  若之前已上传过资产设备指标配置信息，则可先调用接口/api/v1/iot/integration/export-iot-config-excel将数据导出后，进行数据修改或补充，在调用接口上传。  输入：资产设备指标excel文件、模板方案id  输出：导入成功或失败的消息信息
+     * @summary 批量导入资产设备指标excel文件,用于初始化指定模板方案的资产设备指标等系统配置信息，需提前根据实际模板模型将表格补充完整
+     * @param {string} [templateId] 模板方案id
      * @param {any} [excelFile]
      * @param {*} [options] Override http request option.
-     * @deprecated
      * @throws {RequiredError}
      */
-    apiV1IotIntegrationImportPointmapConfigExcelPost: async (
+    apiV1IotIntegrationImportIotConfigExcelPost_3: async (
       templateId?: string,
       excelFile?: any,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
-      const localVarPath = `/api/v1/iot/integration/import-pointmap-config-excel`
+      const localVarPath = `/api/v1/iot/integration/import-iot-config-excel`
       // use dummy base URL string because the URL constructor only accepts absolute URLs.
       const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
       let baseOptions
@@ -354,6 +314,10 @@ export const IntegrationApiAxiosParamCreator = function (configuration?: Configu
       const localVarQueryParameter = {} as any
       const localVarFormParams = new ((configuration && configuration.formDataCtor) || FormData)()
 
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
       if (templateId !== undefined) {
         localVarQueryParameter['templateId'] = templateId
       }
@@ -379,8 +343,8 @@ export const IntegrationApiAxiosParamCreator = function (configuration?: Configu
       }
     },
     /**
-     *
-     * @summary 保存模型输入点位映射关系
+     * 关键词：输入点位映射  使用场景：内部使用  输入：模板方案Id、设备指标、模型中的点位信息、数据来源  输出：无
+     * @summary 保存模型输入点位映射关系【内部接口】
      * @param {InPointMap} [inPointMap]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -400,6 +364,10 @@ export const IntegrationApiAxiosParamCreator = function (configuration?: Configu
       const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
@@ -422,8 +390,55 @@ export const IntegrationApiAxiosParamCreator = function (configuration?: Configu
       }
     },
     /**
-     *
-     * @summary 保存模型输出点位映射关系
+     * 关键词：输入点位映射  使用场景：内部使用  输入：模板方案Id、设备指标、模型中的点位信息、数据来源  输出：无
+     * @summary 保存模型输入点位映射关系【内部接口】
+     * @param {InPointMap} [inPointMap]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1IotIntegrationSaveInPointMapPost_4: async (
+      inPointMap?: InPointMap,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/iot/integration/save-in-point-map`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        inPointMap,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     * 关键词：输出点位映射  使用场景：内部使用  输入：模板方案Id、设备指标、模型中的点位信息  输出：无
+     * @summary 保存模型输出点位映射关系【内部接口】
      * @param {SaveOutPointMapInput} [saveOutPointMapInput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -443,6 +458,10 @@ export const IntegrationApiAxiosParamCreator = function (configuration?: Configu
       const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
@@ -465,17 +484,17 @@ export const IntegrationApiAxiosParamCreator = function (configuration?: Configu
       }
     },
     /**
-     *
-     * @summary 通过设备、指标,检索:实测指标--与--模型输出点位,映射关系;实测指标--与--模型边界点位,映射关系  Through equipment and indicator, search: measured indicator -- and -- model point, mapping relationship;   Measured indicator -- and -- model boundary point, mapping relationship
-     * @param {SearchInOutPointMapAssemblyInput} [searchInOutPointMapAssemblyInput]
+     * 关键词：输出点位映射  使用场景：内部使用  输入：模板方案Id、设备指标、模型中的点位信息  输出：无
+     * @summary 保存模型输出点位映射关系【内部接口】
+     * @param {SaveOutPointMapInput} [saveOutPointMapInput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    apiV1IotIntegrationSearchGetInoutPointMapInfoPost: async (
-      searchInOutPointMapAssemblyInput?: SearchInOutPointMapAssemblyInput,
+    apiV1IotIntegrationSaveOutPointMapPost_5: async (
+      saveOutPointMapInput?: SaveOutPointMapInput,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
-      const localVarPath = `/api/v1/iot/integration/search/get-inout-point-map-info`
+      const localVarPath = `/api/v1/iot/integration/save-out-point-map`
       // use dummy base URL string because the URL constructor only accepts absolute URLs.
       const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
       let baseOptions
@@ -486,6 +505,216 @@ export const IntegrationApiAxiosParamCreator = function (configuration?: Configu
       const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        saveOutPointMapInput,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     * 关键词：点位映射、指标、模型输出点位、模型边界点位  使用场景：查询该模板方案下所有的实测指标与模型输出点位映射关系、实测指标与模型边界点位映射关系，可根据指标名称、设备名称、模型点位、边界名称来查询数据，其中任意字段匹配即任务满足条件。默认只返回前100条数据  输入：模板方案id、查询参数  输出：实测指标与模型输出点位映射关系、实测指标与模型边界点位映射关系
+     * @summary 获取模板方案模型的输入输出点位映射关系
+     * @param {string} [templateId] 模板方案id
+     * @param {string} [keyword] 查询参数
+     * @param {number} [limit] 查询记录条数,默认100
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV2IotIntegrationGetInoutPointMapInfoGet: async (
+      templateId?: string,
+      keyword?: string,
+      limit?: number,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v2/iot/integration/get-inout-point-map-info`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      if (templateId !== undefined) {
+        localVarQueryParameter['templateId'] = templateId
+      }
+
+      if (keyword !== undefined) {
+        localVarQueryParameter['keyword'] = keyword
+      }
+
+      if (limit !== undefined) {
+        localVarQueryParameter['limit'] = limit
+      }
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     * 关键词：点位映射、指标、模型输出点位、模型边界点位  使用场景：查询该模板方案下所有的实测指标与模型输出点位映射关系、实测指标与模型边界点位映射关系，可根据指标名称、设备名称、模型点位、边界名称来查询数据，其中任意字段匹配即任务满足条件。默认只返回前100条数据  输入：模板方案id、查询参数  输出：实测指标与模型输出点位映射关系、实测指标与模型边界点位映射关系
+     * @summary 获取模板方案模型的输入输出点位映射关系
+     * @param {string} [templateId] 模板方案id
+     * @param {string} [keyword] 查询参数
+     * @param {number} [limit] 查询记录条数,默认100
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV2IotIntegrationGetInoutPointMapInfoGet_6: async (
+      templateId?: string,
+      keyword?: string,
+      limit?: number,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v2/iot/integration/get-inout-point-map-info`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      if (templateId !== undefined) {
+        localVarQueryParameter['templateId'] = templateId
+      }
+
+      if (keyword !== undefined) {
+        localVarQueryParameter['keyword'] = keyword
+      }
+
+      if (limit !== undefined) {
+        localVarQueryParameter['limit'] = limit
+      }
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     * 关键词：点位映射、实测指标与模型边界点位映射关系、查询  使用场景：查询指定方案库中指定的设备指标列表的实测指标与模型输出点位映射关系以及实测指标与模型边界点位映射关系, 和接口/api/v2/iot/integration/get-inout-point-map-info接口的区别在于有传参筛选条件  输入：方案类库Id、设备指标列表  输出：实测指标与模型输出点位映射关系、实测指标与模型边界点位映射关系
+     * @summary 通过设备、指标、检索实测指标与模型输出点位映射关系以及实测指标与模型边界点位映射关系
+     * @param {SearchInOutPointMapAssemblyInput} [searchInOutPointMapAssemblyInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV2IotIntegrationSearchGetInoutPointMapInfoPost: async (
+      searchInOutPointMapAssemblyInput?: SearchInOutPointMapAssemblyInput,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v2/iot/integration/search/get-inout-point-map-info`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        searchInOutPointMapAssemblyInput,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     * 关键词：点位映射、实测指标与模型边界点位映射关系、查询  使用场景：查询指定方案库中指定的设备指标列表的实测指标与模型输出点位映射关系以及实测指标与模型边界点位映射关系, 和接口/api/v2/iot/integration/get-inout-point-map-info接口的区别在于有传参筛选条件  输入：方案类库Id、设备指标列表  输出：实测指标与模型输出点位映射关系、实测指标与模型边界点位映射关系
+     * @summary 通过设备、指标、检索实测指标与模型输出点位映射关系以及实测指标与模型边界点位映射关系
+     * @param {SearchInOutPointMapAssemblyInput} [searchInOutPointMapAssemblyInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV2IotIntegrationSearchGetInoutPointMapInfoPost_7: async (
+      searchInOutPointMapAssemblyInput?: SearchInOutPointMapAssemblyInput,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v2/iot/integration/search/get-inout-point-map-info`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
@@ -518,10 +747,10 @@ export const IntegrationApiFp = function (configuration?: Configuration) {
   const localVarAxiosParamCreator = IntegrationApiAxiosParamCreator(configuration)
   return {
     /**
-     *
+     * 关键词：删除输入点位映射  使用场景：删除模板方案中指定ID的映射信息，该ID可通过接口/api/v2/iot/integration/search/get-inout-point-map-info或接口/api/v2/iot/integration/get-inout-point-map-info先查询后删除  输入：模板方案Id、点位映射关系Id  输出：无
      * @summary 删除输入点位映射关系
-     * @param {string} [templateId]
-     * @param {string} [inPointMapId]
+     * @param {string} [templateId] 模板方案id
+     * @param {string} [inPointMapId] 点位映射关系id
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -529,7 +758,7 @@ export const IntegrationApiFp = function (configuration?: Configuration) {
       templateId?: string,
       inPointMapId?: string,
       options?: AxiosRequestConfig,
-    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.apiV1IotIntegrationDeleteInPointMapGet(
           templateId,
@@ -539,8 +768,29 @@ export const IntegrationApiFp = function (configuration?: Configuration) {
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**
-     *
-     * @summary 导出资产设备指标excel
+     * 关键词：删除输入点位映射  使用场景：删除模板方案中指定ID的映射信息，该ID可通过接口/api/v2/iot/integration/search/get-inout-point-map-info或接口/api/v2/iot/integration/get-inout-point-map-info先查询后删除  输入：模板方案Id、点位映射关系Id  输出：无
+     * @summary 删除输入点位映射关系
+     * @param {string} [templateId] 模板方案id
+     * @param {string} [inPointMapId] 点位映射关系id
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1IotIntegrationDeleteInPointMapGet_1(
+      templateId?: string,
+      inPointMapId?: string,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiV1IotIntegrationDeleteInPointMapGet_1(
+          templateId,
+          inPointMapId,
+          options,
+        )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     * 关键词：资产、设备、指标、导出  使用场景：查看所有已经配置的监测点信息，可将系统中已添加的资产信息、设备信息、指标信息等配置信息查询并导出成excel文件；  想要修改配置信息可导出文件后在文件中修改指定信息后保存，并通过接口/api/v1/iot/integration/import-iot-config-excel上传。      输入：模板方案id  输出：导入成功或失败的消息信息
+     * @summary 导出资产设备指标excel文件
      * @param {string} [templateId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -557,76 +807,27 @@ export const IntegrationApiFp = function (configuration?: Configuration) {
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**
-     *
-     * @summary 获取输入输出点位映射信息
+     * 关键词：资产、设备、指标、导出  使用场景：查看所有已经配置的监测点信息，可将系统中已添加的资产信息、设备信息、指标信息等配置信息查询并导出成excel文件；  想要修改配置信息可导出文件后在文件中修改指定信息后保存，并通过接口/api/v1/iot/integration/import-iot-config-excel上传。      输入：模板方案id  输出：导入成功或失败的消息信息
+     * @summary 导出资产设备指标excel文件
      * @param {string} [templateId]
-     * @param {Array<string>} [assets] 资产列表
-     * @param {Array<string>} [devices] 设备列表
-     * @param {Array<string>} [deviceIndicators] 设备指标列表
-     * @param {Array<string>} [modelPointDataTypes] 模型点位数据类型列表,即: DeviceIndicatorId与ModelPointId、ModelDataType、TemplateId的关联关系
-     * @param {Array<string>} [modelBoundaryConfigs] 模型边界列表
-     * @param {Array<string>} [templateIds] 模板Id列表
-     * @param {Array<string>} [modelPoints] 模型点位信息列表
-     * @param {Array<string>} [libraries] 项目所有方案类库列表
-     * @param {Array<string>} [templateScenarios] 类库下的所有模板方案
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async apiV1IotIntegrationGetInoutPointMapInfoGet(
+    async apiV1IotIntegrationExportIotConfigExcelPost_2(
       templateId?: string,
-      assets?: Array<string>,
-      devices?: Array<string>,
-      deviceIndicators?: Array<string>,
-      modelPointDataTypes?: Array<string>,
-      modelBoundaryConfigs?: Array<string>,
-      templateIds?: Array<string>,
-      modelPoints?: Array<string>,
-      libraries?: Array<string>,
-      templateScenarios?: Array<string>,
       options?: AxiosRequestConfig,
-    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PointMapAssemblyInfo>> {
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
       const localVarAxiosArgs =
-        await localVarAxiosParamCreator.apiV1IotIntegrationGetInoutPointMapInfoGet(
+        await localVarAxiosParamCreator.apiV1IotIntegrationExportIotConfigExcelPost_2(
           templateId,
-          assets,
-          devices,
-          deviceIndicators,
-          modelPointDataTypes,
-          modelBoundaryConfigs,
-          templateIds,
-          modelPoints,
-          libraries,
-          templateScenarios,
           options,
         )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**
-     *
-     * @summary 批量导入边界映射excel
-     * @param {string} [templateId]
-     * @param {any} [excelFile]
-     * @param {*} [options] Override http request option.
-     * @deprecated
-     * @throws {RequiredError}
-     */
-    async apiV1IotIntegrationImportBoundarymapConfigExcelPost(
-      templateId?: string,
-      excelFile?: any,
-      options?: AxiosRequestConfig,
-    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<StringListResult>> {
-      const localVarAxiosArgs =
-        await localVarAxiosParamCreator.apiV1IotIntegrationImportBoundarymapConfigExcelPost(
-          templateId,
-          excelFile,
-          options,
-        )
-      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
-    },
-    /**
-     *
-     * @summary 批量导入资产设备指标excel
-     * @param {string} [templateId]
+     * 关键词：资产、设备、指标、导入  使用场景：根据提供的模板excel，根据模板模型以及应用场景将资产信息、设备信息、指标信息补充完整，调用接口则可以保存配置信息到指定的模板方案下，通常在创建模板方案并启用后调用该接口；  若之前已上传过资产设备指标配置信息，则可先调用接口/api/v1/iot/integration/export-iot-config-excel将数据导出后，进行数据修改或补充，在调用接口上传。  输入：资产设备指标excel文件、模板方案id  输出：导入成功或失败的消息信息
+     * @summary 批量导入资产设备指标excel文件,用于初始化指定模板方案的资产设备指标等系统配置信息，需提前根据实际模板模型将表格补充完整
+     * @param {string} [templateId] 模板方案id
      * @param {any} [excelFile]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -645,21 +846,20 @@ export const IntegrationApiFp = function (configuration?: Configuration) {
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**
-     *
-     * @summary 批量导入点位映射excel
-     * @param {string} [templateId]
+     * 关键词：资产、设备、指标、导入  使用场景：根据提供的模板excel，根据模板模型以及应用场景将资产信息、设备信息、指标信息补充完整，调用接口则可以保存配置信息到指定的模板方案下，通常在创建模板方案并启用后调用该接口；  若之前已上传过资产设备指标配置信息，则可先调用接口/api/v1/iot/integration/export-iot-config-excel将数据导出后，进行数据修改或补充，在调用接口上传。  输入：资产设备指标excel文件、模板方案id  输出：导入成功或失败的消息信息
+     * @summary 批量导入资产设备指标excel文件,用于初始化指定模板方案的资产设备指标等系统配置信息，需提前根据实际模板模型将表格补充完整
+     * @param {string} [templateId] 模板方案id
      * @param {any} [excelFile]
      * @param {*} [options] Override http request option.
-     * @deprecated
      * @throws {RequiredError}
      */
-    async apiV1IotIntegrationImportPointmapConfigExcelPost(
+    async apiV1IotIntegrationImportIotConfigExcelPost_3(
       templateId?: string,
       excelFile?: any,
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<StringListResult>> {
       const localVarAxiosArgs =
-        await localVarAxiosParamCreator.apiV1IotIntegrationImportPointmapConfigExcelPost(
+        await localVarAxiosParamCreator.apiV1IotIntegrationImportIotConfigExcelPost_3(
           templateId,
           excelFile,
           options,
@@ -667,8 +867,8 @@ export const IntegrationApiFp = function (configuration?: Configuration) {
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**
-     *
-     * @summary 保存模型输入点位映射关系
+     * 关键词：输入点位映射  使用场景：内部使用  输入：模板方案Id、设备指标、模型中的点位信息、数据来源  输出：无
+     * @summary 保存模型输入点位映射关系【内部接口】
      * @param {InPointMap} [inPointMap]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -676,14 +876,29 @@ export const IntegrationApiFp = function (configuration?: Configuration) {
     async apiV1IotIntegrationSaveInPointMapPost(
       inPointMap?: InPointMap,
       options?: AxiosRequestConfig,
-    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.apiV1IotIntegrationSaveInPointMapPost(inPointMap, options)
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**
-     *
-     * @summary 保存模型输出点位映射关系
+     * 关键词：输入点位映射  使用场景：内部使用  输入：模板方案Id、设备指标、模型中的点位信息、数据来源  输出：无
+     * @summary 保存模型输入点位映射关系【内部接口】
+     * @param {InPointMap} [inPointMap]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1IotIntegrationSaveInPointMapPost_4(
+      inPointMap?: InPointMap,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiV1IotIntegrationSaveInPointMapPost_4(inPointMap, options)
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     * 关键词：输出点位映射  使用场景：内部使用  输入：模板方案Id、设备指标、模型中的点位信息  输出：无
+     * @summary 保存模型输出点位映射关系【内部接口】
      * @param {SaveOutPointMapInput} [saveOutPointMapInput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -691,7 +906,7 @@ export const IntegrationApiFp = function (configuration?: Configuration) {
     async apiV1IotIntegrationSaveOutPointMapPost(
       saveOutPointMapInput?: SaveOutPointMapInput,
       options?: AxiosRequestConfig,
-    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.apiV1IotIntegrationSaveOutPointMapPost(
           saveOutPointMapInput,
@@ -700,18 +915,102 @@ export const IntegrationApiFp = function (configuration?: Configuration) {
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**
-     *
-     * @summary 通过设备、指标,检索:实测指标--与--模型输出点位,映射关系;实测指标--与--模型边界点位,映射关系  Through equipment and indicator, search: measured indicator -- and -- model point, mapping relationship;   Measured indicator -- and -- model boundary point, mapping relationship
+     * 关键词：输出点位映射  使用场景：内部使用  输入：模板方案Id、设备指标、模型中的点位信息  输出：无
+     * @summary 保存模型输出点位映射关系【内部接口】
+     * @param {SaveOutPointMapInput} [saveOutPointMapInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1IotIntegrationSaveOutPointMapPost_5(
+      saveOutPointMapInput?: SaveOutPointMapInput,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiV1IotIntegrationSaveOutPointMapPost_5(
+          saveOutPointMapInput,
+          options,
+        )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     * 关键词：点位映射、指标、模型输出点位、模型边界点位  使用场景：查询该模板方案下所有的实测指标与模型输出点位映射关系、实测指标与模型边界点位映射关系，可根据指标名称、设备名称、模型点位、边界名称来查询数据，其中任意字段匹配即任务满足条件。默认只返回前100条数据  输入：模板方案id、查询参数  输出：实测指标与模型输出点位映射关系、实测指标与模型边界点位映射关系
+     * @summary 获取模板方案模型的输入输出点位映射关系
+     * @param {string} [templateId] 模板方案id
+     * @param {string} [keyword] 查询参数
+     * @param {number} [limit] 查询记录条数,默认100
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV2IotIntegrationGetInoutPointMapInfoGet(
+      templateId?: string,
+      keyword?: string,
+      limit?: number,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PointMapInfo>> {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiV2IotIntegrationGetInoutPointMapInfoGet(
+          templateId,
+          keyword,
+          limit,
+          options,
+        )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     * 关键词：点位映射、指标、模型输出点位、模型边界点位  使用场景：查询该模板方案下所有的实测指标与模型输出点位映射关系、实测指标与模型边界点位映射关系，可根据指标名称、设备名称、模型点位、边界名称来查询数据，其中任意字段匹配即任务满足条件。默认只返回前100条数据  输入：模板方案id、查询参数  输出：实测指标与模型输出点位映射关系、实测指标与模型边界点位映射关系
+     * @summary 获取模板方案模型的输入输出点位映射关系
+     * @param {string} [templateId] 模板方案id
+     * @param {string} [keyword] 查询参数
+     * @param {number} [limit] 查询记录条数,默认100
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV2IotIntegrationGetInoutPointMapInfoGet_6(
+      templateId?: string,
+      keyword?: string,
+      limit?: number,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PointMapInfo>> {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiV2IotIntegrationGetInoutPointMapInfoGet_6(
+          templateId,
+          keyword,
+          limit,
+          options,
+        )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     * 关键词：点位映射、实测指标与模型边界点位映射关系、查询  使用场景：查询指定方案库中指定的设备指标列表的实测指标与模型输出点位映射关系以及实测指标与模型边界点位映射关系, 和接口/api/v2/iot/integration/get-inout-point-map-info接口的区别在于有传参筛选条件  输入：方案类库Id、设备指标列表  输出：实测指标与模型输出点位映射关系、实测指标与模型边界点位映射关系
+     * @summary 通过设备、指标、检索实测指标与模型输出点位映射关系以及实测指标与模型边界点位映射关系
      * @param {SearchInOutPointMapAssemblyInput} [searchInOutPointMapAssemblyInput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async apiV1IotIntegrationSearchGetInoutPointMapInfoPost(
+    async apiV2IotIntegrationSearchGetInoutPointMapInfoPost(
       searchInOutPointMapAssemblyInput?: SearchInOutPointMapAssemblyInput,
       options?: AxiosRequestConfig,
-    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PointMapAssemblyInfo>> {
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PointMapInfo>> {
       const localVarAxiosArgs =
-        await localVarAxiosParamCreator.apiV1IotIntegrationSearchGetInoutPointMapInfoPost(
+        await localVarAxiosParamCreator.apiV2IotIntegrationSearchGetInoutPointMapInfoPost(
+          searchInOutPointMapAssemblyInput,
+          options,
+        )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     * 关键词：点位映射、实测指标与模型边界点位映射关系、查询  使用场景：查询指定方案库中指定的设备指标列表的实测指标与模型输出点位映射关系以及实测指标与模型边界点位映射关系, 和接口/api/v2/iot/integration/get-inout-point-map-info接口的区别在于有传参筛选条件  输入：方案类库Id、设备指标列表  输出：实测指标与模型输出点位映射关系、实测指标与模型边界点位映射关系
+     * @summary 通过设备、指标、检索实测指标与模型输出点位映射关系以及实测指标与模型边界点位映射关系
+     * @param {SearchInOutPointMapAssemblyInput} [searchInOutPointMapAssemblyInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV2IotIntegrationSearchGetInoutPointMapInfoPost_7(
+      searchInOutPointMapAssemblyInput?: SearchInOutPointMapAssemblyInput,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PointMapInfo>> {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiV2IotIntegrationSearchGetInoutPointMapInfoPost_7(
           searchInOutPointMapAssemblyInput,
           options,
         )
@@ -732,10 +1031,10 @@ export const IntegrationApiFactory = function (
   const localVarFp = IntegrationApiFp(configuration)
   return {
     /**
-     *
+     * 关键词：删除输入点位映射  使用场景：删除模板方案中指定ID的映射信息，该ID可通过接口/api/v2/iot/integration/search/get-inout-point-map-info或接口/api/v2/iot/integration/get-inout-point-map-info先查询后删除  输入：模板方案Id、点位映射关系Id  输出：无
      * @summary 删除输入点位映射关系
-     * @param {string} [templateId]
-     * @param {string} [inPointMapId]
+     * @param {string} [templateId] 模板方案id
+     * @param {string} [inPointMapId] 点位映射关系id
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -743,14 +1042,31 @@ export const IntegrationApiFactory = function (
       templateId?: string,
       inPointMapId?: string,
       options?: any,
-    ): AxiosPromise<object> {
+    ): AxiosPromise<void> {
       return localVarFp
         .apiV1IotIntegrationDeleteInPointMapGet(templateId, inPointMapId, options)
         .then((request) => request(axios, basePath))
     },
     /**
-     *
-     * @summary 导出资产设备指标excel
+     * 关键词：删除输入点位映射  使用场景：删除模板方案中指定ID的映射信息，该ID可通过接口/api/v2/iot/integration/search/get-inout-point-map-info或接口/api/v2/iot/integration/get-inout-point-map-info先查询后删除  输入：模板方案Id、点位映射关系Id  输出：无
+     * @summary 删除输入点位映射关系
+     * @param {string} [templateId] 模板方案id
+     * @param {string} [inPointMapId] 点位映射关系id
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1IotIntegrationDeleteInPointMapGet_1(
+      templateId?: string,
+      inPointMapId?: string,
+      options?: any,
+    ): AxiosPromise<void> {
+      return localVarFp
+        .apiV1IotIntegrationDeleteInPointMapGet_1(templateId, inPointMapId, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     * 关键词：资产、设备、指标、导出  使用场景：查看所有已经配置的监测点信息，可将系统中已添加的资产信息、设备信息、指标信息等配置信息查询并导出成excel文件；  想要修改配置信息可导出文件后在文件中修改指定信息后保存，并通过接口/api/v1/iot/integration/import-iot-config-excel上传。      输入：模板方案id  输出：导入成功或失败的消息信息
+     * @summary 导出资产设备指标excel文件
      * @param {string} [templateId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -764,72 +1080,24 @@ export const IntegrationApiFactory = function (
         .then((request) => request(axios, basePath))
     },
     /**
-     *
-     * @summary 获取输入输出点位映射信息
+     * 关键词：资产、设备、指标、导出  使用场景：查看所有已经配置的监测点信息，可将系统中已添加的资产信息、设备信息、指标信息等配置信息查询并导出成excel文件；  想要修改配置信息可导出文件后在文件中修改指定信息后保存，并通过接口/api/v1/iot/integration/import-iot-config-excel上传。      输入：模板方案id  输出：导入成功或失败的消息信息
+     * @summary 导出资产设备指标excel文件
      * @param {string} [templateId]
-     * @param {Array<string>} [assets] 资产列表
-     * @param {Array<string>} [devices] 设备列表
-     * @param {Array<string>} [deviceIndicators] 设备指标列表
-     * @param {Array<string>} [modelPointDataTypes] 模型点位数据类型列表,即: DeviceIndicatorId与ModelPointId、ModelDataType、TemplateId的关联关系
-     * @param {Array<string>} [modelBoundaryConfigs] 模型边界列表
-     * @param {Array<string>} [templateIds] 模板Id列表
-     * @param {Array<string>} [modelPoints] 模型点位信息列表
-     * @param {Array<string>} [libraries] 项目所有方案类库列表
-     * @param {Array<string>} [templateScenarios] 类库下的所有模板方案
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    apiV1IotIntegrationGetInoutPointMapInfoGet(
+    apiV1IotIntegrationExportIotConfigExcelPost_2(
       templateId?: string,
-      assets?: Array<string>,
-      devices?: Array<string>,
-      deviceIndicators?: Array<string>,
-      modelPointDataTypes?: Array<string>,
-      modelBoundaryConfigs?: Array<string>,
-      templateIds?: Array<string>,
-      modelPoints?: Array<string>,
-      libraries?: Array<string>,
-      templateScenarios?: Array<string>,
       options?: any,
-    ): AxiosPromise<PointMapAssemblyInfo> {
+    ): AxiosPromise<object> {
       return localVarFp
-        .apiV1IotIntegrationGetInoutPointMapInfoGet(
-          templateId,
-          assets,
-          devices,
-          deviceIndicators,
-          modelPointDataTypes,
-          modelBoundaryConfigs,
-          templateIds,
-          modelPoints,
-          libraries,
-          templateScenarios,
-          options,
-        )
+        .apiV1IotIntegrationExportIotConfigExcelPost_2(templateId, options)
         .then((request) => request(axios, basePath))
     },
     /**
-     *
-     * @summary 批量导入边界映射excel
-     * @param {string} [templateId]
-     * @param {any} [excelFile]
-     * @param {*} [options] Override http request option.
-     * @deprecated
-     * @throws {RequiredError}
-     */
-    apiV1IotIntegrationImportBoundarymapConfigExcelPost(
-      templateId?: string,
-      excelFile?: any,
-      options?: any,
-    ): AxiosPromise<StringListResult> {
-      return localVarFp
-        .apiV1IotIntegrationImportBoundarymapConfigExcelPost(templateId, excelFile, options)
-        .then((request) => request(axios, basePath))
-    },
-    /**
-     *
-     * @summary 批量导入资产设备指标excel
-     * @param {string} [templateId]
+     * 关键词：资产、设备、指标、导入  使用场景：根据提供的模板excel，根据模板模型以及应用场景将资产信息、设备信息、指标信息补充完整，调用接口则可以保存配置信息到指定的模板方案下，通常在创建模板方案并启用后调用该接口；  若之前已上传过资产设备指标配置信息，则可先调用接口/api/v1/iot/integration/export-iot-config-excel将数据导出后，进行数据修改或补充，在调用接口上传。  输入：资产设备指标excel文件、模板方案id  输出：导入成功或失败的消息信息
+     * @summary 批量导入资产设备指标excel文件,用于初始化指定模板方案的资产设备指标等系统配置信息，需提前根据实际模板模型将表格补充完整
+     * @param {string} [templateId] 模板方案id
      * @param {any} [excelFile]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -844,26 +1112,25 @@ export const IntegrationApiFactory = function (
         .then((request) => request(axios, basePath))
     },
     /**
-     *
-     * @summary 批量导入点位映射excel
-     * @param {string} [templateId]
+     * 关键词：资产、设备、指标、导入  使用场景：根据提供的模板excel，根据模板模型以及应用场景将资产信息、设备信息、指标信息补充完整，调用接口则可以保存配置信息到指定的模板方案下，通常在创建模板方案并启用后调用该接口；  若之前已上传过资产设备指标配置信息，则可先调用接口/api/v1/iot/integration/export-iot-config-excel将数据导出后，进行数据修改或补充，在调用接口上传。  输入：资产设备指标excel文件、模板方案id  输出：导入成功或失败的消息信息
+     * @summary 批量导入资产设备指标excel文件,用于初始化指定模板方案的资产设备指标等系统配置信息，需提前根据实际模板模型将表格补充完整
+     * @param {string} [templateId] 模板方案id
      * @param {any} [excelFile]
      * @param {*} [options] Override http request option.
-     * @deprecated
      * @throws {RequiredError}
      */
-    apiV1IotIntegrationImportPointmapConfigExcelPost(
+    apiV1IotIntegrationImportIotConfigExcelPost_3(
       templateId?: string,
       excelFile?: any,
       options?: any,
     ): AxiosPromise<StringListResult> {
       return localVarFp
-        .apiV1IotIntegrationImportPointmapConfigExcelPost(templateId, excelFile, options)
+        .apiV1IotIntegrationImportIotConfigExcelPost_3(templateId, excelFile, options)
         .then((request) => request(axios, basePath))
     },
     /**
-     *
-     * @summary 保存模型输入点位映射关系
+     * 关键词：输入点位映射  使用场景：内部使用  输入：模板方案Id、设备指标、模型中的点位信息、数据来源  输出：无
+     * @summary 保存模型输入点位映射关系【内部接口】
      * @param {InPointMap} [inPointMap]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -871,14 +1138,29 @@ export const IntegrationApiFactory = function (
     apiV1IotIntegrationSaveInPointMapPost(
       inPointMap?: InPointMap,
       options?: any,
-    ): AxiosPromise<object> {
+    ): AxiosPromise<void> {
       return localVarFp
         .apiV1IotIntegrationSaveInPointMapPost(inPointMap, options)
         .then((request) => request(axios, basePath))
     },
     /**
-     *
-     * @summary 保存模型输出点位映射关系
+     * 关键词：输入点位映射  使用场景：内部使用  输入：模板方案Id、设备指标、模型中的点位信息、数据来源  输出：无
+     * @summary 保存模型输入点位映射关系【内部接口】
+     * @param {InPointMap} [inPointMap]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1IotIntegrationSaveInPointMapPost_4(
+      inPointMap?: InPointMap,
+      options?: any,
+    ): AxiosPromise<void> {
+      return localVarFp
+        .apiV1IotIntegrationSaveInPointMapPost_4(inPointMap, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     * 关键词：输出点位映射  使用场景：内部使用  输入：模板方案Id、设备指标、模型中的点位信息  输出：无
+     * @summary 保存模型输出点位映射关系【内部接口】
      * @param {SaveOutPointMapInput} [saveOutPointMapInput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -886,24 +1168,95 @@ export const IntegrationApiFactory = function (
     apiV1IotIntegrationSaveOutPointMapPost(
       saveOutPointMapInput?: SaveOutPointMapInput,
       options?: any,
-    ): AxiosPromise<object> {
+    ): AxiosPromise<void> {
       return localVarFp
         .apiV1IotIntegrationSaveOutPointMapPost(saveOutPointMapInput, options)
         .then((request) => request(axios, basePath))
     },
     /**
-     *
-     * @summary 通过设备、指标,检索:实测指标--与--模型输出点位,映射关系;实测指标--与--模型边界点位,映射关系  Through equipment and indicator, search: measured indicator -- and -- model point, mapping relationship;   Measured indicator -- and -- model boundary point, mapping relationship
+     * 关键词：输出点位映射  使用场景：内部使用  输入：模板方案Id、设备指标、模型中的点位信息  输出：无
+     * @summary 保存模型输出点位映射关系【内部接口】
+     * @param {SaveOutPointMapInput} [saveOutPointMapInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1IotIntegrationSaveOutPointMapPost_5(
+      saveOutPointMapInput?: SaveOutPointMapInput,
+      options?: any,
+    ): AxiosPromise<void> {
+      return localVarFp
+        .apiV1IotIntegrationSaveOutPointMapPost_5(saveOutPointMapInput, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     * 关键词：点位映射、指标、模型输出点位、模型边界点位  使用场景：查询该模板方案下所有的实测指标与模型输出点位映射关系、实测指标与模型边界点位映射关系，可根据指标名称、设备名称、模型点位、边界名称来查询数据，其中任意字段匹配即任务满足条件。默认只返回前100条数据  输入：模板方案id、查询参数  输出：实测指标与模型输出点位映射关系、实测指标与模型边界点位映射关系
+     * @summary 获取模板方案模型的输入输出点位映射关系
+     * @param {string} [templateId] 模板方案id
+     * @param {string} [keyword] 查询参数
+     * @param {number} [limit] 查询记录条数,默认100
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV2IotIntegrationGetInoutPointMapInfoGet(
+      templateId?: string,
+      keyword?: string,
+      limit?: number,
+      options?: any,
+    ): AxiosPromise<PointMapInfo> {
+      return localVarFp
+        .apiV2IotIntegrationGetInoutPointMapInfoGet(templateId, keyword, limit, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     * 关键词：点位映射、指标、模型输出点位、模型边界点位  使用场景：查询该模板方案下所有的实测指标与模型输出点位映射关系、实测指标与模型边界点位映射关系，可根据指标名称、设备名称、模型点位、边界名称来查询数据，其中任意字段匹配即任务满足条件。默认只返回前100条数据  输入：模板方案id、查询参数  输出：实测指标与模型输出点位映射关系、实测指标与模型边界点位映射关系
+     * @summary 获取模板方案模型的输入输出点位映射关系
+     * @param {string} [templateId] 模板方案id
+     * @param {string} [keyword] 查询参数
+     * @param {number} [limit] 查询记录条数,默认100
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV2IotIntegrationGetInoutPointMapInfoGet_6(
+      templateId?: string,
+      keyword?: string,
+      limit?: number,
+      options?: any,
+    ): AxiosPromise<PointMapInfo> {
+      return localVarFp
+        .apiV2IotIntegrationGetInoutPointMapInfoGet_6(templateId, keyword, limit, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     * 关键词：点位映射、实测指标与模型边界点位映射关系、查询  使用场景：查询指定方案库中指定的设备指标列表的实测指标与模型输出点位映射关系以及实测指标与模型边界点位映射关系, 和接口/api/v2/iot/integration/get-inout-point-map-info接口的区别在于有传参筛选条件  输入：方案类库Id、设备指标列表  输出：实测指标与模型输出点位映射关系、实测指标与模型边界点位映射关系
+     * @summary 通过设备、指标、检索实测指标与模型输出点位映射关系以及实测指标与模型边界点位映射关系
      * @param {SearchInOutPointMapAssemblyInput} [searchInOutPointMapAssemblyInput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    apiV1IotIntegrationSearchGetInoutPointMapInfoPost(
+    apiV2IotIntegrationSearchGetInoutPointMapInfoPost(
       searchInOutPointMapAssemblyInput?: SearchInOutPointMapAssemblyInput,
       options?: any,
-    ): AxiosPromise<PointMapAssemblyInfo> {
+    ): AxiosPromise<PointMapInfo> {
       return localVarFp
-        .apiV1IotIntegrationSearchGetInoutPointMapInfoPost(
+        .apiV2IotIntegrationSearchGetInoutPointMapInfoPost(
+          searchInOutPointMapAssemblyInput,
+          options,
+        )
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     * 关键词：点位映射、实测指标与模型边界点位映射关系、查询  使用场景：查询指定方案库中指定的设备指标列表的实测指标与模型输出点位映射关系以及实测指标与模型边界点位映射关系, 和接口/api/v2/iot/integration/get-inout-point-map-info接口的区别在于有传参筛选条件  输入：方案类库Id、设备指标列表  输出：实测指标与模型输出点位映射关系、实测指标与模型边界点位映射关系
+     * @summary 通过设备、指标、检索实测指标与模型输出点位映射关系以及实测指标与模型边界点位映射关系
+     * @param {SearchInOutPointMapAssemblyInput} [searchInOutPointMapAssemblyInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV2IotIntegrationSearchGetInoutPointMapInfoPost_7(
+      searchInOutPointMapAssemblyInput?: SearchInOutPointMapAssemblyInput,
+      options?: any,
+    ): AxiosPromise<PointMapInfo> {
+      return localVarFp
+        .apiV2IotIntegrationSearchGetInoutPointMapInfoPost_7(
           searchInOutPointMapAssemblyInput,
           options,
         )
@@ -920,10 +1273,10 @@ export const IntegrationApiFactory = function (
  */
 export class IntegrationApi extends BaseAPI {
   /**
-   *
+   * 关键词：删除输入点位映射  使用场景：删除模板方案中指定ID的映射信息，该ID可通过接口/api/v2/iot/integration/search/get-inout-point-map-info或接口/api/v2/iot/integration/get-inout-point-map-info先查询后删除  输入：模板方案Id、点位映射关系Id  输出：无
    * @summary 删除输入点位映射关系
-   * @param {string} [templateId]
-   * @param {string} [inPointMapId]
+   * @param {string} [templateId] 模板方案id
+   * @param {string} [inPointMapId] 点位映射关系id
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof IntegrationApi
@@ -939,8 +1292,27 @@ export class IntegrationApi extends BaseAPI {
   }
 
   /**
-   *
-   * @summary 导出资产设备指标excel
+   * 关键词：删除输入点位映射  使用场景：删除模板方案中指定ID的映射信息，该ID可通过接口/api/v2/iot/integration/search/get-inout-point-map-info或接口/api/v2/iot/integration/get-inout-point-map-info先查询后删除  输入：模板方案Id、点位映射关系Id  输出：无
+   * @summary 删除输入点位映射关系
+   * @param {string} [templateId] 模板方案id
+   * @param {string} [inPointMapId] 点位映射关系id
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof IntegrationApi
+   */
+  public apiV1IotIntegrationDeleteInPointMapGet_1(
+    templateId?: string,
+    inPointMapId?: string,
+    options?: AxiosRequestConfig,
+  ) {
+    return IntegrationApiFp(this.configuration)
+      .apiV1IotIntegrationDeleteInPointMapGet_1(templateId, inPointMapId, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   * 关键词：资产、设备、指标、导出  使用场景：查看所有已经配置的监测点信息，可将系统中已添加的资产信息、设备信息、指标信息等配置信息查询并导出成excel文件；  想要修改配置信息可导出文件后在文件中修改指定信息后保存，并通过接口/api/v1/iot/integration/import-iot-config-excel上传。      输入：模板方案id  输出：导入成功或失败的消息信息
+   * @summary 导出资产设备指标excel文件
    * @param {string} [templateId]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
@@ -956,76 +1328,26 @@ export class IntegrationApi extends BaseAPI {
   }
 
   /**
-   *
-   * @summary 获取输入输出点位映射信息
+   * 关键词：资产、设备、指标、导出  使用场景：查看所有已经配置的监测点信息，可将系统中已添加的资产信息、设备信息、指标信息等配置信息查询并导出成excel文件；  想要修改配置信息可导出文件后在文件中修改指定信息后保存，并通过接口/api/v1/iot/integration/import-iot-config-excel上传。      输入：模板方案id  输出：导入成功或失败的消息信息
+   * @summary 导出资产设备指标excel文件
    * @param {string} [templateId]
-   * @param {Array<string>} [assets] 资产列表
-   * @param {Array<string>} [devices] 设备列表
-   * @param {Array<string>} [deviceIndicators] 设备指标列表
-   * @param {Array<string>} [modelPointDataTypes] 模型点位数据类型列表,即: DeviceIndicatorId与ModelPointId、ModelDataType、TemplateId的关联关系
-   * @param {Array<string>} [modelBoundaryConfigs] 模型边界列表
-   * @param {Array<string>} [templateIds] 模板Id列表
-   * @param {Array<string>} [modelPoints] 模型点位信息列表
-   * @param {Array<string>} [libraries] 项目所有方案类库列表
-   * @param {Array<string>} [templateScenarios] 类库下的所有模板方案
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof IntegrationApi
    */
-  public apiV1IotIntegrationGetInoutPointMapInfoGet(
+  public apiV1IotIntegrationExportIotConfigExcelPost_2(
     templateId?: string,
-    assets?: Array<string>,
-    devices?: Array<string>,
-    deviceIndicators?: Array<string>,
-    modelPointDataTypes?: Array<string>,
-    modelBoundaryConfigs?: Array<string>,
-    templateIds?: Array<string>,
-    modelPoints?: Array<string>,
-    libraries?: Array<string>,
-    templateScenarios?: Array<string>,
     options?: AxiosRequestConfig,
   ) {
     return IntegrationApiFp(this.configuration)
-      .apiV1IotIntegrationGetInoutPointMapInfoGet(
-        templateId,
-        assets,
-        devices,
-        deviceIndicators,
-        modelPointDataTypes,
-        modelBoundaryConfigs,
-        templateIds,
-        modelPoints,
-        libraries,
-        templateScenarios,
-        options,
-      )
+      .apiV1IotIntegrationExportIotConfigExcelPost_2(templateId, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
   /**
-   *
-   * @summary 批量导入边界映射excel
-   * @param {string} [templateId]
-   * @param {any} [excelFile]
-   * @param {*} [options] Override http request option.
-   * @deprecated
-   * @throws {RequiredError}
-   * @memberof IntegrationApi
-   */
-  public apiV1IotIntegrationImportBoundarymapConfigExcelPost(
-    templateId?: string,
-    excelFile?: any,
-    options?: AxiosRequestConfig,
-  ) {
-    return IntegrationApiFp(this.configuration)
-      .apiV1IotIntegrationImportBoundarymapConfigExcelPost(templateId, excelFile, options)
-      .then((request) => request(this.axios, this.basePath))
-  }
-
-  /**
-   *
-   * @summary 批量导入资产设备指标excel
-   * @param {string} [templateId]
+   * 关键词：资产、设备、指标、导入  使用场景：根据提供的模板excel，根据模板模型以及应用场景将资产信息、设备信息、指标信息补充完整，调用接口则可以保存配置信息到指定的模板方案下，通常在创建模板方案并启用后调用该接口；  若之前已上传过资产设备指标配置信息，则可先调用接口/api/v1/iot/integration/export-iot-config-excel将数据导出后，进行数据修改或补充，在调用接口上传。  输入：资产设备指标excel文件、模板方案id  输出：导入成功或失败的消息信息
+   * @summary 批量导入资产设备指标excel文件,用于初始化指定模板方案的资产设备指标等系统配置信息，需提前根据实际模板模型将表格补充完整
+   * @param {string} [templateId] 模板方案id
    * @param {any} [excelFile]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
@@ -1042,28 +1364,27 @@ export class IntegrationApi extends BaseAPI {
   }
 
   /**
-   *
-   * @summary 批量导入点位映射excel
-   * @param {string} [templateId]
+   * 关键词：资产、设备、指标、导入  使用场景：根据提供的模板excel，根据模板模型以及应用场景将资产信息、设备信息、指标信息补充完整，调用接口则可以保存配置信息到指定的模板方案下，通常在创建模板方案并启用后调用该接口；  若之前已上传过资产设备指标配置信息，则可先调用接口/api/v1/iot/integration/export-iot-config-excel将数据导出后，进行数据修改或补充，在调用接口上传。  输入：资产设备指标excel文件、模板方案id  输出：导入成功或失败的消息信息
+   * @summary 批量导入资产设备指标excel文件,用于初始化指定模板方案的资产设备指标等系统配置信息，需提前根据实际模板模型将表格补充完整
+   * @param {string} [templateId] 模板方案id
    * @param {any} [excelFile]
    * @param {*} [options] Override http request option.
-   * @deprecated
    * @throws {RequiredError}
    * @memberof IntegrationApi
    */
-  public apiV1IotIntegrationImportPointmapConfigExcelPost(
+  public apiV1IotIntegrationImportIotConfigExcelPost_3(
     templateId?: string,
     excelFile?: any,
     options?: AxiosRequestConfig,
   ) {
     return IntegrationApiFp(this.configuration)
-      .apiV1IotIntegrationImportPointmapConfigExcelPost(templateId, excelFile, options)
+      .apiV1IotIntegrationImportIotConfigExcelPost_3(templateId, excelFile, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
   /**
-   *
-   * @summary 保存模型输入点位映射关系
+   * 关键词：输入点位映射  使用场景：内部使用  输入：模板方案Id、设备指标、模型中的点位信息、数据来源  输出：无
+   * @summary 保存模型输入点位映射关系【内部接口】
    * @param {InPointMap} [inPointMap]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
@@ -1079,8 +1400,25 @@ export class IntegrationApi extends BaseAPI {
   }
 
   /**
-   *
-   * @summary 保存模型输出点位映射关系
+   * 关键词：输入点位映射  使用场景：内部使用  输入：模板方案Id、设备指标、模型中的点位信息、数据来源  输出：无
+   * @summary 保存模型输入点位映射关系【内部接口】
+   * @param {InPointMap} [inPointMap]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof IntegrationApi
+   */
+  public apiV1IotIntegrationSaveInPointMapPost_4(
+    inPointMap?: InPointMap,
+    options?: AxiosRequestConfig,
+  ) {
+    return IntegrationApiFp(this.configuration)
+      .apiV1IotIntegrationSaveInPointMapPost_4(inPointMap, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   * 关键词：输出点位映射  使用场景：内部使用  输入：模板方案Id、设备指标、模型中的点位信息  输出：无
+   * @summary 保存模型输出点位映射关系【内部接口】
    * @param {SaveOutPointMapInput} [saveOutPointMapInput]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
@@ -1096,19 +1434,98 @@ export class IntegrationApi extends BaseAPI {
   }
 
   /**
-   *
-   * @summary 通过设备、指标,检索:实测指标--与--模型输出点位,映射关系;实测指标--与--模型边界点位,映射关系  Through equipment and indicator, search: measured indicator -- and -- model point, mapping relationship;   Measured indicator -- and -- model boundary point, mapping relationship
+   * 关键词：输出点位映射  使用场景：内部使用  输入：模板方案Id、设备指标、模型中的点位信息  输出：无
+   * @summary 保存模型输出点位映射关系【内部接口】
+   * @param {SaveOutPointMapInput} [saveOutPointMapInput]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof IntegrationApi
+   */
+  public apiV1IotIntegrationSaveOutPointMapPost_5(
+    saveOutPointMapInput?: SaveOutPointMapInput,
+    options?: AxiosRequestConfig,
+  ) {
+    return IntegrationApiFp(this.configuration)
+      .apiV1IotIntegrationSaveOutPointMapPost_5(saveOutPointMapInput, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   * 关键词：点位映射、指标、模型输出点位、模型边界点位  使用场景：查询该模板方案下所有的实测指标与模型输出点位映射关系、实测指标与模型边界点位映射关系，可根据指标名称、设备名称、模型点位、边界名称来查询数据，其中任意字段匹配即任务满足条件。默认只返回前100条数据  输入：模板方案id、查询参数  输出：实测指标与模型输出点位映射关系、实测指标与模型边界点位映射关系
+   * @summary 获取模板方案模型的输入输出点位映射关系
+   * @param {string} [templateId] 模板方案id
+   * @param {string} [keyword] 查询参数
+   * @param {number} [limit] 查询记录条数,默认100
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof IntegrationApi
+   */
+  public apiV2IotIntegrationGetInoutPointMapInfoGet(
+    templateId?: string,
+    keyword?: string,
+    limit?: number,
+    options?: AxiosRequestConfig,
+  ) {
+    return IntegrationApiFp(this.configuration)
+      .apiV2IotIntegrationGetInoutPointMapInfoGet(templateId, keyword, limit, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   * 关键词：点位映射、指标、模型输出点位、模型边界点位  使用场景：查询该模板方案下所有的实测指标与模型输出点位映射关系、实测指标与模型边界点位映射关系，可根据指标名称、设备名称、模型点位、边界名称来查询数据，其中任意字段匹配即任务满足条件。默认只返回前100条数据  输入：模板方案id、查询参数  输出：实测指标与模型输出点位映射关系、实测指标与模型边界点位映射关系
+   * @summary 获取模板方案模型的输入输出点位映射关系
+   * @param {string} [templateId] 模板方案id
+   * @param {string} [keyword] 查询参数
+   * @param {number} [limit] 查询记录条数,默认100
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof IntegrationApi
+   */
+  public apiV2IotIntegrationGetInoutPointMapInfoGet_6(
+    templateId?: string,
+    keyword?: string,
+    limit?: number,
+    options?: AxiosRequestConfig,
+  ) {
+    return IntegrationApiFp(this.configuration)
+      .apiV2IotIntegrationGetInoutPointMapInfoGet_6(templateId, keyword, limit, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   * 关键词：点位映射、实测指标与模型边界点位映射关系、查询  使用场景：查询指定方案库中指定的设备指标列表的实测指标与模型输出点位映射关系以及实测指标与模型边界点位映射关系, 和接口/api/v2/iot/integration/get-inout-point-map-info接口的区别在于有传参筛选条件  输入：方案类库Id、设备指标列表  输出：实测指标与模型输出点位映射关系、实测指标与模型边界点位映射关系
+   * @summary 通过设备、指标、检索实测指标与模型输出点位映射关系以及实测指标与模型边界点位映射关系
    * @param {SearchInOutPointMapAssemblyInput} [searchInOutPointMapAssemblyInput]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof IntegrationApi
    */
-  public apiV1IotIntegrationSearchGetInoutPointMapInfoPost(
+  public apiV2IotIntegrationSearchGetInoutPointMapInfoPost(
     searchInOutPointMapAssemblyInput?: SearchInOutPointMapAssemblyInput,
     options?: AxiosRequestConfig,
   ) {
     return IntegrationApiFp(this.configuration)
-      .apiV1IotIntegrationSearchGetInoutPointMapInfoPost(searchInOutPointMapAssemblyInput, options)
+      .apiV2IotIntegrationSearchGetInoutPointMapInfoPost(searchInOutPointMapAssemblyInput, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   * 关键词：点位映射、实测指标与模型边界点位映射关系、查询  使用场景：查询指定方案库中指定的设备指标列表的实测指标与模型输出点位映射关系以及实测指标与模型边界点位映射关系, 和接口/api/v2/iot/integration/get-inout-point-map-info接口的区别在于有传参筛选条件  输入：方案类库Id、设备指标列表  输出：实测指标与模型输出点位映射关系、实测指标与模型边界点位映射关系
+   * @summary 通过设备、指标、检索实测指标与模型输出点位映射关系以及实测指标与模型边界点位映射关系
+   * @param {SearchInOutPointMapAssemblyInput} [searchInOutPointMapAssemblyInput]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof IntegrationApi
+   */
+  public apiV2IotIntegrationSearchGetInoutPointMapInfoPost_7(
+    searchInOutPointMapAssemblyInput?: SearchInOutPointMapAssemblyInput,
+    options?: AxiosRequestConfig,
+  ) {
+    return IntegrationApiFp(this.configuration)
+      .apiV2IotIntegrationSearchGetInoutPointMapInfoPost_7(
+        searchInOutPointMapAssemblyInput,
+        options,
+      )
       .then((request) => request(this.axios, this.basePath))
   }
 }
