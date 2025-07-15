@@ -49,6 +49,10 @@ import { LibraryTypeEnum } from '../models'
 // @ts-ignore
 import { Scenario } from '../models'
 // @ts-ignore
+import { ScenarioPage } from '../models'
+// @ts-ignore
+import { SearchScenariosByLibraryInput } from '../models'
+// @ts-ignore
 import { TurnOnTemplatePara } from '../models'
 // @ts-ignore
 import { UpdateLibraryConfigInfo } from '../models'
@@ -106,51 +110,6 @@ export const LibraryApiAxiosParamCreator = function (configuration?: Configurati
       }
     },
     /**
-     * 内部接口，供定时任务调用，扫描所有的方案库配置，删除过期的方案。
-     * @summary 删除方案库下过期的方案
-     * @param {string} version
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    apiV1ScenarioManagerLibraryScenarioAutoDeletePost_1: async (
-      version: string,
-      options: AxiosRequestConfig = {},
-    ): Promise<RequestArgs> => {
-      // verify required parameter 'version' is not null or undefined
-      assertParamExists('apiV1ScenarioManagerLibraryScenarioAutoDeletePost_1', 'version', version)
-      const localVarPath = `/api/v1/scenario-manager/library/scenario/auto-delete`.replace(
-        `{${'version'}}`,
-        encodeURIComponent(String(version)),
-      )
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
-      let baseOptions
-      if (configuration) {
-        baseOptions = configuration.baseOptions
-      }
-
-      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
-      const localVarHeaderParameter = {} as any
-      const localVarQueryParameter = {} as any
-
-      // authentication bearer required
-      // http bearer authentication required
-      await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-      setSearchParams(localVarUrlObj, localVarQueryParameter)
-      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      }
-
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      }
-    },
-    /**
      * 获取方案过期时间配置,如果没有配置过期时间，则默认返回-1，过期时间小于等于0时，都认为不过期。如果大于1，则每天滚动删除配置时间之前的方案数据。  模板方案除外，模板永不过期。
      * @summary 获取方案库中方案的过期时间配置
      * @param {string} version
@@ -164,56 +123,6 @@ export const LibraryApiAxiosParamCreator = function (configuration?: Configurati
       // verify required parameter 'version' is not null or undefined
       assertParamExists(
         'apiV1ScenarioManagerLibraryScenarioGetExpireTimeConfigGet',
-        'version',
-        version,
-      )
-      const localVarPath =
-        `/api/v1/scenario-manager/library/scenario/get-expire-time-config`.replace(
-          `{${'version'}}`,
-          encodeURIComponent(String(version)),
-        )
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
-      let baseOptions
-      if (configuration) {
-        baseOptions = configuration.baseOptions
-      }
-
-      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
-      const localVarHeaderParameter = {} as any
-      const localVarQueryParameter = {} as any
-
-      // authentication bearer required
-      // http bearer authentication required
-      await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-      setSearchParams(localVarUrlObj, localVarQueryParameter)
-      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      }
-
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      }
-    },
-    /**
-     * 获取方案过期时间配置,如果没有配置过期时间，则默认返回-1，过期时间小于等于0时，都认为不过期。如果大于1，则每天滚动删除配置时间之前的方案数据。  模板方案除外，模板永不过期。
-     * @summary 获取方案库中方案的过期时间配置
-     * @param {string} version
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    apiV1ScenarioManagerLibraryScenarioGetExpireTimeConfigGet_2: async (
-      version: string,
-      options: AxiosRequestConfig = {},
-    ): Promise<RequestArgs> => {
-      // verify required parameter 'version' is not null or undefined
-      assertParamExists(
-        'apiV1ScenarioManagerLibraryScenarioGetExpireTimeConfigGet_2',
         'version',
         version,
       )
@@ -305,25 +214,21 @@ export const LibraryApiAxiosParamCreator = function (configuration?: Configurati
       }
     },
     /**
-     * 设置方案库中方案的过期时间,设置值小于等于0时，认为不过期。如果大于0，则每天滚动删除配置时间之前的方案数据。时间单位为天。  模板方案除外，模板永不过期。
-     * @summary 设置方案库中方案过期时间
+     * 使用场景：      根据筛选条件分页查询某个方案库下匹配的的方案信息列表，仅查找普通方案。
+     * @summary 根据方案名、时间范围搜索条件分页查询指定方案库下的方案列表
      * @param {string} version
-     * @param {UpdateLibraryConfigInfo} [updateLibraryConfigInfo]
+     * @param {SearchScenariosByLibraryInput} [searchScenariosByLibraryInput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    apiV1ScenarioManagerLibraryScenarioSetExpireTimePost_3: async (
+    apiV1ScenarioManagerLibrarySearchScenariolistPost: async (
       version: string,
-      updateLibraryConfigInfo?: UpdateLibraryConfigInfo,
+      searchScenariosByLibraryInput?: SearchScenariosByLibraryInput,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
       // verify required parameter 'version' is not null or undefined
-      assertParamExists(
-        'apiV1ScenarioManagerLibraryScenarioSetExpireTimePost_3',
-        'version',
-        version,
-      )
-      const localVarPath = `/api/v1/scenario-manager/library/scenario/set-expire-time`.replace(
+      assertParamExists('apiV1ScenarioManagerLibrarySearchScenariolistPost', 'version', version)
+      const localVarPath = `/api/v1/scenario-manager/library/search/scenariolist`.replace(
         `{${'version'}}`,
         encodeURIComponent(String(version)),
       )
@@ -352,7 +257,7 @@ export const LibraryApiAxiosParamCreator = function (configuration?: Configurati
         ...options.headers,
       }
       localVarRequestOptions.data = serializeDataIfNeeded(
-        updateLibraryConfigInfo,
+        searchScenariosByLibraryInput,
         localVarRequestOptions,
         configuration,
       )
@@ -417,60 +322,6 @@ export const LibraryApiAxiosParamCreator = function (configuration?: Configurati
       }
     },
     /**
-     * 关键词：      方案库、方案组、方案、模板方案    使用场景：      该接口一般在项目初始化的时候调用，用于创建项目将会涉及到的方案库。该接口通常不需要用户自行调用，因为当我们在DHI中国用户管理系统上创建项目租户的时候，会通过配置文件的形式上传项目所涉及到的方案库信息，在这个过程中，方案库会自动完成创建。如果后续有添加新方案库的需求，则可以通过该接口实现。    相关背景：      方案是对模型进行管理的基本单位，一个方案即代表一套模型，以及基于该模型所生成的所有相关数据；      方案库代表一类方案的集合，比如预报库、调度库等，便于对方案的分类管理；      方案组是方案与方案库之间的隐藏连接层，一般来说，一个方案库对应一个方案组，方案组下关联方案。      模板方案，对应一个基础模型，以及基于该模型导出的一系列基础数据；某个方案库下的方案创建时，将以该方案库所关联的模板方案为模板来进行创建，并可在此基础上进行模型设置和计算等操作。    输入：      输入需要新增的方案库的基本信息，包括库的名称、库的类型、业务类型、库所对应的方案组ID、是否只读、是否直接绑定模板方案、是否支持绑定多个启用的模板方案等信息。      其中库所对应的方案组ID，即Scenariogroup，如果是关联已经存在的方案组，则传该方案组的ID；如果是需要在创建方案库时进行自动创建的，则传空Guid即可，一般在项目初始化时属于后者。      是否直接绑定模板方案，即BindTemplate，如果为1，则表示该方案组下会有直接关联的模板方案，一旦关联上模板方案之后，通过/api/v1/scenario-manager/library/templatelist接口，传入该方案库的ID即可以查询到所关联的模板方案；如果为0，则表示该方案组下没有直接关联的模板方案，但是有间接关联的模板方案，而间接关联的模板方案，可以通过BindType和BindBusinessType所对应的方案库的ID，结合前面的接口来获取。    输出：      如果创建成功，将返回新创建的方案库的对象列表
-     * @summary 创建新的方案库
-     * @param {string} version
-     * @param {Array<AddLibrariesPara>} [addLibrariesPara]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    apiV2ScenarioManagerLibraryAddPost_4: async (
-      version: string,
-      addLibrariesPara?: Array<AddLibrariesPara>,
-      options: AxiosRequestConfig = {},
-    ): Promise<RequestArgs> => {
-      // verify required parameter 'version' is not null or undefined
-      assertParamExists('apiV2ScenarioManagerLibraryAddPost_4', 'version', version)
-      const localVarPath = `/api/v2/scenario-manager/library/add`.replace(
-        `{${'version'}}`,
-        encodeURIComponent(String(version)),
-      )
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
-      let baseOptions
-      if (configuration) {
-        baseOptions = configuration.baseOptions
-      }
-
-      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
-      const localVarHeaderParameter = {} as any
-      const localVarQueryParameter = {} as any
-
-      // authentication bearer required
-      // http bearer authentication required
-      await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-      localVarHeaderParameter['Content-Type'] = 'application/json'
-
-      setSearchParams(localVarUrlObj, localVarQueryParameter)
-      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      }
-      localVarRequestOptions.data = serializeDataIfNeeded(
-        addLibrariesPara,
-        localVarRequestOptions,
-        configuration,
-      )
-
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      }
-    },
-    /**
      * 关键词：      方案库        使用场景：      该接口用于删除不需要了的方案库，此操作仅仅删除方案库，不会删除方案库所关联的方案组和方案；如果需要同时删除所关联的方案组和方案，可调用/api/v1/scenario-manager/scenariogroup/dfs/delete接口来实现。
      * @summary 根据方案库ID列表删除方案库
      * @param {string} version
@@ -485,60 +336,6 @@ export const LibraryApiAxiosParamCreator = function (configuration?: Configurati
     ): Promise<RequestArgs> => {
       // verify required parameter 'version' is not null or undefined
       assertParamExists('apiV2ScenarioManagerLibraryDeletePost', 'version', version)
-      const localVarPath = `/api/v2/scenario-manager/library/delete`.replace(
-        `{${'version'}}`,
-        encodeURIComponent(String(version)),
-      )
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
-      let baseOptions
-      if (configuration) {
-        baseOptions = configuration.baseOptions
-      }
-
-      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
-      const localVarHeaderParameter = {} as any
-      const localVarQueryParameter = {} as any
-
-      // authentication bearer required
-      // http bearer authentication required
-      await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-      localVarHeaderParameter['Content-Type'] = 'application/json'
-
-      setSearchParams(localVarUrlObj, localVarQueryParameter)
-      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      }
-      localVarRequestOptions.data = serializeDataIfNeeded(
-        deleteLibrariesPara,
-        localVarRequestOptions,
-        configuration,
-      )
-
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      }
-    },
-    /**
-     * 关键词：      方案库        使用场景：      该接口用于删除不需要了的方案库，此操作仅仅删除方案库，不会删除方案库所关联的方案组和方案；如果需要同时删除所关联的方案组和方案，可调用/api/v1/scenario-manager/scenariogroup/dfs/delete接口来实现。
-     * @summary 根据方案库ID列表删除方案库
-     * @param {string} version
-     * @param {DeleteLibrariesPara} [deleteLibrariesPara]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    apiV2ScenarioManagerLibraryDeletePost_5: async (
-      version: string,
-      deleteLibrariesPara?: DeleteLibrariesPara,
-      options: AxiosRequestConfig = {},
-    ): Promise<RequestArgs> => {
-      // verify required parameter 'version' is not null or undefined
-      assertParamExists('apiV2ScenarioManagerLibraryDeletePost_5', 'version', version)
       const localVarPath = `/api/v2/scenario-manager/library/delete`.replace(
         `{${'version'}}`,
         encodeURIComponent(String(version)),
@@ -646,73 +443,6 @@ export const LibraryApiAxiosParamCreator = function (configuration?: Configurati
       }
     },
     /**
-     * 关键词：      方案库、方案、计算完成、模板方案        使用场景：      用于查询某个方案库下，基于指定模板方案所创建的方案中，最新一次完成计算任务的方案，只有完成计算的方案才能获取其完整的计算结果。当用户需要获取某个方案库下最新一次方案结果，同时该方案库下又有多个启用的模板方案时，可以利用此接口查询指定模板方案下最新一次计算完成的方案，再基于方案信息，去进一步获取方案的结果、边界设置等数据。    输入：      方案库的ID，可以基于/api/v1/scenario-manager/library/list/type_businesstype接口查询得到。      模板方案的模型类型与名称，可以基于/api/v1/scenario-manager/library/templatelist接口查询得到。
-     * @summary 根据方案库，以及模板方案名称与模型类型，查询其下最近一次计算完成的方案
-     * @param {string} version
-     * @param {string} [libraryId] 方案库的ID，唯一性标识
-     * @param {string} [modelType] 模板方案对应的模型类型，传枚举项对应的字符串，枚举项目前已存在的定义包括MIKE11Model、MIKEBASINModel、MIKE21Model、MIKE21FMModel、MIKE3FMModel、MIKEFloodModel、MIKESHEModel、MIKEUrbanCSModel、MIKEUrbanWDModel、HydroBasinModel、InpWDModel、XAJ11Model、FeflowModel、WestModel、SWMMModel、EFDCModel、WaterForecastModel、HydroBasinOptimModel、MIKEUrbanCSPlusModel、MIKEUrbanWDPlusModel、HammerModel、MIKEPlusFloodModel、MIKEPlusWDModel、EPANET、Unknown
-     * @param {string} [templateName] 模板方案的名称
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    apiV2ScenarioManagerLibraryLatestscenarioByModelTypeGet_6: async (
-      version: string,
-      libraryId?: string,
-      modelType?: string,
-      templateName?: string,
-      options: AxiosRequestConfig = {},
-    ): Promise<RequestArgs> => {
-      // verify required parameter 'version' is not null or undefined
-      assertParamExists(
-        'apiV2ScenarioManagerLibraryLatestscenarioByModelTypeGet_6',
-        'version',
-        version,
-      )
-      const localVarPath = `/api/v2/scenario-manager/library/latestscenario/by-model-type`.replace(
-        `{${'version'}}`,
-        encodeURIComponent(String(version)),
-      )
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
-      let baseOptions
-      if (configuration) {
-        baseOptions = configuration.baseOptions
-      }
-
-      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
-      const localVarHeaderParameter = {} as any
-      const localVarQueryParameter = {} as any
-
-      // authentication bearer required
-      // http bearer authentication required
-      await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-      if (libraryId !== undefined) {
-        localVarQueryParameter['libraryId'] = libraryId
-      }
-
-      if (modelType !== undefined) {
-        localVarQueryParameter['ModelType'] = modelType
-      }
-
-      if (templateName !== undefined) {
-        localVarQueryParameter['templateName'] = templateName
-      }
-
-      setSearchParams(localVarUrlObj, localVarQueryParameter)
-      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      }
-
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      }
-    },
-    /**
      * 关键词：      方案库、方案、计算完成        使用场景：      用于查询某个方案库下最新一次完成计算任务的方案，只有完成计算的方案才能获取其完整的计算结果。当用户需要获取最新一次滚动预报方案结果时，往往需要先利用该接口查询滚动方案库下的最新一次计算完成的方案，再基于方案信息，去进一步获取方案的结果、边界设置等数据。    输入：      方案库的ID，可以基于/api/v1/scenario-manager/library/list/type_businesstype接口查询得到。
      * @summary 根据方案库查询其下最近一次计算完成的方案
      * @param {string} version
@@ -727,57 +457,6 @@ export const LibraryApiAxiosParamCreator = function (configuration?: Configurati
     ): Promise<RequestArgs> => {
       // verify required parameter 'version' is not null or undefined
       assertParamExists('apiV2ScenarioManagerLibraryLatestscenarioGet', 'version', version)
-      const localVarPath = `/api/v2/scenario-manager/library/latestscenario`.replace(
-        `{${'version'}}`,
-        encodeURIComponent(String(version)),
-      )
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
-      let baseOptions
-      if (configuration) {
-        baseOptions = configuration.baseOptions
-      }
-
-      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
-      const localVarHeaderParameter = {} as any
-      const localVarQueryParameter = {} as any
-
-      // authentication bearer required
-      // http bearer authentication required
-      await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-      if (libraryId !== undefined) {
-        localVarQueryParameter['libraryId'] = libraryId
-      }
-
-      setSearchParams(localVarUrlObj, localVarQueryParameter)
-      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      }
-
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      }
-    },
-    /**
-     * 关键词：      方案库、方案、计算完成        使用场景：      用于查询某个方案库下最新一次完成计算任务的方案，只有完成计算的方案才能获取其完整的计算结果。当用户需要获取最新一次滚动预报方案结果时，往往需要先利用该接口查询滚动方案库下的最新一次计算完成的方案，再基于方案信息，去进一步获取方案的结果、边界设置等数据。    输入：      方案库的ID，可以基于/api/v1/scenario-manager/library/list/type_businesstype接口查询得到。
-     * @summary 根据方案库查询其下最近一次计算完成的方案
-     * @param {string} version
-     * @param {string} [libraryId] 方案库的ID，唯一性标识
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    apiV2ScenarioManagerLibraryLatestscenarioGet_7: async (
-      version: string,
-      libraryId?: string,
-      options: AxiosRequestConfig = {},
-    ): Promise<RequestArgs> => {
-      // verify required parameter 'version' is not null or undefined
-      assertParamExists('apiV2ScenarioManagerLibraryLatestscenarioGet_7', 'version', version)
       const localVarPath = `/api/v2/scenario-manager/library/latestscenario`.replace(
         `{${'version'}}`,
         encodeURIComponent(String(version)),
@@ -860,51 +539,6 @@ export const LibraryApiAxiosParamCreator = function (configuration?: Configurati
       }
     },
     /**
-     * 关键词：      方案库        使用场景：      用于获取项目下所有的方案库的信息列表，用户可以基于此列表，再进一步筛选指定类型（Type）和业务类型（BusinessType）的方案库。      基于方案库，用户可进一步通过接口/api/v1/scenario-manager/library/scenariolist查询方案库包含的所有方案，通过接口/api/v1/scenario-manager/library/latestscenario查询方案库下最新一个完成计算的方案，通过接口/api/v1/scenario-manager/library/templatelist查询方案库包含的所有模板方案。
-     * @summary 获取所有方案库列表
-     * @param {string} version
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    apiV2ScenarioManagerLibraryListGet_8: async (
-      version: string,
-      options: AxiosRequestConfig = {},
-    ): Promise<RequestArgs> => {
-      // verify required parameter 'version' is not null or undefined
-      assertParamExists('apiV2ScenarioManagerLibraryListGet_8', 'version', version)
-      const localVarPath = `/api/v2/scenario-manager/library/list`.replace(
-        `{${'version'}}`,
-        encodeURIComponent(String(version)),
-      )
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
-      let baseOptions
-      if (configuration) {
-        baseOptions = configuration.baseOptions
-      }
-
-      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
-      const localVarHeaderParameter = {} as any
-      const localVarQueryParameter = {} as any
-
-      // authentication bearer required
-      // http bearer authentication required
-      await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-      setSearchParams(localVarUrlObj, localVarQueryParameter)
-      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      }
-
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      }
-    },
-    /**
      * 关键词：      模板方案、方案库、方案库类型、业务类型        使用场景：      用户在创建方案时，或者需要查询与模型相关的基础数据、映射关系、配置信息时，均需要先获取对应的模板方案，该接口可基于方案库类型和业务类型查询对应的方案库下的启用的模板方案，比如内涝（businessType=2）预报（type=1）库下启用的模板方案，并且能够相对高效得返回结果。    相关背景：      模板方案是创建普通方案的基础，同时它又绑定了模型相关的一系列基础数据，包括模型的空间坐标系，河道、管网、二维网格等GIS信息，各类模型点位（如管网、节点、河道、结构物、边界...）、映射关系等，甚至如滚动预报配置、阈值配置等一系列基础配置信息也是与模板方案绑定的，所以模板方案的查询是一个基础且常用的功能需求。
      * @summary 根据方案库类型和业务类型查询对应方案库下启用的模板方案
      * @param {string} version
@@ -921,63 +555,6 @@ export const LibraryApiAxiosParamCreator = function (configuration?: Configurati
     ): Promise<RequestArgs> => {
       // verify required parameter 'version' is not null or undefined
       assertParamExists('apiV2ScenarioManagerLibraryListGetcachedscenarioGet', 'version', version)
-      const localVarPath = `/api/v2/scenario-manager/library/list/getcachedscenario`.replace(
-        `{${'version'}}`,
-        encodeURIComponent(String(version)),
-      )
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
-      let baseOptions
-      if (configuration) {
-        baseOptions = configuration.baseOptions
-      }
-
-      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
-      const localVarHeaderParameter = {} as any
-      const localVarQueryParameter = {} as any
-
-      // authentication bearer required
-      // http bearer authentication required
-      await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-      if (type !== undefined) {
-        localVarQueryParameter['type'] = type
-      }
-
-      if (businessType !== undefined) {
-        localVarQueryParameter['businessType'] = businessType
-      }
-
-      setSearchParams(localVarUrlObj, localVarQueryParameter)
-      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      }
-
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      }
-    },
-    /**
-     * 关键词：      模板方案、方案库、方案库类型、业务类型        使用场景：      用户在创建方案时，或者需要查询与模型相关的基础数据、映射关系、配置信息时，均需要先获取对应的模板方案，该接口可基于方案库类型和业务类型查询对应的方案库下的启用的模板方案，比如内涝（businessType=2）预报（type=1）库下启用的模板方案，并且能够相对高效得返回结果。    相关背景：      模板方案是创建普通方案的基础，同时它又绑定了模型相关的一系列基础数据，包括模型的空间坐标系，河道、管网、二维网格等GIS信息，各类模型点位（如管网、节点、河道、结构物、边界...）、映射关系等，甚至如滚动预报配置、阈值配置等一系列基础配置信息也是与模板方案绑定的，所以模板方案的查询是一个基础且常用的功能需求。
-     * @summary 根据方案库类型和业务类型查询对应方案库下启用的模板方案
-     * @param {string} version
-     * @param {LibraryTypeEnum} [type] 方案库类型，枚举，目前已存在0-19种定义，包括0：未定义；1：自动预报库；2：人工预报库；3：预报库；4：调度库；5：经验库；6：情景模拟库；7：突发水污染事故库；8：在线水动力库（供水）；9：水锤库（供水）；10：管道充满度库；11：爆管库（供水）；12：污染事故响应库；13：规划库；14：管道冲洗库（供水）；15：污染事故库（供水）；16：关阀库（供水）；17：在线滚动预报库（污水厂）；18：在线滚动优化库（污水厂）；19：模拟实验室库（污水厂）
-     * @param {BusinessTypeEnum} [businessType] 业务类型，枚举，目前已存在0-6种定义，包括0：未定义；1：水环境；2：内涝；3：供水；4：流域洪水；5：污水厂；6：排水
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    apiV2ScenarioManagerLibraryListGetcachedscenarioGet_9: async (
-      version: string,
-      type?: LibraryTypeEnum,
-      businessType?: BusinessTypeEnum,
-      options: AxiosRequestConfig = {},
-    ): Promise<RequestArgs> => {
-      // verify required parameter 'version' is not null or undefined
-      assertParamExists('apiV2ScenarioManagerLibraryListGetcachedscenarioGet_9', 'version', version)
       const localVarPath = `/api/v2/scenario-manager/library/list/getcachedscenario`.replace(
         `{${'version'}}`,
         encodeURIComponent(String(version)),
@@ -1076,63 +653,6 @@ export const LibraryApiAxiosParamCreator = function (configuration?: Configurati
       }
     },
     /**
-     * 关键词：      方案库、方案库类型、业务类型        使用场景：      用于获取项目下指定类型和业务类型的方案库，比如内涝（业务类型）预报（类型）库，通常一个项目下指定类型和业务类型对应的方案库只会有一个。      基于方案库，用户可进一步通过接口/api/v1/scenario-manager/library/scenariolist查询方案库包含的所有方案，通过接口/api/v1/scenario-manager/library/latestscenario查询方案库下最新一个完成计算的方案，通过接口/api/v1/scenario-manager/library/templatelist查询方案库包含的所有模板方案。        相关背景：      方案库类型是对方案库在功能性上进行的一种分类，比如预报库、调度库、情景模拟库、经验库等。      业务类型是对方案库在业务方向上进行的一种分类，比如内涝、水环境、供水、排水、污水等。
-     * @summary 根据方案库类型和业务类型查询方案库
-     * @param {string} version
-     * @param {LibraryTypeEnum} [type] 方案库类型，枚举，目前已存在0-19种定义，包括0：未定义；1：自动预报库；2：人工预报库；3：预报库；4：调度库；5：经验库；6：情景模拟库；7：突发水污染事故库；8：在线水动力库（供水）；9：水锤库（供水）；10：管道充满度库；11：爆管库（供水）；12：污染事故响应库；13：规划库；14：管道冲洗库（供水）；15：污染事故库（供水）；16：关阀库（供水）；17：在线滚动预报库（污水厂）；18：在线滚动优化库（污水厂）；19：模拟实验室库（污水厂）
-     * @param {BusinessTypeEnum} [businessType] 业务类型，枚举，目前已存在0-6种定义，包括0：未定义；1：水环境；2：内涝；3：供水；4：流域洪水；5：污水厂；6：排水
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    apiV2ScenarioManagerLibraryListTypeBusinesstypeGet_10: async (
-      version: string,
-      type?: LibraryTypeEnum,
-      businessType?: BusinessTypeEnum,
-      options: AxiosRequestConfig = {},
-    ): Promise<RequestArgs> => {
-      // verify required parameter 'version' is not null or undefined
-      assertParamExists('apiV2ScenarioManagerLibraryListTypeBusinesstypeGet_10', 'version', version)
-      const localVarPath = `/api/v2/scenario-manager/library/list/type_businesstype`.replace(
-        `{${'version'}}`,
-        encodeURIComponent(String(version)),
-      )
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
-      let baseOptions
-      if (configuration) {
-        baseOptions = configuration.baseOptions
-      }
-
-      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
-      const localVarHeaderParameter = {} as any
-      const localVarQueryParameter = {} as any
-
-      // authentication bearer required
-      // http bearer authentication required
-      await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-      if (type !== undefined) {
-        localVarQueryParameter['type'] = type
-      }
-
-      if (businessType !== undefined) {
-        localVarQueryParameter['businessType'] = businessType
-      }
-
-      setSearchParams(localVarUrlObj, localVarQueryParameter)
-      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      }
-
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      }
-    },
-    /**
      * 关键词：      方案库、方案库类型、业务类型        使用场景：      用于获取项目下指定类型的方案库信息列表，用户可以基于此列表，再进一步筛选指定业务类型（BusinessType）的方案库。      基于方案库，用户可进一步通过接口/api/v1/scenario-manager/library/scenariolist查询方案库包含的所有方案，通过接口/api/v1/scenario-manager/library/latestscenario查询方案库下最新一个完成计算的方案，通过接口/api/v1/scenario-manager/library/templatelist查询方案库包含的所有模板方案。        相关背景：      方案库类型是对方案库在功能性上进行的一种分类，比如预报库、调度库、情景模拟库、经验库等。      业务类型是对方案库在业务方向上进行的一种分类，比如内涝、水环境、供水、排水、污水等。
      * @summary 根据类型查询方案库列表
      * @param {string} version
@@ -1147,57 +667,6 @@ export const LibraryApiAxiosParamCreator = function (configuration?: Configurati
     ): Promise<RequestArgs> => {
       // verify required parameter 'version' is not null or undefined
       assertParamExists('apiV2ScenarioManagerLibraryListTypeGet', 'version', version)
-      const localVarPath = `/api/v2/scenario-manager/library/list/type`.replace(
-        `{${'version'}}`,
-        encodeURIComponent(String(version)),
-      )
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
-      let baseOptions
-      if (configuration) {
-        baseOptions = configuration.baseOptions
-      }
-
-      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
-      const localVarHeaderParameter = {} as any
-      const localVarQueryParameter = {} as any
-
-      // authentication bearer required
-      // http bearer authentication required
-      await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-      if (type !== undefined) {
-        localVarQueryParameter['type'] = type
-      }
-
-      setSearchParams(localVarUrlObj, localVarQueryParameter)
-      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      }
-
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      }
-    },
-    /**
-     * 关键词：      方案库、方案库类型、业务类型        使用场景：      用于获取项目下指定类型的方案库信息列表，用户可以基于此列表，再进一步筛选指定业务类型（BusinessType）的方案库。      基于方案库，用户可进一步通过接口/api/v1/scenario-manager/library/scenariolist查询方案库包含的所有方案，通过接口/api/v1/scenario-manager/library/latestscenario查询方案库下最新一个完成计算的方案，通过接口/api/v1/scenario-manager/library/templatelist查询方案库包含的所有模板方案。        相关背景：      方案库类型是对方案库在功能性上进行的一种分类，比如预报库、调度库、情景模拟库、经验库等。      业务类型是对方案库在业务方向上进行的一种分类，比如内涝、水环境、供水、排水、污水等。
-     * @summary 根据类型查询方案库列表
-     * @param {string} version
-     * @param {LibraryTypeEnum} [type] 方案库类型，枚举，目前已存在0-19种定义，包括0：未定义；1：自动预报库；2：人工预报库；3：预报库；4：调度库；5：经验库；6：情景模拟库；7：突发水污染事故库；8：在线水动力库（供水）；9：水锤库（供水）；10：管道充满度库；11：爆管库（供水）；12：污染事故响应库；13：规划库；14：管道冲洗库（供水）；15：污染事故库（供水）；16：关阀库（供水）；17：在线滚动预报库（污水厂）；18：在线滚动优化库（污水厂）；19：模拟实验室库（污水厂）
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    apiV2ScenarioManagerLibraryListTypeGet_11: async (
-      version: string,
-      type?: LibraryTypeEnum,
-      options: AxiosRequestConfig = {},
-    ): Promise<RequestArgs> => {
-      // verify required parameter 'version' is not null or undefined
-      assertParamExists('apiV2ScenarioManagerLibraryListTypeGet_11', 'version', version)
       const localVarPath = `/api/v2/scenario-manager/library/list/type`.replace(
         `{${'version'}}`,
         encodeURIComponent(String(version)),
@@ -1293,64 +762,6 @@ export const LibraryApiAxiosParamCreator = function (configuration?: Configurati
       }
     },
     /**
-     * 关键词：      方案库、方案、清理        使用场景：      如果用户需要对某个方案库下指定时间范围内的方案进行清理，可以使用此接口。用户设定清理的开始时间StartTime和结束时间EndTime，那么创建时间CreateTime在此时间范围内的方案将被清理。方案的清理包括方案信息的删除、方案边界等输入数据的删除、方案结果等输出数据的删除等。
-     * @summary 删除方案库下指定时间段内的方案
-     * @param {string} version
-     * @param {DeleteScenarioByTimeSpanPara} [deleteScenarioByTimeSpanPara]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    apiV2ScenarioManagerLibraryScenarioDeleteByTimeSpanPost_12: async (
-      version: string,
-      deleteScenarioByTimeSpanPara?: DeleteScenarioByTimeSpanPara,
-      options: AxiosRequestConfig = {},
-    ): Promise<RequestArgs> => {
-      // verify required parameter 'version' is not null or undefined
-      assertParamExists(
-        'apiV2ScenarioManagerLibraryScenarioDeleteByTimeSpanPost_12',
-        'version',
-        version,
-      )
-      const localVarPath = `/api/v2/scenario-manager/library/scenario/delete-by-timeSpan`.replace(
-        `{${'version'}}`,
-        encodeURIComponent(String(version)),
-      )
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
-      let baseOptions
-      if (configuration) {
-        baseOptions = configuration.baseOptions
-      }
-
-      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
-      const localVarHeaderParameter = {} as any
-      const localVarQueryParameter = {} as any
-
-      // authentication bearer required
-      // http bearer authentication required
-      await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-      localVarHeaderParameter['Content-Type'] = 'application/json'
-
-      setSearchParams(localVarUrlObj, localVarQueryParameter)
-      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      }
-      localVarRequestOptions.data = serializeDataIfNeeded(
-        deleteScenarioByTimeSpanPara,
-        localVarRequestOptions,
-        configuration,
-      )
-
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      }
-    },
-    /**
      * 关键词：      方案库、方案、清理        使用场景：      随着使用时间的增长，方案库下的方案可能会越积越多，尤其是针对滚动计算方案，不间断定时执行，如果不进行清理就会占用越来越多的存储空间，此接口就是用于旧方案的清理工作，用户可以设定方案的过期时间ExpireDay，比如ExpireDay=7代表7天前的方案都被认为是过期的，将被清理。方案的清理包括方案信息的删除、方案边界等输入数据的删除、方案结果等输出数据的删除等。      如果需要定期对旧方案进行清理，用户可以将该接口放到定时任务调度中来执行，这样可以避免磁盘空间不足等问题的出现。
      * @summary 删除方案库下过期的方案
      * @param {string} version
@@ -1365,60 +776,6 @@ export const LibraryApiAxiosParamCreator = function (configuration?: Configurati
     ): Promise<RequestArgs> => {
       // verify required parameter 'version' is not null or undefined
       assertParamExists('apiV2ScenarioManagerLibraryScenarioDeletePost', 'version', version)
-      const localVarPath = `/api/v2/scenario-manager/library/scenario/delete`.replace(
-        `{${'version'}}`,
-        encodeURIComponent(String(version)),
-      )
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
-      let baseOptions
-      if (configuration) {
-        baseOptions = configuration.baseOptions
-      }
-
-      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
-      const localVarHeaderParameter = {} as any
-      const localVarQueryParameter = {} as any
-
-      // authentication bearer required
-      // http bearer authentication required
-      await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-      localVarHeaderParameter['Content-Type'] = 'application/json'
-
-      setSearchParams(localVarUrlObj, localVarQueryParameter)
-      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      }
-      localVarRequestOptions.data = serializeDataIfNeeded(
-        deleteExpiredScenarioPara,
-        localVarRequestOptions,
-        configuration,
-      )
-
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      }
-    },
-    /**
-     * 关键词：      方案库、方案、清理        使用场景：      随着使用时间的增长，方案库下的方案可能会越积越多，尤其是针对滚动计算方案，不间断定时执行，如果不进行清理就会占用越来越多的存储空间，此接口就是用于旧方案的清理工作，用户可以设定方案的过期时间ExpireDay，比如ExpireDay=7代表7天前的方案都被认为是过期的，将被清理。方案的清理包括方案信息的删除、方案边界等输入数据的删除、方案结果等输出数据的删除等。      如果需要定期对旧方案进行清理，用户可以将该接口放到定时任务调度中来执行，这样可以避免磁盘空间不足等问题的出现。
-     * @summary 删除方案库下过期的方案
-     * @param {string} version
-     * @param {DeleteExpiredScenarioPara} [deleteExpiredScenarioPara]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    apiV2ScenarioManagerLibraryScenarioDeletePost_13: async (
-      version: string,
-      deleteExpiredScenarioPara?: DeleteExpiredScenarioPara,
-      options: AxiosRequestConfig = {},
-    ): Promise<RequestArgs> => {
-      // verify required parameter 'version' is not null or undefined
-      assertParamExists('apiV2ScenarioManagerLibraryScenarioDeletePost_13', 'version', version)
       const localVarPath = `/api/v2/scenario-manager/library/scenario/delete`.replace(
         `{${'version'}}`,
         encodeURIComponent(String(version)),
@@ -1522,69 +879,6 @@ export const LibraryApiAxiosParamCreator = function (configuration?: Configurati
       }
     },
     /**
-     * 使用场景：      用于查询某个方案库下的所有的方案信息列表，包括模板方案和普通方案都将被返回，如果页面仅需要展示普通方案，则需要对结果进行过滤，把Template=1的模板方案去掉。      由于方案的数量容易越积越多，因此该接口支持分页查询，避免单次查询返回数据量过大的问题。        输入：      方案库的ID，可以基于/api/v1/scenario-manager/library/list/type_businesstype接口查询得到；      分页序号和分页大小，当需要分页查询时可根据实际展示需求取值；当需要一次性查询所有方案，不分页时，则可以将分页序号取1，分页大小取一个极大的整数（确保这个整数一定大于方案总个数即可）。
-     * @summary 根据方案库查询其下的所有方案列表
-     * @param {string} version
-     * @param {string} [libraryId] 方案库的ID，唯一性标识
-     * @param {number} [pageIndex] 分页序号，从1开始
-     * @param {number} [pageSize] 分页大小
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    apiV2ScenarioManagerLibraryScenariolistGet_14: async (
-      version: string,
-      libraryId?: string,
-      pageIndex?: number,
-      pageSize?: number,
-      options: AxiosRequestConfig = {},
-    ): Promise<RequestArgs> => {
-      // verify required parameter 'version' is not null or undefined
-      assertParamExists('apiV2ScenarioManagerLibraryScenariolistGet_14', 'version', version)
-      const localVarPath = `/api/v2/scenario-manager/library/scenariolist`.replace(
-        `{${'version'}}`,
-        encodeURIComponent(String(version)),
-      )
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
-      let baseOptions
-      if (configuration) {
-        baseOptions = configuration.baseOptions
-      }
-
-      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
-      const localVarHeaderParameter = {} as any
-      const localVarQueryParameter = {} as any
-
-      // authentication bearer required
-      // http bearer authentication required
-      await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-      if (libraryId !== undefined) {
-        localVarQueryParameter['libraryId'] = libraryId
-      }
-
-      if (pageIndex !== undefined) {
-        localVarQueryParameter['pageIndex'] = pageIndex
-      }
-
-      if (pageSize !== undefined) {
-        localVarQueryParameter['pageSize'] = pageSize
-      }
-
-      setSearchParams(localVarUrlObj, localVarQueryParameter)
-      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      }
-
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      }
-    },
-    /**
      * 关键词：      方案库、模板方案、启用        使用场景：      如果一个方案库下已经存在多个模板方案，并且需要启用某个特定的模板方案，禁用其他模板方案时，可以调用此接口实现。此接口将切换方案库下面启用的模板方案，当用户指定的这个模板方案被启用后，同方案库下其他的模板方案会自动禁用。
      * @summary 启用方案库下面的某个模板方案
      * @param {string} version
@@ -1599,60 +893,6 @@ export const LibraryApiAxiosParamCreator = function (configuration?: Configurati
     ): Promise<RequestArgs> => {
       // verify required parameter 'version' is not null or undefined
       assertParamExists('apiV2ScenarioManagerLibraryTemplateSwitchPost', 'version', version)
-      const localVarPath = `/api/v2/scenario-manager/library/template/switch`.replace(
-        `{${'version'}}`,
-        encodeURIComponent(String(version)),
-      )
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
-      let baseOptions
-      if (configuration) {
-        baseOptions = configuration.baseOptions
-      }
-
-      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
-      const localVarHeaderParameter = {} as any
-      const localVarQueryParameter = {} as any
-
-      // authentication bearer required
-      // http bearer authentication required
-      await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-      localVarHeaderParameter['Content-Type'] = 'application/json'
-
-      setSearchParams(localVarUrlObj, localVarQueryParameter)
-      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      }
-      localVarRequestOptions.data = serializeDataIfNeeded(
-        turnOnTemplatePara,
-        localVarRequestOptions,
-        configuration,
-      )
-
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      }
-    },
-    /**
-     * 关键词：      方案库、模板方案、启用        使用场景：      如果一个方案库下已经存在多个模板方案，并且需要启用某个特定的模板方案，禁用其他模板方案时，可以调用此接口实现。此接口将切换方案库下面启用的模板方案，当用户指定的这个模板方案被启用后，同方案库下其他的模板方案会自动禁用。
-     * @summary 启用方案库下面的某个模板方案
-     * @param {string} version
-     * @param {TurnOnTemplatePara} [turnOnTemplatePara]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    apiV2ScenarioManagerLibraryTemplateSwitchPost_15: async (
-      version: string,
-      turnOnTemplatePara?: TurnOnTemplatePara,
-      options: AxiosRequestConfig = {},
-    ): Promise<RequestArgs> => {
-      // verify required parameter 'version' is not null or undefined
-      assertParamExists('apiV2ScenarioManagerLibraryTemplateSwitchPost_15', 'version', version)
       const localVarPath = `/api/v2/scenario-manager/library/template/switch`.replace(
         `{${'version'}}`,
         encodeURIComponent(String(version)),
@@ -1744,57 +984,6 @@ export const LibraryApiAxiosParamCreator = function (configuration?: Configurati
       }
     },
     /**
-     * 关键词：      方案库、模板方案        使用场景：      此接口用于查询某个模板方案所绑定的所有模板方案列表，包括启用的和非启用的，均会被返回。如果当前方案库不直接绑定模板方案，则可查询其间接绑定的模板方案，即通过其他方案库来进行绑定的模板方案。      当用户在创建调度方案时，如果有多个启用的调度模板方案（代表不同的调度策略），则可以通过此接口获取到所有的调度模板方案，供用户选择。      如果确定查询的方案库下仅有一个启用的模板方案，则建议直接使用/api/v1/scenario-manager/library/list/getcachedscenario接口进行查询。        输入：      方案库的ID，可以基于/api/v1/scenario-manager/library/list/type_businesstype接口查询得到。
-     * @summary 根据方案库查询其下所绑定的模板方案列表
-     * @param {string} version
-     * @param {string} [libraryId] 方案库的ID，唯一性标识
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    apiV2ScenarioManagerLibraryTemplatelistGet_16: async (
-      version: string,
-      libraryId?: string,
-      options: AxiosRequestConfig = {},
-    ): Promise<RequestArgs> => {
-      // verify required parameter 'version' is not null or undefined
-      assertParamExists('apiV2ScenarioManagerLibraryTemplatelistGet_16', 'version', version)
-      const localVarPath = `/api/v2/scenario-manager/library/templatelist`.replace(
-        `{${'version'}}`,
-        encodeURIComponent(String(version)),
-      )
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
-      let baseOptions
-      if (configuration) {
-        baseOptions = configuration.baseOptions
-      }
-
-      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
-      const localVarHeaderParameter = {} as any
-      const localVarQueryParameter = {} as any
-
-      // authentication bearer required
-      // http bearer authentication required
-      await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-      if (libraryId !== undefined) {
-        localVarQueryParameter['libraryId'] = libraryId
-      }
-
-      setSearchParams(localVarUrlObj, localVarQueryParameter)
-      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      }
-
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      }
-    },
-    /**
      * 关键词：      方案库    使用场景：      方案库在项目初始化时完成创建，如果对于创建后的方案库有修改的需求（一般情况下不需要修改），则可以调用此接口实现。需要注意的是，如果方案库本身是只读的，即Readonly字段为1，则不能执行更新操作。        输入：      输入需要更新的方案库的所有字段信息，包括库的ID、库的名称、库的类型、业务类型、库所对应的方案组ID、是否只读、是否直接绑定模板方案、是否支持绑定多个启用的模板方案等。      其中库的ID作为方案库的唯一性标识，不可修改，系统将通过库的ID来寻找对应的方案库，并进行更新。      库所对应的方案组ID，即Scenariogroup，必须确保该方案组存在。
      * @summary 更新方案库信息
      * @param {string} version
@@ -1809,60 +998,6 @@ export const LibraryApiAxiosParamCreator = function (configuration?: Configurati
     ): Promise<RequestArgs> => {
       // verify required parameter 'version' is not null or undefined
       assertParamExists('apiV2ScenarioManagerLibraryUpdatePost', 'version', version)
-      const localVarPath = `/api/v2/scenario-manager/library/update`.replace(
-        `{${'version'}}`,
-        encodeURIComponent(String(version)),
-      )
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
-      let baseOptions
-      if (configuration) {
-        baseOptions = configuration.baseOptions
-      }
-
-      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
-      const localVarHeaderParameter = {} as any
-      const localVarQueryParameter = {} as any
-
-      // authentication bearer required
-      // http bearer authentication required
-      await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-      localVarHeaderParameter['Content-Type'] = 'application/json'
-
-      setSearchParams(localVarUrlObj, localVarQueryParameter)
-      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      }
-      localVarRequestOptions.data = serializeDataIfNeeded(
-        updateLibraryPara,
-        localVarRequestOptions,
-        configuration,
-      )
-
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      }
-    },
-    /**
-     * 关键词：      方案库    使用场景：      方案库在项目初始化时完成创建，如果对于创建后的方案库有修改的需求（一般情况下不需要修改），则可以调用此接口实现。需要注意的是，如果方案库本身是只读的，即Readonly字段为1，则不能执行更新操作。        输入：      输入需要更新的方案库的所有字段信息，包括库的ID、库的名称、库的类型、业务类型、库所对应的方案组ID、是否只读、是否直接绑定模板方案、是否支持绑定多个启用的模板方案等。      其中库的ID作为方案库的唯一性标识，不可修改，系统将通过库的ID来寻找对应的方案库，并进行更新。      库所对应的方案组ID，即Scenariogroup，必须确保该方案组存在。
-     * @summary 更新方案库信息
-     * @param {string} version
-     * @param {UpdateLibraryPara} [updateLibraryPara]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    apiV2ScenarioManagerLibraryUpdatePost_17: async (
-      version: string,
-      updateLibraryPara?: UpdateLibraryPara,
-      options: AxiosRequestConfig = {},
-    ): Promise<RequestArgs> => {
-      // verify required parameter 'version' is not null or undefined
-      assertParamExists('apiV2ScenarioManagerLibraryUpdatePost_17', 'version', version)
       const localVarPath = `/api/v2/scenario-manager/library/update`.replace(
         `{${'version'}}`,
         encodeURIComponent(String(version)),
@@ -1931,24 +1066,6 @@ export const LibraryApiFp = function (configuration?: Configuration) {
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**
-     * 内部接口，供定时任务调用，扫描所有的方案库配置，删除过期的方案。
-     * @summary 删除方案库下过期的方案
-     * @param {string} version
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    async apiV1ScenarioManagerLibraryScenarioAutoDeletePost_1(
-      version: string,
-      options?: AxiosRequestConfig,
-    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<boolean>> {
-      const localVarAxiosArgs =
-        await localVarAxiosParamCreator.apiV1ScenarioManagerLibraryScenarioAutoDeletePost_1(
-          version,
-          options,
-        )
-      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
-    },
-    /**
      * 获取方案过期时间配置,如果没有配置过期时间，则默认返回-1，过期时间小于等于0时，都认为不过期。如果大于1，则每天滚动删除配置时间之前的方案数据。  模板方案除外，模板永不过期。
      * @summary 获取方案库中方案的过期时间配置
      * @param {string} version
@@ -1963,26 +1080,6 @@ export const LibraryApiFp = function (configuration?: Configuration) {
     > {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.apiV1ScenarioManagerLibraryScenarioGetExpireTimeConfigGet(
-          version,
-          options,
-        )
-      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
-    },
-    /**
-     * 获取方案过期时间配置,如果没有配置过期时间，则默认返回-1，过期时间小于等于0时，都认为不过期。如果大于1，则每天滚动删除配置时间之前的方案数据。  模板方案除外，模板永不过期。
-     * @summary 获取方案库中方案的过期时间配置
-     * @param {string} version
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    async apiV1ScenarioManagerLibraryScenarioGetExpireTimeConfigGet_2(
-      version: string,
-      options?: AxiosRequestConfig,
-    ): Promise<
-      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<LibraryConfigInfo>>
-    > {
-      const localVarAxiosArgs =
-        await localVarAxiosParamCreator.apiV1ScenarioManagerLibraryScenarioGetExpireTimeConfigGet_2(
           version,
           options,
         )
@@ -2010,22 +1107,22 @@ export const LibraryApiFp = function (configuration?: Configuration) {
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**
-     * 设置方案库中方案的过期时间,设置值小于等于0时，认为不过期。如果大于0，则每天滚动删除配置时间之前的方案数据。时间单位为天。  模板方案除外，模板永不过期。
-     * @summary 设置方案库中方案过期时间
+     * 使用场景：      根据筛选条件分页查询某个方案库下匹配的的方案信息列表，仅查找普通方案。
+     * @summary 根据方案名、时间范围搜索条件分页查询指定方案库下的方案列表
      * @param {string} version
-     * @param {UpdateLibraryConfigInfo} [updateLibraryConfigInfo]
+     * @param {SearchScenariosByLibraryInput} [searchScenariosByLibraryInput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async apiV1ScenarioManagerLibraryScenarioSetExpireTimePost_3(
+    async apiV1ScenarioManagerLibrarySearchScenariolistPost(
       version: string,
-      updateLibraryConfigInfo?: UpdateLibraryConfigInfo,
+      searchScenariosByLibraryInput?: SearchScenariosByLibraryInput,
       options?: AxiosRequestConfig,
-    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<boolean>> {
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ScenarioPage>> {
       const localVarAxiosArgs =
-        await localVarAxiosParamCreator.apiV1ScenarioManagerLibraryScenarioSetExpireTimePost_3(
+        await localVarAxiosParamCreator.apiV1ScenarioManagerLibrarySearchScenariolistPost(
           version,
-          updateLibraryConfigInfo,
+          searchScenariosByLibraryInput,
           options,
         )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
@@ -2051,27 +1148,6 @@ export const LibraryApiFp = function (configuration?: Configuration) {
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**
-     * 关键词：      方案库、方案组、方案、模板方案    使用场景：      该接口一般在项目初始化的时候调用，用于创建项目将会涉及到的方案库。该接口通常不需要用户自行调用，因为当我们在DHI中国用户管理系统上创建项目租户的时候，会通过配置文件的形式上传项目所涉及到的方案库信息，在这个过程中，方案库会自动完成创建。如果后续有添加新方案库的需求，则可以通过该接口实现。    相关背景：      方案是对模型进行管理的基本单位，一个方案即代表一套模型，以及基于该模型所生成的所有相关数据；      方案库代表一类方案的集合，比如预报库、调度库等，便于对方案的分类管理；      方案组是方案与方案库之间的隐藏连接层，一般来说，一个方案库对应一个方案组，方案组下关联方案。      模板方案，对应一个基础模型，以及基于该模型导出的一系列基础数据；某个方案库下的方案创建时，将以该方案库所关联的模板方案为模板来进行创建，并可在此基础上进行模型设置和计算等操作。    输入：      输入需要新增的方案库的基本信息，包括库的名称、库的类型、业务类型、库所对应的方案组ID、是否只读、是否直接绑定模板方案、是否支持绑定多个启用的模板方案等信息。      其中库所对应的方案组ID，即Scenariogroup，如果是关联已经存在的方案组，则传该方案组的ID；如果是需要在创建方案库时进行自动创建的，则传空Guid即可，一般在项目初始化时属于后者。      是否直接绑定模板方案，即BindTemplate，如果为1，则表示该方案组下会有直接关联的模板方案，一旦关联上模板方案之后，通过/api/v1/scenario-manager/library/templatelist接口，传入该方案库的ID即可以查询到所关联的模板方案；如果为0，则表示该方案组下没有直接关联的模板方案，但是有间接关联的模板方案，而间接关联的模板方案，可以通过BindType和BindBusinessType所对应的方案库的ID，结合前面的接口来获取。    输出：      如果创建成功，将返回新创建的方案库的对象列表
-     * @summary 创建新的方案库
-     * @param {string} version
-     * @param {Array<AddLibrariesPara>} [addLibrariesPara]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    async apiV2ScenarioManagerLibraryAddPost_4(
-      version: string,
-      addLibrariesPara?: Array<AddLibrariesPara>,
-      options?: AxiosRequestConfig,
-    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<Library>>> {
-      const localVarAxiosArgs =
-        await localVarAxiosParamCreator.apiV2ScenarioManagerLibraryAddPost_4(
-          version,
-          addLibrariesPara,
-          options,
-        )
-      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
-    },
-    /**
      * 关键词：      方案库        使用场景：      该接口用于删除不需要了的方案库，此操作仅仅删除方案库，不会删除方案库所关联的方案组和方案；如果需要同时删除所关联的方案组和方案，可调用/api/v1/scenario-manager/scenariogroup/dfs/delete接口来实现。
      * @summary 根据方案库ID列表删除方案库
      * @param {string} version
@@ -2086,27 +1162,6 @@ export const LibraryApiFp = function (configuration?: Configuration) {
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<boolean>> {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.apiV2ScenarioManagerLibraryDeletePost(
-          version,
-          deleteLibrariesPara,
-          options,
-        )
-      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
-    },
-    /**
-     * 关键词：      方案库        使用场景：      该接口用于删除不需要了的方案库，此操作仅仅删除方案库，不会删除方案库所关联的方案组和方案；如果需要同时删除所关联的方案组和方案，可调用/api/v1/scenario-manager/scenariogroup/dfs/delete接口来实现。
-     * @summary 根据方案库ID列表删除方案库
-     * @param {string} version
-     * @param {DeleteLibrariesPara} [deleteLibrariesPara]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    async apiV2ScenarioManagerLibraryDeletePost_5(
-      version: string,
-      deleteLibrariesPara?: DeleteLibrariesPara,
-      options?: AxiosRequestConfig,
-    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<boolean>> {
-      const localVarAxiosArgs =
-        await localVarAxiosParamCreator.apiV2ScenarioManagerLibraryDeletePost_5(
           version,
           deleteLibrariesPara,
           options,
@@ -2141,33 +1196,6 @@ export const LibraryApiFp = function (configuration?: Configuration) {
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**
-     * 关键词：      方案库、方案、计算完成、模板方案        使用场景：      用于查询某个方案库下，基于指定模板方案所创建的方案中，最新一次完成计算任务的方案，只有完成计算的方案才能获取其完整的计算结果。当用户需要获取某个方案库下最新一次方案结果，同时该方案库下又有多个启用的模板方案时，可以利用此接口查询指定模板方案下最新一次计算完成的方案，再基于方案信息，去进一步获取方案的结果、边界设置等数据。    输入：      方案库的ID，可以基于/api/v1/scenario-manager/library/list/type_businesstype接口查询得到。      模板方案的模型类型与名称，可以基于/api/v1/scenario-manager/library/templatelist接口查询得到。
-     * @summary 根据方案库，以及模板方案名称与模型类型，查询其下最近一次计算完成的方案
-     * @param {string} version
-     * @param {string} [libraryId] 方案库的ID，唯一性标识
-     * @param {string} [modelType] 模板方案对应的模型类型，传枚举项对应的字符串，枚举项目前已存在的定义包括MIKE11Model、MIKEBASINModel、MIKE21Model、MIKE21FMModel、MIKE3FMModel、MIKEFloodModel、MIKESHEModel、MIKEUrbanCSModel、MIKEUrbanWDModel、HydroBasinModel、InpWDModel、XAJ11Model、FeflowModel、WestModel、SWMMModel、EFDCModel、WaterForecastModel、HydroBasinOptimModel、MIKEUrbanCSPlusModel、MIKEUrbanWDPlusModel、HammerModel、MIKEPlusFloodModel、MIKEPlusWDModel、EPANET、Unknown
-     * @param {string} [templateName] 模板方案的名称
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    async apiV2ScenarioManagerLibraryLatestscenarioByModelTypeGet_6(
-      version: string,
-      libraryId?: string,
-      modelType?: string,
-      templateName?: string,
-      options?: AxiosRequestConfig,
-    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Scenario>> {
-      const localVarAxiosArgs =
-        await localVarAxiosParamCreator.apiV2ScenarioManagerLibraryLatestscenarioByModelTypeGet_6(
-          version,
-          libraryId,
-          modelType,
-          templateName,
-          options,
-        )
-      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
-    },
-    /**
      * 关键词：      方案库、方案、计算完成        使用场景：      用于查询某个方案库下最新一次完成计算任务的方案，只有完成计算的方案才能获取其完整的计算结果。当用户需要获取最新一次滚动预报方案结果时，往往需要先利用该接口查询滚动方案库下的最新一次计算完成的方案，再基于方案信息，去进一步获取方案的结果、边界设置等数据。    输入：      方案库的ID，可以基于/api/v1/scenario-manager/library/list/type_businesstype接口查询得到。
      * @summary 根据方案库查询其下最近一次计算完成的方案
      * @param {string} version
@@ -2182,27 +1210,6 @@ export const LibraryApiFp = function (configuration?: Configuration) {
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Scenario>> {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.apiV2ScenarioManagerLibraryLatestscenarioGet(
-          version,
-          libraryId,
-          options,
-        )
-      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
-    },
-    /**
-     * 关键词：      方案库、方案、计算完成        使用场景：      用于查询某个方案库下最新一次完成计算任务的方案，只有完成计算的方案才能获取其完整的计算结果。当用户需要获取最新一次滚动预报方案结果时，往往需要先利用该接口查询滚动方案库下的最新一次计算完成的方案，再基于方案信息，去进一步获取方案的结果、边界设置等数据。    输入：      方案库的ID，可以基于/api/v1/scenario-manager/library/list/type_businesstype接口查询得到。
-     * @summary 根据方案库查询其下最近一次计算完成的方案
-     * @param {string} version
-     * @param {string} [libraryId] 方案库的ID，唯一性标识
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    async apiV2ScenarioManagerLibraryLatestscenarioGet_7(
-      version: string,
-      libraryId?: string,
-      options?: AxiosRequestConfig,
-    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Scenario>> {
-      const localVarAxiosArgs =
-        await localVarAxiosParamCreator.apiV2ScenarioManagerLibraryLatestscenarioGet_7(
           version,
           libraryId,
           options,
@@ -2227,21 +1234,6 @@ export const LibraryApiFp = function (configuration?: Configuration) {
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**
-     * 关键词：      方案库        使用场景：      用于获取项目下所有的方案库的信息列表，用户可以基于此列表，再进一步筛选指定类型（Type）和业务类型（BusinessType）的方案库。      基于方案库，用户可进一步通过接口/api/v1/scenario-manager/library/scenariolist查询方案库包含的所有方案，通过接口/api/v1/scenario-manager/library/latestscenario查询方案库下最新一个完成计算的方案，通过接口/api/v1/scenario-manager/library/templatelist查询方案库包含的所有模板方案。
-     * @summary 获取所有方案库列表
-     * @param {string} version
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    async apiV2ScenarioManagerLibraryListGet_8(
-      version: string,
-      options?: AxiosRequestConfig,
-    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<Library>>> {
-      const localVarAxiosArgs =
-        await localVarAxiosParamCreator.apiV2ScenarioManagerLibraryListGet_8(version, options)
-      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
-    },
-    /**
      * 关键词：      模板方案、方案库、方案库类型、业务类型        使用场景：      用户在创建方案时，或者需要查询与模型相关的基础数据、映射关系、配置信息时，均需要先获取对应的模板方案，该接口可基于方案库类型和业务类型查询对应的方案库下的启用的模板方案，比如内涝（businessType=2）预报（type=1）库下启用的模板方案，并且能够相对高效得返回结果。    相关背景：      模板方案是创建普通方案的基础，同时它又绑定了模型相关的一系列基础数据，包括模型的空间坐标系，河道、管网、二维网格等GIS信息，各类模型点位（如管网、节点、河道、结构物、边界...）、映射关系等，甚至如滚动预报配置、阈值配置等一系列基础配置信息也是与模板方案绑定的，所以模板方案的查询是一个基础且常用的功能需求。
      * @summary 根据方案库类型和业务类型查询对应方案库下启用的模板方案
      * @param {string} version
@@ -2258,30 +1250,6 @@ export const LibraryApiFp = function (configuration?: Configuration) {
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Scenario>> {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.apiV2ScenarioManagerLibraryListGetcachedscenarioGet(
-          version,
-          type,
-          businessType,
-          options,
-        )
-      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
-    },
-    /**
-     * 关键词：      模板方案、方案库、方案库类型、业务类型        使用场景：      用户在创建方案时，或者需要查询与模型相关的基础数据、映射关系、配置信息时，均需要先获取对应的模板方案，该接口可基于方案库类型和业务类型查询对应的方案库下的启用的模板方案，比如内涝（businessType=2）预报（type=1）库下启用的模板方案，并且能够相对高效得返回结果。    相关背景：      模板方案是创建普通方案的基础，同时它又绑定了模型相关的一系列基础数据，包括模型的空间坐标系，河道、管网、二维网格等GIS信息，各类模型点位（如管网、节点、河道、结构物、边界...）、映射关系等，甚至如滚动预报配置、阈值配置等一系列基础配置信息也是与模板方案绑定的，所以模板方案的查询是一个基础且常用的功能需求。
-     * @summary 根据方案库类型和业务类型查询对应方案库下启用的模板方案
-     * @param {string} version
-     * @param {LibraryTypeEnum} [type] 方案库类型，枚举，目前已存在0-19种定义，包括0：未定义；1：自动预报库；2：人工预报库；3：预报库；4：调度库；5：经验库；6：情景模拟库；7：突发水污染事故库；8：在线水动力库（供水）；9：水锤库（供水）；10：管道充满度库；11：爆管库（供水）；12：污染事故响应库；13：规划库；14：管道冲洗库（供水）；15：污染事故库（供水）；16：关阀库（供水）；17：在线滚动预报库（污水厂）；18：在线滚动优化库（污水厂）；19：模拟实验室库（污水厂）
-     * @param {BusinessTypeEnum} [businessType] 业务类型，枚举，目前已存在0-6种定义，包括0：未定义；1：水环境；2：内涝；3：供水；4：流域洪水；5：污水厂；6：排水
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    async apiV2ScenarioManagerLibraryListGetcachedscenarioGet_9(
-      version: string,
-      type?: LibraryTypeEnum,
-      businessType?: BusinessTypeEnum,
-      options?: AxiosRequestConfig,
-    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Scenario>> {
-      const localVarAxiosArgs =
-        await localVarAxiosParamCreator.apiV2ScenarioManagerLibraryListGetcachedscenarioGet_9(
           version,
           type,
           businessType,
@@ -2314,30 +1282,6 @@ export const LibraryApiFp = function (configuration?: Configuration) {
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**
-     * 关键词：      方案库、方案库类型、业务类型        使用场景：      用于获取项目下指定类型和业务类型的方案库，比如内涝（业务类型）预报（类型）库，通常一个项目下指定类型和业务类型对应的方案库只会有一个。      基于方案库，用户可进一步通过接口/api/v1/scenario-manager/library/scenariolist查询方案库包含的所有方案，通过接口/api/v1/scenario-manager/library/latestscenario查询方案库下最新一个完成计算的方案，通过接口/api/v1/scenario-manager/library/templatelist查询方案库包含的所有模板方案。        相关背景：      方案库类型是对方案库在功能性上进行的一种分类，比如预报库、调度库、情景模拟库、经验库等。      业务类型是对方案库在业务方向上进行的一种分类，比如内涝、水环境、供水、排水、污水等。
-     * @summary 根据方案库类型和业务类型查询方案库
-     * @param {string} version
-     * @param {LibraryTypeEnum} [type] 方案库类型，枚举，目前已存在0-19种定义，包括0：未定义；1：自动预报库；2：人工预报库；3：预报库；4：调度库；5：经验库；6：情景模拟库；7：突发水污染事故库；8：在线水动力库（供水）；9：水锤库（供水）；10：管道充满度库；11：爆管库（供水）；12：污染事故响应库；13：规划库；14：管道冲洗库（供水）；15：污染事故库（供水）；16：关阀库（供水）；17：在线滚动预报库（污水厂）；18：在线滚动优化库（污水厂）；19：模拟实验室库（污水厂）
-     * @param {BusinessTypeEnum} [businessType] 业务类型，枚举，目前已存在0-6种定义，包括0：未定义；1：水环境；2：内涝；3：供水；4：流域洪水；5：污水厂；6：排水
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    async apiV2ScenarioManagerLibraryListTypeBusinesstypeGet_10(
-      version: string,
-      type?: LibraryTypeEnum,
-      businessType?: BusinessTypeEnum,
-      options?: AxiosRequestConfig,
-    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<Library>>> {
-      const localVarAxiosArgs =
-        await localVarAxiosParamCreator.apiV2ScenarioManagerLibraryListTypeBusinesstypeGet_10(
-          version,
-          type,
-          businessType,
-          options,
-        )
-      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
-    },
-    /**
      * 关键词：      方案库、方案库类型、业务类型        使用场景：      用于获取项目下指定类型的方案库信息列表，用户可以基于此列表，再进一步筛选指定业务类型（BusinessType）的方案库。      基于方案库，用户可进一步通过接口/api/v1/scenario-manager/library/scenariolist查询方案库包含的所有方案，通过接口/api/v1/scenario-manager/library/latestscenario查询方案库下最新一个完成计算的方案，通过接口/api/v1/scenario-manager/library/templatelist查询方案库包含的所有模板方案。        相关背景：      方案库类型是对方案库在功能性上进行的一种分类，比如预报库、调度库、情景模拟库、经验库等。      业务类型是对方案库在业务方向上进行的一种分类，比如内涝、水环境、供水、排水、污水等。
      * @summary 根据类型查询方案库列表
      * @param {string} version
@@ -2352,27 +1296,6 @@ export const LibraryApiFp = function (configuration?: Configuration) {
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<Library>>> {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.apiV2ScenarioManagerLibraryListTypeGet(
-          version,
-          type,
-          options,
-        )
-      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
-    },
-    /**
-     * 关键词：      方案库、方案库类型、业务类型        使用场景：      用于获取项目下指定类型的方案库信息列表，用户可以基于此列表，再进一步筛选指定业务类型（BusinessType）的方案库。      基于方案库，用户可进一步通过接口/api/v1/scenario-manager/library/scenariolist查询方案库包含的所有方案，通过接口/api/v1/scenario-manager/library/latestscenario查询方案库下最新一个完成计算的方案，通过接口/api/v1/scenario-manager/library/templatelist查询方案库包含的所有模板方案。        相关背景：      方案库类型是对方案库在功能性上进行的一种分类，比如预报库、调度库、情景模拟库、经验库等。      业务类型是对方案库在业务方向上进行的一种分类，比如内涝、水环境、供水、排水、污水等。
-     * @summary 根据类型查询方案库列表
-     * @param {string} version
-     * @param {LibraryTypeEnum} [type] 方案库类型，枚举，目前已存在0-19种定义，包括0：未定义；1：自动预报库；2：人工预报库；3：预报库；4：调度库；5：经验库；6：情景模拟库；7：突发水污染事故库；8：在线水动力库（供水）；9：水锤库（供水）；10：管道充满度库；11：爆管库（供水）；12：污染事故响应库；13：规划库；14：管道冲洗库（供水）；15：污染事故库（供水）；16：关阀库（供水）；17：在线滚动预报库（污水厂）；18：在线滚动优化库（污水厂）；19：模拟实验室库（污水厂）
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    async apiV2ScenarioManagerLibraryListTypeGet_11(
-      version: string,
-      type?: LibraryTypeEnum,
-      options?: AxiosRequestConfig,
-    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<Library>>> {
-      const localVarAxiosArgs =
-        await localVarAxiosParamCreator.apiV2ScenarioManagerLibraryListTypeGet_11(
           version,
           type,
           options,
@@ -2401,27 +1324,6 @@ export const LibraryApiFp = function (configuration?: Configuration) {
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**
-     * 关键词：      方案库、方案、清理        使用场景：      如果用户需要对某个方案库下指定时间范围内的方案进行清理，可以使用此接口。用户设定清理的开始时间StartTime和结束时间EndTime，那么创建时间CreateTime在此时间范围内的方案将被清理。方案的清理包括方案信息的删除、方案边界等输入数据的删除、方案结果等输出数据的删除等。
-     * @summary 删除方案库下指定时间段内的方案
-     * @param {string} version
-     * @param {DeleteScenarioByTimeSpanPara} [deleteScenarioByTimeSpanPara]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    async apiV2ScenarioManagerLibraryScenarioDeleteByTimeSpanPost_12(
-      version: string,
-      deleteScenarioByTimeSpanPara?: DeleteScenarioByTimeSpanPara,
-      options?: AxiosRequestConfig,
-    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<boolean>> {
-      const localVarAxiosArgs =
-        await localVarAxiosParamCreator.apiV2ScenarioManagerLibraryScenarioDeleteByTimeSpanPost_12(
-          version,
-          deleteScenarioByTimeSpanPara,
-          options,
-        )
-      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
-    },
-    /**
      * 关键词：      方案库、方案、清理        使用场景：      随着使用时间的增长，方案库下的方案可能会越积越多，尤其是针对滚动计算方案，不间断定时执行，如果不进行清理就会占用越来越多的存储空间，此接口就是用于旧方案的清理工作，用户可以设定方案的过期时间ExpireDay，比如ExpireDay=7代表7天前的方案都被认为是过期的，将被清理。方案的清理包括方案信息的删除、方案边界等输入数据的删除、方案结果等输出数据的删除等。      如果需要定期对旧方案进行清理，用户可以将该接口放到定时任务调度中来执行，这样可以避免磁盘空间不足等问题的出现。
      * @summary 删除方案库下过期的方案
      * @param {string} version
@@ -2436,27 +1338,6 @@ export const LibraryApiFp = function (configuration?: Configuration) {
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<boolean>> {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.apiV2ScenarioManagerLibraryScenarioDeletePost(
-          version,
-          deleteExpiredScenarioPara,
-          options,
-        )
-      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
-    },
-    /**
-     * 关键词：      方案库、方案、清理        使用场景：      随着使用时间的增长，方案库下的方案可能会越积越多，尤其是针对滚动计算方案，不间断定时执行，如果不进行清理就会占用越来越多的存储空间，此接口就是用于旧方案的清理工作，用户可以设定方案的过期时间ExpireDay，比如ExpireDay=7代表7天前的方案都被认为是过期的，将被清理。方案的清理包括方案信息的删除、方案边界等输入数据的删除、方案结果等输出数据的删除等。      如果需要定期对旧方案进行清理，用户可以将该接口放到定时任务调度中来执行，这样可以避免磁盘空间不足等问题的出现。
-     * @summary 删除方案库下过期的方案
-     * @param {string} version
-     * @param {DeleteExpiredScenarioPara} [deleteExpiredScenarioPara]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    async apiV2ScenarioManagerLibraryScenarioDeletePost_13(
-      version: string,
-      deleteExpiredScenarioPara?: DeleteExpiredScenarioPara,
-      options?: AxiosRequestConfig,
-    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<boolean>> {
-      const localVarAxiosArgs =
-        await localVarAxiosParamCreator.apiV2ScenarioManagerLibraryScenarioDeletePost_13(
           version,
           deleteExpiredScenarioPara,
           options,
@@ -2491,33 +1372,6 @@ export const LibraryApiFp = function (configuration?: Configuration) {
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**
-     * 使用场景：      用于查询某个方案库下的所有的方案信息列表，包括模板方案和普通方案都将被返回，如果页面仅需要展示普通方案，则需要对结果进行过滤，把Template=1的模板方案去掉。      由于方案的数量容易越积越多，因此该接口支持分页查询，避免单次查询返回数据量过大的问题。        输入：      方案库的ID，可以基于/api/v1/scenario-manager/library/list/type_businesstype接口查询得到；      分页序号和分页大小，当需要分页查询时可根据实际展示需求取值；当需要一次性查询所有方案，不分页时，则可以将分页序号取1，分页大小取一个极大的整数（确保这个整数一定大于方案总个数即可）。
-     * @summary 根据方案库查询其下的所有方案列表
-     * @param {string} version
-     * @param {string} [libraryId] 方案库的ID，唯一性标识
-     * @param {number} [pageIndex] 分页序号，从1开始
-     * @param {number} [pageSize] 分页大小
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    async apiV2ScenarioManagerLibraryScenariolistGet_14(
-      version: string,
-      libraryId?: string,
-      pageIndex?: number,
-      pageSize?: number,
-      options?: AxiosRequestConfig,
-    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<Scenario>>> {
-      const localVarAxiosArgs =
-        await localVarAxiosParamCreator.apiV2ScenarioManagerLibraryScenariolistGet_14(
-          version,
-          libraryId,
-          pageIndex,
-          pageSize,
-          options,
-        )
-      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
-    },
-    /**
      * 关键词：      方案库、模板方案、启用        使用场景：      如果一个方案库下已经存在多个模板方案，并且需要启用某个特定的模板方案，禁用其他模板方案时，可以调用此接口实现。此接口将切换方案库下面启用的模板方案，当用户指定的这个模板方案被启用后，同方案库下其他的模板方案会自动禁用。
      * @summary 启用方案库下面的某个模板方案
      * @param {string} version
@@ -2532,27 +1386,6 @@ export const LibraryApiFp = function (configuration?: Configuration) {
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<boolean>> {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.apiV2ScenarioManagerLibraryTemplateSwitchPost(
-          version,
-          turnOnTemplatePara,
-          options,
-        )
-      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
-    },
-    /**
-     * 关键词：      方案库、模板方案、启用        使用场景：      如果一个方案库下已经存在多个模板方案，并且需要启用某个特定的模板方案，禁用其他模板方案时，可以调用此接口实现。此接口将切换方案库下面启用的模板方案，当用户指定的这个模板方案被启用后，同方案库下其他的模板方案会自动禁用。
-     * @summary 启用方案库下面的某个模板方案
-     * @param {string} version
-     * @param {TurnOnTemplatePara} [turnOnTemplatePara]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    async apiV2ScenarioManagerLibraryTemplateSwitchPost_15(
-      version: string,
-      turnOnTemplatePara?: TurnOnTemplatePara,
-      options?: AxiosRequestConfig,
-    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<boolean>> {
-      const localVarAxiosArgs =
-        await localVarAxiosParamCreator.apiV2ScenarioManagerLibraryTemplateSwitchPost_15(
           version,
           turnOnTemplatePara,
           options,
@@ -2581,27 +1414,6 @@ export const LibraryApiFp = function (configuration?: Configuration) {
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**
-     * 关键词：      方案库、模板方案        使用场景：      此接口用于查询某个模板方案所绑定的所有模板方案列表，包括启用的和非启用的，均会被返回。如果当前方案库不直接绑定模板方案，则可查询其间接绑定的模板方案，即通过其他方案库来进行绑定的模板方案。      当用户在创建调度方案时，如果有多个启用的调度模板方案（代表不同的调度策略），则可以通过此接口获取到所有的调度模板方案，供用户选择。      如果确定查询的方案库下仅有一个启用的模板方案，则建议直接使用/api/v1/scenario-manager/library/list/getcachedscenario接口进行查询。        输入：      方案库的ID，可以基于/api/v1/scenario-manager/library/list/type_businesstype接口查询得到。
-     * @summary 根据方案库查询其下所绑定的模板方案列表
-     * @param {string} version
-     * @param {string} [libraryId] 方案库的ID，唯一性标识
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    async apiV2ScenarioManagerLibraryTemplatelistGet_16(
-      version: string,
-      libraryId?: string,
-      options?: AxiosRequestConfig,
-    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<Scenario>>> {
-      const localVarAxiosArgs =
-        await localVarAxiosParamCreator.apiV2ScenarioManagerLibraryTemplatelistGet_16(
-          version,
-          libraryId,
-          options,
-        )
-      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
-    },
-    /**
      * 关键词：      方案库    使用场景：      方案库在项目初始化时完成创建，如果对于创建后的方案库有修改的需求（一般情况下不需要修改），则可以调用此接口实现。需要注意的是，如果方案库本身是只读的，即Readonly字段为1，则不能执行更新操作。        输入：      输入需要更新的方案库的所有字段信息，包括库的ID、库的名称、库的类型、业务类型、库所对应的方案组ID、是否只读、是否直接绑定模板方案、是否支持绑定多个启用的模板方案等。      其中库的ID作为方案库的唯一性标识，不可修改，系统将通过库的ID来寻找对应的方案库，并进行更新。      库所对应的方案组ID，即Scenariogroup，必须确保该方案组存在。
      * @summary 更新方案库信息
      * @param {string} version
@@ -2616,27 +1428,6 @@ export const LibraryApiFp = function (configuration?: Configuration) {
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<boolean>> {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.apiV2ScenarioManagerLibraryUpdatePost(
-          version,
-          updateLibraryPara,
-          options,
-        )
-      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
-    },
-    /**
-     * 关键词：      方案库    使用场景：      方案库在项目初始化时完成创建，如果对于创建后的方案库有修改的需求（一般情况下不需要修改），则可以调用此接口实现。需要注意的是，如果方案库本身是只读的，即Readonly字段为1，则不能执行更新操作。        输入：      输入需要更新的方案库的所有字段信息，包括库的ID、库的名称、库的类型、业务类型、库所对应的方案组ID、是否只读、是否直接绑定模板方案、是否支持绑定多个启用的模板方案等。      其中库的ID作为方案库的唯一性标识，不可修改，系统将通过库的ID来寻找对应的方案库，并进行更新。      库所对应的方案组ID，即Scenariogroup，必须确保该方案组存在。
-     * @summary 更新方案库信息
-     * @param {string} version
-     * @param {UpdateLibraryPara} [updateLibraryPara]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    async apiV2ScenarioManagerLibraryUpdatePost_17(
-      version: string,
-      updateLibraryPara?: UpdateLibraryPara,
-      options?: AxiosRequestConfig,
-    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<boolean>> {
-      const localVarAxiosArgs =
-        await localVarAxiosParamCreator.apiV2ScenarioManagerLibraryUpdatePost_17(
           version,
           updateLibraryPara,
           options,
@@ -2673,21 +1464,6 @@ export const LibraryApiFactory = function (
         .then((request) => request(axios, basePath))
     },
     /**
-     * 内部接口，供定时任务调用，扫描所有的方案库配置，删除过期的方案。
-     * @summary 删除方案库下过期的方案
-     * @param {string} version
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    apiV1ScenarioManagerLibraryScenarioAutoDeletePost_1(
-      version: string,
-      options?: any,
-    ): AxiosPromise<boolean> {
-      return localVarFp
-        .apiV1ScenarioManagerLibraryScenarioAutoDeletePost_1(version, options)
-        .then((request) => request(axios, basePath))
-    },
-    /**
      * 获取方案过期时间配置,如果没有配置过期时间，则默认返回-1，过期时间小于等于0时，都认为不过期。如果大于1，则每天滚动删除配置时间之前的方案数据。  模板方案除外，模板永不过期。
      * @summary 获取方案库中方案的过期时间配置
      * @param {string} version
@@ -2700,21 +1476,6 @@ export const LibraryApiFactory = function (
     ): AxiosPromise<Array<LibraryConfigInfo>> {
       return localVarFp
         .apiV1ScenarioManagerLibraryScenarioGetExpireTimeConfigGet(version, options)
-        .then((request) => request(axios, basePath))
-    },
-    /**
-     * 获取方案过期时间配置,如果没有配置过期时间，则默认返回-1，过期时间小于等于0时，都认为不过期。如果大于1，则每天滚动删除配置时间之前的方案数据。  模板方案除外，模板永不过期。
-     * @summary 获取方案库中方案的过期时间配置
-     * @param {string} version
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    apiV1ScenarioManagerLibraryScenarioGetExpireTimeConfigGet_2(
-      version: string,
-      options?: any,
-    ): AxiosPromise<Array<LibraryConfigInfo>> {
-      return localVarFp
-        .apiV1ScenarioManagerLibraryScenarioGetExpireTimeConfigGet_2(version, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -2739,22 +1500,22 @@ export const LibraryApiFactory = function (
         .then((request) => request(axios, basePath))
     },
     /**
-     * 设置方案库中方案的过期时间,设置值小于等于0时，认为不过期。如果大于0，则每天滚动删除配置时间之前的方案数据。时间单位为天。  模板方案除外，模板永不过期。
-     * @summary 设置方案库中方案过期时间
+     * 使用场景：      根据筛选条件分页查询某个方案库下匹配的的方案信息列表，仅查找普通方案。
+     * @summary 根据方案名、时间范围搜索条件分页查询指定方案库下的方案列表
      * @param {string} version
-     * @param {UpdateLibraryConfigInfo} [updateLibraryConfigInfo]
+     * @param {SearchScenariosByLibraryInput} [searchScenariosByLibraryInput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    apiV1ScenarioManagerLibraryScenarioSetExpireTimePost_3(
+    apiV1ScenarioManagerLibrarySearchScenariolistPost(
       version: string,
-      updateLibraryConfigInfo?: UpdateLibraryConfigInfo,
+      searchScenariosByLibraryInput?: SearchScenariosByLibraryInput,
       options?: any,
-    ): AxiosPromise<boolean> {
+    ): AxiosPromise<ScenarioPage> {
       return localVarFp
-        .apiV1ScenarioManagerLibraryScenarioSetExpireTimePost_3(
+        .apiV1ScenarioManagerLibrarySearchScenariolistPost(
           version,
-          updateLibraryConfigInfo,
+          searchScenariosByLibraryInput,
           options,
         )
         .then((request) => request(axios, basePath))
@@ -2777,23 +1538,6 @@ export const LibraryApiFactory = function (
         .then((request) => request(axios, basePath))
     },
     /**
-     * 关键词：      方案库、方案组、方案、模板方案    使用场景：      该接口一般在项目初始化的时候调用，用于创建项目将会涉及到的方案库。该接口通常不需要用户自行调用，因为当我们在DHI中国用户管理系统上创建项目租户的时候，会通过配置文件的形式上传项目所涉及到的方案库信息，在这个过程中，方案库会自动完成创建。如果后续有添加新方案库的需求，则可以通过该接口实现。    相关背景：      方案是对模型进行管理的基本单位，一个方案即代表一套模型，以及基于该模型所生成的所有相关数据；      方案库代表一类方案的集合，比如预报库、调度库等，便于对方案的分类管理；      方案组是方案与方案库之间的隐藏连接层，一般来说，一个方案库对应一个方案组，方案组下关联方案。      模板方案，对应一个基础模型，以及基于该模型导出的一系列基础数据；某个方案库下的方案创建时，将以该方案库所关联的模板方案为模板来进行创建，并可在此基础上进行模型设置和计算等操作。    输入：      输入需要新增的方案库的基本信息，包括库的名称、库的类型、业务类型、库所对应的方案组ID、是否只读、是否直接绑定模板方案、是否支持绑定多个启用的模板方案等信息。      其中库所对应的方案组ID，即Scenariogroup，如果是关联已经存在的方案组，则传该方案组的ID；如果是需要在创建方案库时进行自动创建的，则传空Guid即可，一般在项目初始化时属于后者。      是否直接绑定模板方案，即BindTemplate，如果为1，则表示该方案组下会有直接关联的模板方案，一旦关联上模板方案之后，通过/api/v1/scenario-manager/library/templatelist接口，传入该方案库的ID即可以查询到所关联的模板方案；如果为0，则表示该方案组下没有直接关联的模板方案，但是有间接关联的模板方案，而间接关联的模板方案，可以通过BindType和BindBusinessType所对应的方案库的ID，结合前面的接口来获取。    输出：      如果创建成功，将返回新创建的方案库的对象列表
-     * @summary 创建新的方案库
-     * @param {string} version
-     * @param {Array<AddLibrariesPara>} [addLibrariesPara]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    apiV2ScenarioManagerLibraryAddPost_4(
-      version: string,
-      addLibrariesPara?: Array<AddLibrariesPara>,
-      options?: any,
-    ): AxiosPromise<Array<Library>> {
-      return localVarFp
-        .apiV2ScenarioManagerLibraryAddPost_4(version, addLibrariesPara, options)
-        .then((request) => request(axios, basePath))
-    },
-    /**
      * 关键词：      方案库        使用场景：      该接口用于删除不需要了的方案库，此操作仅仅删除方案库，不会删除方案库所关联的方案组和方案；如果需要同时删除所关联的方案组和方案，可调用/api/v1/scenario-manager/scenariogroup/dfs/delete接口来实现。
      * @summary 根据方案库ID列表删除方案库
      * @param {string} version
@@ -2808,23 +1552,6 @@ export const LibraryApiFactory = function (
     ): AxiosPromise<boolean> {
       return localVarFp
         .apiV2ScenarioManagerLibraryDeletePost(version, deleteLibrariesPara, options)
-        .then((request) => request(axios, basePath))
-    },
-    /**
-     * 关键词：      方案库        使用场景：      该接口用于删除不需要了的方案库，此操作仅仅删除方案库，不会删除方案库所关联的方案组和方案；如果需要同时删除所关联的方案组和方案，可调用/api/v1/scenario-manager/scenariogroup/dfs/delete接口来实现。
-     * @summary 根据方案库ID列表删除方案库
-     * @param {string} version
-     * @param {DeleteLibrariesPara} [deleteLibrariesPara]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    apiV2ScenarioManagerLibraryDeletePost_5(
-      version: string,
-      deleteLibrariesPara?: DeleteLibrariesPara,
-      options?: any,
-    ): AxiosPromise<boolean> {
-      return localVarFp
-        .apiV2ScenarioManagerLibraryDeletePost_5(version, deleteLibrariesPara, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -2855,33 +1582,6 @@ export const LibraryApiFactory = function (
         .then((request) => request(axios, basePath))
     },
     /**
-     * 关键词：      方案库、方案、计算完成、模板方案        使用场景：      用于查询某个方案库下，基于指定模板方案所创建的方案中，最新一次完成计算任务的方案，只有完成计算的方案才能获取其完整的计算结果。当用户需要获取某个方案库下最新一次方案结果，同时该方案库下又有多个启用的模板方案时，可以利用此接口查询指定模板方案下最新一次计算完成的方案，再基于方案信息，去进一步获取方案的结果、边界设置等数据。    输入：      方案库的ID，可以基于/api/v1/scenario-manager/library/list/type_businesstype接口查询得到。      模板方案的模型类型与名称，可以基于/api/v1/scenario-manager/library/templatelist接口查询得到。
-     * @summary 根据方案库，以及模板方案名称与模型类型，查询其下最近一次计算完成的方案
-     * @param {string} version
-     * @param {string} [libraryId] 方案库的ID，唯一性标识
-     * @param {string} [modelType] 模板方案对应的模型类型，传枚举项对应的字符串，枚举项目前已存在的定义包括MIKE11Model、MIKEBASINModel、MIKE21Model、MIKE21FMModel、MIKE3FMModel、MIKEFloodModel、MIKESHEModel、MIKEUrbanCSModel、MIKEUrbanWDModel、HydroBasinModel、InpWDModel、XAJ11Model、FeflowModel、WestModel、SWMMModel、EFDCModel、WaterForecastModel、HydroBasinOptimModel、MIKEUrbanCSPlusModel、MIKEUrbanWDPlusModel、HammerModel、MIKEPlusFloodModel、MIKEPlusWDModel、EPANET、Unknown
-     * @param {string} [templateName] 模板方案的名称
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    apiV2ScenarioManagerLibraryLatestscenarioByModelTypeGet_6(
-      version: string,
-      libraryId?: string,
-      modelType?: string,
-      templateName?: string,
-      options?: any,
-    ): AxiosPromise<Scenario> {
-      return localVarFp
-        .apiV2ScenarioManagerLibraryLatestscenarioByModelTypeGet_6(
-          version,
-          libraryId,
-          modelType,
-          templateName,
-          options,
-        )
-        .then((request) => request(axios, basePath))
-    },
-    /**
      * 关键词：      方案库、方案、计算完成        使用场景：      用于查询某个方案库下最新一次完成计算任务的方案，只有完成计算的方案才能获取其完整的计算结果。当用户需要获取最新一次滚动预报方案结果时，往往需要先利用该接口查询滚动方案库下的最新一次计算完成的方案，再基于方案信息，去进一步获取方案的结果、边界设置等数据。    输入：      方案库的ID，可以基于/api/v1/scenario-manager/library/list/type_businesstype接口查询得到。
      * @summary 根据方案库查询其下最近一次计算完成的方案
      * @param {string} version
@@ -2899,23 +1599,6 @@ export const LibraryApiFactory = function (
         .then((request) => request(axios, basePath))
     },
     /**
-     * 关键词：      方案库、方案、计算完成        使用场景：      用于查询某个方案库下最新一次完成计算任务的方案，只有完成计算的方案才能获取其完整的计算结果。当用户需要获取最新一次滚动预报方案结果时，往往需要先利用该接口查询滚动方案库下的最新一次计算完成的方案，再基于方案信息，去进一步获取方案的结果、边界设置等数据。    输入：      方案库的ID，可以基于/api/v1/scenario-manager/library/list/type_businesstype接口查询得到。
-     * @summary 根据方案库查询其下最近一次计算完成的方案
-     * @param {string} version
-     * @param {string} [libraryId] 方案库的ID，唯一性标识
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    apiV2ScenarioManagerLibraryLatestscenarioGet_7(
-      version: string,
-      libraryId?: string,
-      options?: any,
-    ): AxiosPromise<Scenario> {
-      return localVarFp
-        .apiV2ScenarioManagerLibraryLatestscenarioGet_7(version, libraryId, options)
-        .then((request) => request(axios, basePath))
-    },
-    /**
      * 关键词：      方案库        使用场景：      用于获取项目下所有的方案库的信息列表，用户可以基于此列表，再进一步筛选指定类型（Type）和业务类型（BusinessType）的方案库。      基于方案库，用户可进一步通过接口/api/v1/scenario-manager/library/scenariolist查询方案库包含的所有方案，通过接口/api/v1/scenario-manager/library/latestscenario查询方案库下最新一个完成计算的方案，通过接口/api/v1/scenario-manager/library/templatelist查询方案库包含的所有模板方案。
      * @summary 获取所有方案库列表
      * @param {string} version
@@ -2928,21 +1611,6 @@ export const LibraryApiFactory = function (
     ): AxiosPromise<Array<Library>> {
       return localVarFp
         .apiV2ScenarioManagerLibraryListGet(version, options)
-        .then((request) => request(axios, basePath))
-    },
-    /**
-     * 关键词：      方案库        使用场景：      用于获取项目下所有的方案库的信息列表，用户可以基于此列表，再进一步筛选指定类型（Type）和业务类型（BusinessType）的方案库。      基于方案库，用户可进一步通过接口/api/v1/scenario-manager/library/scenariolist查询方案库包含的所有方案，通过接口/api/v1/scenario-manager/library/latestscenario查询方案库下最新一个完成计算的方案，通过接口/api/v1/scenario-manager/library/templatelist查询方案库包含的所有模板方案。
-     * @summary 获取所有方案库列表
-     * @param {string} version
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    apiV2ScenarioManagerLibraryListGet_8(
-      version: string,
-      options?: any,
-    ): AxiosPromise<Array<Library>> {
-      return localVarFp
-        .apiV2ScenarioManagerLibraryListGet_8(version, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -2965,25 +1633,6 @@ export const LibraryApiFactory = function (
         .then((request) => request(axios, basePath))
     },
     /**
-     * 关键词：      模板方案、方案库、方案库类型、业务类型        使用场景：      用户在创建方案时，或者需要查询与模型相关的基础数据、映射关系、配置信息时，均需要先获取对应的模板方案，该接口可基于方案库类型和业务类型查询对应的方案库下的启用的模板方案，比如内涝（businessType=2）预报（type=1）库下启用的模板方案，并且能够相对高效得返回结果。    相关背景：      模板方案是创建普通方案的基础，同时它又绑定了模型相关的一系列基础数据，包括模型的空间坐标系，河道、管网、二维网格等GIS信息，各类模型点位（如管网、节点、河道、结构物、边界...）、映射关系等，甚至如滚动预报配置、阈值配置等一系列基础配置信息也是与模板方案绑定的，所以模板方案的查询是一个基础且常用的功能需求。
-     * @summary 根据方案库类型和业务类型查询对应方案库下启用的模板方案
-     * @param {string} version
-     * @param {LibraryTypeEnum} [type] 方案库类型，枚举，目前已存在0-19种定义，包括0：未定义；1：自动预报库；2：人工预报库；3：预报库；4：调度库；5：经验库；6：情景模拟库；7：突发水污染事故库；8：在线水动力库（供水）；9：水锤库（供水）；10：管道充满度库；11：爆管库（供水）；12：污染事故响应库；13：规划库；14：管道冲洗库（供水）；15：污染事故库（供水）；16：关阀库（供水）；17：在线滚动预报库（污水厂）；18：在线滚动优化库（污水厂）；19：模拟实验室库（污水厂）
-     * @param {BusinessTypeEnum} [businessType] 业务类型，枚举，目前已存在0-6种定义，包括0：未定义；1：水环境；2：内涝；3：供水；4：流域洪水；5：污水厂；6：排水
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    apiV2ScenarioManagerLibraryListGetcachedscenarioGet_9(
-      version: string,
-      type?: LibraryTypeEnum,
-      businessType?: BusinessTypeEnum,
-      options?: any,
-    ): AxiosPromise<Scenario> {
-      return localVarFp
-        .apiV2ScenarioManagerLibraryListGetcachedscenarioGet_9(version, type, businessType, options)
-        .then((request) => request(axios, basePath))
-    },
-    /**
      * 关键词：      方案库、方案库类型、业务类型        使用场景：      用于获取项目下指定类型和业务类型的方案库，比如内涝（业务类型）预报（类型）库，通常一个项目下指定类型和业务类型对应的方案库只会有一个。      基于方案库，用户可进一步通过接口/api/v1/scenario-manager/library/scenariolist查询方案库包含的所有方案，通过接口/api/v1/scenario-manager/library/latestscenario查询方案库下最新一个完成计算的方案，通过接口/api/v1/scenario-manager/library/templatelist查询方案库包含的所有模板方案。        相关背景：      方案库类型是对方案库在功能性上进行的一种分类，比如预报库、调度库、情景模拟库、经验库等。      业务类型是对方案库在业务方向上进行的一种分类，比如内涝、水环境、供水、排水、污水等。
      * @summary 根据方案库类型和业务类型查询方案库
      * @param {string} version
@@ -3003,25 +1652,6 @@ export const LibraryApiFactory = function (
         .then((request) => request(axios, basePath))
     },
     /**
-     * 关键词：      方案库、方案库类型、业务类型        使用场景：      用于获取项目下指定类型和业务类型的方案库，比如内涝（业务类型）预报（类型）库，通常一个项目下指定类型和业务类型对应的方案库只会有一个。      基于方案库，用户可进一步通过接口/api/v1/scenario-manager/library/scenariolist查询方案库包含的所有方案，通过接口/api/v1/scenario-manager/library/latestscenario查询方案库下最新一个完成计算的方案，通过接口/api/v1/scenario-manager/library/templatelist查询方案库包含的所有模板方案。        相关背景：      方案库类型是对方案库在功能性上进行的一种分类，比如预报库、调度库、情景模拟库、经验库等。      业务类型是对方案库在业务方向上进行的一种分类，比如内涝、水环境、供水、排水、污水等。
-     * @summary 根据方案库类型和业务类型查询方案库
-     * @param {string} version
-     * @param {LibraryTypeEnum} [type] 方案库类型，枚举，目前已存在0-19种定义，包括0：未定义；1：自动预报库；2：人工预报库；3：预报库；4：调度库；5：经验库；6：情景模拟库；7：突发水污染事故库；8：在线水动力库（供水）；9：水锤库（供水）；10：管道充满度库；11：爆管库（供水）；12：污染事故响应库；13：规划库；14：管道冲洗库（供水）；15：污染事故库（供水）；16：关阀库（供水）；17：在线滚动预报库（污水厂）；18：在线滚动优化库（污水厂）；19：模拟实验室库（污水厂）
-     * @param {BusinessTypeEnum} [businessType] 业务类型，枚举，目前已存在0-6种定义，包括0：未定义；1：水环境；2：内涝；3：供水；4：流域洪水；5：污水厂；6：排水
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    apiV2ScenarioManagerLibraryListTypeBusinesstypeGet_10(
-      version: string,
-      type?: LibraryTypeEnum,
-      businessType?: BusinessTypeEnum,
-      options?: any,
-    ): AxiosPromise<Array<Library>> {
-      return localVarFp
-        .apiV2ScenarioManagerLibraryListTypeBusinesstypeGet_10(version, type, businessType, options)
-        .then((request) => request(axios, basePath))
-    },
-    /**
      * 关键词：      方案库、方案库类型、业务类型        使用场景：      用于获取项目下指定类型的方案库信息列表，用户可以基于此列表，再进一步筛选指定业务类型（BusinessType）的方案库。      基于方案库，用户可进一步通过接口/api/v1/scenario-manager/library/scenariolist查询方案库包含的所有方案，通过接口/api/v1/scenario-manager/library/latestscenario查询方案库下最新一个完成计算的方案，通过接口/api/v1/scenario-manager/library/templatelist查询方案库包含的所有模板方案。        相关背景：      方案库类型是对方案库在功能性上进行的一种分类，比如预报库、调度库、情景模拟库、经验库等。      业务类型是对方案库在业务方向上进行的一种分类，比如内涝、水环境、供水、排水、污水等。
      * @summary 根据类型查询方案库列表
      * @param {string} version
@@ -3036,23 +1666,6 @@ export const LibraryApiFactory = function (
     ): AxiosPromise<Array<Library>> {
       return localVarFp
         .apiV2ScenarioManagerLibraryListTypeGet(version, type, options)
-        .then((request) => request(axios, basePath))
-    },
-    /**
-     * 关键词：      方案库、方案库类型、业务类型        使用场景：      用于获取项目下指定类型的方案库信息列表，用户可以基于此列表，再进一步筛选指定业务类型（BusinessType）的方案库。      基于方案库，用户可进一步通过接口/api/v1/scenario-manager/library/scenariolist查询方案库包含的所有方案，通过接口/api/v1/scenario-manager/library/latestscenario查询方案库下最新一个完成计算的方案，通过接口/api/v1/scenario-manager/library/templatelist查询方案库包含的所有模板方案。        相关背景：      方案库类型是对方案库在功能性上进行的一种分类，比如预报库、调度库、情景模拟库、经验库等。      业务类型是对方案库在业务方向上进行的一种分类，比如内涝、水环境、供水、排水、污水等。
-     * @summary 根据类型查询方案库列表
-     * @param {string} version
-     * @param {LibraryTypeEnum} [type] 方案库类型，枚举，目前已存在0-19种定义，包括0：未定义；1：自动预报库；2：人工预报库；3：预报库；4：调度库；5：经验库；6：情景模拟库；7：突发水污染事故库；8：在线水动力库（供水）；9：水锤库（供水）；10：管道充满度库；11：爆管库（供水）；12：污染事故响应库；13：规划库；14：管道冲洗库（供水）；15：污染事故库（供水）；16：关阀库（供水）；17：在线滚动预报库（污水厂）；18：在线滚动优化库（污水厂）；19：模拟实验室库（污水厂）
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    apiV2ScenarioManagerLibraryListTypeGet_11(
-      version: string,
-      type?: LibraryTypeEnum,
-      options?: any,
-    ): AxiosPromise<Array<Library>> {
-      return localVarFp
-        .apiV2ScenarioManagerLibraryListTypeGet_11(version, type, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -3077,27 +1690,6 @@ export const LibraryApiFactory = function (
         .then((request) => request(axios, basePath))
     },
     /**
-     * 关键词：      方案库、方案、清理        使用场景：      如果用户需要对某个方案库下指定时间范围内的方案进行清理，可以使用此接口。用户设定清理的开始时间StartTime和结束时间EndTime，那么创建时间CreateTime在此时间范围内的方案将被清理。方案的清理包括方案信息的删除、方案边界等输入数据的删除、方案结果等输出数据的删除等。
-     * @summary 删除方案库下指定时间段内的方案
-     * @param {string} version
-     * @param {DeleteScenarioByTimeSpanPara} [deleteScenarioByTimeSpanPara]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    apiV2ScenarioManagerLibraryScenarioDeleteByTimeSpanPost_12(
-      version: string,
-      deleteScenarioByTimeSpanPara?: DeleteScenarioByTimeSpanPara,
-      options?: any,
-    ): AxiosPromise<boolean> {
-      return localVarFp
-        .apiV2ScenarioManagerLibraryScenarioDeleteByTimeSpanPost_12(
-          version,
-          deleteScenarioByTimeSpanPara,
-          options,
-        )
-        .then((request) => request(axios, basePath))
-    },
-    /**
      * 关键词：      方案库、方案、清理        使用场景：      随着使用时间的增长，方案库下的方案可能会越积越多，尤其是针对滚动计算方案，不间断定时执行，如果不进行清理就会占用越来越多的存储空间，此接口就是用于旧方案的清理工作，用户可以设定方案的过期时间ExpireDay，比如ExpireDay=7代表7天前的方案都被认为是过期的，将被清理。方案的清理包括方案信息的删除、方案边界等输入数据的删除、方案结果等输出数据的删除等。      如果需要定期对旧方案进行清理，用户可以将该接口放到定时任务调度中来执行，这样可以避免磁盘空间不足等问题的出现。
      * @summary 删除方案库下过期的方案
      * @param {string} version
@@ -3112,27 +1704,6 @@ export const LibraryApiFactory = function (
     ): AxiosPromise<boolean> {
       return localVarFp
         .apiV2ScenarioManagerLibraryScenarioDeletePost(version, deleteExpiredScenarioPara, options)
-        .then((request) => request(axios, basePath))
-    },
-    /**
-     * 关键词：      方案库、方案、清理        使用场景：      随着使用时间的增长，方案库下的方案可能会越积越多，尤其是针对滚动计算方案，不间断定时执行，如果不进行清理就会占用越来越多的存储空间，此接口就是用于旧方案的清理工作，用户可以设定方案的过期时间ExpireDay，比如ExpireDay=7代表7天前的方案都被认为是过期的，将被清理。方案的清理包括方案信息的删除、方案边界等输入数据的删除、方案结果等输出数据的删除等。      如果需要定期对旧方案进行清理，用户可以将该接口放到定时任务调度中来执行，这样可以避免磁盘空间不足等问题的出现。
-     * @summary 删除方案库下过期的方案
-     * @param {string} version
-     * @param {DeleteExpiredScenarioPara} [deleteExpiredScenarioPara]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    apiV2ScenarioManagerLibraryScenarioDeletePost_13(
-      version: string,
-      deleteExpiredScenarioPara?: DeleteExpiredScenarioPara,
-      options?: any,
-    ): AxiosPromise<boolean> {
-      return localVarFp
-        .apiV2ScenarioManagerLibraryScenarioDeletePost_13(
-          version,
-          deleteExpiredScenarioPara,
-          options,
-        )
         .then((request) => request(axios, basePath))
     },
     /**
@@ -3163,33 +1734,6 @@ export const LibraryApiFactory = function (
         .then((request) => request(axios, basePath))
     },
     /**
-     * 使用场景：      用于查询某个方案库下的所有的方案信息列表，包括模板方案和普通方案都将被返回，如果页面仅需要展示普通方案，则需要对结果进行过滤，把Template=1的模板方案去掉。      由于方案的数量容易越积越多，因此该接口支持分页查询，避免单次查询返回数据量过大的问题。        输入：      方案库的ID，可以基于/api/v1/scenario-manager/library/list/type_businesstype接口查询得到；      分页序号和分页大小，当需要分页查询时可根据实际展示需求取值；当需要一次性查询所有方案，不分页时，则可以将分页序号取1，分页大小取一个极大的整数（确保这个整数一定大于方案总个数即可）。
-     * @summary 根据方案库查询其下的所有方案列表
-     * @param {string} version
-     * @param {string} [libraryId] 方案库的ID，唯一性标识
-     * @param {number} [pageIndex] 分页序号，从1开始
-     * @param {number} [pageSize] 分页大小
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    apiV2ScenarioManagerLibraryScenariolistGet_14(
-      version: string,
-      libraryId?: string,
-      pageIndex?: number,
-      pageSize?: number,
-      options?: any,
-    ): AxiosPromise<Array<Scenario>> {
-      return localVarFp
-        .apiV2ScenarioManagerLibraryScenariolistGet_14(
-          version,
-          libraryId,
-          pageIndex,
-          pageSize,
-          options,
-        )
-        .then((request) => request(axios, basePath))
-    },
-    /**
      * 关键词：      方案库、模板方案、启用        使用场景：      如果一个方案库下已经存在多个模板方案，并且需要启用某个特定的模板方案，禁用其他模板方案时，可以调用此接口实现。此接口将切换方案库下面启用的模板方案，当用户指定的这个模板方案被启用后，同方案库下其他的模板方案会自动禁用。
      * @summary 启用方案库下面的某个模板方案
      * @param {string} version
@@ -3204,23 +1748,6 @@ export const LibraryApiFactory = function (
     ): AxiosPromise<boolean> {
       return localVarFp
         .apiV2ScenarioManagerLibraryTemplateSwitchPost(version, turnOnTemplatePara, options)
-        .then((request) => request(axios, basePath))
-    },
-    /**
-     * 关键词：      方案库、模板方案、启用        使用场景：      如果一个方案库下已经存在多个模板方案，并且需要启用某个特定的模板方案，禁用其他模板方案时，可以调用此接口实现。此接口将切换方案库下面启用的模板方案，当用户指定的这个模板方案被启用后，同方案库下其他的模板方案会自动禁用。
-     * @summary 启用方案库下面的某个模板方案
-     * @param {string} version
-     * @param {TurnOnTemplatePara} [turnOnTemplatePara]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    apiV2ScenarioManagerLibraryTemplateSwitchPost_15(
-      version: string,
-      turnOnTemplatePara?: TurnOnTemplatePara,
-      options?: any,
-    ): AxiosPromise<boolean> {
-      return localVarFp
-        .apiV2ScenarioManagerLibraryTemplateSwitchPost_15(version, turnOnTemplatePara, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -3241,23 +1768,6 @@ export const LibraryApiFactory = function (
         .then((request) => request(axios, basePath))
     },
     /**
-     * 关键词：      方案库、模板方案        使用场景：      此接口用于查询某个模板方案所绑定的所有模板方案列表，包括启用的和非启用的，均会被返回。如果当前方案库不直接绑定模板方案，则可查询其间接绑定的模板方案，即通过其他方案库来进行绑定的模板方案。      当用户在创建调度方案时，如果有多个启用的调度模板方案（代表不同的调度策略），则可以通过此接口获取到所有的调度模板方案，供用户选择。      如果确定查询的方案库下仅有一个启用的模板方案，则建议直接使用/api/v1/scenario-manager/library/list/getcachedscenario接口进行查询。        输入：      方案库的ID，可以基于/api/v1/scenario-manager/library/list/type_businesstype接口查询得到。
-     * @summary 根据方案库查询其下所绑定的模板方案列表
-     * @param {string} version
-     * @param {string} [libraryId] 方案库的ID，唯一性标识
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    apiV2ScenarioManagerLibraryTemplatelistGet_16(
-      version: string,
-      libraryId?: string,
-      options?: any,
-    ): AxiosPromise<Array<Scenario>> {
-      return localVarFp
-        .apiV2ScenarioManagerLibraryTemplatelistGet_16(version, libraryId, options)
-        .then((request) => request(axios, basePath))
-    },
-    /**
      * 关键词：      方案库    使用场景：      方案库在项目初始化时完成创建，如果对于创建后的方案库有修改的需求（一般情况下不需要修改），则可以调用此接口实现。需要注意的是，如果方案库本身是只读的，即Readonly字段为1，则不能执行更新操作。        输入：      输入需要更新的方案库的所有字段信息，包括库的ID、库的名称、库的类型、业务类型、库所对应的方案组ID、是否只读、是否直接绑定模板方案、是否支持绑定多个启用的模板方案等。      其中库的ID作为方案库的唯一性标识，不可修改，系统将通过库的ID来寻找对应的方案库，并进行更新。      库所对应的方案组ID，即Scenariogroup，必须确保该方案组存在。
      * @summary 更新方案库信息
      * @param {string} version
@@ -3272,23 +1782,6 @@ export const LibraryApiFactory = function (
     ): AxiosPromise<boolean> {
       return localVarFp
         .apiV2ScenarioManagerLibraryUpdatePost(version, updateLibraryPara, options)
-        .then((request) => request(axios, basePath))
-    },
-    /**
-     * 关键词：      方案库    使用场景：      方案库在项目初始化时完成创建，如果对于创建后的方案库有修改的需求（一般情况下不需要修改），则可以调用此接口实现。需要注意的是，如果方案库本身是只读的，即Readonly字段为1，则不能执行更新操作。        输入：      输入需要更新的方案库的所有字段信息，包括库的ID、库的名称、库的类型、业务类型、库所对应的方案组ID、是否只读、是否直接绑定模板方案、是否支持绑定多个启用的模板方案等。      其中库的ID作为方案库的唯一性标识，不可修改，系统将通过库的ID来寻找对应的方案库，并进行更新。      库所对应的方案组ID，即Scenariogroup，必须确保该方案组存在。
-     * @summary 更新方案库信息
-     * @param {string} version
-     * @param {UpdateLibraryPara} [updateLibraryPara]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    apiV2ScenarioManagerLibraryUpdatePost_17(
-      version: string,
-      updateLibraryPara?: UpdateLibraryPara,
-      options?: any,
-    ): AxiosPromise<boolean> {
-      return localVarFp
-        .apiV2ScenarioManagerLibraryUpdatePost_17(version, updateLibraryPara, options)
         .then((request) => request(axios, basePath))
     },
   }
@@ -3319,23 +1812,6 @@ export class LibraryApi extends BaseAPI {
   }
 
   /**
-   * 内部接口，供定时任务调用，扫描所有的方案库配置，删除过期的方案。
-   * @summary 删除方案库下过期的方案
-   * @param {string} version
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof LibraryApi
-   */
-  public apiV1ScenarioManagerLibraryScenarioAutoDeletePost_1(
-    version: string,
-    options?: AxiosRequestConfig,
-  ) {
-    return LibraryApiFp(this.configuration)
-      .apiV1ScenarioManagerLibraryScenarioAutoDeletePost_1(version, options)
-      .then((request) => request(this.axios, this.basePath))
-  }
-
-  /**
    * 获取方案过期时间配置,如果没有配置过期时间，则默认返回-1，过期时间小于等于0时，都认为不过期。如果大于1，则每天滚动删除配置时间之前的方案数据。  模板方案除外，模板永不过期。
    * @summary 获取方案库中方案的过期时间配置
    * @param {string} version
@@ -3349,23 +1825,6 @@ export class LibraryApi extends BaseAPI {
   ) {
     return LibraryApiFp(this.configuration)
       .apiV1ScenarioManagerLibraryScenarioGetExpireTimeConfigGet(version, options)
-      .then((request) => request(this.axios, this.basePath))
-  }
-
-  /**
-   * 获取方案过期时间配置,如果没有配置过期时间，则默认返回-1，过期时间小于等于0时，都认为不过期。如果大于1，则每天滚动删除配置时间之前的方案数据。  模板方案除外，模板永不过期。
-   * @summary 获取方案库中方案的过期时间配置
-   * @param {string} version
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof LibraryApi
-   */
-  public apiV1ScenarioManagerLibraryScenarioGetExpireTimeConfigGet_2(
-    version: string,
-    options?: AxiosRequestConfig,
-  ) {
-    return LibraryApiFp(this.configuration)
-      .apiV1ScenarioManagerLibraryScenarioGetExpireTimeConfigGet_2(version, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -3393,23 +1852,23 @@ export class LibraryApi extends BaseAPI {
   }
 
   /**
-   * 设置方案库中方案的过期时间,设置值小于等于0时，认为不过期。如果大于0，则每天滚动删除配置时间之前的方案数据。时间单位为天。  模板方案除外，模板永不过期。
-   * @summary 设置方案库中方案过期时间
+   * 使用场景：      根据筛选条件分页查询某个方案库下匹配的的方案信息列表，仅查找普通方案。
+   * @summary 根据方案名、时间范围搜索条件分页查询指定方案库下的方案列表
    * @param {string} version
-   * @param {UpdateLibraryConfigInfo} [updateLibraryConfigInfo]
+   * @param {SearchScenariosByLibraryInput} [searchScenariosByLibraryInput]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof LibraryApi
    */
-  public apiV1ScenarioManagerLibraryScenarioSetExpireTimePost_3(
+  public apiV1ScenarioManagerLibrarySearchScenariolistPost(
     version: string,
-    updateLibraryConfigInfo?: UpdateLibraryConfigInfo,
+    searchScenariosByLibraryInput?: SearchScenariosByLibraryInput,
     options?: AxiosRequestConfig,
   ) {
     return LibraryApiFp(this.configuration)
-      .apiV1ScenarioManagerLibraryScenarioSetExpireTimePost_3(
+      .apiV1ScenarioManagerLibrarySearchScenariolistPost(
         version,
-        updateLibraryConfigInfo,
+        searchScenariosByLibraryInput,
         options,
       )
       .then((request) => request(this.axios, this.basePath))
@@ -3435,25 +1894,6 @@ export class LibraryApi extends BaseAPI {
   }
 
   /**
-   * 关键词：      方案库、方案组、方案、模板方案    使用场景：      该接口一般在项目初始化的时候调用，用于创建项目将会涉及到的方案库。该接口通常不需要用户自行调用，因为当我们在DHI中国用户管理系统上创建项目租户的时候，会通过配置文件的形式上传项目所涉及到的方案库信息，在这个过程中，方案库会自动完成创建。如果后续有添加新方案库的需求，则可以通过该接口实现。    相关背景：      方案是对模型进行管理的基本单位，一个方案即代表一套模型，以及基于该模型所生成的所有相关数据；      方案库代表一类方案的集合，比如预报库、调度库等，便于对方案的分类管理；      方案组是方案与方案库之间的隐藏连接层，一般来说，一个方案库对应一个方案组，方案组下关联方案。      模板方案，对应一个基础模型，以及基于该模型导出的一系列基础数据；某个方案库下的方案创建时，将以该方案库所关联的模板方案为模板来进行创建，并可在此基础上进行模型设置和计算等操作。    输入：      输入需要新增的方案库的基本信息，包括库的名称、库的类型、业务类型、库所对应的方案组ID、是否只读、是否直接绑定模板方案、是否支持绑定多个启用的模板方案等信息。      其中库所对应的方案组ID，即Scenariogroup，如果是关联已经存在的方案组，则传该方案组的ID；如果是需要在创建方案库时进行自动创建的，则传空Guid即可，一般在项目初始化时属于后者。      是否直接绑定模板方案，即BindTemplate，如果为1，则表示该方案组下会有直接关联的模板方案，一旦关联上模板方案之后，通过/api/v1/scenario-manager/library/templatelist接口，传入该方案库的ID即可以查询到所关联的模板方案；如果为0，则表示该方案组下没有直接关联的模板方案，但是有间接关联的模板方案，而间接关联的模板方案，可以通过BindType和BindBusinessType所对应的方案库的ID，结合前面的接口来获取。    输出：      如果创建成功，将返回新创建的方案库的对象列表
-   * @summary 创建新的方案库
-   * @param {string} version
-   * @param {Array<AddLibrariesPara>} [addLibrariesPara]
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof LibraryApi
-   */
-  public apiV2ScenarioManagerLibraryAddPost_4(
-    version: string,
-    addLibrariesPara?: Array<AddLibrariesPara>,
-    options?: AxiosRequestConfig,
-  ) {
-    return LibraryApiFp(this.configuration)
-      .apiV2ScenarioManagerLibraryAddPost_4(version, addLibrariesPara, options)
-      .then((request) => request(this.axios, this.basePath))
-  }
-
-  /**
    * 关键词：      方案库        使用场景：      该接口用于删除不需要了的方案库，此操作仅仅删除方案库，不会删除方案库所关联的方案组和方案；如果需要同时删除所关联的方案组和方案，可调用/api/v1/scenario-manager/scenariogroup/dfs/delete接口来实现。
    * @summary 根据方案库ID列表删除方案库
    * @param {string} version
@@ -3469,25 +1909,6 @@ export class LibraryApi extends BaseAPI {
   ) {
     return LibraryApiFp(this.configuration)
       .apiV2ScenarioManagerLibraryDeletePost(version, deleteLibrariesPara, options)
-      .then((request) => request(this.axios, this.basePath))
-  }
-
-  /**
-   * 关键词：      方案库        使用场景：      该接口用于删除不需要了的方案库，此操作仅仅删除方案库，不会删除方案库所关联的方案组和方案；如果需要同时删除所关联的方案组和方案，可调用/api/v1/scenario-manager/scenariogroup/dfs/delete接口来实现。
-   * @summary 根据方案库ID列表删除方案库
-   * @param {string} version
-   * @param {DeleteLibrariesPara} [deleteLibrariesPara]
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof LibraryApi
-   */
-  public apiV2ScenarioManagerLibraryDeletePost_5(
-    version: string,
-    deleteLibrariesPara?: DeleteLibrariesPara,
-    options?: AxiosRequestConfig,
-  ) {
-    return LibraryApiFp(this.configuration)
-      .apiV2ScenarioManagerLibraryDeletePost_5(version, deleteLibrariesPara, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -3521,35 +1942,6 @@ export class LibraryApi extends BaseAPI {
   }
 
   /**
-   * 关键词：      方案库、方案、计算完成、模板方案        使用场景：      用于查询某个方案库下，基于指定模板方案所创建的方案中，最新一次完成计算任务的方案，只有完成计算的方案才能获取其完整的计算结果。当用户需要获取某个方案库下最新一次方案结果，同时该方案库下又有多个启用的模板方案时，可以利用此接口查询指定模板方案下最新一次计算完成的方案，再基于方案信息，去进一步获取方案的结果、边界设置等数据。    输入：      方案库的ID，可以基于/api/v1/scenario-manager/library/list/type_businesstype接口查询得到。      模板方案的模型类型与名称，可以基于/api/v1/scenario-manager/library/templatelist接口查询得到。
-   * @summary 根据方案库，以及模板方案名称与模型类型，查询其下最近一次计算完成的方案
-   * @param {string} version
-   * @param {string} [libraryId] 方案库的ID，唯一性标识
-   * @param {string} [modelType] 模板方案对应的模型类型，传枚举项对应的字符串，枚举项目前已存在的定义包括MIKE11Model、MIKEBASINModel、MIKE21Model、MIKE21FMModel、MIKE3FMModel、MIKEFloodModel、MIKESHEModel、MIKEUrbanCSModel、MIKEUrbanWDModel、HydroBasinModel、InpWDModel、XAJ11Model、FeflowModel、WestModel、SWMMModel、EFDCModel、WaterForecastModel、HydroBasinOptimModel、MIKEUrbanCSPlusModel、MIKEUrbanWDPlusModel、HammerModel、MIKEPlusFloodModel、MIKEPlusWDModel、EPANET、Unknown
-   * @param {string} [templateName] 模板方案的名称
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof LibraryApi
-   */
-  public apiV2ScenarioManagerLibraryLatestscenarioByModelTypeGet_6(
-    version: string,
-    libraryId?: string,
-    modelType?: string,
-    templateName?: string,
-    options?: AxiosRequestConfig,
-  ) {
-    return LibraryApiFp(this.configuration)
-      .apiV2ScenarioManagerLibraryLatestscenarioByModelTypeGet_6(
-        version,
-        libraryId,
-        modelType,
-        templateName,
-        options,
-      )
-      .then((request) => request(this.axios, this.basePath))
-  }
-
-  /**
    * 关键词：      方案库、方案、计算完成        使用场景：      用于查询某个方案库下最新一次完成计算任务的方案，只有完成计算的方案才能获取其完整的计算结果。当用户需要获取最新一次滚动预报方案结果时，往往需要先利用该接口查询滚动方案库下的最新一次计算完成的方案，再基于方案信息，去进一步获取方案的结果、边界设置等数据。    输入：      方案库的ID，可以基于/api/v1/scenario-manager/library/list/type_businesstype接口查询得到。
    * @summary 根据方案库查询其下最近一次计算完成的方案
    * @param {string} version
@@ -3569,25 +1961,6 @@ export class LibraryApi extends BaseAPI {
   }
 
   /**
-   * 关键词：      方案库、方案、计算完成        使用场景：      用于查询某个方案库下最新一次完成计算任务的方案，只有完成计算的方案才能获取其完整的计算结果。当用户需要获取最新一次滚动预报方案结果时，往往需要先利用该接口查询滚动方案库下的最新一次计算完成的方案，再基于方案信息，去进一步获取方案的结果、边界设置等数据。    输入：      方案库的ID，可以基于/api/v1/scenario-manager/library/list/type_businesstype接口查询得到。
-   * @summary 根据方案库查询其下最近一次计算完成的方案
-   * @param {string} version
-   * @param {string} [libraryId] 方案库的ID，唯一性标识
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof LibraryApi
-   */
-  public apiV2ScenarioManagerLibraryLatestscenarioGet_7(
-    version: string,
-    libraryId?: string,
-    options?: AxiosRequestConfig,
-  ) {
-    return LibraryApiFp(this.configuration)
-      .apiV2ScenarioManagerLibraryLatestscenarioGet_7(version, libraryId, options)
-      .then((request) => request(this.axios, this.basePath))
-  }
-
-  /**
    * 关键词：      方案库        使用场景：      用于获取项目下所有的方案库的信息列表，用户可以基于此列表，再进一步筛选指定类型（Type）和业务类型（BusinessType）的方案库。      基于方案库，用户可进一步通过接口/api/v1/scenario-manager/library/scenariolist查询方案库包含的所有方案，通过接口/api/v1/scenario-manager/library/latestscenario查询方案库下最新一个完成计算的方案，通过接口/api/v1/scenario-manager/library/templatelist查询方案库包含的所有模板方案。
    * @summary 获取所有方案库列表
    * @param {string} version
@@ -3598,20 +1971,6 @@ export class LibraryApi extends BaseAPI {
   public apiV2ScenarioManagerLibraryListGet(version: string, options?: AxiosRequestConfig) {
     return LibraryApiFp(this.configuration)
       .apiV2ScenarioManagerLibraryListGet(version, options)
-      .then((request) => request(this.axios, this.basePath))
-  }
-
-  /**
-   * 关键词：      方案库        使用场景：      用于获取项目下所有的方案库的信息列表，用户可以基于此列表，再进一步筛选指定类型（Type）和业务类型（BusinessType）的方案库。      基于方案库，用户可进一步通过接口/api/v1/scenario-manager/library/scenariolist查询方案库包含的所有方案，通过接口/api/v1/scenario-manager/library/latestscenario查询方案库下最新一个完成计算的方案，通过接口/api/v1/scenario-manager/library/templatelist查询方案库包含的所有模板方案。
-   * @summary 获取所有方案库列表
-   * @param {string} version
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof LibraryApi
-   */
-  public apiV2ScenarioManagerLibraryListGet_8(version: string, options?: AxiosRequestConfig) {
-    return LibraryApiFp(this.configuration)
-      .apiV2ScenarioManagerLibraryListGet_8(version, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -3637,27 +1996,6 @@ export class LibraryApi extends BaseAPI {
   }
 
   /**
-   * 关键词：      模板方案、方案库、方案库类型、业务类型        使用场景：      用户在创建方案时，或者需要查询与模型相关的基础数据、映射关系、配置信息时，均需要先获取对应的模板方案，该接口可基于方案库类型和业务类型查询对应的方案库下的启用的模板方案，比如内涝（businessType=2）预报（type=1）库下启用的模板方案，并且能够相对高效得返回结果。    相关背景：      模板方案是创建普通方案的基础，同时它又绑定了模型相关的一系列基础数据，包括模型的空间坐标系，河道、管网、二维网格等GIS信息，各类模型点位（如管网、节点、河道、结构物、边界...）、映射关系等，甚至如滚动预报配置、阈值配置等一系列基础配置信息也是与模板方案绑定的，所以模板方案的查询是一个基础且常用的功能需求。
-   * @summary 根据方案库类型和业务类型查询对应方案库下启用的模板方案
-   * @param {string} version
-   * @param {LibraryTypeEnum} [type] 方案库类型，枚举，目前已存在0-19种定义，包括0：未定义；1：自动预报库；2：人工预报库；3：预报库；4：调度库；5：经验库；6：情景模拟库；7：突发水污染事故库；8：在线水动力库（供水）；9：水锤库（供水）；10：管道充满度库；11：爆管库（供水）；12：污染事故响应库；13：规划库；14：管道冲洗库（供水）；15：污染事故库（供水）；16：关阀库（供水）；17：在线滚动预报库（污水厂）；18：在线滚动优化库（污水厂）；19：模拟实验室库（污水厂）
-   * @param {BusinessTypeEnum} [businessType] 业务类型，枚举，目前已存在0-6种定义，包括0：未定义；1：水环境；2：内涝；3：供水；4：流域洪水；5：污水厂；6：排水
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof LibraryApi
-   */
-  public apiV2ScenarioManagerLibraryListGetcachedscenarioGet_9(
-    version: string,
-    type?: LibraryTypeEnum,
-    businessType?: BusinessTypeEnum,
-    options?: AxiosRequestConfig,
-  ) {
-    return LibraryApiFp(this.configuration)
-      .apiV2ScenarioManagerLibraryListGetcachedscenarioGet_9(version, type, businessType, options)
-      .then((request) => request(this.axios, this.basePath))
-  }
-
-  /**
    * 关键词：      方案库、方案库类型、业务类型        使用场景：      用于获取项目下指定类型和业务类型的方案库，比如内涝（业务类型）预报（类型）库，通常一个项目下指定类型和业务类型对应的方案库只会有一个。      基于方案库，用户可进一步通过接口/api/v1/scenario-manager/library/scenariolist查询方案库包含的所有方案，通过接口/api/v1/scenario-manager/library/latestscenario查询方案库下最新一个完成计算的方案，通过接口/api/v1/scenario-manager/library/templatelist查询方案库包含的所有模板方案。        相关背景：      方案库类型是对方案库在功能性上进行的一种分类，比如预报库、调度库、情景模拟库、经验库等。      业务类型是对方案库在业务方向上进行的一种分类，比如内涝、水环境、供水、排水、污水等。
    * @summary 根据方案库类型和业务类型查询方案库
    * @param {string} version
@@ -3679,27 +2017,6 @@ export class LibraryApi extends BaseAPI {
   }
 
   /**
-   * 关键词：      方案库、方案库类型、业务类型        使用场景：      用于获取项目下指定类型和业务类型的方案库，比如内涝（业务类型）预报（类型）库，通常一个项目下指定类型和业务类型对应的方案库只会有一个。      基于方案库，用户可进一步通过接口/api/v1/scenario-manager/library/scenariolist查询方案库包含的所有方案，通过接口/api/v1/scenario-manager/library/latestscenario查询方案库下最新一个完成计算的方案，通过接口/api/v1/scenario-manager/library/templatelist查询方案库包含的所有模板方案。        相关背景：      方案库类型是对方案库在功能性上进行的一种分类，比如预报库、调度库、情景模拟库、经验库等。      业务类型是对方案库在业务方向上进行的一种分类，比如内涝、水环境、供水、排水、污水等。
-   * @summary 根据方案库类型和业务类型查询方案库
-   * @param {string} version
-   * @param {LibraryTypeEnum} [type] 方案库类型，枚举，目前已存在0-19种定义，包括0：未定义；1：自动预报库；2：人工预报库；3：预报库；4：调度库；5：经验库；6：情景模拟库；7：突发水污染事故库；8：在线水动力库（供水）；9：水锤库（供水）；10：管道充满度库；11：爆管库（供水）；12：污染事故响应库；13：规划库；14：管道冲洗库（供水）；15：污染事故库（供水）；16：关阀库（供水）；17：在线滚动预报库（污水厂）；18：在线滚动优化库（污水厂）；19：模拟实验室库（污水厂）
-   * @param {BusinessTypeEnum} [businessType] 业务类型，枚举，目前已存在0-6种定义，包括0：未定义；1：水环境；2：内涝；3：供水；4：流域洪水；5：污水厂；6：排水
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof LibraryApi
-   */
-  public apiV2ScenarioManagerLibraryListTypeBusinesstypeGet_10(
-    version: string,
-    type?: LibraryTypeEnum,
-    businessType?: BusinessTypeEnum,
-    options?: AxiosRequestConfig,
-  ) {
-    return LibraryApiFp(this.configuration)
-      .apiV2ScenarioManagerLibraryListTypeBusinesstypeGet_10(version, type, businessType, options)
-      .then((request) => request(this.axios, this.basePath))
-  }
-
-  /**
    * 关键词：      方案库、方案库类型、业务类型        使用场景：      用于获取项目下指定类型的方案库信息列表，用户可以基于此列表，再进一步筛选指定业务类型（BusinessType）的方案库。      基于方案库，用户可进一步通过接口/api/v1/scenario-manager/library/scenariolist查询方案库包含的所有方案，通过接口/api/v1/scenario-manager/library/latestscenario查询方案库下最新一个完成计算的方案，通过接口/api/v1/scenario-manager/library/templatelist查询方案库包含的所有模板方案。        相关背景：      方案库类型是对方案库在功能性上进行的一种分类，比如预报库、调度库、情景模拟库、经验库等。      业务类型是对方案库在业务方向上进行的一种分类，比如内涝、水环境、供水、排水、污水等。
    * @summary 根据类型查询方案库列表
    * @param {string} version
@@ -3715,25 +2032,6 @@ export class LibraryApi extends BaseAPI {
   ) {
     return LibraryApiFp(this.configuration)
       .apiV2ScenarioManagerLibraryListTypeGet(version, type, options)
-      .then((request) => request(this.axios, this.basePath))
-  }
-
-  /**
-   * 关键词：      方案库、方案库类型、业务类型        使用场景：      用于获取项目下指定类型的方案库信息列表，用户可以基于此列表，再进一步筛选指定业务类型（BusinessType）的方案库。      基于方案库，用户可进一步通过接口/api/v1/scenario-manager/library/scenariolist查询方案库包含的所有方案，通过接口/api/v1/scenario-manager/library/latestscenario查询方案库下最新一个完成计算的方案，通过接口/api/v1/scenario-manager/library/templatelist查询方案库包含的所有模板方案。        相关背景：      方案库类型是对方案库在功能性上进行的一种分类，比如预报库、调度库、情景模拟库、经验库等。      业务类型是对方案库在业务方向上进行的一种分类，比如内涝、水环境、供水、排水、污水等。
-   * @summary 根据类型查询方案库列表
-   * @param {string} version
-   * @param {LibraryTypeEnum} [type] 方案库类型，枚举，目前已存在0-19种定义，包括0：未定义；1：自动预报库；2：人工预报库；3：预报库；4：调度库；5：经验库；6：情景模拟库；7：突发水污染事故库；8：在线水动力库（供水）；9：水锤库（供水）；10：管道充满度库；11：爆管库（供水）；12：污染事故响应库；13：规划库；14：管道冲洗库（供水）；15：污染事故库（供水）；16：关阀库（供水）；17：在线滚动预报库（污水厂）；18：在线滚动优化库（污水厂）；19：模拟实验室库（污水厂）
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof LibraryApi
-   */
-  public apiV2ScenarioManagerLibraryListTypeGet_11(
-    version: string,
-    type?: LibraryTypeEnum,
-    options?: AxiosRequestConfig,
-  ) {
-    return LibraryApiFp(this.configuration)
-      .apiV2ScenarioManagerLibraryListTypeGet_11(version, type, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -3761,29 +2059,6 @@ export class LibraryApi extends BaseAPI {
   }
 
   /**
-   * 关键词：      方案库、方案、清理        使用场景：      如果用户需要对某个方案库下指定时间范围内的方案进行清理，可以使用此接口。用户设定清理的开始时间StartTime和结束时间EndTime，那么创建时间CreateTime在此时间范围内的方案将被清理。方案的清理包括方案信息的删除、方案边界等输入数据的删除、方案结果等输出数据的删除等。
-   * @summary 删除方案库下指定时间段内的方案
-   * @param {string} version
-   * @param {DeleteScenarioByTimeSpanPara} [deleteScenarioByTimeSpanPara]
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof LibraryApi
-   */
-  public apiV2ScenarioManagerLibraryScenarioDeleteByTimeSpanPost_12(
-    version: string,
-    deleteScenarioByTimeSpanPara?: DeleteScenarioByTimeSpanPara,
-    options?: AxiosRequestConfig,
-  ) {
-    return LibraryApiFp(this.configuration)
-      .apiV2ScenarioManagerLibraryScenarioDeleteByTimeSpanPost_12(
-        version,
-        deleteScenarioByTimeSpanPara,
-        options,
-      )
-      .then((request) => request(this.axios, this.basePath))
-  }
-
-  /**
    * 关键词：      方案库、方案、清理        使用场景：      随着使用时间的增长，方案库下的方案可能会越积越多，尤其是针对滚动计算方案，不间断定时执行，如果不进行清理就会占用越来越多的存储空间，此接口就是用于旧方案的清理工作，用户可以设定方案的过期时间ExpireDay，比如ExpireDay=7代表7天前的方案都被认为是过期的，将被清理。方案的清理包括方案信息的删除、方案边界等输入数据的删除、方案结果等输出数据的删除等。      如果需要定期对旧方案进行清理，用户可以将该接口放到定时任务调度中来执行，这样可以避免磁盘空间不足等问题的出现。
    * @summary 删除方案库下过期的方案
    * @param {string} version
@@ -3799,25 +2074,6 @@ export class LibraryApi extends BaseAPI {
   ) {
     return LibraryApiFp(this.configuration)
       .apiV2ScenarioManagerLibraryScenarioDeletePost(version, deleteExpiredScenarioPara, options)
-      .then((request) => request(this.axios, this.basePath))
-  }
-
-  /**
-   * 关键词：      方案库、方案、清理        使用场景：      随着使用时间的增长，方案库下的方案可能会越积越多，尤其是针对滚动计算方案，不间断定时执行，如果不进行清理就会占用越来越多的存储空间，此接口就是用于旧方案的清理工作，用户可以设定方案的过期时间ExpireDay，比如ExpireDay=7代表7天前的方案都被认为是过期的，将被清理。方案的清理包括方案信息的删除、方案边界等输入数据的删除、方案结果等输出数据的删除等。      如果需要定期对旧方案进行清理，用户可以将该接口放到定时任务调度中来执行，这样可以避免磁盘空间不足等问题的出现。
-   * @summary 删除方案库下过期的方案
-   * @param {string} version
-   * @param {DeleteExpiredScenarioPara} [deleteExpiredScenarioPara]
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof LibraryApi
-   */
-  public apiV2ScenarioManagerLibraryScenarioDeletePost_13(
-    version: string,
-    deleteExpiredScenarioPara?: DeleteExpiredScenarioPara,
-    options?: AxiosRequestConfig,
-  ) {
-    return LibraryApiFp(this.configuration)
-      .apiV2ScenarioManagerLibraryScenarioDeletePost_13(version, deleteExpiredScenarioPara, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -3845,35 +2101,6 @@ export class LibraryApi extends BaseAPI {
   }
 
   /**
-   * 使用场景：      用于查询某个方案库下的所有的方案信息列表，包括模板方案和普通方案都将被返回，如果页面仅需要展示普通方案，则需要对结果进行过滤，把Template=1的模板方案去掉。      由于方案的数量容易越积越多，因此该接口支持分页查询，避免单次查询返回数据量过大的问题。        输入：      方案库的ID，可以基于/api/v1/scenario-manager/library/list/type_businesstype接口查询得到；      分页序号和分页大小，当需要分页查询时可根据实际展示需求取值；当需要一次性查询所有方案，不分页时，则可以将分页序号取1，分页大小取一个极大的整数（确保这个整数一定大于方案总个数即可）。
-   * @summary 根据方案库查询其下的所有方案列表
-   * @param {string} version
-   * @param {string} [libraryId] 方案库的ID，唯一性标识
-   * @param {number} [pageIndex] 分页序号，从1开始
-   * @param {number} [pageSize] 分页大小
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof LibraryApi
-   */
-  public apiV2ScenarioManagerLibraryScenariolistGet_14(
-    version: string,
-    libraryId?: string,
-    pageIndex?: number,
-    pageSize?: number,
-    options?: AxiosRequestConfig,
-  ) {
-    return LibraryApiFp(this.configuration)
-      .apiV2ScenarioManagerLibraryScenariolistGet_14(
-        version,
-        libraryId,
-        pageIndex,
-        pageSize,
-        options,
-      )
-      .then((request) => request(this.axios, this.basePath))
-  }
-
-  /**
    * 关键词：      方案库、模板方案、启用        使用场景：      如果一个方案库下已经存在多个模板方案，并且需要启用某个特定的模板方案，禁用其他模板方案时，可以调用此接口实现。此接口将切换方案库下面启用的模板方案，当用户指定的这个模板方案被启用后，同方案库下其他的模板方案会自动禁用。
    * @summary 启用方案库下面的某个模板方案
    * @param {string} version
@@ -3889,25 +2116,6 @@ export class LibraryApi extends BaseAPI {
   ) {
     return LibraryApiFp(this.configuration)
       .apiV2ScenarioManagerLibraryTemplateSwitchPost(version, turnOnTemplatePara, options)
-      .then((request) => request(this.axios, this.basePath))
-  }
-
-  /**
-   * 关键词：      方案库、模板方案、启用        使用场景：      如果一个方案库下已经存在多个模板方案，并且需要启用某个特定的模板方案，禁用其他模板方案时，可以调用此接口实现。此接口将切换方案库下面启用的模板方案，当用户指定的这个模板方案被启用后，同方案库下其他的模板方案会自动禁用。
-   * @summary 启用方案库下面的某个模板方案
-   * @param {string} version
-   * @param {TurnOnTemplatePara} [turnOnTemplatePara]
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof LibraryApi
-   */
-  public apiV2ScenarioManagerLibraryTemplateSwitchPost_15(
-    version: string,
-    turnOnTemplatePara?: TurnOnTemplatePara,
-    options?: AxiosRequestConfig,
-  ) {
-    return LibraryApiFp(this.configuration)
-      .apiV2ScenarioManagerLibraryTemplateSwitchPost_15(version, turnOnTemplatePara, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -3931,25 +2139,6 @@ export class LibraryApi extends BaseAPI {
   }
 
   /**
-   * 关键词：      方案库、模板方案        使用场景：      此接口用于查询某个模板方案所绑定的所有模板方案列表，包括启用的和非启用的，均会被返回。如果当前方案库不直接绑定模板方案，则可查询其间接绑定的模板方案，即通过其他方案库来进行绑定的模板方案。      当用户在创建调度方案时，如果有多个启用的调度模板方案（代表不同的调度策略），则可以通过此接口获取到所有的调度模板方案，供用户选择。      如果确定查询的方案库下仅有一个启用的模板方案，则建议直接使用/api/v1/scenario-manager/library/list/getcachedscenario接口进行查询。        输入：      方案库的ID，可以基于/api/v1/scenario-manager/library/list/type_businesstype接口查询得到。
-   * @summary 根据方案库查询其下所绑定的模板方案列表
-   * @param {string} version
-   * @param {string} [libraryId] 方案库的ID，唯一性标识
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof LibraryApi
-   */
-  public apiV2ScenarioManagerLibraryTemplatelistGet_16(
-    version: string,
-    libraryId?: string,
-    options?: AxiosRequestConfig,
-  ) {
-    return LibraryApiFp(this.configuration)
-      .apiV2ScenarioManagerLibraryTemplatelistGet_16(version, libraryId, options)
-      .then((request) => request(this.axios, this.basePath))
-  }
-
-  /**
    * 关键词：      方案库    使用场景：      方案库在项目初始化时完成创建，如果对于创建后的方案库有修改的需求（一般情况下不需要修改），则可以调用此接口实现。需要注意的是，如果方案库本身是只读的，即Readonly字段为1，则不能执行更新操作。        输入：      输入需要更新的方案库的所有字段信息，包括库的ID、库的名称、库的类型、业务类型、库所对应的方案组ID、是否只读、是否直接绑定模板方案、是否支持绑定多个启用的模板方案等。      其中库的ID作为方案库的唯一性标识，不可修改，系统将通过库的ID来寻找对应的方案库，并进行更新。      库所对应的方案组ID，即Scenariogroup，必须确保该方案组存在。
    * @summary 更新方案库信息
    * @param {string} version
@@ -3965,25 +2154,6 @@ export class LibraryApi extends BaseAPI {
   ) {
     return LibraryApiFp(this.configuration)
       .apiV2ScenarioManagerLibraryUpdatePost(version, updateLibraryPara, options)
-      .then((request) => request(this.axios, this.basePath))
-  }
-
-  /**
-   * 关键词：      方案库    使用场景：      方案库在项目初始化时完成创建，如果对于创建后的方案库有修改的需求（一般情况下不需要修改），则可以调用此接口实现。需要注意的是，如果方案库本身是只读的，即Readonly字段为1，则不能执行更新操作。        输入：      输入需要更新的方案库的所有字段信息，包括库的ID、库的名称、库的类型、业务类型、库所对应的方案组ID、是否只读、是否直接绑定模板方案、是否支持绑定多个启用的模板方案等。      其中库的ID作为方案库的唯一性标识，不可修改，系统将通过库的ID来寻找对应的方案库，并进行更新。      库所对应的方案组ID，即Scenariogroup，必须确保该方案组存在。
-   * @summary 更新方案库信息
-   * @param {string} version
-   * @param {UpdateLibraryPara} [updateLibraryPara]
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof LibraryApi
-   */
-  public apiV2ScenarioManagerLibraryUpdatePost_17(
-    version: string,
-    updateLibraryPara?: UpdateLibraryPara,
-    options?: AxiosRequestConfig,
-  ) {
-    return LibraryApiFp(this.configuration)
-      .apiV2ScenarioManagerLibraryUpdatePost_17(version, updateLibraryPara, options)
       .then((request) => request(this.axios, this.basePath))
   }
 }
