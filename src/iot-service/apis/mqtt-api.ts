@@ -1,3 +1,4 @@
+/* tslint:disable */
 /* eslint-disable */
 /**
  * IoT服务
@@ -31,7 +32,11 @@ import {
 // @ts-ignore
 import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } from '../base'
 // @ts-ignore
+import { MqttDeviceIndicatorRelBaseInfo } from '../models'
+// @ts-ignore
 import { MqttDeviceIndicatorRelInfo } from '../models'
+// @ts-ignore
+import { UpdateDeviceIndicatorRel } from '../models'
 /**
  * MqttApi - axios parameter creator
  * @export
@@ -40,7 +45,101 @@ export const MqttApiAxiosParamCreator = function (configuration?: Configuration)
   return {
     /**
      *
-     * @summary /api/v1/iot/mqtt/delete
+     * @summary 添加MQTT设备得接入信息
+     * @param {MqttDeviceIndicatorRelBaseInfo} [mqttDeviceIndicatorRelBaseInfo]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1IotMqttAddPost: async (
+      mqttDeviceIndicatorRelBaseInfo?: MqttDeviceIndicatorRelBaseInfo,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/iot/mqtt/add`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        mqttDeviceIndicatorRelBaseInfo,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 添加MQTT设备得接入信息
+     * @param {MqttDeviceIndicatorRelBaseInfo} [mqttDeviceIndicatorRelBaseInfo]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1IotMqttAddPost_1: async (
+      mqttDeviceIndicatorRelBaseInfo?: MqttDeviceIndicatorRelBaseInfo,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/iot/mqtt/add`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        mqttDeviceIndicatorRelBaseInfo,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 根据数据Id删除MQTT的配置信息
      * @param {string} [id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -61,6 +160,10 @@ export const MqttApiAxiosParamCreator = function (configuration?: Configuration)
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
 
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
       if (id !== undefined) {
         localVarQueryParameter['Id'] = id
       }
@@ -80,7 +183,123 @@ export const MqttApiAxiosParamCreator = function (configuration?: Configuration)
     },
     /**
      *
-     * @summary /api/v1/iot/mqtt/import
+     * @summary 根据数据Id删除MQTT的配置信息
+     * @param {string} [id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1IotMqttDeletePost_2: async (
+      id?: string,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/iot/mqtt/delete`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      if (id !== undefined) {
+        localVarQueryParameter['Id'] = id
+      }
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     * 导出时，如果从来没有配置过，则默认导出所有的设备的记录，否则只返回查询到的结果。
+     * @summary 导出MQTT设备得接入信息
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1IotMqttExportPost: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/iot/mqtt/export`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     * 导出时，如果从来没有配置过，则默认导出所有的设备的记录，否则只返回查询到的结果。
+     * @summary 导出MQTT设备得接入信息
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1IotMqttExportPost_3: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/iot/mqtt/export`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     * 导入MQTT与设备指标配置Excel，配置表的格式为Excel，需要包含sheet《MQTT点位配置》，具体的Sheet内容格式为，{A2,\"设备名称*\"},{B2,\"监测指标*\"},{C2,\"Topic\"},{D2,\"Node\"},{E2,\"Broker\"},{F2,\"Apply\"}。 从第三行开始为具体的数据。  导入时，应确保A（设备名称）、B（监测指标）两列的的数据不为空，且设备名称和监测指标存在，否则将导入失败。如果存在校验不通过的数据，将在返回值中返回错误信息。返回值为空时，导入成功。导入成功后，将直接启动监听。
+     * @summary 导入MQTT 设备接入配置
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -97,6 +316,10 @@ export const MqttApiAxiosParamCreator = function (configuration?: Configuration)
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
 
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
       setSearchParams(localVarUrlObj, localVarQueryParameter)
       let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
       localVarRequestOptions.headers = {
@@ -111,8 +334,44 @@ export const MqttApiAxiosParamCreator = function (configuration?: Configuration)
       }
     },
     /**
-     *
-     * @summary /api/v1/iot/mqtt/list
+     * 导入MQTT与设备指标配置Excel，配置表的格式为Excel，需要包含sheet《MQTT点位配置》，具体的Sheet内容格式为，{A2,\"设备名称*\"},{B2,\"监测指标*\"},{C2,\"Topic\"},{D2,\"Node\"},{E2,\"Broker\"},{F2,\"Apply\"}。 从第三行开始为具体的数据。  导入时，应确保A（设备名称）、B（监测指标）两列的的数据不为空，且设备名称和监测指标存在，否则将导入失败。如果存在校验不通过的数据，将在返回值中返回错误信息。返回值为空时，导入成功。导入成功后，将直接启动监听。
+     * @summary 导入MQTT 设备接入配置
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1IotMqttImportPost_4: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/iot/mqtt/import`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     * 获取用户所有的MQTT配置的数据
+     * @summary 获取MQTT设备配置
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -129,6 +388,10 @@ export const MqttApiAxiosParamCreator = function (configuration?: Configuration)
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
 
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
       setSearchParams(localVarUrlObj, localVarQueryParameter)
       let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
       localVarRequestOptions.headers = {
@@ -136,6 +399,136 @@ export const MqttApiAxiosParamCreator = function (configuration?: Configuration)
         ...headersFromBaseOptions,
         ...options.headers,
       }
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     * 获取用户所有的MQTT配置的数据
+     * @summary 获取MQTT设备配置
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1IotMqttListGet_5: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/iot/mqtt/list`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     * 更新设备接入关系，仅支持更新Broker、Topic、Node 和 Apply字段
+     * @summary 更新MQTT设备得接入信息
+     * @param {UpdateDeviceIndicatorRel} [updateDeviceIndicatorRel]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1IotMqttUpdatePost: async (
+      updateDeviceIndicatorRel?: UpdateDeviceIndicatorRel,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/iot/mqtt/update`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        updateDeviceIndicatorRel,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     * 更新设备接入关系，仅支持更新Broker、Topic、Node 和 Apply字段
+     * @summary 更新MQTT设备得接入信息
+     * @param {UpdateDeviceIndicatorRel} [updateDeviceIndicatorRel]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1IotMqttUpdatePost_6: async (
+      updateDeviceIndicatorRel?: UpdateDeviceIndicatorRel,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/iot/mqtt/update`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        updateDeviceIndicatorRel,
+        localVarRequestOptions,
+        configuration,
+      )
 
       return {
         url: toPathString(localVarUrlObj),
@@ -154,7 +547,45 @@ export const MqttApiFp = function (configuration?: Configuration) {
   return {
     /**
      *
-     * @summary /api/v1/iot/mqtt/delete
+     * @summary 添加MQTT设备得接入信息
+     * @param {MqttDeviceIndicatorRelBaseInfo} [mqttDeviceIndicatorRelBaseInfo]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1IotMqttAddPost(
+      mqttDeviceIndicatorRelBaseInfo?: MqttDeviceIndicatorRelBaseInfo,
+      options?: AxiosRequestConfig,
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<MqttDeviceIndicatorRelInfo>
+    > {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1IotMqttAddPost(
+        mqttDeviceIndicatorRelBaseInfo,
+        options,
+      )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
+     * @summary 添加MQTT设备得接入信息
+     * @param {MqttDeviceIndicatorRelBaseInfo} [mqttDeviceIndicatorRelBaseInfo]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1IotMqttAddPost_1(
+      mqttDeviceIndicatorRelBaseInfo?: MqttDeviceIndicatorRelBaseInfo,
+      options?: AxiosRequestConfig,
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<MqttDeviceIndicatorRelInfo>
+    > {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1IotMqttAddPost_1(
+        mqttDeviceIndicatorRelBaseInfo,
+        options,
+      )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
+     * @summary 根据数据Id删除MQTT的配置信息
      * @param {string} [id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -168,7 +599,48 @@ export const MqttApiFp = function (configuration?: Configuration) {
     },
     /**
      *
-     * @summary /api/v1/iot/mqtt/import
+     * @summary 根据数据Id删除MQTT的配置信息
+     * @param {string} [id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1IotMqttDeletePost_2(
+      id?: string,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<boolean>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1IotMqttDeletePost_2(
+        id,
+        options,
+      )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     * 导出时，如果从来没有配置过，则默认导出所有的设备的记录，否则只返回查询到的结果。
+     * @summary 导出MQTT设备得接入信息
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1IotMqttExportPost(
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1IotMqttExportPost(options)
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     * 导出时，如果从来没有配置过，则默认导出所有的设备的记录，否则只返回查询到的结果。
+     * @summary 导出MQTT设备得接入信息
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1IotMqttExportPost_3(
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1IotMqttExportPost_3(options)
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     * 导入MQTT与设备指标配置Excel，配置表的格式为Excel，需要包含sheet《MQTT点位配置》，具体的Sheet内容格式为，{A2,\"设备名称*\"},{B2,\"监测指标*\"},{C2,\"Topic\"},{D2,\"Node\"},{E2,\"Broker\"},{F2,\"Apply\"}。 从第三行开始为具体的数据。  导入时，应确保A（设备名称）、B（监测指标）两列的的数据不为空，且设备名称和监测指标存在，否则将导入失败。如果存在校验不通过的数据，将在返回值中返回错误信息。返回值为空时，导入成功。导入成功后，将直接启动监听。
+     * @summary 导入MQTT 设备接入配置
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -179,8 +651,20 @@ export const MqttApiFp = function (configuration?: Configuration) {
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**
-     *
-     * @summary /api/v1/iot/mqtt/list
+     * 导入MQTT与设备指标配置Excel，配置表的格式为Excel，需要包含sheet《MQTT点位配置》，具体的Sheet内容格式为，{A2,\"设备名称*\"},{B2,\"监测指标*\"},{C2,\"Topic\"},{D2,\"Node\"},{E2,\"Broker\"},{F2,\"Apply\"}。 从第三行开始为具体的数据。  导入时，应确保A（设备名称）、B（监测指标）两列的的数据不为空，且设备名称和监测指标存在，否则将导入失败。如果存在校验不通过的数据，将在返回值中返回错误信息。返回值为空时，导入成功。导入成功后，将直接启动监听。
+     * @summary 导入MQTT 设备接入配置
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1IotMqttImportPost_4(
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<string>>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1IotMqttImportPost_4(options)
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     * 获取用户所有的MQTT配置的数据
+     * @summary 获取MQTT设备配置
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -190,6 +674,58 @@ export const MqttApiFp = function (configuration?: Configuration) {
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<MqttDeviceIndicatorRelInfo>>
     > {
       const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1IotMqttListGet(options)
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     * 获取用户所有的MQTT配置的数据
+     * @summary 获取MQTT设备配置
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1IotMqttListGet_5(
+      options?: AxiosRequestConfig,
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<MqttDeviceIndicatorRelInfo>>
+    > {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1IotMqttListGet_5(options)
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     * 更新设备接入关系，仅支持更新Broker、Topic、Node 和 Apply字段
+     * @summary 更新MQTT设备得接入信息
+     * @param {UpdateDeviceIndicatorRel} [updateDeviceIndicatorRel]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1IotMqttUpdatePost(
+      updateDeviceIndicatorRel?: UpdateDeviceIndicatorRel,
+      options?: AxiosRequestConfig,
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<MqttDeviceIndicatorRelInfo>
+    > {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1IotMqttUpdatePost(
+        updateDeviceIndicatorRel,
+        options,
+      )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     * 更新设备接入关系，仅支持更新Broker、Topic、Node 和 Apply字段
+     * @summary 更新MQTT设备得接入信息
+     * @param {UpdateDeviceIndicatorRel} [updateDeviceIndicatorRel]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1IotMqttUpdatePost_6(
+      updateDeviceIndicatorRel?: UpdateDeviceIndicatorRel,
+      options?: AxiosRequestConfig,
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<MqttDeviceIndicatorRelInfo>
+    > {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1IotMqttUpdatePost_6(
+        updateDeviceIndicatorRel,
+        options,
+      )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
   }
@@ -208,7 +744,37 @@ export const MqttApiFactory = function (
   return {
     /**
      *
-     * @summary /api/v1/iot/mqtt/delete
+     * @summary 添加MQTT设备得接入信息
+     * @param {MqttDeviceIndicatorRelBaseInfo} [mqttDeviceIndicatorRelBaseInfo]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1IotMqttAddPost(
+      mqttDeviceIndicatorRelBaseInfo?: MqttDeviceIndicatorRelBaseInfo,
+      options?: any,
+    ): AxiosPromise<MqttDeviceIndicatorRelInfo> {
+      return localVarFp
+        .apiV1IotMqttAddPost(mqttDeviceIndicatorRelBaseInfo, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @summary 添加MQTT设备得接入信息
+     * @param {MqttDeviceIndicatorRelBaseInfo} [mqttDeviceIndicatorRelBaseInfo]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1IotMqttAddPost_1(
+      mqttDeviceIndicatorRelBaseInfo?: MqttDeviceIndicatorRelBaseInfo,
+      options?: any,
+    ): AxiosPromise<MqttDeviceIndicatorRelInfo> {
+      return localVarFp
+        .apiV1IotMqttAddPost_1(mqttDeviceIndicatorRelBaseInfo, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @summary 根据数据Id删除MQTT的配置信息
      * @param {string} [id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -220,7 +786,39 @@ export const MqttApiFactory = function (
     },
     /**
      *
-     * @summary /api/v1/iot/mqtt/import
+     * @summary 根据数据Id删除MQTT的配置信息
+     * @param {string} [id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1IotMqttDeletePost_2(id?: string, options?: any): AxiosPromise<boolean> {
+      return localVarFp
+        .apiV1IotMqttDeletePost_2(id, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     * 导出时，如果从来没有配置过，则默认导出所有的设备的记录，否则只返回查询到的结果。
+     * @summary 导出MQTT设备得接入信息
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1IotMqttExportPost(options?: any): AxiosPromise<object> {
+      return localVarFp.apiV1IotMqttExportPost(options).then((request) => request(axios, basePath))
+    },
+    /**
+     * 导出时，如果从来没有配置过，则默认导出所有的设备的记录，否则只返回查询到的结果。
+     * @summary 导出MQTT设备得接入信息
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1IotMqttExportPost_3(options?: any): AxiosPromise<object> {
+      return localVarFp
+        .apiV1IotMqttExportPost_3(options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     * 导入MQTT与设备指标配置Excel，配置表的格式为Excel，需要包含sheet《MQTT点位配置》，具体的Sheet内容格式为，{A2,\"设备名称*\"},{B2,\"监测指标*\"},{C2,\"Topic\"},{D2,\"Node\"},{E2,\"Broker\"},{F2,\"Apply\"}。 从第三行开始为具体的数据。  导入时，应确保A（设备名称）、B（监测指标）两列的的数据不为空，且设备名称和监测指标存在，否则将导入失败。如果存在校验不通过的数据，将在返回值中返回错误信息。返回值为空时，导入成功。导入成功后，将直接启动监听。
+     * @summary 导入MQTT 设备接入配置
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -228,13 +826,63 @@ export const MqttApiFactory = function (
       return localVarFp.apiV1IotMqttImportPost(options).then((request) => request(axios, basePath))
     },
     /**
-     *
-     * @summary /api/v1/iot/mqtt/list
+     * 导入MQTT与设备指标配置Excel，配置表的格式为Excel，需要包含sheet《MQTT点位配置》，具体的Sheet内容格式为，{A2,\"设备名称*\"},{B2,\"监测指标*\"},{C2,\"Topic\"},{D2,\"Node\"},{E2,\"Broker\"},{F2,\"Apply\"}。 从第三行开始为具体的数据。  导入时，应确保A（设备名称）、B（监测指标）两列的的数据不为空，且设备名称和监测指标存在，否则将导入失败。如果存在校验不通过的数据，将在返回值中返回错误信息。返回值为空时，导入成功。导入成功后，将直接启动监听。
+     * @summary 导入MQTT 设备接入配置
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1IotMqttImportPost_4(options?: any): AxiosPromise<Array<string>> {
+      return localVarFp
+        .apiV1IotMqttImportPost_4(options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     * 获取用户所有的MQTT配置的数据
+     * @summary 获取MQTT设备配置
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiV1IotMqttListGet(options?: any): AxiosPromise<Array<MqttDeviceIndicatorRelInfo>> {
       return localVarFp.apiV1IotMqttListGet(options).then((request) => request(axios, basePath))
+    },
+    /**
+     * 获取用户所有的MQTT配置的数据
+     * @summary 获取MQTT设备配置
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1IotMqttListGet_5(options?: any): AxiosPromise<Array<MqttDeviceIndicatorRelInfo>> {
+      return localVarFp.apiV1IotMqttListGet_5(options).then((request) => request(axios, basePath))
+    },
+    /**
+     * 更新设备接入关系，仅支持更新Broker、Topic、Node 和 Apply字段
+     * @summary 更新MQTT设备得接入信息
+     * @param {UpdateDeviceIndicatorRel} [updateDeviceIndicatorRel]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1IotMqttUpdatePost(
+      updateDeviceIndicatorRel?: UpdateDeviceIndicatorRel,
+      options?: any,
+    ): AxiosPromise<MqttDeviceIndicatorRelInfo> {
+      return localVarFp
+        .apiV1IotMqttUpdatePost(updateDeviceIndicatorRel, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     * 更新设备接入关系，仅支持更新Broker、Topic、Node 和 Apply字段
+     * @summary 更新MQTT设备得接入信息
+     * @param {UpdateDeviceIndicatorRel} [updateDeviceIndicatorRel]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1IotMqttUpdatePost_6(
+      updateDeviceIndicatorRel?: UpdateDeviceIndicatorRel,
+      options?: any,
+    ): AxiosPromise<MqttDeviceIndicatorRelInfo> {
+      return localVarFp
+        .apiV1IotMqttUpdatePost_6(updateDeviceIndicatorRel, options)
+        .then((request) => request(axios, basePath))
     },
   }
 }
@@ -248,7 +896,41 @@ export const MqttApiFactory = function (
 export class MqttApi extends BaseAPI {
   /**
    *
-   * @summary /api/v1/iot/mqtt/delete
+   * @summary 添加MQTT设备得接入信息
+   * @param {MqttDeviceIndicatorRelBaseInfo} [mqttDeviceIndicatorRelBaseInfo]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof MqttApi
+   */
+  public apiV1IotMqttAddPost(
+    mqttDeviceIndicatorRelBaseInfo?: MqttDeviceIndicatorRelBaseInfo,
+    options?: AxiosRequestConfig,
+  ) {
+    return MqttApiFp(this.configuration)
+      .apiV1IotMqttAddPost(mqttDeviceIndicatorRelBaseInfo, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary 添加MQTT设备得接入信息
+   * @param {MqttDeviceIndicatorRelBaseInfo} [mqttDeviceIndicatorRelBaseInfo]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof MqttApi
+   */
+  public apiV1IotMqttAddPost_1(
+    mqttDeviceIndicatorRelBaseInfo?: MqttDeviceIndicatorRelBaseInfo,
+    options?: AxiosRequestConfig,
+  ) {
+    return MqttApiFp(this.configuration)
+      .apiV1IotMqttAddPost_1(mqttDeviceIndicatorRelBaseInfo, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary 根据数据Id删除MQTT的配置信息
    * @param {string} [id]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
@@ -262,7 +944,47 @@ export class MqttApi extends BaseAPI {
 
   /**
    *
-   * @summary /api/v1/iot/mqtt/import
+   * @summary 根据数据Id删除MQTT的配置信息
+   * @param {string} [id]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof MqttApi
+   */
+  public apiV1IotMqttDeletePost_2(id?: string, options?: AxiosRequestConfig) {
+    return MqttApiFp(this.configuration)
+      .apiV1IotMqttDeletePost_2(id, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   * 导出时，如果从来没有配置过，则默认导出所有的设备的记录，否则只返回查询到的结果。
+   * @summary 导出MQTT设备得接入信息
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof MqttApi
+   */
+  public apiV1IotMqttExportPost(options?: AxiosRequestConfig) {
+    return MqttApiFp(this.configuration)
+      .apiV1IotMqttExportPost(options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   * 导出时，如果从来没有配置过，则默认导出所有的设备的记录，否则只返回查询到的结果。
+   * @summary 导出MQTT设备得接入信息
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof MqttApi
+   */
+  public apiV1IotMqttExportPost_3(options?: AxiosRequestConfig) {
+    return MqttApiFp(this.configuration)
+      .apiV1IotMqttExportPost_3(options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   * 导入MQTT与设备指标配置Excel，配置表的格式为Excel，需要包含sheet《MQTT点位配置》，具体的Sheet内容格式为，{A2,\"设备名称*\"},{B2,\"监测指标*\"},{C2,\"Topic\"},{D2,\"Node\"},{E2,\"Broker\"},{F2,\"Apply\"}。 从第三行开始为具体的数据。  导入时，应确保A（设备名称）、B（监测指标）两列的的数据不为空，且设备名称和监测指标存在，否则将导入失败。如果存在校验不通过的数据，将在返回值中返回错误信息。返回值为空时，导入成功。导入成功后，将直接启动监听。
+   * @summary 导入MQTT 设备接入配置
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof MqttApi
@@ -274,8 +996,21 @@ export class MqttApi extends BaseAPI {
   }
 
   /**
-   *
-   * @summary /api/v1/iot/mqtt/list
+   * 导入MQTT与设备指标配置Excel，配置表的格式为Excel，需要包含sheet《MQTT点位配置》，具体的Sheet内容格式为，{A2,\"设备名称*\"},{B2,\"监测指标*\"},{C2,\"Topic\"},{D2,\"Node\"},{E2,\"Broker\"},{F2,\"Apply\"}。 从第三行开始为具体的数据。  导入时，应确保A（设备名称）、B（监测指标）两列的的数据不为空，且设备名称和监测指标存在，否则将导入失败。如果存在校验不通过的数据，将在返回值中返回错误信息。返回值为空时，导入成功。导入成功后，将直接启动监听。
+   * @summary 导入MQTT 设备接入配置
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof MqttApi
+   */
+  public apiV1IotMqttImportPost_4(options?: AxiosRequestConfig) {
+    return MqttApiFp(this.configuration)
+      .apiV1IotMqttImportPost_4(options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   * 获取用户所有的MQTT配置的数据
+   * @summary 获取MQTT设备配置
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof MqttApi
@@ -283,6 +1018,53 @@ export class MqttApi extends BaseAPI {
   public apiV1IotMqttListGet(options?: AxiosRequestConfig) {
     return MqttApiFp(this.configuration)
       .apiV1IotMqttListGet(options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   * 获取用户所有的MQTT配置的数据
+   * @summary 获取MQTT设备配置
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof MqttApi
+   */
+  public apiV1IotMqttListGet_5(options?: AxiosRequestConfig) {
+    return MqttApiFp(this.configuration)
+      .apiV1IotMqttListGet_5(options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   * 更新设备接入关系，仅支持更新Broker、Topic、Node 和 Apply字段
+   * @summary 更新MQTT设备得接入信息
+   * @param {UpdateDeviceIndicatorRel} [updateDeviceIndicatorRel]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof MqttApi
+   */
+  public apiV1IotMqttUpdatePost(
+    updateDeviceIndicatorRel?: UpdateDeviceIndicatorRel,
+    options?: AxiosRequestConfig,
+  ) {
+    return MqttApiFp(this.configuration)
+      .apiV1IotMqttUpdatePost(updateDeviceIndicatorRel, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   * 更新设备接入关系，仅支持更新Broker、Topic、Node 和 Apply字段
+   * @summary 更新MQTT设备得接入信息
+   * @param {UpdateDeviceIndicatorRel} [updateDeviceIndicatorRel]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof MqttApi
+   */
+  public apiV1IotMqttUpdatePost_6(
+    updateDeviceIndicatorRel?: UpdateDeviceIndicatorRel,
+    options?: AxiosRequestConfig,
+  ) {
+    return MqttApiFp(this.configuration)
+      .apiV1IotMqttUpdatePost_6(updateDeviceIndicatorRel, options)
       .then((request) => request(this.axios, this.basePath))
   }
 }
