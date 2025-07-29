@@ -31,29 +31,17 @@ import {
 // @ts-ignore
 import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } from '../base'
 // @ts-ignore
-import { LatestTimeSeriesInput } from '../models'
-// @ts-ignore
-import { LatestTimeSeriesInputV2 } from '../models'
+import { LatestTimeSeriesByTimeInput } from '../models'
 // @ts-ignore
 import { LatestTimeSeriesInputV3 } from '../models'
 // @ts-ignore
-import { LatestTimeSeriesOutput } from '../models'
-// @ts-ignore
-import { LatestTimeSeriesOutputV2 } from '../models'
-// @ts-ignore
 import { LatestTimeSeriesOutputV3 } from '../models'
-// @ts-ignore
-import { SaveTelemetryDataInput } from '../models'
 // @ts-ignore
 import { SaveTelemetryStructDataBatchInput } from '../models'
 // @ts-ignore
 import { TimeseriesBatchForV3Input } from '../models'
 // @ts-ignore
 import { TimeseriesBatchForV3Output } from '../models'
-// @ts-ignore
-import { TimeseriesBatchOutput } from '../models'
-// @ts-ignore
-import { TimeseriesInput } from '../models'
 /**
  * TelemetryApi - axios parameter creator
  * @export
@@ -61,17 +49,17 @@ import { TimeseriesInput } from '../models'
 export const TelemetryApiAxiosParamCreator = function (configuration?: Configuration) {
   return {
     /**
-     *
-     * @summary /api/app/telemetry/save-telemetry-data-batch2
-     * @param {Array<SaveTelemetryDataInput>} [saveTelemetryDataInput]
+     * 关键词：设备、设备指标、时间点、实测数据、获取、查询  使用场景：  该接口一般用于基于某个时间点创建的预案中，如果需要查询该预案时刻下的最近实测数据，则使用该接口，若要查询实时数据，请用/api/v3/iot/latest-timeseries接口  输入：设备编码、指标名称、时间点  输出：设备编码、指标的时间序列数据
+     * @summary 根据设备编码和指标名获取离指定时间点最近的实测数据
+     * @param {LatestTimeSeriesByTimeInput} [latestTimeSeriesByTimeInput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    apiAppTelemetrySaveTelemetryDataBatch2Post: async (
-      saveTelemetryDataInput?: Array<SaveTelemetryDataInput>,
+    apiV1IotLatestTimeseriesByTimePost: async (
+      latestTimeSeriesByTimeInput?: LatestTimeSeriesByTimeInput,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
-      const localVarPath = `/api/app/telemetry/save-telemetry-data-batch2`
+      const localVarPath = `/api/v1/iot/latest-timeseries-by-time`
       // use dummy base URL string because the URL constructor only accepts absolute URLs.
       const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
       let baseOptions
@@ -83,48 +71,9 @@ export const TelemetryApiAxiosParamCreator = function (configuration?: Configura
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
 
-      localVarHeaderParameter['Content-Type'] = 'application/json'
-
-      setSearchParams(localVarUrlObj, localVarQueryParameter)
-      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      }
-      localVarRequestOptions.data = serializeDataIfNeeded(
-        saveTelemetryDataInput,
-        localVarRequestOptions,
-        configuration,
-      )
-
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      }
-    },
-    /**
-     *
-     * @summary /api/app/telemetry/timeseries-batch-for-processed
-     * @param {Array<TimeseriesBatchForV3Input>} [timeseriesBatchForV3Input]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    apiAppTelemetryTimeseriesBatchForProcessedPost: async (
-      timeseriesBatchForV3Input?: Array<TimeseriesBatchForV3Input>,
-      options: AxiosRequestConfig = {},
-    ): Promise<RequestArgs> => {
-      const localVarPath = `/api/app/telemetry/timeseries-batch-for-processed`
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
-      let baseOptions
-      if (configuration) {
-        baseOptions = configuration.baseOptions
-      }
-
-      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
-      const localVarHeaderParameter = {} as any
-      const localVarQueryParameter = {} as any
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
@@ -136,7 +85,7 @@ export const TelemetryApiAxiosParamCreator = function (configuration?: Configura
         ...options.headers,
       }
       localVarRequestOptions.data = serializeDataIfNeeded(
-        timeseriesBatchForV3Input,
+        latestTimeSeriesByTimeInput,
         localVarRequestOptions,
         configuration,
       )
@@ -147,101 +96,15 @@ export const TelemetryApiAxiosParamCreator = function (configuration?: Configura
       }
     },
     /**
-     *
-     * @summary /api/app/telemetry/timeseries-of-processed
-     * @param {Array<TimeseriesBatchForV3Input>} [timeseriesBatchForV3Input]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    apiAppTelemetryTimeseriesOfProcessedPost: async (
-      timeseriesBatchForV3Input?: Array<TimeseriesBatchForV3Input>,
-      options: AxiosRequestConfig = {},
-    ): Promise<RequestArgs> => {
-      const localVarPath = `/api/app/telemetry/timeseries-of-processed`
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
-      let baseOptions
-      if (configuration) {
-        baseOptions = configuration.baseOptions
-      }
-
-      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
-      const localVarHeaderParameter = {} as any
-      const localVarQueryParameter = {} as any
-
-      localVarHeaderParameter['Content-Type'] = 'application/json'
-
-      setSearchParams(localVarUrlObj, localVarQueryParameter)
-      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      }
-      localVarRequestOptions.data = serializeDataIfNeeded(
-        timeseriesBatchForV3Input,
-        localVarRequestOptions,
-        configuration,
-      )
-
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      }
-    },
-    /**
-     *
-     * @summary 根据指标获取最新实测数据，要求指标编码再系统中是唯一的
-     * @param {LatestTimeSeriesInput} [latestTimeSeriesInput]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    apiV1IotLatestTimeseriesPost: async (
-      latestTimeSeriesInput?: LatestTimeSeriesInput,
-      options: AxiosRequestConfig = {},
-    ): Promise<RequestArgs> => {
-      const localVarPath = `/api/v1/iot/latest-timeseries`
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
-      let baseOptions
-      if (configuration) {
-        baseOptions = configuration.baseOptions
-      }
-
-      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
-      const localVarHeaderParameter = {} as any
-      const localVarQueryParameter = {} as any
-
-      localVarHeaderParameter['Content-Type'] = 'application/json'
-
-      setSearchParams(localVarUrlObj, localVarQueryParameter)
-      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      }
-      localVarRequestOptions.data = serializeDataIfNeeded(
-        latestTimeSeriesInput,
-        localVarRequestOptions,
-        configuration,
-      )
-
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      }
-    },
-    /**
-     * 查询设备多个指标在某个时间段内的时间序列数据 Query time-series data of multiple indicators of a device by time.
-     * @summary 查询设备指标的时间序列数据 Query time-series data of device indicators
-     * @param {string} deviceId 设备ID device id
-     * @param {Array<string>} keys 指标列表 indicators
-     * @param {string} startTs 查询开始时间 start time
-     * @param {string} endTs 查询结束时间 end time
+     * 关键词：设备、设备指标、设备指标时间序列数据、查询  使用场景：查询设备多个指标在某个时间段内的时间序列数据,和接口/api/v1/iot/timeseries的区别在于此接口不指定时间排序方式，只能倒序查询数据  输入：设备、指标、时间区间  输出：指标与时间序列数据的键值对
+     * @summary 查询设备指标在指定时间段内的时间序列数据,按时间倒序排序
+     * @param {string} deviceId 设备ID，如：065cd960-67d4-11ee-a501-41ab9ac02e38
+     * @param {Array<string>} keys 指标列表，如：ceshi_1_shuichang_flow、ceshi_1_shuichang_waterlevel
+     * @param {string} startTs 查询开始时间
+     * @param {string} endTs 查询结束时间
      * @param {string} [orderBy] 排序方式，ASC (升序)，DESC (降序) sort order, ASC (ASCENDING) or DESC (DESCENDING);默认是降序DESC
-     * @param {number} [interval]
-     * @param {string} [agg]
+     * @param {number} [interval] 时间间隔，默认是1分钟
+     * @param {string} [agg] 用于指定聚合函数，如AVG（平均值）、SUM（总和）、MIN（最小值）、MAX（最大值）等
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -275,6 +138,10 @@ export const TelemetryApiAxiosParamCreator = function (configuration?: Configura
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
 
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
       if (deviceId !== undefined) {
         localVarQueryParameter['DeviceId'] = deviceId
       }
@@ -284,11 +151,13 @@ export const TelemetryApiAxiosParamCreator = function (configuration?: Configura
       }
 
       if (startTs !== undefined) {
-        localVarQueryParameter['StartTs'] = startTs
+        localVarQueryParameter['StartTs'] =
+          (startTs as any) instanceof Date ? (startTs as any).toISOString() : startTs
       }
 
       if (endTs !== undefined) {
-        localVarQueryParameter['EndTs'] = endTs
+        localVarQueryParameter['EndTs'] =
+          (endTs as any) instanceof Date ? (endTs as any).toISOString() : endTs
       }
 
       if (orderBy !== undefined) {
@@ -317,144 +186,15 @@ export const TelemetryApiAxiosParamCreator = function (configuration?: Configura
       }
     },
     /**
-     * 批量保存或更新设备指标的时间序列数据，时间序列数据以json格式传递 Batch save or update device indicator time-series data, data is transferred in the format of json.
-     * @summary 批量保存或更新时间序列数据 Batch save or update time-series data
-     * @param {Array<SaveTelemetryDataInput>} [saveTelemetryDataInput]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    apiV1IotSaveTelemetryDataBatchPost: async (
-      saveTelemetryDataInput?: Array<SaveTelemetryDataInput>,
-      options: AxiosRequestConfig = {},
-    ): Promise<RequestArgs> => {
-      const localVarPath = `/api/v1/iot/save-telemetry-data-batch`
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
-      let baseOptions
-      if (configuration) {
-        baseOptions = configuration.baseOptions
-      }
-
-      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
-      const localVarHeaderParameter = {} as any
-      const localVarQueryParameter = {} as any
-
-      localVarHeaderParameter['Content-Type'] = 'application/json'
-
-      setSearchParams(localVarUrlObj, localVarQueryParameter)
-      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      }
-      localVarRequestOptions.data = serializeDataIfNeeded(
-        saveTelemetryDataInput,
-        localVarRequestOptions,
-        configuration,
-      )
-
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      }
-    },
-    /**
-     * 保存或更新设备指标的时间序列数据，时间序列数据以json格式传递 Save or update device indicator time-series data, data is transferred in the format of json.
-     * @summary 保存或更新时间序列数据 Save or update time-series data
-     * @param {SaveTelemetryDataInput} [saveTelemetryDataInput]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    apiV1IotSaveTelemetryDataPost: async (
-      saveTelemetryDataInput?: SaveTelemetryDataInput,
-      options: AxiosRequestConfig = {},
-    ): Promise<RequestArgs> => {
-      const localVarPath = `/api/v1/iot/save-telemetry-data`
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
-      let baseOptions
-      if (configuration) {
-        baseOptions = configuration.baseOptions
-      }
-
-      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
-      const localVarHeaderParameter = {} as any
-      const localVarQueryParameter = {} as any
-
-      localVarHeaderParameter['Content-Type'] = 'application/json'
-
-      setSearchParams(localVarUrlObj, localVarQueryParameter)
-      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      }
-      localVarRequestOptions.data = serializeDataIfNeeded(
-        saveTelemetryDataInput,
-        localVarRequestOptions,
-        configuration,
-      )
-
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      }
-    },
-    /**
-     * 批量查询设备多个指标在某个时间段内的时间序列数据，可按时间排序 Batch query time-series data of multiple indicators of a device by time and order by time.
-     * @summary 批量查询设备指标的时间序列数据，按时间排序 Batch query time-series data of device indicators order by time
-     * @param {Array<TimeseriesInput>} [timeseriesInput]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    apiV1IotTimeseriesBatchPost: async (
-      timeseriesInput?: Array<TimeseriesInput>,
-      options: AxiosRequestConfig = {},
-    ): Promise<RequestArgs> => {
-      const localVarPath = `/api/v1/iot/timeseries-batch`
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
-      let baseOptions
-      if (configuration) {
-        baseOptions = configuration.baseOptions
-      }
-
-      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
-      const localVarHeaderParameter = {} as any
-      const localVarQueryParameter = {} as any
-
-      localVarHeaderParameter['Content-Type'] = 'application/json'
-
-      setSearchParams(localVarUrlObj, localVarQueryParameter)
-      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      }
-      localVarRequestOptions.data = serializeDataIfNeeded(
-        timeseriesInput,
-        localVarRequestOptions,
-        configuration,
-      )
-
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      }
-    },
-    /**
-     * 查询设备多个指标在某个时间段内的时间序列数据，可按时间排序 Query time-series data of multiple indicators of a device by time and order by time.
-     * @summary 查询设备指标的时间序列数据，按时间排序 Query time-series data of device indicators order by time
-     * @param {string} deviceId 设备ID device id
-     * @param {Array<string>} keys 指标列表 indicators
-     * @param {string} startTs 查询开始时间 start time
-     * @param {string} endTs 查询结束时间 end time
+     * 关键词：设备、设备指标、设备指标时间序列数据、时间、排序、查询  使用场景：查询设备多个指标在某个时间段内的时间序列数据，可按时间排序，该数据来自系统接入的实测数据，可用于展示到前端界面  输入：设备、指标、时间区间  输出：指标与时间序列数据的键值对
+     * @summary 查询设备指标在指定时间段内的时间序列数据，可根据排序方式OrderBy按时间排序
+     * @param {string} deviceId 设备ID，如：065cd960-67d4-11ee-a501-41ab9ac02e38
+     * @param {Array<string>} keys 指标列表，如：ceshi_1_shuichang_flow、ceshi_1_shuichang_waterlevel
+     * @param {string} startTs 查询开始时间
+     * @param {string} endTs 查询结束时间
      * @param {string} [orderBy] 排序方式，ASC (升序)，DESC (降序) sort order, ASC (ASCENDING) or DESC (DESCENDING);默认是降序DESC
-     * @param {number} [interval]
-     * @param {string} [agg]
+     * @param {number} [interval] 时间间隔，默认是1分钟
+     * @param {string} [agg] 用于指定聚合函数，如AVG（平均值）、SUM（总和）、MIN（最小值）、MAX（最大值）等
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -488,6 +228,10 @@ export const TelemetryApiAxiosParamCreator = function (configuration?: Configura
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
 
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
       if (deviceId !== undefined) {
         localVarQueryParameter['DeviceId'] = deviceId
       }
@@ -497,11 +241,13 @@ export const TelemetryApiAxiosParamCreator = function (configuration?: Configura
       }
 
       if (startTs !== undefined) {
-        localVarQueryParameter['StartTs'] = startTs
+        localVarQueryParameter['StartTs'] =
+          (startTs as any) instanceof Date ? (startTs as any).toISOString() : startTs
       }
 
       if (endTs !== undefined) {
-        localVarQueryParameter['EndTs'] = endTs
+        localVarQueryParameter['EndTs'] =
+          (endTs as any) instanceof Date ? (endTs as any).toISOString() : endTs
       }
 
       if (orderBy !== undefined) {
@@ -530,103 +276,17 @@ export const TelemetryApiAxiosParamCreator = function (configuration?: Configura
       }
     },
     /**
-     *
-     * @summary 根据指标获取最新实测数据
-     * @param {Array<LatestTimeSeriesInputV2>} [latestTimeSeriesInputV2]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    apiV2IotLatestTimeseriesPost: async (
-      latestTimeSeriesInputV2?: Array<LatestTimeSeriesInputV2>,
-      options: AxiosRequestConfig = {},
-    ): Promise<RequestArgs> => {
-      const localVarPath = `/api/v2/iot/latest-timeseries`
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
-      let baseOptions
-      if (configuration) {
-        baseOptions = configuration.baseOptions
-      }
-
-      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
-      const localVarHeaderParameter = {} as any
-      const localVarQueryParameter = {} as any
-
-      localVarHeaderParameter['Content-Type'] = 'application/json'
-
-      setSearchParams(localVarUrlObj, localVarQueryParameter)
-      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      }
-      localVarRequestOptions.data = serializeDataIfNeeded(
-        latestTimeSeriesInputV2,
-        localVarRequestOptions,
-        configuration,
-      )
-
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      }
-    },
-    /**
-     * 批量查询多个设备指标在某个时间段内的时间序列数据，可按时间排序,返回的tspair结构为：[{T,V},{T,V}]. Batch query time-series data of multiple device indicators by time and order by time,return data structure:[{T,V},{T,V}]
-     * @summary 批量查询多个设备指标的时间序列数据，按时间排序 Batch query time-series data of device indicators order by time
-     * @param {Array<TimeseriesInput>} [timeseriesInput]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    apiV2IotTimeseriesBatchPost: async (
-      timeseriesInput?: Array<TimeseriesInput>,
-      options: AxiosRequestConfig = {},
-    ): Promise<RequestArgs> => {
-      const localVarPath = `/api/v2/iot/timeseries-batch`
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
-      let baseOptions
-      if (configuration) {
-        baseOptions = configuration.baseOptions
-      }
-
-      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
-      const localVarHeaderParameter = {} as any
-      const localVarQueryParameter = {} as any
-
-      localVarHeaderParameter['Content-Type'] = 'application/json'
-
-      setSearchParams(localVarUrlObj, localVarQueryParameter)
-      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      }
-      localVarRequestOptions.data = serializeDataIfNeeded(
-        timeseriesInput,
-        localVarRequestOptions,
-        configuration,
-      )
-
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      }
-    },
-    /**
-     *
-     * @summary 根据设备编码和指标名获取最新实测数据
+     * 关键词：设备、设备指标、最新、实测数据、获取、查询  使用场景：批量查询多个设备指标最新的实测数据，根据TimeRange控制是否有最新数据的时间范围（分钟），若TimeRange=5则查询距离当前时刻5分钟内的最新实测数据，用于多个设备指标只展示最新实测数据的情景  与接口/api/v3/iot/latest-timeseries优先读取缓存中的数据不同，该接口始终从数据库中读取最新一条实测数据，这些数据的入库时间通常经过了对齐处理，  在接口/api/v1/historical-data/search-latest中会调用该接口获取最新一条实测数据，并返回相同时间的模拟数据  输入：设备编码、指标名称、离当前时刻最近的数据范围  输出：设备编码、指标的时间序列数据
+     * @summary 根据设备编码和指标名获取最新实测数据,只从数据库中读取，不读缓存数据
      * @param {Array<LatestTimeSeriesInputV3>} [latestTimeSeriesInputV3]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    apiV3IotLatestTimeseriesPost: async (
+    apiV3IotLatestTimeseriesFromDbPost: async (
       latestTimeSeriesInputV3?: Array<LatestTimeSeriesInputV3>,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
-      const localVarPath = `/api/v3/iot/latest-timeseries`
+      const localVarPath = `/api/v3/iot/latest-timeseries-from-db`
       // use dummy base URL string because the URL constructor only accepts absolute URLs.
       const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
       let baseOptions
@@ -637,6 +297,10 @@ export const TelemetryApiAxiosParamCreator = function (configuration?: Configura
       const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
@@ -659,8 +323,55 @@ export const TelemetryApiAxiosParamCreator = function (configuration?: Configura
       }
     },
     /**
-     *
-     * @summary 以结构化的数据格式批量保存或更新实测数据 / Save or update measured data in batches in a structured data format
+     * 关键词：设备、设备指标、最新、实测数据、获取、查询  使用场景：批量查询多个设备指标最新的实测数据，根据TimeRange控制是否有最新数据的时间范围（分钟），若TimeRange=5则查询距离当前时刻5分钟内的最新实测数据，用于多个设备指标只展示最新实测数据的情景  输入：设备编码、指标名称、离当前时刻最近的数据范围  输出：设备编码、指标的时间序列数据
+     * @summary 根据设备编码和指标名获取最新实测数据
+     * @param {Array<LatestTimeSeriesInputV3>} [latestTimeSeriesInputV3]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV3IotLatestTimeseriesPost: async (
+      latestTimeSeriesInputV3?: Array<LatestTimeSeriesInputV3>,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v3/iot/latest-timeseries`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        latestTimeSeriesInputV3,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     * 关键词：时间戳、设备、设备指标、实测数据、消息队列、更新  使用场景：批量保存或更新多个设备指标实测数据，更新到缓存中并推送到消息队列做数据存储，保存的数据可通过查询接口/api/v3/iot/timeseries-batch查询做进一步数据处理或展示  输入：时间戳、设备编码、指标名称、数值  输出：无
+     * @summary 以结构化的数据格式通过消息队列批量保存或更新实测数据
      * @param {Array<SaveTelemetryStructDataBatchInput>} [saveTelemetryStructDataBatchInput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -680,6 +391,10 @@ export const TelemetryApiAxiosParamCreator = function (configuration?: Configura
       const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
@@ -702,8 +417,8 @@ export const TelemetryApiAxiosParamCreator = function (configuration?: Configura
       }
     },
     /**
-     *
-     * @summary 根据指标获取实测时序数据,返回的tspair结构为：T[],V[]. Batch query time-series data of multiple device indicators by time and order by time,return data structure:T[],V[]
+     * 关键词：设备、设备指标、设备指标时间序列数据、时间、排序、批量查询、抽样  使用场景：批量查询多个设备指标在某个时间段内的时间序列数据，可抽样查询，并按时间排序，默认按照时间从大到小排序；如:sample=minutes,interval=5,表示按照5分钟进行抽样，用于多个设备指标同时展示实测数据的情景  输入：设备、指标、时间区间、抽样类型、抽样频率  输出：多个设备、指标的时间序列数据
+     * @summary 批量查询多个设备指标的时间序列数据
      * @param {Array<TimeseriesBatchForV3Input>} [timeseriesBatchForV3Input]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -723,6 +438,10 @@ export const TelemetryApiAxiosParamCreator = function (configuration?: Configura
       const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
@@ -755,92 +474,34 @@ export const TelemetryApiFp = function (configuration?: Configuration) {
   const localVarAxiosParamCreator = TelemetryApiAxiosParamCreator(configuration)
   return {
     /**
-     *
-     * @summary /api/app/telemetry/save-telemetry-data-batch2
-     * @param {Array<SaveTelemetryDataInput>} [saveTelemetryDataInput]
+     * 关键词：设备、设备指标、时间点、实测数据、获取、查询  使用场景：  该接口一般用于基于某个时间点创建的预案中，如果需要查询该预案时刻下的最近实测数据，则使用该接口，若要查询实时数据，请用/api/v3/iot/latest-timeseries接口  输入：设备编码、指标名称、时间点  输出：设备编码、指标的时间序列数据
+     * @summary 根据设备编码和指标名获取离指定时间点最近的实测数据
+     * @param {LatestTimeSeriesByTimeInput} [latestTimeSeriesByTimeInput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async apiAppTelemetrySaveTelemetryDataBatch2Post(
-      saveTelemetryDataInput?: Array<SaveTelemetryDataInput>,
-      options?: AxiosRequestConfig,
-    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
-      const localVarAxiosArgs =
-        await localVarAxiosParamCreator.apiAppTelemetrySaveTelemetryDataBatch2Post(
-          saveTelemetryDataInput,
-          options,
-        )
-      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
-    },
-    /**
-     *
-     * @summary /api/app/telemetry/timeseries-batch-for-processed
-     * @param {Array<TimeseriesBatchForV3Input>} [timeseriesBatchForV3Input]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    async apiAppTelemetryTimeseriesBatchForProcessedPost(
-      timeseriesBatchForV3Input?: Array<TimeseriesBatchForV3Input>,
+    async apiV1IotLatestTimeseriesByTimePost(
+      latestTimeSeriesByTimeInput?: LatestTimeSeriesByTimeInput,
       options?: AxiosRequestConfig,
     ): Promise<
-      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<TimeseriesBatchForV3Output>>
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<LatestTimeSeriesOutputV3>>
     > {
-      const localVarAxiosArgs =
-        await localVarAxiosParamCreator.apiAppTelemetryTimeseriesBatchForProcessedPost(
-          timeseriesBatchForV3Input,
-          options,
-        )
-      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
-    },
-    /**
-     *
-     * @summary /api/app/telemetry/timeseries-of-processed
-     * @param {Array<TimeseriesBatchForV3Input>} [timeseriesBatchForV3Input]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    async apiAppTelemetryTimeseriesOfProcessedPost(
-      timeseriesBatchForV3Input?: Array<TimeseriesBatchForV3Input>,
-      options?: AxiosRequestConfig,
-    ): Promise<
-      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<TimeseriesBatchForV3Output>>
-    > {
-      const localVarAxiosArgs =
-        await localVarAxiosParamCreator.apiAppTelemetryTimeseriesOfProcessedPost(
-          timeseriesBatchForV3Input,
-          options,
-        )
-      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
-    },
-    /**
-     *
-     * @summary 根据指标获取最新实测数据，要求指标编码再系统中是唯一的
-     * @param {LatestTimeSeriesInput} [latestTimeSeriesInput]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    async apiV1IotLatestTimeseriesPost(
-      latestTimeSeriesInput?: LatestTimeSeriesInput,
-      options?: AxiosRequestConfig,
-    ): Promise<
-      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<LatestTimeSeriesOutput>>
-    > {
-      const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1IotLatestTimeseriesPost(
-        latestTimeSeriesInput,
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1IotLatestTimeseriesByTimePost(
+        latestTimeSeriesByTimeInput,
         options,
       )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**
-     * 查询设备多个指标在某个时间段内的时间序列数据 Query time-series data of multiple indicators of a device by time.
-     * @summary 查询设备指标的时间序列数据 Query time-series data of device indicators
-     * @param {string} deviceId 设备ID device id
-     * @param {Array<string>} keys 指标列表 indicators
-     * @param {string} startTs 查询开始时间 start time
-     * @param {string} endTs 查询结束时间 end time
+     * 关键词：设备、设备指标、设备指标时间序列数据、查询  使用场景：查询设备多个指标在某个时间段内的时间序列数据,和接口/api/v1/iot/timeseries的区别在于此接口不指定时间排序方式，只能倒序查询数据  输入：设备、指标、时间区间  输出：指标与时间序列数据的键值对
+     * @summary 查询设备指标在指定时间段内的时间序列数据,按时间倒序排序
+     * @param {string} deviceId 设备ID，如：065cd960-67d4-11ee-a501-41ab9ac02e38
+     * @param {Array<string>} keys 指标列表，如：ceshi_1_shuichang_flow、ceshi_1_shuichang_waterlevel
+     * @param {string} startTs 查询开始时间
+     * @param {string} endTs 查询结束时间
      * @param {string} [orderBy] 排序方式，ASC (升序)，DESC (降序) sort order, ASC (ASCENDING) or DESC (DESCENDING);默认是降序DESC
-     * @param {number} [interval]
-     * @param {string} [agg]
+     * @param {number} [interval] 时间间隔，默认是1分钟
+     * @param {string} [agg] 用于指定聚合函数，如AVG（平均值）、SUM（总和）、MIN（最小值）、MAX（最大值）等
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -870,71 +531,15 @@ export const TelemetryApiFp = function (configuration?: Configuration) {
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**
-     * 批量保存或更新设备指标的时间序列数据，时间序列数据以json格式传递 Batch save or update device indicator time-series data, data is transferred in the format of json.
-     * @summary 批量保存或更新时间序列数据 Batch save or update time-series data
-     * @param {Array<SaveTelemetryDataInput>} [saveTelemetryDataInput]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    async apiV1IotSaveTelemetryDataBatchPost(
-      saveTelemetryDataInput?: Array<SaveTelemetryDataInput>,
-      options?: AxiosRequestConfig,
-    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
-      const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1IotSaveTelemetryDataBatchPost(
-        saveTelemetryDataInput,
-        options,
-      )
-      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
-    },
-    /**
-     * 保存或更新设备指标的时间序列数据，时间序列数据以json格式传递 Save or update device indicator time-series data, data is transferred in the format of json.
-     * @summary 保存或更新时间序列数据 Save or update time-series data
-     * @param {SaveTelemetryDataInput} [saveTelemetryDataInput]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    async apiV1IotSaveTelemetryDataPost(
-      saveTelemetryDataInput?: SaveTelemetryDataInput,
-      options?: AxiosRequestConfig,
-    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
-      const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1IotSaveTelemetryDataPost(
-        saveTelemetryDataInput,
-        options,
-      )
-      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
-    },
-    /**
-     * 批量查询设备多个指标在某个时间段内的时间序列数据，可按时间排序 Batch query time-series data of multiple indicators of a device by time and order by time.
-     * @summary 批量查询设备指标的时间序列数据，按时间排序 Batch query time-series data of device indicators order by time
-     * @param {Array<TimeseriesInput>} [timeseriesInput]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    async apiV1IotTimeseriesBatchPost(
-      timeseriesInput?: Array<TimeseriesInput>,
-      options?: AxiosRequestConfig,
-    ): Promise<
-      (
-        axios?: AxiosInstance,
-        basePath?: string,
-      ) => AxiosPromise<Array<{ [key: string]: Array<object> }>>
-    > {
-      const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1IotTimeseriesBatchPost(
-        timeseriesInput,
-        options,
-      )
-      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
-    },
-    /**
-     * 查询设备多个指标在某个时间段内的时间序列数据，可按时间排序 Query time-series data of multiple indicators of a device by time and order by time.
-     * @summary 查询设备指标的时间序列数据，按时间排序 Query time-series data of device indicators order by time
-     * @param {string} deviceId 设备ID device id
-     * @param {Array<string>} keys 指标列表 indicators
-     * @param {string} startTs 查询开始时间 start time
-     * @param {string} endTs 查询结束时间 end time
+     * 关键词：设备、设备指标、设备指标时间序列数据、时间、排序、查询  使用场景：查询设备多个指标在某个时间段内的时间序列数据，可按时间排序，该数据来自系统接入的实测数据，可用于展示到前端界面  输入：设备、指标、时间区间  输出：指标与时间序列数据的键值对
+     * @summary 查询设备指标在指定时间段内的时间序列数据，可根据排序方式OrderBy按时间排序
+     * @param {string} deviceId 设备ID，如：065cd960-67d4-11ee-a501-41ab9ac02e38
+     * @param {Array<string>} keys 指标列表，如：ceshi_1_shuichang_flow、ceshi_1_shuichang_waterlevel
+     * @param {string} startTs 查询开始时间
+     * @param {string} endTs 查询结束时间
      * @param {string} [orderBy] 排序方式，ASC (升序)，DESC (降序) sort order, ASC (ASCENDING) or DESC (DESCENDING);默认是降序DESC
-     * @param {number} [interval]
-     * @param {string} [agg]
+     * @param {number} [interval] 时间间隔，默认是1分钟
+     * @param {string} [agg] 用于指定聚合函数，如AVG（平均值）、SUM（总和）、MIN（最小值）、MAX（最大值）等
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -963,45 +568,26 @@ export const TelemetryApiFp = function (configuration?: Configuration) {
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**
-     *
-     * @summary 根据指标获取最新实测数据
-     * @param {Array<LatestTimeSeriesInputV2>} [latestTimeSeriesInputV2]
+     * 关键词：设备、设备指标、最新、实测数据、获取、查询  使用场景：批量查询多个设备指标最新的实测数据，根据TimeRange控制是否有最新数据的时间范围（分钟），若TimeRange=5则查询距离当前时刻5分钟内的最新实测数据，用于多个设备指标只展示最新实测数据的情景  与接口/api/v3/iot/latest-timeseries优先读取缓存中的数据不同，该接口始终从数据库中读取最新一条实测数据，这些数据的入库时间通常经过了对齐处理，  在接口/api/v1/historical-data/search-latest中会调用该接口获取最新一条实测数据，并返回相同时间的模拟数据  输入：设备编码、指标名称、离当前时刻最近的数据范围  输出：设备编码、指标的时间序列数据
+     * @summary 根据设备编码和指标名获取最新实测数据,只从数据库中读取，不读缓存数据
+     * @param {Array<LatestTimeSeriesInputV3>} [latestTimeSeriesInputV3]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async apiV2IotLatestTimeseriesPost(
-      latestTimeSeriesInputV2?: Array<LatestTimeSeriesInputV2>,
+    async apiV3IotLatestTimeseriesFromDbPost(
+      latestTimeSeriesInputV3?: Array<LatestTimeSeriesInputV3>,
       options?: AxiosRequestConfig,
     ): Promise<
-      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<LatestTimeSeriesOutputV2>>
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<LatestTimeSeriesOutputV3>>
     > {
-      const localVarAxiosArgs = await localVarAxiosParamCreator.apiV2IotLatestTimeseriesPost(
-        latestTimeSeriesInputV2,
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiV3IotLatestTimeseriesFromDbPost(
+        latestTimeSeriesInputV3,
         options,
       )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**
-     * 批量查询多个设备指标在某个时间段内的时间序列数据，可按时间排序,返回的tspair结构为：[{T,V},{T,V}]. Batch query time-series data of multiple device indicators by time and order by time,return data structure:[{T,V},{T,V}]
-     * @summary 批量查询多个设备指标的时间序列数据，按时间排序 Batch query time-series data of device indicators order by time
-     * @param {Array<TimeseriesInput>} [timeseriesInput]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    async apiV2IotTimeseriesBatchPost(
-      timeseriesInput?: Array<TimeseriesInput>,
-      options?: AxiosRequestConfig,
-    ): Promise<
-      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<TimeseriesBatchOutput>>
-    > {
-      const localVarAxiosArgs = await localVarAxiosParamCreator.apiV2IotTimeseriesBatchPost(
-        timeseriesInput,
-        options,
-      )
-      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
-    },
-    /**
-     *
+     * 关键词：设备、设备指标、最新、实测数据、获取、查询  使用场景：批量查询多个设备指标最新的实测数据，根据TimeRange控制是否有最新数据的时间范围（分钟），若TimeRange=5则查询距离当前时刻5分钟内的最新实测数据，用于多个设备指标只展示最新实测数据的情景  输入：设备编码、指标名称、离当前时刻最近的数据范围  输出：设备编码、指标的时间序列数据
      * @summary 根据设备编码和指标名获取最新实测数据
      * @param {Array<LatestTimeSeriesInputV3>} [latestTimeSeriesInputV3]
      * @param {*} [options] Override http request option.
@@ -1020,8 +606,8 @@ export const TelemetryApiFp = function (configuration?: Configuration) {
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**
-     *
-     * @summary 以结构化的数据格式批量保存或更新实测数据 / Save or update measured data in batches in a structured data format
+     * 关键词：时间戳、设备、设备指标、实测数据、消息队列、更新  使用场景：批量保存或更新多个设备指标实测数据，更新到缓存中并推送到消息队列做数据存储，保存的数据可通过查询接口/api/v3/iot/timeseries-batch查询做进一步数据处理或展示  输入：时间戳、设备编码、指标名称、数值  输出：无
+     * @summary 以结构化的数据格式通过消息队列批量保存或更新实测数据
      * @param {Array<SaveTelemetryStructDataBatchInput>} [saveTelemetryStructDataBatchInput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -1029,7 +615,7 @@ export const TelemetryApiFp = function (configuration?: Configuration) {
     async apiV3IotSaveTelemetryDataBatchPost(
       saveTelemetryStructDataBatchInput?: Array<SaveTelemetryStructDataBatchInput>,
       options?: AxiosRequestConfig,
-    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
       const localVarAxiosArgs = await localVarAxiosParamCreator.apiV3IotSaveTelemetryDataBatchPost(
         saveTelemetryStructDataBatchInput,
         options,
@@ -1037,8 +623,8 @@ export const TelemetryApiFp = function (configuration?: Configuration) {
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**
-     *
-     * @summary 根据指标获取实测时序数据,返回的tspair结构为：T[],V[]. Batch query time-series data of multiple device indicators by time and order by time,return data structure:T[],V[]
+     * 关键词：设备、设备指标、设备指标时间序列数据、时间、排序、批量查询、抽样  使用场景：批量查询多个设备指标在某个时间段内的时间序列数据，可抽样查询，并按时间排序，默认按照时间从大到小排序；如:sample=minutes,interval=5,表示按照5分钟进行抽样，用于多个设备指标同时展示实测数据的情景  输入：设备、指标、时间区间、抽样类型、抽样频率  输出：多个设备、指标的时间序列数据
+     * @summary 批量查询多个设备指标的时间序列数据
      * @param {Array<TimeseriesBatchForV3Input>} [timeseriesBatchForV3Input]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -1070,75 +656,30 @@ export const TelemetryApiFactory = function (
   const localVarFp = TelemetryApiFp(configuration)
   return {
     /**
-     *
-     * @summary /api/app/telemetry/save-telemetry-data-batch2
-     * @param {Array<SaveTelemetryDataInput>} [saveTelemetryDataInput]
+     * 关键词：设备、设备指标、时间点、实测数据、获取、查询  使用场景：  该接口一般用于基于某个时间点创建的预案中，如果需要查询该预案时刻下的最近实测数据，则使用该接口，若要查询实时数据，请用/api/v3/iot/latest-timeseries接口  输入：设备编码、指标名称、时间点  输出：设备编码、指标的时间序列数据
+     * @summary 根据设备编码和指标名获取离指定时间点最近的实测数据
+     * @param {LatestTimeSeriesByTimeInput} [latestTimeSeriesByTimeInput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    apiAppTelemetrySaveTelemetryDataBatch2Post(
-      saveTelemetryDataInput?: Array<SaveTelemetryDataInput>,
+    apiV1IotLatestTimeseriesByTimePost(
+      latestTimeSeriesByTimeInput?: LatestTimeSeriesByTimeInput,
       options?: any,
-    ): AxiosPromise<object> {
+    ): AxiosPromise<Array<LatestTimeSeriesOutputV3>> {
       return localVarFp
-        .apiAppTelemetrySaveTelemetryDataBatch2Post(saveTelemetryDataInput, options)
+        .apiV1IotLatestTimeseriesByTimePost(latestTimeSeriesByTimeInput, options)
         .then((request) => request(axios, basePath))
     },
     /**
-     *
-     * @summary /api/app/telemetry/timeseries-batch-for-processed
-     * @param {Array<TimeseriesBatchForV3Input>} [timeseriesBatchForV3Input]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    apiAppTelemetryTimeseriesBatchForProcessedPost(
-      timeseriesBatchForV3Input?: Array<TimeseriesBatchForV3Input>,
-      options?: any,
-    ): AxiosPromise<Array<TimeseriesBatchForV3Output>> {
-      return localVarFp
-        .apiAppTelemetryTimeseriesBatchForProcessedPost(timeseriesBatchForV3Input, options)
-        .then((request) => request(axios, basePath))
-    },
-    /**
-     *
-     * @summary /api/app/telemetry/timeseries-of-processed
-     * @param {Array<TimeseriesBatchForV3Input>} [timeseriesBatchForV3Input]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    apiAppTelemetryTimeseriesOfProcessedPost(
-      timeseriesBatchForV3Input?: Array<TimeseriesBatchForV3Input>,
-      options?: any,
-    ): AxiosPromise<Array<TimeseriesBatchForV3Output>> {
-      return localVarFp
-        .apiAppTelemetryTimeseriesOfProcessedPost(timeseriesBatchForV3Input, options)
-        .then((request) => request(axios, basePath))
-    },
-    /**
-     *
-     * @summary 根据指标获取最新实测数据，要求指标编码再系统中是唯一的
-     * @param {LatestTimeSeriesInput} [latestTimeSeriesInput]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    apiV1IotLatestTimeseriesPost(
-      latestTimeSeriesInput?: LatestTimeSeriesInput,
-      options?: any,
-    ): AxiosPromise<Array<LatestTimeSeriesOutput>> {
-      return localVarFp
-        .apiV1IotLatestTimeseriesPost(latestTimeSeriesInput, options)
-        .then((request) => request(axios, basePath))
-    },
-    /**
-     * 查询设备多个指标在某个时间段内的时间序列数据 Query time-series data of multiple indicators of a device by time.
-     * @summary 查询设备指标的时间序列数据 Query time-series data of device indicators
-     * @param {string} deviceId 设备ID device id
-     * @param {Array<string>} keys 指标列表 indicators
-     * @param {string} startTs 查询开始时间 start time
-     * @param {string} endTs 查询结束时间 end time
+     * 关键词：设备、设备指标、设备指标时间序列数据、查询  使用场景：查询设备多个指标在某个时间段内的时间序列数据,和接口/api/v1/iot/timeseries的区别在于此接口不指定时间排序方式，只能倒序查询数据  输入：设备、指标、时间区间  输出：指标与时间序列数据的键值对
+     * @summary 查询设备指标在指定时间段内的时间序列数据,按时间倒序排序
+     * @param {string} deviceId 设备ID，如：065cd960-67d4-11ee-a501-41ab9ac02e38
+     * @param {Array<string>} keys 指标列表，如：ceshi_1_shuichang_flow、ceshi_1_shuichang_waterlevel
+     * @param {string} startTs 查询开始时间
+     * @param {string} endTs 查询结束时间
      * @param {string} [orderBy] 排序方式，ASC (升序)，DESC (降序) sort order, ASC (ASCENDING) or DESC (DESCENDING);默认是降序DESC
-     * @param {number} [interval]
-     * @param {string} [agg]
+     * @param {number} [interval] 时间间隔，默认是1分钟
+     * @param {string} [agg] 用于指定聚合函数，如AVG（平均值）、SUM（总和）、MIN（最小值）、MAX（最大值）等
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -1166,60 +707,15 @@ export const TelemetryApiFactory = function (
         .then((request) => request(axios, basePath))
     },
     /**
-     * 批量保存或更新设备指标的时间序列数据，时间序列数据以json格式传递 Batch save or update device indicator time-series data, data is transferred in the format of json.
-     * @summary 批量保存或更新时间序列数据 Batch save or update time-series data
-     * @param {Array<SaveTelemetryDataInput>} [saveTelemetryDataInput]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    apiV1IotSaveTelemetryDataBatchPost(
-      saveTelemetryDataInput?: Array<SaveTelemetryDataInput>,
-      options?: any,
-    ): AxiosPromise<object> {
-      return localVarFp
-        .apiV1IotSaveTelemetryDataBatchPost(saveTelemetryDataInput, options)
-        .then((request) => request(axios, basePath))
-    },
-    /**
-     * 保存或更新设备指标的时间序列数据，时间序列数据以json格式传递 Save or update device indicator time-series data, data is transferred in the format of json.
-     * @summary 保存或更新时间序列数据 Save or update time-series data
-     * @param {SaveTelemetryDataInput} [saveTelemetryDataInput]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    apiV1IotSaveTelemetryDataPost(
-      saveTelemetryDataInput?: SaveTelemetryDataInput,
-      options?: any,
-    ): AxiosPromise<object> {
-      return localVarFp
-        .apiV1IotSaveTelemetryDataPost(saveTelemetryDataInput, options)
-        .then((request) => request(axios, basePath))
-    },
-    /**
-     * 批量查询设备多个指标在某个时间段内的时间序列数据，可按时间排序 Batch query time-series data of multiple indicators of a device by time and order by time.
-     * @summary 批量查询设备指标的时间序列数据，按时间排序 Batch query time-series data of device indicators order by time
-     * @param {Array<TimeseriesInput>} [timeseriesInput]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    apiV1IotTimeseriesBatchPost(
-      timeseriesInput?: Array<TimeseriesInput>,
-      options?: any,
-    ): AxiosPromise<Array<{ [key: string]: Array<object> }>> {
-      return localVarFp
-        .apiV1IotTimeseriesBatchPost(timeseriesInput, options)
-        .then((request) => request(axios, basePath))
-    },
-    /**
-     * 查询设备多个指标在某个时间段内的时间序列数据，可按时间排序 Query time-series data of multiple indicators of a device by time and order by time.
-     * @summary 查询设备指标的时间序列数据，按时间排序 Query time-series data of device indicators order by time
-     * @param {string} deviceId 设备ID device id
-     * @param {Array<string>} keys 指标列表 indicators
-     * @param {string} startTs 查询开始时间 start time
-     * @param {string} endTs 查询结束时间 end time
+     * 关键词：设备、设备指标、设备指标时间序列数据、时间、排序、查询  使用场景：查询设备多个指标在某个时间段内的时间序列数据，可按时间排序，该数据来自系统接入的实测数据，可用于展示到前端界面  输入：设备、指标、时间区间  输出：指标与时间序列数据的键值对
+     * @summary 查询设备指标在指定时间段内的时间序列数据，可根据排序方式OrderBy按时间排序
+     * @param {string} deviceId 设备ID，如：065cd960-67d4-11ee-a501-41ab9ac02e38
+     * @param {Array<string>} keys 指标列表，如：ceshi_1_shuichang_flow、ceshi_1_shuichang_waterlevel
+     * @param {string} startTs 查询开始时间
+     * @param {string} endTs 查询结束时间
      * @param {string} [orderBy] 排序方式，ASC (升序)，DESC (降序) sort order, ASC (ASCENDING) or DESC (DESCENDING);默认是降序DESC
-     * @param {number} [interval]
-     * @param {string} [agg]
+     * @param {number} [interval] 时间间隔，默认是1分钟
+     * @param {string} [agg] 用于指定聚合函数，如AVG（平均值）、SUM（总和）、MIN（最小值）、MAX（最大值）等
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -1238,37 +734,22 @@ export const TelemetryApiFactory = function (
         .then((request) => request(axios, basePath))
     },
     /**
-     *
-     * @summary 根据指标获取最新实测数据
-     * @param {Array<LatestTimeSeriesInputV2>} [latestTimeSeriesInputV2]
+     * 关键词：设备、设备指标、最新、实测数据、获取、查询  使用场景：批量查询多个设备指标最新的实测数据，根据TimeRange控制是否有最新数据的时间范围（分钟），若TimeRange=5则查询距离当前时刻5分钟内的最新实测数据，用于多个设备指标只展示最新实测数据的情景  与接口/api/v3/iot/latest-timeseries优先读取缓存中的数据不同，该接口始终从数据库中读取最新一条实测数据，这些数据的入库时间通常经过了对齐处理，  在接口/api/v1/historical-data/search-latest中会调用该接口获取最新一条实测数据，并返回相同时间的模拟数据  输入：设备编码、指标名称、离当前时刻最近的数据范围  输出：设备编码、指标的时间序列数据
+     * @summary 根据设备编码和指标名获取最新实测数据,只从数据库中读取，不读缓存数据
+     * @param {Array<LatestTimeSeriesInputV3>} [latestTimeSeriesInputV3]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    apiV2IotLatestTimeseriesPost(
-      latestTimeSeriesInputV2?: Array<LatestTimeSeriesInputV2>,
+    apiV3IotLatestTimeseriesFromDbPost(
+      latestTimeSeriesInputV3?: Array<LatestTimeSeriesInputV3>,
       options?: any,
-    ): AxiosPromise<Array<LatestTimeSeriesOutputV2>> {
+    ): AxiosPromise<Array<LatestTimeSeriesOutputV3>> {
       return localVarFp
-        .apiV2IotLatestTimeseriesPost(latestTimeSeriesInputV2, options)
+        .apiV3IotLatestTimeseriesFromDbPost(latestTimeSeriesInputV3, options)
         .then((request) => request(axios, basePath))
     },
     /**
-     * 批量查询多个设备指标在某个时间段内的时间序列数据，可按时间排序,返回的tspair结构为：[{T,V},{T,V}]. Batch query time-series data of multiple device indicators by time and order by time,return data structure:[{T,V},{T,V}]
-     * @summary 批量查询多个设备指标的时间序列数据，按时间排序 Batch query time-series data of device indicators order by time
-     * @param {Array<TimeseriesInput>} [timeseriesInput]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    apiV2IotTimeseriesBatchPost(
-      timeseriesInput?: Array<TimeseriesInput>,
-      options?: any,
-    ): AxiosPromise<Array<TimeseriesBatchOutput>> {
-      return localVarFp
-        .apiV2IotTimeseriesBatchPost(timeseriesInput, options)
-        .then((request) => request(axios, basePath))
-    },
-    /**
-     *
+     * 关键词：设备、设备指标、最新、实测数据、获取、查询  使用场景：批量查询多个设备指标最新的实测数据，根据TimeRange控制是否有最新数据的时间范围（分钟），若TimeRange=5则查询距离当前时刻5分钟内的最新实测数据，用于多个设备指标只展示最新实测数据的情景  输入：设备编码、指标名称、离当前时刻最近的数据范围  输出：设备编码、指标的时间序列数据
      * @summary 根据设备编码和指标名获取最新实测数据
      * @param {Array<LatestTimeSeriesInputV3>} [latestTimeSeriesInputV3]
      * @param {*} [options] Override http request option.
@@ -1283,8 +764,8 @@ export const TelemetryApiFactory = function (
         .then((request) => request(axios, basePath))
     },
     /**
-     *
-     * @summary 以结构化的数据格式批量保存或更新实测数据 / Save or update measured data in batches in a structured data format
+     * 关键词：时间戳、设备、设备指标、实测数据、消息队列、更新  使用场景：批量保存或更新多个设备指标实测数据，更新到缓存中并推送到消息队列做数据存储，保存的数据可通过查询接口/api/v3/iot/timeseries-batch查询做进一步数据处理或展示  输入：时间戳、设备编码、指标名称、数值  输出：无
+     * @summary 以结构化的数据格式通过消息队列批量保存或更新实测数据
      * @param {Array<SaveTelemetryStructDataBatchInput>} [saveTelemetryStructDataBatchInput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -1292,14 +773,14 @@ export const TelemetryApiFactory = function (
     apiV3IotSaveTelemetryDataBatchPost(
       saveTelemetryStructDataBatchInput?: Array<SaveTelemetryStructDataBatchInput>,
       options?: any,
-    ): AxiosPromise<object> {
+    ): AxiosPromise<void> {
       return localVarFp
         .apiV3IotSaveTelemetryDataBatchPost(saveTelemetryStructDataBatchInput, options)
         .then((request) => request(axios, basePath))
     },
     /**
-     *
-     * @summary 根据指标获取实测时序数据,返回的tspair结构为：T[],V[]. Batch query time-series data of multiple device indicators by time and order by time,return data structure:T[],V[]
+     * 关键词：设备、设备指标、设备指标时间序列数据、时间、排序、批量查询、抽样  使用场景：批量查询多个设备指标在某个时间段内的时间序列数据，可抽样查询，并按时间排序，默认按照时间从大到小排序；如:sample=minutes,interval=5,表示按照5分钟进行抽样，用于多个设备指标同时展示实测数据的情景  输入：设备、指标、时间区间、抽样类型、抽样频率  输出：多个设备、指标的时间序列数据
+     * @summary 批量查询多个设备指标的时间序列数据
      * @param {Array<TimeseriesBatchForV3Input>} [timeseriesBatchForV3Input]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -1323,83 +804,32 @@ export const TelemetryApiFactory = function (
  */
 export class TelemetryApi extends BaseAPI {
   /**
-   *
-   * @summary /api/app/telemetry/save-telemetry-data-batch2
-   * @param {Array<SaveTelemetryDataInput>} [saveTelemetryDataInput]
+   * 关键词：设备、设备指标、时间点、实测数据、获取、查询  使用场景：  该接口一般用于基于某个时间点创建的预案中，如果需要查询该预案时刻下的最近实测数据，则使用该接口，若要查询实时数据，请用/api/v3/iot/latest-timeseries接口  输入：设备编码、指标名称、时间点  输出：设备编码、指标的时间序列数据
+   * @summary 根据设备编码和指标名获取离指定时间点最近的实测数据
+   * @param {LatestTimeSeriesByTimeInput} [latestTimeSeriesByTimeInput]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof TelemetryApi
    */
-  public apiAppTelemetrySaveTelemetryDataBatch2Post(
-    saveTelemetryDataInput?: Array<SaveTelemetryDataInput>,
+  public apiV1IotLatestTimeseriesByTimePost(
+    latestTimeSeriesByTimeInput?: LatestTimeSeriesByTimeInput,
     options?: AxiosRequestConfig,
   ) {
     return TelemetryApiFp(this.configuration)
-      .apiAppTelemetrySaveTelemetryDataBatch2Post(saveTelemetryDataInput, options)
+      .apiV1IotLatestTimeseriesByTimePost(latestTimeSeriesByTimeInput, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
   /**
-   *
-   * @summary /api/app/telemetry/timeseries-batch-for-processed
-   * @param {Array<TimeseriesBatchForV3Input>} [timeseriesBatchForV3Input]
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof TelemetryApi
-   */
-  public apiAppTelemetryTimeseriesBatchForProcessedPost(
-    timeseriesBatchForV3Input?: Array<TimeseriesBatchForV3Input>,
-    options?: AxiosRequestConfig,
-  ) {
-    return TelemetryApiFp(this.configuration)
-      .apiAppTelemetryTimeseriesBatchForProcessedPost(timeseriesBatchForV3Input, options)
-      .then((request) => request(this.axios, this.basePath))
-  }
-
-  /**
-   *
-   * @summary /api/app/telemetry/timeseries-of-processed
-   * @param {Array<TimeseriesBatchForV3Input>} [timeseriesBatchForV3Input]
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof TelemetryApi
-   */
-  public apiAppTelemetryTimeseriesOfProcessedPost(
-    timeseriesBatchForV3Input?: Array<TimeseriesBatchForV3Input>,
-    options?: AxiosRequestConfig,
-  ) {
-    return TelemetryApiFp(this.configuration)
-      .apiAppTelemetryTimeseriesOfProcessedPost(timeseriesBatchForV3Input, options)
-      .then((request) => request(this.axios, this.basePath))
-  }
-
-  /**
-   *
-   * @summary 根据指标获取最新实测数据，要求指标编码再系统中是唯一的
-   * @param {LatestTimeSeriesInput} [latestTimeSeriesInput]
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof TelemetryApi
-   */
-  public apiV1IotLatestTimeseriesPost(
-    latestTimeSeriesInput?: LatestTimeSeriesInput,
-    options?: AxiosRequestConfig,
-  ) {
-    return TelemetryApiFp(this.configuration)
-      .apiV1IotLatestTimeseriesPost(latestTimeSeriesInput, options)
-      .then((request) => request(this.axios, this.basePath))
-  }
-
-  /**
-   * 查询设备多个指标在某个时间段内的时间序列数据 Query time-series data of multiple indicators of a device by time.
-   * @summary 查询设备指标的时间序列数据 Query time-series data of device indicators
-   * @param {string} deviceId 设备ID device id
-   * @param {Array<string>} keys 指标列表 indicators
-   * @param {string} startTs 查询开始时间 start time
-   * @param {string} endTs 查询结束时间 end time
+   * 关键词：设备、设备指标、设备指标时间序列数据、查询  使用场景：查询设备多个指标在某个时间段内的时间序列数据,和接口/api/v1/iot/timeseries的区别在于此接口不指定时间排序方式，只能倒序查询数据  输入：设备、指标、时间区间  输出：指标与时间序列数据的键值对
+   * @summary 查询设备指标在指定时间段内的时间序列数据,按时间倒序排序
+   * @param {string} deviceId 设备ID，如：065cd960-67d4-11ee-a501-41ab9ac02e38
+   * @param {Array<string>} keys 指标列表，如：ceshi_1_shuichang_flow、ceshi_1_shuichang_waterlevel
+   * @param {string} startTs 查询开始时间
+   * @param {string} endTs 查询结束时间
    * @param {string} [orderBy] 排序方式，ASC (升序)，DESC (降序) sort order, ASC (ASCENDING) or DESC (DESCENDING);默认是降序DESC
-   * @param {number} [interval]
-   * @param {string} [agg]
+   * @param {number} [interval] 时间间隔，默认是1分钟
+   * @param {string} [agg] 用于指定聚合函数，如AVG（平均值）、SUM（总和）、MIN（最小值）、MAX（最大值）等
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof TelemetryApi
@@ -1429,66 +859,15 @@ export class TelemetryApi extends BaseAPI {
   }
 
   /**
-   * 批量保存或更新设备指标的时间序列数据，时间序列数据以json格式传递 Batch save or update device indicator time-series data, data is transferred in the format of json.
-   * @summary 批量保存或更新时间序列数据 Batch save or update time-series data
-   * @param {Array<SaveTelemetryDataInput>} [saveTelemetryDataInput]
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof TelemetryApi
-   */
-  public apiV1IotSaveTelemetryDataBatchPost(
-    saveTelemetryDataInput?: Array<SaveTelemetryDataInput>,
-    options?: AxiosRequestConfig,
-  ) {
-    return TelemetryApiFp(this.configuration)
-      .apiV1IotSaveTelemetryDataBatchPost(saveTelemetryDataInput, options)
-      .then((request) => request(this.axios, this.basePath))
-  }
-
-  /**
-   * 保存或更新设备指标的时间序列数据，时间序列数据以json格式传递 Save or update device indicator time-series data, data is transferred in the format of json.
-   * @summary 保存或更新时间序列数据 Save or update time-series data
-   * @param {SaveTelemetryDataInput} [saveTelemetryDataInput]
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof TelemetryApi
-   */
-  public apiV1IotSaveTelemetryDataPost(
-    saveTelemetryDataInput?: SaveTelemetryDataInput,
-    options?: AxiosRequestConfig,
-  ) {
-    return TelemetryApiFp(this.configuration)
-      .apiV1IotSaveTelemetryDataPost(saveTelemetryDataInput, options)
-      .then((request) => request(this.axios, this.basePath))
-  }
-
-  /**
-   * 批量查询设备多个指标在某个时间段内的时间序列数据，可按时间排序 Batch query time-series data of multiple indicators of a device by time and order by time.
-   * @summary 批量查询设备指标的时间序列数据，按时间排序 Batch query time-series data of device indicators order by time
-   * @param {Array<TimeseriesInput>} [timeseriesInput]
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof TelemetryApi
-   */
-  public apiV1IotTimeseriesBatchPost(
-    timeseriesInput?: Array<TimeseriesInput>,
-    options?: AxiosRequestConfig,
-  ) {
-    return TelemetryApiFp(this.configuration)
-      .apiV1IotTimeseriesBatchPost(timeseriesInput, options)
-      .then((request) => request(this.axios, this.basePath))
-  }
-
-  /**
-   * 查询设备多个指标在某个时间段内的时间序列数据，可按时间排序 Query time-series data of multiple indicators of a device by time and order by time.
-   * @summary 查询设备指标的时间序列数据，按时间排序 Query time-series data of device indicators order by time
-   * @param {string} deviceId 设备ID device id
-   * @param {Array<string>} keys 指标列表 indicators
-   * @param {string} startTs 查询开始时间 start time
-   * @param {string} endTs 查询结束时间 end time
+   * 关键词：设备、设备指标、设备指标时间序列数据、时间、排序、查询  使用场景：查询设备多个指标在某个时间段内的时间序列数据，可按时间排序，该数据来自系统接入的实测数据，可用于展示到前端界面  输入：设备、指标、时间区间  输出：指标与时间序列数据的键值对
+   * @summary 查询设备指标在指定时间段内的时间序列数据，可根据排序方式OrderBy按时间排序
+   * @param {string} deviceId 设备ID，如：065cd960-67d4-11ee-a501-41ab9ac02e38
+   * @param {Array<string>} keys 指标列表，如：ceshi_1_shuichang_flow、ceshi_1_shuichang_waterlevel
+   * @param {string} startTs 查询开始时间
+   * @param {string} endTs 查询结束时间
    * @param {string} [orderBy] 排序方式，ASC (升序)，DESC (降序) sort order, ASC (ASCENDING) or DESC (DESCENDING);默认是降序DESC
-   * @param {number} [interval]
-   * @param {string} [agg]
+   * @param {number} [interval] 时间间隔，默认是1分钟
+   * @param {string} [agg] 用于指定聚合函数，如AVG（平均值）、SUM（总和）、MIN（最小值）、MAX（最大值）等
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof TelemetryApi
@@ -1509,41 +888,24 @@ export class TelemetryApi extends BaseAPI {
   }
 
   /**
-   *
-   * @summary 根据指标获取最新实测数据
-   * @param {Array<LatestTimeSeriesInputV2>} [latestTimeSeriesInputV2]
+   * 关键词：设备、设备指标、最新、实测数据、获取、查询  使用场景：批量查询多个设备指标最新的实测数据，根据TimeRange控制是否有最新数据的时间范围（分钟），若TimeRange=5则查询距离当前时刻5分钟内的最新实测数据，用于多个设备指标只展示最新实测数据的情景  与接口/api/v3/iot/latest-timeseries优先读取缓存中的数据不同，该接口始终从数据库中读取最新一条实测数据，这些数据的入库时间通常经过了对齐处理，  在接口/api/v1/historical-data/search-latest中会调用该接口获取最新一条实测数据，并返回相同时间的模拟数据  输入：设备编码、指标名称、离当前时刻最近的数据范围  输出：设备编码、指标的时间序列数据
+   * @summary 根据设备编码和指标名获取最新实测数据,只从数据库中读取，不读缓存数据
+   * @param {Array<LatestTimeSeriesInputV3>} [latestTimeSeriesInputV3]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof TelemetryApi
    */
-  public apiV2IotLatestTimeseriesPost(
-    latestTimeSeriesInputV2?: Array<LatestTimeSeriesInputV2>,
+  public apiV3IotLatestTimeseriesFromDbPost(
+    latestTimeSeriesInputV3?: Array<LatestTimeSeriesInputV3>,
     options?: AxiosRequestConfig,
   ) {
     return TelemetryApiFp(this.configuration)
-      .apiV2IotLatestTimeseriesPost(latestTimeSeriesInputV2, options)
+      .apiV3IotLatestTimeseriesFromDbPost(latestTimeSeriesInputV3, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
   /**
-   * 批量查询多个设备指标在某个时间段内的时间序列数据，可按时间排序,返回的tspair结构为：[{T,V},{T,V}]. Batch query time-series data of multiple device indicators by time and order by time,return data structure:[{T,V},{T,V}]
-   * @summary 批量查询多个设备指标的时间序列数据，按时间排序 Batch query time-series data of device indicators order by time
-   * @param {Array<TimeseriesInput>} [timeseriesInput]
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof TelemetryApi
-   */
-  public apiV2IotTimeseriesBatchPost(
-    timeseriesInput?: Array<TimeseriesInput>,
-    options?: AxiosRequestConfig,
-  ) {
-    return TelemetryApiFp(this.configuration)
-      .apiV2IotTimeseriesBatchPost(timeseriesInput, options)
-      .then((request) => request(this.axios, this.basePath))
-  }
-
-  /**
-   *
+   * 关键词：设备、设备指标、最新、实测数据、获取、查询  使用场景：批量查询多个设备指标最新的实测数据，根据TimeRange控制是否有最新数据的时间范围（分钟），若TimeRange=5则查询距离当前时刻5分钟内的最新实测数据，用于多个设备指标只展示最新实测数据的情景  输入：设备编码、指标名称、离当前时刻最近的数据范围  输出：设备编码、指标的时间序列数据
    * @summary 根据设备编码和指标名获取最新实测数据
    * @param {Array<LatestTimeSeriesInputV3>} [latestTimeSeriesInputV3]
    * @param {*} [options] Override http request option.
@@ -1560,8 +922,8 @@ export class TelemetryApi extends BaseAPI {
   }
 
   /**
-   *
-   * @summary 以结构化的数据格式批量保存或更新实测数据 / Save or update measured data in batches in a structured data format
+   * 关键词：时间戳、设备、设备指标、实测数据、消息队列、更新  使用场景：批量保存或更新多个设备指标实测数据，更新到缓存中并推送到消息队列做数据存储，保存的数据可通过查询接口/api/v3/iot/timeseries-batch查询做进一步数据处理或展示  输入：时间戳、设备编码、指标名称、数值  输出：无
+   * @summary 以结构化的数据格式通过消息队列批量保存或更新实测数据
    * @param {Array<SaveTelemetryStructDataBatchInput>} [saveTelemetryStructDataBatchInput]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
@@ -1577,8 +939,8 @@ export class TelemetryApi extends BaseAPI {
   }
 
   /**
-   *
-   * @summary 根据指标获取实测时序数据,返回的tspair结构为：T[],V[]. Batch query time-series data of multiple device indicators by time and order by time,return data structure:T[],V[]
+   * 关键词：设备、设备指标、设备指标时间序列数据、时间、排序、批量查询、抽样  使用场景：批量查询多个设备指标在某个时间段内的时间序列数据，可抽样查询，并按时间排序，默认按照时间从大到小排序；如:sample=minutes,interval=5,表示按照5分钟进行抽样，用于多个设备指标同时展示实测数据的情景  输入：设备、指标、时间区间、抽样类型、抽样频率  输出：多个设备、指标的时间序列数据
+   * @summary 批量查询多个设备指标的时间序列数据
    * @param {Array<TimeseriesBatchForV3Input>} [timeseriesBatchForV3Input]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}

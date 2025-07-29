@@ -18,13 +18,19 @@
  */
 export interface MeasureDataInput {
   /**
-   * 指标
+   * 设备编码，如：测试水厂出厂
+   * @type {string}
+   * @memberof MeasureDataInput
+   */
+  deviceCode?: string | null
+  /**
+   * 指标名称，如：ceshi_1_shuichang_flow
    * @type {string}
    * @memberof MeasureDataInput
    */
   indicator?: string | null
   /**
-   * 指标值
+   * 数值
    * @type {number}
    * @memberof MeasureDataInput
    */
