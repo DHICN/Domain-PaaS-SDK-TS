@@ -1,3 +1,4 @@
+/* tslint:disable */
 /* eslint-disable */
 /**
  * 日志服务
@@ -11,8 +12,15 @@
  * Do not edit the class manually.
  */
 
+// May contain unused imports in some cases
+// @ts-ignore
+import { LogLevel } from './log-level'
+// May contain unused imports in some cases
+// @ts-ignore
+import { LogTypeEnum } from './log-type-enum'
+
 /**
- *
+ * 查询审计日志
  * @export
  * @interface QueryAuditLogInput
  */
@@ -40,35 +48,53 @@ export interface QueryAuditLogInput {
    * @type {string}
    * @memberof QueryAuditLogInput
    */
+  loginName?: string | null
+  /**
+   * 操作人
+   * @type {string}
+   * @memberof QueryAuditLogInput
+   */
   operateUser?: string | null
   /**
-   *
+   * 操作类型
    * @type {string}
    * @memberof QueryAuditLogInput
    */
   operateType?: string | null
   /**
-   *
+   * 操作内容
    * @type {string}
    * @memberof QueryAuditLogInput
    */
   content?: string | null
   /**
-   *
+   * 处理结果
    * @type {boolean}
    * @memberof QueryAuditLogInput
    */
   result?: boolean | null
   /**
-   *
+   * 查询开始时间
    * @type {string}
    * @memberof QueryAuditLogInput
    */
   startTime?: string | null
   /**
-   *
+   * 查询结束时间
    * @type {string}
    * @memberof QueryAuditLogInput
    */
   endTime?: string | null
+  /**
+   *
+   * @type {LogTypeEnum}
+   * @memberof QueryAuditLogInput
+   */
+  logType?: LogTypeEnum
+  /**
+   *
+   * @type {LogLevel}
+   * @memberof QueryAuditLogInput
+   */
+  logLevel?: LogLevel
 }
