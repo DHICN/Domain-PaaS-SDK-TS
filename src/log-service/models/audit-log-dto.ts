@@ -11,26 +11,33 @@
  * Do not edit the class manually.
  */
 
+// May contain unused imports in some cases
+// @ts-ignore
+import { LogLevel } from './log-level'
+// May contain unused imports in some cases
+// @ts-ignore
+import { LogTypeEnum } from './log-type-enum'
+
 /**
- *
+ * 审计日志
  * @export
  * @interface AuditLogDto
  */
 export interface AuditLogDto {
   /**
-   *
+   * 数据Id
    * @type {string}
    * @memberof AuditLogDto
    */
   id?: string | null
   /**
-   *
+   * 租户Id
    * @type {string}
    * @memberof AuditLogDto
    */
   tenantId?: string | null
   /**
-   *
+   * 操作时间
    * @type {string}
    * @memberof AuditLogDto
    */
@@ -40,29 +47,47 @@ export interface AuditLogDto {
    * @type {string}
    * @memberof AuditLogDto
    */
+  loginName?: string | null
+  /**
+   * 操作人
+   * @type {string}
+   * @memberof AuditLogDto
+   */
   operateUser?: string | null
   /**
-   *
+   * 操作类型
    * @type {string}
    * @memberof AuditLogDto
    */
   operateType?: string | null
   /**
-   *
+   * 操作内容
    * @type {string}
    * @memberof AuditLogDto
    */
   content?: string | null
   /**
-   *
+   * 结果
    * @type {boolean}
    * @memberof AuditLogDto
    */
   result?: boolean
   /**
-   *
+   * 数据记录时间
    * @type {string}
    * @memberof AuditLogDto
    */
   creationTime?: string
+  /**
+   *
+   * @type {LogTypeEnum}
+   * @memberof AuditLogDto
+   */
+  logType?: LogTypeEnum
+  /**
+   *
+   * @type {LogLevel}
+   * @memberof AuditLogDto
+   */
+  logLevel?: LogLevel
 }

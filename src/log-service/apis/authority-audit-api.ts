@@ -45,13 +45,17 @@ import { RemoteServiceErrorResponse } from '../models'
 export const AuthorityAuditApiAxiosParamCreator = function (configuration?: Configuration) {
   return {
     /**
-     *
-     * @summary /api/log/v1/authority-audit/add
+     * 添加审计日志，输入时，需要录入租户的Id,操作人、操作内容、操作类型、结果、时间等信息。
+     * @summary 添加审计日志
+     * @param {string} [tenantId]
+     * @param {string} [debugHeaderSign]
      * @param {AddAuditLogInput} [addAuditLogInput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiLogV1AuthorityAuditAddPost: async (
+      tenantId?: string,
+      debugHeaderSign?: string,
       addAuditLogInput?: AddAuditLogInput,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
@@ -66,6 +70,14 @@ export const AuthorityAuditApiAxiosParamCreator = function (configuration?: Conf
       const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
+
+      if (tenantId != null) {
+        localVarHeaderParameter['tenantId'] = String(tenantId)
+      }
+
+      if (debugHeaderSign != null) {
+        localVarHeaderParameter['debug-header-sign'] = String(debugHeaderSign)
+      }
 
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
@@ -88,13 +100,17 @@ export const AuthorityAuditApiAxiosParamCreator = function (configuration?: Conf
       }
     },
     /**
-     *
-     * @summary /api/log/v1/authority-audit/delete
+     * 根据审计日志的数据Id删除审计日志，可批量删除。输入参数不可为空。
+     * @summary 删除审计日志
+     * @param {string} [tenantId]
+     * @param {string} [debugHeaderSign]
      * @param {Array<string>} [requestBody]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiLogV1AuthorityAuditDeletePost: async (
+      tenantId?: string,
+      debugHeaderSign?: string,
       requestBody?: Array<string>,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
@@ -109,6 +125,14 @@ export const AuthorityAuditApiAxiosParamCreator = function (configuration?: Conf
       const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
+
+      if (tenantId != null) {
+        localVarHeaderParameter['tenantId'] = String(tenantId)
+      }
+
+      if (debugHeaderSign != null) {
+        localVarHeaderParameter['debug-header-sign'] = String(debugHeaderSign)
+      }
 
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
@@ -131,13 +155,17 @@ export const AuthorityAuditApiAxiosParamCreator = function (configuration?: Conf
       }
     },
     /**
-     *
-     * @summary /api/log/v1/authority-audit/query
+     * 根据条件查询审计日志，可按操作人、操作类型、操作内容、结果、时间范围进行日志查询。其中操作人、操作内容为模糊匹配。不输入参数时返回所有数据，多个参数组合查询时为并且关系。结果按操作时间倒序返回。
+     * @summary 查询审计日志
+     * @param {string} [tenantId]
+     * @param {string} [debugHeaderSign]
      * @param {QueryAuditLogInput} [queryAuditLogInput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiLogV1AuthorityAuditQueryPost: async (
+      tenantId?: string,
+      debugHeaderSign?: string,
       queryAuditLogInput?: QueryAuditLogInput,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
@@ -152,6 +180,14 @@ export const AuthorityAuditApiAxiosParamCreator = function (configuration?: Conf
       const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
+
+      if (tenantId != null) {
+        localVarHeaderParameter['tenantId'] = String(tenantId)
+      }
+
+      if (debugHeaderSign != null) {
+        localVarHeaderParameter['debug-header-sign'] = String(debugHeaderSign)
+      }
 
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
@@ -184,51 +220,69 @@ export const AuthorityAuditApiFp = function (configuration?: Configuration) {
   const localVarAxiosParamCreator = AuthorityAuditApiAxiosParamCreator(configuration)
   return {
     /**
-     *
-     * @summary /api/log/v1/authority-audit/add
+     * 添加审计日志，输入时，需要录入租户的Id,操作人、操作内容、操作类型、结果、时间等信息。
+     * @summary 添加审计日志
+     * @param {string} [tenantId]
+     * @param {string} [debugHeaderSign]
      * @param {AddAuditLogInput} [addAuditLogInput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async apiLogV1AuthorityAuditAddPost(
+      tenantId?: string,
+      debugHeaderSign?: string,
       addAuditLogInput?: AddAuditLogInput,
       options?: AxiosRequestConfig,
-    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<string>> {
       const localVarAxiosArgs = await localVarAxiosParamCreator.apiLogV1AuthorityAuditAddPost(
+        tenantId,
+        debugHeaderSign,
         addAuditLogInput,
         options,
       )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**
-     *
-     * @summary /api/log/v1/authority-audit/delete
+     * 根据审计日志的数据Id删除审计日志，可批量删除。输入参数不可为空。
+     * @summary 删除审计日志
+     * @param {string} [tenantId]
+     * @param {string} [debugHeaderSign]
      * @param {Array<string>} [requestBody]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async apiLogV1AuthorityAuditDeletePost(
+      tenantId?: string,
+      debugHeaderSign?: string,
       requestBody?: Array<string>,
       options?: AxiosRequestConfig,
-    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
       const localVarAxiosArgs = await localVarAxiosParamCreator.apiLogV1AuthorityAuditDeletePost(
+        tenantId,
+        debugHeaderSign,
         requestBody,
         options,
       )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**
-     *
-     * @summary /api/log/v1/authority-audit/query
+     * 根据条件查询审计日志，可按操作人、操作类型、操作内容、结果、时间范围进行日志查询。其中操作人、操作内容为模糊匹配。不输入参数时返回所有数据，多个参数组合查询时为并且关系。结果按操作时间倒序返回。
+     * @summary 查询审计日志
+     * @param {string} [tenantId]
+     * @param {string} [debugHeaderSign]
      * @param {QueryAuditLogInput} [queryAuditLogInput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async apiLogV1AuthorityAuditQueryPost(
+      tenantId?: string,
+      debugHeaderSign?: string,
       queryAuditLogInput?: QueryAuditLogInput,
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AuditLogDtoPage>> {
       const localVarAxiosArgs = await localVarAxiosParamCreator.apiLogV1AuthorityAuditQueryPost(
+        tenantId,
+        debugHeaderSign,
         queryAuditLogInput,
         options,
       )
@@ -249,48 +303,60 @@ export const AuthorityAuditApiFactory = function (
   const localVarFp = AuthorityAuditApiFp(configuration)
   return {
     /**
-     *
-     * @summary /api/log/v1/authority-audit/add
+     * 添加审计日志，输入时，需要录入租户的Id,操作人、操作内容、操作类型、结果、时间等信息。
+     * @summary 添加审计日志
+     * @param {string} [tenantId]
+     * @param {string} [debugHeaderSign]
      * @param {AddAuditLogInput} [addAuditLogInput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiLogV1AuthorityAuditAddPost(
+      tenantId?: string,
+      debugHeaderSign?: string,
       addAuditLogInput?: AddAuditLogInput,
       options?: any,
-    ): AxiosPromise<object> {
+    ): AxiosPromise<string> {
       return localVarFp
-        .apiLogV1AuthorityAuditAddPost(addAuditLogInput, options)
+        .apiLogV1AuthorityAuditAddPost(tenantId, debugHeaderSign, addAuditLogInput, options)
         .then((request) => request(axios, basePath))
     },
     /**
-     *
-     * @summary /api/log/v1/authority-audit/delete
+     * 根据审计日志的数据Id删除审计日志，可批量删除。输入参数不可为空。
+     * @summary 删除审计日志
+     * @param {string} [tenantId]
+     * @param {string} [debugHeaderSign]
      * @param {Array<string>} [requestBody]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiLogV1AuthorityAuditDeletePost(
+      tenantId?: string,
+      debugHeaderSign?: string,
       requestBody?: Array<string>,
       options?: any,
-    ): AxiosPromise<object> {
+    ): AxiosPromise<void> {
       return localVarFp
-        .apiLogV1AuthorityAuditDeletePost(requestBody, options)
+        .apiLogV1AuthorityAuditDeletePost(tenantId, debugHeaderSign, requestBody, options)
         .then((request) => request(axios, basePath))
     },
     /**
-     *
-     * @summary /api/log/v1/authority-audit/query
+     * 根据条件查询审计日志，可按操作人、操作类型、操作内容、结果、时间范围进行日志查询。其中操作人、操作内容为模糊匹配。不输入参数时返回所有数据，多个参数组合查询时为并且关系。结果按操作时间倒序返回。
+     * @summary 查询审计日志
+     * @param {string} [tenantId]
+     * @param {string} [debugHeaderSign]
      * @param {QueryAuditLogInput} [queryAuditLogInput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiLogV1AuthorityAuditQueryPost(
+      tenantId?: string,
+      debugHeaderSign?: string,
       queryAuditLogInput?: QueryAuditLogInput,
       options?: any,
     ): AxiosPromise<AuditLogDtoPage> {
       return localVarFp
-        .apiLogV1AuthorityAuditQueryPost(queryAuditLogInput, options)
+        .apiLogV1AuthorityAuditQueryPost(tenantId, debugHeaderSign, queryAuditLogInput, options)
         .then((request) => request(axios, basePath))
     },
   }
@@ -304,53 +370,65 @@ export const AuthorityAuditApiFactory = function (
  */
 export class AuthorityAuditApi extends BaseAPI {
   /**
-   *
-   * @summary /api/log/v1/authority-audit/add
+   * 添加审计日志，输入时，需要录入租户的Id,操作人、操作内容、操作类型、结果、时间等信息。
+   * @summary 添加审计日志
+   * @param {string} [tenantId]
+   * @param {string} [debugHeaderSign]
    * @param {AddAuditLogInput} [addAuditLogInput]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof AuthorityAuditApi
    */
   public apiLogV1AuthorityAuditAddPost(
+    tenantId?: string,
+    debugHeaderSign?: string,
     addAuditLogInput?: AddAuditLogInput,
     options?: AxiosRequestConfig,
   ) {
     return AuthorityAuditApiFp(this.configuration)
-      .apiLogV1AuthorityAuditAddPost(addAuditLogInput, options)
+      .apiLogV1AuthorityAuditAddPost(tenantId, debugHeaderSign, addAuditLogInput, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
   /**
-   *
-   * @summary /api/log/v1/authority-audit/delete
+   * 根据审计日志的数据Id删除审计日志，可批量删除。输入参数不可为空。
+   * @summary 删除审计日志
+   * @param {string} [tenantId]
+   * @param {string} [debugHeaderSign]
    * @param {Array<string>} [requestBody]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof AuthorityAuditApi
    */
   public apiLogV1AuthorityAuditDeletePost(
+    tenantId?: string,
+    debugHeaderSign?: string,
     requestBody?: Array<string>,
     options?: AxiosRequestConfig,
   ) {
     return AuthorityAuditApiFp(this.configuration)
-      .apiLogV1AuthorityAuditDeletePost(requestBody, options)
+      .apiLogV1AuthorityAuditDeletePost(tenantId, debugHeaderSign, requestBody, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
   /**
-   *
-   * @summary /api/log/v1/authority-audit/query
+   * 根据条件查询审计日志，可按操作人、操作类型、操作内容、结果、时间范围进行日志查询。其中操作人、操作内容为模糊匹配。不输入参数时返回所有数据，多个参数组合查询时为并且关系。结果按操作时间倒序返回。
+   * @summary 查询审计日志
+   * @param {string} [tenantId]
+   * @param {string} [debugHeaderSign]
    * @param {QueryAuditLogInput} [queryAuditLogInput]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof AuthorityAuditApi
    */
   public apiLogV1AuthorityAuditQueryPost(
+    tenantId?: string,
+    debugHeaderSign?: string,
     queryAuditLogInput?: QueryAuditLogInput,
     options?: AxiosRequestConfig,
   ) {
     return AuthorityAuditApiFp(this.configuration)
-      .apiLogV1AuthorityAuditQueryPost(queryAuditLogInput, options)
+      .apiLogV1AuthorityAuditQueryPost(tenantId, debugHeaderSign, queryAuditLogInput, options)
       .then((request) => request(this.axios, this.basePath))
   }
 }
