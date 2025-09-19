@@ -15,19 +15,13 @@
 /**
  *
  * @export
- * @interface MonitorIndicatorInfo
+ * @interface DeleteControlIssueGroupConfigInput
  */
-export interface MonitorIndicatorInfo {
+export interface DeleteControlIssueGroupConfigInput {
   /**
    *
-   * @type {string}
-   * @memberof MonitorIndicatorInfo
+   * @type {Array<string>}
+   * @memberof DeleteControlIssueGroupConfigInput
    */
-  deviceName?: string | null
-  /**
-   *
-   * @type {string}
-   * @memberof MonitorIndicatorInfo
-   */
-  indicator?: string | null
+  ids?: Array<string> | null
 }

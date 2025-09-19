@@ -1,3 +1,4 @@
+/* tslint:disable */
 /* eslint-disable */
 /**
  * IoT服务
@@ -58,7 +59,7 @@ export interface ControlCmdDeliveryLogDto {
    */
   feedBackTarget?: Array<FeedBackTarget> | null
   /**
-   * 0-Deliveried(已下发) 1-Executing(指令正在执行) 2-Fault(指令执行故障) 3-Failure(指令未被执行) 4-Success(指令执行完成) 5-SystemError(系统错误)
+   * 0-Delivering(开始下发) 1-Deliveried(已下发) 2-FailToDeliver(下发失败) 3-Executing(指令正在执行) 4-Fault(指令执行故障) 5-Failure(指令未被执行) 6-Success(指令执行完成) 7-SystemError(系统错误)
    * @type {number}
    * @memberof ControlCmdDeliveryLogDto
    */
@@ -66,12 +67,14 @@ export interface ControlCmdDeliveryLogDto {
 }
 
 export const ControlCmdDeliveryLogDtoExecuteStatusEnum = {
-  '0': 0 as number,
-  '1': 1 as number,
-  '2': 2 as number,
-  '3': 3 as number,
-  '4': 4 as number,
-  '5': 5 as number,
+  NUMBER_0: 0,
+  NUMBER_1: 1,
+  NUMBER_2: 2,
+  NUMBER_3: 3,
+  NUMBER_4: 4,
+  NUMBER_5: 5,
+  NUMBER_6: 6,
+  NUMBER_7: 7,
 } as const
 
 export type ControlCmdDeliveryLogDtoExecuteStatusEnum =
