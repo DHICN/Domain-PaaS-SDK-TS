@@ -18,39 +18,45 @@
  */
 export interface CurrentCompareOutput {
   /**
-   * 系统点位代码 point code
+   * 设备指标名，比如\'二沉池除磷剂投加量仪|PChem_QSet\'
    * @type {string}
    * @memberof CurrentCompareOutput
    */
-  code?: string | null
+  code: string
   /**
-   * 系统点位名称 point name
+   * 指标描述，比如\'二沉池除磷剂投加量\'
    * @type {string}
    * @memberof CurrentCompareOutput
    */
   name?: string | null
   /**
-   * 数值单位 unit of the value
+   * 数值单位，比如\'L/h\'
    * @type {string}
    * @memberof CurrentCompareOutput
    */
   unit?: string | null
   /**
-   * 在线数据 online data
+   * 在线数据
    * @type {number}
    * @memberof CurrentCompareOutput
    */
   realData?: number
   /**
-   * 模拟数据 model result data
+   * 模拟数据
    * @type {number}
    * @memberof CurrentCompareOutput
    */
   modelData?: number
   /**
-   * 是否开启自动模式
+   * 是否开启自动模式，true表示开启，false表示关闭
    * @type {boolean}
    * @memberof CurrentCompareOutput
    */
-  isAutoControl?: boolean
+  isAutoControl: boolean
+  /**
+   * 模型数据时间-用于下发控制指令时修改数据，若未查出模拟数据时，该值为null
+   * @type {string}
+   * @memberof CurrentCompareOutput
+   */
+  timeOfModelData?: string | null
 }

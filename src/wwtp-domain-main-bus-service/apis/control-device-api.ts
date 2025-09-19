@@ -31,9 +31,13 @@ import {
 // @ts-ignore
 import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } from '../base'
 // @ts-ignore
+import { ChangeControlDeviceStatusItem } from '../models'
+// @ts-ignore
 import { ControlDeviceInputOutput } from '../models'
 // @ts-ignore
 import { RemoteServiceErrorResponse } from '../models'
+// @ts-ignore
+import { SaveControlDataByModelResultArgs } from '../models'
 /**
  * ControlDeviceApi - axios parameter creator
  * @export
@@ -60,6 +64,10 @@ export const ControlDeviceApiAxiosParamCreator = function (configuration?: Confi
       const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
       setSearchParams(localVarUrlObj, localVarQueryParameter)
       let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
@@ -93,6 +101,10 @@ export const ControlDeviceApiAxiosParamCreator = function (configuration?: Confi
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
 
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
       setSearchParams(localVarUrlObj, localVarQueryParameter)
       let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
       localVarRequestOptions.headers = {
@@ -100,6 +112,53 @@ export const ControlDeviceApiAxiosParamCreator = function (configuration?: Confi
         ...headersFromBaseOptions,
         ...options.headers,
       }
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     * 模型计算结束后调用，适用于根据模型结果生成控制建议的场景, 实际上只有滚动优化的才会用到这个接口
+     * @summary 通过模型结果保存设备的控制数据
+     * @param {SaveControlDataByModelResultArgs} [saveControlDataByModelResultArgs]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1ControlDevicesSaveByModelDataPost: async (
+      saveControlDataByModelResultArgs?: SaveControlDataByModelResultArgs,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/control/devices/save-by-model-data`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        saveControlDataByModelResultArgs,
+        localVarRequestOptions,
+        configuration,
+      )
 
       return {
         url: toPathString(localVarUrlObj),
@@ -129,6 +188,10 @@ export const ControlDeviceApiAxiosParamCreator = function (configuration?: Confi
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
 
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
       setSearchParams(localVarUrlObj, localVarQueryParameter)
@@ -140,6 +203,53 @@ export const ControlDeviceApiAxiosParamCreator = function (configuration?: Confi
       }
       localVarRequestOptions.data = serializeDataIfNeeded(
         controlDeviceInputOutput,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     * 调整设备指标的状态，是否可控、是否自动控制等。其中设备、指标为必要信息。IsAutoControl和IsControlEnable为可选信息, 如果IsAutoControl和IsControlEnable都为null，则不做任何操作。
+     * @summary 修改设备的控制状态
+     * @param {Array<ChangeControlDeviceStatusItem>} [changeControlDeviceStatusItem]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV2ControlDevicesStatusSavePost: async (
+      changeControlDeviceStatusItem?: Array<ChangeControlDeviceStatusItem>,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v2/control/devices/status/save`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        changeControlDeviceStatusItem,
         localVarRequestOptions,
         configuration,
       )
@@ -187,6 +297,24 @@ export const ControlDeviceApiFp = function (configuration?: Configuration) {
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**
+     * 模型计算结束后调用，适用于根据模型结果生成控制建议的场景, 实际上只有滚动优化的才会用到这个接口
+     * @summary 通过模型结果保存设备的控制数据
+     * @param {SaveControlDataByModelResultArgs} [saveControlDataByModelResultArgs]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1ControlDevicesSaveByModelDataPost(
+      saveControlDataByModelResultArgs?: SaveControlDataByModelResultArgs,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<boolean>> {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiV1ControlDevicesSaveByModelDataPost(
+          saveControlDataByModelResultArgs,
+          options,
+        )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
      *
      * @summary 保存设备的自动模式状态
      * @param {Array<ControlDeviceInputOutput>} [controlDeviceInputOutput]
@@ -199,6 +327,23 @@ export const ControlDeviceApiFp = function (configuration?: Configuration) {
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<boolean>> {
       const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1ControlDevicesSavePost(
         controlDeviceInputOutput,
+        options,
+      )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     * 调整设备指标的状态，是否可控、是否自动控制等。其中设备、指标为必要信息。IsAutoControl和IsControlEnable为可选信息, 如果IsAutoControl和IsControlEnable都为null，则不做任何操作。
+     * @summary 修改设备的控制状态
+     * @param {Array<ChangeControlDeviceStatusItem>} [changeControlDeviceStatusItem]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV2ControlDevicesStatusSavePost(
+      changeControlDeviceStatusItem?: Array<ChangeControlDeviceStatusItem>,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<boolean>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiV2ControlDevicesStatusSavePost(
+        changeControlDeviceStatusItem,
         options,
       )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
@@ -238,6 +383,21 @@ export const ControlDeviceApiFactory = function (
       return localVarFp.apiV1ControlDevicesGet(options).then((request) => request(axios, basePath))
     },
     /**
+     * 模型计算结束后调用，适用于根据模型结果生成控制建议的场景, 实际上只有滚动优化的才会用到这个接口
+     * @summary 通过模型结果保存设备的控制数据
+     * @param {SaveControlDataByModelResultArgs} [saveControlDataByModelResultArgs]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1ControlDevicesSaveByModelDataPost(
+      saveControlDataByModelResultArgs?: SaveControlDataByModelResultArgs,
+      options?: any,
+    ): AxiosPromise<boolean> {
+      return localVarFp
+        .apiV1ControlDevicesSaveByModelDataPost(saveControlDataByModelResultArgs, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
      *
      * @summary 保存设备的自动模式状态
      * @param {Array<ControlDeviceInputOutput>} [controlDeviceInputOutput]
@@ -250,6 +410,21 @@ export const ControlDeviceApiFactory = function (
     ): AxiosPromise<boolean> {
       return localVarFp
         .apiV1ControlDevicesSavePost(controlDeviceInputOutput, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     * 调整设备指标的状态，是否可控、是否自动控制等。其中设备、指标为必要信息。IsAutoControl和IsControlEnable为可选信息, 如果IsAutoControl和IsControlEnable都为null，则不做任何操作。
+     * @summary 修改设备的控制状态
+     * @param {Array<ChangeControlDeviceStatusItem>} [changeControlDeviceStatusItem]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV2ControlDevicesStatusSavePost(
+      changeControlDeviceStatusItem?: Array<ChangeControlDeviceStatusItem>,
+      options?: any,
+    ): AxiosPromise<boolean> {
+      return localVarFp
+        .apiV2ControlDevicesStatusSavePost(changeControlDeviceStatusItem, options)
         .then((request) => request(axios, basePath))
     },
   }
@@ -289,6 +464,23 @@ export class ControlDeviceApi extends BaseAPI {
   }
 
   /**
+   * 模型计算结束后调用，适用于根据模型结果生成控制建议的场景, 实际上只有滚动优化的才会用到这个接口
+   * @summary 通过模型结果保存设备的控制数据
+   * @param {SaveControlDataByModelResultArgs} [saveControlDataByModelResultArgs]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof ControlDeviceApi
+   */
+  public apiV1ControlDevicesSaveByModelDataPost(
+    saveControlDataByModelResultArgs?: SaveControlDataByModelResultArgs,
+    options?: AxiosRequestConfig,
+  ) {
+    return ControlDeviceApiFp(this.configuration)
+      .apiV1ControlDevicesSaveByModelDataPost(saveControlDataByModelResultArgs, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
    *
    * @summary 保存设备的自动模式状态
    * @param {Array<ControlDeviceInputOutput>} [controlDeviceInputOutput]
@@ -302,6 +494,23 @@ export class ControlDeviceApi extends BaseAPI {
   ) {
     return ControlDeviceApiFp(this.configuration)
       .apiV1ControlDevicesSavePost(controlDeviceInputOutput, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   * 调整设备指标的状态，是否可控、是否自动控制等。其中设备、指标为必要信息。IsAutoControl和IsControlEnable为可选信息, 如果IsAutoControl和IsControlEnable都为null，则不做任何操作。
+   * @summary 修改设备的控制状态
+   * @param {Array<ChangeControlDeviceStatusItem>} [changeControlDeviceStatusItem]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof ControlDeviceApi
+   */
+  public apiV2ControlDevicesStatusSavePost(
+    changeControlDeviceStatusItem?: Array<ChangeControlDeviceStatusItem>,
+    options?: AxiosRequestConfig,
+  ) {
+    return ControlDeviceApiFp(this.configuration)
+      .apiV2ControlDevicesStatusSavePost(changeControlDeviceStatusItem, options)
       .then((request) => request(this.axios, this.basePath))
   }
 }
