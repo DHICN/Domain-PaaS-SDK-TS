@@ -59,11 +59,29 @@ export interface ControlCmdDeliveryLogDto {
    */
   feedBackTarget?: Array<FeedBackTarget> | null
   /**
-   * 0-Delivering(开始下发) 1-Deliveried(已下发) 2-FailToDeliver(下发失败) 3-Executing(指令正在执行) 4-Fault(指令执行故障) 5-Failure(指令未被执行) 6-Success(指令执行完成) 7-SystemError(系统错误)
+   * 0-Waiting(等待下发) 1-Delivering(开始下发) 2-Deliveried(已下发) 3-FailToDeliver(下发失败) 4-Executing(指令正在执行) 5-Fault(指令执行故障) 6-Failure(指令未被执行) 7-Success(指令执行完成) 8-SystemError(系统错误)
    * @type {number}
    * @memberof ControlCmdDeliveryLogDto
    */
   executeStatus?: ControlCmdDeliveryLogDtoExecuteStatusEnum
+  /**
+   * 控制下发组
+   * @type {string}
+   * @memberof ControlCmdDeliveryLogDto
+   */
+  controlGroup?: string | null
+  /**
+   * 控制组包含的控制下发单元
+   * @type {string}
+   * @memberof ControlCmdDeliveryLogDto
+   */
+  controlUnit?: string | null
+  /**
+   * 指令执行过程中出现的错误消息
+   * @type {string}
+   * @memberof ControlCmdDeliveryLogDto
+   */
+  failMsg?: string | null
 }
 
 export const ControlCmdDeliveryLogDtoExecuteStatusEnum = {
@@ -75,6 +93,7 @@ export const ControlCmdDeliveryLogDtoExecuteStatusEnum = {
   NUMBER_5: 5,
   NUMBER_6: 6,
   NUMBER_7: 7,
+  NUMBER_8: 8,
 } as const
 
 export type ControlCmdDeliveryLogDtoExecuteStatusEnum =
