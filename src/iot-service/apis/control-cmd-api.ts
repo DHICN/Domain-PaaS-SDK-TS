@@ -28,9 +28,9 @@ import {
   toPathString,
   createRequestFunction,
 } from '../common'
+
 // @ts-ignore
-import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } from '../base'
-// @ts-ignore
+import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } from '../base' // @ts-ignore
 import { AddControlCmdConfigInput } from '../models'
 // @ts-ignore
 import { AddControlIssueGroupConfigInput } from '../models'
@@ -44,6 +44,8 @@ import { ControlCmdConfigDtoPage } from '../models'
 import { ControlCmdDeliveryLogDto } from '../models'
 // @ts-ignore
 import { ControlDispatchInput } from '../models'
+// @ts-ignore
+import { ControlDispatchOutput } from '../models'
 // @ts-ignore
 import { ControlIssueGroupConfigDto } from '../models'
 // @ts-ignore
@@ -66,7 +68,7 @@ export const ControlCmdApiAxiosParamCreator = function (configuration?: Configur
   return {
     /**
      *
-     * @summary 获取控制指令后馈记录【内部使用】
+     * @summary 获取控制指令后馈记录
      * @param {string} [deliveryId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -157,7 +159,7 @@ export const ControlCmdApiAxiosParamCreator = function (configuration?: Configur
     },
     /**
      *
-     * @summary 删除控制指令配置【内部使用】
+     * @summary 删除控制指令配置
      * @param {DeleteControlCmdConfigsInput} [deleteControlCmdConfigsInput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -204,7 +206,7 @@ export const ControlCmdApiAxiosParamCreator = function (configuration?: Configur
     },
     /**
      *
-     * @summary 更新控制指令配置【内部使用】
+     * @summary 更新控制指令配置
      * @param {UpdateControlCmdConfigInput} [updateControlCmdConfigInput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -381,6 +383,94 @@ export const ControlCmdApiAxiosParamCreator = function (configuration?: Configur
 
       if (configId !== undefined) {
         localVarQueryParameter['configId'] = configId
+      }
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 根据控制下发的配置id获取指标所有的下发状态记录
+     * @param {string} [configId]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1IotControlCmdDeliveryGetByConfigIdGet: async (
+      configId?: string,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/iot/control-cmd/delivery/get-by-configId`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      if (configId !== undefined) {
+        localVarQueryParameter['configId'] = configId
+      }
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 根据控制下发id获取下发状态记录
+     * @param {string} [id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1IotControlCmdDeliveryGetByIdGet: async (
+      id?: string,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/iot/control-cmd/delivery/get-by-id`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      if (id !== undefined) {
+        localVarQueryParameter['Id'] = id
       }
 
       setSearchParams(localVarUrlObj, localVarQueryParameter)
@@ -681,7 +771,7 @@ export const ControlCmdApiFp = function (configuration?: Configuration) {
   return {
     /**
      *
-     * @summary 获取控制指令后馈记录【内部使用】
+     * @summary 获取控制指令后馈记录
      * @param {string} [deliveryId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -717,7 +807,7 @@ export const ControlCmdApiFp = function (configuration?: Configuration) {
     },
     /**
      *
-     * @summary 删除控制指令配置【内部使用】
+     * @summary 删除控制指令配置
      * @param {DeleteControlCmdConfigsInput} [deleteControlCmdConfigsInput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -734,7 +824,7 @@ export const ControlCmdApiFp = function (configuration?: Configuration) {
     },
     /**
      *
-     * @summary 更新控制指令配置【内部使用】
+     * @summary 更新控制指令配置
      * @param {UpdateControlCmdConfigInput} [updateControlCmdConfigInput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -784,7 +874,7 @@ export const ControlCmdApiFp = function (configuration?: Configuration) {
     async apiV1IotControlCmdControlDispatchPost(
       controlDispatchInput?: ControlDispatchInput,
       options?: AxiosRequestConfig,
-    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ControlDispatchOutput>> {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.apiV1IotControlCmdControlDispatchPost(
           controlDispatchInput,
@@ -809,6 +899,43 @@ export const ControlCmdApiFp = function (configuration?: Configuration) {
         configId,
         options,
       )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
+     * @summary 根据控制下发的配置id获取指标所有的下发状态记录
+     * @param {string} [configId]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1IotControlCmdDeliveryGetByConfigIdGet(
+      configId?: string,
+      options?: AxiosRequestConfig,
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<ControlCmdDeliveryLogDto>>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiV1IotControlCmdDeliveryGetByConfigIdGet(
+          configId,
+          options,
+        )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
+     * @summary 根据控制下发id获取下发状态记录
+     * @param {string} [id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1IotControlCmdDeliveryGetByIdGet(
+      id?: string,
+      options?: AxiosRequestConfig,
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<ControlCmdDeliveryLogDto>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiV1IotControlCmdDeliveryGetByIdGet(id, options)
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**
@@ -931,7 +1058,7 @@ export const ControlCmdApiFactory = function (
   return {
     /**
      *
-     * @summary 获取控制指令后馈记录【内部使用】
+     * @summary 获取控制指令后馈记录
      * @param {string} [deliveryId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -961,7 +1088,7 @@ export const ControlCmdApiFactory = function (
     },
     /**
      *
-     * @summary 删除控制指令配置【内部使用】
+     * @summary 删除控制指令配置
      * @param {DeleteControlCmdConfigsInput} [deleteControlCmdConfigsInput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -976,7 +1103,7 @@ export const ControlCmdApiFactory = function (
     },
     /**
      *
-     * @summary 更新控制指令配置【内部使用】
+     * @summary 更新控制指令配置
      * @param {UpdateControlCmdConfigInput} [updateControlCmdConfigInput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -1018,7 +1145,7 @@ export const ControlCmdApiFactory = function (
     apiV1IotControlCmdControlDispatchPost(
       controlDispatchInput?: ControlDispatchInput,
       options?: any,
-    ): AxiosPromise<void> {
+    ): AxiosPromise<ControlDispatchOutput> {
       return localVarFp
         .apiV1IotControlCmdControlDispatchPost(controlDispatchInput, options)
         .then((request) => request(axios, basePath))
@@ -1036,6 +1163,36 @@ export const ControlCmdApiFactory = function (
     ): AxiosPromise<Array<ControlCmdDeliveryLogDto>> {
       return localVarFp
         .apiV1IotControlCmdDeliveryGet(configId, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @summary 根据控制下发的配置id获取指标所有的下发状态记录
+     * @param {string} [configId]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1IotControlCmdDeliveryGetByConfigIdGet(
+      configId?: string,
+      options?: any,
+    ): AxiosPromise<Array<ControlCmdDeliveryLogDto>> {
+      return localVarFp
+        .apiV1IotControlCmdDeliveryGetByConfigIdGet(configId, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @summary 根据控制下发id获取下发状态记录
+     * @param {string} [id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1IotControlCmdDeliveryGetByIdGet(
+      id?: string,
+      options?: any,
+    ): AxiosPromise<ControlCmdDeliveryLogDto> {
+      return localVarFp
+        .apiV1IotControlCmdDeliveryGetByIdGet(id, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -1138,7 +1295,7 @@ export const ControlCmdApiFactory = function (
 export class ControlCmdApi extends BaseAPI {
   /**
    *
-   * @summary 获取控制指令后馈记录【内部使用】
+   * @summary 获取控制指令后馈记录
    * @param {string} [deliveryId]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
@@ -1169,7 +1326,7 @@ export class ControlCmdApi extends BaseAPI {
 
   /**
    *
-   * @summary 删除控制指令配置【内部使用】
+   * @summary 删除控制指令配置
    * @param {DeleteControlCmdConfigsInput} [deleteControlCmdConfigsInput]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
@@ -1186,7 +1343,7 @@ export class ControlCmdApi extends BaseAPI {
 
   /**
    *
-   * @summary 更新控制指令配置【内部使用】
+   * @summary 更新控制指令配置
    * @param {UpdateControlCmdConfigInput} [updateControlCmdConfigInput]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
@@ -1250,6 +1407,37 @@ export class ControlCmdApi extends BaseAPI {
   public apiV1IotControlCmdDeliveryGet(configId?: string, options?: AxiosRequestConfig) {
     return ControlCmdApiFp(this.configuration)
       .apiV1IotControlCmdDeliveryGet(configId, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary 根据控制下发的配置id获取指标所有的下发状态记录
+   * @param {string} [configId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof ControlCmdApi
+   */
+  public apiV1IotControlCmdDeliveryGetByConfigIdGet(
+    configId?: string,
+    options?: AxiosRequestConfig,
+  ) {
+    return ControlCmdApiFp(this.configuration)
+      .apiV1IotControlCmdDeliveryGetByConfigIdGet(configId, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary 根据控制下发id获取下发状态记录
+   * @param {string} [id]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof ControlCmdApi
+   */
+  public apiV1IotControlCmdDeliveryGetByIdGet(id?: string, options?: AxiosRequestConfig) {
+    return ControlCmdApiFp(this.configuration)
+      .apiV1IotControlCmdDeliveryGetByIdGet(id, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
