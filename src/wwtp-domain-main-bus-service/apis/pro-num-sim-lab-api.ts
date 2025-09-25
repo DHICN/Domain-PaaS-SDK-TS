@@ -41,6 +41,8 @@ import { OptimizationConfig } from '../models'
 // @ts-ignore
 import { QueryBiochemicaltanksOutput } from '../models'
 // @ts-ignore
+import { QueryControlDataOutput } from '../models'
+// @ts-ignore
 import { QueryControlParamCompareInput } from '../models'
 // @ts-ignore
 import { QueryControlParamCompareOutput } from '../models'
@@ -52,6 +54,8 @@ import { QueryInletDataOutput } from '../models'
 import { RemoteServiceErrorResponse } from '../models'
 // @ts-ignore
 import { ResultParam } from '../models'
+// @ts-ignore
+import { SaveControlDataInput } from '../models'
 // @ts-ignore
 import { SaveInletDataInput } from '../models'
 // @ts-ignore
@@ -69,12 +73,12 @@ export const ProNumSimLabApiAxiosParamCreator = function (configuration?: Config
     /**
      *
      * @summary /api/app/pro-num-sim-lab/optimization-config-by-type
-     * @param {number} [displayType]
+     * @param {1 | 2} [displayType]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiAppProNumSimLabOptimizationConfigByTypeGet: async (
-      displayType?: number,
+      displayType?: 1 | 2,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
       const localVarPath = `/api/app/pro-num-sim-lab/optimization-config-by-type`
@@ -88,6 +92,10 @@ export const ProNumSimLabApiAxiosParamCreator = function (configuration?: Config
       const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
       if (displayType !== undefined) {
         localVarQueryParameter['displayType'] = displayType
@@ -107,16 +115,18 @@ export const ProNumSimLabApiAxiosParamCreator = function (configuration?: Config
       }
     },
     /**
-     *
-     * @summary 获取方案的出水水质结果数据 Get outlet water quality time-series result of a scenario
-     * @param {string} [scenarioId] 方案ID scenario id
+     * 关键词：      预案、出水水质、结果数据        使用场景：      完成预案创建和计算后，需要查看预案模拟结果数据时        相关背景：      获取预案的出水水质结果数据之前，需要先确保：1、新创建的预案计算成功，2、完成结果导出的步骤        输入：      scenarioId:          方案ID，可通过方案管理服务获得预案列表，其中每条预案的ID就是这里要传入的方案ID            输出：
+     * @summary 获取预案的出水水质结果数据
+     * @param {string} scenarioId 方案ID
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiProNumSimLabSimResultsGet: async (
-      scenarioId?: string,
+      scenarioId: string,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
+      // verify required parameter 'scenarioId' is not null or undefined
+      assertParamExists('apiProNumSimLabSimResultsGet', 'scenarioId', scenarioId)
       const localVarPath = `/api/ProNumSimLab/SimResults`
       // use dummy base URL string because the URL constructor only accepts absolute URLs.
       const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
@@ -128,6 +138,10 @@ export const ProNumSimLabApiAxiosParamCreator = function (configuration?: Config
       const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
       if (scenarioId !== undefined) {
         localVarQueryParameter['scenarioId'] = scenarioId
@@ -147,18 +161,22 @@ export const ProNumSimLabApiAxiosParamCreator = function (configuration?: Config
       }
     },
     /**
-     *
-     * @summary 生化池查询 Get biochemical pool config data
-     * @param {string} [productLine] 工艺线代码 product line code
-     * @param {string} [modelName] 模板模型名称 template model name
+     * 关键词：      生化池名称        使用场景：      查看预案水质全流程结果数据时，查询生化池名称列表，用于全流程结果数据的X轴名称展示        相关背景：    输入：       ProductLine：          工艺线代码，比如\'L1\'，\'L2\'       ModelName：          模板方案名称，这里填写固定名称\'模拟实验室模型\'  输出：      生化池名称列表
+     * @summary 查询生化池名称
+     * @param {string} productLine 工艺线代码，比如\&#39;L1\&#39;，\&#39;L2\&#39;
+     * @param {string} modelName 模板方案名称，这里填固定名称\&#39;模拟实验室模型\&#39;
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiV2ConfigBiochemicaltanksGet: async (
-      productLine?: string,
-      modelName?: string,
+      productLine: string,
+      modelName: string,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
+      // verify required parameter 'productLine' is not null or undefined
+      assertParamExists('apiV2ConfigBiochemicaltanksGet', 'productLine', productLine)
+      // verify required parameter 'modelName' is not null or undefined
+      assertParamExists('apiV2ConfigBiochemicaltanksGet', 'modelName', modelName)
       const localVarPath = `/api/v2/config/biochemicaltanks`
       // use dummy base URL string because the URL constructor only accepts absolute URLs.
       const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
@@ -170,6 +188,10 @@ export const ProNumSimLabApiAxiosParamCreator = function (configuration?: Config
       const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
       if (productLine !== undefined) {
         localVarQueryParameter['ProductLine'] = productLine
@@ -193,8 +215,8 @@ export const ProNumSimLabApiAxiosParamCreator = function (configuration?: Config
       }
     },
     /**
-     * 只有多个方案之间设置不同的参数才会返回 Only parameters with difference setting values among the scenarios will be returned
-     * @summary 多方案控制参数对比 Get several scenarios\' control paramters for comparison
+     * 关键词：     方案对比、控制参数        使用场景：      需要查看两个或两个以上的、可对比的预案中存在的不同的控制参数时        相关背景：      预案模块提供了查看多方案结果对比的功能，除了可以对比模拟结果值以外，还可以对比这些预案设置的控制参数，此接口就是获取控制参数，并且只返回设置不相同的参数值，这样更方便的确认不同的参数值对结果的影响。      只有多个方案之间设置不同的参数才会有返回值。    输入：       ScenarioIds：          用于对比的方案ID，比如[\"20363694-3d7d-40b0-8666-ee3c40dd8dd7\",\"46617cd6-3626-4c82-b7c1-6571d5619b30\"]       ProductLine：          工艺线代码，比如\'L1\'，\'L2\'  输出：      多方案控制参数的对比结果
+     * @summary 查询多方案控制参数的对比结果
      * @param {QueryControlParamCompareInput} [queryControlParamCompareInput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -214,6 +236,10 @@ export const ProNumSimLabApiAxiosParamCreator = function (configuration?: Config
       const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
@@ -236,22 +262,30 @@ export const ProNumSimLabApiAxiosParamCreator = function (configuration?: Config
       }
     },
     /**
-     *
-     * @summary 单个工艺线单个生化池指标统计查询 Get scenario\'s statistic result of all the indicators on a certain biochemical pool of a specified product line
-     * @param {string} [scenarioId] 方案ID scenario id
-     * @param {string} [productLine] 工艺线代码 product line code
-     * @param {string} [tankNo] 生化池序号 biochemical pool index
-     * @param {string} [modelName] 模板模型名称 template model name
+     * 关键词：     生化池指标、统计数据        使用场景：      查看预案结果数据时，如需展示指标统计数据，可以通过调用此接口获得        相关背景：      要展示统计数据的生化池指标已经在项目初始化时通过配置文件上传，并且指标的统计数据也会在预案计算结束的后处理入库。这里的统计主要是指在预案的模拟时间内，该指标在这段时间内的最大值、最小值、平均值、中位数、百分位数等统计信息    输入：       ScenarioId：          预案ID       ProductLine：          工艺线代码，比如\'L1\'，\'L2\'       TankNo:          生化池序号，比如\'1\',\'2\'       ModelName：          模板方案名称，这里填写固定名称\'模拟实验室模型\'  输出：      生化池指标统计数据
+     * @summary 查询指定预案的单个工艺线单个生化池指标统计数据
+     * @param {string} scenarioId 方案ID
+     * @param {string} productLine 工艺线代码，比如\&#39;L1\&#39;,\&#39;L2\&#39;
+     * @param {string} tankNo 生化池序号，比如\&#39;1\&#39;,\&#39;2\&#39;
+     * @param {string} modelName 模板方案名称，这里填写固定名称\&#39;模拟实验室模型\&#39;
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiV2SimulationLabResultIndicatorStatisticGet: async (
-      scenarioId?: string,
-      productLine?: string,
-      tankNo?: string,
-      modelName?: string,
+      scenarioId: string,
+      productLine: string,
+      tankNo: string,
+      modelName: string,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
+      // verify required parameter 'scenarioId' is not null or undefined
+      assertParamExists('apiV2SimulationLabResultIndicatorStatisticGet', 'scenarioId', scenarioId)
+      // verify required parameter 'productLine' is not null or undefined
+      assertParamExists('apiV2SimulationLabResultIndicatorStatisticGet', 'productLine', productLine)
+      // verify required parameter 'tankNo' is not null or undefined
+      assertParamExists('apiV2SimulationLabResultIndicatorStatisticGet', 'tankNo', tankNo)
+      // verify required parameter 'modelName' is not null or undefined
+      assertParamExists('apiV2SimulationLabResultIndicatorStatisticGet', 'modelName', modelName)
       const localVarPath = `/api/v2/simulation-lab/result/indicator-statistic`
       // use dummy base URL string because the URL constructor only accepts absolute URLs.
       const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
@@ -263,6 +297,10 @@ export const ProNumSimLabApiAxiosParamCreator = function (configuration?: Config
       const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
       if (scenarioId !== undefined) {
         localVarQueryParameter['ScenarioId'] = scenarioId
@@ -294,20 +332,20 @@ export const ProNumSimLabApiAxiosParamCreator = function (configuration?: Config
       }
     },
     /**
-     *
-     * @summary 获取单个方案MABR池水质项的分层时间序列数据 Get scenario\'s water quality time-series data in MABR layers
-     * @param {string} [scenarioId]
-     * @param {string} [productLine]
-     * @param {string} [modelName]
+     * 关键词：      预案、MABR池水质项、分层时序数据        使用场景：      查看预案结果数据时        相关背景：      MABR池水质项已经在项目初始化时通过配置文件上传，水质项的所属层数是设备属性Layer，通过相同的水质项的指标名拿到所有层的设备，以此完成全部分层的水质项时序数据获取。    输入：       scenarioId：          预案ID       productLine：          工艺线代码，比如\'L1\'，\'L2\'  输出：MABR池水质项的全部分层时序数据
+     * @summary 获取单个预案MABR池水质项的分层时间序列数据
+     * @param {string} scenarioId 预案ID
+     * @param {string} [productLine] 工艺线代码，比如\&#39;L1\&#39;，\&#39;L2\&#39;
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiV2SimulationLabResultMabrLayerDataGet: async (
-      scenarioId?: string,
+      scenarioId: string,
       productLine?: string,
-      modelName?: string,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
+      // verify required parameter 'scenarioId' is not null or undefined
+      assertParamExists('apiV2SimulationLabResultMabrLayerDataGet', 'scenarioId', scenarioId)
       const localVarPath = `/api/v2/simulation-lab/result/mabr-layer-data`
       // use dummy base URL string because the URL constructor only accepts absolute URLs.
       const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
@@ -320,16 +358,16 @@ export const ProNumSimLabApiAxiosParamCreator = function (configuration?: Config
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
 
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
       if (scenarioId !== undefined) {
         localVarQueryParameter['scenarioId'] = scenarioId
       }
 
       if (productLine !== undefined) {
         localVarQueryParameter['productLine'] = productLine
-      }
-
-      if (modelName !== undefined) {
-        localVarQueryParameter['modelName'] = modelName
       }
 
       setSearchParams(localVarUrlObj, localVarQueryParameter)
@@ -346,22 +384,28 @@ export const ProNumSimLabApiAxiosParamCreator = function (configuration?: Config
       }
     },
     /**
-     *
-     * @summary 单个工艺线水质全流程查询 Get scenario\'s water quality entire process result data of a certain product line
-     * @param {string} [scenarioId] 方案ID scenario id
-     * @param {string} [productLine] 工艺线代码 product line code
-     * @param {string} [modelName] 模板模型名称 template model name
-     * @param {string} [code] 系统点位 system code
+     * 关键词：      预案、单个工艺线、水质全流程        使用场景：      查看预案结果数据时，如需展示指标过程数据，则可以调用此接口        相关背景：    输入：       ScenarioId：          预案ID       ProductLine：          工艺线代码，比如\'L1\'，\'L2\'       ModelName：          模板方案名称，这里填写固定名称\'模拟实验室模型\'       Code：          系统点位，比如若设置为\'X_AUT\'，则只返回\'X_AUT\'的全流程数据，设置为空则返回所有水质点位  输出：
+     * @summary 查询单个预案的单个工艺线水质全流程
+     * @param {string} scenarioId 预案ID
+     * @param {string} productLine 工艺线代码，比如\&#39;L1\&#39;，\&#39;L2\&#39;
+     * @param {string} modelName 模板方案名称，这里填写固定名称\&#39;模拟实验室模型\&#39;
+     * @param {string} [code] 系统点位，比如若设置为\&#39;X_AUT\&#39;，则只返回\&#39;X_AUT\&#39;的全流程数据，设置为空则返回所有水质点位
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiV2SimulationLabResultTsByProductlineGet: async (
-      scenarioId?: string,
-      productLine?: string,
-      modelName?: string,
+      scenarioId: string,
+      productLine: string,
+      modelName: string,
       code?: string,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
+      // verify required parameter 'scenarioId' is not null or undefined
+      assertParamExists('apiV2SimulationLabResultTsByProductlineGet', 'scenarioId', scenarioId)
+      // verify required parameter 'productLine' is not null or undefined
+      assertParamExists('apiV2SimulationLabResultTsByProductlineGet', 'productLine', productLine)
+      // verify required parameter 'modelName' is not null or undefined
+      assertParamExists('apiV2SimulationLabResultTsByProductlineGet', 'modelName', modelName)
       const localVarPath = `/api/v2/simulation-lab/result/ts-by-productline`
       // use dummy base URL string because the URL constructor only accepts absolute URLs.
       const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
@@ -373,6 +417,10 @@ export const ProNumSimLabApiAxiosParamCreator = function (configuration?: Config
       const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
       if (scenarioId !== undefined) {
         localVarQueryParameter['ScenarioId'] = scenarioId
@@ -405,61 +453,22 @@ export const ProNumSimLabApiAxiosParamCreator = function (configuration?: Config
     },
     /**
      *
-     * @summary 根据ID删除方案，同时删除方案相关的设置数据 Delete scenario as well as its corresponding setting data by scenario ids
-     * @param {DeleteScenarioInput} [deleteScenarioInput]
+     * @summary 预案编辑时，查询预案的控制边界数据
+     * @param {string} scenarioId 预案ID
+     * @param {string} productLine 工艺线代码，在项目初始化时会通过\&#39;污水基础服务\&#39;的上传到系统，在配置表\&#39;4-工艺线与HRT\&#39;配置，例如：\&#39;L1\&#39;
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    apiV2SimulationLabScenarioDeletePost: async (
-      deleteScenarioInput?: DeleteScenarioInput,
+    apiV2SimulationLabScenarioControlDataGet: async (
+      scenarioId: string,
+      productLine: string,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
-      const localVarPath = `/api/v2/simulation-lab/scenario/delete`
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
-      let baseOptions
-      if (configuration) {
-        baseOptions = configuration.baseOptions
-      }
-
-      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
-      const localVarHeaderParameter = {} as any
-      const localVarQueryParameter = {} as any
-
-      localVarHeaderParameter['Content-Type'] = 'application/json'
-
-      setSearchParams(localVarUrlObj, localVarQueryParameter)
-      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      }
-      localVarRequestOptions.data = serializeDataIfNeeded(
-        deleteScenarioInput,
-        localVarRequestOptions,
-        configuration,
-      )
-
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      }
-    },
-    /**
-     *
-     * @summary 查询方案进水数据 Get scenario\'s inlet time-series data
-     * @param {string} [scenarioId] 方案ID scenario id
-     * @param {string} [inlet] 进水点 inlet
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    apiV2SimulationLabScenarioInletDataGet: async (
-      scenarioId?: string,
-      inlet?: string,
-      options: AxiosRequestConfig = {},
-    ): Promise<RequestArgs> => {
-      const localVarPath = `/api/v2/simulation-lab/scenario/inlet-data`
+      // verify required parameter 'scenarioId' is not null or undefined
+      assertParamExists('apiV2SimulationLabScenarioControlDataGet', 'scenarioId', scenarioId)
+      // verify required parameter 'productLine' is not null or undefined
+      assertParamExists('apiV2SimulationLabScenarioControlDataGet', 'productLine', productLine)
+      const localVarPath = `/api/v2/simulation-lab/scenario/control-data`
       // use dummy base URL string because the URL constructor only accepts absolute URLs.
       const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
       let baseOptions
@@ -471,224 +480,9 @@ export const ProNumSimLabApiAxiosParamCreator = function (configuration?: Config
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
 
-      if (scenarioId !== undefined) {
-        localVarQueryParameter['ScenarioId'] = scenarioId
-      }
-
-      if (inlet !== undefined) {
-        localVarQueryParameter['Inlet'] = inlet
-      }
-
-      setSearchParams(localVarUrlObj, localVarQueryParameter)
-      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      }
-
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      }
-    },
-    /**
-     *
-     * @summary 保存进水数据到方案（入数据库） Save inlet time-series data of a scenario in database
-     * @param {Array<SaveInletDataInput>} [saveInletDataInput]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    apiV2SimulationLabScenarioInletDataSavePost: async (
-      saveInletDataInput?: Array<SaveInletDataInput>,
-      options: AxiosRequestConfig = {},
-    ): Promise<RequestArgs> => {
-      const localVarPath = `/api/v2/simulation-lab/scenario/inlet-data/save`
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
-      let baseOptions
-      if (configuration) {
-        baseOptions = configuration.baseOptions
-      }
-
-      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
-      const localVarHeaderParameter = {} as any
-      const localVarQueryParameter = {} as any
-
-      localVarHeaderParameter['Content-Type'] = 'application/json'
-
-      setSearchParams(localVarUrlObj, localVarQueryParameter)
-      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      }
-      localVarRequestOptions.data = serializeDataIfNeeded(
-        saveInletDataInput,
-        localVarRequestOptions,
-        configuration,
-      )
-
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      }
-    },
-    /**
-     *
-     * @summary 进水点文件模板下载 Download the inlet time-series data excel file template.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    apiV2SimulationLabScenarioInletDataTemplateDownloadPost: async (
-      options: AxiosRequestConfig = {},
-    ): Promise<RequestArgs> => {
-      const localVarPath = `/api/v2/simulation-lab/scenario/inlet-data-template/download`
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
-      let baseOptions
-      if (configuration) {
-        baseOptions = configuration.baseOptions
-      }
-
-      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
-      const localVarHeaderParameter = {} as any
-      const localVarQueryParameter = {} as any
-
-      setSearchParams(localVarUrlObj, localVarQueryParameter)
-      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      }
-
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      }
-    },
-    /**
-     *
-     * @summary 进水点数据文件excel上传 Upload inlet time-series data in an excel file
-     * @param {any} [excel]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    apiV2SimulationLabScenarioInletDataTemplateUploadPost: async (
-      excel?: any,
-      options: AxiosRequestConfig = {},
-    ): Promise<RequestArgs> => {
-      const localVarPath = `/api/v2/simulation-lab/scenario/inlet-data-template/upload`
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
-      let baseOptions
-      if (configuration) {
-        baseOptions = configuration.baseOptions
-      }
-
-      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
-      const localVarHeaderParameter = {} as any
-      const localVarQueryParameter = {} as any
-      const localVarFormParams = new ((configuration && configuration.formDataCtor) || FormData)()
-
-      if (excel !== undefined) {
-        localVarFormParams.append('Excel', excel as any)
-      }
-
-      localVarHeaderParameter['Content-Type'] = 'multipart/form-data'
-
-      setSearchParams(localVarUrlObj, localVarQueryParameter)
-      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      }
-      localVarRequestOptions.data = localVarFormParams
-
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      }
-    },
-    /**
-     *
-     * @summary 查询SCADA数据 Get inlet time-series data from SCADA
-     * @param {string} [inlet] 进水点 inlet
-     * @param {string} [startTime] 开始时间 start time
-     * @param {string} [endTime] 结束时间 end time
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    apiV2SimulationLabScenarioInletScadaGet: async (
-      inlet?: string,
-      startTime?: string,
-      endTime?: string,
-      options: AxiosRequestConfig = {},
-    ): Promise<RequestArgs> => {
-      const localVarPath = `/api/v2/simulation-lab/scenario/inlet/scada`
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
-      let baseOptions
-      if (configuration) {
-        baseOptions = configuration.baseOptions
-      }
-
-      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
-      const localVarHeaderParameter = {} as any
-      const localVarQueryParameter = {} as any
-
-      if (inlet !== undefined) {
-        localVarQueryParameter['Inlet'] = inlet
-      }
-
-      if (startTime !== undefined) {
-        localVarQueryParameter['StartTime'] = startTime
-      }
-
-      if (endTime !== undefined) {
-        localVarQueryParameter['EndTime'] = endTime
-      }
-
-      setSearchParams(localVarUrlObj, localVarQueryParameter)
-      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      }
-
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      }
-    },
-    /**
-     *
-     * @summary 查询方案参数设置 Get scenario\'s parameter setting data
-     * @param {string} [scenarioId] 方案ID scenario id
-     * @param {string} [productLine] 工艺线代码 product line code
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    apiV2SimulationLabScenarioParamGet: async (
-      scenarioId?: string,
-      productLine?: string,
-      options: AxiosRequestConfig = {},
-    ): Promise<RequestArgs> => {
-      const localVarPath = `/api/v2/simulation-lab/scenario/param`
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
-      let baseOptions
-      if (configuration) {
-        baseOptions = configuration.baseOptions
-      }
-
-      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
-      const localVarHeaderParameter = {} as any
-      const localVarQueryParameter = {} as any
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
       if (scenarioId !== undefined) {
         localVarQueryParameter['ScenarioId'] = scenarioId
@@ -713,7 +507,558 @@ export const ProNumSimLabApiAxiosParamCreator = function (configuration?: Config
     },
     /**
      *
-     * @summary 保存方案参数设置 Save scenario\'s parameter setting data
+     * @summary 保存预案的控制边界数据
+     * @param {Array<SaveControlDataInput>} [saveControlDataInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV2SimulationLabScenarioControlDataSavePost: async (
+      saveControlDataInput?: Array<SaveControlDataInput>,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v2/simulation-lab/scenario/control-data/save`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        saveControlDataInput,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 控制边界文件模板下载
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV2SimulationLabScenarioControlDataTemplateDownloadPost: async (
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v2/simulation-lab/scenario/control-data-template/download`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 控制边界数据文件excel上传
+     * @param {File} excel 包含进水数据的excel文件
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV2SimulationLabScenarioControlDataTemplateUploadPost: async (
+      excel: File,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'excel' is not null or undefined
+      assertParamExists('apiV2SimulationLabScenarioControlDataTemplateUploadPost', 'excel', excel)
+      const localVarPath = `/api/v2/simulation-lab/scenario/control-data-template/upload`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+      const localVarFormParams = new ((configuration && configuration.formDataCtor) || FormData)()
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      if (excel !== undefined) {
+        localVarFormParams.append('Excel', excel as any)
+      }
+
+      localVarHeaderParameter['Content-Type'] = 'multipart/form-data'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = localVarFormParams
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 创建预案时，查询预案控制边界的在线数据
+     * @param {string} productLine 工艺线代码，在项目初始化时会通过\&#39;污水基础服务\&#39;的上传到系统，在配置表\&#39;4-工艺线与HRT\&#39;配置，例如：\&#39;L1\&#39;
+     * @param {string} startTime 数据查询范围的开始时间，包含开始时间，例如：\&#39;2025-03-13T16:00:00+08:00\&#39;
+     * @param {string} endTime 数据查询范围的结束时间，包含结束时间，例如：\&#39;2025-03-15T16:00:00+08:00\&#39;
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV2SimulationLabScenarioControlScadaGet: async (
+      productLine: string,
+      startTime: string,
+      endTime: string,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'productLine' is not null or undefined
+      assertParamExists('apiV2SimulationLabScenarioControlScadaGet', 'productLine', productLine)
+      // verify required parameter 'startTime' is not null or undefined
+      assertParamExists('apiV2SimulationLabScenarioControlScadaGet', 'startTime', startTime)
+      // verify required parameter 'endTime' is not null or undefined
+      assertParamExists('apiV2SimulationLabScenarioControlScadaGet', 'endTime', endTime)
+      const localVarPath = `/api/v2/simulation-lab/scenario/control/scada`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      if (productLine !== undefined) {
+        localVarQueryParameter['ProductLine'] = productLine
+      }
+
+      if (startTime !== undefined) {
+        localVarQueryParameter['StartTime'] =
+          (startTime as any) instanceof Date ? (startTime as any).toISOString() : startTime
+      }
+
+      if (endTime !== undefined) {
+        localVarQueryParameter['EndTime'] =
+          (endTime as any) instanceof Date ? (endTime as any).toISOString() : endTime
+      }
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     * 关键词：      预案、删除        使用场景：      需要删除预案时        相关背景：        输入：      方案ID列表:          传入格式为：[\"3df19cf5-05e6-4907-8875-03597836b2dc\",\"af6686c1-15f6-473a-aeee-e5b3e5574aac\"]            输出：
+     * @summary 根据ID删除预案，同时删除预案的结果设置数据
+     * @param {DeleteScenarioInput} [deleteScenarioInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV2SimulationLabScenarioDeletePost: async (
+      deleteScenarioInput?: DeleteScenarioInput,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v2/simulation-lab/scenario/delete`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        deleteScenarioInput,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     * 关键词：      预案、进水数据        使用场景：      需要修改预案的进水数据时，可以先调用此接口获取创建预案时保存的进水数据        相关背景：      在这里，返回的进水点位会在项目初始化时通过配置文件上传。以及查询进水数据的前提是已经保存了进水数据，保存之前，获取的方式有两种：      1、从iot服务中获取在线数据      2、将进水数据整理到excel文件后上传      最后，将从以上任意一种方式获取到的进水数据和预案ID绑定后保存到数据库中        输入：       ScenarioId:          预案ID       Inlet:           进水口代码，在项目初始化时会通过\'污水基础服务\'的上传到系统，是配置表中的\'3-进出水口\'的\'进出水口代码\'，例如：\'Inlet\'            输出：      预案的进水数据
+     * @summary 预案编辑时，查询预案的进水数据
+     * @param {string} scenarioId 预案ID
+     * @param {string} inlet 进水点名称，在项目初始化时会通过\&#39;污水基础服务\&#39;的上传到系统，是配置表中的\&#39;3-进出水口\&#39;的\&#39;进出水口代码\&#39;，例如：\&#39;Inlet\&#39;
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV2SimulationLabScenarioInletDataGet: async (
+      scenarioId: string,
+      inlet: string,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'scenarioId' is not null or undefined
+      assertParamExists('apiV2SimulationLabScenarioInletDataGet', 'scenarioId', scenarioId)
+      // verify required parameter 'inlet' is not null or undefined
+      assertParamExists('apiV2SimulationLabScenarioInletDataGet', 'inlet', inlet)
+      const localVarPath = `/api/v2/simulation-lab/scenario/inlet-data`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      if (scenarioId !== undefined) {
+        localVarQueryParameter['ScenarioId'] = scenarioId
+      }
+
+      if (inlet !== undefined) {
+        localVarQueryParameter['Inlet'] = inlet
+      }
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     * 关键词：      预案、进水数据        使用场景：      创建预案/编辑预案时，保存进水数据        相关背景：    输入：       ScenarioId：          预案ID       Inlet：          进水口代码，在项目初始化时会通过\'污水基础服务\'的上传到系统，是配置表中的\'3-进出水口\'的\'进出水口代码\'，例如：\'Inlet\'       ColNames：          每一列的名称与单位，比如[{\"code\": \"NH4\",\"unit\": \"mg/L\"},{\"code\": \"TSS\",\"unit\": \"mg/L\"},{\"code\": \"T\",\"unit\": \"degC\"},{\"code\": \"COD\",\"unit\": \"mg/L\"},{\"code\": \"TP\",\"unit\": \"mg/L\"},{\"code\": \"Flow\",\"unit\": \"m³/h\"}]       Times：          所有的时刻，比如：[\"2024-08-07T02:00:00+00:00\",\"2024-08-07T03:00:00+00:00\",\"2024-08-07T04:00:00+00:00\",\"2024-08-07T05:00:00+00:00\",……]       Values：          每一列每一时刻的数值，比如：[[3.693,88.885,22.768,118.513,1.011,3470.782],[0,0,0,0,0,0],[0,0,0,0,0,0]]  输出：
+     * @summary 保存预案的进水数据
+     * @param {Array<SaveInletDataInput>} [saveInletDataInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV2SimulationLabScenarioInletDataSavePost: async (
+      saveInletDataInput?: Array<SaveInletDataInput>,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v2/simulation-lab/scenario/inlet-data/save`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        saveInletDataInput,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     * 关键词：      预案、进水数据模板        使用场景：      创建预案时，如果想直接通过excel上传进水数据，可以先通过此接口下载模板文件        相关背景：      下载的模板中会自动填充最近一天的在线数据，可将模板中的时间格式和数据格式作为参考，避免格式问题导致上传失败    输入：            输出：      进水模板的excel文件
+     * @summary 进水文件模板下载
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV2SimulationLabScenarioInletDataTemplateDownloadPost: async (
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v2/simulation-lab/scenario/inlet-data-template/download`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     * 关键词：      预案、进水数据        使用场景：      创建预案时，如果想直接通过excel上传进水数据        相关背景：      创建预案时有两种获取进水数据的方式有：      1、从iot服务中获取在线数据      2、将进水数据整理到excel文件后上传      此接口实现的是第二种获取方式  输入：       Excel:          包含进水数据的excel文件  输出：      预案的进水数据
+     * @summary 进水点数据文件excel上传
+     * @param {File} excel 包含进水数据的excel文件
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV2SimulationLabScenarioInletDataTemplateUploadPost: async (
+      excel: File,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'excel' is not null or undefined
+      assertParamExists('apiV2SimulationLabScenarioInletDataTemplateUploadPost', 'excel', excel)
+      const localVarPath = `/api/v2/simulation-lab/scenario/inlet-data-template/upload`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+      const localVarFormParams = new ((configuration && configuration.formDataCtor) || FormData)()
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      if (excel !== undefined) {
+        localVarFormParams.append('Excel', excel as any)
+      }
+
+      localVarHeaderParameter['Content-Type'] = 'multipart/form-data'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = localVarFormParams
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     * 关键词：      预案、进水数据        使用场景：      创建预案时，如果想直接从数据库中读取进水点位的在线数据        相关背景：      创建预案时有两种获取进水数据的方式有：      1、从iot服务中获取在线数据      2、将进水数据整理到excel文件后上传      此接口实现的是第一种获取方式  输入：       Inlet:          进水口代码，在项目初始化时会通过\'污水基础服务\'的上传到系统，是配置表中的\'3-进出水口\'的\'进出水口代码\'，例如：\'Inlet\'       StartTime:           数据查询范围的开始时间，包含开始时间，例如：\'2025-03-13T16:00:00+08:00\'       EndTime:         数据查询范围的结束时间，不包含结束时间，例如：\'2025-03-15T16:00:00+08:00            输出：      预案的进水数据
+     * @summary 创建预案时，查询预案进水点位的在线数据
+     * @param {string} inlet 进水口代码，在项目初始化时会通过\&#39;污水基础服务\&#39;的上传到系统，是配置表中的\&#39;3-进出水口\&#39;的\&#39;进出水口代码\&#39;，例如：\&#39;Inlet\&#39;
+     * @param {string} startTime 数据查询范围的开始时间，包含开始时间，例如：\&#39;2025-03-13T16:00:00+08:00\&#39;
+     * @param {string} endTime 数据查询范围的结束时间，包含结束时间，例如：\&#39;2025-03-15T16:00:00+08:00\&#39;
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV2SimulationLabScenarioInletScadaGet: async (
+      inlet: string,
+      startTime: string,
+      endTime: string,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'inlet' is not null or undefined
+      assertParamExists('apiV2SimulationLabScenarioInletScadaGet', 'inlet', inlet)
+      // verify required parameter 'startTime' is not null or undefined
+      assertParamExists('apiV2SimulationLabScenarioInletScadaGet', 'startTime', startTime)
+      // verify required parameter 'endTime' is not null or undefined
+      assertParamExists('apiV2SimulationLabScenarioInletScadaGet', 'endTime', endTime)
+      const localVarPath = `/api/v2/simulation-lab/scenario/inlet/scada`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      if (inlet !== undefined) {
+        localVarQueryParameter['Inlet'] = inlet
+      }
+
+      if (startTime !== undefined) {
+        localVarQueryParameter['StartTime'] =
+          (startTime as any) instanceof Date ? (startTime as any).toISOString() : startTime
+      }
+
+      if (endTime !== undefined) {
+        localVarQueryParameter['EndTime'] =
+          (endTime as any) instanceof Date ? (endTime as any).toISOString() : endTime
+      }
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     * 关键词：      模拟实验室、模板、预案、WEST模型开放参数        使用场景：      此接口可以在两个场景下使用：      1、创建预案时，先调用此接口获取绑定在\'模拟实验室\'模板下的WEST模型开放参数，用于绑定在新创建的预案上，这种场景下不需要传scenarioId      2、编辑预案时，调用此接口获取已绑定在预案下的WEST模型开放参数        相关背景：     污水项目有三个固定的模板类型，分别是\'在线滚动模型\'，\'在线滚动优化模型\'，\'模拟实验室\'，每个模版开放出来的WEST模型参数都会在项目初始化时通过配置文件上传，创建新方案时都会把模板的参数取出后绑定在新方案上，用于模型计算前处理阶段时写入模型，参数值可根据实际情况进行修改。     一般情况下WEST模型是有很多参数的，因此\'WEST模型开放参数\'特指从模型参数中选取出来的一部分开放给用户修改的    输入：       ScenarioId：          预案ID，创建预案时直接设置为空       ProductLine：          工艺线代码，如\'L1\'，\'L2\'，每次只能获取一个产线下的参数  输出：      \'模拟实验室\'模板/预案的WEST模型开放参数
+     * @summary 查询\'模拟实验室\'模板/预案的WEST模型开放参数
+     * @param {string} productLine 工艺线代码，如\&#39;L1\&#39;，\&#39;L2\&#39;
+     * @param {string} [scenarioId] 方案ID
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV2SimulationLabScenarioParamGet: async (
+      productLine: string,
+      scenarioId?: string,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'productLine' is not null or undefined
+      assertParamExists('apiV2SimulationLabScenarioParamGet', 'productLine', productLine)
+      const localVarPath = `/api/v2/simulation-lab/scenario/param`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      if (scenarioId !== undefined) {
+        localVarQueryParameter['ScenarioId'] = scenarioId
+      }
+
+      if (productLine !== undefined) {
+        localVarQueryParameter['ProductLine'] = productLine
+      }
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     * 关键词：      预案、WEST模型开放参数        使用场景：      创建预案/编辑预案时，保存WEST模型开放参数        相关背景：    输入：       预案的WEST模型开放参数列表         输出：
+     * @summary 保存预案的WEST模型开放参数
      * @param {Array<SaveParamInput>} [saveParamInput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -733,6 +1078,10 @@ export const ProNumSimLabApiAxiosParamCreator = function (configuration?: Config
       const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
@@ -755,9 +1104,9 @@ export const ProNumSimLabApiAxiosParamCreator = function (configuration?: Config
       }
     },
     /**
-     *
-     * @summary 查询方案结果配置 Get scenario\'s result setting data
-     * @param {string} [scenarioId] 方案ID scenario id
+     * 关键词：      模拟实验室、模板、预案、结果配置        使用场景：      此接口可以在两个场景下使用：      1、创建预案时，先调用此接口获取绑定在\'模拟实验室\'模板下的结果配置，用于绑定在新创建的预案上，这种场景下不需要传scenarioId      2、编辑预案时，调用此接口获取已绑定在预案下的结果配置        相关背景：     污水项目有三个固定的模板类型，分别是\'在线滚动模型\'，\'在线滚动优化模型\'，\'模拟实验室\'，其中只有\'模拟实验室\'的模版会有\'结果配置\'信息，用于获取结果时指定需要返回的点位，该信息会在项目初始化时通过配置文件上传。    输入：       scenarioId：          预案ID，创建预案时直接设置为空，编辑预案时传入预案ID  输出：      \'模拟实验室\'模板/预案的结果配置
+     * @summary 查询\'模拟实验室\'模板/预案的结果配置
+     * @param {string} [scenarioId] 预案ID，创建预案时直接设置为空
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -777,6 +1126,10 @@ export const ProNumSimLabApiAxiosParamCreator = function (configuration?: Config
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
 
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
       if (scenarioId !== undefined) {
         localVarQueryParameter['scenarioId'] = scenarioId
       }
@@ -795,8 +1148,8 @@ export const ProNumSimLabApiAxiosParamCreator = function (configuration?: Config
       }
     },
     /**
-     *
-     * @summary 保存方案结果配置 Save scenario\'s result setting data
+     * 关键词：      预案、结果配置        使用场景：      创建预案/编辑预案时，保存结果配置        相关背景：    输入：       ScenarioId：          预案ID       ResultSettings：          结果配置详细信息  输出：
+     * @summary 保存预案的结果配置
      * @param {ResultParam} [resultParam]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -816,6 +1169,10 @@ export const ProNumSimLabApiAxiosParamCreator = function (configuration?: Config
       const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
@@ -838,18 +1195,22 @@ export const ProNumSimLabApiAxiosParamCreator = function (configuration?: Config
       }
     },
     /**
-     * 获取单个预案模拟结果
-     * @summary 获取方案的生化区电耗或碳足迹信息
-     * @param {string} [scenarioId] 方案ID scenario id
-     * @param {number} [subType] 结果类型
+     * 关键词：      模拟实验室、预案、生化区电耗、碳足迹、WEST模拟结果        使用场景：      获取单个预案模拟结果时            相关背景：     要用于展示的生化区电耗、碳足迹的点位已经在项目初始化时通过配置文件上传，这里只需要传入对应的枚举类型即可获得结果数据    输入：       scenarioId：          预案ID       subType：         模拟结果子类型，3：生化区电耗，8：碳足迹  输出：     预案的生化区电耗或碳足迹的WEST模拟结果数据
+     * @summary 获取预案的生化区电耗或碳足迹的WEST模拟结果数据
+     * @param {string} scenarioId 预案ID
+     * @param {3 | 8} subType 模拟结果子类型，3：PowerCost，表示生化区电耗，8：CarbonFootprint，表示碳足迹
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiV2SimulationLabScenarioScenarioResultGet: async (
-      scenarioId?: string,
-      subType?: number,
+      scenarioId: string,
+      subType: 3 | 8,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
+      // verify required parameter 'scenarioId' is not null or undefined
+      assertParamExists('apiV2SimulationLabScenarioScenarioResultGet', 'scenarioId', scenarioId)
+      // verify required parameter 'subType' is not null or undefined
+      assertParamExists('apiV2SimulationLabScenarioScenarioResultGet', 'subType', subType)
       const localVarPath = `/api/v2/simulation-lab/scenario/scenario-result`
       // use dummy base URL string because the URL constructor only accepts absolute URLs.
       const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
@@ -861,6 +1222,10 @@ export const ProNumSimLabApiAxiosParamCreator = function (configuration?: Config
       const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
       if (scenarioId !== undefined) {
         localVarQueryParameter['scenarioId'] = scenarioId
@@ -884,16 +1249,22 @@ export const ProNumSimLabApiAxiosParamCreator = function (configuration?: Config
       }
     },
     /**
-     * 能够进行对比的方案需满足两个条件，分别是时间范围一致和结果配置一致 scenarios that can be compared must have consistent time period and result setting
-     * @summary 查询与指定方案的结果配置一样的方案列表 Get scenarios which can be compared with the specified scenario
-     * @param {string} [scenarioId] 方案ID scenario id
+     * 关键词：      模拟实验室、预案、结果对比        使用场景：      需要对比两个或两个以上预案的结果数据之前            相关背景：      能够进行对比的方案需满足两个条件：      1、进水数据的时间范围一致      2、结果配置里选择的点位一致    输入：       scenarioId：          预案ID  输出：      预案ID列表，列表中只有存在两个或两个以上的ID时才表示有可对比的方案，若只有一个ID则表示没有可对比的方案，因为这个ID就是指定方案的ID
+     * @summary 查询与指定方案的\'结果配置\'一样的方案列表，用于对比结果
+     * @param {string} scenarioId 预案ID
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiV2SimulationLabScenarioScenariosForCompareGet: async (
-      scenarioId?: string,
+      scenarioId: string,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
+      // verify required parameter 'scenarioId' is not null or undefined
+      assertParamExists(
+        'apiV2SimulationLabScenarioScenariosForCompareGet',
+        'scenarioId',
+        scenarioId,
+      )
       const localVarPath = `/api/v2/simulation-lab/scenario/scenarios-for-compare`
       // use dummy base URL string because the URL constructor only accepts absolute URLs.
       const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
@@ -905,6 +1276,10 @@ export const ProNumSimLabApiAxiosParamCreator = function (configuration?: Config
       const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
       if (scenarioId !== undefined) {
         localVarQueryParameter['scenarioId'] = scenarioId
@@ -936,12 +1311,12 @@ export const ProNumSimLabApiFp = function (configuration?: Configuration) {
     /**
      *
      * @summary /api/app/pro-num-sim-lab/optimization-config-by-type
-     * @param {number} [displayType]
+     * @param {1 | 2} [displayType]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async apiAppProNumSimLabOptimizationConfigByTypeGet(
-      displayType?: number,
+      displayType?: 1 | 2,
       options?: AxiosRequestConfig,
     ): Promise<
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<OptimizationConfig>>
@@ -954,14 +1329,14 @@ export const ProNumSimLabApiFp = function (configuration?: Configuration) {
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**
-     *
-     * @summary 获取方案的出水水质结果数据 Get outlet water quality time-series result of a scenario
-     * @param {string} [scenarioId] 方案ID scenario id
+     * 关键词：      预案、出水水质、结果数据        使用场景：      完成预案创建和计算后，需要查看预案模拟结果数据时        相关背景：      获取预案的出水水质结果数据之前，需要先确保：1、新创建的预案计算成功，2、完成结果导出的步骤        输入：      scenarioId:          方案ID，可通过方案管理服务获得预案列表，其中每条预案的ID就是这里要传入的方案ID            输出：
+     * @summary 获取预案的出水水质结果数据
+     * @param {string} scenarioId 方案ID
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async apiProNumSimLabSimResultsGet(
-      scenarioId?: string,
+      scenarioId: string,
       options?: AxiosRequestConfig,
     ): Promise<
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<SimResultsOutupt>>
@@ -973,16 +1348,16 @@ export const ProNumSimLabApiFp = function (configuration?: Configuration) {
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**
-     *
-     * @summary 生化池查询 Get biochemical pool config data
-     * @param {string} [productLine] 工艺线代码 product line code
-     * @param {string} [modelName] 模板模型名称 template model name
+     * 关键词：      生化池名称        使用场景：      查看预案水质全流程结果数据时，查询生化池名称列表，用于全流程结果数据的X轴名称展示        相关背景：    输入：       ProductLine：          工艺线代码，比如\'L1\'，\'L2\'       ModelName：          模板方案名称，这里填写固定名称\'模拟实验室模型\'  输出：      生化池名称列表
+     * @summary 查询生化池名称
+     * @param {string} productLine 工艺线代码，比如\&#39;L1\&#39;，\&#39;L2\&#39;
+     * @param {string} modelName 模板方案名称，这里填固定名称\&#39;模拟实验室模型\&#39;
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async apiV2ConfigBiochemicaltanksGet(
-      productLine?: string,
-      modelName?: string,
+      productLine: string,
+      modelName: string,
       options?: AxiosRequestConfig,
     ): Promise<
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<QueryBiochemicaltanksOutput>>
@@ -995,8 +1370,8 @@ export const ProNumSimLabApiFp = function (configuration?: Configuration) {
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**
-     * 只有多个方案之间设置不同的参数才会返回 Only parameters with difference setting values among the scenarios will be returned
-     * @summary 多方案控制参数对比 Get several scenarios\' control paramters for comparison
+     * 关键词：     方案对比、控制参数        使用场景：      需要查看两个或两个以上的、可对比的预案中存在的不同的控制参数时        相关背景：      预案模块提供了查看多方案结果对比的功能，除了可以对比模拟结果值以外，还可以对比这些预案设置的控制参数，此接口就是获取控制参数，并且只返回设置不相同的参数值，这样更方便的确认不同的参数值对结果的影响。      只有多个方案之间设置不同的参数才会有返回值。    输入：       ScenarioIds：          用于对比的方案ID，比如[\"20363694-3d7d-40b0-8666-ee3c40dd8dd7\",\"46617cd6-3626-4c82-b7c1-6571d5619b30\"]       ProductLine：          工艺线代码，比如\'L1\'，\'L2\'  输出：      多方案控制参数的对比结果
+     * @summary 查询多方案控制参数的对比结果
      * @param {QueryControlParamCompareInput} [queryControlParamCompareInput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -1018,20 +1393,20 @@ export const ProNumSimLabApiFp = function (configuration?: Configuration) {
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**
-     *
-     * @summary 单个工艺线单个生化池指标统计查询 Get scenario\'s statistic result of all the indicators on a certain biochemical pool of a specified product line
-     * @param {string} [scenarioId] 方案ID scenario id
-     * @param {string} [productLine] 工艺线代码 product line code
-     * @param {string} [tankNo] 生化池序号 biochemical pool index
-     * @param {string} [modelName] 模板模型名称 template model name
+     * 关键词：     生化池指标、统计数据        使用场景：      查看预案结果数据时，如需展示指标统计数据，可以通过调用此接口获得        相关背景：      要展示统计数据的生化池指标已经在项目初始化时通过配置文件上传，并且指标的统计数据也会在预案计算结束的后处理入库。这里的统计主要是指在预案的模拟时间内，该指标在这段时间内的最大值、最小值、平均值、中位数、百分位数等统计信息    输入：       ScenarioId：          预案ID       ProductLine：          工艺线代码，比如\'L1\'，\'L2\'       TankNo:          生化池序号，比如\'1\',\'2\'       ModelName：          模板方案名称，这里填写固定名称\'模拟实验室模型\'  输出：      生化池指标统计数据
+     * @summary 查询指定预案的单个工艺线单个生化池指标统计数据
+     * @param {string} scenarioId 方案ID
+     * @param {string} productLine 工艺线代码，比如\&#39;L1\&#39;,\&#39;L2\&#39;
+     * @param {string} tankNo 生化池序号，比如\&#39;1\&#39;,\&#39;2\&#39;
+     * @param {string} modelName 模板方案名称，这里填写固定名称\&#39;模拟实验室模型\&#39;
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async apiV2SimulationLabResultIndicatorStatisticGet(
-      scenarioId?: string,
-      productLine?: string,
-      tankNo?: string,
-      modelName?: string,
+      scenarioId: string,
+      productLine: string,
+      tankNo: string,
+      modelName: string,
       options?: AxiosRequestConfig,
     ): Promise<
       (
@@ -1050,18 +1425,16 @@ export const ProNumSimLabApiFp = function (configuration?: Configuration) {
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**
-     *
-     * @summary 获取单个方案MABR池水质项的分层时间序列数据 Get scenario\'s water quality time-series data in MABR layers
-     * @param {string} [scenarioId]
-     * @param {string} [productLine]
-     * @param {string} [modelName]
+     * 关键词：      预案、MABR池水质项、分层时序数据        使用场景：      查看预案结果数据时        相关背景：      MABR池水质项已经在项目初始化时通过配置文件上传，水质项的所属层数是设备属性Layer，通过相同的水质项的指标名拿到所有层的设备，以此完成全部分层的水质项时序数据获取。    输入：       scenarioId：          预案ID       productLine：          工艺线代码，比如\'L1\'，\'L2\'  输出：MABR池水质项的全部分层时序数据
+     * @summary 获取单个预案MABR池水质项的分层时间序列数据
+     * @param {string} scenarioId 预案ID
+     * @param {string} [productLine] 工艺线代码，比如\&#39;L1\&#39;，\&#39;L2\&#39;
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async apiV2SimulationLabResultMabrLayerDataGet(
-      scenarioId?: string,
+      scenarioId: string,
       productLine?: string,
-      modelName?: string,
       options?: AxiosRequestConfig,
     ): Promise<
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<EntireProcessWqOut>>
@@ -1070,25 +1443,24 @@ export const ProNumSimLabApiFp = function (configuration?: Configuration) {
         await localVarAxiosParamCreator.apiV2SimulationLabResultMabrLayerDataGet(
           scenarioId,
           productLine,
-          modelName,
           options,
         )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**
-     *
-     * @summary 单个工艺线水质全流程查询 Get scenario\'s water quality entire process result data of a certain product line
-     * @param {string} [scenarioId] 方案ID scenario id
-     * @param {string} [productLine] 工艺线代码 product line code
-     * @param {string} [modelName] 模板模型名称 template model name
-     * @param {string} [code] 系统点位 system code
+     * 关键词：      预案、单个工艺线、水质全流程        使用场景：      查看预案结果数据时，如需展示指标过程数据，则可以调用此接口        相关背景：    输入：       ScenarioId：          预案ID       ProductLine：          工艺线代码，比如\'L1\'，\'L2\'       ModelName：          模板方案名称，这里填写固定名称\'模拟实验室模型\'       Code：          系统点位，比如若设置为\'X_AUT\'，则只返回\'X_AUT\'的全流程数据，设置为空则返回所有水质点位  输出：
+     * @summary 查询单个预案的单个工艺线水质全流程
+     * @param {string} scenarioId 预案ID
+     * @param {string} productLine 工艺线代码，比如\&#39;L1\&#39;，\&#39;L2\&#39;
+     * @param {string} modelName 模板方案名称，这里填写固定名称\&#39;模拟实验室模型\&#39;
+     * @param {string} [code] 系统点位，比如若设置为\&#39;X_AUT\&#39;，则只返回\&#39;X_AUT\&#39;的全流程数据，设置为空则返回所有水质点位
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async apiV2SimulationLabResultTsByProductlineGet(
-      scenarioId?: string,
-      productLine?: string,
-      modelName?: string,
+      scenarioId: string,
+      productLine: string,
+      modelName: string,
       code?: string,
       options?: AxiosRequestConfig,
     ): Promise<
@@ -1106,7 +1478,105 @@ export const ProNumSimLabApiFp = function (configuration?: Configuration) {
     },
     /**
      *
-     * @summary 根据ID删除方案，同时删除方案相关的设置数据 Delete scenario as well as its corresponding setting data by scenario ids
+     * @summary 预案编辑时，查询预案的控制边界数据
+     * @param {string} scenarioId 预案ID
+     * @param {string} productLine 工艺线代码，在项目初始化时会通过\&#39;污水基础服务\&#39;的上传到系统，在配置表\&#39;4-工艺线与HRT\&#39;配置，例如：\&#39;L1\&#39;
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV2SimulationLabScenarioControlDataGet(
+      scenarioId: string,
+      productLine: string,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<QueryControlDataOutput>> {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiV2SimulationLabScenarioControlDataGet(
+          scenarioId,
+          productLine,
+          options,
+        )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
+     * @summary 保存预案的控制边界数据
+     * @param {Array<SaveControlDataInput>} [saveControlDataInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV2SimulationLabScenarioControlDataSavePost(
+      saveControlDataInput?: Array<SaveControlDataInput>,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiV2SimulationLabScenarioControlDataSavePost(
+          saveControlDataInput,
+          options,
+        )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
+     * @summary 控制边界文件模板下载
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV2SimulationLabScenarioControlDataTemplateDownloadPost(
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiV2SimulationLabScenarioControlDataTemplateDownloadPost(
+          options,
+        )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
+     * @summary 控制边界数据文件excel上传
+     * @param {File} excel 包含进水数据的excel文件
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV2SimulationLabScenarioControlDataTemplateUploadPost(
+      excel: File,
+      options?: AxiosRequestConfig,
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<QueryControlDataOutput>>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiV2SimulationLabScenarioControlDataTemplateUploadPost(
+          excel,
+          options,
+        )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
+     * @summary 创建预案时，查询预案控制边界的在线数据
+     * @param {string} productLine 工艺线代码，在项目初始化时会通过\&#39;污水基础服务\&#39;的上传到系统，在配置表\&#39;4-工艺线与HRT\&#39;配置，例如：\&#39;L1\&#39;
+     * @param {string} startTime 数据查询范围的开始时间，包含开始时间，例如：\&#39;2025-03-13T16:00:00+08:00\&#39;
+     * @param {string} endTime 数据查询范围的结束时间，包含结束时间，例如：\&#39;2025-03-15T16:00:00+08:00\&#39;
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV2SimulationLabScenarioControlScadaGet(
+      productLine: string,
+      startTime: string,
+      endTime: string,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<QueryControlDataOutput>> {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiV2SimulationLabScenarioControlScadaGet(
+          productLine,
+          startTime,
+          endTime,
+          options,
+        )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     * 关键词：      预案、删除        使用场景：      需要删除预案时        相关背景：        输入：      方案ID列表:          传入格式为：[\"3df19cf5-05e6-4907-8875-03597836b2dc\",\"af6686c1-15f6-473a-aeee-e5b3e5574aac\"]            输出：
+     * @summary 根据ID删除预案，同时删除预案的结果设置数据
      * @param {DeleteScenarioInput} [deleteScenarioInput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -1114,7 +1584,7 @@ export const ProNumSimLabApiFp = function (configuration?: Configuration) {
     async apiV2SimulationLabScenarioDeletePost(
       deleteScenarioInput?: DeleteScenarioInput,
       options?: AxiosRequestConfig,
-    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.apiV2SimulationLabScenarioDeletePost(
           deleteScenarioInput,
@@ -1123,16 +1593,16 @@ export const ProNumSimLabApiFp = function (configuration?: Configuration) {
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**
-     *
-     * @summary 查询方案进水数据 Get scenario\'s inlet time-series data
-     * @param {string} [scenarioId] 方案ID scenario id
-     * @param {string} [inlet] 进水点 inlet
+     * 关键词：      预案、进水数据        使用场景：      需要修改预案的进水数据时，可以先调用此接口获取创建预案时保存的进水数据        相关背景：      在这里，返回的进水点位会在项目初始化时通过配置文件上传。以及查询进水数据的前提是已经保存了进水数据，保存之前，获取的方式有两种：      1、从iot服务中获取在线数据      2、将进水数据整理到excel文件后上传      最后，将从以上任意一种方式获取到的进水数据和预案ID绑定后保存到数据库中        输入：       ScenarioId:          预案ID       Inlet:           进水口代码，在项目初始化时会通过\'污水基础服务\'的上传到系统，是配置表中的\'3-进出水口\'的\'进出水口代码\'，例如：\'Inlet\'            输出：      预案的进水数据
+     * @summary 预案编辑时，查询预案的进水数据
+     * @param {string} scenarioId 预案ID
+     * @param {string} inlet 进水点名称，在项目初始化时会通过\&#39;污水基础服务\&#39;的上传到系统，是配置表中的\&#39;3-进出水口\&#39;的\&#39;进出水口代码\&#39;，例如：\&#39;Inlet\&#39;
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async apiV2SimulationLabScenarioInletDataGet(
-      scenarioId?: string,
-      inlet?: string,
+      scenarioId: string,
+      inlet: string,
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<QueryInletDataOutput>> {
       const localVarAxiosArgs =
@@ -1144,8 +1614,8 @@ export const ProNumSimLabApiFp = function (configuration?: Configuration) {
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**
-     *
-     * @summary 保存进水数据到方案（入数据库） Save inlet time-series data of a scenario in database
+     * 关键词：      预案、进水数据        使用场景：      创建预案/编辑预案时，保存进水数据        相关背景：    输入：       ScenarioId：          预案ID       Inlet：          进水口代码，在项目初始化时会通过\'污水基础服务\'的上传到系统，是配置表中的\'3-进出水口\'的\'进出水口代码\'，例如：\'Inlet\'       ColNames：          每一列的名称与单位，比如[{\"code\": \"NH4\",\"unit\": \"mg/L\"},{\"code\": \"TSS\",\"unit\": \"mg/L\"},{\"code\": \"T\",\"unit\": \"degC\"},{\"code\": \"COD\",\"unit\": \"mg/L\"},{\"code\": \"TP\",\"unit\": \"mg/L\"},{\"code\": \"Flow\",\"unit\": \"m³/h\"}]       Times：          所有的时刻，比如：[\"2024-08-07T02:00:00+00:00\",\"2024-08-07T03:00:00+00:00\",\"2024-08-07T04:00:00+00:00\",\"2024-08-07T05:00:00+00:00\",……]       Values：          每一列每一时刻的数值，比如：[[3.693,88.885,22.768,118.513,1.011,3470.782],[0,0,0,0,0,0],[0,0,0,0,0,0]]  输出：
+     * @summary 保存预案的进水数据
      * @param {Array<SaveInletDataInput>} [saveInletDataInput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -1153,7 +1623,7 @@ export const ProNumSimLabApiFp = function (configuration?: Configuration) {
     async apiV2SimulationLabScenarioInletDataSavePost(
       saveInletDataInput?: Array<SaveInletDataInput>,
       options?: AxiosRequestConfig,
-    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.apiV2SimulationLabScenarioInletDataSavePost(
           saveInletDataInput,
@@ -1162,8 +1632,8 @@ export const ProNumSimLabApiFp = function (configuration?: Configuration) {
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**
-     *
-     * @summary 进水点文件模板下载 Download the inlet time-series data excel file template.
+     * 关键词：      预案、进水数据模板        使用场景：      创建预案时，如果想直接通过excel上传进水数据，可以先通过此接口下载模板文件        相关背景：      下载的模板中会自动填充最近一天的在线数据，可将模板中的时间格式和数据格式作为参考，避免格式问题导致上传失败    输入：            输出：      进水模板的excel文件
+     * @summary 进水文件模板下载
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -1177,14 +1647,14 @@ export const ProNumSimLabApiFp = function (configuration?: Configuration) {
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**
-     *
-     * @summary 进水点数据文件excel上传 Upload inlet time-series data in an excel file
-     * @param {any} [excel]
+     * 关键词：      预案、进水数据        使用场景：      创建预案时，如果想直接通过excel上传进水数据        相关背景：      创建预案时有两种获取进水数据的方式有：      1、从iot服务中获取在线数据      2、将进水数据整理到excel文件后上传      此接口实现的是第二种获取方式  输入：       Excel:          包含进水数据的excel文件  输出：      预案的进水数据
+     * @summary 进水点数据文件excel上传
+     * @param {File} excel 包含进水数据的excel文件
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async apiV2SimulationLabScenarioInletDataTemplateUploadPost(
-      excel?: any,
+      excel: File,
       options?: AxiosRequestConfig,
     ): Promise<
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<SaveInletDataInput>>
@@ -1197,18 +1667,18 @@ export const ProNumSimLabApiFp = function (configuration?: Configuration) {
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**
-     *
-     * @summary 查询SCADA数据 Get inlet time-series data from SCADA
-     * @param {string} [inlet] 进水点 inlet
-     * @param {string} [startTime] 开始时间 start time
-     * @param {string} [endTime] 结束时间 end time
+     * 关键词：      预案、进水数据        使用场景：      创建预案时，如果想直接从数据库中读取进水点位的在线数据        相关背景：      创建预案时有两种获取进水数据的方式有：      1、从iot服务中获取在线数据      2、将进水数据整理到excel文件后上传      此接口实现的是第一种获取方式  输入：       Inlet:          进水口代码，在项目初始化时会通过\'污水基础服务\'的上传到系统，是配置表中的\'3-进出水口\'的\'进出水口代码\'，例如：\'Inlet\'       StartTime:           数据查询范围的开始时间，包含开始时间，例如：\'2025-03-13T16:00:00+08:00\'       EndTime:         数据查询范围的结束时间，不包含结束时间，例如：\'2025-03-15T16:00:00+08:00            输出：      预案的进水数据
+     * @summary 创建预案时，查询预案进水点位的在线数据
+     * @param {string} inlet 进水口代码，在项目初始化时会通过\&#39;污水基础服务\&#39;的上传到系统，是配置表中的\&#39;3-进出水口\&#39;的\&#39;进出水口代码\&#39;，例如：\&#39;Inlet\&#39;
+     * @param {string} startTime 数据查询范围的开始时间，包含开始时间，例如：\&#39;2025-03-13T16:00:00+08:00\&#39;
+     * @param {string} endTime 数据查询范围的结束时间，包含结束时间，例如：\&#39;2025-03-15T16:00:00+08:00\&#39;
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async apiV2SimulationLabScenarioInletScadaGet(
-      inlet?: string,
-      startTime?: string,
-      endTime?: string,
+      inlet: string,
+      startTime: string,
+      endTime: string,
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<QueryInletDataOutput>> {
       const localVarAxiosArgs =
@@ -1221,28 +1691,28 @@ export const ProNumSimLabApiFp = function (configuration?: Configuration) {
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**
-     *
-     * @summary 查询方案参数设置 Get scenario\'s parameter setting data
-     * @param {string} [scenarioId] 方案ID scenario id
-     * @param {string} [productLine] 工艺线代码 product line code
+     * 关键词：      模拟实验室、模板、预案、WEST模型开放参数        使用场景：      此接口可以在两个场景下使用：      1、创建预案时，先调用此接口获取绑定在\'模拟实验室\'模板下的WEST模型开放参数，用于绑定在新创建的预案上，这种场景下不需要传scenarioId      2、编辑预案时，调用此接口获取已绑定在预案下的WEST模型开放参数        相关背景：     污水项目有三个固定的模板类型，分别是\'在线滚动模型\'，\'在线滚动优化模型\'，\'模拟实验室\'，每个模版开放出来的WEST模型参数都会在项目初始化时通过配置文件上传，创建新方案时都会把模板的参数取出后绑定在新方案上，用于模型计算前处理阶段时写入模型，参数值可根据实际情况进行修改。     一般情况下WEST模型是有很多参数的，因此\'WEST模型开放参数\'特指从模型参数中选取出来的一部分开放给用户修改的    输入：       ScenarioId：          预案ID，创建预案时直接设置为空       ProductLine：          工艺线代码，如\'L1\'，\'L2\'，每次只能获取一个产线下的参数  输出：      \'模拟实验室\'模板/预案的WEST模型开放参数
+     * @summary 查询\'模拟实验室\'模板/预案的WEST模型开放参数
+     * @param {string} productLine 工艺线代码，如\&#39;L1\&#39;，\&#39;L2\&#39;
+     * @param {string} [scenarioId] 方案ID
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async apiV2SimulationLabScenarioParamGet(
+      productLine: string,
       scenarioId?: string,
-      productLine?: string,
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<ModelParam>>> {
       const localVarAxiosArgs = await localVarAxiosParamCreator.apiV2SimulationLabScenarioParamGet(
-        scenarioId,
         productLine,
+        scenarioId,
         options,
       )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**
-     *
-     * @summary 保存方案参数设置 Save scenario\'s parameter setting data
+     * 关键词：      预案、WEST模型开放参数        使用场景：      创建预案/编辑预案时，保存WEST模型开放参数        相关背景：    输入：       预案的WEST模型开放参数列表         输出：
+     * @summary 保存预案的WEST模型开放参数
      * @param {Array<SaveParamInput>} [saveParamInput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -1250,7 +1720,7 @@ export const ProNumSimLabApiFp = function (configuration?: Configuration) {
     async apiV2SimulationLabScenarioParamSavePost(
       saveParamInput?: Array<SaveParamInput>,
       options?: AxiosRequestConfig,
-    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.apiV2SimulationLabScenarioParamSavePost(
           saveParamInput,
@@ -1259,9 +1729,9 @@ export const ProNumSimLabApiFp = function (configuration?: Configuration) {
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**
-     *
-     * @summary 查询方案结果配置 Get scenario\'s result setting data
-     * @param {string} [scenarioId] 方案ID scenario id
+     * 关键词：      模拟实验室、模板、预案、结果配置        使用场景：      此接口可以在两个场景下使用：      1、创建预案时，先调用此接口获取绑定在\'模拟实验室\'模板下的结果配置，用于绑定在新创建的预案上，这种场景下不需要传scenarioId      2、编辑预案时，调用此接口获取已绑定在预案下的结果配置        相关背景：     污水项目有三个固定的模板类型，分别是\'在线滚动模型\'，\'在线滚动优化模型\'，\'模拟实验室\'，其中只有\'模拟实验室\'的模版会有\'结果配置\'信息，用于获取结果时指定需要返回的点位，该信息会在项目初始化时通过配置文件上传。    输入：       scenarioId：          预案ID，创建预案时直接设置为空，编辑预案时传入预案ID  输出：      \'模拟实验室\'模板/预案的结果配置
+     * @summary 查询\'模拟实验室\'模板/预案的结果配置
+     * @param {string} [scenarioId] 预案ID，创建预案时直接设置为空
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -1277,8 +1747,8 @@ export const ProNumSimLabApiFp = function (configuration?: Configuration) {
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**
-     *
-     * @summary 保存方案结果配置 Save scenario\'s result setting data
+     * 关键词：      预案、结果配置        使用场景：      创建预案/编辑预案时，保存结果配置        相关背景：    输入：       ScenarioId：          预案ID       ResultSettings：          结果配置详细信息  输出：
+     * @summary 保存预案的结果配置
      * @param {ResultParam} [resultParam]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -1286,7 +1756,7 @@ export const ProNumSimLabApiFp = function (configuration?: Configuration) {
     async apiV2SimulationLabScenarioResultSettingSavePost(
       resultParam?: ResultParam,
       options?: AxiosRequestConfig,
-    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.apiV2SimulationLabScenarioResultSettingSavePost(
           resultParam,
@@ -1295,16 +1765,16 @@ export const ProNumSimLabApiFp = function (configuration?: Configuration) {
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**
-     * 获取单个预案模拟结果
-     * @summary 获取方案的生化区电耗或碳足迹信息
-     * @param {string} [scenarioId] 方案ID scenario id
-     * @param {number} [subType] 结果类型
+     * 关键词：      模拟实验室、预案、生化区电耗、碳足迹、WEST模拟结果        使用场景：      获取单个预案模拟结果时            相关背景：     要用于展示的生化区电耗、碳足迹的点位已经在项目初始化时通过配置文件上传，这里只需要传入对应的枚举类型即可获得结果数据    输入：       scenarioId：          预案ID       subType：         模拟结果子类型，3：生化区电耗，8：碳足迹  输出：     预案的生化区电耗或碳足迹的WEST模拟结果数据
+     * @summary 获取预案的生化区电耗或碳足迹的WEST模拟结果数据
+     * @param {string} scenarioId 预案ID
+     * @param {3 | 8} subType 模拟结果子类型，3：PowerCost，表示生化区电耗，8：CarbonFootprint，表示碳足迹
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async apiV2SimulationLabScenarioScenarioResultGet(
-      scenarioId?: string,
-      subType?: number,
+      scenarioId: string,
+      subType: 3 | 8,
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<WwtpDynamicOutput>> {
       const localVarAxiosArgs =
@@ -1316,14 +1786,14 @@ export const ProNumSimLabApiFp = function (configuration?: Configuration) {
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**
-     * 能够进行对比的方案需满足两个条件，分别是时间范围一致和结果配置一致 scenarios that can be compared must have consistent time period and result setting
-     * @summary 查询与指定方案的结果配置一样的方案列表 Get scenarios which can be compared with the specified scenario
-     * @param {string} [scenarioId] 方案ID scenario id
+     * 关键词：      模拟实验室、预案、结果对比        使用场景：      需要对比两个或两个以上预案的结果数据之前            相关背景：      能够进行对比的方案需满足两个条件：      1、进水数据的时间范围一致      2、结果配置里选择的点位一致    输入：       scenarioId：          预案ID  输出：      预案ID列表，列表中只有存在两个或两个以上的ID时才表示有可对比的方案，若只有一个ID则表示没有可对比的方案，因为这个ID就是指定方案的ID
+     * @summary 查询与指定方案的\'结果配置\'一样的方案列表，用于对比结果
+     * @param {string} scenarioId 预案ID
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async apiV2SimulationLabScenarioScenariosForCompareGet(
-      scenarioId?: string,
+      scenarioId: string,
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<string>>> {
       const localVarAxiosArgs =
@@ -1350,12 +1820,12 @@ export const ProNumSimLabApiFactory = function (
     /**
      *
      * @summary /api/app/pro-num-sim-lab/optimization-config-by-type
-     * @param {number} [displayType]
+     * @param {1 | 2} [displayType]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiAppProNumSimLabOptimizationConfigByTypeGet(
-      displayType?: number,
+      displayType?: 1 | 2,
       options?: any,
     ): AxiosPromise<Array<OptimizationConfig>> {
       return localVarFp
@@ -1363,14 +1833,14 @@ export const ProNumSimLabApiFactory = function (
         .then((request) => request(axios, basePath))
     },
     /**
-     *
-     * @summary 获取方案的出水水质结果数据 Get outlet water quality time-series result of a scenario
-     * @param {string} [scenarioId] 方案ID scenario id
+     * 关键词：      预案、出水水质、结果数据        使用场景：      完成预案创建和计算后，需要查看预案模拟结果数据时        相关背景：      获取预案的出水水质结果数据之前，需要先确保：1、新创建的预案计算成功，2、完成结果导出的步骤        输入：      scenarioId:          方案ID，可通过方案管理服务获得预案列表，其中每条预案的ID就是这里要传入的方案ID            输出：
+     * @summary 获取预案的出水水质结果数据
+     * @param {string} scenarioId 方案ID
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiProNumSimLabSimResultsGet(
-      scenarioId?: string,
+      scenarioId: string,
       options?: any,
     ): AxiosPromise<Array<SimResultsOutupt>> {
       return localVarFp
@@ -1378,16 +1848,16 @@ export const ProNumSimLabApiFactory = function (
         .then((request) => request(axios, basePath))
     },
     /**
-     *
-     * @summary 生化池查询 Get biochemical pool config data
-     * @param {string} [productLine] 工艺线代码 product line code
-     * @param {string} [modelName] 模板模型名称 template model name
+     * 关键词：      生化池名称        使用场景：      查看预案水质全流程结果数据时，查询生化池名称列表，用于全流程结果数据的X轴名称展示        相关背景：    输入：       ProductLine：          工艺线代码，比如\'L1\'，\'L2\'       ModelName：          模板方案名称，这里填写固定名称\'模拟实验室模型\'  输出：      生化池名称列表
+     * @summary 查询生化池名称
+     * @param {string} productLine 工艺线代码，比如\&#39;L1\&#39;，\&#39;L2\&#39;
+     * @param {string} modelName 模板方案名称，这里填固定名称\&#39;模拟实验室模型\&#39;
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiV2ConfigBiochemicaltanksGet(
-      productLine?: string,
-      modelName?: string,
+      productLine: string,
+      modelName: string,
       options?: any,
     ): AxiosPromise<Array<QueryBiochemicaltanksOutput>> {
       return localVarFp
@@ -1395,8 +1865,8 @@ export const ProNumSimLabApiFactory = function (
         .then((request) => request(axios, basePath))
     },
     /**
-     * 只有多个方案之间设置不同的参数才会返回 Only parameters with difference setting values among the scenarios will be returned
-     * @summary 多方案控制参数对比 Get several scenarios\' control paramters for comparison
+     * 关键词：     方案对比、控制参数        使用场景：      需要查看两个或两个以上的、可对比的预案中存在的不同的控制参数时        相关背景：      预案模块提供了查看多方案结果对比的功能，除了可以对比模拟结果值以外，还可以对比这些预案设置的控制参数，此接口就是获取控制参数，并且只返回设置不相同的参数值，这样更方便的确认不同的参数值对结果的影响。      只有多个方案之间设置不同的参数才会有返回值。    输入：       ScenarioIds：          用于对比的方案ID，比如[\"20363694-3d7d-40b0-8666-ee3c40dd8dd7\",\"46617cd6-3626-4c82-b7c1-6571d5619b30\"]       ProductLine：          工艺线代码，比如\'L1\'，\'L2\'  输出：      多方案控制参数的对比结果
+     * @summary 查询多方案控制参数的对比结果
      * @param {QueryControlParamCompareInput} [queryControlParamCompareInput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -1410,20 +1880,20 @@ export const ProNumSimLabApiFactory = function (
         .then((request) => request(axios, basePath))
     },
     /**
-     *
-     * @summary 单个工艺线单个生化池指标统计查询 Get scenario\'s statistic result of all the indicators on a certain biochemical pool of a specified product line
-     * @param {string} [scenarioId] 方案ID scenario id
-     * @param {string} [productLine] 工艺线代码 product line code
-     * @param {string} [tankNo] 生化池序号 biochemical pool index
-     * @param {string} [modelName] 模板模型名称 template model name
+     * 关键词：     生化池指标、统计数据        使用场景：      查看预案结果数据时，如需展示指标统计数据，可以通过调用此接口获得        相关背景：      要展示统计数据的生化池指标已经在项目初始化时通过配置文件上传，并且指标的统计数据也会在预案计算结束的后处理入库。这里的统计主要是指在预案的模拟时间内，该指标在这段时间内的最大值、最小值、平均值、中位数、百分位数等统计信息    输入：       ScenarioId：          预案ID       ProductLine：          工艺线代码，比如\'L1\'，\'L2\'       TankNo:          生化池序号，比如\'1\',\'2\'       ModelName：          模板方案名称，这里填写固定名称\'模拟实验室模型\'  输出：      生化池指标统计数据
+     * @summary 查询指定预案的单个工艺线单个生化池指标统计数据
+     * @param {string} scenarioId 方案ID
+     * @param {string} productLine 工艺线代码，比如\&#39;L1\&#39;,\&#39;L2\&#39;
+     * @param {string} tankNo 生化池序号，比如\&#39;1\&#39;,\&#39;2\&#39;
+     * @param {string} modelName 模板方案名称，这里填写固定名称\&#39;模拟实验室模型\&#39;
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiV2SimulationLabResultIndicatorStatisticGet(
-      scenarioId?: string,
-      productLine?: string,
-      tankNo?: string,
-      modelName?: string,
+      scenarioId: string,
+      productLine: string,
+      tankNo: string,
+      modelName: string,
       options?: any,
     ): AxiosPromise<Array<QueryIndicatorStatisticOutput>> {
       return localVarFp
@@ -1437,38 +1907,36 @@ export const ProNumSimLabApiFactory = function (
         .then((request) => request(axios, basePath))
     },
     /**
-     *
-     * @summary 获取单个方案MABR池水质项的分层时间序列数据 Get scenario\'s water quality time-series data in MABR layers
-     * @param {string} [scenarioId]
-     * @param {string} [productLine]
-     * @param {string} [modelName]
+     * 关键词：      预案、MABR池水质项、分层时序数据        使用场景：      查看预案结果数据时        相关背景：      MABR池水质项已经在项目初始化时通过配置文件上传，水质项的所属层数是设备属性Layer，通过相同的水质项的指标名拿到所有层的设备，以此完成全部分层的水质项时序数据获取。    输入：       scenarioId：          预案ID       productLine：          工艺线代码，比如\'L1\'，\'L2\'  输出：MABR池水质项的全部分层时序数据
+     * @summary 获取单个预案MABR池水质项的分层时间序列数据
+     * @param {string} scenarioId 预案ID
+     * @param {string} [productLine] 工艺线代码，比如\&#39;L1\&#39;，\&#39;L2\&#39;
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiV2SimulationLabResultMabrLayerDataGet(
-      scenarioId?: string,
+      scenarioId: string,
       productLine?: string,
-      modelName?: string,
       options?: any,
     ): AxiosPromise<Array<EntireProcessWqOut>> {
       return localVarFp
-        .apiV2SimulationLabResultMabrLayerDataGet(scenarioId, productLine, modelName, options)
+        .apiV2SimulationLabResultMabrLayerDataGet(scenarioId, productLine, options)
         .then((request) => request(axios, basePath))
     },
     /**
-     *
-     * @summary 单个工艺线水质全流程查询 Get scenario\'s water quality entire process result data of a certain product line
-     * @param {string} [scenarioId] 方案ID scenario id
-     * @param {string} [productLine] 工艺线代码 product line code
-     * @param {string} [modelName] 模板模型名称 template model name
-     * @param {string} [code] 系统点位 system code
+     * 关键词：      预案、单个工艺线、水质全流程        使用场景：      查看预案结果数据时，如需展示指标过程数据，则可以调用此接口        相关背景：    输入：       ScenarioId：          预案ID       ProductLine：          工艺线代码，比如\'L1\'，\'L2\'       ModelName：          模板方案名称，这里填写固定名称\'模拟实验室模型\'       Code：          系统点位，比如若设置为\'X_AUT\'，则只返回\'X_AUT\'的全流程数据，设置为空则返回所有水质点位  输出：
+     * @summary 查询单个预案的单个工艺线水质全流程
+     * @param {string} scenarioId 预案ID
+     * @param {string} productLine 工艺线代码，比如\&#39;L1\&#39;，\&#39;L2\&#39;
+     * @param {string} modelName 模板方案名称，这里填写固定名称\&#39;模拟实验室模型\&#39;
+     * @param {string} [code] 系统点位，比如若设置为\&#39;X_AUT\&#39;，则只返回\&#39;X_AUT\&#39;的全流程数据，设置为空则返回所有水质点位
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiV2SimulationLabResultTsByProductlineGet(
-      scenarioId?: string,
-      productLine?: string,
-      modelName?: string,
+      scenarioId: string,
+      productLine: string,
+      modelName: string,
       code?: string,
       options?: any,
     ): AxiosPromise<Array<EntireProcessWqOut>> {
@@ -1484,7 +1952,84 @@ export const ProNumSimLabApiFactory = function (
     },
     /**
      *
-     * @summary 根据ID删除方案，同时删除方案相关的设置数据 Delete scenario as well as its corresponding setting data by scenario ids
+     * @summary 预案编辑时，查询预案的控制边界数据
+     * @param {string} scenarioId 预案ID
+     * @param {string} productLine 工艺线代码，在项目初始化时会通过\&#39;污水基础服务\&#39;的上传到系统，在配置表\&#39;4-工艺线与HRT\&#39;配置，例如：\&#39;L1\&#39;
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV2SimulationLabScenarioControlDataGet(
+      scenarioId: string,
+      productLine: string,
+      options?: any,
+    ): AxiosPromise<QueryControlDataOutput> {
+      return localVarFp
+        .apiV2SimulationLabScenarioControlDataGet(scenarioId, productLine, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @summary 保存预案的控制边界数据
+     * @param {Array<SaveControlDataInput>} [saveControlDataInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV2SimulationLabScenarioControlDataSavePost(
+      saveControlDataInput?: Array<SaveControlDataInput>,
+      options?: any,
+    ): AxiosPromise<void> {
+      return localVarFp
+        .apiV2SimulationLabScenarioControlDataSavePost(saveControlDataInput, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @summary 控制边界文件模板下载
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV2SimulationLabScenarioControlDataTemplateDownloadPost(options?: any): AxiosPromise<void> {
+      return localVarFp
+        .apiV2SimulationLabScenarioControlDataTemplateDownloadPost(options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @summary 控制边界数据文件excel上传
+     * @param {File} excel 包含进水数据的excel文件
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV2SimulationLabScenarioControlDataTemplateUploadPost(
+      excel: File,
+      options?: any,
+    ): AxiosPromise<Array<QueryControlDataOutput>> {
+      return localVarFp
+        .apiV2SimulationLabScenarioControlDataTemplateUploadPost(excel, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @summary 创建预案时，查询预案控制边界的在线数据
+     * @param {string} productLine 工艺线代码，在项目初始化时会通过\&#39;污水基础服务\&#39;的上传到系统，在配置表\&#39;4-工艺线与HRT\&#39;配置，例如：\&#39;L1\&#39;
+     * @param {string} startTime 数据查询范围的开始时间，包含开始时间，例如：\&#39;2025-03-13T16:00:00+08:00\&#39;
+     * @param {string} endTime 数据查询范围的结束时间，包含结束时间，例如：\&#39;2025-03-15T16:00:00+08:00\&#39;
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV2SimulationLabScenarioControlScadaGet(
+      productLine: string,
+      startTime: string,
+      endTime: string,
+      options?: any,
+    ): AxiosPromise<QueryControlDataOutput> {
+      return localVarFp
+        .apiV2SimulationLabScenarioControlScadaGet(productLine, startTime, endTime, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     * 关键词：      预案、删除        使用场景：      需要删除预案时        相关背景：        输入：      方案ID列表:          传入格式为：[\"3df19cf5-05e6-4907-8875-03597836b2dc\",\"af6686c1-15f6-473a-aeee-e5b3e5574aac\"]            输出：
+     * @summary 根据ID删除预案，同时删除预案的结果设置数据
      * @param {DeleteScenarioInput} [deleteScenarioInput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -1492,22 +2037,22 @@ export const ProNumSimLabApiFactory = function (
     apiV2SimulationLabScenarioDeletePost(
       deleteScenarioInput?: DeleteScenarioInput,
       options?: any,
-    ): AxiosPromise<object> {
+    ): AxiosPromise<void> {
       return localVarFp
         .apiV2SimulationLabScenarioDeletePost(deleteScenarioInput, options)
         .then((request) => request(axios, basePath))
     },
     /**
-     *
-     * @summary 查询方案进水数据 Get scenario\'s inlet time-series data
-     * @param {string} [scenarioId] 方案ID scenario id
-     * @param {string} [inlet] 进水点 inlet
+     * 关键词：      预案、进水数据        使用场景：      需要修改预案的进水数据时，可以先调用此接口获取创建预案时保存的进水数据        相关背景：      在这里，返回的进水点位会在项目初始化时通过配置文件上传。以及查询进水数据的前提是已经保存了进水数据，保存之前，获取的方式有两种：      1、从iot服务中获取在线数据      2、将进水数据整理到excel文件后上传      最后，将从以上任意一种方式获取到的进水数据和预案ID绑定后保存到数据库中        输入：       ScenarioId:          预案ID       Inlet:           进水口代码，在项目初始化时会通过\'污水基础服务\'的上传到系统，是配置表中的\'3-进出水口\'的\'进出水口代码\'，例如：\'Inlet\'            输出：      预案的进水数据
+     * @summary 预案编辑时，查询预案的进水数据
+     * @param {string} scenarioId 预案ID
+     * @param {string} inlet 进水点名称，在项目初始化时会通过\&#39;污水基础服务\&#39;的上传到系统，是配置表中的\&#39;3-进出水口\&#39;的\&#39;进出水口代码\&#39;，例如：\&#39;Inlet\&#39;
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiV2SimulationLabScenarioInletDataGet(
-      scenarioId?: string,
-      inlet?: string,
+      scenarioId: string,
+      inlet: string,
       options?: any,
     ): AxiosPromise<QueryInletDataOutput> {
       return localVarFp
@@ -1515,8 +2060,8 @@ export const ProNumSimLabApiFactory = function (
         .then((request) => request(axios, basePath))
     },
     /**
-     *
-     * @summary 保存进水数据到方案（入数据库） Save inlet time-series data of a scenario in database
+     * 关键词：      预案、进水数据        使用场景：      创建预案/编辑预案时，保存进水数据        相关背景：    输入：       ScenarioId：          预案ID       Inlet：          进水口代码，在项目初始化时会通过\'污水基础服务\'的上传到系统，是配置表中的\'3-进出水口\'的\'进出水口代码\'，例如：\'Inlet\'       ColNames：          每一列的名称与单位，比如[{\"code\": \"NH4\",\"unit\": \"mg/L\"},{\"code\": \"TSS\",\"unit\": \"mg/L\"},{\"code\": \"T\",\"unit\": \"degC\"},{\"code\": \"COD\",\"unit\": \"mg/L\"},{\"code\": \"TP\",\"unit\": \"mg/L\"},{\"code\": \"Flow\",\"unit\": \"m³/h\"}]       Times：          所有的时刻，比如：[\"2024-08-07T02:00:00+00:00\",\"2024-08-07T03:00:00+00:00\",\"2024-08-07T04:00:00+00:00\",\"2024-08-07T05:00:00+00:00\",……]       Values：          每一列每一时刻的数值，比如：[[3.693,88.885,22.768,118.513,1.011,3470.782],[0,0,0,0,0,0],[0,0,0,0,0,0]]  输出：
+     * @summary 保存预案的进水数据
      * @param {Array<SaveInletDataInput>} [saveInletDataInput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -1524,14 +2069,14 @@ export const ProNumSimLabApiFactory = function (
     apiV2SimulationLabScenarioInletDataSavePost(
       saveInletDataInput?: Array<SaveInletDataInput>,
       options?: any,
-    ): AxiosPromise<object> {
+    ): AxiosPromise<void> {
       return localVarFp
         .apiV2SimulationLabScenarioInletDataSavePost(saveInletDataInput, options)
         .then((request) => request(axios, basePath))
     },
     /**
-     *
-     * @summary 进水点文件模板下载 Download the inlet time-series data excel file template.
+     * 关键词：      预案、进水数据模板        使用场景：      创建预案时，如果想直接通过excel上传进水数据，可以先通过此接口下载模板文件        相关背景：      下载的模板中会自动填充最近一天的在线数据，可将模板中的时间格式和数据格式作为参考，避免格式问题导致上传失败    输入：            输出：      进水模板的excel文件
+     * @summary 进水文件模板下载
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -1541,14 +2086,14 @@ export const ProNumSimLabApiFactory = function (
         .then((request) => request(axios, basePath))
     },
     /**
-     *
-     * @summary 进水点数据文件excel上传 Upload inlet time-series data in an excel file
-     * @param {any} [excel]
+     * 关键词：      预案、进水数据        使用场景：      创建预案时，如果想直接通过excel上传进水数据        相关背景：      创建预案时有两种获取进水数据的方式有：      1、从iot服务中获取在线数据      2、将进水数据整理到excel文件后上传      此接口实现的是第二种获取方式  输入：       Excel:          包含进水数据的excel文件  输出：      预案的进水数据
+     * @summary 进水点数据文件excel上传
+     * @param {File} excel 包含进水数据的excel文件
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiV2SimulationLabScenarioInletDataTemplateUploadPost(
-      excel?: any,
+      excel: File,
       options?: any,
     ): AxiosPromise<Array<SaveInletDataInput>> {
       return localVarFp
@@ -1556,18 +2101,18 @@ export const ProNumSimLabApiFactory = function (
         .then((request) => request(axios, basePath))
     },
     /**
-     *
-     * @summary 查询SCADA数据 Get inlet time-series data from SCADA
-     * @param {string} [inlet] 进水点 inlet
-     * @param {string} [startTime] 开始时间 start time
-     * @param {string} [endTime] 结束时间 end time
+     * 关键词：      预案、进水数据        使用场景：      创建预案时，如果想直接从数据库中读取进水点位的在线数据        相关背景：      创建预案时有两种获取进水数据的方式有：      1、从iot服务中获取在线数据      2、将进水数据整理到excel文件后上传      此接口实现的是第一种获取方式  输入：       Inlet:          进水口代码，在项目初始化时会通过\'污水基础服务\'的上传到系统，是配置表中的\'3-进出水口\'的\'进出水口代码\'，例如：\'Inlet\'       StartTime:           数据查询范围的开始时间，包含开始时间，例如：\'2025-03-13T16:00:00+08:00\'       EndTime:         数据查询范围的结束时间，不包含结束时间，例如：\'2025-03-15T16:00:00+08:00            输出：      预案的进水数据
+     * @summary 创建预案时，查询预案进水点位的在线数据
+     * @param {string} inlet 进水口代码，在项目初始化时会通过\&#39;污水基础服务\&#39;的上传到系统，是配置表中的\&#39;3-进出水口\&#39;的\&#39;进出水口代码\&#39;，例如：\&#39;Inlet\&#39;
+     * @param {string} startTime 数据查询范围的开始时间，包含开始时间，例如：\&#39;2025-03-13T16:00:00+08:00\&#39;
+     * @param {string} endTime 数据查询范围的结束时间，包含结束时间，例如：\&#39;2025-03-15T16:00:00+08:00\&#39;
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiV2SimulationLabScenarioInletScadaGet(
-      inlet?: string,
-      startTime?: string,
-      endTime?: string,
+      inlet: string,
+      startTime: string,
+      endTime: string,
       options?: any,
     ): AxiosPromise<QueryInletDataOutput> {
       return localVarFp
@@ -1575,25 +2120,25 @@ export const ProNumSimLabApiFactory = function (
         .then((request) => request(axios, basePath))
     },
     /**
-     *
-     * @summary 查询方案参数设置 Get scenario\'s parameter setting data
-     * @param {string} [scenarioId] 方案ID scenario id
-     * @param {string} [productLine] 工艺线代码 product line code
+     * 关键词：      模拟实验室、模板、预案、WEST模型开放参数        使用场景：      此接口可以在两个场景下使用：      1、创建预案时，先调用此接口获取绑定在\'模拟实验室\'模板下的WEST模型开放参数，用于绑定在新创建的预案上，这种场景下不需要传scenarioId      2、编辑预案时，调用此接口获取已绑定在预案下的WEST模型开放参数        相关背景：     污水项目有三个固定的模板类型，分别是\'在线滚动模型\'，\'在线滚动优化模型\'，\'模拟实验室\'，每个模版开放出来的WEST模型参数都会在项目初始化时通过配置文件上传，创建新方案时都会把模板的参数取出后绑定在新方案上，用于模型计算前处理阶段时写入模型，参数值可根据实际情况进行修改。     一般情况下WEST模型是有很多参数的，因此\'WEST模型开放参数\'特指从模型参数中选取出来的一部分开放给用户修改的    输入：       ScenarioId：          预案ID，创建预案时直接设置为空       ProductLine：          工艺线代码，如\'L1\'，\'L2\'，每次只能获取一个产线下的参数  输出：      \'模拟实验室\'模板/预案的WEST模型开放参数
+     * @summary 查询\'模拟实验室\'模板/预案的WEST模型开放参数
+     * @param {string} productLine 工艺线代码，如\&#39;L1\&#39;，\&#39;L2\&#39;
+     * @param {string} [scenarioId] 方案ID
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiV2SimulationLabScenarioParamGet(
+      productLine: string,
       scenarioId?: string,
-      productLine?: string,
       options?: any,
     ): AxiosPromise<Array<ModelParam>> {
       return localVarFp
-        .apiV2SimulationLabScenarioParamGet(scenarioId, productLine, options)
+        .apiV2SimulationLabScenarioParamGet(productLine, scenarioId, options)
         .then((request) => request(axios, basePath))
     },
     /**
-     *
-     * @summary 保存方案参数设置 Save scenario\'s parameter setting data
+     * 关键词：      预案、WEST模型开放参数        使用场景：      创建预案/编辑预案时，保存WEST模型开放参数        相关背景：    输入：       预案的WEST模型开放参数列表         输出：
+     * @summary 保存预案的WEST模型开放参数
      * @param {Array<SaveParamInput>} [saveParamInput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -1601,15 +2146,15 @@ export const ProNumSimLabApiFactory = function (
     apiV2SimulationLabScenarioParamSavePost(
       saveParamInput?: Array<SaveParamInput>,
       options?: any,
-    ): AxiosPromise<object> {
+    ): AxiosPromise<void> {
       return localVarFp
         .apiV2SimulationLabScenarioParamSavePost(saveParamInput, options)
         .then((request) => request(axios, basePath))
     },
     /**
-     *
-     * @summary 查询方案结果配置 Get scenario\'s result setting data
-     * @param {string} [scenarioId] 方案ID scenario id
+     * 关键词：      模拟实验室、模板、预案、结果配置        使用场景：      此接口可以在两个场景下使用：      1、创建预案时，先调用此接口获取绑定在\'模拟实验室\'模板下的结果配置，用于绑定在新创建的预案上，这种场景下不需要传scenarioId      2、编辑预案时，调用此接口获取已绑定在预案下的结果配置        相关背景：     污水项目有三个固定的模板类型，分别是\'在线滚动模型\'，\'在线滚动优化模型\'，\'模拟实验室\'，其中只有\'模拟实验室\'的模版会有\'结果配置\'信息，用于获取结果时指定需要返回的点位，该信息会在项目初始化时通过配置文件上传。    输入：       scenarioId：          预案ID，创建预案时直接设置为空，编辑预案时传入预案ID  输出：      \'模拟实验室\'模板/预案的结果配置
+     * @summary 查询\'模拟实验室\'模板/预案的结果配置
+     * @param {string} [scenarioId] 预案ID，创建预案时直接设置为空
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -1622,8 +2167,8 @@ export const ProNumSimLabApiFactory = function (
         .then((request) => request(axios, basePath))
     },
     /**
-     *
-     * @summary 保存方案结果配置 Save scenario\'s result setting data
+     * 关键词：      预案、结果配置        使用场景：      创建预案/编辑预案时，保存结果配置        相关背景：    输入：       ScenarioId：          预案ID       ResultSettings：          结果配置详细信息  输出：
+     * @summary 保存预案的结果配置
      * @param {ResultParam} [resultParam]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -1631,22 +2176,22 @@ export const ProNumSimLabApiFactory = function (
     apiV2SimulationLabScenarioResultSettingSavePost(
       resultParam?: ResultParam,
       options?: any,
-    ): AxiosPromise<object> {
+    ): AxiosPromise<void> {
       return localVarFp
         .apiV2SimulationLabScenarioResultSettingSavePost(resultParam, options)
         .then((request) => request(axios, basePath))
     },
     /**
-     * 获取单个预案模拟结果
-     * @summary 获取方案的生化区电耗或碳足迹信息
-     * @param {string} [scenarioId] 方案ID scenario id
-     * @param {number} [subType] 结果类型
+     * 关键词：      模拟实验室、预案、生化区电耗、碳足迹、WEST模拟结果        使用场景：      获取单个预案模拟结果时            相关背景：     要用于展示的生化区电耗、碳足迹的点位已经在项目初始化时通过配置文件上传，这里只需要传入对应的枚举类型即可获得结果数据    输入：       scenarioId：          预案ID       subType：         模拟结果子类型，3：生化区电耗，8：碳足迹  输出：     预案的生化区电耗或碳足迹的WEST模拟结果数据
+     * @summary 获取预案的生化区电耗或碳足迹的WEST模拟结果数据
+     * @param {string} scenarioId 预案ID
+     * @param {3 | 8} subType 模拟结果子类型，3：PowerCost，表示生化区电耗，8：CarbonFootprint，表示碳足迹
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiV2SimulationLabScenarioScenarioResultGet(
-      scenarioId?: string,
-      subType?: number,
+      scenarioId: string,
+      subType: 3 | 8,
       options?: any,
     ): AxiosPromise<WwtpDynamicOutput> {
       return localVarFp
@@ -1654,14 +2199,14 @@ export const ProNumSimLabApiFactory = function (
         .then((request) => request(axios, basePath))
     },
     /**
-     * 能够进行对比的方案需满足两个条件，分别是时间范围一致和结果配置一致 scenarios that can be compared must have consistent time period and result setting
-     * @summary 查询与指定方案的结果配置一样的方案列表 Get scenarios which can be compared with the specified scenario
-     * @param {string} [scenarioId] 方案ID scenario id
+     * 关键词：      模拟实验室、预案、结果对比        使用场景：      需要对比两个或两个以上预案的结果数据之前            相关背景：      能够进行对比的方案需满足两个条件：      1、进水数据的时间范围一致      2、结果配置里选择的点位一致    输入：       scenarioId：          预案ID  输出：      预案ID列表，列表中只有存在两个或两个以上的ID时才表示有可对比的方案，若只有一个ID则表示没有可对比的方案，因为这个ID就是指定方案的ID
+     * @summary 查询与指定方案的\'结果配置\'一样的方案列表，用于对比结果
+     * @param {string} scenarioId 预案ID
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiV2SimulationLabScenarioScenariosForCompareGet(
-      scenarioId?: string,
+      scenarioId: string,
       options?: any,
     ): AxiosPromise<Array<string>> {
       return localVarFp
@@ -1681,13 +2226,13 @@ export class ProNumSimLabApi extends BaseAPI {
   /**
    *
    * @summary /api/app/pro-num-sim-lab/optimization-config-by-type
-   * @param {number} [displayType]
+   * @param {1 | 2} [displayType]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof ProNumSimLabApi
    */
   public apiAppProNumSimLabOptimizationConfigByTypeGet(
-    displayType?: number,
+    displayType?: 1 | 2,
     options?: AxiosRequestConfig,
   ) {
     return ProNumSimLabApiFp(this.configuration)
@@ -1696,31 +2241,31 @@ export class ProNumSimLabApi extends BaseAPI {
   }
 
   /**
-   *
-   * @summary 获取方案的出水水质结果数据 Get outlet water quality time-series result of a scenario
-   * @param {string} [scenarioId] 方案ID scenario id
+   * 关键词：      预案、出水水质、结果数据        使用场景：      完成预案创建和计算后，需要查看预案模拟结果数据时        相关背景：      获取预案的出水水质结果数据之前，需要先确保：1、新创建的预案计算成功，2、完成结果导出的步骤        输入：      scenarioId:          方案ID，可通过方案管理服务获得预案列表，其中每条预案的ID就是这里要传入的方案ID            输出：
+   * @summary 获取预案的出水水质结果数据
+   * @param {string} scenarioId 方案ID
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof ProNumSimLabApi
    */
-  public apiProNumSimLabSimResultsGet(scenarioId?: string, options?: AxiosRequestConfig) {
+  public apiProNumSimLabSimResultsGet(scenarioId: string, options?: AxiosRequestConfig) {
     return ProNumSimLabApiFp(this.configuration)
       .apiProNumSimLabSimResultsGet(scenarioId, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
   /**
-   *
-   * @summary 生化池查询 Get biochemical pool config data
-   * @param {string} [productLine] 工艺线代码 product line code
-   * @param {string} [modelName] 模板模型名称 template model name
+   * 关键词：      生化池名称        使用场景：      查看预案水质全流程结果数据时，查询生化池名称列表，用于全流程结果数据的X轴名称展示        相关背景：    输入：       ProductLine：          工艺线代码，比如\'L1\'，\'L2\'       ModelName：          模板方案名称，这里填写固定名称\'模拟实验室模型\'  输出：      生化池名称列表
+   * @summary 查询生化池名称
+   * @param {string} productLine 工艺线代码，比如\&#39;L1\&#39;，\&#39;L2\&#39;
+   * @param {string} modelName 模板方案名称，这里填固定名称\&#39;模拟实验室模型\&#39;
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof ProNumSimLabApi
    */
   public apiV2ConfigBiochemicaltanksGet(
-    productLine?: string,
-    modelName?: string,
+    productLine: string,
+    modelName: string,
     options?: AxiosRequestConfig,
   ) {
     return ProNumSimLabApiFp(this.configuration)
@@ -1729,8 +2274,8 @@ export class ProNumSimLabApi extends BaseAPI {
   }
 
   /**
-   * 只有多个方案之间设置不同的参数才会返回 Only parameters with difference setting values among the scenarios will be returned
-   * @summary 多方案控制参数对比 Get several scenarios\' control paramters for comparison
+   * 关键词：     方案对比、控制参数        使用场景：      需要查看两个或两个以上的、可对比的预案中存在的不同的控制参数时        相关背景：      预案模块提供了查看多方案结果对比的功能，除了可以对比模拟结果值以外，还可以对比这些预案设置的控制参数，此接口就是获取控制参数，并且只返回设置不相同的参数值，这样更方便的确认不同的参数值对结果的影响。      只有多个方案之间设置不同的参数才会有返回值。    输入：       ScenarioIds：          用于对比的方案ID，比如[\"20363694-3d7d-40b0-8666-ee3c40dd8dd7\",\"46617cd6-3626-4c82-b7c1-6571d5619b30\"]       ProductLine：          工艺线代码，比如\'L1\'，\'L2\'  输出：      多方案控制参数的对比结果
+   * @summary 查询多方案控制参数的对比结果
    * @param {QueryControlParamCompareInput} [queryControlParamCompareInput]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
@@ -1746,21 +2291,21 @@ export class ProNumSimLabApi extends BaseAPI {
   }
 
   /**
-   *
-   * @summary 单个工艺线单个生化池指标统计查询 Get scenario\'s statistic result of all the indicators on a certain biochemical pool of a specified product line
-   * @param {string} [scenarioId] 方案ID scenario id
-   * @param {string} [productLine] 工艺线代码 product line code
-   * @param {string} [tankNo] 生化池序号 biochemical pool index
-   * @param {string} [modelName] 模板模型名称 template model name
+   * 关键词：     生化池指标、统计数据        使用场景：      查看预案结果数据时，如需展示指标统计数据，可以通过调用此接口获得        相关背景：      要展示统计数据的生化池指标已经在项目初始化时通过配置文件上传，并且指标的统计数据也会在预案计算结束的后处理入库。这里的统计主要是指在预案的模拟时间内，该指标在这段时间内的最大值、最小值、平均值、中位数、百分位数等统计信息    输入：       ScenarioId：          预案ID       ProductLine：          工艺线代码，比如\'L1\'，\'L2\'       TankNo:          生化池序号，比如\'1\',\'2\'       ModelName：          模板方案名称，这里填写固定名称\'模拟实验室模型\'  输出：      生化池指标统计数据
+   * @summary 查询指定预案的单个工艺线单个生化池指标统计数据
+   * @param {string} scenarioId 方案ID
+   * @param {string} productLine 工艺线代码，比如\&#39;L1\&#39;,\&#39;L2\&#39;
+   * @param {string} tankNo 生化池序号，比如\&#39;1\&#39;,\&#39;2\&#39;
+   * @param {string} modelName 模板方案名称，这里填写固定名称\&#39;模拟实验室模型\&#39;
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof ProNumSimLabApi
    */
   public apiV2SimulationLabResultIndicatorStatisticGet(
-    scenarioId?: string,
-    productLine?: string,
-    tankNo?: string,
-    modelName?: string,
+    scenarioId: string,
+    productLine: string,
+    tankNo: string,
+    modelName: string,
     options?: AxiosRequestConfig,
   ) {
     return ProNumSimLabApiFp(this.configuration)
@@ -1775,41 +2320,39 @@ export class ProNumSimLabApi extends BaseAPI {
   }
 
   /**
-   *
-   * @summary 获取单个方案MABR池水质项的分层时间序列数据 Get scenario\'s water quality time-series data in MABR layers
-   * @param {string} [scenarioId]
-   * @param {string} [productLine]
-   * @param {string} [modelName]
+   * 关键词：      预案、MABR池水质项、分层时序数据        使用场景：      查看预案结果数据时        相关背景：      MABR池水质项已经在项目初始化时通过配置文件上传，水质项的所属层数是设备属性Layer，通过相同的水质项的指标名拿到所有层的设备，以此完成全部分层的水质项时序数据获取。    输入：       scenarioId：          预案ID       productLine：          工艺线代码，比如\'L1\'，\'L2\'  输出：MABR池水质项的全部分层时序数据
+   * @summary 获取单个预案MABR池水质项的分层时间序列数据
+   * @param {string} scenarioId 预案ID
+   * @param {string} [productLine] 工艺线代码，比如\&#39;L1\&#39;，\&#39;L2\&#39;
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof ProNumSimLabApi
    */
   public apiV2SimulationLabResultMabrLayerDataGet(
-    scenarioId?: string,
+    scenarioId: string,
     productLine?: string,
-    modelName?: string,
     options?: AxiosRequestConfig,
   ) {
     return ProNumSimLabApiFp(this.configuration)
-      .apiV2SimulationLabResultMabrLayerDataGet(scenarioId, productLine, modelName, options)
+      .apiV2SimulationLabResultMabrLayerDataGet(scenarioId, productLine, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
   /**
-   *
-   * @summary 单个工艺线水质全流程查询 Get scenario\'s water quality entire process result data of a certain product line
-   * @param {string} [scenarioId] 方案ID scenario id
-   * @param {string} [productLine] 工艺线代码 product line code
-   * @param {string} [modelName] 模板模型名称 template model name
-   * @param {string} [code] 系统点位 system code
+   * 关键词：      预案、单个工艺线、水质全流程        使用场景：      查看预案结果数据时，如需展示指标过程数据，则可以调用此接口        相关背景：    输入：       ScenarioId：          预案ID       ProductLine：          工艺线代码，比如\'L1\'，\'L2\'       ModelName：          模板方案名称，这里填写固定名称\'模拟实验室模型\'       Code：          系统点位，比如若设置为\'X_AUT\'，则只返回\'X_AUT\'的全流程数据，设置为空则返回所有水质点位  输出：
+   * @summary 查询单个预案的单个工艺线水质全流程
+   * @param {string} scenarioId 预案ID
+   * @param {string} productLine 工艺线代码，比如\&#39;L1\&#39;，\&#39;L2\&#39;
+   * @param {string} modelName 模板方案名称，这里填写固定名称\&#39;模拟实验室模型\&#39;
+   * @param {string} [code] 系统点位，比如若设置为\&#39;X_AUT\&#39;，则只返回\&#39;X_AUT\&#39;的全流程数据，设置为空则返回所有水质点位
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof ProNumSimLabApi
    */
   public apiV2SimulationLabResultTsByProductlineGet(
-    scenarioId?: string,
-    productLine?: string,
-    modelName?: string,
+    scenarioId: string,
+    productLine: string,
+    modelName: string,
     code?: string,
     options?: AxiosRequestConfig,
   ) {
@@ -1820,7 +2363,94 @@ export class ProNumSimLabApi extends BaseAPI {
 
   /**
    *
-   * @summary 根据ID删除方案，同时删除方案相关的设置数据 Delete scenario as well as its corresponding setting data by scenario ids
+   * @summary 预案编辑时，查询预案的控制边界数据
+   * @param {string} scenarioId 预案ID
+   * @param {string} productLine 工艺线代码，在项目初始化时会通过\&#39;污水基础服务\&#39;的上传到系统，在配置表\&#39;4-工艺线与HRT\&#39;配置，例如：\&#39;L1\&#39;
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof ProNumSimLabApi
+   */
+  public apiV2SimulationLabScenarioControlDataGet(
+    scenarioId: string,
+    productLine: string,
+    options?: AxiosRequestConfig,
+  ) {
+    return ProNumSimLabApiFp(this.configuration)
+      .apiV2SimulationLabScenarioControlDataGet(scenarioId, productLine, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary 保存预案的控制边界数据
+   * @param {Array<SaveControlDataInput>} [saveControlDataInput]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof ProNumSimLabApi
+   */
+  public apiV2SimulationLabScenarioControlDataSavePost(
+    saveControlDataInput?: Array<SaveControlDataInput>,
+    options?: AxiosRequestConfig,
+  ) {
+    return ProNumSimLabApiFp(this.configuration)
+      .apiV2SimulationLabScenarioControlDataSavePost(saveControlDataInput, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary 控制边界文件模板下载
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof ProNumSimLabApi
+   */
+  public apiV2SimulationLabScenarioControlDataTemplateDownloadPost(options?: AxiosRequestConfig) {
+    return ProNumSimLabApiFp(this.configuration)
+      .apiV2SimulationLabScenarioControlDataTemplateDownloadPost(options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary 控制边界数据文件excel上传
+   * @param {File} excel 包含进水数据的excel文件
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof ProNumSimLabApi
+   */
+  public apiV2SimulationLabScenarioControlDataTemplateUploadPost(
+    excel: File,
+    options?: AxiosRequestConfig,
+  ) {
+    return ProNumSimLabApiFp(this.configuration)
+      .apiV2SimulationLabScenarioControlDataTemplateUploadPost(excel, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary 创建预案时，查询预案控制边界的在线数据
+   * @param {string} productLine 工艺线代码，在项目初始化时会通过\&#39;污水基础服务\&#39;的上传到系统，在配置表\&#39;4-工艺线与HRT\&#39;配置，例如：\&#39;L1\&#39;
+   * @param {string} startTime 数据查询范围的开始时间，包含开始时间，例如：\&#39;2025-03-13T16:00:00+08:00\&#39;
+   * @param {string} endTime 数据查询范围的结束时间，包含结束时间，例如：\&#39;2025-03-15T16:00:00+08:00\&#39;
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof ProNumSimLabApi
+   */
+  public apiV2SimulationLabScenarioControlScadaGet(
+    productLine: string,
+    startTime: string,
+    endTime: string,
+    options?: AxiosRequestConfig,
+  ) {
+    return ProNumSimLabApiFp(this.configuration)
+      .apiV2SimulationLabScenarioControlScadaGet(productLine, startTime, endTime, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   * 关键词：      预案、删除        使用场景：      需要删除预案时        相关背景：        输入：      方案ID列表:          传入格式为：[\"3df19cf5-05e6-4907-8875-03597836b2dc\",\"af6686c1-15f6-473a-aeee-e5b3e5574aac\"]            输出：
+   * @summary 根据ID删除预案，同时删除预案的结果设置数据
    * @param {DeleteScenarioInput} [deleteScenarioInput]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
@@ -1836,17 +2466,17 @@ export class ProNumSimLabApi extends BaseAPI {
   }
 
   /**
-   *
-   * @summary 查询方案进水数据 Get scenario\'s inlet time-series data
-   * @param {string} [scenarioId] 方案ID scenario id
-   * @param {string} [inlet] 进水点 inlet
+   * 关键词：      预案、进水数据        使用场景：      需要修改预案的进水数据时，可以先调用此接口获取创建预案时保存的进水数据        相关背景：      在这里，返回的进水点位会在项目初始化时通过配置文件上传。以及查询进水数据的前提是已经保存了进水数据，保存之前，获取的方式有两种：      1、从iot服务中获取在线数据      2、将进水数据整理到excel文件后上传      最后，将从以上任意一种方式获取到的进水数据和预案ID绑定后保存到数据库中        输入：       ScenarioId:          预案ID       Inlet:           进水口代码，在项目初始化时会通过\'污水基础服务\'的上传到系统，是配置表中的\'3-进出水口\'的\'进出水口代码\'，例如：\'Inlet\'            输出：      预案的进水数据
+   * @summary 预案编辑时，查询预案的进水数据
+   * @param {string} scenarioId 预案ID
+   * @param {string} inlet 进水点名称，在项目初始化时会通过\&#39;污水基础服务\&#39;的上传到系统，是配置表中的\&#39;3-进出水口\&#39;的\&#39;进出水口代码\&#39;，例如：\&#39;Inlet\&#39;
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof ProNumSimLabApi
    */
   public apiV2SimulationLabScenarioInletDataGet(
-    scenarioId?: string,
-    inlet?: string,
+    scenarioId: string,
+    inlet: string,
     options?: AxiosRequestConfig,
   ) {
     return ProNumSimLabApiFp(this.configuration)
@@ -1855,8 +2485,8 @@ export class ProNumSimLabApi extends BaseAPI {
   }
 
   /**
-   *
-   * @summary 保存进水数据到方案（入数据库） Save inlet time-series data of a scenario in database
+   * 关键词：      预案、进水数据        使用场景：      创建预案/编辑预案时，保存进水数据        相关背景：    输入：       ScenarioId：          预案ID       Inlet：          进水口代码，在项目初始化时会通过\'污水基础服务\'的上传到系统，是配置表中的\'3-进出水口\'的\'进出水口代码\'，例如：\'Inlet\'       ColNames：          每一列的名称与单位，比如[{\"code\": \"NH4\",\"unit\": \"mg/L\"},{\"code\": \"TSS\",\"unit\": \"mg/L\"},{\"code\": \"T\",\"unit\": \"degC\"},{\"code\": \"COD\",\"unit\": \"mg/L\"},{\"code\": \"TP\",\"unit\": \"mg/L\"},{\"code\": \"Flow\",\"unit\": \"m³/h\"}]       Times：          所有的时刻，比如：[\"2024-08-07T02:00:00+00:00\",\"2024-08-07T03:00:00+00:00\",\"2024-08-07T04:00:00+00:00\",\"2024-08-07T05:00:00+00:00\",……]       Values：          每一列每一时刻的数值，比如：[[3.693,88.885,22.768,118.513,1.011,3470.782],[0,0,0,0,0,0],[0,0,0,0,0,0]]  输出：
+   * @summary 保存预案的进水数据
    * @param {Array<SaveInletDataInput>} [saveInletDataInput]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
@@ -1872,8 +2502,8 @@ export class ProNumSimLabApi extends BaseAPI {
   }
 
   /**
-   *
-   * @summary 进水点文件模板下载 Download the inlet time-series data excel file template.
+   * 关键词：      预案、进水数据模板        使用场景：      创建预案时，如果想直接通过excel上传进水数据，可以先通过此接口下载模板文件        相关背景：      下载的模板中会自动填充最近一天的在线数据，可将模板中的时间格式和数据格式作为参考，避免格式问题导致上传失败    输入：            输出：      进水模板的excel文件
+   * @summary 进水文件模板下载
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof ProNumSimLabApi
@@ -1885,15 +2515,15 @@ export class ProNumSimLabApi extends BaseAPI {
   }
 
   /**
-   *
-   * @summary 进水点数据文件excel上传 Upload inlet time-series data in an excel file
-   * @param {any} [excel]
+   * 关键词：      预案、进水数据        使用场景：      创建预案时，如果想直接通过excel上传进水数据        相关背景：      创建预案时有两种获取进水数据的方式有：      1、从iot服务中获取在线数据      2、将进水数据整理到excel文件后上传      此接口实现的是第二种获取方式  输入：       Excel:          包含进水数据的excel文件  输出：      预案的进水数据
+   * @summary 进水点数据文件excel上传
+   * @param {File} excel 包含进水数据的excel文件
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof ProNumSimLabApi
    */
   public apiV2SimulationLabScenarioInletDataTemplateUploadPost(
-    excel?: any,
+    excel: File,
     options?: AxiosRequestConfig,
   ) {
     return ProNumSimLabApiFp(this.configuration)
@@ -1902,19 +2532,19 @@ export class ProNumSimLabApi extends BaseAPI {
   }
 
   /**
-   *
-   * @summary 查询SCADA数据 Get inlet time-series data from SCADA
-   * @param {string} [inlet] 进水点 inlet
-   * @param {string} [startTime] 开始时间 start time
-   * @param {string} [endTime] 结束时间 end time
+   * 关键词：      预案、进水数据        使用场景：      创建预案时，如果想直接从数据库中读取进水点位的在线数据        相关背景：      创建预案时有两种获取进水数据的方式有：      1、从iot服务中获取在线数据      2、将进水数据整理到excel文件后上传      此接口实现的是第一种获取方式  输入：       Inlet:          进水口代码，在项目初始化时会通过\'污水基础服务\'的上传到系统，是配置表中的\'3-进出水口\'的\'进出水口代码\'，例如：\'Inlet\'       StartTime:           数据查询范围的开始时间，包含开始时间，例如：\'2025-03-13T16:00:00+08:00\'       EndTime:         数据查询范围的结束时间，不包含结束时间，例如：\'2025-03-15T16:00:00+08:00            输出：      预案的进水数据
+   * @summary 创建预案时，查询预案进水点位的在线数据
+   * @param {string} inlet 进水口代码，在项目初始化时会通过\&#39;污水基础服务\&#39;的上传到系统，是配置表中的\&#39;3-进出水口\&#39;的\&#39;进出水口代码\&#39;，例如：\&#39;Inlet\&#39;
+   * @param {string} startTime 数据查询范围的开始时间，包含开始时间，例如：\&#39;2025-03-13T16:00:00+08:00\&#39;
+   * @param {string} endTime 数据查询范围的结束时间，包含结束时间，例如：\&#39;2025-03-15T16:00:00+08:00\&#39;
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof ProNumSimLabApi
    */
   public apiV2SimulationLabScenarioInletScadaGet(
-    inlet?: string,
-    startTime?: string,
-    endTime?: string,
+    inlet: string,
+    startTime: string,
+    endTime: string,
     options?: AxiosRequestConfig,
   ) {
     return ProNumSimLabApiFp(this.configuration)
@@ -1923,27 +2553,27 @@ export class ProNumSimLabApi extends BaseAPI {
   }
 
   /**
-   *
-   * @summary 查询方案参数设置 Get scenario\'s parameter setting data
-   * @param {string} [scenarioId] 方案ID scenario id
-   * @param {string} [productLine] 工艺线代码 product line code
+   * 关键词：      模拟实验室、模板、预案、WEST模型开放参数        使用场景：      此接口可以在两个场景下使用：      1、创建预案时，先调用此接口获取绑定在\'模拟实验室\'模板下的WEST模型开放参数，用于绑定在新创建的预案上，这种场景下不需要传scenarioId      2、编辑预案时，调用此接口获取已绑定在预案下的WEST模型开放参数        相关背景：     污水项目有三个固定的模板类型，分别是\'在线滚动模型\'，\'在线滚动优化模型\'，\'模拟实验室\'，每个模版开放出来的WEST模型参数都会在项目初始化时通过配置文件上传，创建新方案时都会把模板的参数取出后绑定在新方案上，用于模型计算前处理阶段时写入模型，参数值可根据实际情况进行修改。     一般情况下WEST模型是有很多参数的，因此\'WEST模型开放参数\'特指从模型参数中选取出来的一部分开放给用户修改的    输入：       ScenarioId：          预案ID，创建预案时直接设置为空       ProductLine：          工艺线代码，如\'L1\'，\'L2\'，每次只能获取一个产线下的参数  输出：      \'模拟实验室\'模板/预案的WEST模型开放参数
+   * @summary 查询\'模拟实验室\'模板/预案的WEST模型开放参数
+   * @param {string} productLine 工艺线代码，如\&#39;L1\&#39;，\&#39;L2\&#39;
+   * @param {string} [scenarioId] 方案ID
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof ProNumSimLabApi
    */
   public apiV2SimulationLabScenarioParamGet(
+    productLine: string,
     scenarioId?: string,
-    productLine?: string,
     options?: AxiosRequestConfig,
   ) {
     return ProNumSimLabApiFp(this.configuration)
-      .apiV2SimulationLabScenarioParamGet(scenarioId, productLine, options)
+      .apiV2SimulationLabScenarioParamGet(productLine, scenarioId, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
   /**
-   *
-   * @summary 保存方案参数设置 Save scenario\'s parameter setting data
+   * 关键词：      预案、WEST模型开放参数        使用场景：      创建预案/编辑预案时，保存WEST模型开放参数        相关背景：    输入：       预案的WEST模型开放参数列表         输出：
+   * @summary 保存预案的WEST模型开放参数
    * @param {Array<SaveParamInput>} [saveParamInput]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
@@ -1959,9 +2589,9 @@ export class ProNumSimLabApi extends BaseAPI {
   }
 
   /**
-   *
-   * @summary 查询方案结果配置 Get scenario\'s result setting data
-   * @param {string} [scenarioId] 方案ID scenario id
+   * 关键词：      模拟实验室、模板、预案、结果配置        使用场景：      此接口可以在两个场景下使用：      1、创建预案时，先调用此接口获取绑定在\'模拟实验室\'模板下的结果配置，用于绑定在新创建的预案上，这种场景下不需要传scenarioId      2、编辑预案时，调用此接口获取已绑定在预案下的结果配置        相关背景：     污水项目有三个固定的模板类型，分别是\'在线滚动模型\'，\'在线滚动优化模型\'，\'模拟实验室\'，其中只有\'模拟实验室\'的模版会有\'结果配置\'信息，用于获取结果时指定需要返回的点位，该信息会在项目初始化时通过配置文件上传。    输入：       scenarioId：          预案ID，创建预案时直接设置为空，编辑预案时传入预案ID  输出：      \'模拟实验室\'模板/预案的结果配置
+   * @summary 查询\'模拟实验室\'模板/预案的结果配置
+   * @param {string} [scenarioId] 预案ID，创建预案时直接设置为空
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof ProNumSimLabApi
@@ -1976,8 +2606,8 @@ export class ProNumSimLabApi extends BaseAPI {
   }
 
   /**
-   *
-   * @summary 保存方案结果配置 Save scenario\'s result setting data
+   * 关键词：      预案、结果配置        使用场景：      创建预案/编辑预案时，保存结果配置        相关背景：    输入：       ScenarioId：          预案ID       ResultSettings：          结果配置详细信息  输出：
+   * @summary 保存预案的结果配置
    * @param {ResultParam} [resultParam]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
@@ -1993,17 +2623,17 @@ export class ProNumSimLabApi extends BaseAPI {
   }
 
   /**
-   * 获取单个预案模拟结果
-   * @summary 获取方案的生化区电耗或碳足迹信息
-   * @param {string} [scenarioId] 方案ID scenario id
-   * @param {number} [subType] 结果类型
+   * 关键词：      模拟实验室、预案、生化区电耗、碳足迹、WEST模拟结果        使用场景：      获取单个预案模拟结果时            相关背景：     要用于展示的生化区电耗、碳足迹的点位已经在项目初始化时通过配置文件上传，这里只需要传入对应的枚举类型即可获得结果数据    输入：       scenarioId：          预案ID       subType：         模拟结果子类型，3：生化区电耗，8：碳足迹  输出：     预案的生化区电耗或碳足迹的WEST模拟结果数据
+   * @summary 获取预案的生化区电耗或碳足迹的WEST模拟结果数据
+   * @param {string} scenarioId 预案ID
+   * @param {3 | 8} subType 模拟结果子类型，3：PowerCost，表示生化区电耗，8：CarbonFootprint，表示碳足迹
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof ProNumSimLabApi
    */
   public apiV2SimulationLabScenarioScenarioResultGet(
-    scenarioId?: string,
-    subType?: number,
+    scenarioId: string,
+    subType: 3 | 8,
     options?: AxiosRequestConfig,
   ) {
     return ProNumSimLabApiFp(this.configuration)
@@ -2012,15 +2642,15 @@ export class ProNumSimLabApi extends BaseAPI {
   }
 
   /**
-   * 能够进行对比的方案需满足两个条件，分别是时间范围一致和结果配置一致 scenarios that can be compared must have consistent time period and result setting
-   * @summary 查询与指定方案的结果配置一样的方案列表 Get scenarios which can be compared with the specified scenario
-   * @param {string} [scenarioId] 方案ID scenario id
+   * 关键词：      模拟实验室、预案、结果对比        使用场景：      需要对比两个或两个以上预案的结果数据之前            相关背景：      能够进行对比的方案需满足两个条件：      1、进水数据的时间范围一致      2、结果配置里选择的点位一致    输入：       scenarioId：          预案ID  输出：      预案ID列表，列表中只有存在两个或两个以上的ID时才表示有可对比的方案，若只有一个ID则表示没有可对比的方案，因为这个ID就是指定方案的ID
+   * @summary 查询与指定方案的\'结果配置\'一样的方案列表，用于对比结果
+   * @param {string} scenarioId 预案ID
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof ProNumSimLabApi
    */
   public apiV2SimulationLabScenarioScenariosForCompareGet(
-    scenarioId?: string,
+    scenarioId: string,
     options?: AxiosRequestConfig,
   ) {
     return ProNumSimLabApiFp(this.configuration)
