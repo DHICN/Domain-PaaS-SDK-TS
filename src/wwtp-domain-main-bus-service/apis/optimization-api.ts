@@ -56,7 +56,6 @@ export const OptimizationApiAxiosParamCreator = function (configuration?: Config
      *
      * @summary 获取控制对比数据        ///
      * @param {string} tenantId
-     * @param {string} [dt]
      * @param {string} [modelName]
      * @param {string} [productLine]
      * @param {1 | 2 | 3 | 4 | 5 | 6 | 7 | 8} [subType]
@@ -65,7 +64,6 @@ export const OptimizationApiAxiosParamCreator = function (configuration?: Config
      */
     apiAppOptimizationControlCompareCurrentInternalTenantIdGet: async (
       tenantId: string,
-      dt?: string,
       modelName?: string,
       productLine?: string,
       subType?: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8,
@@ -96,10 +94,6 @@ export const OptimizationApiAxiosParamCreator = function (configuration?: Config
       // authentication bearer required
       // http bearer authentication required
       await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-      if (dt !== undefined) {
-        localVarQueryParameter['dt'] = (dt as any) instanceof Date ? (dt as any).toISOString() : dt
-      }
 
       if (modelName !== undefined) {
         localVarQueryParameter['modelName'] = modelName
@@ -344,6 +338,7 @@ export const OptimizationApiAxiosParamCreator = function (configuration?: Config
      * @param {string} modelName 模板方案名称，这里是固定名称\&#39;在线滚动优化模型\&#39;
      * @param {string} [productLine] 工艺线编码，比如\&#39;L1\&#39;，\&#39;L2\&#39;
      * @param {*} [options] Override http request option.
+     * @deprecated
      * @throws {RequiredError}
      */
     apiV2OptimizationControlCompareGet: async (
@@ -407,10 +402,11 @@ export const OptimizationApiAxiosParamCreator = function (configuration?: Config
       }
     },
     /**
-     * 关键词：      远程控制、opc-ua协议        使用场景：      针对用户设置的开启远程控制的控制建议点位，执行控制，由任务调度控制每五分钟执行一次        相关背景：      1.配置opc-ua节点：需要提前在IoT服务的Opcua模块中通过接口完成opc-ua节点信息的配置      2.需要发送控制建议值的设备列表可以在项目初始化时通过配置文件上传    输入：      modelName:          模板方案名称，这里是固定名称\'在线滚动优化模型\'            输出：
+     * 关键词：      远程控制、opc-ua协议  使用场景：      针对用户设置的开启远程控制的控制建议点位，执行控制，由任务调度控制每五分钟执行一次        相关背景：      1.配置opc-ua节点：需要提前在IoT服务的Opcua模块中通过接口完成opc-ua节点信息的配置      2.需要发送控制建议值的设备列表可以在项目初始化时通过配置文件上传    输入：      modelName:          模板方案名称，这里是固定名称\'在线滚动优化模型\'            输出：
      * @summary 给所有需要执行远程控制的设备发送控制建议值，目前只支持opc-ua协议
      * @param {string} modelName 模板方案名称，这里是固定名称\&#39;在线滚动优化模型\&#39;
      * @param {*} [options] Override http request option.
+     * @deprecated
      * @throws {RequiredError}
      */
     apiV2OptimizationControlPost: async (
@@ -459,6 +455,7 @@ export const OptimizationApiAxiosParamCreator = function (configuration?: Config
      * @param {string} modelName 模板方案方案名称，这里是固定名称\&#39;在线滚动优化模型\&#39;
      * @param {string} [productLine] 工艺线编码，比如\&#39;L1\&#39;，\&#39;L2\&#39;
      * @param {*} [options] Override http request option.
+     * @deprecated
      * @throws {RequiredError}
      */
     apiV2OptimizationControlSuggestionsGet: async (
@@ -764,24 +761,118 @@ export const OptimizationApiAxiosParamCreator = function (configuration?: Config
       }
     },
     /**
-     *
-     * @summary 获取指定优化类型的实际值与优化值，包括时间序列与平均值 Get specify optimization point of real and optimized, including time-series data and average value
-     * @param {string} [startTime] 开始时刻 start time
-     * @param {string} [endTime] 结束时刻 end time
-     * @param {string} [modelName] 模板模型名称 template model name
-     * @param {string} [productLine] 工艺线编码 product line code
-     * @param {1 | 2 | 3 | 4 | 5 | 6 | 7 | 8} [controlCompareSubEnum] 对比的优化类型
+     * 关键词：      优化类型、滚动计算、优化计算、对比数据        使用场景：      需要获取指定时间段内、指定优化类型的滚动计算结果与优化计算结果的对比数据，比如获取生化区能耗对比、碳足迹对比等        输入：      startTime:          查询时间范围的开始时刻，包含开始时刻，格式为：\'yyyy-MM-ddTHH:mm:sszzz\'，比如\'2025-01-01T00:00:00+08:00\'      endTime:          查询时间范围的结束时刻，包含结束时刻，格式为：\'yyyy-MM-ddTHH:mm:sszzz\'，比如\'2025-02-01T00:00:00+08:00\'      modelName:          模板方案名称，这里是固定名称\'在线滚动优化模型\'      productLine:          工艺线编码，比如\'L1\'，\'L2\'           ControlCompareSubEnums:          对比的优化类型枚举值，目前一共有8个枚举值，具体是 1：控制方案，2：出水水质，3：生化区电耗，4：实际电耗，5：实际水量，6：优化电耗，7：药耗，8：碳足迹    输出：
+     * @summary 获取指定时间段内、指定优化类型的滚动计算结果与优化计算结果的对比数据
+     * @param {string} startTime 查询时间范围的开始时刻，包含开始时刻，格式为：\&#39;yyyy-MM-ddTHH:mm:sszzz\&#39;，比如\&#39;2025-01-01T00:00:00+08:00\&#39;
+     * @param {string} endTime 查询时间范围的结束时刻，包含结束时刻，格式为：\&#39;yyyy-MM-ddTHH:mm:sszzz\&#39;，比如\&#39;2025-02-01T00:00:00+08:00\&#39;
+     * @param {string} modelName 模板方案名称，这里是固定名称\&#39;在线滚动优化模型\&#39;
+     * @param {1 | 2 | 3 | 4 | 5 | 6 | 7 | 8} controlCompareSubEnum 对比的优化类型枚举值，目前一共有8个枚举值，具体是 1：控制方案，2：出水水质，3：生化区电耗，4：实际电耗，5：实际水量，6：优化电耗，7：药耗，8：碳足迹
+     * @param {string} [productLine] 工艺线编码，比如\&#39;L1\&#39;，\&#39;L2\&#39;
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV2OptimizationGeneralCompareBetweenModelsGet: async (
+      startTime: string,
+      endTime: string,
+      modelName: string,
+      controlCompareSubEnum: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8,
+      productLine?: string,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'startTime' is not null or undefined
+      assertParamExists('apiV2OptimizationGeneralCompareBetweenModelsGet', 'startTime', startTime)
+      // verify required parameter 'endTime' is not null or undefined
+      assertParamExists('apiV2OptimizationGeneralCompareBetweenModelsGet', 'endTime', endTime)
+      // verify required parameter 'modelName' is not null or undefined
+      assertParamExists('apiV2OptimizationGeneralCompareBetweenModelsGet', 'modelName', modelName)
+      // verify required parameter 'controlCompareSubEnum' is not null or undefined
+      assertParamExists(
+        'apiV2OptimizationGeneralCompareBetweenModelsGet',
+        'controlCompareSubEnum',
+        controlCompareSubEnum,
+      )
+      const localVarPath = `/api/v2/optimization/general-compare-between-models`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      if (startTime !== undefined) {
+        localVarQueryParameter['startTime'] =
+          (startTime as any) instanceof Date ? (startTime as any).toISOString() : startTime
+      }
+
+      if (endTime !== undefined) {
+        localVarQueryParameter['endTime'] =
+          (endTime as any) instanceof Date ? (endTime as any).toISOString() : endTime
+      }
+
+      if (modelName !== undefined) {
+        localVarQueryParameter['modelName'] = modelName
+      }
+
+      if (productLine !== undefined) {
+        localVarQueryParameter['productLine'] = productLine
+      }
+
+      if (controlCompareSubEnum !== undefined) {
+        localVarQueryParameter['controlCompareSubEnum'] = controlCompareSubEnum
+      }
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     * 关键词：      优化类型、对比数据        使用场景：      需要获取指定时间段内、指定优化类型的对比数据时        相关背景：      优化对比数据是指实测与优化模型模拟结果的对比        输入：      startTime:          查询时间范围的开始时刻，包含开始时刻，格式为：\'yyyy-MM-ddTHH:mm:sszzz\'，比如\'2025-01-01T00:00:00+08:00\'      endTime:          查询时间范围的结束时刻，包含结束时刻，格式为：\'yyyy-MM-ddTHH:mm:sszzz\'，比如\'2025-02-01T00:00:00+08:00\'      modelName:          模板方案名称，这里是固定名称\'在线滚动优化模型\'      productLine:          工艺线编码，比如\'L1\'，\'L2\'           ControlCompareSubEnums:          对比的优化类型枚举值，目前一共有8个枚举值，具体是 1：控制方案，2：出水水质，3：生化区电耗，4：实际电耗，5：实际水量，6：优化电耗，7：药耗，8：碳足迹    输出：
+     * @summary 获取指定时间段内、指定优化类型的实测与优化模型模拟结果的对比数据
+     * @param {string} startTime 查询时间范围的开始时刻，包含开始时刻，格式为：\&#39;yyyy-MM-ddTHH:mm:sszzz\&#39;，比如\&#39;2025-01-01T00:00:00+08:00\&#39;
+     * @param {string} endTime 查询时间范围的结束时刻，包含结束时刻，格式为：\&#39;yyyy-MM-ddTHH:mm:sszzz\&#39;，比如\&#39;2025-02-01T00:00:00+08:00\&#39;
+     * @param {string} modelName 模板方案名称，这里是固定名称\&#39;在线滚动优化模型\&#39;
+     * @param {1 | 2 | 3 | 4 | 5 | 6 | 7 | 8} controlCompareSubEnum 对比的优化类型枚举值，目前一共有8个枚举值，具体是 1：控制方案，2：出水水质，3：生化区电耗，4：实际电耗，5：实际水量，6：优化电耗，7：药耗，8：碳足迹
+     * @param {string} [productLine] 工艺线编码，比如\&#39;L1\&#39;，\&#39;L2\&#39;
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiV2OptimizationGeneralCompareGet: async (
-      startTime?: string,
-      endTime?: string,
-      modelName?: string,
+      startTime: string,
+      endTime: string,
+      modelName: string,
+      controlCompareSubEnum: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8,
       productLine?: string,
-      controlCompareSubEnum?: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
+      // verify required parameter 'startTime' is not null or undefined
+      assertParamExists('apiV2OptimizationGeneralCompareGet', 'startTime', startTime)
+      // verify required parameter 'endTime' is not null or undefined
+      assertParamExists('apiV2OptimizationGeneralCompareGet', 'endTime', endTime)
+      // verify required parameter 'modelName' is not null or undefined
+      assertParamExists('apiV2OptimizationGeneralCompareGet', 'modelName', modelName)
+      // verify required parameter 'controlCompareSubEnum' is not null or undefined
+      assertParamExists(
+        'apiV2OptimizationGeneralCompareGet',
+        'controlCompareSubEnum',
+        controlCompareSubEnum,
+      )
       const localVarPath = `/api/v2/optimization/general-compare`
       // use dummy base URL string because the URL constructor only accepts absolute URLs.
       const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
@@ -908,6 +999,7 @@ export const OptimizationApiAxiosParamCreator = function (configuration?: Config
      * @summary 修改某一控制项的远程控制开关状态
      * @param {SwitchControlInput} [switchControlInput]
      * @param {*} [options] Override http request option.
+     * @deprecated
      * @throws {RequiredError}
      */
     apiV2OptimizationSwitchControlPost: async (
@@ -951,12 +1043,82 @@ export const OptimizationApiAxiosParamCreator = function (configuration?: Config
       }
     },
     /**
-     *
-     * @summary /api/v3/optimization/control-compare-current
-     * @param {string} time
-     * @param {string} modelName
-     * @param {1 | 2 | 3 | 4 | 5 | 6 | 7 | 8} subType
-     * @param {string} [productLine]
+     * 关键词：      优化建议、导出        使用场景：      需要导出历史优化建议数据时        输入：      startTime:          查询时间范围的开始时刻，包含开始时刻，格式为：\'yyyy-MM-ddTHH:mm:sszzz\'，比如\'2025-01-01T00:00:00+08:00\'      endTime:          查询时间范围的结束时刻，包含结束时刻，格式为：\'yyyy-MM-ddTHH:mm:sszzz\'，比如\'2025-02-01T00:00:00+08:00\'      modelName:          模板方案名称，这里是固定名称\'在线滚动优化模型\'      tenantId:          租户ID    输出：      包含对比结果列表的excel文件二进制流
+     * @summary 导出历史优化建议数据
+     * @param {string} startTime 查询时间范围的开始时刻，包含开始时刻，格式为：\&#39;yyyy-MM-ddTHH:mm:sszzz\&#39;，比如\&#39;2025-01-01T00:00:00+08:00\&#39;
+     * @param {string} endTime 查询时间范围的结束时刻，包含结束时刻，格式为：\&#39;yyyy-MM-ddTHH:mm:sszzz\&#39;，比如\&#39;2025-02-01T00:00:00+08:00\&#39;
+     * @param {string} modelName 模板方案名称，这里是固定名称\&#39;在线滚动优化模型\&#39;
+     * @param {string} [tenantId] 租户ID
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV3ExportOptimizationSuggestGet: async (
+      startTime: string,
+      endTime: string,
+      modelName: string,
+      tenantId?: string,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'startTime' is not null or undefined
+      assertParamExists('apiV3ExportOptimizationSuggestGet', 'startTime', startTime)
+      // verify required parameter 'endTime' is not null or undefined
+      assertParamExists('apiV3ExportOptimizationSuggestGet', 'endTime', endTime)
+      // verify required parameter 'modelName' is not null or undefined
+      assertParamExists('apiV3ExportOptimizationSuggestGet', 'modelName', modelName)
+      const localVarPath = `/api/v3/export/optimization-suggest`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      if (startTime !== undefined) {
+        localVarQueryParameter['startTime'] =
+          (startTime as any) instanceof Date ? (startTime as any).toISOString() : startTime
+      }
+
+      if (endTime !== undefined) {
+        localVarQueryParameter['endTime'] =
+          (endTime as any) instanceof Date ? (endTime as any).toISOString() : endTime
+      }
+
+      if (modelName !== undefined) {
+        localVarQueryParameter['modelName'] = modelName
+      }
+
+      if (tenantId !== undefined) {
+        localVarQueryParameter['tenantId'] = tenantId
+      }
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     * 该方法中，优化建议值来自优化算法，而不是模拟结果
+     * @summary 升级版获取优化控制点位上，当前时刻的实测值与优化建议值的对比信息
+     * @param {string} time 当前时刻，可不传
+     * @param {string} modelName 模板方案名称
+     * @param {1 | 2 | 3 | 4 | 5 | 6 | 7 | 8} subType 对比的优化类型枚举值，目前一共有8个枚举值，具体是 1：控制方案，2：出水水质，3：生化区电耗，4：实际电耗，5：实际水量，6：优化电耗，7：药耗，8：碳足迹
+     * @param {string} [productLine] 工艺线编码，比如\&#39;L1\&#39;，\&#39;L2\&#39;
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -1004,6 +1166,76 @@ export const OptimizationApiAxiosParamCreator = function (configuration?: Config
 
       if (subType !== undefined) {
         localVarQueryParameter['subType'] = subType
+      }
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     * 关键词：      控制点位、实测值与优化建议值的对比信息        使用场景：      需要获取优化控制点位上，实测值与优化建议值的对比信息时，其中优化建议值来自优化算法    输入：      startTime:          查询时间范围的开始时刻，包含开始时刻，格式为：\'yyyy-MM-ddTHH:mm:sszzz\'，比如\'2025-01-01T00:00:00+08:00\'      endTime:          查询时间范围的结束时刻，包含结束时刻，格式为：\'yyyy-MM-ddTHH:mm:sszzz\'，比如\'2025-02-01T00:00:00+08:00\'      modelName:          模板方案名称，这里是固定名称\'在线滚动优化模型\'      productLine:          工艺线编码，比如\'L1\'，\'L2\'  输出：      控制点位实测值与优化建议值的数据列表
+     * @summary 获取优化控制点位上，实测值与优化建议值的对比信息
+     * @param {string} startTime 查询时间范围的开始时刻，包含开始时刻，格式为：\&#39;yyyy-MM-ddTHH:mm:sszzz\&#39;，比如\&#39;2025-01-01T00:00:00+08:00\&#39;
+     * @param {string} endTime 查询时间范围的结束时刻，包含结束时刻，格式为：\&#39;yyyy-MM-ddTHH:mm:sszzz\&#39;，比如\&#39;2025-02-01T00:00:00+08:00\&#39;
+     * @param {string} modelName 模板方案名称，这里是固定名称\&#39;在线滚动优化模型\&#39;
+     * @param {string} [productLine] 工艺线编码，比如\&#39;L1\&#39;，\&#39;L2\&#39;
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV3OptimizationControlCompareGet: async (
+      startTime: string,
+      endTime: string,
+      modelName: string,
+      productLine?: string,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'startTime' is not null or undefined
+      assertParamExists('apiV3OptimizationControlCompareGet', 'startTime', startTime)
+      // verify required parameter 'endTime' is not null or undefined
+      assertParamExists('apiV3OptimizationControlCompareGet', 'endTime', endTime)
+      // verify required parameter 'modelName' is not null or undefined
+      assertParamExists('apiV3OptimizationControlCompareGet', 'modelName', modelName)
+      const localVarPath = `/api/v3/optimization/control-compare`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      if (startTime !== undefined) {
+        localVarQueryParameter['startTime'] =
+          (startTime as any) instanceof Date ? (startTime as any).toISOString() : startTime
+      }
+
+      if (endTime !== undefined) {
+        localVarQueryParameter['endTime'] =
+          (endTime as any) instanceof Date ? (endTime as any).toISOString() : endTime
+      }
+
+      if (modelName !== undefined) {
+        localVarQueryParameter['modelName'] = modelName
+      }
+
+      if (productLine !== undefined) {
+        localVarQueryParameter['productLine'] = productLine
       }
 
       setSearchParams(localVarUrlObj, localVarQueryParameter)
@@ -1144,6 +1376,7 @@ export const OptimizationApiAxiosParamCreator = function (configuration?: Config
      * @param {string} modelName 模板方案名称，这里是固定名称\&#39;在线滚动优化模型\&#39;
      * @param {string} [tenantId] 租户ID
      * @param {*} [options] Override http request option.
+     * @deprecated
      * @throws {RequiredError}
      */
     exportOptimizationSuggestGet: async (
@@ -1220,7 +1453,6 @@ export const OptimizationApiFp = function (configuration?: Configuration) {
      *
      * @summary 获取控制对比数据        ///
      * @param {string} tenantId
-     * @param {string} [dt]
      * @param {string} [modelName]
      * @param {string} [productLine]
      * @param {1 | 2 | 3 | 4 | 5 | 6 | 7 | 8} [subType]
@@ -1229,7 +1461,6 @@ export const OptimizationApiFp = function (configuration?: Configuration) {
      */
     async apiAppOptimizationControlCompareCurrentInternalTenantIdGet(
       tenantId: string,
-      dt?: string,
       modelName?: string,
       productLine?: string,
       subType?: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8,
@@ -1240,7 +1471,6 @@ export const OptimizationApiFp = function (configuration?: Configuration) {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.apiAppOptimizationControlCompareCurrentInternalTenantIdGet(
           tenantId,
-          dt,
           modelName,
           productLine,
           subType,
@@ -1341,6 +1571,7 @@ export const OptimizationApiFp = function (configuration?: Configuration) {
      * @param {string} modelName 模板方案名称，这里是固定名称\&#39;在线滚动优化模型\&#39;
      * @param {string} [productLine] 工艺线编码，比如\&#39;L1\&#39;，\&#39;L2\&#39;
      * @param {*} [options] Override http request option.
+     * @deprecated
      * @throws {RequiredError}
      */
     async apiV2OptimizationControlCompareGet(
@@ -1360,10 +1591,11 @@ export const OptimizationApiFp = function (configuration?: Configuration) {
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**
-     * 关键词：      远程控制、opc-ua协议        使用场景：      针对用户设置的开启远程控制的控制建议点位，执行控制，由任务调度控制每五分钟执行一次        相关背景：      1.配置opc-ua节点：需要提前在IoT服务的Opcua模块中通过接口完成opc-ua节点信息的配置      2.需要发送控制建议值的设备列表可以在项目初始化时通过配置文件上传    输入：      modelName:          模板方案名称，这里是固定名称\'在线滚动优化模型\'            输出：
+     * 关键词：      远程控制、opc-ua协议  使用场景：      针对用户设置的开启远程控制的控制建议点位，执行控制，由任务调度控制每五分钟执行一次        相关背景：      1.配置opc-ua节点：需要提前在IoT服务的Opcua模块中通过接口完成opc-ua节点信息的配置      2.需要发送控制建议值的设备列表可以在项目初始化时通过配置文件上传    输入：      modelName:          模板方案名称，这里是固定名称\'在线滚动优化模型\'            输出：
      * @summary 给所有需要执行远程控制的设备发送控制建议值，目前只支持opc-ua协议
      * @param {string} modelName 模板方案名称，这里是固定名称\&#39;在线滚动优化模型\&#39;
      * @param {*} [options] Override http request option.
+     * @deprecated
      * @throws {RequiredError}
      */
     async apiV2OptimizationControlPost(
@@ -1383,6 +1615,7 @@ export const OptimizationApiFp = function (configuration?: Configuration) {
      * @param {string} modelName 模板方案方案名称，这里是固定名称\&#39;在线滚动优化模型\&#39;
      * @param {string} [productLine] 工艺线编码，比如\&#39;L1\&#39;，\&#39;L2\&#39;
      * @param {*} [options] Override http request option.
+     * @deprecated
      * @throws {RequiredError}
      */
     async apiV2OptimizationControlSuggestionsGet(
@@ -1495,30 +1728,60 @@ export const OptimizationApiFp = function (configuration?: Configuration) {
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**
-     *
-     * @summary 获取指定优化类型的实际值与优化值，包括时间序列与平均值 Get specify optimization point of real and optimized, including time-series data and average value
-     * @param {string} [startTime] 开始时刻 start time
-     * @param {string} [endTime] 结束时刻 end time
-     * @param {string} [modelName] 模板模型名称 template model name
-     * @param {string} [productLine] 工艺线编码 product line code
-     * @param {1 | 2 | 3 | 4 | 5 | 6 | 7 | 8} [controlCompareSubEnum] 对比的优化类型
+     * 关键词：      优化类型、滚动计算、优化计算、对比数据        使用场景：      需要获取指定时间段内、指定优化类型的滚动计算结果与优化计算结果的对比数据，比如获取生化区能耗对比、碳足迹对比等        输入：      startTime:          查询时间范围的开始时刻，包含开始时刻，格式为：\'yyyy-MM-ddTHH:mm:sszzz\'，比如\'2025-01-01T00:00:00+08:00\'      endTime:          查询时间范围的结束时刻，包含结束时刻，格式为：\'yyyy-MM-ddTHH:mm:sszzz\'，比如\'2025-02-01T00:00:00+08:00\'      modelName:          模板方案名称，这里是固定名称\'在线滚动优化模型\'      productLine:          工艺线编码，比如\'L1\'，\'L2\'           ControlCompareSubEnums:          对比的优化类型枚举值，目前一共有8个枚举值，具体是 1：控制方案，2：出水水质，3：生化区电耗，4：实际电耗，5：实际水量，6：优化电耗，7：药耗，8：碳足迹    输出：
+     * @summary 获取指定时间段内、指定优化类型的滚动计算结果与优化计算结果的对比数据
+     * @param {string} startTime 查询时间范围的开始时刻，包含开始时刻，格式为：\&#39;yyyy-MM-ddTHH:mm:sszzz\&#39;，比如\&#39;2025-01-01T00:00:00+08:00\&#39;
+     * @param {string} endTime 查询时间范围的结束时刻，包含结束时刻，格式为：\&#39;yyyy-MM-ddTHH:mm:sszzz\&#39;，比如\&#39;2025-02-01T00:00:00+08:00\&#39;
+     * @param {string} modelName 模板方案名称，这里是固定名称\&#39;在线滚动优化模型\&#39;
+     * @param {1 | 2 | 3 | 4 | 5 | 6 | 7 | 8} controlCompareSubEnum 对比的优化类型枚举值，目前一共有8个枚举值，具体是 1：控制方案，2：出水水质，3：生化区电耗，4：实际电耗，5：实际水量，6：优化电耗，7：药耗，8：碳足迹
+     * @param {string} [productLine] 工艺线编码，比如\&#39;L1\&#39;，\&#39;L2\&#39;
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV2OptimizationGeneralCompareBetweenModelsGet(
+      startTime: string,
+      endTime: string,
+      modelName: string,
+      controlCompareSubEnum: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8,
+      productLine?: string,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<EnergyCostCompareData>> {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiV2OptimizationGeneralCompareBetweenModelsGet(
+          startTime,
+          endTime,
+          modelName,
+          controlCompareSubEnum,
+          productLine,
+          options,
+        )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     * 关键词：      优化类型、对比数据        使用场景：      需要获取指定时间段内、指定优化类型的对比数据时        相关背景：      优化对比数据是指实测与优化模型模拟结果的对比        输入：      startTime:          查询时间范围的开始时刻，包含开始时刻，格式为：\'yyyy-MM-ddTHH:mm:sszzz\'，比如\'2025-01-01T00:00:00+08:00\'      endTime:          查询时间范围的结束时刻，包含结束时刻，格式为：\'yyyy-MM-ddTHH:mm:sszzz\'，比如\'2025-02-01T00:00:00+08:00\'      modelName:          模板方案名称，这里是固定名称\'在线滚动优化模型\'      productLine:          工艺线编码，比如\'L1\'，\'L2\'           ControlCompareSubEnums:          对比的优化类型枚举值，目前一共有8个枚举值，具体是 1：控制方案，2：出水水质，3：生化区电耗，4：实际电耗，5：实际水量，6：优化电耗，7：药耗，8：碳足迹    输出：
+     * @summary 获取指定时间段内、指定优化类型的实测与优化模型模拟结果的对比数据
+     * @param {string} startTime 查询时间范围的开始时刻，包含开始时刻，格式为：\&#39;yyyy-MM-ddTHH:mm:sszzz\&#39;，比如\&#39;2025-01-01T00:00:00+08:00\&#39;
+     * @param {string} endTime 查询时间范围的结束时刻，包含结束时刻，格式为：\&#39;yyyy-MM-ddTHH:mm:sszzz\&#39;，比如\&#39;2025-02-01T00:00:00+08:00\&#39;
+     * @param {string} modelName 模板方案名称，这里是固定名称\&#39;在线滚动优化模型\&#39;
+     * @param {1 | 2 | 3 | 4 | 5 | 6 | 7 | 8} controlCompareSubEnum 对比的优化类型枚举值，目前一共有8个枚举值，具体是 1：控制方案，2：出水水质，3：生化区电耗，4：实际电耗，5：实际水量，6：优化电耗，7：药耗，8：碳足迹
+     * @param {string} [productLine] 工艺线编码，比如\&#39;L1\&#39;，\&#39;L2\&#39;
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async apiV2OptimizationGeneralCompareGet(
-      startTime?: string,
-      endTime?: string,
-      modelName?: string,
+      startTime: string,
+      endTime: string,
+      modelName: string,
+      controlCompareSubEnum: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8,
       productLine?: string,
-      controlCompareSubEnum?: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8,
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<EnergyCostCompareData>> {
       const localVarAxiosArgs = await localVarAxiosParamCreator.apiV2OptimizationGeneralCompareGet(
         startTime,
         endTime,
         modelName,
-        productLine,
         controlCompareSubEnum,
+        productLine,
         options,
       )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
@@ -1554,6 +1817,7 @@ export const OptimizationApiFp = function (configuration?: Configuration) {
      * @summary 修改某一控制项的远程控制开关状态
      * @param {SwitchControlInput} [switchControlInput]
      * @param {*} [options] Override http request option.
+     * @deprecated
      * @throws {RequiredError}
      */
     async apiV2OptimizationSwitchControlPost(
@@ -1567,12 +1831,38 @@ export const OptimizationApiFp = function (configuration?: Configuration) {
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**
-     *
-     * @summary /api/v3/optimization/control-compare-current
-     * @param {string} time
-     * @param {string} modelName
-     * @param {1 | 2 | 3 | 4 | 5 | 6 | 7 | 8} subType
-     * @param {string} [productLine]
+     * 关键词：      优化建议、导出        使用场景：      需要导出历史优化建议数据时        输入：      startTime:          查询时间范围的开始时刻，包含开始时刻，格式为：\'yyyy-MM-ddTHH:mm:sszzz\'，比如\'2025-01-01T00:00:00+08:00\'      endTime:          查询时间范围的结束时刻，包含结束时刻，格式为：\'yyyy-MM-ddTHH:mm:sszzz\'，比如\'2025-02-01T00:00:00+08:00\'      modelName:          模板方案名称，这里是固定名称\'在线滚动优化模型\'      tenantId:          租户ID    输出：      包含对比结果列表的excel文件二进制流
+     * @summary 导出历史优化建议数据
+     * @param {string} startTime 查询时间范围的开始时刻，包含开始时刻，格式为：\&#39;yyyy-MM-ddTHH:mm:sszzz\&#39;，比如\&#39;2025-01-01T00:00:00+08:00\&#39;
+     * @param {string} endTime 查询时间范围的结束时刻，包含结束时刻，格式为：\&#39;yyyy-MM-ddTHH:mm:sszzz\&#39;，比如\&#39;2025-02-01T00:00:00+08:00\&#39;
+     * @param {string} modelName 模板方案名称，这里是固定名称\&#39;在线滚动优化模型\&#39;
+     * @param {string} [tenantId] 租户ID
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV3ExportOptimizationSuggestGet(
+      startTime: string,
+      endTime: string,
+      modelName: string,
+      tenantId?: string,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiV3ExportOptimizationSuggestGet(
+        startTime,
+        endTime,
+        modelName,
+        tenantId,
+        options,
+      )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     * 该方法中，优化建议值来自优化算法，而不是模拟结果
+     * @summary 升级版获取优化控制点位上，当前时刻的实测值与优化建议值的对比信息
+     * @param {string} time 当前时刻，可不传
+     * @param {string} modelName 模板方案名称
+     * @param {1 | 2 | 3 | 4 | 5 | 6 | 7 | 8} subType 对比的优化类型枚举值，目前一共有8个枚举值，具体是 1：控制方案，2：出水水质，3：生化区电耗，4：实际电耗，5：实际水量，6：优化电耗，7：药耗，8：碳足迹
+     * @param {string} [productLine] 工艺线编码，比如\&#39;L1\&#39;，\&#39;L2\&#39;
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -1593,6 +1883,32 @@ export const OptimizationApiFp = function (configuration?: Configuration) {
           productLine,
           options,
         )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     * 关键词：      控制点位、实测值与优化建议值的对比信息        使用场景：      需要获取优化控制点位上，实测值与优化建议值的对比信息时，其中优化建议值来自优化算法    输入：      startTime:          查询时间范围的开始时刻，包含开始时刻，格式为：\'yyyy-MM-ddTHH:mm:sszzz\'，比如\'2025-01-01T00:00:00+08:00\'      endTime:          查询时间范围的结束时刻，包含结束时刻，格式为：\'yyyy-MM-ddTHH:mm:sszzz\'，比如\'2025-02-01T00:00:00+08:00\'      modelName:          模板方案名称，这里是固定名称\'在线滚动优化模型\'      productLine:          工艺线编码，比如\'L1\'，\'L2\'  输出：      控制点位实测值与优化建议值的数据列表
+     * @summary 获取优化控制点位上，实测值与优化建议值的对比信息
+     * @param {string} startTime 查询时间范围的开始时刻，包含开始时刻，格式为：\&#39;yyyy-MM-ddTHH:mm:sszzz\&#39;，比如\&#39;2025-01-01T00:00:00+08:00\&#39;
+     * @param {string} endTime 查询时间范围的结束时刻，包含结束时刻，格式为：\&#39;yyyy-MM-ddTHH:mm:sszzz\&#39;，比如\&#39;2025-02-01T00:00:00+08:00\&#39;
+     * @param {string} modelName 模板方案名称，这里是固定名称\&#39;在线滚动优化模型\&#39;
+     * @param {string} [productLine] 工艺线编码，比如\&#39;L1\&#39;，\&#39;L2\&#39;
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV3OptimizationControlCompareGet(
+      startTime: string,
+      endTime: string,
+      modelName: string,
+      productLine?: string,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<CompareOutput>>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiV3OptimizationControlCompareGet(
+        startTime,
+        endTime,
+        modelName,
+        productLine,
+        options,
+      )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**
@@ -1647,6 +1963,7 @@ export const OptimizationApiFp = function (configuration?: Configuration) {
      * @param {string} modelName 模板方案名称，这里是固定名称\&#39;在线滚动优化模型\&#39;
      * @param {string} [tenantId] 租户ID
      * @param {*} [options] Override http request option.
+     * @deprecated
      * @throws {RequiredError}
      */
     async exportOptimizationSuggestGet(
@@ -1683,7 +2000,6 @@ export const OptimizationApiFactory = function (
      *
      * @summary 获取控制对比数据        ///
      * @param {string} tenantId
-     * @param {string} [dt]
      * @param {string} [modelName]
      * @param {string} [productLine]
      * @param {1 | 2 | 3 | 4 | 5 | 6 | 7 | 8} [subType]
@@ -1692,7 +2008,6 @@ export const OptimizationApiFactory = function (
      */
     apiAppOptimizationControlCompareCurrentInternalTenantIdGet(
       tenantId: string,
-      dt?: string,
       modelName?: string,
       productLine?: string,
       subType?: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8,
@@ -1701,7 +2016,6 @@ export const OptimizationApiFactory = function (
       return localVarFp
         .apiAppOptimizationControlCompareCurrentInternalTenantIdGet(
           tenantId,
-          dt,
           modelName,
           productLine,
           subType,
@@ -1786,6 +2100,7 @@ export const OptimizationApiFactory = function (
      * @param {string} modelName 模板方案名称，这里是固定名称\&#39;在线滚动优化模型\&#39;
      * @param {string} [productLine] 工艺线编码，比如\&#39;L1\&#39;，\&#39;L2\&#39;
      * @param {*} [options] Override http request option.
+     * @deprecated
      * @throws {RequiredError}
      */
     apiV2OptimizationControlCompareGet(
@@ -1800,10 +2115,11 @@ export const OptimizationApiFactory = function (
         .then((request) => request(axios, basePath))
     },
     /**
-     * 关键词：      远程控制、opc-ua协议        使用场景：      针对用户设置的开启远程控制的控制建议点位，执行控制，由任务调度控制每五分钟执行一次        相关背景：      1.配置opc-ua节点：需要提前在IoT服务的Opcua模块中通过接口完成opc-ua节点信息的配置      2.需要发送控制建议值的设备列表可以在项目初始化时通过配置文件上传    输入：      modelName:          模板方案名称，这里是固定名称\'在线滚动优化模型\'            输出：
+     * 关键词：      远程控制、opc-ua协议  使用场景：      针对用户设置的开启远程控制的控制建议点位，执行控制，由任务调度控制每五分钟执行一次        相关背景：      1.配置opc-ua节点：需要提前在IoT服务的Opcua模块中通过接口完成opc-ua节点信息的配置      2.需要发送控制建议值的设备列表可以在项目初始化时通过配置文件上传    输入：      modelName:          模板方案名称，这里是固定名称\'在线滚动优化模型\'            输出：
      * @summary 给所有需要执行远程控制的设备发送控制建议值，目前只支持opc-ua协议
      * @param {string} modelName 模板方案名称，这里是固定名称\&#39;在线滚动优化模型\&#39;
      * @param {*} [options] Override http request option.
+     * @deprecated
      * @throws {RequiredError}
      */
     apiV2OptimizationControlPost(modelName: string, options?: any): AxiosPromise<void> {
@@ -1818,6 +2134,7 @@ export const OptimizationApiFactory = function (
      * @param {string} modelName 模板方案方案名称，这里是固定名称\&#39;在线滚动优化模型\&#39;
      * @param {string} [productLine] 工艺线编码，比如\&#39;L1\&#39;，\&#39;L2\&#39;
      * @param {*} [options] Override http request option.
+     * @deprecated
      * @throws {RequiredError}
      */
     apiV2OptimizationControlSuggestionsGet(
@@ -1904,22 +2221,52 @@ export const OptimizationApiFactory = function (
         .then((request) => request(axios, basePath))
     },
     /**
-     *
-     * @summary 获取指定优化类型的实际值与优化值，包括时间序列与平均值 Get specify optimization point of real and optimized, including time-series data and average value
-     * @param {string} [startTime] 开始时刻 start time
-     * @param {string} [endTime] 结束时刻 end time
-     * @param {string} [modelName] 模板模型名称 template model name
-     * @param {string} [productLine] 工艺线编码 product line code
-     * @param {1 | 2 | 3 | 4 | 5 | 6 | 7 | 8} [controlCompareSubEnum] 对比的优化类型
+     * 关键词：      优化类型、滚动计算、优化计算、对比数据        使用场景：      需要获取指定时间段内、指定优化类型的滚动计算结果与优化计算结果的对比数据，比如获取生化区能耗对比、碳足迹对比等        输入：      startTime:          查询时间范围的开始时刻，包含开始时刻，格式为：\'yyyy-MM-ddTHH:mm:sszzz\'，比如\'2025-01-01T00:00:00+08:00\'      endTime:          查询时间范围的结束时刻，包含结束时刻，格式为：\'yyyy-MM-ddTHH:mm:sszzz\'，比如\'2025-02-01T00:00:00+08:00\'      modelName:          模板方案名称，这里是固定名称\'在线滚动优化模型\'      productLine:          工艺线编码，比如\'L1\'，\'L2\'           ControlCompareSubEnums:          对比的优化类型枚举值，目前一共有8个枚举值，具体是 1：控制方案，2：出水水质，3：生化区电耗，4：实际电耗，5：实际水量，6：优化电耗，7：药耗，8：碳足迹    输出：
+     * @summary 获取指定时间段内、指定优化类型的滚动计算结果与优化计算结果的对比数据
+     * @param {string} startTime 查询时间范围的开始时刻，包含开始时刻，格式为：\&#39;yyyy-MM-ddTHH:mm:sszzz\&#39;，比如\&#39;2025-01-01T00:00:00+08:00\&#39;
+     * @param {string} endTime 查询时间范围的结束时刻，包含结束时刻，格式为：\&#39;yyyy-MM-ddTHH:mm:sszzz\&#39;，比如\&#39;2025-02-01T00:00:00+08:00\&#39;
+     * @param {string} modelName 模板方案名称，这里是固定名称\&#39;在线滚动优化模型\&#39;
+     * @param {1 | 2 | 3 | 4 | 5 | 6 | 7 | 8} controlCompareSubEnum 对比的优化类型枚举值，目前一共有8个枚举值，具体是 1：控制方案，2：出水水质，3：生化区电耗，4：实际电耗，5：实际水量，6：优化电耗，7：药耗，8：碳足迹
+     * @param {string} [productLine] 工艺线编码，比如\&#39;L1\&#39;，\&#39;L2\&#39;
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV2OptimizationGeneralCompareBetweenModelsGet(
+      startTime: string,
+      endTime: string,
+      modelName: string,
+      controlCompareSubEnum: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8,
+      productLine?: string,
+      options?: any,
+    ): AxiosPromise<EnergyCostCompareData> {
+      return localVarFp
+        .apiV2OptimizationGeneralCompareBetweenModelsGet(
+          startTime,
+          endTime,
+          modelName,
+          controlCompareSubEnum,
+          productLine,
+          options,
+        )
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     * 关键词：      优化类型、对比数据        使用场景：      需要获取指定时间段内、指定优化类型的对比数据时        相关背景：      优化对比数据是指实测与优化模型模拟结果的对比        输入：      startTime:          查询时间范围的开始时刻，包含开始时刻，格式为：\'yyyy-MM-ddTHH:mm:sszzz\'，比如\'2025-01-01T00:00:00+08:00\'      endTime:          查询时间范围的结束时刻，包含结束时刻，格式为：\'yyyy-MM-ddTHH:mm:sszzz\'，比如\'2025-02-01T00:00:00+08:00\'      modelName:          模板方案名称，这里是固定名称\'在线滚动优化模型\'      productLine:          工艺线编码，比如\'L1\'，\'L2\'           ControlCompareSubEnums:          对比的优化类型枚举值，目前一共有8个枚举值，具体是 1：控制方案，2：出水水质，3：生化区电耗，4：实际电耗，5：实际水量，6：优化电耗，7：药耗，8：碳足迹    输出：
+     * @summary 获取指定时间段内、指定优化类型的实测与优化模型模拟结果的对比数据
+     * @param {string} startTime 查询时间范围的开始时刻，包含开始时刻，格式为：\&#39;yyyy-MM-ddTHH:mm:sszzz\&#39;，比如\&#39;2025-01-01T00:00:00+08:00\&#39;
+     * @param {string} endTime 查询时间范围的结束时刻，包含结束时刻，格式为：\&#39;yyyy-MM-ddTHH:mm:sszzz\&#39;，比如\&#39;2025-02-01T00:00:00+08:00\&#39;
+     * @param {string} modelName 模板方案名称，这里是固定名称\&#39;在线滚动优化模型\&#39;
+     * @param {1 | 2 | 3 | 4 | 5 | 6 | 7 | 8} controlCompareSubEnum 对比的优化类型枚举值，目前一共有8个枚举值，具体是 1：控制方案，2：出水水质，3：生化区电耗，4：实际电耗，5：实际水量，6：优化电耗，7：药耗，8：碳足迹
+     * @param {string} [productLine] 工艺线编码，比如\&#39;L1\&#39;，\&#39;L2\&#39;
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiV2OptimizationGeneralCompareGet(
-      startTime?: string,
-      endTime?: string,
-      modelName?: string,
+      startTime: string,
+      endTime: string,
+      modelName: string,
+      controlCompareSubEnum: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8,
       productLine?: string,
-      controlCompareSubEnum?: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8,
       options?: any,
     ): AxiosPromise<EnergyCostCompareData> {
       return localVarFp
@@ -1927,8 +2274,8 @@ export const OptimizationApiFactory = function (
           startTime,
           endTime,
           modelName,
-          productLine,
           controlCompareSubEnum,
+          productLine,
           options,
         )
         .then((request) => request(axios, basePath))
@@ -1959,6 +2306,7 @@ export const OptimizationApiFactory = function (
      * @summary 修改某一控制项的远程控制开关状态
      * @param {SwitchControlInput} [switchControlInput]
      * @param {*} [options] Override http request option.
+     * @deprecated
      * @throws {RequiredError}
      */
     apiV2OptimizationSwitchControlPost(
@@ -1970,12 +2318,33 @@ export const OptimizationApiFactory = function (
         .then((request) => request(axios, basePath))
     },
     /**
-     *
-     * @summary /api/v3/optimization/control-compare-current
-     * @param {string} time
-     * @param {string} modelName
-     * @param {1 | 2 | 3 | 4 | 5 | 6 | 7 | 8} subType
-     * @param {string} [productLine]
+     * 关键词：      优化建议、导出        使用场景：      需要导出历史优化建议数据时        输入：      startTime:          查询时间范围的开始时刻，包含开始时刻，格式为：\'yyyy-MM-ddTHH:mm:sszzz\'，比如\'2025-01-01T00:00:00+08:00\'      endTime:          查询时间范围的结束时刻，包含结束时刻，格式为：\'yyyy-MM-ddTHH:mm:sszzz\'，比如\'2025-02-01T00:00:00+08:00\'      modelName:          模板方案名称，这里是固定名称\'在线滚动优化模型\'      tenantId:          租户ID    输出：      包含对比结果列表的excel文件二进制流
+     * @summary 导出历史优化建议数据
+     * @param {string} startTime 查询时间范围的开始时刻，包含开始时刻，格式为：\&#39;yyyy-MM-ddTHH:mm:sszzz\&#39;，比如\&#39;2025-01-01T00:00:00+08:00\&#39;
+     * @param {string} endTime 查询时间范围的结束时刻，包含结束时刻，格式为：\&#39;yyyy-MM-ddTHH:mm:sszzz\&#39;，比如\&#39;2025-02-01T00:00:00+08:00\&#39;
+     * @param {string} modelName 模板方案名称，这里是固定名称\&#39;在线滚动优化模型\&#39;
+     * @param {string} [tenantId] 租户ID
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV3ExportOptimizationSuggestGet(
+      startTime: string,
+      endTime: string,
+      modelName: string,
+      tenantId?: string,
+      options?: any,
+    ): AxiosPromise<void> {
+      return localVarFp
+        .apiV3ExportOptimizationSuggestGet(startTime, endTime, modelName, tenantId, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     * 该方法中，优化建议值来自优化算法，而不是模拟结果
+     * @summary 升级版获取优化控制点位上，当前时刻的实测值与优化建议值的对比信息
+     * @param {string} time 当前时刻，可不传
+     * @param {string} modelName 模板方案名称
+     * @param {1 | 2 | 3 | 4 | 5 | 6 | 7 | 8} subType 对比的优化类型枚举值，目前一共有8个枚举值，具体是 1：控制方案，2：出水水质，3：生化区电耗，4：实际电耗，5：实际水量，6：优化电耗，7：药耗，8：碳足迹
+     * @param {string} [productLine] 工艺线编码，比如\&#39;L1\&#39;，\&#39;L2\&#39;
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -1988,6 +2357,27 @@ export const OptimizationApiFactory = function (
     ): AxiosPromise<Array<CurrentCompareOutput>> {
       return localVarFp
         .apiV3OptimizationControlCompareCurrentGet(time, modelName, subType, productLine, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     * 关键词：      控制点位、实测值与优化建议值的对比信息        使用场景：      需要获取优化控制点位上，实测值与优化建议值的对比信息时，其中优化建议值来自优化算法    输入：      startTime:          查询时间范围的开始时刻，包含开始时刻，格式为：\'yyyy-MM-ddTHH:mm:sszzz\'，比如\'2025-01-01T00:00:00+08:00\'      endTime:          查询时间范围的结束时刻，包含结束时刻，格式为：\'yyyy-MM-ddTHH:mm:sszzz\'，比如\'2025-02-01T00:00:00+08:00\'      modelName:          模板方案名称，这里是固定名称\'在线滚动优化模型\'      productLine:          工艺线编码，比如\'L1\'，\'L2\'  输出：      控制点位实测值与优化建议值的数据列表
+     * @summary 获取优化控制点位上，实测值与优化建议值的对比信息
+     * @param {string} startTime 查询时间范围的开始时刻，包含开始时刻，格式为：\&#39;yyyy-MM-ddTHH:mm:sszzz\&#39;，比如\&#39;2025-01-01T00:00:00+08:00\&#39;
+     * @param {string} endTime 查询时间范围的结束时刻，包含结束时刻，格式为：\&#39;yyyy-MM-ddTHH:mm:sszzz\&#39;，比如\&#39;2025-02-01T00:00:00+08:00\&#39;
+     * @param {string} modelName 模板方案名称，这里是固定名称\&#39;在线滚动优化模型\&#39;
+     * @param {string} [productLine] 工艺线编码，比如\&#39;L1\&#39;，\&#39;L2\&#39;
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV3OptimizationControlCompareGet(
+      startTime: string,
+      endTime: string,
+      modelName: string,
+      productLine?: string,
+      options?: any,
+    ): AxiosPromise<Array<CompareOutput>> {
+      return localVarFp
+        .apiV3OptimizationControlCompareGet(startTime, endTime, modelName, productLine, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -2034,6 +2424,7 @@ export const OptimizationApiFactory = function (
      * @param {string} modelName 模板方案名称，这里是固定名称\&#39;在线滚动优化模型\&#39;
      * @param {string} [tenantId] 租户ID
      * @param {*} [options] Override http request option.
+     * @deprecated
      * @throws {RequiredError}
      */
     exportOptimizationSuggestGet(
@@ -2061,7 +2452,6 @@ export class OptimizationApi extends BaseAPI {
    *
    * @summary 获取控制对比数据        ///
    * @param {string} tenantId
-   * @param {string} [dt]
    * @param {string} [modelName]
    * @param {string} [productLine]
    * @param {1 | 2 | 3 | 4 | 5 | 6 | 7 | 8} [subType]
@@ -2071,7 +2461,6 @@ export class OptimizationApi extends BaseAPI {
    */
   public apiAppOptimizationControlCompareCurrentInternalTenantIdGet(
     tenantId: string,
-    dt?: string,
     modelName?: string,
     productLine?: string,
     subType?: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8,
@@ -2080,7 +2469,6 @@ export class OptimizationApi extends BaseAPI {
     return OptimizationApiFp(this.configuration)
       .apiAppOptimizationControlCompareCurrentInternalTenantIdGet(
         tenantId,
-        dt,
         modelName,
         productLine,
         subType,
@@ -2171,6 +2559,7 @@ export class OptimizationApi extends BaseAPI {
    * @param {string} modelName 模板方案名称，这里是固定名称\&#39;在线滚动优化模型\&#39;
    * @param {string} [productLine] 工艺线编码，比如\&#39;L1\&#39;，\&#39;L2\&#39;
    * @param {*} [options] Override http request option.
+   * @deprecated
    * @throws {RequiredError}
    * @memberof OptimizationApi
    */
@@ -2187,10 +2576,11 @@ export class OptimizationApi extends BaseAPI {
   }
 
   /**
-   * 关键词：      远程控制、opc-ua协议        使用场景：      针对用户设置的开启远程控制的控制建议点位，执行控制，由任务调度控制每五分钟执行一次        相关背景：      1.配置opc-ua节点：需要提前在IoT服务的Opcua模块中通过接口完成opc-ua节点信息的配置      2.需要发送控制建议值的设备列表可以在项目初始化时通过配置文件上传    输入：      modelName:          模板方案名称，这里是固定名称\'在线滚动优化模型\'            输出：
+   * 关键词：      远程控制、opc-ua协议  使用场景：      针对用户设置的开启远程控制的控制建议点位，执行控制，由任务调度控制每五分钟执行一次        相关背景：      1.配置opc-ua节点：需要提前在IoT服务的Opcua模块中通过接口完成opc-ua节点信息的配置      2.需要发送控制建议值的设备列表可以在项目初始化时通过配置文件上传    输入：      modelName:          模板方案名称，这里是固定名称\'在线滚动优化模型\'            输出：
    * @summary 给所有需要执行远程控制的设备发送控制建议值，目前只支持opc-ua协议
    * @param {string} modelName 模板方案名称，这里是固定名称\&#39;在线滚动优化模型\&#39;
    * @param {*} [options] Override http request option.
+   * @deprecated
    * @throws {RequiredError}
    * @memberof OptimizationApi
    */
@@ -2207,6 +2597,7 @@ export class OptimizationApi extends BaseAPI {
    * @param {string} modelName 模板方案方案名称，这里是固定名称\&#39;在线滚动优化模型\&#39;
    * @param {string} [productLine] 工艺线编码，比如\&#39;L1\&#39;，\&#39;L2\&#39;
    * @param {*} [options] Override http request option.
+   * @deprecated
    * @throws {RequiredError}
    * @memberof OptimizationApi
    */
@@ -2303,23 +2694,55 @@ export class OptimizationApi extends BaseAPI {
   }
 
   /**
-   *
-   * @summary 获取指定优化类型的实际值与优化值，包括时间序列与平均值 Get specify optimization point of real and optimized, including time-series data and average value
-   * @param {string} [startTime] 开始时刻 start time
-   * @param {string} [endTime] 结束时刻 end time
-   * @param {string} [modelName] 模板模型名称 template model name
-   * @param {string} [productLine] 工艺线编码 product line code
-   * @param {1 | 2 | 3 | 4 | 5 | 6 | 7 | 8} [controlCompareSubEnum] 对比的优化类型
+   * 关键词：      优化类型、滚动计算、优化计算、对比数据        使用场景：      需要获取指定时间段内、指定优化类型的滚动计算结果与优化计算结果的对比数据，比如获取生化区能耗对比、碳足迹对比等        输入：      startTime:          查询时间范围的开始时刻，包含开始时刻，格式为：\'yyyy-MM-ddTHH:mm:sszzz\'，比如\'2025-01-01T00:00:00+08:00\'      endTime:          查询时间范围的结束时刻，包含结束时刻，格式为：\'yyyy-MM-ddTHH:mm:sszzz\'，比如\'2025-02-01T00:00:00+08:00\'      modelName:          模板方案名称，这里是固定名称\'在线滚动优化模型\'      productLine:          工艺线编码，比如\'L1\'，\'L2\'           ControlCompareSubEnums:          对比的优化类型枚举值，目前一共有8个枚举值，具体是 1：控制方案，2：出水水质，3：生化区电耗，4：实际电耗，5：实际水量，6：优化电耗，7：药耗，8：碳足迹    输出：
+   * @summary 获取指定时间段内、指定优化类型的滚动计算结果与优化计算结果的对比数据
+   * @param {string} startTime 查询时间范围的开始时刻，包含开始时刻，格式为：\&#39;yyyy-MM-ddTHH:mm:sszzz\&#39;，比如\&#39;2025-01-01T00:00:00+08:00\&#39;
+   * @param {string} endTime 查询时间范围的结束时刻，包含结束时刻，格式为：\&#39;yyyy-MM-ddTHH:mm:sszzz\&#39;，比如\&#39;2025-02-01T00:00:00+08:00\&#39;
+   * @param {string} modelName 模板方案名称，这里是固定名称\&#39;在线滚动优化模型\&#39;
+   * @param {1 | 2 | 3 | 4 | 5 | 6 | 7 | 8} controlCompareSubEnum 对比的优化类型枚举值，目前一共有8个枚举值，具体是 1：控制方案，2：出水水质，3：生化区电耗，4：实际电耗，5：实际水量，6：优化电耗，7：药耗，8：碳足迹
+   * @param {string} [productLine] 工艺线编码，比如\&#39;L1\&#39;，\&#39;L2\&#39;
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof OptimizationApi
+   */
+  public apiV2OptimizationGeneralCompareBetweenModelsGet(
+    startTime: string,
+    endTime: string,
+    modelName: string,
+    controlCompareSubEnum: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8,
+    productLine?: string,
+    options?: AxiosRequestConfig,
+  ) {
+    return OptimizationApiFp(this.configuration)
+      .apiV2OptimizationGeneralCompareBetweenModelsGet(
+        startTime,
+        endTime,
+        modelName,
+        controlCompareSubEnum,
+        productLine,
+        options,
+      )
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   * 关键词：      优化类型、对比数据        使用场景：      需要获取指定时间段内、指定优化类型的对比数据时        相关背景：      优化对比数据是指实测与优化模型模拟结果的对比        输入：      startTime:          查询时间范围的开始时刻，包含开始时刻，格式为：\'yyyy-MM-ddTHH:mm:sszzz\'，比如\'2025-01-01T00:00:00+08:00\'      endTime:          查询时间范围的结束时刻，包含结束时刻，格式为：\'yyyy-MM-ddTHH:mm:sszzz\'，比如\'2025-02-01T00:00:00+08:00\'      modelName:          模板方案名称，这里是固定名称\'在线滚动优化模型\'      productLine:          工艺线编码，比如\'L1\'，\'L2\'           ControlCompareSubEnums:          对比的优化类型枚举值，目前一共有8个枚举值，具体是 1：控制方案，2：出水水质，3：生化区电耗，4：实际电耗，5：实际水量，6：优化电耗，7：药耗，8：碳足迹    输出：
+   * @summary 获取指定时间段内、指定优化类型的实测与优化模型模拟结果的对比数据
+   * @param {string} startTime 查询时间范围的开始时刻，包含开始时刻，格式为：\&#39;yyyy-MM-ddTHH:mm:sszzz\&#39;，比如\&#39;2025-01-01T00:00:00+08:00\&#39;
+   * @param {string} endTime 查询时间范围的结束时刻，包含结束时刻，格式为：\&#39;yyyy-MM-ddTHH:mm:sszzz\&#39;，比如\&#39;2025-02-01T00:00:00+08:00\&#39;
+   * @param {string} modelName 模板方案名称，这里是固定名称\&#39;在线滚动优化模型\&#39;
+   * @param {1 | 2 | 3 | 4 | 5 | 6 | 7 | 8} controlCompareSubEnum 对比的优化类型枚举值，目前一共有8个枚举值，具体是 1：控制方案，2：出水水质，3：生化区电耗，4：实际电耗，5：实际水量，6：优化电耗，7：药耗，8：碳足迹
+   * @param {string} [productLine] 工艺线编码，比如\&#39;L1\&#39;，\&#39;L2\&#39;
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof OptimizationApi
    */
   public apiV2OptimizationGeneralCompareGet(
-    startTime?: string,
-    endTime?: string,
-    modelName?: string,
+    startTime: string,
+    endTime: string,
+    modelName: string,
+    controlCompareSubEnum: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8,
     productLine?: string,
-    controlCompareSubEnum?: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8,
     options?: AxiosRequestConfig,
   ) {
     return OptimizationApiFp(this.configuration)
@@ -2327,8 +2750,8 @@ export class OptimizationApi extends BaseAPI {
         startTime,
         endTime,
         modelName,
-        productLine,
         controlCompareSubEnum,
+        productLine,
         options,
       )
       .then((request) => request(this.axios, this.basePath))
@@ -2362,6 +2785,7 @@ export class OptimizationApi extends BaseAPI {
    * @summary 修改某一控制项的远程控制开关状态
    * @param {SwitchControlInput} [switchControlInput]
    * @param {*} [options] Override http request option.
+   * @deprecated
    * @throws {RequiredError}
    * @memberof OptimizationApi
    */
@@ -2375,12 +2799,35 @@ export class OptimizationApi extends BaseAPI {
   }
 
   /**
-   *
-   * @summary /api/v3/optimization/control-compare-current
-   * @param {string} time
-   * @param {string} modelName
-   * @param {1 | 2 | 3 | 4 | 5 | 6 | 7 | 8} subType
-   * @param {string} [productLine]
+   * 关键词：      优化建议、导出        使用场景：      需要导出历史优化建议数据时        输入：      startTime:          查询时间范围的开始时刻，包含开始时刻，格式为：\'yyyy-MM-ddTHH:mm:sszzz\'，比如\'2025-01-01T00:00:00+08:00\'      endTime:          查询时间范围的结束时刻，包含结束时刻，格式为：\'yyyy-MM-ddTHH:mm:sszzz\'，比如\'2025-02-01T00:00:00+08:00\'      modelName:          模板方案名称，这里是固定名称\'在线滚动优化模型\'      tenantId:          租户ID    输出：      包含对比结果列表的excel文件二进制流
+   * @summary 导出历史优化建议数据
+   * @param {string} startTime 查询时间范围的开始时刻，包含开始时刻，格式为：\&#39;yyyy-MM-ddTHH:mm:sszzz\&#39;，比如\&#39;2025-01-01T00:00:00+08:00\&#39;
+   * @param {string} endTime 查询时间范围的结束时刻，包含结束时刻，格式为：\&#39;yyyy-MM-ddTHH:mm:sszzz\&#39;，比如\&#39;2025-02-01T00:00:00+08:00\&#39;
+   * @param {string} modelName 模板方案名称，这里是固定名称\&#39;在线滚动优化模型\&#39;
+   * @param {string} [tenantId] 租户ID
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof OptimizationApi
+   */
+  public apiV3ExportOptimizationSuggestGet(
+    startTime: string,
+    endTime: string,
+    modelName: string,
+    tenantId?: string,
+    options?: AxiosRequestConfig,
+  ) {
+    return OptimizationApiFp(this.configuration)
+      .apiV3ExportOptimizationSuggestGet(startTime, endTime, modelName, tenantId, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   * 该方法中，优化建议值来自优化算法，而不是模拟结果
+   * @summary 升级版获取优化控制点位上，当前时刻的实测值与优化建议值的对比信息
+   * @param {string} time 当前时刻，可不传
+   * @param {string} modelName 模板方案名称
+   * @param {1 | 2 | 3 | 4 | 5 | 6 | 7 | 8} subType 对比的优化类型枚举值，目前一共有8个枚举值，具体是 1：控制方案，2：出水水质，3：生化区电耗，4：实际电耗，5：实际水量，6：优化电耗，7：药耗，8：碳足迹
+   * @param {string} [productLine] 工艺线编码，比如\&#39;L1\&#39;，\&#39;L2\&#39;
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof OptimizationApi
@@ -2394,6 +2841,29 @@ export class OptimizationApi extends BaseAPI {
   ) {
     return OptimizationApiFp(this.configuration)
       .apiV3OptimizationControlCompareCurrentGet(time, modelName, subType, productLine, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   * 关键词：      控制点位、实测值与优化建议值的对比信息        使用场景：      需要获取优化控制点位上，实测值与优化建议值的对比信息时，其中优化建议值来自优化算法    输入：      startTime:          查询时间范围的开始时刻，包含开始时刻，格式为：\'yyyy-MM-ddTHH:mm:sszzz\'，比如\'2025-01-01T00:00:00+08:00\'      endTime:          查询时间范围的结束时刻，包含结束时刻，格式为：\'yyyy-MM-ddTHH:mm:sszzz\'，比如\'2025-02-01T00:00:00+08:00\'      modelName:          模板方案名称，这里是固定名称\'在线滚动优化模型\'      productLine:          工艺线编码，比如\'L1\'，\'L2\'  输出：      控制点位实测值与优化建议值的数据列表
+   * @summary 获取优化控制点位上，实测值与优化建议值的对比信息
+   * @param {string} startTime 查询时间范围的开始时刻，包含开始时刻，格式为：\&#39;yyyy-MM-ddTHH:mm:sszzz\&#39;，比如\&#39;2025-01-01T00:00:00+08:00\&#39;
+   * @param {string} endTime 查询时间范围的结束时刻，包含结束时刻，格式为：\&#39;yyyy-MM-ddTHH:mm:sszzz\&#39;，比如\&#39;2025-02-01T00:00:00+08:00\&#39;
+   * @param {string} modelName 模板方案名称，这里是固定名称\&#39;在线滚动优化模型\&#39;
+   * @param {string} [productLine] 工艺线编码，比如\&#39;L1\&#39;，\&#39;L2\&#39;
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof OptimizationApi
+   */
+  public apiV3OptimizationControlCompareGet(
+    startTime: string,
+    endTime: string,
+    modelName: string,
+    productLine?: string,
+    options?: AxiosRequestConfig,
+  ) {
+    return OptimizationApiFp(this.configuration)
+      .apiV3OptimizationControlCompareGet(startTime, endTime, modelName, productLine, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -2445,6 +2915,7 @@ export class OptimizationApi extends BaseAPI {
    * @param {string} modelName 模板方案名称，这里是固定名称\&#39;在线滚动优化模型\&#39;
    * @param {string} [tenantId] 租户ID
    * @param {*} [options] Override http request option.
+   * @deprecated
    * @throws {RequiredError}
    * @memberof OptimizationApi
    */
