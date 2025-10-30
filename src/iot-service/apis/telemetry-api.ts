@@ -31,17 +31,23 @@ import {
 // @ts-ignore
 import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } from '../base'
 // @ts-ignore
+import { LatestControlTimeseriesOutput } from '../models'
+// @ts-ignore
 import { LatestTimeSeriesByTimeInput } from '../models'
 // @ts-ignore
 import { LatestTimeSeriesInputV3 } from '../models'
 // @ts-ignore
 import { LatestTimeSeriesOutputV3 } from '../models'
 // @ts-ignore
+import { SaveControlRecommendInput } from '../models'
+// @ts-ignore
 import { SaveTelemetryStructDataBatchInput } from '../models'
 // @ts-ignore
 import { TimeseriesBatchForV3Input } from '../models'
 // @ts-ignore
 import { TimeseriesBatchForV3Output } from '../models'
+// @ts-ignore
+import { TimseriesSampleSearchArgs } from '../models'
 /**
  * TelemetryApi - axios parameter creator
  * @export
@@ -146,7 +152,7 @@ export const TelemetryApiAxiosParamCreator = function (configuration?: Configura
         localVarQueryParameter['DeviceId'] = deviceId
       }
 
-      if (keys !== undefined) {
+      if (keys) {
         localVarQueryParameter['Keys'] = keys
       }
 
@@ -179,6 +185,53 @@ export const TelemetryApiAxiosParamCreator = function (configuration?: Configura
         ...headersFromBaseOptions,
         ...options.headers,
       }
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     * 关键词：控制下发 建议值 建议描述编码  使用场景：提供设备控制建议值的程序需要保存建议值时，调用该接口进行批量保存，建议值和建议描述编码将以虚拟指标(indicator_Recommend和indicator_RecommandDesCode)的形式保存在iot库中
+     * @summary 保存控制下发设备指标的建议值和建议描述编码
+     * @param {Array<SaveControlRecommendInput>} [saveControlRecommendInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1IotSaveControlRecommendBatchPost: async (
+      saveControlRecommendInput?: Array<SaveControlRecommendInput>,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/iot/save-control-recommend-batch`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        saveControlRecommendInput,
+        localVarRequestOptions,
+        configuration,
+      )
 
       return {
         url: toPathString(localVarUrlObj),
@@ -236,7 +289,7 @@ export const TelemetryApiAxiosParamCreator = function (configuration?: Configura
         localVarQueryParameter['DeviceId'] = deviceId
       }
 
-      if (keys !== undefined) {
+      if (keys) {
         localVarQueryParameter['Keys'] = keys
       }
 
@@ -269,6 +322,100 @@ export const TelemetryApiAxiosParamCreator = function (configuration?: Configura
         ...headersFromBaseOptions,
         ...options.headers,
       }
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     * 数据抽样查询，对于长时间跨度的数据，如一个月、一年等，在用户获取数据时，可能不需要知道具体的数据细节，每天只取一个数据，展示整体的趋势即可，再比如数上传的频率很高，一次性查询全部数据时会很慢，也可以选择抽样来查询。查询时，需要指定抽样的时间类型(分钟、小时、天、月)和抽样的数据聚合类型(最值、均值、求和，第一个、最后一个)，抽样的聚合类型应该根据设备的指标来确定，应当满足现实意义，如：设备上传的是降雨量的数据，5min一个，当进行抽样查询时，查询小时的降雨量，应当设置聚合类型为求和，如果查询的是温度数据，则此时聚合类型就应当是均值或最值等。默认参数为First，取聚合时间段内的第一个值。  单次查询只支持一种抽样类型。返回时默认按时间升序排列，批量查询时，单次最多查询100个点位的数据  当进行批量查询时，如果部分指标的数据没有，则在返回时，不进行该指标的返回。
+     * @summary telemetry数据抽样查询
+     * @param {TimseriesSampleSearchArgs} [timseriesSampleSearchArgs]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1IotTimeseriesSampleSearchPost: async (
+      timseriesSampleSearchArgs?: TimseriesSampleSearchArgs,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/iot/timeseries/sample-search`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        timseriesSampleSearchArgs,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     * 关键词：设备、设备指标、最新、实测数据、获取、查询  使用场景：批量查询多个设备指标最新的实测数据，根据TimeRange控制是否有最新数据的时间范围（分钟），若TimeRange=5则查询距离当前时刻5分钟内的最新实测数据，用于多个设备指标只展示最新实测数据的情景  输入：设备编码、指标名称、离当前时刻最近的数据范围  输出：设备控制相关指标最新数据
+     * @summary 根据设备编码和指标名获取控制下发相关的最新数据
+     * @param {Array<LatestTimeSeriesInputV3>} [latestTimeSeriesInputV3]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV3IotLatestControlTimeseriesPost: async (
+      latestTimeSeriesInputV3?: Array<LatestTimeSeriesInputV3>,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v3/iot/latest-control-timeseries`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        latestTimeSeriesInputV3,
+        localVarRequestOptions,
+        configuration,
+      )
 
       return {
         url: toPathString(localVarUrlObj),
@@ -531,6 +678,24 @@ export const TelemetryApiFp = function (configuration?: Configuration) {
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**
+     * 关键词：控制下发 建议值 建议描述编码  使用场景：提供设备控制建议值的程序需要保存建议值时，调用该接口进行批量保存，建议值和建议描述编码将以虚拟指标(indicator_Recommend和indicator_RecommandDesCode)的形式保存在iot库中
+     * @summary 保存控制下发设备指标的建议值和建议描述编码
+     * @param {Array<SaveControlRecommendInput>} [saveControlRecommendInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1IotSaveControlRecommendBatchPost(
+      saveControlRecommendInput?: Array<SaveControlRecommendInput>,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiV1IotSaveControlRecommendBatchPost(
+          saveControlRecommendInput,
+          options,
+        )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
      * 关键词：设备、设备指标、设备指标时间序列数据、时间、排序、查询  使用场景：查询设备多个指标在某个时间段内的时间序列数据，可按时间排序，该数据来自系统接入的实测数据，可用于展示到前端界面  输入：设备、指标、时间区间  输出：指标与时间序列数据的键值对
      * @summary 查询设备指标在指定时间段内的时间序列数据，可根据排序方式OrderBy按时间排序
      * @param {string} deviceId 设备ID，如：065cd960-67d4-11ee-a501-41ab9ac02e38
@@ -563,6 +728,47 @@ export const TelemetryApiFp = function (configuration?: Configuration) {
         orderBy,
         interval,
         agg,
+        options,
+      )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     * 数据抽样查询，对于长时间跨度的数据，如一个月、一年等，在用户获取数据时，可能不需要知道具体的数据细节，每天只取一个数据，展示整体的趋势即可，再比如数上传的频率很高，一次性查询全部数据时会很慢，也可以选择抽样来查询。查询时，需要指定抽样的时间类型(分钟、小时、天、月)和抽样的数据聚合类型(最值、均值、求和，第一个、最后一个)，抽样的聚合类型应该根据设备的指标来确定，应当满足现实意义，如：设备上传的是降雨量的数据，5min一个，当进行抽样查询时，查询小时的降雨量，应当设置聚合类型为求和，如果查询的是温度数据，则此时聚合类型就应当是均值或最值等。默认参数为First，取聚合时间段内的第一个值。  单次查询只支持一种抽样类型。返回时默认按时间升序排列，批量查询时，单次最多查询100个点位的数据  当进行批量查询时，如果部分指标的数据没有，则在返回时，不进行该指标的返回。
+     * @summary telemetry数据抽样查询
+     * @param {TimseriesSampleSearchArgs} [timseriesSampleSearchArgs]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1IotTimeseriesSampleSearchPost(
+      timseriesSampleSearchArgs?: TimseriesSampleSearchArgs,
+      options?: AxiosRequestConfig,
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<TimeseriesBatchForV3Output>>
+    > {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1IotTimeseriesSampleSearchPost(
+        timseriesSampleSearchArgs,
+        options,
+      )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     * 关键词：设备、设备指标、最新、实测数据、获取、查询  使用场景：批量查询多个设备指标最新的实测数据，根据TimeRange控制是否有最新数据的时间范围（分钟），若TimeRange=5则查询距离当前时刻5分钟内的最新实测数据，用于多个设备指标只展示最新实测数据的情景  输入：设备编码、指标名称、离当前时刻最近的数据范围  输出：设备控制相关指标最新数据
+     * @summary 根据设备编码和指标名获取控制下发相关的最新数据
+     * @param {Array<LatestTimeSeriesInputV3>} [latestTimeSeriesInputV3]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV3IotLatestControlTimeseriesPost(
+      latestTimeSeriesInputV3?: Array<LatestTimeSeriesInputV3>,
+      options?: AxiosRequestConfig,
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string,
+      ) => AxiosPromise<Array<LatestControlTimeseriesOutput>>
+    > {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiV3IotLatestControlTimeseriesPost(
+        latestTimeSeriesInputV3,
         options,
       )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
@@ -707,6 +913,21 @@ export const TelemetryApiFactory = function (
         .then((request) => request(axios, basePath))
     },
     /**
+     * 关键词：控制下发 建议值 建议描述编码  使用场景：提供设备控制建议值的程序需要保存建议值时，调用该接口进行批量保存，建议值和建议描述编码将以虚拟指标(indicator_Recommend和indicator_RecommandDesCode)的形式保存在iot库中
+     * @summary 保存控制下发设备指标的建议值和建议描述编码
+     * @param {Array<SaveControlRecommendInput>} [saveControlRecommendInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1IotSaveControlRecommendBatchPost(
+      saveControlRecommendInput?: Array<SaveControlRecommendInput>,
+      options?: any,
+    ): AxiosPromise<void> {
+      return localVarFp
+        .apiV1IotSaveControlRecommendBatchPost(saveControlRecommendInput, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
      * 关键词：设备、设备指标、设备指标时间序列数据、时间、排序、查询  使用场景：查询设备多个指标在某个时间段内的时间序列数据，可按时间排序，该数据来自系统接入的实测数据，可用于展示到前端界面  输入：设备、指标、时间区间  输出：指标与时间序列数据的键值对
      * @summary 查询设备指标在指定时间段内的时间序列数据，可根据排序方式OrderBy按时间排序
      * @param {string} deviceId 设备ID，如：065cd960-67d4-11ee-a501-41ab9ac02e38
@@ -731,6 +952,36 @@ export const TelemetryApiFactory = function (
     ): AxiosPromise<{ [key: string]: Array<object> }> {
       return localVarFp
         .apiV1IotTimeseriesGet(deviceId, keys, startTs, endTs, orderBy, interval, agg, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     * 数据抽样查询，对于长时间跨度的数据，如一个月、一年等，在用户获取数据时，可能不需要知道具体的数据细节，每天只取一个数据，展示整体的趋势即可，再比如数上传的频率很高，一次性查询全部数据时会很慢，也可以选择抽样来查询。查询时，需要指定抽样的时间类型(分钟、小时、天、月)和抽样的数据聚合类型(最值、均值、求和，第一个、最后一个)，抽样的聚合类型应该根据设备的指标来确定，应当满足现实意义，如：设备上传的是降雨量的数据，5min一个，当进行抽样查询时，查询小时的降雨量，应当设置聚合类型为求和，如果查询的是温度数据，则此时聚合类型就应当是均值或最值等。默认参数为First，取聚合时间段内的第一个值。  单次查询只支持一种抽样类型。返回时默认按时间升序排列，批量查询时，单次最多查询100个点位的数据  当进行批量查询时，如果部分指标的数据没有，则在返回时，不进行该指标的返回。
+     * @summary telemetry数据抽样查询
+     * @param {TimseriesSampleSearchArgs} [timseriesSampleSearchArgs]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1IotTimeseriesSampleSearchPost(
+      timseriesSampleSearchArgs?: TimseriesSampleSearchArgs,
+      options?: any,
+    ): AxiosPromise<Array<TimeseriesBatchForV3Output>> {
+      return localVarFp
+        .apiV1IotTimeseriesSampleSearchPost(timseriesSampleSearchArgs, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     * 关键词：设备、设备指标、最新、实测数据、获取、查询  使用场景：批量查询多个设备指标最新的实测数据，根据TimeRange控制是否有最新数据的时间范围（分钟），若TimeRange=5则查询距离当前时刻5分钟内的最新实测数据，用于多个设备指标只展示最新实测数据的情景  输入：设备编码、指标名称、离当前时刻最近的数据范围  输出：设备控制相关指标最新数据
+     * @summary 根据设备编码和指标名获取控制下发相关的最新数据
+     * @param {Array<LatestTimeSeriesInputV3>} [latestTimeSeriesInputV3]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV3IotLatestControlTimeseriesPost(
+      latestTimeSeriesInputV3?: Array<LatestTimeSeriesInputV3>,
+      options?: any,
+    ): AxiosPromise<Array<LatestControlTimeseriesOutput>> {
+      return localVarFp
+        .apiV3IotLatestControlTimeseriesPost(latestTimeSeriesInputV3, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -859,6 +1110,23 @@ export class TelemetryApi extends BaseAPI {
   }
 
   /**
+   * 关键词：控制下发 建议值 建议描述编码  使用场景：提供设备控制建议值的程序需要保存建议值时，调用该接口进行批量保存，建议值和建议描述编码将以虚拟指标(indicator_Recommend和indicator_RecommandDesCode)的形式保存在iot库中
+   * @summary 保存控制下发设备指标的建议值和建议描述编码
+   * @param {Array<SaveControlRecommendInput>} [saveControlRecommendInput]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof TelemetryApi
+   */
+  public apiV1IotSaveControlRecommendBatchPost(
+    saveControlRecommendInput?: Array<SaveControlRecommendInput>,
+    options?: AxiosRequestConfig,
+  ) {
+    return TelemetryApiFp(this.configuration)
+      .apiV1IotSaveControlRecommendBatchPost(saveControlRecommendInput, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
    * 关键词：设备、设备指标、设备指标时间序列数据、时间、排序、查询  使用场景：查询设备多个指标在某个时间段内的时间序列数据，可按时间排序，该数据来自系统接入的实测数据，可用于展示到前端界面  输入：设备、指标、时间区间  输出：指标与时间序列数据的键值对
    * @summary 查询设备指标在指定时间段内的时间序列数据，可根据排序方式OrderBy按时间排序
    * @param {string} deviceId 设备ID，如：065cd960-67d4-11ee-a501-41ab9ac02e38
@@ -884,6 +1152,40 @@ export class TelemetryApi extends BaseAPI {
   ) {
     return TelemetryApiFp(this.configuration)
       .apiV1IotTimeseriesGet(deviceId, keys, startTs, endTs, orderBy, interval, agg, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   * 数据抽样查询，对于长时间跨度的数据，如一个月、一年等，在用户获取数据时，可能不需要知道具体的数据细节，每天只取一个数据，展示整体的趋势即可，再比如数上传的频率很高，一次性查询全部数据时会很慢，也可以选择抽样来查询。查询时，需要指定抽样的时间类型(分钟、小时、天、月)和抽样的数据聚合类型(最值、均值、求和，第一个、最后一个)，抽样的聚合类型应该根据设备的指标来确定，应当满足现实意义，如：设备上传的是降雨量的数据，5min一个，当进行抽样查询时，查询小时的降雨量，应当设置聚合类型为求和，如果查询的是温度数据，则此时聚合类型就应当是均值或最值等。默认参数为First，取聚合时间段内的第一个值。  单次查询只支持一种抽样类型。返回时默认按时间升序排列，批量查询时，单次最多查询100个点位的数据  当进行批量查询时，如果部分指标的数据没有，则在返回时，不进行该指标的返回。
+   * @summary telemetry数据抽样查询
+   * @param {TimseriesSampleSearchArgs} [timseriesSampleSearchArgs]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof TelemetryApi
+   */
+  public apiV1IotTimeseriesSampleSearchPost(
+    timseriesSampleSearchArgs?: TimseriesSampleSearchArgs,
+    options?: AxiosRequestConfig,
+  ) {
+    return TelemetryApiFp(this.configuration)
+      .apiV1IotTimeseriesSampleSearchPost(timseriesSampleSearchArgs, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   * 关键词：设备、设备指标、最新、实测数据、获取、查询  使用场景：批量查询多个设备指标最新的实测数据，根据TimeRange控制是否有最新数据的时间范围（分钟），若TimeRange=5则查询距离当前时刻5分钟内的最新实测数据，用于多个设备指标只展示最新实测数据的情景  输入：设备编码、指标名称、离当前时刻最近的数据范围  输出：设备控制相关指标最新数据
+   * @summary 根据设备编码和指标名获取控制下发相关的最新数据
+   * @param {Array<LatestTimeSeriesInputV3>} [latestTimeSeriesInputV3]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof TelemetryApi
+   */
+  public apiV3IotLatestControlTimeseriesPost(
+    latestTimeSeriesInputV3?: Array<LatestTimeSeriesInputV3>,
+    options?: AxiosRequestConfig,
+  ) {
+    return TelemetryApiFp(this.configuration)
+      .apiV3IotLatestControlTimeseriesPost(latestTimeSeriesInputV3, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
