@@ -1,3 +1,4 @@
+/* tslint:disable */
 /* eslint-disable */
 /**
  * 污水业务中台领域服务-v4
@@ -53,6 +54,12 @@ export interface CurrentCompareOutput {
    * @memberof CurrentCompareOutput
    */
   isAutoControl: boolean
+  /**
+   * 是否可控,默认可控
+   * @type {boolean}
+   * @memberof CurrentCompareOutput
+   */
+  isControlEnable: boolean
   /**
    * 模型数据时间-用于下发控制指令时修改数据，若未查出模拟数据时，该值为null
    * @type {string}
