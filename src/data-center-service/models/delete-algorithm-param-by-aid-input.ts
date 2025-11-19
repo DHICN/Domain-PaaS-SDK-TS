@@ -15,25 +15,13 @@
 /**
  *
  * @export
- * @interface DeployMachineOutput
+ * @interface DeleteAlgorithmParamByAIdInput
  */
-export interface DeployMachineOutput {
+export interface DeleteAlgorithmParamByAIdInput {
   /**
-   * 主机名
+   *
    * @type {string}
-   * @memberof DeployMachineOutput
+   * @memberof DeleteAlgorithmParamByAIdInput
    */
-  hostName?: string | null
-  /**
-   * 算法边车目标部署机器IP
-   * @type {string}
-   * @memberof DeployMachineOutput
-   */
-  ip?: string | null
-  /**
-   * 算法边车镜像容器端口
-   * @type {string}
-   * @memberof DeployMachineOutput
-   */
-  port?: string | null
+  algorithmId?: string
 }

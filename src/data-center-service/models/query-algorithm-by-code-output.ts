@@ -1,3 +1,4 @@
+/* tslint:disable */
 /* eslint-disable */
 /**
  * 数据中台服务
@@ -28,7 +29,7 @@ export interface QueryAlgorithmByCodeOutput {
    */
   id?: string
   /**
-   *
+   * 算法唯一编码
    * @type {string}
    * @memberof QueryAlgorithmByCodeOutput
    */
@@ -40,43 +41,43 @@ export interface QueryAlgorithmByCodeOutput {
    */
   algorithmName?: string | null
   /**
-   *
+   * 算法脚本所在服务器ip
    * @type {string}
    * @memberof QueryAlgorithmByCodeOutput
    */
   ip?: string | null
   /**
-   *
+   * 算法脚本所在服务器端口，不再使用
    * @type {string}
    * @memberof QueryAlgorithmByCodeOutput
    */
   port?: string | null
   /**
-   *
+   * 算法脚本入口程序的文件名称
    * @type {string}
    * @memberof QueryAlgorithmByCodeOutput
    */
   scriptName?: string | null
   /**
-   *
+   * 算法脚本位于分布式文件系统中的位置，即objectname
    * @type {string}
    * @memberof QueryAlgorithmByCodeOutput
    */
   scriptFilePath?: string | null
   /**
-   * 脚本启用状态：0停用，1启用
+   * 算法脚本启用状态：0停用，1启用，不再使用
    * @type {number}
    * @memberof QueryAlgorithmByCodeOutput
    */
   status?: number
   /**
-   *
+   * 租户id
    * @type {string}
    * @memberof QueryAlgorithmByCodeOutput
    */
   tenantId?: string | null
   /**
-   * 算法运行url
+   * 算法脚本运行url，不再使用
    * @type {string}
    * @memberof QueryAlgorithmByCodeOutput
    */
@@ -100,13 +101,13 @@ export interface QueryAlgorithmByCodeOutput {
    */
   lastModificationTime?: string | null
   /**
-   * 脚本类型 ExportReport-导出报告，CleaningAlgorithm-清洗算法
+   * 算法类型 ExportReport-导出报告，CleaningAlgorithm-清洗算法
    * @type {string}
    * @memberof QueryAlgorithmByCodeOutput
    */
   scriptType?: string | null
   /**
-   *
+   * 算法实例信息
    * @type {Array<AlgorithmInstanceConfigDto>}
    * @memberof QueryAlgorithmByCodeOutput
    */

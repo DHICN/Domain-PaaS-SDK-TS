@@ -12,28 +12,26 @@
  * Do not edit the class manually.
  */
 
+// May contain unused imports in some cases
+// @ts-ignore
+import { AlgorithmParamViewModel } from './algorithm-param-view-model'
+
 /**
  *
  * @export
- * @interface DeployMachineOutput
+ * @interface AlgorithmConfigAssembly
  */
-export interface DeployMachineOutput {
+export interface AlgorithmConfigAssembly {
   /**
-   * 主机名
+   * 算法实例运行url
    * @type {string}
-   * @memberof DeployMachineOutput
+   * @memberof AlgorithmConfigAssembly
    */
-  hostName?: string | null
+  algorithmRunUrl?: string | null
   /**
-   * 算法边车目标部署机器IP
-   * @type {string}
-   * @memberof DeployMachineOutput
+   *
+   * @type {Array<AlgorithmParamViewModel>}
+   * @memberof AlgorithmConfigAssembly
    */
-  ip?: string | null
-  /**
-   * 算法边车镜像容器端口
-   * @type {string}
-   * @memberof DeployMachineOutput
-   */
-  port?: string | null
+  algorithmParamList?: Array<AlgorithmParamViewModel> | null
 }

@@ -15,25 +15,37 @@
 /**
  *
  * @export
- * @interface AddAlgorithmInstanceInput
+ * @interface StringListResult
  */
-export interface AddAlgorithmInstanceInput {
+export interface StringListResult {
   /**
-   * 算法唯一编码
-   * @type {string}
-   * @memberof AddAlgorithmInstanceInput
+   *
+   * @type {boolean}
+   * @memberof StringListResult
    */
-  algorithmCode: string
+  status?: boolean
   /**
-   * 算法id
+   *
    * @type {string}
-   * @memberof AddAlgorithmInstanceInput
+   * @memberof StringListResult
    */
-  algorithmId?: string
+  code?: string | null
   /**
-   * 自定义端口映射，因为算法实例实际是容器运行，因为当算法脚本中有用到容器的端口时，为了能够外部调用，需要设置容器和主机的端口映射
+   *
+   * @type {string}
+   * @memberof StringListResult
+   */
+  message?: string | null
+  /**
+   *
+   * @type {string}
+   * @memberof StringListResult
+   */
+  traceId?: string | null
+  /**
+   *
    * @type {Array<string>}
-   * @memberof AddAlgorithmInstanceInput
+   * @memberof StringListResult
    */
-  customPortMap?: Array<string> | null
+  data?: Array<string> | null
 }

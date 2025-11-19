@@ -15,25 +15,31 @@
 /**
  *
  * @export
- * @interface DeployMachineOutput
+ * @interface QueryDataSourceInput
  */
-export interface DeployMachineOutput {
+export interface QueryDataSourceInput {
   /**
-   * 主机名
+   * 数据节点名
    * @type {string}
-   * @memberof DeployMachineOutput
+   * @memberof QueryDataSourceInput
    */
-  hostName?: string | null
+  nodeName?: string | null
   /**
-   * 算法边车目标部署机器IP
+   * 数据节点Code，唯一
    * @type {string}
-   * @memberof DeployMachineOutput
+   * @memberof QueryDataSourceInput
    */
-  ip?: string | null
+  nodeCode?: string | null
   /**
-   * 算法边车镜像容器端口
+   * 数据源类型
    * @type {string}
-   * @memberof DeployMachineOutput
+   * @memberof QueryDataSourceInput
    */
-  port?: string | null
+  dataSourceType?: string | null
+  /**
+   * 是否可见
+   * @type {boolean}
+   * @memberof QueryDataSourceInput
+   */
+  isVisible?: boolean | null
 }

@@ -1,3 +1,4 @@
+/* tslint:disable */
 /* eslint-disable */
 /**
  * 数据中台服务
@@ -30,19 +31,19 @@ export interface AddAlgorithmSidecarInput {
    */
   algorithmName?: string | null
   /**
-   *
+   * 算法脚本所在服务器ip
    * @type {string}
    * @memberof AddAlgorithmSidecarInput
    */
   ip: string
   /**
-   *
+   * 算法脚本入口程序的文件名称
    * @type {string}
    * @memberof AddAlgorithmSidecarInput
    */
   scriptName: string
   /**
-   *
+   * 算法脚本位于分布式文件系统中的位置，即objectname
    * @type {string}
    * @memberof AddAlgorithmSidecarInput
    */

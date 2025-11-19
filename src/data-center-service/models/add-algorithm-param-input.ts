@@ -12,28 +12,26 @@
  * Do not edit the class manually.
  */
 
+// May contain unused imports in some cases
+// @ts-ignore
+import { AddAlgorithmParamItem } from './add-algorithm-param-item'
+
 /**
  *
  * @export
- * @interface DeployMachineOutput
+ * @interface AddAlgorithmParamInput
  */
-export interface DeployMachineOutput {
+export interface AddAlgorithmParamInput {
   /**
-   * 主机名
+   * 算法id，关联算法表
    * @type {string}
-   * @memberof DeployMachineOutput
+   * @memberof AddAlgorithmParamInput
    */
-  hostName?: string | null
+  algorithmId?: string
   /**
-   * 算法边车目标部署机器IP
-   * @type {string}
-   * @memberof DeployMachineOutput
+   * 算法参数项
+   * @type {Array<AddAlgorithmParamItem>}
+   * @memberof AddAlgorithmParamInput
    */
-  ip?: string | null
-  /**
-   * 算法边车镜像容器端口
-   * @type {string}
-   * @memberof DeployMachineOutput
-   */
-  port?: string | null
+  addAlgorithmParamItems?: Array<AddAlgorithmParamItem> | null
 }

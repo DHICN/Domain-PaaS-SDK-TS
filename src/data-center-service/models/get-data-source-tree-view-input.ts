@@ -15,25 +15,19 @@
 /**
  *
  * @export
- * @interface DeployMachineOutput
+ * @interface GetDataSourceTreeViewInput
  */
-export interface DeployMachineOutput {
+export interface GetDataSourceTreeViewInput {
   /**
-   * 主机名
-   * @type {string}
-   * @memberof DeployMachineOutput
+   *
+   * @type {Array<string>}
+   * @memberof GetDataSourceTreeViewInput
    */
-  hostName?: string | null
+  nodeCodeList?: Array<string> | null
   /**
-   * 算法边车目标部署机器IP
-   * @type {string}
-   * @memberof DeployMachineOutput
+   *
+   * @type {boolean}
+   * @memberof GetDataSourceTreeViewInput
    */
-  ip?: string | null
-  /**
-   * 算法边车镜像容器端口
-   * @type {string}
-   * @memberof DeployMachineOutput
-   */
-  port?: string | null
+  onlyShowVisible?: boolean
 }

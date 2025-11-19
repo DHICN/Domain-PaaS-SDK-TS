@@ -15,25 +15,25 @@
 /**
  *
  * @export
- * @interface DeployMachineOutput
+ * @interface AddAlgorithmManualInput
  */
-export interface DeployMachineOutput {
+export interface AddAlgorithmManualInput {
   /**
-   * 主机名
+   * 算法名
    * @type {string}
-   * @memberof DeployMachineOutput
+   * @memberof AddAlgorithmManualInput
    */
-  hostName?: string | null
+  algorithmName: string
   /**
-   * 算法边车目标部署机器IP
+   * 算法唯一编码
    * @type {string}
-   * @memberof DeployMachineOutput
+   * @memberof AddAlgorithmManualInput
    */
-  ip?: string | null
+  algorithmCode: string
   /**
-   * 算法边车镜像容器端口
+   * 算法的url
    * @type {string}
-   * @memberof DeployMachineOutput
+   * @memberof AddAlgorithmManualInput
    */
-  port?: string | null
+  algorithmUrl: string
 }
