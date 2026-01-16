@@ -18,13 +18,19 @@
  */
 export interface AlgorithmInstanceConfigDto {
   /**
+   *
+   * @type {string}
+   * @memberof AlgorithmInstanceConfigDto
+   */
+  id?: string
+  /**
    * 算法配置Id
    * @type {string}
    * @memberof AlgorithmInstanceConfigDto
    */
   algorithmId?: string
   /**
-   *
+   * 算法实例所在服务器ip
    * @type {string}
    * @memberof AlgorithmInstanceConfigDto
    */
@@ -36,7 +42,7 @@ export interface AlgorithmInstanceConfigDto {
    */
   port?: string | null
   /**
-   * 算法实例code
+   * 算法实例唯一编码
    * @type {string}
    * @memberof AlgorithmInstanceConfigDto
    */

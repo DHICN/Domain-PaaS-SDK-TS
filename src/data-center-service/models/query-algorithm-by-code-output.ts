@@ -107,9 +107,24 @@ export interface QueryAlgorithmByCodeOutput {
    */
   scriptType?: string | null
   /**
+   * 0-ScriptZip 1-DockerImageTar 2-Manual
+   * @type {number}
+   * @memberof QueryAlgorithmByCodeOutput
+   */
+  scriptCreateType?: QueryAlgorithmByCodeOutputScriptCreateTypeEnum
+  /**
    * 算法实例信息
    * @type {Array<AlgorithmInstanceConfigDto>}
    * @memberof QueryAlgorithmByCodeOutput
    */
   algorithmInstanceConfigs?: Array<AlgorithmInstanceConfigDto> | null
 }
+
+export const QueryAlgorithmByCodeOutputScriptCreateTypeEnum = {
+  NUMBER_0: 0,
+  NUMBER_1: 1,
+  NUMBER_2: 2,
+} as const
+
+export type QueryAlgorithmByCodeOutputScriptCreateTypeEnum =
+  (typeof QueryAlgorithmByCodeOutputScriptCreateTypeEnum)[keyof typeof QueryAlgorithmByCodeOutputScriptCreateTypeEnum]

@@ -1,3 +1,4 @@
+/* tslint:disable */
 /* eslint-disable */
 /**
  * 脚本插件服务
@@ -38,10 +39,88 @@ export const ScriptUploadApiAxiosParamCreator = function (configuration?: Config
   return {
     /**
      *
+     * @summary 上传脚本镜像文件
+     * @param {string} scriptName
+     * @param {string} algorithmName
+     * @param {File} file
+     * @param {string} [algorithmCode]
+     * @param {string} [remark]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1UploadDockerImagePost: async (
+      scriptName: string,
+      algorithmName: string,
+      file: File,
+      algorithmCode?: string,
+      remark?: string,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'scriptName' is not null or undefined
+      assertParamExists('apiV1UploadDockerImagePost', 'scriptName', scriptName)
+      // verify required parameter 'algorithmName' is not null or undefined
+      assertParamExists('apiV1UploadDockerImagePost', 'algorithmName', algorithmName)
+      // verify required parameter 'file' is not null or undefined
+      assertParamExists('apiV1UploadDockerImagePost', 'file', file)
+      const localVarPath = `/api/v1/upload-docker-image`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+      const localVarFormParams = new ((configuration && configuration.formDataCtor) || FormData)()
+
+      // authentication bearer required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+      if (scriptName !== undefined) {
+        localVarQueryParameter['scriptName'] = scriptName
+      }
+
+      if (algorithmName !== undefined) {
+        localVarQueryParameter['AlgorithmName'] = algorithmName
+      }
+
+      if (algorithmCode !== undefined) {
+        localVarQueryParameter['algorithmCode'] = algorithmCode
+      }
+
+      if (remark !== undefined) {
+        localVarQueryParameter['remark'] = remark
+      }
+
+      if (file !== undefined) {
+        localVarFormParams.append('file', file as any)
+      }
+
+      localVarHeaderParameter['Content-Type'] = 'multipart/form-data'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = localVarFormParams
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
      * @summary 上传脚本文件
      * @param {string} scriptName
      * @param {string} algorithmName
-     * @param {any} file
+     * @param {File} file
      * @param {string} [port]
      * @param {string} [ip]
      * @param {string} [algorithmCode]
@@ -53,7 +132,7 @@ export const ScriptUploadApiAxiosParamCreator = function (configuration?: Config
     uploadPost: async (
       scriptName: string,
       algorithmName: string,
-      file: any,
+      file: File,
       port?: string,
       ip?: string,
       algorithmCode?: string,
@@ -144,10 +223,39 @@ export const ScriptUploadApiFp = function (configuration?: Configuration) {
   return {
     /**
      *
+     * @summary 上传脚本镜像文件
+     * @param {string} scriptName
+     * @param {string} algorithmName
+     * @param {File} file
+     * @param {string} [algorithmCode]
+     * @param {string} [remark]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1UploadDockerImagePost(
+      scriptName: string,
+      algorithmName: string,
+      file: File,
+      algorithmCode?: string,
+      remark?: string,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1UploadDockerImagePost(
+        scriptName,
+        algorithmName,
+        file,
+        algorithmCode,
+        remark,
+        options,
+      )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
      * @summary 上传脚本文件
      * @param {string} scriptName
      * @param {string} algorithmName
-     * @param {any} file
+     * @param {File} file
      * @param {string} [port]
      * @param {string} [ip]
      * @param {string} [algorithmCode]
@@ -159,7 +267,7 @@ export const ScriptUploadApiFp = function (configuration?: Configuration) {
     async uploadPost(
       scriptName: string,
       algorithmName: string,
-      file: any,
+      file: File,
       port?: string,
       ip?: string,
       algorithmCode?: string,
@@ -196,10 +304,33 @@ export const ScriptUploadApiFactory = function (
   return {
     /**
      *
+     * @summary 上传脚本镜像文件
+     * @param {string} scriptName
+     * @param {string} algorithmName
+     * @param {File} file
+     * @param {string} [algorithmCode]
+     * @param {string} [remark]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1UploadDockerImagePost(
+      scriptName: string,
+      algorithmName: string,
+      file: File,
+      algorithmCode?: string,
+      remark?: string,
+      options?: any,
+    ): AxiosPromise<object> {
+      return localVarFp
+        .apiV1UploadDockerImagePost(scriptName, algorithmName, file, algorithmCode, remark, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
      * @summary 上传脚本文件
      * @param {string} scriptName
      * @param {string} algorithmName
-     * @param {any} file
+     * @param {File} file
      * @param {string} [port]
      * @param {string} [ip]
      * @param {string} [algorithmCode]
@@ -211,7 +342,7 @@ export const ScriptUploadApiFactory = function (
     uploadPost(
       scriptName: string,
       algorithmName: string,
-      file: any,
+      file: File,
       port?: string,
       ip?: string,
       algorithmCode?: string,
@@ -245,10 +376,35 @@ export const ScriptUploadApiFactory = function (
 export class ScriptUploadApi extends BaseAPI {
   /**
    *
+   * @summary 上传脚本镜像文件
+   * @param {string} scriptName
+   * @param {string} algorithmName
+   * @param {File} file
+   * @param {string} [algorithmCode]
+   * @param {string} [remark]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof ScriptUploadApi
+   */
+  public apiV1UploadDockerImagePost(
+    scriptName: string,
+    algorithmName: string,
+    file: File,
+    algorithmCode?: string,
+    remark?: string,
+    options?: AxiosRequestConfig,
+  ) {
+    return ScriptUploadApiFp(this.configuration)
+      .apiV1UploadDockerImagePost(scriptName, algorithmName, file, algorithmCode, remark, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
    * @summary 上传脚本文件
    * @param {string} scriptName
    * @param {string} algorithmName
-   * @param {any} file
+   * @param {File} file
    * @param {string} [port]
    * @param {string} [ip]
    * @param {string} [algorithmCode]
@@ -261,7 +417,7 @@ export class ScriptUploadApi extends BaseAPI {
   public uploadPost(
     scriptName: string,
     algorithmName: string,
-    file: any,
+    file: File,
     port?: string,
     ip?: string,
     algorithmCode?: string,

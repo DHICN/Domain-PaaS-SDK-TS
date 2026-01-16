@@ -12,26 +12,14 @@
  * Do not edit the class manually.
  */
 
-
 import globalAxios, { AxiosPromise, AxiosInstance, AxiosRequestConfig } from 'axios'
 import { Configuration } from '../configuration'
 import { URL } from '../../sdk-helper'
 // Some imports not used depending on template conditions
 // @ts-ignore
-import {
-  DUMMY_BASE_URL,
-  assertParamExists,
-  setApiKeyToObject,
-  setBasicAuthToObject,
-  setBearerAuthToObject,
-  setOAuthToObject,
-  setSearchParams,
-  serializeDataIfNeeded,
-  toPathString,
-  createRequestFunction,
-} from '../common'
+import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setOAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction } from '../common';
 // @ts-ignore
-import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } from '../base'
+import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } from '../base';
 // @ts-ignore
 import { AddAlgorithmInstanceInput } from '../models';
 // @ts-ignore
@@ -625,11 +613,11 @@ export const ScriptApiAxiosParamCreator = function (configuration?: Configuratio
          * 关键词：      插件、脚本、运行  使用场景：      在已知算法实例唯一编码的情况下，对其进行调用，调用方式可以是任务调度定时执行，也可以是前端或其他服务的单次执行  相关背景：      需要完成python脚本压缩包导入并生成一个脚本实例后，方可调用执行，可通过\"DHI项目配置平台\"完成导入操作。  输出：      算法脚本实例执行结果，该结果的字符串值由用户的算法脚本的执行结果决定
          * @summary 运行Python算法脚本实例
          * @param {string} [algorithmCode] 算法实例唯一编码，可通过接口&#x60;&#x60;&#x60;v1/query/algorithm/list/by/con&#x60;&#x60;&#x60;获得算法和算法实例信息
-         * @param {{ [key: string]: string; }} [requestBody] 
+         * @param {string} [body] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiV1RunAlgorithmPost: async (algorithmCode?: string, requestBody?: { [key: string]: string; }, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        apiV1RunAlgorithmPost: async (algorithmCode?: string, body?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/v1/run/algorithm`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -653,7 +641,7 @@ export const ScriptApiAxiosParamCreator = function (configuration?: Configuratio
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(requestBody, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(body, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -662,7 +650,7 @@ export const ScriptApiAxiosParamCreator = function (configuration?: Configuratio
         },
         /**
          * 
-         * @summary 手动批量新增或更新算法并自动生成实例，用于数据源配置绑定算法实例id
+         * @summary 手动批量新增或更新算法（根据AlgorithmCode判断）并自动生成实例，用于数据源配置绑定算法实例id
          * @param {Array<AddAlgorithmManualInput>} [addAlgorithmManualInput] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -918,17 +906,17 @@ export const ScriptApiFp = function(configuration?: Configuration) {
          * 关键词：      插件、脚本、运行  使用场景：      在已知算法实例唯一编码的情况下，对其进行调用，调用方式可以是任务调度定时执行，也可以是前端或其他服务的单次执行  相关背景：      需要完成python脚本压缩包导入并生成一个脚本实例后，方可调用执行，可通过\"DHI项目配置平台\"完成导入操作。  输出：      算法脚本实例执行结果，该结果的字符串值由用户的算法脚本的执行结果决定
          * @summary 运行Python算法脚本实例
          * @param {string} [algorithmCode] 算法实例唯一编码，可通过接口&#x60;&#x60;&#x60;v1/query/algorithm/list/by/con&#x60;&#x60;&#x60;获得算法和算法实例信息
-         * @param {{ [key: string]: string; }} [requestBody] 
+         * @param {string} [body] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiV1RunAlgorithmPost(algorithmCode?: string, requestBody?: { [key: string]: string; }, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1RunAlgorithmPost(algorithmCode, requestBody, options);
+        async apiV1RunAlgorithmPost(algorithmCode?: string, body?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1RunAlgorithmPost(algorithmCode, body, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * 
-         * @summary 手动批量新增或更新算法并自动生成实例，用于数据源配置绑定算法实例id
+         * @summary 手动批量新增或更新算法（根据AlgorithmCode判断）并自动生成实例，用于数据源配置绑定算法实例id
          * @param {Array<AddAlgorithmManualInput>} [addAlgorithmManualInput] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -1122,16 +1110,16 @@ export const ScriptApiFactory = function (configuration?: Configuration, basePat
          * 关键词：      插件、脚本、运行  使用场景：      在已知算法实例唯一编码的情况下，对其进行调用，调用方式可以是任务调度定时执行，也可以是前端或其他服务的单次执行  相关背景：      需要完成python脚本压缩包导入并生成一个脚本实例后，方可调用执行，可通过\"DHI项目配置平台\"完成导入操作。  输出：      算法脚本实例执行结果，该结果的字符串值由用户的算法脚本的执行结果决定
          * @summary 运行Python算法脚本实例
          * @param {string} [algorithmCode] 算法实例唯一编码，可通过接口&#x60;&#x60;&#x60;v1/query/algorithm/list/by/con&#x60;&#x60;&#x60;获得算法和算法实例信息
-         * @param {{ [key: string]: string; }} [requestBody] 
+         * @param {string} [body] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiV1RunAlgorithmPost(algorithmCode?: string, requestBody?: { [key: string]: string; }, options?: any): AxiosPromise<object> {
-            return localVarFp.apiV1RunAlgorithmPost(algorithmCode, requestBody, options).then((request) => request(axios, basePath));
+        apiV1RunAlgorithmPost(algorithmCode?: string, body?: string, options?: any): AxiosPromise<object> {
+            return localVarFp.apiV1RunAlgorithmPost(algorithmCode, body, options).then((request) => request(axios, basePath));
         },
         /**
          * 
-         * @summary 手动批量新增或更新算法并自动生成实例，用于数据源配置绑定算法实例id
+         * @summary 手动批量新增或更新算法（根据AlgorithmCode判断）并自动生成实例，用于数据源配置绑定算法实例id
          * @param {Array<AddAlgorithmManualInput>} [addAlgorithmManualInput] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -1355,18 +1343,18 @@ export class ScriptApi extends BaseAPI {
      * 关键词：      插件、脚本、运行  使用场景：      在已知算法实例唯一编码的情况下，对其进行调用，调用方式可以是任务调度定时执行，也可以是前端或其他服务的单次执行  相关背景：      需要完成python脚本压缩包导入并生成一个脚本实例后，方可调用执行，可通过\"DHI项目配置平台\"完成导入操作。  输出：      算法脚本实例执行结果，该结果的字符串值由用户的算法脚本的执行结果决定
      * @summary 运行Python算法脚本实例
      * @param {string} [algorithmCode] 算法实例唯一编码，可通过接口&#x60;&#x60;&#x60;v1/query/algorithm/list/by/con&#x60;&#x60;&#x60;获得算法和算法实例信息
-     * @param {{ [key: string]: string; }} [requestBody] 
+     * @param {string} [body] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ScriptApi
      */
-    public apiV1RunAlgorithmPost(algorithmCode?: string, requestBody?: { [key: string]: string; }, options?: AxiosRequestConfig) {
-        return ScriptApiFp(this.configuration).apiV1RunAlgorithmPost(algorithmCode, requestBody, options).then((request) => request(this.axios, this.basePath));
+    public apiV1RunAlgorithmPost(algorithmCode?: string, body?: string, options?: AxiosRequestConfig) {
+        return ScriptApiFp(this.configuration).apiV1RunAlgorithmPost(algorithmCode, body, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
-     * @summary 手动批量新增或更新算法并自动生成实例，用于数据源配置绑定算法实例id
+     * @summary 手动批量新增或更新算法（根据AlgorithmCode判断）并自动生成实例，用于数据源配置绑定算法实例id
      * @param {Array<AddAlgorithmManualInput>} [addAlgorithmManualInput] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
