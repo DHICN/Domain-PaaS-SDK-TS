@@ -29,81 +29,57 @@ import { GetAllGroupEquipRelOutputCache } from './get-all-group-equip-rel-output
 import { Library } from './library'
 // May contain unused imports in some cases
 // @ts-ignore
-import { ModelBoundaryConfigFormatOutput } from './model-boundary-config-format-output'
-// May contain unused imports in some cases
-// @ts-ignore
-import { ModelPointOutput } from './model-point-output'
-// May contain unused imports in some cases
-// @ts-ignore
-import { PointDataTypeInfo } from './point-data-type-info'
+import { PointMappingAssembly } from './point-mapping-assembly'
 // May contain unused imports in some cases
 // @ts-ignore
 import { TemplateScenario } from './template-scenario'
 
 /**
- *
+ * 现实实体和模型组装类
  * @export
- * @interface PointMappingOutput
+ * @interface EntityAndModelAssembly
  */
-export interface PointMappingOutput {
+export interface EntityAndModelAssembly {
   /**
    * 资产列表
    * @type {Array<AssetInfoOutput>}
-   * @memberof PointMappingOutput
+   * @memberof EntityAndModelAssembly
    */
   assets?: Array<AssetInfoOutput> | null
   /**
    * 设备列表
    * @type {Array<DeviceInfosOutput>}
-   * @memberof PointMappingOutput
+   * @memberof EntityAndModelAssembly
    */
   devices?: Array<DeviceInfosOutput> | null
   /**
    * 设备指标列表
    * @type {Array<DeviceIndicatorOutput>}
-   * @memberof PointMappingOutput
+   * @memberof EntityAndModelAssembly
    */
   deviceIndicators?: Array<DeviceIndicatorOutput> | null
   /**
-   * [输出点位映射拓扑]模型点位数据类型与设备指标之间的映射关系,即: DeviceIndicatorId与ModelPointId、ModelDataType、TemplateId的关联关系
-   * @type {Array<PointDataTypeInfo>}
-   * @memberof PointMappingOutput
+   * 点位映射组装列表
+   * @type {Array<PointMappingAssembly>}
+   * @memberof EntityAndModelAssembly
    */
-  modelPointDataTypes?: Array<PointDataTypeInfo> | null
-  /**
-   * 模型边界列表
-   * @type {Array<ModelBoundaryConfigFormatOutput>}
-   * @memberof PointMappingOutput
-   */
-  modelBoundaryConfigs?: Array<ModelBoundaryConfigFormatOutput> | null
-  /**
-   * 模板Id列表
-   * @type {Array<string>}
-   * @memberof PointMappingOutput
-   */
-  templateIds?: Array<string> | null
-  /**
-   * 模型点位信息列表
-   * @type {Array<ModelPointOutput>}
-   * @memberof PointMappingOutput
-   */
-  modelPoints?: Array<ModelPointOutput> | null
+  pointMappingAssemblies?: Array<PointMappingAssembly> | null
   /**
    * 项目所有方案类库列表
    * @type {Array<Library>}
-   * @memberof PointMappingOutput
+   * @memberof EntityAndModelAssembly
    */
   libraries?: Array<Library> | null
   /**
    * 类库下的所有模板方案
    * @type {Array<TemplateScenario>}
-   * @memberof PointMappingOutput
+   * @memberof EntityAndModelAssembly
    */
   templateScenarios?: Array<TemplateScenario> | null
   /**
    *
    * @type {GetAllGroupEquipRelOutputCache}
-   * @memberof PointMappingOutput
+   * @memberof EntityAndModelAssembly
    */
   equipGrouRelsCache?: GetAllGroupEquipRelOutputCache
 }
