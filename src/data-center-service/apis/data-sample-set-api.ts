@@ -315,6 +315,43 @@ export const DataSampleSetApiAxiosParamCreator = function (configuration?: Confi
             };
         },
         /**
+         * 根据样本Id获取单次抽取的数据,一次性返回所有样本
+         * @summary 获取静态样本数据
+         * @param {string} sampleSetId 样本Id
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiV1DataSampleSetStaticDataGet: async (sampleSetId: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'sampleSetId' is not null or undefined
+            assertParamExists('apiV1DataSampleSetStaticDataGet', 'sampleSetId', sampleSetId)
+            const localVarPath = `/api/v1/data-sample-set/static-data`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (sampleSetId !== undefined) {
+                localVarQueryParameter['sampleSetId'] = sampleSetId;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * 
          * @summary 修改样本集
          * @param {string} [id] 
@@ -440,6 +477,17 @@ export const DataSampleSetApiFp = function(configuration?: Configuration) {
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
+         * 根据样本Id获取单次抽取的数据,一次性返回所有样本
+         * @summary 获取静态样本数据
+         * @param {string} sampleSetId 样本Id
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async apiV1DataSampleSetStaticDataGet(sampleSetId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DataOutput>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1DataSampleSetStaticDataGet(sampleSetId, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
          * 
          * @summary 修改样本集
          * @param {string} [id] 
@@ -530,6 +578,16 @@ export const DataSampleSetApiFactory = function (configuration?: Configuration, 
          */
         apiV1DataSampleSetManualPost(manualExecuteCollectInput?: ManualExecuteCollectInput, options?: any): AxiosPromise<void> {
             return localVarFp.apiV1DataSampleSetManualPost(manualExecuteCollectInput, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 根据样本Id获取单次抽取的数据,一次性返回所有样本
+         * @summary 获取静态样本数据
+         * @param {string} sampleSetId 样本Id
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiV1DataSampleSetStaticDataGet(sampleSetId: string, options?: any): AxiosPromise<DataOutput> {
+            return localVarFp.apiV1DataSampleSetStaticDataGet(sampleSetId, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -632,6 +690,18 @@ export class DataSampleSetApi extends BaseAPI {
      */
     public apiV1DataSampleSetManualPost(manualExecuteCollectInput?: ManualExecuteCollectInput, options?: AxiosRequestConfig) {
         return DataSampleSetApiFp(this.configuration).apiV1DataSampleSetManualPost(manualExecuteCollectInput, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 根据样本Id获取单次抽取的数据,一次性返回所有样本
+     * @summary 获取静态样本数据
+     * @param {string} sampleSetId 样本Id
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DataSampleSetApi
+     */
+    public apiV1DataSampleSetStaticDataGet(sampleSetId: string, options?: AxiosRequestConfig) {
+        return DataSampleSetApiFp(this.configuration).apiV1DataSampleSetStaticDataGet(sampleSetId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
