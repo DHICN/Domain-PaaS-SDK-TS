@@ -2,8 +2,8 @@ name: Publish NPM
 
 on:
   push:
-    tags:
-      - 'v*'
+    branches:
+      - main
   workflow_dispatch:
 
 permissions:
@@ -11,7 +11,7 @@ permissions:
   id-token: write
 
 jobs:
-  build:
+  build-and-publish:
     runs-on: ubuntu-latest
 
     strategy:
@@ -22,14 +22,14 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
+      - name: Setup Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
           registry-url: https://registry.npmjs.org
 
-      - name: Install pnpm
-        run: npm install -g pnpm
+      - name: Enable Corepack
+        run: corepack enable
 
       - name: Install Dependencies
         run: pnpm install --no-frozen-lockfile
@@ -37,16 +37,51 @@ jobs:
       - name: Build
         run: pnpm build
 
-      # OIDC Trusted Publishing
-      - name: Publish Package
-        run: npm publish --access public
+      - name: Extract Package Info
+        id: package_info
+        run: |
+          PACKAGE_NAME=$(node -p "require('./package.json').name")
+          PACKAGE_VERSION=$(node -p "require('./package.json').version")
 
-      - name: Extract Version
-        id: extract_version
-        uses: Saionaro/extract-package-version@v1.2.1
+          echo "package_name=$PACKAGE_NAME" >> $GITHUB_OUTPUT
+          echo "package_version=$PACKAGE_VERSION" >> $GITHUB_OUTPUT
+
+          echo "Package: $PACKAGE_NAME"
+          echo "Version: $PACKAGE_VERSION"
+
+      - name: Check Version Exists On npm
+        id: check_version
+        run: |
+          PACKAGE_NAME="${{ steps.package_info.outputs.package_name }}"
+          PACKAGE_VERSION="${{ steps.package_info.outputs.package_version }}"
+
+          if npm view "$PACKAGE_NAME@$PACKAGE_VERSION" version --registry=https://registry.npmjs.org > /dev/null 2>&1; then
+            echo "exists=true" >> $GITHUB_OUTPUT
+            echo "Version $PACKAGE_VERSION already exists on npm. Skip publishing."
+          else
+            echo "exists=false" >> $GITHUB_OUTPUT
+            echo "Version $PACKAGE_VERSION does not exist on npm. Ready to publish."
+          fi
+
+      - name: Publish Package To npm With OIDC
+        if: steps.check_version.outputs.exists == 'false'
+        run: npm publish --access public --provenance
 
       - name: Create GitHub Release
+        if: steps.check_version.outputs.exists == 'false'
         uses: ncipollo/release-action@v1
         with:
-          tag: v${{ steps.extract_version.outputs.version }}
+          tag: v${{ steps.package_info.outputs.package_version }}
+          name: v${{ steps.package_info.outputs.package_version }}
+          body: |
+            Release v${{ steps.package_info.outputs.package_version }}
+
+            Package: ${{ steps.package_info.outputs.package_name }}
+
+            Published to npm by GitHub Actions OIDC Trusted Publishing.
           token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Skip Publish Message
+        if: steps.check_version.outputs.exists == 'true'
+        run: |
+          echo "Skip publish because this version already exists on npm."
