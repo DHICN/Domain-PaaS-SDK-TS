@@ -2,9 +2,13 @@ name: Publish NPM
 
 on:
   push:
-    branches:
-      - main**
+    tags:
+      - 'v*'
   workflow_dispatch:
+
+permissions:
+  contents: write
+  id-token: write
 
 jobs:
   build:
@@ -12,39 +16,37 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [18.x]
+        node-version: [24.x]
 
     steps:
-      - uses: actions/checkout@v3
-      - name: Use Node.js ${{ matrix.node-version }} install pnpm
-        uses: actions/setup-node@v3
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
-      - run: npm install -g pnpm
-      - name: use pnpm install packages
+          registry-url: https://registry.npmjs.org
+
+      - name: Install pnpm
+        run: npm install -g pnpm
+
+      - name: Install Dependencies
         run: pnpm install --no-frozen-lockfile
 
-      - name: use pnpm build
+      - name: Build
         run: pnpm build
 
-      - name: Use JS-DevTools pubilsh to npm
-        uses: JS-DevTools/npm-publish@v2
-        with:
-          token: ${{ secrets.NPM_TOKEN }}
-          access: public
-      #      - run: npm test
+      # OIDC Trusted Publishing
+      - name: Publish Package
+        run: npm publish --access public
 
-      - name: Extract version
+      - name: Extract Version
         id: extract_version
         uses: Saionaro/extract-package-version@v1.2.1
-      # From now you can access the version
-      - name: Print version
-        run: echo ${{ steps.extract_version.outputs.version }}
 
-      - name: Create a Release
+      - name: Create GitHub Release
         uses: ncipollo/release-action@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
         with:
           tag: v${{ steps.extract_version.outputs.version }}
-          token: ${{ secrets.RELEASE_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
