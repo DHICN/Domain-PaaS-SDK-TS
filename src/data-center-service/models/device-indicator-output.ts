@@ -11,6 +11,10 @@
  * Do not edit the class manually.
  */
 
+// May contain unused imports in some cases
+// @ts-ignore
+import { Null } from './null'
+
 /**
  *
  * @export
@@ -24,55 +28,55 @@ export interface DeviceIndicatorOutput {
    */
   tenantId?: string | null
   /**
-   * 指标Id indicator id
+   * 指标Id
    * @type {string}
    * @memberof DeviceIndicatorOutput
    */
   id?: string
   /**
-   * 设备Id device id
+   * 设备Id
    * @type {string}
    * @memberof DeviceIndicatorOutput
    */
   deviceId?: string
   /**
-   * 指标项 indicator
+   * 指标项
    * @type {string}
    * @memberof DeviceIndicatorOutput
    */
   indicator?: string | null
   /**
-   * 指标显示名称 indicator name
+   * 指标显示名称
    * @type {string}
    * @memberof DeviceIndicatorOutput
    */
   showName?: string | null
   /**
-   * 指标标签 indicator label
+   * 指标标签
    * @type {string}
    * @memberof DeviceIndicatorOutput
    */
   label?: string | null
   /**
-   * 指标类型 indicator data type
+   * 指标类型
    * @type {string}
    * @memberof DeviceIndicatorOutput
    */
   type?: string | null
   /**
-   * 指标数值单位 indicator data unit
+   * 指标数值单位
    * @type {string}
    * @memberof DeviceIndicatorOutput
    */
   unit?: string | null
   /**
-   * 指标数值最小值 indicator min value
+   * 指标数值最小值
    * @type {number}
    * @memberof DeviceIndicatorOutput
    */
   minValue?: number
   /**
-   * 指标数值最大值 indicator max value
+   * 指标数值最大值
    * @type {number}
    * @memberof DeviceIndicatorOutput
    */
@@ -83,4 +87,38 @@ export interface DeviceIndicatorOutput {
    * @memberof DeviceIndicatorOutput
    */
   defaultValue?: number
+  /**
+   * 时间处理模式,枚举：second秒、minute分、hour小时、original(默认原始值,不做处理)
+   * @type {number}
+   * @memberof DeviceIndicatorOutput
+   */
+  timeProcessingMode?: DeviceIndicatorOutputTimeProcessingModeEnum
+  /**
+   * 是否启用同步
+   * @type {boolean}
+   * @memberof DeviceIndicatorOutput
+   */
+  isOpenSync?: boolean | null
+  /**
+   * 时间步长，IsOpenSync为true，则需要设置时间步长
+   * @type {number}
+   * @memberof DeviceIndicatorOutput
+   */
+  period?: number | null
+  /**
+   * 指标自定义属性信息
+   * @type {{ [key: string]: Null; }}
+   * @memberof DeviceIndicatorOutput
+   */
+  extraProperties?: { [key: string]: Null } | null
 }
+
+export const DeviceIndicatorOutputTimeProcessingModeEnum = {
+  '0': 0 as number,
+  '1': 1 as number,
+  '2': 2 as number,
+  '3': 3 as number,
+} as const
+
+export type DeviceIndicatorOutputTimeProcessingModeEnum =
+  (typeof DeviceIndicatorOutputTimeProcessingModeEnum)[keyof typeof DeviceIndicatorOutputTimeProcessingModeEnum]

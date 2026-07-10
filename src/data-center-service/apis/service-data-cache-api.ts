@@ -1,4 +1,3 @@
-/* tslint:disable */
 /* eslint-disable */
 /**
  * 数据中台服务
@@ -89,6 +88,49 @@ export const ServiceDataCacheApiAxiosParamCreator = function (configuration?: Co
       }
     },
     /**
+     * 关键词：      缓存、资产设备、模板映射关系  使用场景：      该接口提供了查询资产设备指标以及对应的模型点位的聚合信息，优先从缓存中查询  相关背景：      在重新导入资产设备配置表后，系统会清除缓存信息，下次查询时将请求数据库信息并更新缓存
+     * @summary 获取租户下指定的模板方案的映射关系数据
+     * @param {PointMappingV2Input} [pointMappingV2Input]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1DataCachePointTemplateMappingPost_1: async (
+      pointMappingV2Input?: PointMappingV2Input,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/data-cache/point/template-mapping`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        pointMappingV2Input,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
      * 关键词：      缓存、资产设备、模板映射关系  使用场景：      该接口提供了查询资产设备指标以及对应的模型点位的聚合信息，优先从缓存中查询。      该接口为兼容老项目中的服务调用而创建，如果客户机中的老项目在升级datacenter服务后出现调用报错的问题，      请将调用v2/data-cache/point/mapping接口的相关服务的配置修改为v2/data-cache/point/mapping-compatibility  相关背景：      在重新导入资产设备配置表后，系统会清除缓存信息，下次查询时将请求数据库信息并更新缓存
      * @summary 获取租户下的包括实体资产设备，和指定的模板方案的映射关系数据
      * @param {PointMappingV2Input} [pointMappingV2Input]
@@ -96,6 +138,49 @@ export const ServiceDataCacheApiAxiosParamCreator = function (configuration?: Co
      * @throws {RequiredError}
      */
     apiV2DataCachePointMappingCompatibilityPost: async (
+      pointMappingV2Input?: PointMappingV2Input,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v2/data-cache/point/mapping-compatibility`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        pointMappingV2Input,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     * 关键词：      缓存、资产设备、模板映射关系  使用场景：      该接口提供了查询资产设备指标以及对应的模型点位的聚合信息，优先从缓存中查询。      该接口为兼容老项目中的服务调用而创建，如果客户机中的老项目在升级datacenter服务后出现调用报错的问题，      请将调用v2/data-cache/point/mapping接口的相关服务的配置修改为v2/data-cache/point/mapping-compatibility  相关背景：      在重新导入资产设备配置表后，系统会清除缓存信息，下次查询时将请求数据库信息并更新缓存
+     * @summary 获取租户下的包括实体资产设备，和指定的模板方案的映射关系数据
+     * @param {PointMappingV2Input} [pointMappingV2Input]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV2DataCachePointMappingCompatibilityPost_2: async (
       pointMappingV2Input?: PointMappingV2Input,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
@@ -174,6 +259,49 @@ export const ServiceDataCacheApiAxiosParamCreator = function (configuration?: Co
         options: localVarRequestOptions,
       }
     },
+    /**
+     * 关键词：      缓存、资产设备、模板映射关系  使用场景：      该接口提供了查询资产设备指标以及对应的模型点位的聚合信息，优先从缓存中查询  相关背景：      在重新导入资产设备配置表后，系统会清除缓存信息，下次查询时将请求数据库信息并更新缓存
+     * @summary 获取租户下的包括实体资产设备，和指定的模板方案的映射关系数据
+     * @param {PointMappingV2Input} [pointMappingV2Input]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV2DataCachePointMappingPost_3: async (
+      pointMappingV2Input?: PointMappingV2Input,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v2/data-cache/point/mapping`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        pointMappingV2Input,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
   }
 }
 
@@ -205,6 +333,26 @@ export const ServiceDataCacheApiFp = function (configuration?: Configuration) {
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**
+     * 关键词：      缓存、资产设备、模板映射关系  使用场景：      该接口提供了查询资产设备指标以及对应的模型点位的聚合信息，优先从缓存中查询  相关背景：      在重新导入资产设备配置表后，系统会清除缓存信息，下次查询时将请求数据库信息并更新缓存
+     * @summary 获取租户下指定的模板方案的映射关系数据
+     * @param {PointMappingV2Input} [pointMappingV2Input]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1DataCachePointTemplateMappingPost_1(
+      pointMappingV2Input?: PointMappingV2Input,
+      options?: AxiosRequestConfig,
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<PointMappingAssembly>>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiV1DataCachePointTemplateMappingPost_1(
+          pointMappingV2Input,
+          options,
+        )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
      * 关键词：      缓存、资产设备、模板映射关系  使用场景：      该接口提供了查询资产设备指标以及对应的模型点位的聚合信息，优先从缓存中查询。      该接口为兼容老项目中的服务调用而创建，如果客户机中的老项目在升级datacenter服务后出现调用报错的问题，      请将调用v2/data-cache/point/mapping接口的相关服务的配置修改为v2/data-cache/point/mapping-compatibility  相关背景：      在重新导入资产设备配置表后，系统会清除缓存信息，下次查询时将请求数据库信息并更新缓存
      * @summary 获取租户下的包括实体资产设备，和指定的模板方案的映射关系数据
      * @param {PointMappingV2Input} [pointMappingV2Input]
@@ -223,6 +371,24 @@ export const ServiceDataCacheApiFp = function (configuration?: Configuration) {
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**
+     * 关键词：      缓存、资产设备、模板映射关系  使用场景：      该接口提供了查询资产设备指标以及对应的模型点位的聚合信息，优先从缓存中查询。      该接口为兼容老项目中的服务调用而创建，如果客户机中的老项目在升级datacenter服务后出现调用报错的问题，      请将调用v2/data-cache/point/mapping接口的相关服务的配置修改为v2/data-cache/point/mapping-compatibility  相关背景：      在重新导入资产设备配置表后，系统会清除缓存信息，下次查询时将请求数据库信息并更新缓存
+     * @summary 获取租户下的包括实体资产设备，和指定的模板方案的映射关系数据
+     * @param {PointMappingV2Input} [pointMappingV2Input]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV2DataCachePointMappingCompatibilityPost_2(
+      pointMappingV2Input?: PointMappingV2Input,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PointMappingOutput>> {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiV2DataCachePointMappingCompatibilityPost_2(
+          pointMappingV2Input,
+          options,
+        )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
      * 关键词：      缓存、资产设备、模板映射关系  使用场景：      该接口提供了查询资产设备指标以及对应的模型点位的聚合信息，优先从缓存中查询  相关背景：      在重新导入资产设备配置表后，系统会清除缓存信息，下次查询时将请求数据库信息并更新缓存
      * @summary 获取租户下的包括实体资产设备，和指定的模板方案的映射关系数据
      * @param {PointMappingV2Input} [pointMappingV2Input]
@@ -234,6 +400,23 @@ export const ServiceDataCacheApiFp = function (configuration?: Configuration) {
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<EntityAndModelAssembly>> {
       const localVarAxiosArgs = await localVarAxiosParamCreator.apiV2DataCachePointMappingPost(
+        pointMappingV2Input,
+        options,
+      )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     * 关键词：      缓存、资产设备、模板映射关系  使用场景：      该接口提供了查询资产设备指标以及对应的模型点位的聚合信息，优先从缓存中查询  相关背景：      在重新导入资产设备配置表后，系统会清除缓存信息，下次查询时将请求数据库信息并更新缓存
+     * @summary 获取租户下的包括实体资产设备，和指定的模板方案的映射关系数据
+     * @param {PointMappingV2Input} [pointMappingV2Input]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV2DataCachePointMappingPost_3(
+      pointMappingV2Input?: PointMappingV2Input,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<EntityAndModelAssembly>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiV2DataCachePointMappingPost_3(
         pointMappingV2Input,
         options,
       )
@@ -269,6 +452,21 @@ export const ServiceDataCacheApiFactory = function (
         .then((request) => request(axios, basePath))
     },
     /**
+     * 关键词：      缓存、资产设备、模板映射关系  使用场景：      该接口提供了查询资产设备指标以及对应的模型点位的聚合信息，优先从缓存中查询  相关背景：      在重新导入资产设备配置表后，系统会清除缓存信息，下次查询时将请求数据库信息并更新缓存
+     * @summary 获取租户下指定的模板方案的映射关系数据
+     * @param {PointMappingV2Input} [pointMappingV2Input]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1DataCachePointTemplateMappingPost_1(
+      pointMappingV2Input?: PointMappingV2Input,
+      options?: any,
+    ): AxiosPromise<Array<PointMappingAssembly>> {
+      return localVarFp
+        .apiV1DataCachePointTemplateMappingPost_1(pointMappingV2Input, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
      * 关键词：      缓存、资产设备、模板映射关系  使用场景：      该接口提供了查询资产设备指标以及对应的模型点位的聚合信息，优先从缓存中查询。      该接口为兼容老项目中的服务调用而创建，如果客户机中的老项目在升级datacenter服务后出现调用报错的问题，      请将调用v2/data-cache/point/mapping接口的相关服务的配置修改为v2/data-cache/point/mapping-compatibility  相关背景：      在重新导入资产设备配置表后，系统会清除缓存信息，下次查询时将请求数据库信息并更新缓存
      * @summary 获取租户下的包括实体资产设备，和指定的模板方案的映射关系数据
      * @param {PointMappingV2Input} [pointMappingV2Input]
@@ -284,6 +482,21 @@ export const ServiceDataCacheApiFactory = function (
         .then((request) => request(axios, basePath))
     },
     /**
+     * 关键词：      缓存、资产设备、模板映射关系  使用场景：      该接口提供了查询资产设备指标以及对应的模型点位的聚合信息，优先从缓存中查询。      该接口为兼容老项目中的服务调用而创建，如果客户机中的老项目在升级datacenter服务后出现调用报错的问题，      请将调用v2/data-cache/point/mapping接口的相关服务的配置修改为v2/data-cache/point/mapping-compatibility  相关背景：      在重新导入资产设备配置表后，系统会清除缓存信息，下次查询时将请求数据库信息并更新缓存
+     * @summary 获取租户下的包括实体资产设备，和指定的模板方案的映射关系数据
+     * @param {PointMappingV2Input} [pointMappingV2Input]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV2DataCachePointMappingCompatibilityPost_2(
+      pointMappingV2Input?: PointMappingV2Input,
+      options?: any,
+    ): AxiosPromise<PointMappingOutput> {
+      return localVarFp
+        .apiV2DataCachePointMappingCompatibilityPost_2(pointMappingV2Input, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
      * 关键词：      缓存、资产设备、模板映射关系  使用场景：      该接口提供了查询资产设备指标以及对应的模型点位的聚合信息，优先从缓存中查询  相关背景：      在重新导入资产设备配置表后，系统会清除缓存信息，下次查询时将请求数据库信息并更新缓存
      * @summary 获取租户下的包括实体资产设备，和指定的模板方案的映射关系数据
      * @param {PointMappingV2Input} [pointMappingV2Input]
@@ -296,6 +509,21 @@ export const ServiceDataCacheApiFactory = function (
     ): AxiosPromise<EntityAndModelAssembly> {
       return localVarFp
         .apiV2DataCachePointMappingPost(pointMappingV2Input, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     * 关键词：      缓存、资产设备、模板映射关系  使用场景：      该接口提供了查询资产设备指标以及对应的模型点位的聚合信息，优先从缓存中查询  相关背景：      在重新导入资产设备配置表后，系统会清除缓存信息，下次查询时将请求数据库信息并更新缓存
+     * @summary 获取租户下的包括实体资产设备，和指定的模板方案的映射关系数据
+     * @param {PointMappingV2Input} [pointMappingV2Input]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV2DataCachePointMappingPost_3(
+      pointMappingV2Input?: PointMappingV2Input,
+      options?: any,
+    ): AxiosPromise<EntityAndModelAssembly> {
+      return localVarFp
+        .apiV2DataCachePointMappingPost_3(pointMappingV2Input, options)
         .then((request) => request(axios, basePath))
     },
   }
@@ -326,6 +554,23 @@ export class ServiceDataCacheApi extends BaseAPI {
   }
 
   /**
+   * 关键词：      缓存、资产设备、模板映射关系  使用场景：      该接口提供了查询资产设备指标以及对应的模型点位的聚合信息，优先从缓存中查询  相关背景：      在重新导入资产设备配置表后，系统会清除缓存信息，下次查询时将请求数据库信息并更新缓存
+   * @summary 获取租户下指定的模板方案的映射关系数据
+   * @param {PointMappingV2Input} [pointMappingV2Input]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof ServiceDataCacheApi
+   */
+  public apiV1DataCachePointTemplateMappingPost_1(
+    pointMappingV2Input?: PointMappingV2Input,
+    options?: AxiosRequestConfig,
+  ) {
+    return ServiceDataCacheApiFp(this.configuration)
+      .apiV1DataCachePointTemplateMappingPost_1(pointMappingV2Input, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
    * 关键词：      缓存、资产设备、模板映射关系  使用场景：      该接口提供了查询资产设备指标以及对应的模型点位的聚合信息，优先从缓存中查询。      该接口为兼容老项目中的服务调用而创建，如果客户机中的老项目在升级datacenter服务后出现调用报错的问题，      请将调用v2/data-cache/point/mapping接口的相关服务的配置修改为v2/data-cache/point/mapping-compatibility  相关背景：      在重新导入资产设备配置表后，系统会清除缓存信息，下次查询时将请求数据库信息并更新缓存
    * @summary 获取租户下的包括实体资产设备，和指定的模板方案的映射关系数据
    * @param {PointMappingV2Input} [pointMappingV2Input]
@@ -343,6 +588,23 @@ export class ServiceDataCacheApi extends BaseAPI {
   }
 
   /**
+   * 关键词：      缓存、资产设备、模板映射关系  使用场景：      该接口提供了查询资产设备指标以及对应的模型点位的聚合信息，优先从缓存中查询。      该接口为兼容老项目中的服务调用而创建，如果客户机中的老项目在升级datacenter服务后出现调用报错的问题，      请将调用v2/data-cache/point/mapping接口的相关服务的配置修改为v2/data-cache/point/mapping-compatibility  相关背景：      在重新导入资产设备配置表后，系统会清除缓存信息，下次查询时将请求数据库信息并更新缓存
+   * @summary 获取租户下的包括实体资产设备，和指定的模板方案的映射关系数据
+   * @param {PointMappingV2Input} [pointMappingV2Input]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof ServiceDataCacheApi
+   */
+  public apiV2DataCachePointMappingCompatibilityPost_2(
+    pointMappingV2Input?: PointMappingV2Input,
+    options?: AxiosRequestConfig,
+  ) {
+    return ServiceDataCacheApiFp(this.configuration)
+      .apiV2DataCachePointMappingCompatibilityPost_2(pointMappingV2Input, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
    * 关键词：      缓存、资产设备、模板映射关系  使用场景：      该接口提供了查询资产设备指标以及对应的模型点位的聚合信息，优先从缓存中查询  相关背景：      在重新导入资产设备配置表后，系统会清除缓存信息，下次查询时将请求数据库信息并更新缓存
    * @summary 获取租户下的包括实体资产设备，和指定的模板方案的映射关系数据
    * @param {PointMappingV2Input} [pointMappingV2Input]
@@ -356,6 +618,23 @@ export class ServiceDataCacheApi extends BaseAPI {
   ) {
     return ServiceDataCacheApiFp(this.configuration)
       .apiV2DataCachePointMappingPost(pointMappingV2Input, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   * 关键词：      缓存、资产设备、模板映射关系  使用场景：      该接口提供了查询资产设备指标以及对应的模型点位的聚合信息，优先从缓存中查询  相关背景：      在重新导入资产设备配置表后，系统会清除缓存信息，下次查询时将请求数据库信息并更新缓存
+   * @summary 获取租户下的包括实体资产设备，和指定的模板方案的映射关系数据
+   * @param {PointMappingV2Input} [pointMappingV2Input]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof ServiceDataCacheApi
+   */
+  public apiV2DataCachePointMappingPost_3(
+    pointMappingV2Input?: PointMappingV2Input,
+    options?: AxiosRequestConfig,
+  ) {
+    return ServiceDataCacheApiFp(this.configuration)
+      .apiV2DataCachePointMappingPost_3(pointMappingV2Input, options)
       .then((request) => request(this.axios, this.basePath))
   }
 }

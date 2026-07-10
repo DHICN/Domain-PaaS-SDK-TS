@@ -42,7 +42,7 @@ export interface GroupEquipRelOutputCache {
    */
   deviceName?: string | null
   /**
-   * 设备标签 device label
+   * 设备标签
    * @type {string}
    * @memberof GroupEquipRelOutputCache
    */

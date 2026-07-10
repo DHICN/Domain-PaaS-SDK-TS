@@ -22,25 +22,25 @@ import { StringStringKeyValue } from './string-string-key-value'
  */
 export interface DeviceInfosOutput {
   /**
-   * 设备ID device id
+   * 设备ID
    * @type {string}
    * @memberof DeviceInfosOutput
    */
   id?: string
   /**
-   * 设备名称 device name
+   * 设备名称
    * @type {string}
    * @memberof DeviceInfosOutput
    */
   name?: string | null
   /**
-   * 设备标签 device label
+   * 设备标签
    * @type {string}
    * @memberof DeviceInfosOutput
    */
   label?: string | null
   /**
-   * 设备描述 device description
+   * 设备描述
    * @type {string}
    * @memberof DeviceInfosOutput
    */
@@ -52,7 +52,7 @@ export interface DeviceInfosOutput {
    */
   type?: string | null
   /**
-   * 设备自定义属性 device customized attributes
+   * 设备自定义属性
    * @type {Array<StringStringKeyValue>}
    * @memberof DeviceInfosOutput
    */

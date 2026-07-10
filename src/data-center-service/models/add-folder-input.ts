@@ -30,7 +30,7 @@ export interface AddFolderInput {
    */
   folderName: string
   /**
-   * 0-Folder(目录数据类型) 1-TsPair(时序数据类型) 2-Custom(自定义数据类型)
+   * 索引节点数据类型,必填
    * @type {number}
    * @memberof AddFolderInput
    */
@@ -61,11 +61,7 @@ export interface AddFolderInput {
   tenantId?: string | null
 }
 
-export const AddFolderInputFolderTypeEnum = {
-  '0': 0 as number,
-  '1': 1 as number,
-  '2': 2 as number,
-} as const
+export const AddFolderInputFolderTypeEnum = {} as const
 
 export type AddFolderInputFolderTypeEnum =
   (typeof AddFolderInputFolderTypeEnum)[keyof typeof AddFolderInputFolderTypeEnum]

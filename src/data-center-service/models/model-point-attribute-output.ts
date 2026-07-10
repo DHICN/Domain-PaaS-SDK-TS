@@ -34,7 +34,7 @@ export interface ModelPointAttributeOutput {
    */
   value?: Null
   /**
-   * 数据类型 data type
+   * 数据类型
    * @type {string}
    * @memberof ModelPointAttributeOutput
    */

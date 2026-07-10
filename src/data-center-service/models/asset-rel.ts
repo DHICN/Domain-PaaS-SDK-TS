@@ -18,13 +18,13 @@
  */
 export interface AssetRel {
   /**
-   * 资产ID asset id
+   * 资产ID
    * @type {string}
    * @memberof AssetRel
    */
   assetId?: string
   /**
-   * 资产名称 asset name
+   * 资产名称
    * @type {string}
    * @memberof AssetRel
    */

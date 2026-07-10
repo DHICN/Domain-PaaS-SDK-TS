@@ -1,4 +1,3 @@
-/* tslint:disable */
 /* eslint-disable */
 /**
  * 数据中台服务
@@ -88,12 +87,95 @@ export const DataCollectConfigApiAxiosParamCreator = function (configuration?: C
     },
     /**
      *
+     * @summary 新增配置
+     * @param {CreateUpdateDataCollectConfigDto} [createUpdateDataCollectConfigDto]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1DataCollectConfigAddPost_1: async (
+      createUpdateDataCollectConfigDto?: CreateUpdateDataCollectConfigDto,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/data-collect-config/add`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        createUpdateDataCollectConfigDto,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
      * @summary 删除配置
      * @param {string} [id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiV1DataCollectConfigDeletePost: async (
+      id?: string,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/data-collect-config/delete`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      if (id !== undefined) {
+        localVarQueryParameter['id'] = id
+      }
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 删除配置
+     * @param {string} [id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1DataCollectConfigDeletePost_2: async (
       id?: string,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
@@ -168,15 +250,59 @@ export const DataCollectConfigApiAxiosParamCreator = function (configuration?: C
     },
     /**
      *
+     * @summary 获取配置详情
+     * @param {string} [id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1DataCollectConfigDetailGet_3: async (
+      id?: string,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/data-collect-config/detail`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      if (id !== undefined) {
+        localVarQueryParameter['id'] = id
+      }
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
      * @summary 查询配置列表
-     * @param {string} [sorting]
+     * @param {string} [name] 名称
+     * @param {string} [code] 代码
+     * @param {string} [indicator] 指标
      * @param {number} [skipCount]
      * @param {number} [maxResultCount]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiV1DataCollectConfigListGet: async (
-      sorting?: string,
+      name?: string,
+      code?: string,
+      indicator?: string,
       skipCount?: number,
       maxResultCount?: number,
       options: AxiosRequestConfig = {},
@@ -193,8 +319,80 @@ export const DataCollectConfigApiAxiosParamCreator = function (configuration?: C
       const localVarHeaderParameter = {} as any
       const localVarQueryParameter = {} as any
 
-      if (sorting !== undefined) {
-        localVarQueryParameter['Sorting'] = sorting
+      if (name !== undefined) {
+        localVarQueryParameter['Name'] = name
+      }
+
+      if (code !== undefined) {
+        localVarQueryParameter['Code'] = code
+      }
+
+      if (indicator !== undefined) {
+        localVarQueryParameter['Indicator'] = indicator
+      }
+
+      if (skipCount !== undefined) {
+        localVarQueryParameter['SkipCount'] = skipCount
+      }
+
+      if (maxResultCount !== undefined) {
+        localVarQueryParameter['MaxResultCount'] = maxResultCount
+      }
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 查询配置列表
+     * @param {string} [name] 名称
+     * @param {string} [code] 代码
+     * @param {string} [indicator] 指标
+     * @param {number} [skipCount]
+     * @param {number} [maxResultCount]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1DataCollectConfigListGet_4: async (
+      name?: string,
+      code?: string,
+      indicator?: string,
+      skipCount?: number,
+      maxResultCount?: number,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/data-collect-config/list`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      if (name !== undefined) {
+        localVarQueryParameter['Name'] = name
+      }
+
+      if (code !== undefined) {
+        localVarQueryParameter['Code'] = code
+      }
+
+      if (indicator !== undefined) {
+        localVarQueryParameter['Indicator'] = indicator
       }
 
       if (skipCount !== undefined) {
@@ -267,6 +465,55 @@ export const DataCollectConfigApiAxiosParamCreator = function (configuration?: C
         options: localVarRequestOptions,
       }
     },
+    /**
+     *
+     * @summary 修改配置
+     * @param {string} [id]
+     * @param {CreateUpdateDataCollectConfigDto} [createUpdateDataCollectConfigDto]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1DataCollectConfigUpdatePost_5: async (
+      id?: string,
+      createUpdateDataCollectConfigDto?: CreateUpdateDataCollectConfigDto,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/data-collect-config/update`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      if (id !== undefined) {
+        localVarQueryParameter['id'] = id
+      }
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        createUpdateDataCollectConfigDto,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
   }
 }
 
@@ -296,6 +543,23 @@ export const DataCollectConfigApiFp = function (configuration?: Configuration) {
     },
     /**
      *
+     * @summary 新增配置
+     * @param {CreateUpdateDataCollectConfigDto} [createUpdateDataCollectConfigDto]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1DataCollectConfigAddPost_1(
+      createUpdateDataCollectConfigDto?: CreateUpdateDataCollectConfigDto,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DataCollectConfigDto>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1DataCollectConfigAddPost_1(
+        createUpdateDataCollectConfigDto,
+        options,
+      )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
      * @summary 删除配置
      * @param {string} [id]
      * @param {*} [options] Override http request option.
@@ -306,6 +570,23 @@ export const DataCollectConfigApiFp = function (configuration?: Configuration) {
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
       const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1DataCollectConfigDeletePost(
+        id,
+        options,
+      )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
+     * @summary 删除配置
+     * @param {string} [id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1DataCollectConfigDeletePost_2(
+      id?: string,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1DataCollectConfigDeletePost_2(
         id,
         options,
       )
@@ -330,15 +611,36 @@ export const DataCollectConfigApiFp = function (configuration?: Configuration) {
     },
     /**
      *
+     * @summary 获取配置详情
+     * @param {string} [id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1DataCollectConfigDetailGet_3(
+      id?: string,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DataCollectConfigDto>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1DataCollectConfigDetailGet_3(
+        id,
+        options,
+      )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
      * @summary 查询配置列表
-     * @param {string} [sorting]
+     * @param {string} [name] 名称
+     * @param {string} [code] 代码
+     * @param {string} [indicator] 指标
      * @param {number} [skipCount]
      * @param {number} [maxResultCount]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async apiV1DataCollectConfigListGet(
-      sorting?: string,
+      name?: string,
+      code?: string,
+      indicator?: string,
       skipCount?: number,
       maxResultCount?: number,
       options?: AxiosRequestConfig,
@@ -346,7 +648,40 @@ export const DataCollectConfigApiFp = function (configuration?: Configuration) {
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<DataCollectConfigDtoPagedResultDto>
     > {
       const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1DataCollectConfigListGet(
-        sorting,
+        name,
+        code,
+        indicator,
+        skipCount,
+        maxResultCount,
+        options,
+      )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
+     * @summary 查询配置列表
+     * @param {string} [name] 名称
+     * @param {string} [code] 代码
+     * @param {string} [indicator] 指标
+     * @param {number} [skipCount]
+     * @param {number} [maxResultCount]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1DataCollectConfigListGet_4(
+      name?: string,
+      code?: string,
+      indicator?: string,
+      skipCount?: number,
+      maxResultCount?: number,
+      options?: AxiosRequestConfig,
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<DataCollectConfigDtoPagedResultDto>
+    > {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1DataCollectConfigListGet_4(
+        name,
+        code,
+        indicator,
         skipCount,
         maxResultCount,
         options,
@@ -367,6 +702,26 @@ export const DataCollectConfigApiFp = function (configuration?: Configuration) {
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DataCollectConfigDto>> {
       const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1DataCollectConfigUpdatePost(
+        id,
+        createUpdateDataCollectConfigDto,
+        options,
+      )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
+     * @summary 修改配置
+     * @param {string} [id]
+     * @param {CreateUpdateDataCollectConfigDto} [createUpdateDataCollectConfigDto]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1DataCollectConfigUpdatePost_5(
+      id?: string,
+      createUpdateDataCollectConfigDto?: CreateUpdateDataCollectConfigDto,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DataCollectConfigDto>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1DataCollectConfigUpdatePost_5(
         id,
         createUpdateDataCollectConfigDto,
         options,
@@ -404,6 +759,21 @@ export const DataCollectConfigApiFactory = function (
     },
     /**
      *
+     * @summary 新增配置
+     * @param {CreateUpdateDataCollectConfigDto} [createUpdateDataCollectConfigDto]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1DataCollectConfigAddPost_1(
+      createUpdateDataCollectConfigDto?: CreateUpdateDataCollectConfigDto,
+      options?: any,
+    ): AxiosPromise<DataCollectConfigDto> {
+      return localVarFp
+        .apiV1DataCollectConfigAddPost_1(createUpdateDataCollectConfigDto, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
      * @summary 删除配置
      * @param {string} [id]
      * @param {*} [options] Override http request option.
@@ -412,6 +782,18 @@ export const DataCollectConfigApiFactory = function (
     apiV1DataCollectConfigDeletePost(id?: string, options?: any): AxiosPromise<void> {
       return localVarFp
         .apiV1DataCollectConfigDeletePost(id, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @summary 删除配置
+     * @param {string} [id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1DataCollectConfigDeletePost_2(id?: string, options?: any): AxiosPromise<void> {
+      return localVarFp
+        .apiV1DataCollectConfigDeletePost_2(id, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -431,21 +813,63 @@ export const DataCollectConfigApiFactory = function (
     },
     /**
      *
+     * @summary 获取配置详情
+     * @param {string} [id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1DataCollectConfigDetailGet_3(
+      id?: string,
+      options?: any,
+    ): AxiosPromise<DataCollectConfigDto> {
+      return localVarFp
+        .apiV1DataCollectConfigDetailGet_3(id, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
      * @summary 查询配置列表
-     * @param {string} [sorting]
+     * @param {string} [name] 名称
+     * @param {string} [code] 代码
+     * @param {string} [indicator] 指标
      * @param {number} [skipCount]
      * @param {number} [maxResultCount]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiV1DataCollectConfigListGet(
-      sorting?: string,
+      name?: string,
+      code?: string,
+      indicator?: string,
       skipCount?: number,
       maxResultCount?: number,
       options?: any,
     ): AxiosPromise<DataCollectConfigDtoPagedResultDto> {
       return localVarFp
-        .apiV1DataCollectConfigListGet(sorting, skipCount, maxResultCount, options)
+        .apiV1DataCollectConfigListGet(name, code, indicator, skipCount, maxResultCount, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @summary 查询配置列表
+     * @param {string} [name] 名称
+     * @param {string} [code] 代码
+     * @param {string} [indicator] 指标
+     * @param {number} [skipCount]
+     * @param {number} [maxResultCount]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1DataCollectConfigListGet_4(
+      name?: string,
+      code?: string,
+      indicator?: string,
+      skipCount?: number,
+      maxResultCount?: number,
+      options?: any,
+    ): AxiosPromise<DataCollectConfigDtoPagedResultDto> {
+      return localVarFp
+        .apiV1DataCollectConfigListGet_4(name, code, indicator, skipCount, maxResultCount, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -463,6 +887,23 @@ export const DataCollectConfigApiFactory = function (
     ): AxiosPromise<DataCollectConfigDto> {
       return localVarFp
         .apiV1DataCollectConfigUpdatePost(id, createUpdateDataCollectConfigDto, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @summary 修改配置
+     * @param {string} [id]
+     * @param {CreateUpdateDataCollectConfigDto} [createUpdateDataCollectConfigDto]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1DataCollectConfigUpdatePost_5(
+      id?: string,
+      createUpdateDataCollectConfigDto?: CreateUpdateDataCollectConfigDto,
+      options?: any,
+    ): AxiosPromise<DataCollectConfigDto> {
+      return localVarFp
+        .apiV1DataCollectConfigUpdatePost_5(id, createUpdateDataCollectConfigDto, options)
         .then((request) => request(axios, basePath))
     },
   }
@@ -494,6 +935,23 @@ export class DataCollectConfigApi extends BaseAPI {
 
   /**
    *
+   * @summary 新增配置
+   * @param {CreateUpdateDataCollectConfigDto} [createUpdateDataCollectConfigDto]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof DataCollectConfigApi
+   */
+  public apiV1DataCollectConfigAddPost_1(
+    createUpdateDataCollectConfigDto?: CreateUpdateDataCollectConfigDto,
+    options?: AxiosRequestConfig,
+  ) {
+    return DataCollectConfigApiFp(this.configuration)
+      .apiV1DataCollectConfigAddPost_1(createUpdateDataCollectConfigDto, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
    * @summary 删除配置
    * @param {string} [id]
    * @param {*} [options] Override http request option.
@@ -503,6 +961,20 @@ export class DataCollectConfigApi extends BaseAPI {
   public apiV1DataCollectConfigDeletePost(id?: string, options?: AxiosRequestConfig) {
     return DataCollectConfigApiFp(this.configuration)
       .apiV1DataCollectConfigDeletePost(id, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary 删除配置
+   * @param {string} [id]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof DataCollectConfigApi
+   */
+  public apiV1DataCollectConfigDeletePost_2(id?: string, options?: AxiosRequestConfig) {
+    return DataCollectConfigApiFp(this.configuration)
+      .apiV1DataCollectConfigDeletePost_2(id, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -522,8 +994,24 @@ export class DataCollectConfigApi extends BaseAPI {
 
   /**
    *
+   * @summary 获取配置详情
+   * @param {string} [id]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof DataCollectConfigApi
+   */
+  public apiV1DataCollectConfigDetailGet_3(id?: string, options?: AxiosRequestConfig) {
+    return DataCollectConfigApiFp(this.configuration)
+      .apiV1DataCollectConfigDetailGet_3(id, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
    * @summary 查询配置列表
-   * @param {string} [sorting]
+   * @param {string} [name] 名称
+   * @param {string} [code] 代码
+   * @param {string} [indicator] 指标
    * @param {number} [skipCount]
    * @param {number} [maxResultCount]
    * @param {*} [options] Override http request option.
@@ -531,13 +1019,40 @@ export class DataCollectConfigApi extends BaseAPI {
    * @memberof DataCollectConfigApi
    */
   public apiV1DataCollectConfigListGet(
-    sorting?: string,
+    name?: string,
+    code?: string,
+    indicator?: string,
     skipCount?: number,
     maxResultCount?: number,
     options?: AxiosRequestConfig,
   ) {
     return DataCollectConfigApiFp(this.configuration)
-      .apiV1DataCollectConfigListGet(sorting, skipCount, maxResultCount, options)
+      .apiV1DataCollectConfigListGet(name, code, indicator, skipCount, maxResultCount, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary 查询配置列表
+   * @param {string} [name] 名称
+   * @param {string} [code] 代码
+   * @param {string} [indicator] 指标
+   * @param {number} [skipCount]
+   * @param {number} [maxResultCount]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof DataCollectConfigApi
+   */
+  public apiV1DataCollectConfigListGet_4(
+    name?: string,
+    code?: string,
+    indicator?: string,
+    skipCount?: number,
+    maxResultCount?: number,
+    options?: AxiosRequestConfig,
+  ) {
+    return DataCollectConfigApiFp(this.configuration)
+      .apiV1DataCollectConfigListGet_4(name, code, indicator, skipCount, maxResultCount, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -557,6 +1072,25 @@ export class DataCollectConfigApi extends BaseAPI {
   ) {
     return DataCollectConfigApiFp(this.configuration)
       .apiV1DataCollectConfigUpdatePost(id, createUpdateDataCollectConfigDto, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary 修改配置
+   * @param {string} [id]
+   * @param {CreateUpdateDataCollectConfigDto} [createUpdateDataCollectConfigDto]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof DataCollectConfigApi
+   */
+  public apiV1DataCollectConfigUpdatePost_5(
+    id?: string,
+    createUpdateDataCollectConfigDto?: CreateUpdateDataCollectConfigDto,
+    options?: AxiosRequestConfig,
+  ) {
+    return DataCollectConfigApiFp(this.configuration)
+      .apiV1DataCollectConfigUpdatePost_5(id, createUpdateDataCollectConfigDto, options)
       .then((request) => request(this.axios, this.basePath))
   }
 }

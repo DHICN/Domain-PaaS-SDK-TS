@@ -1,4 +1,3 @@
-/* tslint:disable */
 /* eslint-disable */
 /**
  * 数据中台服务
@@ -67,6 +66,12 @@ export interface DataSampleSetDto {
    */
   status?: number
   /**
+   * 1-Static 2-Dynamic
+   * @type {number}
+   * @memberof DataSampleSetDto
+   */
+  dataSourceType?: DataSampleSetDtoDataSourceTypeEnum
+  /**
    *
    * @type {string}
    * @memberof DataSampleSetDto
@@ -85,3 +90,11 @@ export interface DataSampleSetDto {
    */
   lastModificationTime?: string | null
 }
+
+export const DataSampleSetDtoDataSourceTypeEnum = {
+  '1': 1 as number,
+  '2': 2 as number,
+} as const
+
+export type DataSampleSetDtoDataSourceTypeEnum =
+  (typeof DataSampleSetDtoDataSourceTypeEnum)[keyof typeof DataSampleSetDtoDataSourceTypeEnum]

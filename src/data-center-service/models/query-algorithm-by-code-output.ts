@@ -1,4 +1,3 @@
-/* tslint:disable */
 /* eslint-disable */
 /**
  * 数据中台服务
@@ -121,9 +120,9 @@ export interface QueryAlgorithmByCodeOutput {
 }
 
 export const QueryAlgorithmByCodeOutputScriptCreateTypeEnum = {
-  NUMBER_0: 0,
-  NUMBER_1: 1,
-  NUMBER_2: 2,
+  '0': 0 as number,
+  '1': 1 as number,
+  '2': 2 as number,
 } as const
 
 export type QueryAlgorithmByCodeOutputScriptCreateTypeEnum =

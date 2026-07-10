@@ -1,4 +1,3 @@
-/* tslint:disable */
 /* eslint-disable */
 /**
  * 数据中台服务
@@ -102,12 +101,98 @@ export const DataSourceApiAxiosParamCreator = function (configuration?: Configur
     },
     /**
      *
+     * @summary 批量新增或更新数据源，要求NodeCode参数遵循编码规范（{parentCode}:{code}），否则可能会因为找不到父节点导致新增或更新失败
+     * @param {Array<BatchAddOrUpdateDataSourceInput>} [batchAddOrUpdateDataSourceInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1DataSourceBatchAddOrUpdatePost_1: async (
+      batchAddOrUpdateDataSourceInput?: Array<BatchAddOrUpdateDataSourceInput>,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/data-source/batch-add-or-update`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        batchAddOrUpdateDataSourceInput,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
      * @summary 批量新增数据源
      * @param {Array<AddDataSourceInput>} [addDataSourceInput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiV1DataSourceBatchAddPost: async (
+      addDataSourceInput?: Array<AddDataSourceInput>,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/data-source/batch-add`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        addDataSourceInput,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 批量新增数据源
+     * @param {Array<AddDataSourceInput>} [addDataSourceInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1DataSourceBatchAddPost_2: async (
       addDataSourceInput?: Array<AddDataSourceInput>,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
@@ -188,12 +273,98 @@ export const DataSourceApiAxiosParamCreator = function (configuration?: Configur
     },
     /**
      *
+     * @summary 批量删除数据源节点，如果是中间节点，则会删除下面的所有子节点
+     * @param {BatchDeleteDataSourceInput} [batchDeleteDataSourceInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1DataSourceBatchDeletePost_3: async (
+      batchDeleteDataSourceInput?: BatchDeleteDataSourceInput,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/data-source/batch-delete`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        batchDeleteDataSourceInput,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
      * @summary 根据节点code获取对应的算法配置
      * @param {Array<string>} [requestBody]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiV1DataSourceGetAlgorithmPost: async (
+      requestBody?: Array<string>,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/data-source/get-algorithm`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        requestBody,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 根据节点code获取对应的算法配置
+     * @param {Array<string>} [requestBody]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1DataSourceGetAlgorithmPost_4: async (
       requestBody?: Array<string>,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
@@ -275,12 +446,99 @@ export const DataSourceApiAxiosParamCreator = function (configuration?: Configur
     },
     /**
      *
+     * @summary 导入数据源配置
+     * @param {File} [excelFile]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1DataSourceImportPost_5: async (
+      excelFile?: File,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/data-source/import`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+      const localVarFormParams = new ((configuration && configuration.formDataCtor) || FormData)()
+
+      if (excelFile !== undefined) {
+        localVarFormParams.append('excelFile', excelFile as any)
+      }
+
+      localVarHeaderParameter['Content-Type'] = 'multipart/form-data'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = localVarFormParams
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
      * @summary 查询数据源，查询条件为空时查询所有
      * @param {QueryDataSourceInput} [queryDataSourceInput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiV1DataSourceQueryPost: async (
+      queryDataSourceInput?: QueryDataSourceInput,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/data-source/query`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        queryDataSourceInput,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 查询数据源，查询条件为空时查询所有
+     * @param {QueryDataSourceInput} [queryDataSourceInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1DataSourceQueryPost_6: async (
       queryDataSourceInput?: QueryDataSourceInput,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
@@ -361,12 +619,98 @@ export const DataSourceApiAxiosParamCreator = function (configuration?: Configur
     },
     /**
      *
+     * @summary 获取数据源的分层结构
+     * @param {GetDataSourceTreeViewInput} [getDataSourceTreeViewInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1DataSourceTreelistPost_7: async (
+      getDataSourceTreeViewInput?: GetDataSourceTreeViewInput,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/data-source/treelist`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        getDataSourceTreeViewInput,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
      * @summary 更新数据源
      * @param {UpdateDataSourceInput} [updateDataSourceInput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiV1DataSourceUpdatePost: async (
+      updateDataSourceInput?: UpdateDataSourceInput,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/data-source/update`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        updateDataSourceInput,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 更新数据源
+     * @param {UpdateDataSourceInput} [updateDataSourceInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1DataSourceUpdatePost_8: async (
       updateDataSourceInput?: UpdateDataSourceInput,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
@@ -431,6 +775,24 @@ export const DataSourceApiFp = function (configuration?: Configuration) {
     },
     /**
      *
+     * @summary 批量新增或更新数据源，要求NodeCode参数遵循编码规范（{parentCode}:{code}），否则可能会因为找不到父节点导致新增或更新失败
+     * @param {Array<BatchAddOrUpdateDataSourceInput>} [batchAddOrUpdateDataSourceInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1DataSourceBatchAddOrUpdatePost_1(
+      batchAddOrUpdateDataSourceInput?: Array<BatchAddOrUpdateDataSourceInput>,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiV1DataSourceBatchAddOrUpdatePost_1(
+          batchAddOrUpdateDataSourceInput,
+          options,
+        )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
      * @summary 批量新增数据源
      * @param {Array<AddDataSourceInput>} [addDataSourceInput]
      * @param {*} [options] Override http request option.
@@ -448,6 +810,23 @@ export const DataSourceApiFp = function (configuration?: Configuration) {
     },
     /**
      *
+     * @summary 批量新增数据源
+     * @param {Array<AddDataSourceInput>} [addDataSourceInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1DataSourceBatchAddPost_2(
+      addDataSourceInput?: Array<AddDataSourceInput>,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1DataSourceBatchAddPost_2(
+        addDataSourceInput,
+        options,
+      )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
      * @summary 批量删除数据源节点，如果是中间节点，则会删除下面的所有子节点
      * @param {BatchDeleteDataSourceInput} [batchDeleteDataSourceInput]
      * @param {*} [options] Override http request option.
@@ -458,6 +837,23 @@ export const DataSourceApiFp = function (configuration?: Configuration) {
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
       const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1DataSourceBatchDeletePost(
+        batchDeleteDataSourceInput,
+        options,
+      )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
+     * @summary 批量删除数据源节点，如果是中间节点，则会删除下面的所有子节点
+     * @param {BatchDeleteDataSourceInput} [batchDeleteDataSourceInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1DataSourceBatchDeletePost_3(
+      batchDeleteDataSourceInput?: BatchDeleteDataSourceInput,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1DataSourceBatchDeletePost_3(
         batchDeleteDataSourceInput,
         options,
       )
@@ -484,6 +880,25 @@ export const DataSourceApiFp = function (configuration?: Configuration) {
     },
     /**
      *
+     * @summary 根据节点code获取对应的算法配置
+     * @param {Array<string>} [requestBody]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1DataSourceGetAlgorithmPost_4(
+      requestBody?: Array<string>,
+      options?: AxiosRequestConfig,
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<DataSourceAlgorithmConfig>>
+    > {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1DataSourceGetAlgorithmPost_4(
+        requestBody,
+        options,
+      )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
      * @summary 导入数据源配置
      * @param {File} [excelFile]
      * @param {*} [options] Override http request option.
@@ -501,6 +916,23 @@ export const DataSourceApiFp = function (configuration?: Configuration) {
     },
     /**
      *
+     * @summary 导入数据源配置
+     * @param {File} [excelFile]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1DataSourceImportPost_5(
+      excelFile?: File,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<StringListResult>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1DataSourceImportPost_5(
+        excelFile,
+        options,
+      )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
      * @summary 查询数据源，查询条件为空时查询所有
      * @param {QueryDataSourceInput} [queryDataSourceInput]
      * @param {*} [options] Override http request option.
@@ -511,6 +943,23 @@ export const DataSourceApiFp = function (configuration?: Configuration) {
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<DataSourceDto>>> {
       const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1DataSourceQueryPost(
+        queryDataSourceInput,
+        options,
+      )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
+     * @summary 查询数据源，查询条件为空时查询所有
+     * @param {QueryDataSourceInput} [queryDataSourceInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1DataSourceQueryPost_6(
+      queryDataSourceInput?: QueryDataSourceInput,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<DataSourceDto>>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1DataSourceQueryPost_6(
         queryDataSourceInput,
         options,
       )
@@ -537,6 +986,25 @@ export const DataSourceApiFp = function (configuration?: Configuration) {
     },
     /**
      *
+     * @summary 获取数据源的分层结构
+     * @param {GetDataSourceTreeViewInput} [getDataSourceTreeViewInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1DataSourceTreelistPost_7(
+      getDataSourceTreeViewInput?: GetDataSourceTreeViewInput,
+      options?: AxiosRequestConfig,
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<DataSourceTreeViewModel>>
+    > {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1DataSourceTreelistPost_7(
+        getDataSourceTreeViewInput,
+        options,
+      )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
      * @summary 更新数据源
      * @param {UpdateDataSourceInput} [updateDataSourceInput]
      * @param {*} [options] Override http request option.
@@ -547,6 +1015,23 @@ export const DataSourceApiFp = function (configuration?: Configuration) {
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
       const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1DataSourceUpdatePost(
+        updateDataSourceInput,
+        options,
+      )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
+     * @summary 更新数据源
+     * @param {UpdateDataSourceInput} [updateDataSourceInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1DataSourceUpdatePost_8(
+      updateDataSourceInput?: UpdateDataSourceInput,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1DataSourceUpdatePost_8(
         updateDataSourceInput,
         options,
       )
@@ -583,6 +1068,21 @@ export const DataSourceApiFactory = function (
     },
     /**
      *
+     * @summary 批量新增或更新数据源，要求NodeCode参数遵循编码规范（{parentCode}:{code}），否则可能会因为找不到父节点导致新增或更新失败
+     * @param {Array<BatchAddOrUpdateDataSourceInput>} [batchAddOrUpdateDataSourceInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1DataSourceBatchAddOrUpdatePost_1(
+      batchAddOrUpdateDataSourceInput?: Array<BatchAddOrUpdateDataSourceInput>,
+      options?: any,
+    ): AxiosPromise<void> {
+      return localVarFp
+        .apiV1DataSourceBatchAddOrUpdatePost_1(batchAddOrUpdateDataSourceInput, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
      * @summary 批量新增数据源
      * @param {Array<AddDataSourceInput>} [addDataSourceInput]
      * @param {*} [options] Override http request option.
@@ -594,6 +1094,21 @@ export const DataSourceApiFactory = function (
     ): AxiosPromise<void> {
       return localVarFp
         .apiV1DataSourceBatchAddPost(addDataSourceInput, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @summary 批量新增数据源
+     * @param {Array<AddDataSourceInput>} [addDataSourceInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1DataSourceBatchAddPost_2(
+      addDataSourceInput?: Array<AddDataSourceInput>,
+      options?: any,
+    ): AxiosPromise<void> {
+      return localVarFp
+        .apiV1DataSourceBatchAddPost_2(addDataSourceInput, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -613,6 +1128,21 @@ export const DataSourceApiFactory = function (
     },
     /**
      *
+     * @summary 批量删除数据源节点，如果是中间节点，则会删除下面的所有子节点
+     * @param {BatchDeleteDataSourceInput} [batchDeleteDataSourceInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1DataSourceBatchDeletePost_3(
+      batchDeleteDataSourceInput?: BatchDeleteDataSourceInput,
+      options?: any,
+    ): AxiosPromise<void> {
+      return localVarFp
+        .apiV1DataSourceBatchDeletePost_3(batchDeleteDataSourceInput, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
      * @summary 根据节点code获取对应的算法配置
      * @param {Array<string>} [requestBody]
      * @param {*} [options] Override http request option.
@@ -628,6 +1158,21 @@ export const DataSourceApiFactory = function (
     },
     /**
      *
+     * @summary 根据节点code获取对应的算法配置
+     * @param {Array<string>} [requestBody]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1DataSourceGetAlgorithmPost_4(
+      requestBody?: Array<string>,
+      options?: any,
+    ): AxiosPromise<Array<DataSourceAlgorithmConfig>> {
+      return localVarFp
+        .apiV1DataSourceGetAlgorithmPost_4(requestBody, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
      * @summary 导入数据源配置
      * @param {File} [excelFile]
      * @param {*} [options] Override http request option.
@@ -636,6 +1181,18 @@ export const DataSourceApiFactory = function (
     apiV1DataSourceImportPost(excelFile?: File, options?: any): AxiosPromise<StringListResult> {
       return localVarFp
         .apiV1DataSourceImportPost(excelFile, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @summary 导入数据源配置
+     * @param {File} [excelFile]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1DataSourceImportPost_5(excelFile?: File, options?: any): AxiosPromise<StringListResult> {
+      return localVarFp
+        .apiV1DataSourceImportPost_5(excelFile, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -655,6 +1212,21 @@ export const DataSourceApiFactory = function (
     },
     /**
      *
+     * @summary 查询数据源，查询条件为空时查询所有
+     * @param {QueryDataSourceInput} [queryDataSourceInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1DataSourceQueryPost_6(
+      queryDataSourceInput?: QueryDataSourceInput,
+      options?: any,
+    ): AxiosPromise<Array<DataSourceDto>> {
+      return localVarFp
+        .apiV1DataSourceQueryPost_6(queryDataSourceInput, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
      * @summary 获取数据源的分层结构
      * @param {GetDataSourceTreeViewInput} [getDataSourceTreeViewInput]
      * @param {*} [options] Override http request option.
@@ -670,6 +1242,21 @@ export const DataSourceApiFactory = function (
     },
     /**
      *
+     * @summary 获取数据源的分层结构
+     * @param {GetDataSourceTreeViewInput} [getDataSourceTreeViewInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1DataSourceTreelistPost_7(
+      getDataSourceTreeViewInput?: GetDataSourceTreeViewInput,
+      options?: any,
+    ): AxiosPromise<Array<DataSourceTreeViewModel>> {
+      return localVarFp
+        .apiV1DataSourceTreelistPost_7(getDataSourceTreeViewInput, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
      * @summary 更新数据源
      * @param {UpdateDataSourceInput} [updateDataSourceInput]
      * @param {*} [options] Override http request option.
@@ -681,6 +1268,21 @@ export const DataSourceApiFactory = function (
     ): AxiosPromise<void> {
       return localVarFp
         .apiV1DataSourceUpdatePost(updateDataSourceInput, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @summary 更新数据源
+     * @param {UpdateDataSourceInput} [updateDataSourceInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1DataSourceUpdatePost_8(
+      updateDataSourceInput?: UpdateDataSourceInput,
+      options?: any,
+    ): AxiosPromise<void> {
+      return localVarFp
+        .apiV1DataSourceUpdatePost_8(updateDataSourceInput, options)
         .then((request) => request(axios, basePath))
     },
   }
@@ -712,6 +1314,23 @@ export class DataSourceApi extends BaseAPI {
 
   /**
    *
+   * @summary 批量新增或更新数据源，要求NodeCode参数遵循编码规范（{parentCode}:{code}），否则可能会因为找不到父节点导致新增或更新失败
+   * @param {Array<BatchAddOrUpdateDataSourceInput>} [batchAddOrUpdateDataSourceInput]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof DataSourceApi
+   */
+  public apiV1DataSourceBatchAddOrUpdatePost_1(
+    batchAddOrUpdateDataSourceInput?: Array<BatchAddOrUpdateDataSourceInput>,
+    options?: AxiosRequestConfig,
+  ) {
+    return DataSourceApiFp(this.configuration)
+      .apiV1DataSourceBatchAddOrUpdatePost_1(batchAddOrUpdateDataSourceInput, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
    * @summary 批量新增数据源
    * @param {Array<AddDataSourceInput>} [addDataSourceInput]
    * @param {*} [options] Override http request option.
@@ -724,6 +1343,23 @@ export class DataSourceApi extends BaseAPI {
   ) {
     return DataSourceApiFp(this.configuration)
       .apiV1DataSourceBatchAddPost(addDataSourceInput, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary 批量新增数据源
+   * @param {Array<AddDataSourceInput>} [addDataSourceInput]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof DataSourceApi
+   */
+  public apiV1DataSourceBatchAddPost_2(
+    addDataSourceInput?: Array<AddDataSourceInput>,
+    options?: AxiosRequestConfig,
+  ) {
+    return DataSourceApiFp(this.configuration)
+      .apiV1DataSourceBatchAddPost_2(addDataSourceInput, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -746,6 +1382,23 @@ export class DataSourceApi extends BaseAPI {
 
   /**
    *
+   * @summary 批量删除数据源节点，如果是中间节点，则会删除下面的所有子节点
+   * @param {BatchDeleteDataSourceInput} [batchDeleteDataSourceInput]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof DataSourceApi
+   */
+  public apiV1DataSourceBatchDeletePost_3(
+    batchDeleteDataSourceInput?: BatchDeleteDataSourceInput,
+    options?: AxiosRequestConfig,
+  ) {
+    return DataSourceApiFp(this.configuration)
+      .apiV1DataSourceBatchDeletePost_3(batchDeleteDataSourceInput, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
    * @summary 根据节点code获取对应的算法配置
    * @param {Array<string>} [requestBody]
    * @param {*} [options] Override http request option.
@@ -763,6 +1416,23 @@ export class DataSourceApi extends BaseAPI {
 
   /**
    *
+   * @summary 根据节点code获取对应的算法配置
+   * @param {Array<string>} [requestBody]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof DataSourceApi
+   */
+  public apiV1DataSourceGetAlgorithmPost_4(
+    requestBody?: Array<string>,
+    options?: AxiosRequestConfig,
+  ) {
+    return DataSourceApiFp(this.configuration)
+      .apiV1DataSourceGetAlgorithmPost_4(requestBody, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
    * @summary 导入数据源配置
    * @param {File} [excelFile]
    * @param {*} [options] Override http request option.
@@ -772,6 +1442,20 @@ export class DataSourceApi extends BaseAPI {
   public apiV1DataSourceImportPost(excelFile?: File, options?: AxiosRequestConfig) {
     return DataSourceApiFp(this.configuration)
       .apiV1DataSourceImportPost(excelFile, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary 导入数据源配置
+   * @param {File} [excelFile]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof DataSourceApi
+   */
+  public apiV1DataSourceImportPost_5(excelFile?: File, options?: AxiosRequestConfig) {
+    return DataSourceApiFp(this.configuration)
+      .apiV1DataSourceImportPost_5(excelFile, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -794,6 +1478,23 @@ export class DataSourceApi extends BaseAPI {
 
   /**
    *
+   * @summary 查询数据源，查询条件为空时查询所有
+   * @param {QueryDataSourceInput} [queryDataSourceInput]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof DataSourceApi
+   */
+  public apiV1DataSourceQueryPost_6(
+    queryDataSourceInput?: QueryDataSourceInput,
+    options?: AxiosRequestConfig,
+  ) {
+    return DataSourceApiFp(this.configuration)
+      .apiV1DataSourceQueryPost_6(queryDataSourceInput, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
    * @summary 获取数据源的分层结构
    * @param {GetDataSourceTreeViewInput} [getDataSourceTreeViewInput]
    * @param {*} [options] Override http request option.
@@ -811,6 +1512,23 @@ export class DataSourceApi extends BaseAPI {
 
   /**
    *
+   * @summary 获取数据源的分层结构
+   * @param {GetDataSourceTreeViewInput} [getDataSourceTreeViewInput]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof DataSourceApi
+   */
+  public apiV1DataSourceTreelistPost_7(
+    getDataSourceTreeViewInput?: GetDataSourceTreeViewInput,
+    options?: AxiosRequestConfig,
+  ) {
+    return DataSourceApiFp(this.configuration)
+      .apiV1DataSourceTreelistPost_7(getDataSourceTreeViewInput, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
    * @summary 更新数据源
    * @param {UpdateDataSourceInput} [updateDataSourceInput]
    * @param {*} [options] Override http request option.
@@ -823,6 +1541,23 @@ export class DataSourceApi extends BaseAPI {
   ) {
     return DataSourceApiFp(this.configuration)
       .apiV1DataSourceUpdatePost(updateDataSourceInput, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary 更新数据源
+   * @param {UpdateDataSourceInput} [updateDataSourceInput]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof DataSourceApi
+   */
+  public apiV1DataSourceUpdatePost_8(
+    updateDataSourceInput?: UpdateDataSourceInput,
+    options?: AxiosRequestConfig,
+  ) {
+    return DataSourceApiFp(this.configuration)
+      .apiV1DataSourceUpdatePost_8(updateDataSourceInput, options)
       .then((request) => request(this.axios, this.basePath))
   }
 }

@@ -1,4 +1,3 @@
-/* tslint:disable */
 /* eslint-disable */
 /**
  * 数据中台服务
@@ -81,12 +80,12 @@ export interface AlgorithmParamDto {
 }
 
 export const AlgorithmParamDtoParameterDataTypeEnum = {
-  NUMBER_0: 0,
-  NUMBER_1: 1,
-  NUMBER_2: 2,
-  NUMBER_3: 3,
-  NUMBER_4: 4,
-  NUMBER_5: 5,
+  '0': 0 as number,
+  '1': 1 as number,
+  '2': 2 as number,
+  '3': 3 as number,
+  '4': 4 as number,
+  '5': 5 as number,
 } as const
 
 export type AlgorithmParamDtoParameterDataTypeEnum =

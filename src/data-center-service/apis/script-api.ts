@@ -1,4 +1,3 @@
-/* tslint:disable */
 /* eslint-disable */
 /**
  * 数据中台服务
@@ -110,12 +109,95 @@ export const ScriptApiAxiosParamCreator = function (configuration?: Configuratio
     },
     /**
      *
+     * @summary 根据算法id删除算法参数
+     * @param {DeleteAlgorithmParamByAIdInput} [deleteAlgorithmParamByAIdInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiDeleteByAlgorithmIdPost_1: async (
+      deleteAlgorithmParamByAIdInput?: DeleteAlgorithmParamByAIdInput,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/delete-by-algorithmId`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        deleteAlgorithmParamByAIdInput,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
      * @summary 根据算法id查询算法参数
      * @param {string} [algorithmId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiQueryByAlgorithmIdGet: async (
+      algorithmId?: string,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/query-by-algorithmId`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      if (algorithmId !== undefined) {
+        localVarQueryParameter['AlgorithmId'] = algorithmId
+      }
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 根据算法id查询算法参数
+     * @param {string} [algorithmId]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiQueryByAlgorithmIdGet_2: async (
       algorithmId?: string,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
@@ -156,6 +238,49 @@ export const ScriptApiAxiosParamCreator = function (configuration?: Configuratio
      * @throws {RequiredError}
      */
     apiV1AddAlgorithmInstancePost: async (
+      addAlgorithmInstanceInput?: AddAlgorithmInstanceInput,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/add/algorithm-instance`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        addAlgorithmInstanceInput,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     * 关键词：      插件、脚本实例、保存  使用场景：      导入脚本完成后，系统会自动生成一个默认的脚本实例，但如果需要更新或创建新的实例，则可以调用该接口新增或更新。  相关背景：      一个算法脚本可以对应一个或多个算法脚本实例，其背后是docker镜像和docker容器的对应关系
+     * @summary 保存Python算法脚本实例
+     * @param {AddAlgorithmInstanceInput} [addAlgorithmInstanceInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1AddAlgorithmInstancePost_3: async (
       addAlgorithmInstanceInput?: AddAlgorithmInstanceInput,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
@@ -236,12 +361,98 @@ export const ScriptApiAxiosParamCreator = function (configuration?: Configuratio
     },
     /**
      *
+     * @summary 批量删除算法参数
+     * @param {BatchDeleteAlgorithmParamInput} [batchDeleteAlgorithmParamInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1AlgorithmParamBatchDeletePost_4: async (
+      batchDeleteAlgorithmParamInput?: BatchDeleteAlgorithmParamInput,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/algorithm-param/batch-delete`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        batchDeleteAlgorithmParamInput,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
      * @summary 删除算法关联的所有参数，重新批量新增算法参数,
      * @param {Array<AddAlgorithmParamInput>} [addAlgorithmParamInput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiV1AlgorithmParamRecreatePost: async (
+      addAlgorithmParamInput?: Array<AddAlgorithmParamInput>,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/algorithm-param/recreate`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        addAlgorithmParamInput,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 删除算法关联的所有参数，重新批量新增算法参数,
+     * @param {Array<AddAlgorithmParamInput>} [addAlgorithmParamInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1AlgorithmParamRecreatePost_5: async (
       addAlgorithmParamInput?: Array<AddAlgorithmParamInput>,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
@@ -321,6 +532,49 @@ export const ScriptApiAxiosParamCreator = function (configuration?: Configuratio
       }
     },
     /**
+     *
+     * @summary 更新算法参数
+     * @param {AlgorithmParamDto} [algorithmParamDto]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1AlgorithmParamUpdatePost_6: async (
+      algorithmParamDto?: AlgorithmParamDto,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/algorithm-param/update`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        algorithmParamDto,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
      * 关键词：      插件、脚本实例、删除  使用场景：      在更新完一个算法脚本后（通常是需要在不改变唯一编码的情况下，重新导入压缩包），需要删除该算法脚本已经生成的所有实例（容器）  相关背景：      一个算法脚本可以对应一个或多个算法脚本实例，其背后是docker镜像和docker容器的对应关系
      * @summary 根据Python脚本唯一编码删除Python脚本实例
      * @param {DeleteInstanceListInput} [deleteInstanceListInput]
@@ -328,6 +582,49 @@ export const ScriptApiAxiosParamCreator = function (configuration?: Configuratio
      * @throws {RequiredError}
      */
     apiV1DeleteAlgorithmInstanceListPost: async (
+      deleteInstanceListInput?: DeleteInstanceListInput,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/delete/algorithm-instance-list`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        deleteInstanceListInput,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     * 关键词：      插件、脚本实例、删除  使用场景：      在更新完一个算法脚本后（通常是需要在不改变唯一编码的情况下，重新导入压缩包），需要删除该算法脚本已经生成的所有实例（容器）  相关背景：      一个算法脚本可以对应一个或多个算法脚本实例，其背后是docker镜像和docker容器的对应关系
+     * @summary 根据Python脚本唯一编码删除Python脚本实例
+     * @param {DeleteInstanceListInput} [deleteInstanceListInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1DeleteAlgorithmInstanceListPost_7: async (
       deleteInstanceListInput?: DeleteInstanceListInput,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
@@ -407,6 +704,49 @@ export const ScriptApiAxiosParamCreator = function (configuration?: Configuratio
       }
     },
     /**
+     * 关键词：      插件、脚本实例、删除  使用场景：      批量删除算法脚本实例  相关背景：      一个算法脚本可以对应一个或多个算法脚本实例，其背后是docker镜像和docker容器的对应关系
+     * @summary 批量删除Python算法脚本实例
+     * @param {DeleteAlgorithmInstanceInput} [deleteAlgorithmInstanceInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1DeleteAlgorithmInstancePost_8: async (
+      deleteAlgorithmInstanceInput?: DeleteAlgorithmInstanceInput,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/delete/algorithm-instance`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        deleteAlgorithmInstanceInput,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
      * 关键词：      插件、脚本、删除  使用场景：      删除一个算法脚本及其所有的实例，其背后实质是删除算法脚本的所有容器和镜像  相关背景：      一个算法脚本可以对应一个或多个算法脚本实例，其背后是docker镜像和docker容器的对应关系
      * @summary 删除Python算法脚本
      * @param {DeleteAlgorithmSidecarInput} [deleteAlgorithmSidecarInput]
@@ -414,6 +754,49 @@ export const ScriptApiAxiosParamCreator = function (configuration?: Configuratio
      * @throws {RequiredError}
      */
     apiV1DeleteAlgorithmPost: async (
+      deleteAlgorithmSidecarInput?: DeleteAlgorithmSidecarInput,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/delete/algorithm`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        deleteAlgorithmSidecarInput,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     * 关键词：      插件、脚本、删除  使用场景：      删除一个算法脚本及其所有的实例，其背后实质是删除算法脚本的所有容器和镜像  相关背景：      一个算法脚本可以对应一个或多个算法脚本实例，其背后是docker镜像和docker容器的对应关系
+     * @summary 删除Python算法脚本
+     * @param {DeleteAlgorithmSidecarInput} [deleteAlgorithmSidecarInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1DeleteAlgorithmPost_9: async (
       deleteAlgorithmSidecarInput?: DeleteAlgorithmSidecarInput,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
@@ -490,6 +873,46 @@ export const ScriptApiAxiosParamCreator = function (configuration?: Configuratio
       }
     },
     /**
+     * 关键词：      插件、脚本、停用  使用场景：      停用算法脚本实例  相关背景：      一个算法脚本可以对应一个或多个算法脚本实例，其背后是docker镜像和docker容器的对应关系
+     * @summary 停用算法脚本实例
+     * @param {string} [algorithmInstanceCode] 算法实例唯一编码
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1DisableAlgorithmGet_10: async (
+      algorithmInstanceCode?: string,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/disable/algorithm`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      if (algorithmInstanceCode !== undefined) {
+        localVarQueryParameter['algorithmInstanceCode'] = algorithmInstanceCode
+      }
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
      * 关键词：      插件、脚本、启用  使用场景：      停用算法脚本实例  相关背景：      一个算法脚本可以对应一个或多个算法脚本实例，其背后是docker镜像和docker容器的对应关系
      * @summary 启用算法脚本实例
      * @param {string} [algorithmInstanceCode] 算法实例唯一编码
@@ -497,6 +920,46 @@ export const ScriptApiAxiosParamCreator = function (configuration?: Configuratio
      * @throws {RequiredError}
      */
     apiV1EnableAlgorithmGet: async (
+      algorithmInstanceCode?: string,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/enable/algorithm`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      if (algorithmInstanceCode !== undefined) {
+        localVarQueryParameter['algorithmInstanceCode'] = algorithmInstanceCode
+      }
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     * 关键词：      插件、脚本、启用  使用场景：      停用算法脚本实例  相关背景：      一个算法脚本可以对应一个或多个算法脚本实例，其背后是docker镜像和docker容器的对应关系
+     * @summary 启用算法脚本实例
+     * @param {string} [algorithmInstanceCode] 算法实例唯一编码
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1EnableAlgorithmGet_11: async (
       algorithmInstanceCode?: string,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
@@ -584,6 +1047,60 @@ export const ScriptApiAxiosParamCreator = function (configuration?: Configuratio
       }
     },
     /**
+     * 关键词：      插件、脚本、日志  使用场景：      根据算法唯一编码和时间范围，查询算法运行日志  相关背景：      一个算法脚本可以对应一个或多个算法脚本实例，其背后是docker镜像和docker容器的对应关系
+     * @summary 获取算法脚本实例的运行日志
+     * @param {string} [algorithmInstanceCode]
+     * @param {string} [startTime]
+     * @param {string} [endTime]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1GetAlgorithmLogGet_12: async (
+      algorithmInstanceCode?: string,
+      startTime?: string,
+      endTime?: string,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/get/algorithm/log`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      if (algorithmInstanceCode !== undefined) {
+        localVarQueryParameter['algorithmInstanceCode'] = algorithmInstanceCode
+      }
+
+      if (startTime !== undefined) {
+        localVarQueryParameter['startTime'] =
+          (startTime as any) instanceof Date ? (startTime as any).toISOString() : startTime
+      }
+
+      if (endTime !== undefined) {
+        localVarQueryParameter['endTime'] =
+          (endTime as any) instanceof Date ? (endTime as any).toISOString() : endTime
+      }
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
      * 关键词：      插件、端口资源  使用场景：      在导入算法脚本生成算法实例时由系统调用该接口获取可用端口资源，通常不由用户直接调用  相关背景：      一个算法脚本可以对应一个或多个算法脚本实例，其背后是docker镜像和docker容器的对应关系
      * @summary 获取算法目标部署机器可分配的端口资源
      * @param {*} [options] Override http request option.
@@ -618,12 +1135,80 @@ export const ScriptApiAxiosParamCreator = function (configuration?: Configuratio
       }
     },
     /**
+     * 关键词：      插件、端口资源  使用场景：      在导入算法脚本生成算法实例时由系统调用该接口获取可用端口资源，通常不由用户直接调用  相关背景：      一个算法脚本可以对应一个或多个算法脚本实例，其背后是docker镜像和docker容器的对应关系
+     * @summary 获取算法目标部署机器可分配的端口资源
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1GetAlgorithmTargetDeployMachineGet_13: async (
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/get/algorithm/target/deploy/machine`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
      * 关键词：      插件、脚本、版本  使用场景：      提供服务器上可用的python镜像版本，供导入脚本创建镜像时使用，系统将基于该版本镜像构建脚本镜像  相关背景：     若不指定python版本，系统默认使用python:3.10-slim-buster版本构建镜像
      * @summary 获取可用的python镜像版本
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiV1GetAvaliablePythonVersionGet: async (
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/get-avaliable-python-version`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     * 关键词：      插件、脚本、版本  使用场景：      提供服务器上可用的python镜像版本，供导入脚本创建镜像时使用，系统将基于该版本镜像构建脚本镜像  相关背景：     若不指定python版本，系统默认使用python:3.10-slim-buster版本构建镜像
+     * @summary 获取可用的python镜像版本
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1GetAvaliablePythonVersionGet_14: async (
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
       const localVarPath = `/api/v1/get-avaliable-python-version`
@@ -693,12 +1278,95 @@ export const ScriptApiAxiosParamCreator = function (configuration?: Configuratio
     },
     /**
      * 关键词：      插件、脚本、查询  使用场景：      已知算法唯一编码，查询该算法的详细信息，包括关联的算法实例信息  相关背景：      一个算法脚本可以对应一个或多个算法脚本实例，其背后是docker镜像和docker容器的对应关系
+     * @summary 通过算法唯一编码查询算法详细信息
+     * @param {string} [algorithmCode]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1QueryAlgorithmByCodeGet_15: async (
+      algorithmCode?: string,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/query/algorithm/by/code`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      if (algorithmCode !== undefined) {
+        localVarQueryParameter['algorithmCode'] = algorithmCode
+      }
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     * 关键词：      插件、脚本、查询  使用场景：      已知算法唯一编码，查询该算法的详细信息，包括关联的算法实例信息  相关背景：      一个算法脚本可以对应一个或多个算法脚本实例，其背后是docker镜像和docker容器的对应关系
      * @summary 分页查询算法及算法实例信息
      * @param {QueryAlgorithmByConInput} [queryAlgorithmByConInput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiV1QueryAlgorithmListByConPost: async (
+      queryAlgorithmByConInput?: QueryAlgorithmByConInput,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/query/algorithm/list/by/con`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        queryAlgorithmByConInput,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     * 关键词：      插件、脚本、查询  使用场景：      已知算法唯一编码，查询该算法的详细信息，包括关联的算法实例信息  相关背景：      一个算法脚本可以对应一个或多个算法脚本实例，其背后是docker镜像和docker容器的对应关系
+     * @summary 分页查询算法及算法实例信息
+     * @param {QueryAlgorithmByConInput} [queryAlgorithmByConInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1QueryAlgorithmListByConPost_16: async (
       queryAlgorithmByConInput?: QueryAlgorithmByConInput,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
@@ -784,6 +1452,55 @@ export const ScriptApiAxiosParamCreator = function (configuration?: Configuratio
       }
     },
     /**
+     * 关键词：      插件、脚本、运行  使用场景：      在已知算法实例唯一编码的情况下，对其进行调用，调用方式可以是任务调度定时执行，也可以是前端或其他服务的单次执行  相关背景：      需要完成python脚本压缩包导入并生成一个脚本实例后，方可调用执行，可通过\"DHI项目配置平台\"完成导入操作。  输出：      算法脚本实例执行结果，该结果的字符串值由用户的算法脚本的执行结果决定
+     * @summary 运行Python算法脚本实例
+     * @param {string} [algorithmCode] 算法实例唯一编码，可通过接口&#x60;&#x60;&#x60;v1/query/algorithm/list/by/con&#x60;&#x60;&#x60;获得算法和算法实例信息
+     * @param {string} [body]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1RunAlgorithmPost_17: async (
+      algorithmCode?: string,
+      body?: string,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/run/algorithm`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      if (algorithmCode !== undefined) {
+        localVarQueryParameter['algorithmCode'] = algorithmCode
+      }
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        body,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
      *
      * @summary 手动批量新增或更新算法（根据AlgorithmCode判断）并自动生成实例，用于数据源配置绑定算法实例id
      * @param {Array<AddAlgorithmManualInput>} [addAlgorithmManualInput]
@@ -791,6 +1508,49 @@ export const ScriptApiAxiosParamCreator = function (configuration?: Configuratio
      * @throws {RequiredError}
      */
     apiV1SaveAlgorithmManualPost: async (
+      addAlgorithmManualInput?: Array<AddAlgorithmManualInput>,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/save/algorithm-manual`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        addAlgorithmManualInput,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 手动批量新增或更新算法（根据AlgorithmCode判断）并自动生成实例，用于数据源配置绑定算法实例id
+     * @param {Array<AddAlgorithmManualInput>} [addAlgorithmManualInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1SaveAlgorithmManualPost_18: async (
       addAlgorithmManualInput?: Array<AddAlgorithmManualInput>,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
@@ -869,6 +1629,49 @@ export const ScriptApiAxiosParamCreator = function (configuration?: Configuratio
         options: localVarRequestOptions,
       }
     },
+    /**
+     * 关键词：      插件、脚本、保存  使用场景：      新增或更新一个算法脚本，该接口在脚本导入过程中由后台服务调用完成，通常不由用户单独调用。  相关背景：      一个算法脚本可以对应一个或多个算法脚本实例，其背后是docker镜像和docker容器的对应关系
+     * @summary 保存Python算法脚本
+     * @param {AddAlgorithmSidecarInput} [addAlgorithmSidecarInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1SaveAlgorithmPost_19: async (
+      addAlgorithmSidecarInput?: AddAlgorithmSidecarInput,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/save/algorithm`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        addAlgorithmSidecarInput,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
   }
 }
 
@@ -898,6 +1701,23 @@ export const ScriptApiFp = function (configuration?: Configuration) {
     },
     /**
      *
+     * @summary 根据算法id删除算法参数
+     * @param {DeleteAlgorithmParamByAIdInput} [deleteAlgorithmParamByAIdInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiDeleteByAlgorithmIdPost_1(
+      deleteAlgorithmParamByAIdInput?: DeleteAlgorithmParamByAIdInput,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiDeleteByAlgorithmIdPost_1(
+        deleteAlgorithmParamByAIdInput,
+        options,
+      )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
      * @summary 根据算法id查询算法参数
      * @param {string} [algorithmId]
      * @param {*} [options] Override http request option.
@@ -916,6 +1736,25 @@ export const ScriptApiFp = function (configuration?: Configuration) {
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**
+     *
+     * @summary 根据算法id查询算法参数
+     * @param {string} [algorithmId]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiQueryByAlgorithmIdGet_2(
+      algorithmId?: string,
+      options?: AxiosRequestConfig,
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<AlgorithmParamDto>>
+    > {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiQueryByAlgorithmIdGet_2(
+        algorithmId,
+        options,
+      )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
      * 关键词：      插件、脚本实例、保存  使用场景：      导入脚本完成后，系统会自动生成一个默认的脚本实例，但如果需要更新或创建新的实例，则可以调用该接口新增或更新。  相关背景：      一个算法脚本可以对应一个或多个算法脚本实例，其背后是docker镜像和docker容器的对应关系
      * @summary 保存Python算法脚本实例
      * @param {AddAlgorithmInstanceInput} [addAlgorithmInstanceInput]
@@ -927,6 +1766,23 @@ export const ScriptApiFp = function (configuration?: Configuration) {
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
       const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1AddAlgorithmInstancePost(
+        addAlgorithmInstanceInput,
+        options,
+      )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     * 关键词：      插件、脚本实例、保存  使用场景：      导入脚本完成后，系统会自动生成一个默认的脚本实例，但如果需要更新或创建新的实例，则可以调用该接口新增或更新。  相关背景：      一个算法脚本可以对应一个或多个算法脚本实例，其背后是docker镜像和docker容器的对应关系
+     * @summary 保存Python算法脚本实例
+     * @param {AddAlgorithmInstanceInput} [addAlgorithmInstanceInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1AddAlgorithmInstancePost_3(
+      addAlgorithmInstanceInput?: AddAlgorithmInstanceInput,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1AddAlgorithmInstancePost_3(
         addAlgorithmInstanceInput,
         options,
       )
@@ -951,6 +1807,24 @@ export const ScriptApiFp = function (configuration?: Configuration) {
     },
     /**
      *
+     * @summary 批量删除算法参数
+     * @param {BatchDeleteAlgorithmParamInput} [batchDeleteAlgorithmParamInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1AlgorithmParamBatchDeletePost_4(
+      batchDeleteAlgorithmParamInput?: BatchDeleteAlgorithmParamInput,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiV1AlgorithmParamBatchDeletePost_4(
+          batchDeleteAlgorithmParamInput,
+          options,
+        )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
      * @summary 删除算法关联的所有参数，重新批量新增算法参数,
      * @param {Array<AddAlgorithmParamInput>} [addAlgorithmParamInput]
      * @param {*} [options] Override http request option.
@@ -968,6 +1842,23 @@ export const ScriptApiFp = function (configuration?: Configuration) {
     },
     /**
      *
+     * @summary 删除算法关联的所有参数，重新批量新增算法参数,
+     * @param {Array<AddAlgorithmParamInput>} [addAlgorithmParamInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1AlgorithmParamRecreatePost_5(
+      addAlgorithmParamInput?: Array<AddAlgorithmParamInput>,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1AlgorithmParamRecreatePost_5(
+        addAlgorithmParamInput,
+        options,
+      )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
      * @summary 更新算法参数
      * @param {AlgorithmParamDto} [algorithmParamDto]
      * @param {*} [options] Override http request option.
@@ -978,6 +1869,23 @@ export const ScriptApiFp = function (configuration?: Configuration) {
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
       const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1AlgorithmParamUpdatePost(
+        algorithmParamDto,
+        options,
+      )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
+     * @summary 更新算法参数
+     * @param {AlgorithmParamDto} [algorithmParamDto]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1AlgorithmParamUpdatePost_6(
+      algorithmParamDto?: AlgorithmParamDto,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1AlgorithmParamUpdatePost_6(
         algorithmParamDto,
         options,
       )
@@ -1002,6 +1910,24 @@ export const ScriptApiFp = function (configuration?: Configuration) {
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**
+     * 关键词：      插件、脚本实例、删除  使用场景：      在更新完一个算法脚本后（通常是需要在不改变唯一编码的情况下，重新导入压缩包），需要删除该算法脚本已经生成的所有实例（容器）  相关背景：      一个算法脚本可以对应一个或多个算法脚本实例，其背后是docker镜像和docker容器的对应关系
+     * @summary 根据Python脚本唯一编码删除Python脚本实例
+     * @param {DeleteInstanceListInput} [deleteInstanceListInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1DeleteAlgorithmInstanceListPost_7(
+      deleteInstanceListInput?: DeleteInstanceListInput,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiV1DeleteAlgorithmInstanceListPost_7(
+          deleteInstanceListInput,
+          options,
+        )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
      * 关键词：      插件、脚本实例、删除  使用场景：      批量删除算法脚本实例  相关背景：      一个算法脚本可以对应一个或多个算法脚本实例，其背后是docker镜像和docker容器的对应关系
      * @summary 批量删除Python算法脚本实例
      * @param {DeleteAlgorithmInstanceInput} [deleteAlgorithmInstanceInput]
@@ -1013,6 +1939,23 @@ export const ScriptApiFp = function (configuration?: Configuration) {
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
       const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1DeleteAlgorithmInstancePost(
+        deleteAlgorithmInstanceInput,
+        options,
+      )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     * 关键词：      插件、脚本实例、删除  使用场景：      批量删除算法脚本实例  相关背景：      一个算法脚本可以对应一个或多个算法脚本实例，其背后是docker镜像和docker容器的对应关系
+     * @summary 批量删除Python算法脚本实例
+     * @param {DeleteAlgorithmInstanceInput} [deleteAlgorithmInstanceInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1DeleteAlgorithmInstancePost_8(
+      deleteAlgorithmInstanceInput?: DeleteAlgorithmInstanceInput,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1DeleteAlgorithmInstancePost_8(
         deleteAlgorithmInstanceInput,
         options,
       )
@@ -1036,6 +1979,23 @@ export const ScriptApiFp = function (configuration?: Configuration) {
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**
+     * 关键词：      插件、脚本、删除  使用场景：      删除一个算法脚本及其所有的实例，其背后实质是删除算法脚本的所有容器和镜像  相关背景：      一个算法脚本可以对应一个或多个算法脚本实例，其背后是docker镜像和docker容器的对应关系
+     * @summary 删除Python算法脚本
+     * @param {DeleteAlgorithmSidecarInput} [deleteAlgorithmSidecarInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1DeleteAlgorithmPost_9(
+      deleteAlgorithmSidecarInput?: DeleteAlgorithmSidecarInput,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1DeleteAlgorithmPost_9(
+        deleteAlgorithmSidecarInput,
+        options,
+      )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
      * 关键词：      插件、脚本、停用  使用场景：      停用算法脚本实例  相关背景：      一个算法脚本可以对应一个或多个算法脚本实例，其背后是docker镜像和docker容器的对应关系
      * @summary 停用算法脚本实例
      * @param {string} [algorithmInstanceCode] 算法实例唯一编码
@@ -1053,6 +2013,23 @@ export const ScriptApiFp = function (configuration?: Configuration) {
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**
+     * 关键词：      插件、脚本、停用  使用场景：      停用算法脚本实例  相关背景：      一个算法脚本可以对应一个或多个算法脚本实例，其背后是docker镜像和docker容器的对应关系
+     * @summary 停用算法脚本实例
+     * @param {string} [algorithmInstanceCode] 算法实例唯一编码
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1DisableAlgorithmGet_10(
+      algorithmInstanceCode?: string,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1DisableAlgorithmGet_10(
+        algorithmInstanceCode,
+        options,
+      )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
      * 关键词：      插件、脚本、启用  使用场景：      停用算法脚本实例  相关背景：      一个算法脚本可以对应一个或多个算法脚本实例，其背后是docker镜像和docker容器的对应关系
      * @summary 启用算法脚本实例
      * @param {string} [algorithmInstanceCode] 算法实例唯一编码
@@ -1064,6 +2041,23 @@ export const ScriptApiFp = function (configuration?: Configuration) {
       options?: AxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
       const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1EnableAlgorithmGet(
+        algorithmInstanceCode,
+        options,
+      )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     * 关键词：      插件、脚本、启用  使用场景：      停用算法脚本实例  相关背景：      一个算法脚本可以对应一个或多个算法脚本实例，其背后是docker镜像和docker容器的对应关系
+     * @summary 启用算法脚本实例
+     * @param {string} [algorithmInstanceCode] 算法实例唯一编码
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1EnableAlgorithmGet_11(
+      algorithmInstanceCode?: string,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1EnableAlgorithmGet_11(
         algorithmInstanceCode,
         options,
       )
@@ -1093,6 +2087,29 @@ export const ScriptApiFp = function (configuration?: Configuration) {
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**
+     * 关键词：      插件、脚本、日志  使用场景：      根据算法唯一编码和时间范围，查询算法运行日志  相关背景：      一个算法脚本可以对应一个或多个算法脚本实例，其背后是docker镜像和docker容器的对应关系
+     * @summary 获取算法脚本实例的运行日志
+     * @param {string} [algorithmInstanceCode]
+     * @param {string} [startTime]
+     * @param {string} [endTime]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1GetAlgorithmLogGet_12(
+      algorithmInstanceCode?: string,
+      startTime?: string,
+      endTime?: string,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<string>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1GetAlgorithmLogGet_12(
+        algorithmInstanceCode,
+        startTime,
+        endTime,
+        options,
+      )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
      * 关键词：      插件、端口资源  使用场景：      在导入算法脚本生成算法实例时由系统调用该接口获取可用端口资源，通常不由用户直接调用  相关背景：      一个算法脚本可以对应一个或多个算法脚本实例，其背后是docker镜像和docker容器的对应关系
      * @summary 获取算法目标部署机器可分配的端口资源
      * @param {*} [options] Override http request option.
@@ -1106,6 +2123,19 @@ export const ScriptApiFp = function (configuration?: Configuration) {
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**
+     * 关键词：      插件、端口资源  使用场景：      在导入算法脚本生成算法实例时由系统调用该接口获取可用端口资源，通常不由用户直接调用  相关背景：      一个算法脚本可以对应一个或多个算法脚本实例，其背后是docker镜像和docker容器的对应关系
+     * @summary 获取算法目标部署机器可分配的端口资源
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1GetAlgorithmTargetDeployMachineGet_13(
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DeployMachineOutput>> {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiV1GetAlgorithmTargetDeployMachineGet_13(options)
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
      * 关键词：      插件、脚本、版本  使用场景：      提供服务器上可用的python镜像版本，供导入脚本创建镜像时使用，系统将基于该版本镜像构建脚本镜像  相关背景：     若不指定python版本，系统默认使用python:3.10-slim-buster版本构建镜像
      * @summary 获取可用的python镜像版本
      * @param {*} [options] Override http request option.
@@ -1116,6 +2146,19 @@ export const ScriptApiFp = function (configuration?: Configuration) {
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<string>>> {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.apiV1GetAvaliablePythonVersionGet(options)
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     * 关键词：      插件、脚本、版本  使用场景：      提供服务器上可用的python镜像版本，供导入脚本创建镜像时使用，系统将基于该版本镜像构建脚本镜像  相关背景：     若不指定python版本，系统默认使用python:3.10-slim-buster版本构建镜像
+     * @summary 获取可用的python镜像版本
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1GetAvaliablePythonVersionGet_14(
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<string>>> {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiV1GetAvaliablePythonVersionGet_14(options)
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**
@@ -1139,6 +2182,25 @@ export const ScriptApiFp = function (configuration?: Configuration) {
     },
     /**
      * 关键词：      插件、脚本、查询  使用场景：      已知算法唯一编码，查询该算法的详细信息，包括关联的算法实例信息  相关背景：      一个算法脚本可以对应一个或多个算法脚本实例，其背后是docker镜像和docker容器的对应关系
+     * @summary 通过算法唯一编码查询算法详细信息
+     * @param {string} [algorithmCode]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1QueryAlgorithmByCodeGet_15(
+      algorithmCode?: string,
+      options?: AxiosRequestConfig,
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<QueryAlgorithmByCodeOutput>
+    > {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1QueryAlgorithmByCodeGet_15(
+        algorithmCode,
+        options,
+      )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     * 关键词：      插件、脚本、查询  使用场景：      已知算法唯一编码，查询该算法的详细信息，包括关联的算法实例信息  相关背景：      一个算法脚本可以对应一个或多个算法脚本实例，其背后是docker镜像和docker容器的对应关系
      * @summary 分页查询算法及算法实例信息
      * @param {QueryAlgorithmByConInput} [queryAlgorithmByConInput]
      * @param {*} [options] Override http request option.
@@ -1151,6 +2213,25 @@ export const ScriptApiFp = function (configuration?: Configuration) {
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<QueryAlgorithmByCodeOutputPage>
     > {
       const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1QueryAlgorithmListByConPost(
+        queryAlgorithmByConInput,
+        options,
+      )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     * 关键词：      插件、脚本、查询  使用场景：      已知算法唯一编码，查询该算法的详细信息，包括关联的算法实例信息  相关背景：      一个算法脚本可以对应一个或多个算法脚本实例，其背后是docker镜像和docker容器的对应关系
+     * @summary 分页查询算法及算法实例信息
+     * @param {QueryAlgorithmByConInput} [queryAlgorithmByConInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1QueryAlgorithmListByConPost_16(
+      queryAlgorithmByConInput?: QueryAlgorithmByConInput,
+      options?: AxiosRequestConfig,
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<QueryAlgorithmByCodeOutputPage>
+    > {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1QueryAlgorithmListByConPost_16(
         queryAlgorithmByConInput,
         options,
       )
@@ -1177,6 +2258,26 @@ export const ScriptApiFp = function (configuration?: Configuration) {
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**
+     * 关键词：      插件、脚本、运行  使用场景：      在已知算法实例唯一编码的情况下，对其进行调用，调用方式可以是任务调度定时执行，也可以是前端或其他服务的单次执行  相关背景：      需要完成python脚本压缩包导入并生成一个脚本实例后，方可调用执行，可通过\"DHI项目配置平台\"完成导入操作。  输出：      算法脚本实例执行结果，该结果的字符串值由用户的算法脚本的执行结果决定
+     * @summary 运行Python算法脚本实例
+     * @param {string} [algorithmCode] 算法实例唯一编码，可通过接口&#x60;&#x60;&#x60;v1/query/algorithm/list/by/con&#x60;&#x60;&#x60;获得算法和算法实例信息
+     * @param {string} [body]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1RunAlgorithmPost_17(
+      algorithmCode?: string,
+      body?: string,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1RunAlgorithmPost_17(
+        algorithmCode,
+        body,
+        options,
+      )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
      *
      * @summary 手动批量新增或更新算法（根据AlgorithmCode判断）并自动生成实例，用于数据源配置绑定算法实例id
      * @param {Array<AddAlgorithmManualInput>} [addAlgorithmManualInput]
@@ -1196,6 +2297,25 @@ export const ScriptApiFp = function (configuration?: Configuration) {
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
     },
     /**
+     *
+     * @summary 手动批量新增或更新算法（根据AlgorithmCode判断）并自动生成实例，用于数据源配置绑定算法实例id
+     * @param {Array<AddAlgorithmManualInput>} [addAlgorithmManualInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1SaveAlgorithmManualPost_18(
+      addAlgorithmManualInput?: Array<AddAlgorithmManualInput>,
+      options?: AxiosRequestConfig,
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<QueryAlgorithmByCodeOutput>>
+    > {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1SaveAlgorithmManualPost_18(
+        addAlgorithmManualInput,
+        options,
+      )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
      * 关键词：      插件、脚本、保存  使用场景：      新增或更新一个算法脚本，该接口在脚本导入过程中由后台服务调用完成，通常不由用户单独调用。  相关背景：      一个算法脚本可以对应一个或多个算法脚本实例，其背后是docker镜像和docker容器的对应关系
      * @summary 保存Python算法脚本
      * @param {AddAlgorithmSidecarInput} [addAlgorithmSidecarInput]
@@ -1209,6 +2329,25 @@ export const ScriptApiFp = function (configuration?: Configuration) {
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<QueryAlgorithmByCodeOutput>
     > {
       const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1SaveAlgorithmPost(
+        addAlgorithmSidecarInput,
+        options,
+      )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     * 关键词：      插件、脚本、保存  使用场景：      新增或更新一个算法脚本，该接口在脚本导入过程中由后台服务调用完成，通常不由用户单独调用。  相关背景：      一个算法脚本可以对应一个或多个算法脚本实例，其背后是docker镜像和docker容器的对应关系
+     * @summary 保存Python算法脚本
+     * @param {AddAlgorithmSidecarInput} [addAlgorithmSidecarInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1SaveAlgorithmPost_19(
+      addAlgorithmSidecarInput?: AddAlgorithmSidecarInput,
+      options?: AxiosRequestConfig,
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<QueryAlgorithmByCodeOutput>
+    > {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1SaveAlgorithmPost_19(
         addAlgorithmSidecarInput,
         options,
       )
@@ -1245,6 +2384,21 @@ export const ScriptApiFactory = function (
     },
     /**
      *
+     * @summary 根据算法id删除算法参数
+     * @param {DeleteAlgorithmParamByAIdInput} [deleteAlgorithmParamByAIdInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiDeleteByAlgorithmIdPost_1(
+      deleteAlgorithmParamByAIdInput?: DeleteAlgorithmParamByAIdInput,
+      options?: any,
+    ): AxiosPromise<void> {
+      return localVarFp
+        .apiDeleteByAlgorithmIdPost_1(deleteAlgorithmParamByAIdInput, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
      * @summary 根据算法id查询算法参数
      * @param {string} [algorithmId]
      * @param {*} [options] Override http request option.
@@ -1256,6 +2410,21 @@ export const ScriptApiFactory = function (
     ): AxiosPromise<Array<AlgorithmParamDto>> {
       return localVarFp
         .apiQueryByAlgorithmIdGet(algorithmId, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @summary 根据算法id查询算法参数
+     * @param {string} [algorithmId]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiQueryByAlgorithmIdGet_2(
+      algorithmId?: string,
+      options?: any,
+    ): AxiosPromise<Array<AlgorithmParamDto>> {
+      return localVarFp
+        .apiQueryByAlgorithmIdGet_2(algorithmId, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -1271,6 +2440,21 @@ export const ScriptApiFactory = function (
     ): AxiosPromise<void> {
       return localVarFp
         .apiV1AddAlgorithmInstancePost(addAlgorithmInstanceInput, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     * 关键词：      插件、脚本实例、保存  使用场景：      导入脚本完成后，系统会自动生成一个默认的脚本实例，但如果需要更新或创建新的实例，则可以调用该接口新增或更新。  相关背景：      一个算法脚本可以对应一个或多个算法脚本实例，其背后是docker镜像和docker容器的对应关系
+     * @summary 保存Python算法脚本实例
+     * @param {AddAlgorithmInstanceInput} [addAlgorithmInstanceInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1AddAlgorithmInstancePost_3(
+      addAlgorithmInstanceInput?: AddAlgorithmInstanceInput,
+      options?: any,
+    ): AxiosPromise<void> {
+      return localVarFp
+        .apiV1AddAlgorithmInstancePost_3(addAlgorithmInstanceInput, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -1290,6 +2474,21 @@ export const ScriptApiFactory = function (
     },
     /**
      *
+     * @summary 批量删除算法参数
+     * @param {BatchDeleteAlgorithmParamInput} [batchDeleteAlgorithmParamInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1AlgorithmParamBatchDeletePost_4(
+      batchDeleteAlgorithmParamInput?: BatchDeleteAlgorithmParamInput,
+      options?: any,
+    ): AxiosPromise<void> {
+      return localVarFp
+        .apiV1AlgorithmParamBatchDeletePost_4(batchDeleteAlgorithmParamInput, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
      * @summary 删除算法关联的所有参数，重新批量新增算法参数,
      * @param {Array<AddAlgorithmParamInput>} [addAlgorithmParamInput]
      * @param {*} [options] Override http request option.
@@ -1301,6 +2500,21 @@ export const ScriptApiFactory = function (
     ): AxiosPromise<void> {
       return localVarFp
         .apiV1AlgorithmParamRecreatePost(addAlgorithmParamInput, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @summary 删除算法关联的所有参数，重新批量新增算法参数,
+     * @param {Array<AddAlgorithmParamInput>} [addAlgorithmParamInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1AlgorithmParamRecreatePost_5(
+      addAlgorithmParamInput?: Array<AddAlgorithmParamInput>,
+      options?: any,
+    ): AxiosPromise<void> {
+      return localVarFp
+        .apiV1AlgorithmParamRecreatePost_5(addAlgorithmParamInput, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -1319,6 +2533,21 @@ export const ScriptApiFactory = function (
         .then((request) => request(axios, basePath))
     },
     /**
+     *
+     * @summary 更新算法参数
+     * @param {AlgorithmParamDto} [algorithmParamDto]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1AlgorithmParamUpdatePost_6(
+      algorithmParamDto?: AlgorithmParamDto,
+      options?: any,
+    ): AxiosPromise<void> {
+      return localVarFp
+        .apiV1AlgorithmParamUpdatePost_6(algorithmParamDto, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
      * 关键词：      插件、脚本实例、删除  使用场景：      在更新完一个算法脚本后（通常是需要在不改变唯一编码的情况下，重新导入压缩包），需要删除该算法脚本已经生成的所有实例（容器）  相关背景：      一个算法脚本可以对应一个或多个算法脚本实例，其背后是docker镜像和docker容器的对应关系
      * @summary 根据Python脚本唯一编码删除Python脚本实例
      * @param {DeleteInstanceListInput} [deleteInstanceListInput]
@@ -1331,6 +2560,21 @@ export const ScriptApiFactory = function (
     ): AxiosPromise<void> {
       return localVarFp
         .apiV1DeleteAlgorithmInstanceListPost(deleteInstanceListInput, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     * 关键词：      插件、脚本实例、删除  使用场景：      在更新完一个算法脚本后（通常是需要在不改变唯一编码的情况下，重新导入压缩包），需要删除该算法脚本已经生成的所有实例（容器）  相关背景：      一个算法脚本可以对应一个或多个算法脚本实例，其背后是docker镜像和docker容器的对应关系
+     * @summary 根据Python脚本唯一编码删除Python脚本实例
+     * @param {DeleteInstanceListInput} [deleteInstanceListInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1DeleteAlgorithmInstanceListPost_7(
+      deleteInstanceListInput?: DeleteInstanceListInput,
+      options?: any,
+    ): AxiosPromise<void> {
+      return localVarFp
+        .apiV1DeleteAlgorithmInstanceListPost_7(deleteInstanceListInput, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -1349,6 +2593,21 @@ export const ScriptApiFactory = function (
         .then((request) => request(axios, basePath))
     },
     /**
+     * 关键词：      插件、脚本实例、删除  使用场景：      批量删除算法脚本实例  相关背景：      一个算法脚本可以对应一个或多个算法脚本实例，其背后是docker镜像和docker容器的对应关系
+     * @summary 批量删除Python算法脚本实例
+     * @param {DeleteAlgorithmInstanceInput} [deleteAlgorithmInstanceInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1DeleteAlgorithmInstancePost_8(
+      deleteAlgorithmInstanceInput?: DeleteAlgorithmInstanceInput,
+      options?: any,
+    ): AxiosPromise<void> {
+      return localVarFp
+        .apiV1DeleteAlgorithmInstancePost_8(deleteAlgorithmInstanceInput, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
      * 关键词：      插件、脚本、删除  使用场景：      删除一个算法脚本及其所有的实例，其背后实质是删除算法脚本的所有容器和镜像  相关背景：      一个算法脚本可以对应一个或多个算法脚本实例，其背后是docker镜像和docker容器的对应关系
      * @summary 删除Python算法脚本
      * @param {DeleteAlgorithmSidecarInput} [deleteAlgorithmSidecarInput]
@@ -1364,6 +2623,21 @@ export const ScriptApiFactory = function (
         .then((request) => request(axios, basePath))
     },
     /**
+     * 关键词：      插件、脚本、删除  使用场景：      删除一个算法脚本及其所有的实例，其背后实质是删除算法脚本的所有容器和镜像  相关背景：      一个算法脚本可以对应一个或多个算法脚本实例，其背后是docker镜像和docker容器的对应关系
+     * @summary 删除Python算法脚本
+     * @param {DeleteAlgorithmSidecarInput} [deleteAlgorithmSidecarInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1DeleteAlgorithmPost_9(
+      deleteAlgorithmSidecarInput?: DeleteAlgorithmSidecarInput,
+      options?: any,
+    ): AxiosPromise<void> {
+      return localVarFp
+        .apiV1DeleteAlgorithmPost_9(deleteAlgorithmSidecarInput, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
      * 关键词：      插件、脚本、停用  使用场景：      停用算法脚本实例  相关背景：      一个算法脚本可以对应一个或多个算法脚本实例，其背后是docker镜像和docker容器的对应关系
      * @summary 停用算法脚本实例
      * @param {string} [algorithmInstanceCode] 算法实例唯一编码
@@ -1376,6 +2650,18 @@ export const ScriptApiFactory = function (
         .then((request) => request(axios, basePath))
     },
     /**
+     * 关键词：      插件、脚本、停用  使用场景：      停用算法脚本实例  相关背景：      一个算法脚本可以对应一个或多个算法脚本实例，其背后是docker镜像和docker容器的对应关系
+     * @summary 停用算法脚本实例
+     * @param {string} [algorithmInstanceCode] 算法实例唯一编码
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1DisableAlgorithmGet_10(algorithmInstanceCode?: string, options?: any): AxiosPromise<void> {
+      return localVarFp
+        .apiV1DisableAlgorithmGet_10(algorithmInstanceCode, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
      * 关键词：      插件、脚本、启用  使用场景：      停用算法脚本实例  相关背景：      一个算法脚本可以对应一个或多个算法脚本实例，其背后是docker镜像和docker容器的对应关系
      * @summary 启用算法脚本实例
      * @param {string} [algorithmInstanceCode] 算法实例唯一编码
@@ -1385,6 +2671,18 @@ export const ScriptApiFactory = function (
     apiV1EnableAlgorithmGet(algorithmInstanceCode?: string, options?: any): AxiosPromise<void> {
       return localVarFp
         .apiV1EnableAlgorithmGet(algorithmInstanceCode, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     * 关键词：      插件、脚本、启用  使用场景：      停用算法脚本实例  相关背景：      一个算法脚本可以对应一个或多个算法脚本实例，其背后是docker镜像和docker容器的对应关系
+     * @summary 启用算法脚本实例
+     * @param {string} [algorithmInstanceCode] 算法实例唯一编码
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1EnableAlgorithmGet_11(algorithmInstanceCode?: string, options?: any): AxiosPromise<void> {
+      return localVarFp
+        .apiV1EnableAlgorithmGet_11(algorithmInstanceCode, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -1407,6 +2705,25 @@ export const ScriptApiFactory = function (
         .then((request) => request(axios, basePath))
     },
     /**
+     * 关键词：      插件、脚本、日志  使用场景：      根据算法唯一编码和时间范围，查询算法运行日志  相关背景：      一个算法脚本可以对应一个或多个算法脚本实例，其背后是docker镜像和docker容器的对应关系
+     * @summary 获取算法脚本实例的运行日志
+     * @param {string} [algorithmInstanceCode]
+     * @param {string} [startTime]
+     * @param {string} [endTime]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1GetAlgorithmLogGet_12(
+      algorithmInstanceCode?: string,
+      startTime?: string,
+      endTime?: string,
+      options?: any,
+    ): AxiosPromise<string> {
+      return localVarFp
+        .apiV1GetAlgorithmLogGet_12(algorithmInstanceCode, startTime, endTime, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
      * 关键词：      插件、端口资源  使用场景：      在导入算法脚本生成算法实例时由系统调用该接口获取可用端口资源，通常不由用户直接调用  相关背景：      一个算法脚本可以对应一个或多个算法脚本实例，其背后是docker镜像和docker容器的对应关系
      * @summary 获取算法目标部署机器可分配的端口资源
      * @param {*} [options] Override http request option.
@@ -1418,6 +2735,17 @@ export const ScriptApiFactory = function (
         .then((request) => request(axios, basePath))
     },
     /**
+     * 关键词：      插件、端口资源  使用场景：      在导入算法脚本生成算法实例时由系统调用该接口获取可用端口资源，通常不由用户直接调用  相关背景：      一个算法脚本可以对应一个或多个算法脚本实例，其背后是docker镜像和docker容器的对应关系
+     * @summary 获取算法目标部署机器可分配的端口资源
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1GetAlgorithmTargetDeployMachineGet_13(options?: any): AxiosPromise<DeployMachineOutput> {
+      return localVarFp
+        .apiV1GetAlgorithmTargetDeployMachineGet_13(options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
      * 关键词：      插件、脚本、版本  使用场景：      提供服务器上可用的python镜像版本，供导入脚本创建镜像时使用，系统将基于该版本镜像构建脚本镜像  相关背景：     若不指定python版本，系统默认使用python:3.10-slim-buster版本构建镜像
      * @summary 获取可用的python镜像版本
      * @param {*} [options] Override http request option.
@@ -1426,6 +2754,17 @@ export const ScriptApiFactory = function (
     apiV1GetAvaliablePythonVersionGet(options?: any): AxiosPromise<Array<string>> {
       return localVarFp
         .apiV1GetAvaliablePythonVersionGet(options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     * 关键词：      插件、脚本、版本  使用场景：      提供服务器上可用的python镜像版本，供导入脚本创建镜像时使用，系统将基于该版本镜像构建脚本镜像  相关背景：     若不指定python版本，系统默认使用python:3.10-slim-buster版本构建镜像
+     * @summary 获取可用的python镜像版本
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1GetAvaliablePythonVersionGet_14(options?: any): AxiosPromise<Array<string>> {
+      return localVarFp
+        .apiV1GetAvaliablePythonVersionGet_14(options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -1445,6 +2784,21 @@ export const ScriptApiFactory = function (
     },
     /**
      * 关键词：      插件、脚本、查询  使用场景：      已知算法唯一编码，查询该算法的详细信息，包括关联的算法实例信息  相关背景：      一个算法脚本可以对应一个或多个算法脚本实例，其背后是docker镜像和docker容器的对应关系
+     * @summary 通过算法唯一编码查询算法详细信息
+     * @param {string} [algorithmCode]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1QueryAlgorithmByCodeGet_15(
+      algorithmCode?: string,
+      options?: any,
+    ): AxiosPromise<QueryAlgorithmByCodeOutput> {
+      return localVarFp
+        .apiV1QueryAlgorithmByCodeGet_15(algorithmCode, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     * 关键词：      插件、脚本、查询  使用场景：      已知算法唯一编码，查询该算法的详细信息，包括关联的算法实例信息  相关背景：      一个算法脚本可以对应一个或多个算法脚本实例，其背后是docker镜像和docker容器的对应关系
      * @summary 分页查询算法及算法实例信息
      * @param {QueryAlgorithmByConInput} [queryAlgorithmByConInput]
      * @param {*} [options] Override http request option.
@@ -1456,6 +2810,21 @@ export const ScriptApiFactory = function (
     ): AxiosPromise<QueryAlgorithmByCodeOutputPage> {
       return localVarFp
         .apiV1QueryAlgorithmListByConPost(queryAlgorithmByConInput, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     * 关键词：      插件、脚本、查询  使用场景：      已知算法唯一编码，查询该算法的详细信息，包括关联的算法实例信息  相关背景：      一个算法脚本可以对应一个或多个算法脚本实例，其背后是docker镜像和docker容器的对应关系
+     * @summary 分页查询算法及算法实例信息
+     * @param {QueryAlgorithmByConInput} [queryAlgorithmByConInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1QueryAlgorithmListByConPost_16(
+      queryAlgorithmByConInput?: QueryAlgorithmByConInput,
+      options?: any,
+    ): AxiosPromise<QueryAlgorithmByCodeOutputPage> {
+      return localVarFp
+        .apiV1QueryAlgorithmListByConPost_16(queryAlgorithmByConInput, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -1476,6 +2845,23 @@ export const ScriptApiFactory = function (
         .then((request) => request(axios, basePath))
     },
     /**
+     * 关键词：      插件、脚本、运行  使用场景：      在已知算法实例唯一编码的情况下，对其进行调用，调用方式可以是任务调度定时执行，也可以是前端或其他服务的单次执行  相关背景：      需要完成python脚本压缩包导入并生成一个脚本实例后，方可调用执行，可通过\"DHI项目配置平台\"完成导入操作。  输出：      算法脚本实例执行结果，该结果的字符串值由用户的算法脚本的执行结果决定
+     * @summary 运行Python算法脚本实例
+     * @param {string} [algorithmCode] 算法实例唯一编码，可通过接口&#x60;&#x60;&#x60;v1/query/algorithm/list/by/con&#x60;&#x60;&#x60;获得算法和算法实例信息
+     * @param {string} [body]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1RunAlgorithmPost_17(
+      algorithmCode?: string,
+      body?: string,
+      options?: any,
+    ): AxiosPromise<object> {
+      return localVarFp
+        .apiV1RunAlgorithmPost_17(algorithmCode, body, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
      *
      * @summary 手动批量新增或更新算法（根据AlgorithmCode判断）并自动生成实例，用于数据源配置绑定算法实例id
      * @param {Array<AddAlgorithmManualInput>} [addAlgorithmManualInput]
@@ -1491,6 +2877,21 @@ export const ScriptApiFactory = function (
         .then((request) => request(axios, basePath))
     },
     /**
+     *
+     * @summary 手动批量新增或更新算法（根据AlgorithmCode判断）并自动生成实例，用于数据源配置绑定算法实例id
+     * @param {Array<AddAlgorithmManualInput>} [addAlgorithmManualInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1SaveAlgorithmManualPost_18(
+      addAlgorithmManualInput?: Array<AddAlgorithmManualInput>,
+      options?: any,
+    ): AxiosPromise<Array<QueryAlgorithmByCodeOutput>> {
+      return localVarFp
+        .apiV1SaveAlgorithmManualPost_18(addAlgorithmManualInput, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
      * 关键词：      插件、脚本、保存  使用场景：      新增或更新一个算法脚本，该接口在脚本导入过程中由后台服务调用完成，通常不由用户单独调用。  相关背景：      一个算法脚本可以对应一个或多个算法脚本实例，其背后是docker镜像和docker容器的对应关系
      * @summary 保存Python算法脚本
      * @param {AddAlgorithmSidecarInput} [addAlgorithmSidecarInput]
@@ -1503,6 +2904,21 @@ export const ScriptApiFactory = function (
     ): AxiosPromise<QueryAlgorithmByCodeOutput> {
       return localVarFp
         .apiV1SaveAlgorithmPost(addAlgorithmSidecarInput, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     * 关键词：      插件、脚本、保存  使用场景：      新增或更新一个算法脚本，该接口在脚本导入过程中由后台服务调用完成，通常不由用户单独调用。  相关背景：      一个算法脚本可以对应一个或多个算法脚本实例，其背后是docker镜像和docker容器的对应关系
+     * @summary 保存Python算法脚本
+     * @param {AddAlgorithmSidecarInput} [addAlgorithmSidecarInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1SaveAlgorithmPost_19(
+      addAlgorithmSidecarInput?: AddAlgorithmSidecarInput,
+      options?: any,
+    ): AxiosPromise<QueryAlgorithmByCodeOutput> {
+      return localVarFp
+        .apiV1SaveAlgorithmPost_19(addAlgorithmSidecarInput, options)
         .then((request) => request(axios, basePath))
     },
   }
@@ -1534,6 +2950,23 @@ export class ScriptApi extends BaseAPI {
 
   /**
    *
+   * @summary 根据算法id删除算法参数
+   * @param {DeleteAlgorithmParamByAIdInput} [deleteAlgorithmParamByAIdInput]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof ScriptApi
+   */
+  public apiDeleteByAlgorithmIdPost_1(
+    deleteAlgorithmParamByAIdInput?: DeleteAlgorithmParamByAIdInput,
+    options?: AxiosRequestConfig,
+  ) {
+    return ScriptApiFp(this.configuration)
+      .apiDeleteByAlgorithmIdPost_1(deleteAlgorithmParamByAIdInput, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
    * @summary 根据算法id查询算法参数
    * @param {string} [algorithmId]
    * @param {*} [options] Override http request option.
@@ -1543,6 +2976,20 @@ export class ScriptApi extends BaseAPI {
   public apiQueryByAlgorithmIdGet(algorithmId?: string, options?: AxiosRequestConfig) {
     return ScriptApiFp(this.configuration)
       .apiQueryByAlgorithmIdGet(algorithmId, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary 根据算法id查询算法参数
+   * @param {string} [algorithmId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof ScriptApi
+   */
+  public apiQueryByAlgorithmIdGet_2(algorithmId?: string, options?: AxiosRequestConfig) {
+    return ScriptApiFp(this.configuration)
+      .apiQueryByAlgorithmIdGet_2(algorithmId, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -1560,6 +3007,23 @@ export class ScriptApi extends BaseAPI {
   ) {
     return ScriptApiFp(this.configuration)
       .apiV1AddAlgorithmInstancePost(addAlgorithmInstanceInput, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   * 关键词：      插件、脚本实例、保存  使用场景：      导入脚本完成后，系统会自动生成一个默认的脚本实例，但如果需要更新或创建新的实例，则可以调用该接口新增或更新。  相关背景：      一个算法脚本可以对应一个或多个算法脚本实例，其背后是docker镜像和docker容器的对应关系
+   * @summary 保存Python算法脚本实例
+   * @param {AddAlgorithmInstanceInput} [addAlgorithmInstanceInput]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof ScriptApi
+   */
+  public apiV1AddAlgorithmInstancePost_3(
+    addAlgorithmInstanceInput?: AddAlgorithmInstanceInput,
+    options?: AxiosRequestConfig,
+  ) {
+    return ScriptApiFp(this.configuration)
+      .apiV1AddAlgorithmInstancePost_3(addAlgorithmInstanceInput, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -1582,6 +3046,23 @@ export class ScriptApi extends BaseAPI {
 
   /**
    *
+   * @summary 批量删除算法参数
+   * @param {BatchDeleteAlgorithmParamInput} [batchDeleteAlgorithmParamInput]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof ScriptApi
+   */
+  public apiV1AlgorithmParamBatchDeletePost_4(
+    batchDeleteAlgorithmParamInput?: BatchDeleteAlgorithmParamInput,
+    options?: AxiosRequestConfig,
+  ) {
+    return ScriptApiFp(this.configuration)
+      .apiV1AlgorithmParamBatchDeletePost_4(batchDeleteAlgorithmParamInput, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
    * @summary 删除算法关联的所有参数，重新批量新增算法参数,
    * @param {Array<AddAlgorithmParamInput>} [addAlgorithmParamInput]
    * @param {*} [options] Override http request option.
@@ -1594,6 +3075,23 @@ export class ScriptApi extends BaseAPI {
   ) {
     return ScriptApiFp(this.configuration)
       .apiV1AlgorithmParamRecreatePost(addAlgorithmParamInput, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary 删除算法关联的所有参数，重新批量新增算法参数,
+   * @param {Array<AddAlgorithmParamInput>} [addAlgorithmParamInput]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof ScriptApi
+   */
+  public apiV1AlgorithmParamRecreatePost_5(
+    addAlgorithmParamInput?: Array<AddAlgorithmParamInput>,
+    options?: AxiosRequestConfig,
+  ) {
+    return ScriptApiFp(this.configuration)
+      .apiV1AlgorithmParamRecreatePost_5(addAlgorithmParamInput, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -1615,6 +3113,23 @@ export class ScriptApi extends BaseAPI {
   }
 
   /**
+   *
+   * @summary 更新算法参数
+   * @param {AlgorithmParamDto} [algorithmParamDto]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof ScriptApi
+   */
+  public apiV1AlgorithmParamUpdatePost_6(
+    algorithmParamDto?: AlgorithmParamDto,
+    options?: AxiosRequestConfig,
+  ) {
+    return ScriptApiFp(this.configuration)
+      .apiV1AlgorithmParamUpdatePost_6(algorithmParamDto, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
    * 关键词：      插件、脚本实例、删除  使用场景：      在更新完一个算法脚本后（通常是需要在不改变唯一编码的情况下，重新导入压缩包），需要删除该算法脚本已经生成的所有实例（容器）  相关背景：      一个算法脚本可以对应一个或多个算法脚本实例，其背后是docker镜像和docker容器的对应关系
    * @summary 根据Python脚本唯一编码删除Python脚本实例
    * @param {DeleteInstanceListInput} [deleteInstanceListInput]
@@ -1628,6 +3143,23 @@ export class ScriptApi extends BaseAPI {
   ) {
     return ScriptApiFp(this.configuration)
       .apiV1DeleteAlgorithmInstanceListPost(deleteInstanceListInput, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   * 关键词：      插件、脚本实例、删除  使用场景：      在更新完一个算法脚本后（通常是需要在不改变唯一编码的情况下，重新导入压缩包），需要删除该算法脚本已经生成的所有实例（容器）  相关背景：      一个算法脚本可以对应一个或多个算法脚本实例，其背后是docker镜像和docker容器的对应关系
+   * @summary 根据Python脚本唯一编码删除Python脚本实例
+   * @param {DeleteInstanceListInput} [deleteInstanceListInput]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof ScriptApi
+   */
+  public apiV1DeleteAlgorithmInstanceListPost_7(
+    deleteInstanceListInput?: DeleteInstanceListInput,
+    options?: AxiosRequestConfig,
+  ) {
+    return ScriptApiFp(this.configuration)
+      .apiV1DeleteAlgorithmInstanceListPost_7(deleteInstanceListInput, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -1649,6 +3181,23 @@ export class ScriptApi extends BaseAPI {
   }
 
   /**
+   * 关键词：      插件、脚本实例、删除  使用场景：      批量删除算法脚本实例  相关背景：      一个算法脚本可以对应一个或多个算法脚本实例，其背后是docker镜像和docker容器的对应关系
+   * @summary 批量删除Python算法脚本实例
+   * @param {DeleteAlgorithmInstanceInput} [deleteAlgorithmInstanceInput]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof ScriptApi
+   */
+  public apiV1DeleteAlgorithmInstancePost_8(
+    deleteAlgorithmInstanceInput?: DeleteAlgorithmInstanceInput,
+    options?: AxiosRequestConfig,
+  ) {
+    return ScriptApiFp(this.configuration)
+      .apiV1DeleteAlgorithmInstancePost_8(deleteAlgorithmInstanceInput, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
    * 关键词：      插件、脚本、删除  使用场景：      删除一个算法脚本及其所有的实例，其背后实质是删除算法脚本的所有容器和镜像  相关背景：      一个算法脚本可以对应一个或多个算法脚本实例，其背后是docker镜像和docker容器的对应关系
    * @summary 删除Python算法脚本
    * @param {DeleteAlgorithmSidecarInput} [deleteAlgorithmSidecarInput]
@@ -1662,6 +3211,23 @@ export class ScriptApi extends BaseAPI {
   ) {
     return ScriptApiFp(this.configuration)
       .apiV1DeleteAlgorithmPost(deleteAlgorithmSidecarInput, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   * 关键词：      插件、脚本、删除  使用场景：      删除一个算法脚本及其所有的实例，其背后实质是删除算法脚本的所有容器和镜像  相关背景：      一个算法脚本可以对应一个或多个算法脚本实例，其背后是docker镜像和docker容器的对应关系
+   * @summary 删除Python算法脚本
+   * @param {DeleteAlgorithmSidecarInput} [deleteAlgorithmSidecarInput]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof ScriptApi
+   */
+  public apiV1DeleteAlgorithmPost_9(
+    deleteAlgorithmSidecarInput?: DeleteAlgorithmSidecarInput,
+    options?: AxiosRequestConfig,
+  ) {
+    return ScriptApiFp(this.configuration)
+      .apiV1DeleteAlgorithmPost_9(deleteAlgorithmSidecarInput, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -1680,6 +3246,20 @@ export class ScriptApi extends BaseAPI {
   }
 
   /**
+   * 关键词：      插件、脚本、停用  使用场景：      停用算法脚本实例  相关背景：      一个算法脚本可以对应一个或多个算法脚本实例，其背后是docker镜像和docker容器的对应关系
+   * @summary 停用算法脚本实例
+   * @param {string} [algorithmInstanceCode] 算法实例唯一编码
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof ScriptApi
+   */
+  public apiV1DisableAlgorithmGet_10(algorithmInstanceCode?: string, options?: AxiosRequestConfig) {
+    return ScriptApiFp(this.configuration)
+      .apiV1DisableAlgorithmGet_10(algorithmInstanceCode, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
    * 关键词：      插件、脚本、启用  使用场景：      停用算法脚本实例  相关背景：      一个算法脚本可以对应一个或多个算法脚本实例，其背后是docker镜像和docker容器的对应关系
    * @summary 启用算法脚本实例
    * @param {string} [algorithmInstanceCode] 算法实例唯一编码
@@ -1690,6 +3270,20 @@ export class ScriptApi extends BaseAPI {
   public apiV1EnableAlgorithmGet(algorithmInstanceCode?: string, options?: AxiosRequestConfig) {
     return ScriptApiFp(this.configuration)
       .apiV1EnableAlgorithmGet(algorithmInstanceCode, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   * 关键词：      插件、脚本、启用  使用场景：      停用算法脚本实例  相关背景：      一个算法脚本可以对应一个或多个算法脚本实例，其背后是docker镜像和docker容器的对应关系
+   * @summary 启用算法脚本实例
+   * @param {string} [algorithmInstanceCode] 算法实例唯一编码
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof ScriptApi
+   */
+  public apiV1EnableAlgorithmGet_11(algorithmInstanceCode?: string, options?: AxiosRequestConfig) {
+    return ScriptApiFp(this.configuration)
+      .apiV1EnableAlgorithmGet_11(algorithmInstanceCode, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -1715,6 +3309,27 @@ export class ScriptApi extends BaseAPI {
   }
 
   /**
+   * 关键词：      插件、脚本、日志  使用场景：      根据算法唯一编码和时间范围，查询算法运行日志  相关背景：      一个算法脚本可以对应一个或多个算法脚本实例，其背后是docker镜像和docker容器的对应关系
+   * @summary 获取算法脚本实例的运行日志
+   * @param {string} [algorithmInstanceCode]
+   * @param {string} [startTime]
+   * @param {string} [endTime]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof ScriptApi
+   */
+  public apiV1GetAlgorithmLogGet_12(
+    algorithmInstanceCode?: string,
+    startTime?: string,
+    endTime?: string,
+    options?: AxiosRequestConfig,
+  ) {
+    return ScriptApiFp(this.configuration)
+      .apiV1GetAlgorithmLogGet_12(algorithmInstanceCode, startTime, endTime, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
    * 关键词：      插件、端口资源  使用场景：      在导入算法脚本生成算法实例时由系统调用该接口获取可用端口资源，通常不由用户直接调用  相关背景：      一个算法脚本可以对应一个或多个算法脚本实例，其背后是docker镜像和docker容器的对应关系
    * @summary 获取算法目标部署机器可分配的端口资源
    * @param {*} [options] Override http request option.
@@ -1728,6 +3343,19 @@ export class ScriptApi extends BaseAPI {
   }
 
   /**
+   * 关键词：      插件、端口资源  使用场景：      在导入算法脚本生成算法实例时由系统调用该接口获取可用端口资源，通常不由用户直接调用  相关背景：      一个算法脚本可以对应一个或多个算法脚本实例，其背后是docker镜像和docker容器的对应关系
+   * @summary 获取算法目标部署机器可分配的端口资源
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof ScriptApi
+   */
+  public apiV1GetAlgorithmTargetDeployMachineGet_13(options?: AxiosRequestConfig) {
+    return ScriptApiFp(this.configuration)
+      .apiV1GetAlgorithmTargetDeployMachineGet_13(options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
    * 关键词：      插件、脚本、版本  使用场景：      提供服务器上可用的python镜像版本，供导入脚本创建镜像时使用，系统将基于该版本镜像构建脚本镜像  相关背景：     若不指定python版本，系统默认使用python:3.10-slim-buster版本构建镜像
    * @summary 获取可用的python镜像版本
    * @param {*} [options] Override http request option.
@@ -1737,6 +3365,19 @@ export class ScriptApi extends BaseAPI {
   public apiV1GetAvaliablePythonVersionGet(options?: AxiosRequestConfig) {
     return ScriptApiFp(this.configuration)
       .apiV1GetAvaliablePythonVersionGet(options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   * 关键词：      插件、脚本、版本  使用场景：      提供服务器上可用的python镜像版本，供导入脚本创建镜像时使用，系统将基于该版本镜像构建脚本镜像  相关背景：     若不指定python版本，系统默认使用python:3.10-slim-buster版本构建镜像
+   * @summary 获取可用的python镜像版本
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof ScriptApi
+   */
+  public apiV1GetAvaliablePythonVersionGet_14(options?: AxiosRequestConfig) {
+    return ScriptApiFp(this.configuration)
+      .apiV1GetAvaliablePythonVersionGet_14(options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -1756,6 +3397,20 @@ export class ScriptApi extends BaseAPI {
 
   /**
    * 关键词：      插件、脚本、查询  使用场景：      已知算法唯一编码，查询该算法的详细信息，包括关联的算法实例信息  相关背景：      一个算法脚本可以对应一个或多个算法脚本实例，其背后是docker镜像和docker容器的对应关系
+   * @summary 通过算法唯一编码查询算法详细信息
+   * @param {string} [algorithmCode]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof ScriptApi
+   */
+  public apiV1QueryAlgorithmByCodeGet_15(algorithmCode?: string, options?: AxiosRequestConfig) {
+    return ScriptApiFp(this.configuration)
+      .apiV1QueryAlgorithmByCodeGet_15(algorithmCode, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   * 关键词：      插件、脚本、查询  使用场景：      已知算法唯一编码，查询该算法的详细信息，包括关联的算法实例信息  相关背景：      一个算法脚本可以对应一个或多个算法脚本实例，其背后是docker镜像和docker容器的对应关系
    * @summary 分页查询算法及算法实例信息
    * @param {QueryAlgorithmByConInput} [queryAlgorithmByConInput]
    * @param {*} [options] Override http request option.
@@ -1768,6 +3423,23 @@ export class ScriptApi extends BaseAPI {
   ) {
     return ScriptApiFp(this.configuration)
       .apiV1QueryAlgorithmListByConPost(queryAlgorithmByConInput, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   * 关键词：      插件、脚本、查询  使用场景：      已知算法唯一编码，查询该算法的详细信息，包括关联的算法实例信息  相关背景：      一个算法脚本可以对应一个或多个算法脚本实例，其背后是docker镜像和docker容器的对应关系
+   * @summary 分页查询算法及算法实例信息
+   * @param {QueryAlgorithmByConInput} [queryAlgorithmByConInput]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof ScriptApi
+   */
+  public apiV1QueryAlgorithmListByConPost_16(
+    queryAlgorithmByConInput?: QueryAlgorithmByConInput,
+    options?: AxiosRequestConfig,
+  ) {
+    return ScriptApiFp(this.configuration)
+      .apiV1QueryAlgorithmListByConPost_16(queryAlgorithmByConInput, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -1791,6 +3463,25 @@ export class ScriptApi extends BaseAPI {
   }
 
   /**
+   * 关键词：      插件、脚本、运行  使用场景：      在已知算法实例唯一编码的情况下，对其进行调用，调用方式可以是任务调度定时执行，也可以是前端或其他服务的单次执行  相关背景：      需要完成python脚本压缩包导入并生成一个脚本实例后，方可调用执行，可通过\"DHI项目配置平台\"完成导入操作。  输出：      算法脚本实例执行结果，该结果的字符串值由用户的算法脚本的执行结果决定
+   * @summary 运行Python算法脚本实例
+   * @param {string} [algorithmCode] 算法实例唯一编码，可通过接口&#x60;&#x60;&#x60;v1/query/algorithm/list/by/con&#x60;&#x60;&#x60;获得算法和算法实例信息
+   * @param {string} [body]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof ScriptApi
+   */
+  public apiV1RunAlgorithmPost_17(
+    algorithmCode?: string,
+    body?: string,
+    options?: AxiosRequestConfig,
+  ) {
+    return ScriptApiFp(this.configuration)
+      .apiV1RunAlgorithmPost_17(algorithmCode, body, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
    *
    * @summary 手动批量新增或更新算法（根据AlgorithmCode判断）并自动生成实例，用于数据源配置绑定算法实例id
    * @param {Array<AddAlgorithmManualInput>} [addAlgorithmManualInput]
@@ -1808,6 +3499,23 @@ export class ScriptApi extends BaseAPI {
   }
 
   /**
+   *
+   * @summary 手动批量新增或更新算法（根据AlgorithmCode判断）并自动生成实例，用于数据源配置绑定算法实例id
+   * @param {Array<AddAlgorithmManualInput>} [addAlgorithmManualInput]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof ScriptApi
+   */
+  public apiV1SaveAlgorithmManualPost_18(
+    addAlgorithmManualInput?: Array<AddAlgorithmManualInput>,
+    options?: AxiosRequestConfig,
+  ) {
+    return ScriptApiFp(this.configuration)
+      .apiV1SaveAlgorithmManualPost_18(addAlgorithmManualInput, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
    * 关键词：      插件、脚本、保存  使用场景：      新增或更新一个算法脚本，该接口在脚本导入过程中由后台服务调用完成，通常不由用户单独调用。  相关背景：      一个算法脚本可以对应一个或多个算法脚本实例，其背后是docker镜像和docker容器的对应关系
    * @summary 保存Python算法脚本
    * @param {AddAlgorithmSidecarInput} [addAlgorithmSidecarInput]
@@ -1821,6 +3529,23 @@ export class ScriptApi extends BaseAPI {
   ) {
     return ScriptApiFp(this.configuration)
       .apiV1SaveAlgorithmPost(addAlgorithmSidecarInput, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   * 关键词：      插件、脚本、保存  使用场景：      新增或更新一个算法脚本，该接口在脚本导入过程中由后台服务调用完成，通常不由用户单独调用。  相关背景：      一个算法脚本可以对应一个或多个算法脚本实例，其背后是docker镜像和docker容器的对应关系
+   * @summary 保存Python算法脚本
+   * @param {AddAlgorithmSidecarInput} [addAlgorithmSidecarInput]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof ScriptApi
+   */
+  public apiV1SaveAlgorithmPost_19(
+    addAlgorithmSidecarInput?: AddAlgorithmSidecarInput,
+    options?: AxiosRequestConfig,
+  ) {
+    return ScriptApiFp(this.configuration)
+      .apiV1SaveAlgorithmPost_19(addAlgorithmSidecarInput, options)
       .then((request) => request(this.axios, this.basePath))
   }
 }

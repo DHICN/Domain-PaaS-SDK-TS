@@ -49,7 +49,7 @@ import { IndicatorToMuiltipleAlgorithmOutput } from '../models'
 // @ts-ignore
 import { PageInput } from '../models'
 // @ts-ignore
-import { RemoteServiceErrorResponse } from '../models'
+import { TelemetryOutput } from '../models'
 /**
  * DataCleanApi - axios parameter creator
  * @export
@@ -58,12 +58,123 @@ export const DataCleanApiAxiosParamCreator = function (configuration?: Configura
   return {
     /**
      *
+     * @summary 获取当前租户的所有指标算法信息
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1DataCleanAlgorithmAllGet: async (
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/data-clean/algorithm/all`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 获取当前租户的所有指标算法信息
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1DataCleanAlgorithmAllGet_1: async (
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/data-clean/algorithm/all`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
      * @summary 删除清洗算法配置及绑定的指标信息
      * @param {DeleteDataCleanAlgorithmConfig} [deleteDataCleanAlgorithmConfig]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiV1DataCleanAlgorithmDeletePost: async (
+      deleteDataCleanAlgorithmConfig?: DeleteDataCleanAlgorithmConfig,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/data-clean/algorithm/delete`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        deleteDataCleanAlgorithmConfig,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 删除清洗算法配置及绑定的指标信息
+     * @param {DeleteDataCleanAlgorithmConfig} [deleteDataCleanAlgorithmConfig]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1DataCleanAlgorithmDeletePost_2: async (
       deleteDataCleanAlgorithmConfig?: DeleteDataCleanAlgorithmConfig,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
@@ -135,12 +246,89 @@ export const DataCleanApiAxiosParamCreator = function (configuration?: Configura
     },
     /**
      *
+     * @summary 获取多算法指标信息
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1DataCleanAlgorithmMuiltipleAlgorithmGet_3: async (
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/data-clean/algorithm/muiltiple-algorithm`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
      * @summary 保存多算法指标信息
      * @param {Array<IndicatorToMuiltipleAlgorithmOutput>} [indicatorToMuiltipleAlgorithmOutput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiV1DataCleanAlgorithmMuiltipleAlgorithmSavePost: async (
+      indicatorToMuiltipleAlgorithmOutput?: Array<IndicatorToMuiltipleAlgorithmOutput>,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/data-clean/algorithm/muiltiple-algorithm/save`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        indicatorToMuiltipleAlgorithmOutput,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 保存多算法指标信息
+     * @param {Array<IndicatorToMuiltipleAlgorithmOutput>} [indicatorToMuiltipleAlgorithmOutput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1DataCleanAlgorithmMuiltipleAlgorithmSavePost_4: async (
       indicatorToMuiltipleAlgorithmOutput?: Array<IndicatorToMuiltipleAlgorithmOutput>,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
@@ -221,6 +409,49 @@ export const DataCleanApiAxiosParamCreator = function (configuration?: Configura
     },
     /**
      *
+     * @summary 分页查询清洗算法配置
+     * @param {PageInput} [pageInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1DataCleanAlgorithmPost_5: async (
+      pageInput?: PageInput,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/data-clean/algorithm`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        pageInput,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
      * @summary 保存清洗算法配置
      * @param {Array<DataCleanAlgorithmConfigOutput>} [dataCleanAlgorithmConfigOutput]
      * @param {*} [options] Override http request option.
@@ -264,12 +495,184 @@ export const DataCleanApiAxiosParamCreator = function (configuration?: Configura
     },
     /**
      *
+     * @summary 保存清洗算法配置
+     * @param {Array<DataCleanAlgorithmConfigOutput>} [dataCleanAlgorithmConfigOutput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1DataCleanAlgorithmSavePost_6: async (
+      dataCleanAlgorithmConfigOutput?: Array<DataCleanAlgorithmConfigOutput>,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/data-clean/algorithm/save`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        dataCleanAlgorithmConfigOutput,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 将清洗数据写入redis
+     * @param {TelemetryOutput} [telemetryOutput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1DataCleanSetRedisPost: async (
+      telemetryOutput?: TelemetryOutput,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/data-clean/set-redis`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        telemetryOutput,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 将清洗数据写入redis
+     * @param {TelemetryOutput} [telemetryOutput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1DataCleanSetRedisPost_7: async (
+      telemetryOutput?: TelemetryOutput,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/data-clean/set-redis`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        telemetryOutput,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
      * @summary 添加清洗标签
      * @param {Array<AddDataCleanTagConfig>} [addDataCleanTagConfig]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiV1DataCleanTagAddPost: async (
+      addDataCleanTagConfig?: Array<AddDataCleanTagConfig>,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/data-clean/tag/add`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        addDataCleanTagConfig,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 添加清洗标签
+     * @param {Array<AddDataCleanTagConfig>} [addDataCleanTagConfig]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1DataCleanTagAddPost_8: async (
       addDataCleanTagConfig?: Array<AddDataCleanTagConfig>,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
@@ -350,12 +753,98 @@ export const DataCleanApiAxiosParamCreator = function (configuration?: Configura
     },
     /**
      *
+     * @summary 删除清洗标签
+     * @param {DeleteDataCleanTagConfig} [deleteDataCleanTagConfig]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1DataCleanTagDeletePost_9: async (
+      deleteDataCleanTagConfig?: DeleteDataCleanTagConfig,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/data-clean/tag/delete`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        deleteDataCleanTagConfig,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
      * @summary 分页查询清洗标签
      * @param {PageInput} [pageInput]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiV1DataCleanTagPost: async (
+      pageInput?: PageInput,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/data-clean/tag`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        pageInput,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary 分页查询清洗标签
+     * @param {PageInput} [pageInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1DataCleanTagPost_10: async (
       pageInput?: PageInput,
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
@@ -434,6 +923,49 @@ export const DataCleanApiAxiosParamCreator = function (configuration?: Configura
         options: localVarRequestOptions,
       }
     },
+    /**
+     *
+     * @summary 修改清洗标签
+     * @param {Array<DataCleanTagConfigOutput>} [dataCleanTagConfigOutput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1DataCleanTagUpdatePost_11: async (
+      dataCleanTagConfigOutput?: Array<DataCleanTagConfigOutput>,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/api/v1/data-clean/tag/update`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        dataCleanTagConfigOutput,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
   }
 }
 
@@ -446,6 +978,42 @@ export const DataCleanApiFp = function (configuration?: Configuration) {
   return {
     /**
      *
+     * @summary 获取当前租户的所有指标算法信息
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1DataCleanAlgorithmAllGet(
+      options?: AxiosRequestConfig,
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string,
+      ) => AxiosPromise<Array<IndicatorToMuiltipleAlgorithmOutput>>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiV1DataCleanAlgorithmAllGet(options)
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
+     * @summary 获取当前租户的所有指标算法信息
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1DataCleanAlgorithmAllGet_1(
+      options?: AxiosRequestConfig,
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string,
+      ) => AxiosPromise<Array<IndicatorToMuiltipleAlgorithmOutput>>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiV1DataCleanAlgorithmAllGet_1(options)
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
      * @summary 删除清洗算法配置及绑定的指标信息
      * @param {DeleteDataCleanAlgorithmConfig} [deleteDataCleanAlgorithmConfig]
      * @param {*} [options] Override http request option.
@@ -454,8 +1022,25 @@ export const DataCleanApiFp = function (configuration?: Configuration) {
     async apiV1DataCleanAlgorithmDeletePost(
       deleteDataCleanAlgorithmConfig?: DeleteDataCleanAlgorithmConfig,
       options?: AxiosRequestConfig,
-    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
       const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1DataCleanAlgorithmDeletePost(
+        deleteDataCleanAlgorithmConfig,
+        options,
+      )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
+     * @summary 删除清洗算法配置及绑定的指标信息
+     * @param {DeleteDataCleanAlgorithmConfig} [deleteDataCleanAlgorithmConfig]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1DataCleanAlgorithmDeletePost_2(
+      deleteDataCleanAlgorithmConfig?: DeleteDataCleanAlgorithmConfig,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1DataCleanAlgorithmDeletePost_2(
         deleteDataCleanAlgorithmConfig,
         options,
       )
@@ -481,6 +1066,24 @@ export const DataCleanApiFp = function (configuration?: Configuration) {
     },
     /**
      *
+     * @summary 获取多算法指标信息
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1DataCleanAlgorithmMuiltipleAlgorithmGet_3(
+      options?: AxiosRequestConfig,
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string,
+      ) => AxiosPromise<Array<IndicatorToMuiltipleAlgorithmOutput>>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiV1DataCleanAlgorithmMuiltipleAlgorithmGet_3(options)
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
      * @summary 保存多算法指标信息
      * @param {Array<IndicatorToMuiltipleAlgorithmOutput>} [indicatorToMuiltipleAlgorithmOutput]
      * @param {*} [options] Override http request option.
@@ -489,9 +1092,27 @@ export const DataCleanApiFp = function (configuration?: Configuration) {
     async apiV1DataCleanAlgorithmMuiltipleAlgorithmSavePost(
       indicatorToMuiltipleAlgorithmOutput?: Array<IndicatorToMuiltipleAlgorithmOutput>,
       options?: AxiosRequestConfig,
-    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.apiV1DataCleanAlgorithmMuiltipleAlgorithmSavePost(
+          indicatorToMuiltipleAlgorithmOutput,
+          options,
+        )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
+     * @summary 保存多算法指标信息
+     * @param {Array<IndicatorToMuiltipleAlgorithmOutput>} [indicatorToMuiltipleAlgorithmOutput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1DataCleanAlgorithmMuiltipleAlgorithmSavePost_4(
+      indicatorToMuiltipleAlgorithmOutput?: Array<IndicatorToMuiltipleAlgorithmOutput>,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.apiV1DataCleanAlgorithmMuiltipleAlgorithmSavePost_4(
           indicatorToMuiltipleAlgorithmOutput,
           options,
         )
@@ -518,6 +1139,25 @@ export const DataCleanApiFp = function (configuration?: Configuration) {
     },
     /**
      *
+     * @summary 分页查询清洗算法配置
+     * @param {PageInput} [pageInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1DataCleanAlgorithmPost_5(
+      pageInput?: PageInput,
+      options?: AxiosRequestConfig,
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<DataCleanAlgorithmConfigOutputPage>
+    > {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1DataCleanAlgorithmPost_5(
+        pageInput,
+        options,
+      )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
      * @summary 保存清洗算法配置
      * @param {Array<DataCleanAlgorithmConfigOutput>} [dataCleanAlgorithmConfigOutput]
      * @param {*} [options] Override http request option.
@@ -526,9 +1166,60 @@ export const DataCleanApiFp = function (configuration?: Configuration) {
     async apiV1DataCleanAlgorithmSavePost(
       dataCleanAlgorithmConfigOutput?: Array<DataCleanAlgorithmConfigOutput>,
       options?: AxiosRequestConfig,
-    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
       const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1DataCleanAlgorithmSavePost(
         dataCleanAlgorithmConfigOutput,
+        options,
+      )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
+     * @summary 保存清洗算法配置
+     * @param {Array<DataCleanAlgorithmConfigOutput>} [dataCleanAlgorithmConfigOutput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1DataCleanAlgorithmSavePost_6(
+      dataCleanAlgorithmConfigOutput?: Array<DataCleanAlgorithmConfigOutput>,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1DataCleanAlgorithmSavePost_6(
+        dataCleanAlgorithmConfigOutput,
+        options,
+      )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
+     * @summary 将清洗数据写入redis
+     * @param {TelemetryOutput} [telemetryOutput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1DataCleanSetRedisPost(
+      telemetryOutput?: TelemetryOutput,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1DataCleanSetRedisPost(
+        telemetryOutput,
+        options,
+      )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
+     * @summary 将清洗数据写入redis
+     * @param {TelemetryOutput} [telemetryOutput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1DataCleanSetRedisPost_7(
+      telemetryOutput?: TelemetryOutput,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1DataCleanSetRedisPost_7(
+        telemetryOutput,
         options,
       )
       return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
@@ -543,8 +1234,25 @@ export const DataCleanApiFp = function (configuration?: Configuration) {
     async apiV1DataCleanTagAddPost(
       addDataCleanTagConfig?: Array<AddDataCleanTagConfig>,
       options?: AxiosRequestConfig,
-    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
       const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1DataCleanTagAddPost(
+        addDataCleanTagConfig,
+        options,
+      )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
+     * @summary 添加清洗标签
+     * @param {Array<AddDataCleanTagConfig>} [addDataCleanTagConfig]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1DataCleanTagAddPost_8(
+      addDataCleanTagConfig?: Array<AddDataCleanTagConfig>,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1DataCleanTagAddPost_8(
         addDataCleanTagConfig,
         options,
       )
@@ -560,8 +1268,25 @@ export const DataCleanApiFp = function (configuration?: Configuration) {
     async apiV1DataCleanTagDeletePost(
       deleteDataCleanTagConfig?: DeleteDataCleanTagConfig,
       options?: AxiosRequestConfig,
-    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
       const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1DataCleanTagDeletePost(
+        deleteDataCleanTagConfig,
+        options,
+      )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
+     * @summary 删除清洗标签
+     * @param {DeleteDataCleanTagConfig} [deleteDataCleanTagConfig]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1DataCleanTagDeletePost_9(
+      deleteDataCleanTagConfig?: DeleteDataCleanTagConfig,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1DataCleanTagDeletePost_9(
         deleteDataCleanTagConfig,
         options,
       )
@@ -588,6 +1313,25 @@ export const DataCleanApiFp = function (configuration?: Configuration) {
     },
     /**
      *
+     * @summary 分页查询清洗标签
+     * @param {PageInput} [pageInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1DataCleanTagPost_10(
+      pageInput?: PageInput,
+      options?: AxiosRequestConfig,
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<DataCleanTagConfigOutputPage>
+    > {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1DataCleanTagPost_10(
+        pageInput,
+        options,
+      )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
      * @summary 修改清洗标签
      * @param {Array<DataCleanTagConfigOutput>} [dataCleanTagConfigOutput]
      * @param {*} [options] Override http request option.
@@ -596,8 +1340,25 @@ export const DataCleanApiFp = function (configuration?: Configuration) {
     async apiV1DataCleanTagUpdatePost(
       dataCleanTagConfigOutput?: Array<DataCleanTagConfigOutput>,
       options?: AxiosRequestConfig,
-    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
       const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1DataCleanTagUpdatePost(
+        dataCleanTagConfigOutput,
+        options,
+      )
+      return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)
+    },
+    /**
+     *
+     * @summary 修改清洗标签
+     * @param {Array<DataCleanTagConfigOutput>} [dataCleanTagConfigOutput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async apiV1DataCleanTagUpdatePost_11(
+      dataCleanTagConfigOutput?: Array<DataCleanTagConfigOutput>,
+      options?: AxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1DataCleanTagUpdatePost_11(
         dataCleanTagConfigOutput,
         options,
       )
@@ -619,6 +1380,32 @@ export const DataCleanApiFactory = function (
   return {
     /**
      *
+     * @summary 获取当前租户的所有指标算法信息
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1DataCleanAlgorithmAllGet(
+      options?: any,
+    ): AxiosPromise<Array<IndicatorToMuiltipleAlgorithmOutput>> {
+      return localVarFp
+        .apiV1DataCleanAlgorithmAllGet(options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @summary 获取当前租户的所有指标算法信息
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1DataCleanAlgorithmAllGet_1(
+      options?: any,
+    ): AxiosPromise<Array<IndicatorToMuiltipleAlgorithmOutput>> {
+      return localVarFp
+        .apiV1DataCleanAlgorithmAllGet_1(options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
      * @summary 删除清洗算法配置及绑定的指标信息
      * @param {DeleteDataCleanAlgorithmConfig} [deleteDataCleanAlgorithmConfig]
      * @param {*} [options] Override http request option.
@@ -627,9 +1414,24 @@ export const DataCleanApiFactory = function (
     apiV1DataCleanAlgorithmDeletePost(
       deleteDataCleanAlgorithmConfig?: DeleteDataCleanAlgorithmConfig,
       options?: any,
-    ): AxiosPromise<object> {
+    ): AxiosPromise<void> {
       return localVarFp
         .apiV1DataCleanAlgorithmDeletePost(deleteDataCleanAlgorithmConfig, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @summary 删除清洗算法配置及绑定的指标信息
+     * @param {DeleteDataCleanAlgorithmConfig} [deleteDataCleanAlgorithmConfig]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1DataCleanAlgorithmDeletePost_2(
+      deleteDataCleanAlgorithmConfig?: DeleteDataCleanAlgorithmConfig,
+      options?: any,
+    ): AxiosPromise<void> {
+      return localVarFp
+        .apiV1DataCleanAlgorithmDeletePost_2(deleteDataCleanAlgorithmConfig, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -647,6 +1449,19 @@ export const DataCleanApiFactory = function (
     },
     /**
      *
+     * @summary 获取多算法指标信息
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1DataCleanAlgorithmMuiltipleAlgorithmGet_3(
+      options?: any,
+    ): AxiosPromise<Array<IndicatorToMuiltipleAlgorithmOutput>> {
+      return localVarFp
+        .apiV1DataCleanAlgorithmMuiltipleAlgorithmGet_3(options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
      * @summary 保存多算法指标信息
      * @param {Array<IndicatorToMuiltipleAlgorithmOutput>} [indicatorToMuiltipleAlgorithmOutput]
      * @param {*} [options] Override http request option.
@@ -655,9 +1470,27 @@ export const DataCleanApiFactory = function (
     apiV1DataCleanAlgorithmMuiltipleAlgorithmSavePost(
       indicatorToMuiltipleAlgorithmOutput?: Array<IndicatorToMuiltipleAlgorithmOutput>,
       options?: any,
-    ): AxiosPromise<object> {
+    ): AxiosPromise<void> {
       return localVarFp
         .apiV1DataCleanAlgorithmMuiltipleAlgorithmSavePost(
+          indicatorToMuiltipleAlgorithmOutput,
+          options,
+        )
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @summary 保存多算法指标信息
+     * @param {Array<IndicatorToMuiltipleAlgorithmOutput>} [indicatorToMuiltipleAlgorithmOutput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1DataCleanAlgorithmMuiltipleAlgorithmSavePost_4(
+      indicatorToMuiltipleAlgorithmOutput?: Array<IndicatorToMuiltipleAlgorithmOutput>,
+      options?: any,
+    ): AxiosPromise<void> {
+      return localVarFp
+        .apiV1DataCleanAlgorithmMuiltipleAlgorithmSavePost_4(
           indicatorToMuiltipleAlgorithmOutput,
           options,
         )
@@ -680,6 +1513,21 @@ export const DataCleanApiFactory = function (
     },
     /**
      *
+     * @summary 分页查询清洗算法配置
+     * @param {PageInput} [pageInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1DataCleanAlgorithmPost_5(
+      pageInput?: PageInput,
+      options?: any,
+    ): AxiosPromise<DataCleanAlgorithmConfigOutputPage> {
+      return localVarFp
+        .apiV1DataCleanAlgorithmPost_5(pageInput, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
      * @summary 保存清洗算法配置
      * @param {Array<DataCleanAlgorithmConfigOutput>} [dataCleanAlgorithmConfigOutput]
      * @param {*} [options] Override http request option.
@@ -688,9 +1536,54 @@ export const DataCleanApiFactory = function (
     apiV1DataCleanAlgorithmSavePost(
       dataCleanAlgorithmConfigOutput?: Array<DataCleanAlgorithmConfigOutput>,
       options?: any,
-    ): AxiosPromise<object> {
+    ): AxiosPromise<void> {
       return localVarFp
         .apiV1DataCleanAlgorithmSavePost(dataCleanAlgorithmConfigOutput, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @summary 保存清洗算法配置
+     * @param {Array<DataCleanAlgorithmConfigOutput>} [dataCleanAlgorithmConfigOutput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1DataCleanAlgorithmSavePost_6(
+      dataCleanAlgorithmConfigOutput?: Array<DataCleanAlgorithmConfigOutput>,
+      options?: any,
+    ): AxiosPromise<void> {
+      return localVarFp
+        .apiV1DataCleanAlgorithmSavePost_6(dataCleanAlgorithmConfigOutput, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @summary 将清洗数据写入redis
+     * @param {TelemetryOutput} [telemetryOutput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1DataCleanSetRedisPost(
+      telemetryOutput?: TelemetryOutput,
+      options?: any,
+    ): AxiosPromise<void> {
+      return localVarFp
+        .apiV1DataCleanSetRedisPost(telemetryOutput, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @summary 将清洗数据写入redis
+     * @param {TelemetryOutput} [telemetryOutput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1DataCleanSetRedisPost_7(
+      telemetryOutput?: TelemetryOutput,
+      options?: any,
+    ): AxiosPromise<void> {
+      return localVarFp
+        .apiV1DataCleanSetRedisPost_7(telemetryOutput, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -703,9 +1596,24 @@ export const DataCleanApiFactory = function (
     apiV1DataCleanTagAddPost(
       addDataCleanTagConfig?: Array<AddDataCleanTagConfig>,
       options?: any,
-    ): AxiosPromise<object> {
+    ): AxiosPromise<void> {
       return localVarFp
         .apiV1DataCleanTagAddPost(addDataCleanTagConfig, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @summary 添加清洗标签
+     * @param {Array<AddDataCleanTagConfig>} [addDataCleanTagConfig]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1DataCleanTagAddPost_8(
+      addDataCleanTagConfig?: Array<AddDataCleanTagConfig>,
+      options?: any,
+    ): AxiosPromise<void> {
+      return localVarFp
+        .apiV1DataCleanTagAddPost_8(addDataCleanTagConfig, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -718,9 +1626,24 @@ export const DataCleanApiFactory = function (
     apiV1DataCleanTagDeletePost(
       deleteDataCleanTagConfig?: DeleteDataCleanTagConfig,
       options?: any,
-    ): AxiosPromise<object> {
+    ): AxiosPromise<void> {
       return localVarFp
         .apiV1DataCleanTagDeletePost(deleteDataCleanTagConfig, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @summary 删除清洗标签
+     * @param {DeleteDataCleanTagConfig} [deleteDataCleanTagConfig]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1DataCleanTagDeletePost_9(
+      deleteDataCleanTagConfig?: DeleteDataCleanTagConfig,
+      options?: any,
+    ): AxiosPromise<void> {
+      return localVarFp
+        .apiV1DataCleanTagDeletePost_9(deleteDataCleanTagConfig, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -740,6 +1663,21 @@ export const DataCleanApiFactory = function (
     },
     /**
      *
+     * @summary 分页查询清洗标签
+     * @param {PageInput} [pageInput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1DataCleanTagPost_10(
+      pageInput?: PageInput,
+      options?: any,
+    ): AxiosPromise<DataCleanTagConfigOutputPage> {
+      return localVarFp
+        .apiV1DataCleanTagPost_10(pageInput, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
      * @summary 修改清洗标签
      * @param {Array<DataCleanTagConfigOutput>} [dataCleanTagConfigOutput]
      * @param {*} [options] Override http request option.
@@ -748,9 +1686,24 @@ export const DataCleanApiFactory = function (
     apiV1DataCleanTagUpdatePost(
       dataCleanTagConfigOutput?: Array<DataCleanTagConfigOutput>,
       options?: any,
-    ): AxiosPromise<object> {
+    ): AxiosPromise<void> {
       return localVarFp
         .apiV1DataCleanTagUpdatePost(dataCleanTagConfigOutput, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @summary 修改清洗标签
+     * @param {Array<DataCleanTagConfigOutput>} [dataCleanTagConfigOutput]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    apiV1DataCleanTagUpdatePost_11(
+      dataCleanTagConfigOutput?: Array<DataCleanTagConfigOutput>,
+      options?: any,
+    ): AxiosPromise<void> {
+      return localVarFp
+        .apiV1DataCleanTagUpdatePost_11(dataCleanTagConfigOutput, options)
         .then((request) => request(axios, basePath))
     },
   }
@@ -763,6 +1716,32 @@ export const DataCleanApiFactory = function (
  * @extends {BaseAPI}
  */
 export class DataCleanApi extends BaseAPI {
+  /**
+   *
+   * @summary 获取当前租户的所有指标算法信息
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof DataCleanApi
+   */
+  public apiV1DataCleanAlgorithmAllGet(options?: AxiosRequestConfig) {
+    return DataCleanApiFp(this.configuration)
+      .apiV1DataCleanAlgorithmAllGet(options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary 获取当前租户的所有指标算法信息
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof DataCleanApi
+   */
+  public apiV1DataCleanAlgorithmAllGet_1(options?: AxiosRequestConfig) {
+    return DataCleanApiFp(this.configuration)
+      .apiV1DataCleanAlgorithmAllGet_1(options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
   /**
    *
    * @summary 删除清洗算法配置及绑定的指标信息
@@ -782,6 +1761,23 @@ export class DataCleanApi extends BaseAPI {
 
   /**
    *
+   * @summary 删除清洗算法配置及绑定的指标信息
+   * @param {DeleteDataCleanAlgorithmConfig} [deleteDataCleanAlgorithmConfig]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof DataCleanApi
+   */
+  public apiV1DataCleanAlgorithmDeletePost_2(
+    deleteDataCleanAlgorithmConfig?: DeleteDataCleanAlgorithmConfig,
+    options?: AxiosRequestConfig,
+  ) {
+    return DataCleanApiFp(this.configuration)
+      .apiV1DataCleanAlgorithmDeletePost_2(deleteDataCleanAlgorithmConfig, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
    * @summary 获取多算法指标信息
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
@@ -790,6 +1786,19 @@ export class DataCleanApi extends BaseAPI {
   public apiV1DataCleanAlgorithmMuiltipleAlgorithmGet(options?: AxiosRequestConfig) {
     return DataCleanApiFp(this.configuration)
       .apiV1DataCleanAlgorithmMuiltipleAlgorithmGet(options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary 获取多算法指标信息
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof DataCleanApi
+   */
+  public apiV1DataCleanAlgorithmMuiltipleAlgorithmGet_3(options?: AxiosRequestConfig) {
+    return DataCleanApiFp(this.configuration)
+      .apiV1DataCleanAlgorithmMuiltipleAlgorithmGet_3(options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -815,6 +1824,26 @@ export class DataCleanApi extends BaseAPI {
 
   /**
    *
+   * @summary 保存多算法指标信息
+   * @param {Array<IndicatorToMuiltipleAlgorithmOutput>} [indicatorToMuiltipleAlgorithmOutput]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof DataCleanApi
+   */
+  public apiV1DataCleanAlgorithmMuiltipleAlgorithmSavePost_4(
+    indicatorToMuiltipleAlgorithmOutput?: Array<IndicatorToMuiltipleAlgorithmOutput>,
+    options?: AxiosRequestConfig,
+  ) {
+    return DataCleanApiFp(this.configuration)
+      .apiV1DataCleanAlgorithmMuiltipleAlgorithmSavePost_4(
+        indicatorToMuiltipleAlgorithmOutput,
+        options,
+      )
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
    * @summary 分页查询清洗算法配置
    * @param {PageInput} [pageInput]
    * @param {*} [options] Override http request option.
@@ -824,6 +1853,20 @@ export class DataCleanApi extends BaseAPI {
   public apiV1DataCleanAlgorithmPost(pageInput?: PageInput, options?: AxiosRequestConfig) {
     return DataCleanApiFp(this.configuration)
       .apiV1DataCleanAlgorithmPost(pageInput, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary 分页查询清洗算法配置
+   * @param {PageInput} [pageInput]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof DataCleanApi
+   */
+  public apiV1DataCleanAlgorithmPost_5(pageInput?: PageInput, options?: AxiosRequestConfig) {
+    return DataCleanApiFp(this.configuration)
+      .apiV1DataCleanAlgorithmPost_5(pageInput, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -846,6 +1889,57 @@ export class DataCleanApi extends BaseAPI {
 
   /**
    *
+   * @summary 保存清洗算法配置
+   * @param {Array<DataCleanAlgorithmConfigOutput>} [dataCleanAlgorithmConfigOutput]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof DataCleanApi
+   */
+  public apiV1DataCleanAlgorithmSavePost_6(
+    dataCleanAlgorithmConfigOutput?: Array<DataCleanAlgorithmConfigOutput>,
+    options?: AxiosRequestConfig,
+  ) {
+    return DataCleanApiFp(this.configuration)
+      .apiV1DataCleanAlgorithmSavePost_6(dataCleanAlgorithmConfigOutput, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary 将清洗数据写入redis
+   * @param {TelemetryOutput} [telemetryOutput]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof DataCleanApi
+   */
+  public apiV1DataCleanSetRedisPost(
+    telemetryOutput?: TelemetryOutput,
+    options?: AxiosRequestConfig,
+  ) {
+    return DataCleanApiFp(this.configuration)
+      .apiV1DataCleanSetRedisPost(telemetryOutput, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary 将清洗数据写入redis
+   * @param {TelemetryOutput} [telemetryOutput]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof DataCleanApi
+   */
+  public apiV1DataCleanSetRedisPost_7(
+    telemetryOutput?: TelemetryOutput,
+    options?: AxiosRequestConfig,
+  ) {
+    return DataCleanApiFp(this.configuration)
+      .apiV1DataCleanSetRedisPost_7(telemetryOutput, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
    * @summary 添加清洗标签
    * @param {Array<AddDataCleanTagConfig>} [addDataCleanTagConfig]
    * @param {*} [options] Override http request option.
@@ -858,6 +1952,23 @@ export class DataCleanApi extends BaseAPI {
   ) {
     return DataCleanApiFp(this.configuration)
       .apiV1DataCleanTagAddPost(addDataCleanTagConfig, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary 添加清洗标签
+   * @param {Array<AddDataCleanTagConfig>} [addDataCleanTagConfig]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof DataCleanApi
+   */
+  public apiV1DataCleanTagAddPost_8(
+    addDataCleanTagConfig?: Array<AddDataCleanTagConfig>,
+    options?: AxiosRequestConfig,
+  ) {
+    return DataCleanApiFp(this.configuration)
+      .apiV1DataCleanTagAddPost_8(addDataCleanTagConfig, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -880,6 +1991,23 @@ export class DataCleanApi extends BaseAPI {
 
   /**
    *
+   * @summary 删除清洗标签
+   * @param {DeleteDataCleanTagConfig} [deleteDataCleanTagConfig]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof DataCleanApi
+   */
+  public apiV1DataCleanTagDeletePost_9(
+    deleteDataCleanTagConfig?: DeleteDataCleanTagConfig,
+    options?: AxiosRequestConfig,
+  ) {
+    return DataCleanApiFp(this.configuration)
+      .apiV1DataCleanTagDeletePost_9(deleteDataCleanTagConfig, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
    * @summary 分页查询清洗标签
    * @param {PageInput} [pageInput]
    * @param {*} [options] Override http request option.
@@ -889,6 +2017,20 @@ export class DataCleanApi extends BaseAPI {
   public apiV1DataCleanTagPost(pageInput?: PageInput, options?: AxiosRequestConfig) {
     return DataCleanApiFp(this.configuration)
       .apiV1DataCleanTagPost(pageInput, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary 分页查询清洗标签
+   * @param {PageInput} [pageInput]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof DataCleanApi
+   */
+  public apiV1DataCleanTagPost_10(pageInput?: PageInput, options?: AxiosRequestConfig) {
+    return DataCleanApiFp(this.configuration)
+      .apiV1DataCleanTagPost_10(pageInput, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -906,6 +2048,23 @@ export class DataCleanApi extends BaseAPI {
   ) {
     return DataCleanApiFp(this.configuration)
       .apiV1DataCleanTagUpdatePost(dataCleanTagConfigOutput, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary 修改清洗标签
+   * @param {Array<DataCleanTagConfigOutput>} [dataCleanTagConfigOutput]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof DataCleanApi
+   */
+  public apiV1DataCleanTagUpdatePost_11(
+    dataCleanTagConfigOutput?: Array<DataCleanTagConfigOutput>,
+    options?: AxiosRequestConfig,
+  ) {
+    return DataCleanApiFp(this.configuration)
+      .apiV1DataCleanTagUpdatePost_11(dataCleanTagConfigOutput, options)
       .then((request) => request(this.axios, this.basePath))
   }
 }

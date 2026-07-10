@@ -18,12 +18,6 @@
  */
 export interface ReferenceIndicatorsConfigOutput {
   /**
-   * 指标ID
-   * @type {string}
-   * @memberof ReferenceIndicatorsConfigOutput
-   */
-  indicatorConfigId?: string
-  /**
    * 参考指标ID
    * @type {string}
    * @memberof ReferenceIndicatorsConfigOutput

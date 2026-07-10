@@ -18,43 +18,43 @@
  */
 export interface PointDataTypeInfo {
   /**
-   * 映射关系ID mapping id
+   * 映射关系ID
    * @type {string}
    * @memberof PointDataTypeInfo
    */
   id?: string | null
   /**
-   * 租户ID tenant id
+   * 租户ID
    * @type {string}
    * @memberof PointDataTypeInfo
    */
   tenantId?: string | null
   /**
-   * 模型点位ID model point id
+   * 模型点位ID
    * @type {string}
    * @memberof PointDataTypeInfo
    */
   modelPointId?: string
   /**
-   * 模型水质项 model water quality component
+   * 模型水质项
    * @type {string}
    * @memberof PointDataTypeInfo
    */
   modelComponent?: string | null
   /**
-   * 设备指标id device indicator id
+   * 设备指标id
    * @type {string}
    * @memberof PointDataTypeInfo
    */
   deviceIndicatorId?: string
   /**
-   * 模型中的数据类型 model data type
+   * 模型中的数据类型
    * @type {string}
    * @memberof PointDataTypeInfo
    */
   modelDataType?: string | null
   /**
-   * 模板方案ID template scenario id
+   * 模板方案ID
    * @type {string}
    * @memberof PointDataTypeInfo
    */

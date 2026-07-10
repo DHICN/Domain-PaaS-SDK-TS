@@ -57,7 +57,7 @@ export class ApiHelperExtend extends ApiHelper {
 
   constructor() {
     super()
-    
+
     // 配置响应拦截器
     this.axiosInstance.interceptors.response.use(
       async (response) => {
@@ -72,12 +72,12 @@ export class ApiHelperExtend extends ApiHelper {
       (error) => {
         console.error('Request Error :>> ', error)
         return Promise.reject(error)
-      }
+      },
     )
 
     // 实例化 API
     this.scenario = {
-      manager: new ScenarioApi.ScenarioManagerApi(scenarioBaseUrl, this.axiosInstance)
+      manager: new ScenarioApi.ScenarioManagerApi(scenarioBaseUrl, this.axiosInstance),
     }
     this.userApi = new UsersMnangerApi(DomainServiceUrlMap.identity, this.axiosInstance)
     this.telemetry = new TelemetryApi(iotBaseUrl, this.axiosInstance)
@@ -103,27 +103,27 @@ const users = await apiHelper.userApi.apiV1UsersGet()
 
 ### 已实现服务
 
-| 服务模块 | 导入路径 | 功能描述 |
-|---------|---------|---------|
-| `identity-service` | `@dhicn/domain-paas-sdk-ts/identity-service` | 用户认证管理服务 |
-| `scenario-service` | `@dhicn/domain-paas-sdk-ts/scenario-service` | 方案管理服务 |
-| `scenario-calculate` | `@dhicn/domain-paas-sdk-ts/scenario-calculate` | 方案计算服务 |
-| `model-driver-service` | `@dhicn/domain-paas-sdk-ts/model-driver-service` | 模型驱动服务 |
-| `model-information` | `@dhicn/domain-paas-sdk-ts/model-information` | 模型信息服务 |
-| `model-configuration` | `@dhicn/domain-paas-sdk-ts/model-configuration` | 模型配置服务 |
-| `result-service` | `@dhicn/domain-paas-sdk-ts/result-service` | 结果分析服务 |
-| `accident-service` | `@dhicn/domain-paas-sdk-ts/accident-service` | 事故管理服务 |
-| `digital-twin-service` | `@dhicn/domain-paas-sdk-ts/digital-twin-service` | 数字孪生服务 |
-| `iot-service` | `@dhicn/domain-paas-sdk-ts/iot-service` | IoT 物联网服务 |
-| `compute-service` | `@dhicn/domain-paas-sdk-ts/compute-service` | 计算服务 |
-| `log-service` | `@dhicn/domain-paas-sdk-ts/log-service` | 日志服务 |
-| `data-center-service` | `@dhicn/domain-paas-sdk-ts/data-center-service` | 数据中台服务 |
-| `plugin-service` | `@dhicn/domain-paas-sdk-ts/plugin-service` | 插件服务 |
-| `file-service` | `@dhicn/domain-paas-sdk-ts/file-service` | 文件服务 |
-| `gis-service` | `@dhicn/domain-paas-sdk-ts/gis-service` | GIS 地理信息服务 |
-| `wd-domain` | `@dhicn/domain-paas-sdk-ts/wd-domain` | 供水业务中台服务 |
-| `wwtp-domain` | `@dhicn/domain-paas-sdk-ts/wwtp-domain` | 污水处理业务中台主总线服务 |
-| `wwtp-infrastructure` | `@dhicn/domain-paas-sdk-ts/wwtp-infrastructure` | 污水处理基础设施服务 |
+| 服务模块               | 导入路径                                         | 功能描述                   |
+| ---------------------- | ------------------------------------------------ | -------------------------- |
+| `identity-service`     | `@dhicn/domain-paas-sdk-ts/identity-service`     | 用户认证管理服务           |
+| `scenario-service`     | `@dhicn/domain-paas-sdk-ts/scenario-service`     | 方案管理服务               |
+| `scenario-calculate`   | `@dhicn/domain-paas-sdk-ts/scenario-calculate`   | 方案计算服务               |
+| `model-driver-service` | `@dhicn/domain-paas-sdk-ts/model-driver-service` | 模型驱动服务               |
+| `model-information`    | `@dhicn/domain-paas-sdk-ts/model-information`    | 模型信息服务               |
+| `model-configuration`  | `@dhicn/domain-paas-sdk-ts/model-configuration`  | 模型配置服务               |
+| `result-service`       | `@dhicn/domain-paas-sdk-ts/result-service`       | 结果分析服务               |
+| `accident-service`     | `@dhicn/domain-paas-sdk-ts/accident-service`     | 事故管理服务               |
+| `digital-twin-service` | `@dhicn/domain-paas-sdk-ts/digital-twin-service` | 数字孪生服务               |
+| `iot-service`          | `@dhicn/domain-paas-sdk-ts/iot-service`          | IoT 物联网服务             |
+| `compute-service`      | `@dhicn/domain-paas-sdk-ts/compute-service`      | 计算服务                   |
+| `log-service`          | `@dhicn/domain-paas-sdk-ts/log-service`          | 日志服务                   |
+| `data-center-service`  | `@dhicn/domain-paas-sdk-ts/data-center-service`  | 数据中台服务               |
+| `plugin-service`       | `@dhicn/domain-paas-sdk-ts/plugin-service`       | 插件服务                   |
+| `file-service`         | `@dhicn/domain-paas-sdk-ts/file-service`         | 文件服务                   |
+| `gis-service`          | `@dhicn/domain-paas-sdk-ts/gis-service`          | GIS 地理信息服务           |
+| `wd-domain`            | `@dhicn/domain-paas-sdk-ts/wd-domain`            | 供水业务中台服务           |
+| `wwtp-domain`          | `@dhicn/domain-paas-sdk-ts/wwtp-domain`          | 污水处理业务中台主总线服务 |
+| `wwtp-infrastructure`  | `@dhicn/domain-paas-sdk-ts/wwtp-infrastructure`  | 污水处理基础设施服务       |
 
 ### 待实现服务
 
@@ -138,12 +138,12 @@ const users = await apiHelper.userApi.apiV1UsersGet()
 
 基础 API 辅助类，提供以下方法：
 
-| 方法 | 参数 | 说明 |
-|-----|------|-----|
-| `logIn()` | tenantId, clientId, grantType, clientSecret, username, password | 登录认证 |
-| `refreshToken()` | tenantid, clientId, clientSecret, grantType, refreshToken, ... | 刷新 Token |
-| `setAuth()` | token | 设置认证头 |
-| `changeTenantId()` | tenantId | 切换租户 |
+| 方法               | 参数                                                            | 说明       |
+| ------------------ | --------------------------------------------------------------- | ---------- |
+| `logIn()`          | tenantId, clientId, grantType, clientSecret, username, password | 登录认证   |
+| `refreshToken()`   | tenantid, clientId, clientSecret, grantType, refreshToken, ...  | 刷新 Token |
+| `setAuth()`        | token                                                           | 设置认证头 |
+| `changeTenantId()` | tenantId                                                        | 切换租户   |
 
 ### DomainServiceUrlMap
 
@@ -216,34 +216,28 @@ export class ApiHelperExtend extends ApiHelper {
 
     this.scenario = {
       manager: new ScenarioApi.ScenarioManagerApi(
-        `${baseUrl}/global-scenario-manager-service`, 
-        this.axiosInstance
+        `${baseUrl}/global-scenario-manager-service`,
+        this.axiosInstance,
       ),
       library: new ScenarioApi.LibraryApi(
-        `${baseUrl}/global-scenario-manager-service`, 
-        this.axiosInstance
-      )
+        `${baseUrl}/global-scenario-manager-service`,
+        this.axiosInstance,
+      ),
     }
     this.modelDriver = {
       modelRunApi: new ModelDriverApi.ModelRunApi(
-        `${baseUrl}/global-model-driver-service`, 
-        this.axiosInstance
-      )
+        `${baseUrl}/global-model-driver-service`,
+        this.axiosInstance,
+      ),
     }
     this.globalResultService = {
-      urbanWd: new UrbanWdResultAnalysisApi(
-        `${baseUrl}/global-result-service`, 
-        this.axiosInstance
-      )
+      urbanWd: new UrbanWdResultAnalysisApi(`${baseUrl}/global-result-service`, this.axiosInstance),
     }
     this.gis = new GisQueryApi(`${baseUrl}/gis-service`, this.axiosInstance)
     this.path = new PathPlanningApi(`${baseUrl}/gis-service`, this.axiosInstance)
     this.dataSearch = new HistoricalDataSearchApi(`${baseUrl}/iot-service`, this.axiosInstance)
     this.ts = new TelemetryApi(`${baseUrl}/iot-service`, this.axiosInstance)
-    this.fileService = new FileServerApi(
-      `${baseUrl}/global-file-service`, 
-      this.axiosInstance
-    )
+    this.fileService = new FileServerApi(`${baseUrl}/global-file-service`, this.axiosInstance)
   }
 }
 

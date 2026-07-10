@@ -28,49 +28,49 @@ import { StringStringKeyValue } from './string-string-key-value'
  */
 export interface AssetInfoOutput {
   /**
-   * 资产ID asset Id
+   * 资产ID
    * @type {string}
    * @memberof AssetInfoOutput
    */
   id?: string
   /**
-   * 资产名称 asset name
+   * 资产名称
    * @type {string}
    * @memberof AssetInfoOutput
    */
   name?: string | null
   /**
-   * 资产标识 asset label
+   * 资产标识
    * @type {string}
    * @memberof AssetInfoOutput
    */
   label?: string | null
   /**
-   * 资产类型（自定义） asset type (customized)
+   * 资产类型（自定义）
    * @type {string}
    * @memberof AssetInfoOutput
    */
   type?: string | null
   /**
-   * 资产描述 asset description
+   * 资产描述
    * @type {string}
    * @memberof AssetInfoOutput
    */
   description?: string | null
   /**
-   * 资产属性 customized attributes
+   * 资产属性
    * @type {Array<StringStringKeyValue>}
    * @memberof AssetInfoOutput
    */
   attributes?: Array<StringStringKeyValue> | null
   /**
-   * 子资产列表 sub assets
+   * 子资产列表
    * @type {Array<AssetRel>}
    * @memberof AssetInfoOutput
    */
   assets?: Array<AssetRel> | null
   /**
-   * 子设备列表 devices
+   * 子设备列表
    * @type {Array<DeviceRel>}
    * @memberof AssetInfoOutput
    */

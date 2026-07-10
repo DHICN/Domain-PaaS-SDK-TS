@@ -18,151 +18,151 @@
  */
 export interface Scenario {
   /**
-   * Id , column: Id required
+   * Id
    * @type {string}
    * @memberof Scenario
    */
   id?: string
   /**
-   * 方案代码 , column: code
+   * 方案代码
    * @type {string}
    * @memberof Scenario
    */
   scenarioCode?: string | null
   /**
-   * 方案名称 , column: name
+   * 方案名称
    * @type {string}
    * @memberof Scenario
    */
   scenarioName?: string | null
   /**
-   * 模型类型 , column: model_type
+   * 模型类型
    * @type {string}
    * @memberof Scenario
    */
   modelType?: string | null
   /**
-   * 模型子类型 , column: model_subtype
+   * 模型子类型
    * @type {string}
    * @memberof Scenario
    */
   modelSubType?: string | null
   /**
-   * 是否为模板 , column: is_template
+   * 是否为模板
    * @type {number}
    * @memberof Scenario
    */
   template?: number
   /**
-   * 父方案 , column: inherited_scenario
+   * 父方案
    * @type {string}
    * @memberof Scenario
    */
   inheritedScenario?: string
   /**
-   * 是否只读 , column: read_only
+   * 是否只读
    * @type {number}
    * @memberof Scenario
    */
   readOnly?: number
   /**
-   * 是否可用 , column: enabled ,1:启用,0:未启用
+   * 是否可用，1:启用,0:未启用
    * @type {number}
    * @memberof Scenario
    */
   enabled?: number
   /**
-   * 相对路径 , column: relative_folder
+   * 相对路径
    * @type {string}
    * @memberof Scenario
    */
   relativeFolder?: string | null
   /**
-   * 模型文件名称 , column: project_file
+   * 模型文件名称
    * @type {string}
    * @memberof Scenario
    */
   projectFile?: string | null
   /**
-   * 当前时间 , column: currenttime
+   * 当前时间
    * @type {string}
    * @memberof Scenario
    */
   currentTime?: string
   /**
-   * 模型开始时间 , column: starttime
+   * 模型开始时间
    * @type {string}
    * @memberof Scenario
    */
   startTime?: string
   /**
-   * 模型结束时间 , column: endtime
+   * 模型结束时间
    * @type {string}
    * @memberof Scenario
    */
   endTime?: string
   /**
-   * 方案创建时间 , column: createtime
+   * 方案创建时间
    * @type {string}
    * @memberof Scenario
    */
   createTime?: string
   /**
-   * 是否自动计算 , column: auto_calculate
+   * 是否自动计算
    * @type {number}
    * @memberof Scenario
    */
   autoCalculate?: number
   /**
-   * 是否修改 , column: modified
+   * 是否修改
    * @type {number}
    * @memberof Scenario
    */
   modified?: number
   /**
-   * 是否检查 , column: checked
+   * 是否检查
    * @type {number}
    * @memberof Scenario
    */
   checked?: number
   /**
-   * 是否计算 , column: calculated
+   * 是否计算
    * @type {number}
    * @memberof Scenario
    */
   calculated?: number
   /**
-   * 是否发布,是否默认展示方案 , column: published
+   * 是否发布,是否默认展示方案
    * @type {number}
    * @memberof Scenario
    */
   published?: number
   /**
-   * 是否在线优先 , column: online_first
+   * 是否在线优先
    * @type {number}
    * @memberof Scenario
    */
   onlineFirst?: number
   /**
-   * 是否自动补齐 , column: auto_amend
+   * 是否自动补齐
    * @type {number}
    * @memberof Scenario
    */
   autoAmend?: number
   /**
-   * 方案状态 , column: state
+   * 方案状态
    * @type {string}
    * @memberof Scenario
    */
   state?: string | null
   /**
-   * 描述 , column: description
+   * 描述
    * @type {string}
    * @memberof Scenario
    */
   description?: string | null
   /**
-   * 版本 , column: version
+   * 版本
    * @type {string}
    * @memberof Scenario
    */

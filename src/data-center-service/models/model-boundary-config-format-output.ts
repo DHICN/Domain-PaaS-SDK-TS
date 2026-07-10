@@ -18,61 +18,61 @@
  */
 export interface ModelBoundaryConfigFormatOutput {
   /**
-   * 配置项ID configuration id
+   * 配置项ID
    * @type {string}
    * @memberof ModelBoundaryConfigFormatOutput
    */
   id?: string
   /**
-   * 模型点位ID model point id
+   * 模型点位ID
    * @type {string}
    * @memberof ModelBoundaryConfigFormatOutput
    */
   modelPointId?: string
   /**
-   * 边界显示名称 bounary show name
+   * 边界显示名称
    * @type {string}
    * @memberof ModelBoundaryConfigFormatOutput
    */
   showName?: string | null
   /**
-   * 边界时间序列数据dfs0文件的相对路径 Dfs0 file path
+   * 边界时间序列数据dfs0文件的相对路径
    * @type {string}
    * @memberof ModelBoundaryConfigFormatOutput
    */
   dfs0File?: string | null
   /**
-   * 边界时间序列数据Dfs0文件中的数据项名称 Dfs0 data item
+   * 边界时间序列数据Dfs0文件中的数据项名称
    * @type {string}
    * @memberof ModelBoundaryConfigFormatOutput
    */
   dataItem?: string | null
   /**
-   * 对应的设备指标信息，采用灵活的JSON格式 corresponding device indicators in json format
+   * 对应的设备指标信息，采用灵活的JSON格式
    * @type {string}
    * @memberof ModelBoundaryConfigFormatOutput
    */
   pointJson?: string | null
   /**
-   * 实测数据处理的表达式 measure data process expression
+   * 实测数据处理的表达式
    * @type {string}
    * @memberof ModelBoundaryConfigFormatOutput
    */
   measureExpression?: string | null
   /**
-   * 预报数据处理的表达式 forecast data process expression
+   * 预报数据处理的表达式
    * @type {string}
    * @memberof ModelBoundaryConfigFormatOutput
    */
   forecastExpression?: string | null
   /**
-   * 模板方案Id template scenario id
+   * 模板方案Id
    * @type {string}
    * @memberof ModelBoundaryConfigFormatOutput
    */
   templateId?: string
   /**
-   * 模型边界ID boundary id
+   * 模型边界ID
    * @type {string}
    * @memberof ModelBoundaryConfigFormatOutput
    */
@@ -84,7 +84,7 @@ export interface ModelBoundaryConfigFormatOutput {
    */
   boundaryType?: ModelBoundaryConfigFormatOutputBoundaryTypeEnum
   /**
-   * 数据类型（主要针对结构物） data type, mainly for structures
+   * 数据类型（主要针对结构物）
    * @type {string}
    * @memberof ModelBoundaryConfigFormatOutput
    */

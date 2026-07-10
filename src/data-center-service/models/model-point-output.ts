@@ -22,7 +22,7 @@ import { ModelPointAttributeOutput } from './model-point-attribute-output'
  */
 export interface ModelPointOutput {
   /**
-   * 模型点位ID model point id
+   * 模型点位ID
    * @type {string}
    * @memberof ModelPointOutput
    */
@@ -34,31 +34,31 @@ export interface ModelPointOutput {
    */
   templateId?: string
   /**
-   * 模型类型 model type
+   * 模型类型
    * @type {string}
    * @memberof ModelPointOutput
    */
   modelType?: string | null
   /**
-   * 模型点位类型 model point type
+   * 模型点位类型
    * @type {string}
    * @memberof ModelPointOutput
    */
   modelPointType?: string | null
   /**
-   * 模型中对应的ID model muid
+   * 模型中对应的ID
    * @type {string}
    * @memberof ModelPointOutput
    */
   modelId?: string | null
   /**
-   * 点位类型名称 model point type name
+   * 点位类型名称
    * @type {string}
    * @memberof ModelPointOutput
    */
   name?: string | null
   /**
-   * 模型点位属性信息 model point attributes
+   * 模型点位属性信息
    * @type {Array<ModelPointAttributeOutput>}
    * @memberof ModelPointOutput
    */

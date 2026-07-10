@@ -15,14 +15,16 @@
 ### 构造函数
 
 ```ts
-constructor(baseURL = '', timeout = 500000)
+constructor((baseURL = ''), (timeout = 500000))
 ```
 
 **参数说明：**
+
 - `baseURL`: 基础 URL，可选。如果为空，需要在实例化各服务 API 时指定完整路径
 - `timeout`: 请求超时时间（毫秒），默认 500000ms
 
 **示例：**
+
 ```ts
 // 使用默认配置
 const helper = new ApiHelper()
@@ -33,11 +35,11 @@ const helper = new ApiHelper('/api', 30000)
 
 ### 属性
 
-| 属性 | 类型 | 说明 |
-|-----|------|-----|
-| `axiosInstance` | `AxiosInstance` | Axios 实例，用于发送 HTTP 请求 |
-| `token` | `Object` | 当前认证信息，包含 `token_type`, `access_token`, `refresh_token` |
-| `connectApi` | `ConnectApi` | 认证连接 API 实例 |
+| 属性            | 类型            | 说明                                                             |
+| --------------- | --------------- | ---------------------------------------------------------------- |
+| `axiosInstance` | `AxiosInstance` | Axios 实例，用于发送 HTTP 请求                                   |
+| `token`         | `Object`        | 当前认证信息，包含 `token_type`, `access_token`, `refresh_token` |
+| `connectApi`    | `ConnectApi`    | 认证连接 API 实例                                                |
 
 ### 方法详解
 
@@ -69,6 +71,7 @@ async logIn(
 **返回值：** Promise，解析为 Token 对象
 
 **示例：**
+
 ```ts
 const token = await apiHelper.logIn(
   'tenant-123',
@@ -76,7 +79,7 @@ const token = await apiHelper.logIn(
   'password',
   'client-secret-xxx',
   'admin',
-  'password123'
+  'password123',
 )
 console.log('Token:', token.access_token)
 ```
@@ -121,13 +124,14 @@ async refreshToken(
 | `deviceCode` | `string` | 否 | 设备码 |
 
 **示例：**
+
 ```ts
 const newToken = await apiHelper.refreshToken(
   'tenant-123',
   'client-id-xxx',
   'client-secret-xxx',
   'refresh_token',
-  oldToken.refresh_token
+  oldToken.refresh_token,
 )
 ```
 
@@ -145,10 +149,11 @@ setAuth(token: { token_type: string; access_token: string }): void
 | `token` | `Object` | 包含 `token_type` 和 `access_token` 的对象 |
 
 **示例：**
+
 ```ts
 apiHelper.setAuth({
   token_type: 'Bearer',
-  access_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...'
+  access_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...',
 })
 ```
 
@@ -166,6 +171,7 @@ changeTenantId(tenantId: string): void
 | `tenantId` | `string` | 新的租户 ID |
 
 **示例：**
+
 ```ts
 apiHelper.changeTenantId('new-tenant-456')
 ```
@@ -178,30 +184,30 @@ apiHelper.changeTenantId('new-tenant-456')
 export const DomainServiceUrlMap = {
   // 基础服务
   identity: 'identity-service',
-  
+
   // 方案相关
   scenario: 'global-scenario-manager-service',
   scenarioCompute: 'global-scenario-compute-service',
-  
+
   // 模型相关
   modelDriver: 'global-model-driver-service',
   modelInformation: 'global-model-information-service',
   modelConfiguration: 'global-model-configuration-service',
-  
+
   // 结果与分析
   resultAnalysis: 'global-result-service',
-  
+
   // 数字孪生
   digitalTwin: 'digital-twin-service',
-  
+
   // IoT
   iot: 'iot-service',
-  
+
   // 文件与数据
   document: 'global-file-service',
   fileServer: 'global-file-service',
   dataCenter: 'global-data-center-service',
-  
+
   // 业务中台
   wwtp: {
     mainBus: 'wwtp-paas-main-bus-service',
@@ -210,7 +216,7 @@ export const DomainServiceUrlMap = {
   wd: {
     domain: 'wd-domain-service',
   },
-  
+
   // 其他服务
   message: 'global-message-service',
   textSearch: 'global-full-text-search-service',
@@ -230,14 +236,14 @@ export const DomainServiceUrlMap = {
 export class ApiHelperExtend extends ApiHelper {
   constructor() {
     super()
-    
+
     // 配置全局请求头
     this.axiosInstance.defaults.headers.common.showErrMsg = true
     this.axiosInstance.defaults.headers.common['Accept-Language'] = 'zh-CN'
-    
+
     // 配置请求超时
     this.axiosInstance.defaults.timeout = 60000
-    
+
     // 配置重试机制
     this.axiosInstance.defaults.retryCount = 3
     this.axiosInstance.defaults.retryDelay = 1000
@@ -252,7 +258,7 @@ this.axiosInstance.interceptors.response.use(
   (response) => {
     // 统一处理响应数据
     const { status, data, message } = response.data
-    
+
     // 处理业务状态码
     if (typeof status === 'boolean') {
       if (status) {
@@ -268,7 +274,7 @@ this.axiosInstance.interceptors.response.use(
         return Promise.reject(response.data)
       }
     }
-    
+
     return response
   },
   (error) => {
@@ -301,7 +307,7 @@ this.axiosInstance.interceptors.response.use(
       console.error('请求错误:', error.message)
     }
     return Promise.reject(error)
-  }
+  },
 )
 ```
 
@@ -314,19 +320,19 @@ this.axiosInstance.interceptors.request.use(
     if (config.method === 'get') {
       config.params = {
         ...config.params,
-        _t: Date.now()
+        _t: Date.now(),
       }
     }
-    
+
     // 添加自定义请求头
     config.headers['X-Request-ID'] = crypto.randomUUID()
-    
+
     return config
   },
   (error) => {
     console.error('请求拦截器错误:', error)
     return Promise.reject(error)
-  }
+  },
 )
 ```
 
@@ -351,7 +357,7 @@ export class AutoRefreshApiHelper extends ApiHelper {
       (response) => response,
       async (error) => {
         const { config, response } = error
-        
+
         if (response?.status !== 401) {
           return Promise.reject(error)
         }
@@ -365,7 +371,7 @@ export class AutoRefreshApiHelper extends ApiHelper {
               'client-id',
               'client-secret',
               'refresh_token',
-              this.token.refresh_token
+              this.token.refresh_token,
             )
 
             this.onTokenRefreshed(newToken.access_token)
@@ -385,7 +391,7 @@ export class AutoRefreshApiHelper extends ApiHelper {
             resolve(this.axiosInstance(config))
           })
         })
-      }
+      },
     )
   }
 
@@ -413,7 +419,7 @@ export class MultiTenantApiHelper extends ApiHelper {
     if (this.token.access_token) {
       this.tenantCache.set(
         this.axiosInstance.defaults.headers.common.tenantId,
-        this.token.access_token
+        this.token.access_token,
       )
     }
 
@@ -425,7 +431,7 @@ export class MultiTenantApiHelper extends ApiHelper {
     if (cachedToken) {
       this.setAuth({
         token_type: 'Bearer',
-        access_token: cachedToken
+        access_token: cachedToken,
       })
     }
   }
@@ -461,7 +467,7 @@ const apiHelper = new CancellableApiHelper()
 
 // 发起请求
 const response = await apiHelper.scenario.manager.apiV1ScenariosGet({
-  cancelToken: apiHelper.createCancelToken('getScenarios')
+  cancelToken: apiHelper.createCancelToken('getScenarios'),
 })
 
 // 取消请求
@@ -485,12 +491,12 @@ export class ApiHelperExtend extends ApiHelper {
   identity: { ... }
   scenario: { ... }
   iot: { ... }
-  
+
   constructor() {
     super()
     this.initServices()
   }
-  
+
   private initServices() {
     // 初始化各服务
   }
@@ -505,7 +511,7 @@ export class ApiError extends Error {
   constructor(
     public code: string,
     public message: string,
-    public status?: number
+    public status?: number,
   ) {
     super(message)
     this.name = 'ApiError'
@@ -571,7 +577,7 @@ describe('ApiHelperExtend', () => {
       'password',
       'client-secret',
       'admin',
-      'password123'
+      'password123',
     )
     expect(token.access_token).toBeDefined()
   })

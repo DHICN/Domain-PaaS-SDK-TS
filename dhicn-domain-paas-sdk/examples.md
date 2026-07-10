@@ -39,9 +39,9 @@ export class AuthApiHelper extends ApiHelper {
         'password',
         'your-client-secret',
         username,
-        password
+        password,
       )
-      
+
       console.log('登录成功:', token)
       return token
     } catch (error) {
@@ -57,7 +57,7 @@ export class AuthApiHelper extends ApiHelper {
         'client-id',
         'client-secret',
         'refresh_token',
-        this.token.refresh_token
+        this.token.refresh_token,
       )
       return newToken
     } catch (error) {
@@ -74,17 +74,17 @@ export class AuthApiHelper extends ApiHelper {
 export class AutoRefreshApiHelper extends ApiHelper {
   constructor() {
     super()
-    
+
     // 配置响应拦截器，自动处理 Token 过期
     this.axiosInstance.interceptors.response.use(
       (response) => response,
       async (error) => {
         const originalRequest = error.config
-        
+
         // 如果是 401 错误且未重试过
         if (error.response?.status === 401 && !originalRequest._retry) {
           originalRequest._retry = true
-          
+
           try {
             // 刷新 Token
             await this.refreshToken(
@@ -92,21 +92,20 @@ export class AutoRefreshApiHelper extends ApiHelper {
               'client-id',
               'client-secret',
               'refresh_token',
-              this.token.refresh_token
+              this.token.refresh_token,
             )
-            
+
             // 重试原请求
-            originalRequest.headers.Authorization = 
-              `${this.token.token_type} ${this.token.access_token}`
+            originalRequest.headers.Authorization = `${this.token.token_type} ${this.token.access_token}`
             return this.axiosInstance(originalRequest)
           } catch (refreshError) {
             // 刷新失败，跳转到登录页
             throw refreshError
           }
         }
-        
+
         return Promise.reject(error)
-      }
+      },
     )
   }
 }
@@ -145,9 +144,9 @@ export class ScenarioHelper extends ApiHelper {
       name,
       description,
       created: new Date().toISOString(),
-      modified: new Date().toISOString()
+      modified: new Date().toISOString(),
     }
-    
+
     const response = await this.scenarioManager.apiV1ScenariosPost(scenario)
     return response.data
   }
@@ -173,7 +172,7 @@ export class ScenarioHelper extends ApiHelper {
   async addLibraryItemToScenario(scenarioId: string, libraryItemId: string) {
     const response = await this.scenarioLibrary.apiV1LibraryPost({
       scenarioId,
-      libraryItemId
+      libraryItemId,
     })
     return response.data
   }
@@ -209,23 +208,18 @@ export class IoTHelper extends ApiHelper {
 
   // 批量获取多个传感器数据
   async getBatchTelemetryData(sensorIds: string[]) {
-    const promises = sensorIds.map(id => this.telemetry.telemetryDataGet(id))
+    const promises = sensorIds.map((id) => this.telemetry.telemetryDataGet(id))
     const results = await Promise.all(promises)
-    return results.map(r => r.data)
+    return results.map((r) => r.data)
   }
 
   // 查询历史数据
-  async searchHistoricalData(
-    sensorId: string,
-    startTime: Date,
-    endTime: Date,
-    interval?: string
-  ) {
+  async searchHistoricalData(sensorId: string, startTime: Date, endTime: Date, interval?: string) {
     const response = await this.historicalSearch.historicalDataSearchGet(
       sensorId,
       startTime.toISOString(),
       endTime.toISOString(),
-      interval
+      interval,
     )
     return response.data
   }
@@ -249,7 +243,7 @@ const historicalData = await iotHelper.searchHistoricalData(
   'sensor-001',
   new Date('2024-01-01'),
   new Date('2024-01-02'),
-  '1h'
+  '1h',
 )
 ```
 
@@ -276,7 +270,7 @@ export class FileHelper extends ApiHelper {
   async uploadFile(file: File, metadata?: any) {
     const formData = new FormData()
     formData.append('file', file)
-    
+
     if (metadata) {
       formData.append('metadata', JSON.stringify(metadata))
     }
@@ -288,7 +282,7 @@ export class FileHelper extends ApiHelper {
   // 下载文件
   async downloadFile(fileId: string): Promise<Blob> {
     const response = await this.fileService.filesIdGet(fileId, {
-      responseType: 'blob'
+      responseType: 'blob',
     })
     return response.data
   }
@@ -315,7 +309,7 @@ const file = fileInput.files?.[0]
 if (file) {
   const result = await fileHelper.uploadFile(file, {
     description: '测试文件',
-    category: 'documents'
+    category: 'documents',
   })
   console.log('上传成功:', result)
 }
@@ -360,7 +354,7 @@ export class GISHelper extends ApiHelper {
   async planPath(startPoint: [number, number], endPoint: [number, number]) {
     const response = await this.pathPlanning.pathPlanningPost({
       start: startPoint,
-      end: endPoint
+      end: endPoint,
     })
     return response.data
   }
@@ -379,14 +373,11 @@ await gisHelper.logIn(tenantId, clientId, grantType, clientSecret, username, pas
 // 查询管网图层
 const features = await gisHelper.queryFeatures('pipe-network', {
   type: 'water-pipe',
-  status: 'active'
+  status: 'active',
 })
 
 // 路径规划
-const path = await gisHelper.planPath(
-  [121.5, 29.8],
-  [121.6, 29.9]
-)
+const path = await gisHelper.planPath([121.5, 29.8], [121.6, 29.9])
 ```
 
 ---
@@ -461,7 +452,7 @@ export class WDDomainHelper extends ApiHelper {
     const response = await this.alarmLog.alarmLogsGet(
       startTime.toISOString(),
       endTime.toISOString(),
-      level
+      level,
     )
     return response.data
   }
@@ -474,10 +465,7 @@ export class WDDomainHelper extends ApiHelper {
 
   // 执行方案计算
   async runScenarioCalculation(scenarioId: string, parameters?: any) {
-    const response = await this.wdScenarioCompute.wdScenarioCalculationPost(
-      scenarioId,
-      parameters
-    )
+    const response = await this.wdScenarioCompute.wdScenarioCalculationPost(scenarioId, parameters)
     return response.data
   }
 }
@@ -503,11 +491,8 @@ export class WWTPDomainHelper extends ApiHelper {
   constructor() {
     super()
     const baseUrl = '/wwtp-paas-main-bus-service'
-    
-    this.infrastructure = new WWTPInfrastructureApi.InfrastructureApi(
-      baseUrl, 
-      this.axiosInstance
-    )
+
+    this.infrastructure = new WWTPInfrastructureApi.InfrastructureApi(baseUrl, this.axiosInstance)
   }
 
   // 获取污水处理厂信息
@@ -562,7 +547,7 @@ export class ModelServiceHelper extends ApiHelper {
   async runModel(modelId: string, parameters: any) {
     const response = await this.modelDriver.modelRunPost({
       modelId,
-      parameters
+      parameters,
     })
     return response.data
   }
@@ -614,20 +599,13 @@ export class ResultAnalysisHelper extends ApiHelper {
 
   // 获取时间序列结果
   async getTimeSeriesResult(scenarioId: string, nodeId: string, parameter: string) {
-    const response = await this.urbanWdResult.timeSeriesResultGet(
-      scenarioId,
-      nodeId,
-      parameter
-    )
+    const response = await this.urbanWdResult.timeSeriesResultGet(scenarioId, nodeId, parameter)
     return response.data
   }
 
   // 获取统计结果
   async getStatisticsResult(scenarioId: string, statisticsType: string) {
-    const response = await this.urbanWdResult.statisticsResultGet(
-      scenarioId,
-      statisticsType
-    )
+    const response = await this.urbanWdResult.statisticsResultGet(scenarioId, statisticsType)
     return response.data
   }
 }
