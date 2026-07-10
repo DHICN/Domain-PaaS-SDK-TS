@@ -13,20 +13,23 @@ permissions:
 jobs:
   build-and-publish:
     runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        node-version: [24.x]
+    environment: production
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup Node.js ${{ matrix.node-version }}
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: 24
           registry-url: https://registry.npmjs.org
+
+      - name: Check Node and npm version
+        run: |
+          node -v
+          npm -v
+          npm config get registry
 
       - name: Enable Corepack
         run: corepack enable
@@ -78,10 +81,3 @@ jobs:
 
             Package: ${{ steps.package_info.outputs.package_name }}
 
-            Published to npm by GitHub Actions OIDC Trusted Publishing.
-          token: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Skip Publish Message
-        if: steps.check_version.outputs.exists == 'true'
-        run: |
-          echo "Skip publish because this version already exists on npm."
